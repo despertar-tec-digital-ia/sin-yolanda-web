@@ -1,8 +1,9 @@
 # Forma de trabajar y publicar
 
 **Última actualización:** 2026-10-07 · **Responsables:** Luis, técnica; Karina, negocio/contenido y hero.
-**Estado:** implementación de CI y separación pública en rama de trabajo. CD, protecciones y secretos
-no se consideran activos por este documento; registrar ejecución remota antes de declarar CI verificado.
+**Estado:** CI de PR verificado en GitHub (run `37689049591`, 7-oct), artefacto descargado y sus
+77 hashes comprobados. La rama aún no está integrada a main. CD, protecciones y secretos no están
+activados por este lote; no hay nuevo despliegue. La aprobación del documento no equivale a release.
 
 ## 1. Una casa por tipo de información
 

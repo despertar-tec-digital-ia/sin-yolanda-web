@@ -49,7 +49,8 @@ carpetas privadas de una computadora. Última actualización: 2026-10-07.
 - No copiar llaves al chat/Git. No crear PAT global si basta el token del workflow. Secretos
   limitados por entorno y accesibles solo en el job autorizado de publicación.
 - Nunca afirmar «CI/CD activo» por existir documentos/YAML: verificar una ejecución remota,
-  controles de rama/entorno, resultado servido y rollback. CI preparado en `quality.yml`; CD/credenciales/protecciones aún pendientes de verificación remota.
+  controles de rama/entorno, resultado servido y rollback. CI de PR comprobado; evidencia en
+  `docs/WORKFLOW.md`. CD/credenciales/protecciones pendientes; no hay nuevo despliegue.
 
 ## Code Review Rules
 

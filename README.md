@@ -8,7 +8,7 @@ Sitio estático multi-página de la cadena de cantinas con micrófono abierto
 Leer [AGENTS.md](AGENTS.md) y [el flujo compartido](docs/WORKFLOW.md) antes de modificar el sitio.
 Las decisiones, responsabilidades, requisitos de CI/accesos y bloqueos están en ese flujo;
 [rutas y migraciones](docs/ROUTES.md) tiene su contrato propio. Usar la plantilla de PR del repo.
-**7-oct: CI y paquete público preparados; sin nuevo despliegue ni CD activo.** El hero del home
+**7-oct: CI de PR y paquete público verificados; sin nuevo despliegue ni CD activo.** El hero del home
 queda bajo responsabilidad de Karina. Las instrucciones no sustituyen protecciones de GitHub.
 
 ## Stack
@@ -82,6 +82,6 @@ continuación canónica en el plan operativo del vault, no en este artefacto.
 - Guadalajara: WhatsApp (San Ignacio +52 33 1018 6159)
 
 ## Pendientes externos
-1. Verificar/activar CI y controles remotos; configurar después CD aprobado (sin desplegar por este lote)
+1. Integrar CI a main e instalar controles remotos; configurar después CD aprobado (sin desplegar por este lote)
 2. Alta en Google Search Console
 3. Campo "web" en los 6 perfiles GBP apuntando a sin-yolanda.com

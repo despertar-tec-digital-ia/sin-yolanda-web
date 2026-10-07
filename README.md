@@ -3,8 +3,18 @@
 Sitio estático multi-página de la cadena de cantinas con micrófono abierto
 (Guadalajara + Texas: San Antonio, The Woodlands, Houston; El Paso próximamente).
 
+## Cómo trabajar aquí
+
+Leer [AGENTS.md](AGENTS.md) y [el flujo compartido](docs/WORKFLOW.md) antes de modificar el sitio.
+Las decisiones, responsabilidades, requisitos de CI/accesos y bloqueos están en ese flujo;
+[rutas y migraciones](docs/ROUTES.md) tiene su contrato propio. Usar la plantilla de PR del repo.
+**7-oct: CI y paquete público preparados; sin nuevo despliegue ni CD activo.** El hero del home
+queda bajo responsabilidad de Karina. Las instrucciones no sustituyen protecciones de GitHub.
+
 ## Stack
-- HTML/CSS/JS vanilla (sin build). Deploy directo a **Cloudflare Pages**.
+- HTML/CSS/JS vanilla; validación/empaquetado determinista con Node, sin dependencias npm.
+- `npm ci --ignore-scripts` → `npm run check` → `npm run build` (salida nueva `.artifacts/public`).
+- Hosting: **Cloudflare Pages**. La actualización visual del donante es un proceso aparte.
 - Proyecto Pages: `sin-yolanda-web` → https://sin-yolanda-web.pages.dev
 - Dominio activo: `sin-yolanda.com` (Cloudflare Pages, HTTPS verificado)
 
@@ -12,24 +22,29 @@ Sitio estático multi-página de la cadena de cantinas con micrófono abierto
 - 12 páginas públicas: home, locations, la-cantina, catering, eventos, tienda,
   el-paso, y 4 sucursales (san-ignacio, san-antonio, the-woodlands, houston), más privacidad,
   Houston EN y carta Houston. Maricarmen está archivada, fuera del artefacto público.
-- Panel interno (no indexado): dashboard, listings, reputation, requests, reports, review-detail
-- Datos: `assets/js/mock-data.js` (NAP verificado vs Google Business Profile 24-sep-2026)
+- Panel demo y `mock-data.js`: antecedentes conservados en Git, excluidos del paquete publicable;
+  navegación/JS público ya no incluyen el panel. Retirada en dominio pendiente de despliegue.
+- Datos públicos: `assets/js/public-data.js`; contiene solo sucursales y eventos, sin métricas internas.
+  El contenido comercial heredado no queda certificado por pasar CI.
 - SEO: JSON-LD Restaurant por sucursal (con horarios + geo reales), canonicals,
   sitemap.xml (12 URLs), robots.txt, OG tags
 
 ## Deploy
-Pages no está conectado a Git/CI/CD todavía. No desplegar el checkout completo ni cambios dirty:
+Pages no está conectado al release automático todavía. CI de calidad no equivale a CD. No desplegar el checkout completo ni cambios dirty:
 preparar un artefacto público desde el commit remoto aprobado, sin documentación/scripts/pruebas/
 secretos; desplegar ese directorio con Wrangler al proyecto `sin-yolanda-web`, rama `main`, indicando
-hash del commit. `node scripts/package-public.mjs <directorio-nuevo>` crea ese artefacto con
-allowlist; excluye `archive/`, scripts, pruebas y documentación. Requiere autorización explícita
+hash del commit. `node scripts/package-public.mjs <directorio-nuevo>` crea ese artefacto;
+usa la allowlist `scripts/public-manifest.json` y rechaza rutas demo, enlaces hacia ellas y symlinks.
+El reporte `release.json` queda fuera de la carpeta pública: commit, estado dirty y SHA-256 por archivo.
+CI no publica; conserva el artefacto para revisión. Requiere autorización explícita
 y rollback; verificar dominio después de publicar.
 
 ### Houston (cierre publicado 30-sep-2026)
 
 `houston.html` y `en/houston/index.html` son el corte estático de la ficha Astro
-de `../sinyolanda-universal/`, importado con `node scripts/import-houston.mjs`
-después de construir ese proyecto. El importador copia solo las dependencias
+del proyecto donante, ya versionado aquí y validable sin acceso al donante.
+Para una futura importación se exige `--source-root <checkout-limpio> --source-ref <SHA-completo>`;
+construir y comprobar el donante por separado. No usar su `dist` residual ni reimportar todo por CI. El importador copia solo las dependencias
 de las páginas autorizadas y conserva el resto del sitio de Karina. Los enlaces
 actuales del home/directorio ya llevan a `houston.html`, que Cloudflare Pages
 resuelve como `/houston`. El mapa es el iframe oficial de la ficha de Google
@@ -67,6 +82,6 @@ continuación canónica en el plan operativo del vault, no en este artefacto.
 - Guadalajara: WhatsApp (San Ignacio +52 33 1018 6159)
 
 ## Pendientes externos
-1. Automatización de despliegue Git/CI/CD (diferida; no modifica este release)
+1. Verificar/activar CI y controles remotos; configurar después CD aprobado (sin desplegar por este lote)
 2. Alta en Google Search Console
 3. Campo "web" en los 6 perfiles GBP apuntando a sin-yolanda.com

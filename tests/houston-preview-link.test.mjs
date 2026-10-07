@@ -5,7 +5,7 @@ import vm from 'node:vm';
 import { execFileSync } from 'node:child_process';
 
 const previewUrl = 'houston.html';
-const dataSource = readFileSync(new URL('../assets/js/mock-data.js', import.meta.url), 'utf8');
+const dataSource = readFileSync(new URL('../assets/js/public-data.js', import.meta.url), 'utf8');
 const siteSource = readFileSync(new URL('../assets/js/site.js', import.meta.url), 'utf8');
 const context = { window: {} };
 vm.runInNewContext(dataSource, context);
@@ -16,7 +16,7 @@ const scriptContent = html => {
     seen.add(path);
     const url = new URL(path, new URL('../', import.meta.url));
     const source = readFileSync(url, 'utf8');
-    return source + [...source.matchAll(/\bimport\s*["'](\.[^"']+)["']/g)].map(([,child]) => read(new URL(child, url).pathname.split('/sinyolanda-karina-official/')[1])).join('\n');
+    return source + [...source.matchAll(/\bimport\s*["'](\.[^"']+)["']/g)].map(([,child]) => read(new URL(child, url).href)).join('\n');
   };
   return [...html.matchAll(/<script\b[^>]*src="\/(_astro\/[^"]+)"/g)].map(([,path]) => read(path)).join('\n');
 };
@@ -32,7 +32,7 @@ test('Houston points to its official page while other branches keep their existi
 });
 
 test('Houston candidate has current source menu, shared facts, privacy and reciprocal languages', () => {
-  const branch = JSON.parse(readFileSync(new URL('../../sinyolanda-universal/src/data/public-branches.json', import.meta.url), 'utf8')).find((branch) => branch.id === 'houston');
+  const branch = JSON.parse(readFileSync(new URL('../scripts/branch-import-manifest.json', import.meta.url), 'utf8')).houston.facts;
   for (const file of ['houston.html', 'en/houston/index.html']) {
     const html = readFileSync(new URL(`../${file}`, import.meta.url), 'utf8');
     const schemas = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)];
@@ -65,10 +65,10 @@ test('customer menu is included with all 126 offers and no review UI', () => {
   assert.match(scriptContent(html), /reservation_click/);
 });
 
-test('packager is repeatable and refuses a branch without its explicit manifest', () => {
+test('importer fails closed without explicit source or branch authorization', () => {
   const cwd = new URL('../', import.meta.url);
   const before = readFileSync(new URL('../index.html', import.meta.url));
-  assert.match(execFileSync(process.execPath, ['scripts/import-houston.mjs', '--dry-run'], {cwd, encoding:'utf8'}), /no changes/);
+  assert.throws(() => execFileSync(process.execPath, ['scripts/import-houston.mjs', '--dry-run'], {cwd, stdio:'pipe'}), /Command failed/);
   assert.throws(() => execFileSync(process.execPath, ['scripts/import-houston.mjs', '--branch', 'el-paso', '--dry-run'], {cwd, stdio:'pipe'}), /Command failed/);
   assert.deepEqual(readFileSync(new URL('../index.html', import.meta.url)), before);
 });

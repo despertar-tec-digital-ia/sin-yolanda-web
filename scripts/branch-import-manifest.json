@@ -3,9 +3,37 @@
     "mapIdentity": "0x8640c19b1c06c689:0xaac06ea799d5fea1",
     "mapName": "Sin Yolanda Houston",
     "routes": [
-      { "from": "houston/index.html", "to": "houston.html", "lang": "es", "canonical": "https://sin-yolanda.com/houston" },
-      { "from": "en/houston/index.html", "to": "en/houston/index.html", "lang": "en", "canonical": "https://sin-yolanda.com/en/houston/" },
-      { "from": "houston/menu/index.html", "to": "houston/menu/index.html", "lang": "en", "kind": "menu", "canonical": "https://sin-yolanda.com/houston/menu/" }
-    ]
+      {
+        "from": "houston/index.html",
+        "to": "houston.html",
+        "lang": "es",
+        "canonical": "https://sin-yolanda.com/houston"
+      },
+      {
+        "from": "en/houston/index.html",
+        "to": "en/houston/index.html",
+        "lang": "en",
+        "canonical": "https://sin-yolanda.com/en/houston/"
+      },
+      {
+        "from": "houston/menu/index.html",
+        "to": "houston/menu/index.html",
+        "lang": "en",
+        "kind": "menu",
+        "canonical": "https://sin-yolanda.com/houston/menu/"
+      }
+    ],
+    "facts": {
+      "street": "4901 Washington Ave",
+      "city": "Houston",
+      "postalCode": "77007-5305",
+      "phone": {
+        "e164": "+13468791675"
+      },
+      "reservation": {
+        "url": "https://www.opentable.com/r/sin-yolanda-houston"
+      }
+    },
+    "factsEvidence": "Existing published address/reservation; phone confirmed by Luis from Houston hours poster, 2026-10-02. No new visual import."
   }
 }

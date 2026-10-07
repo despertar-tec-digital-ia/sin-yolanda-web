@@ -1,15 +1,23 @@
 // Local packaging only: no commit, network request or deployment.
 import { copyFileSync, existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, resolve, relative } from 'node:path';
+import { execFileSync } from 'node:child_process';
 const root = resolve(import.meta.dirname, '..');
-const source = resolve(root, '../sinyolanda-universal/dist');
+const sourceFlag = process.argv.indexOf('--source-root');
+const refFlag = process.argv.indexOf('--source-ref');
 const dryRun = process.argv.includes('--dry-run');
 const branchFlag = process.argv.indexOf('--branch');
 const branchId = branchFlag < 0 ? 'houston' : process.argv[branchFlag + 1];
 const manifest = JSON.parse(readFileSync(resolve(root, 'scripts/branch-import-manifest.json'), 'utf8'));
 const selection = manifest[branchId];
 if (!selection) throw new Error(`No approved packaging manifest for ${branchId}`);
-const branches = JSON.parse(readFileSync(resolve(root, '../sinyolanda-universal/src/data/public-branches.json'), 'utf8'));
+if (sourceFlag < 0 || refFlag < 0 || !process.argv[sourceFlag + 1] || !/^[a-f0-9]{40}$/.test(process.argv[refFlag + 1] ?? '')) throw new Error('Explicit --source-root checkout and --source-ref full commit required; never infer a sibling');
+const sourceRoot = resolve(process.argv[sourceFlag + 1]);
+const sourceRef = process.argv[refFlag + 1];
+if (execFileSync('git', ['rev-parse', 'HEAD'], {cwd: sourceRoot, encoding: 'utf8'}).trim() !== sourceRef) throw new Error('Donor revision mismatch');
+if (execFileSync('git', ['status', '--porcelain'], {cwd: sourceRoot, encoding: 'utf8'}).trim()) throw new Error('Donor checkout must be clean');
+const source = resolve(sourceRoot, 'dist');
+const branches = JSON.parse(readFileSync(resolve(sourceRoot, 'src/data/public-branches.json'), 'utf8'));
 const branch = branches.find((item) => item.id === branchId);
 if (!branch) throw new Error(`Unknown branch: ${branchId}`);
 const routes = selection.routes, assets = new Set(), output = new Map();

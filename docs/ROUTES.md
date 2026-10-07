@@ -1,0 +1,40 @@
+# Registro de rutas y cambios
+
+**Última actualización:** 2026-10-07 · **Dueño:** Luis, con aprobación de producto/contenido de Karina.
+**Estado:** inventario de fuentes versionadas y destinos propuestos; no es un crawl HTTP completo.
+No aplicar redirects ni crear páginas solo por figurar en esta tabla.
+
+| Ruta | Fuente actual en repo | Tratamiento acordado/propuesto |
+|---|---|---|
+| `/` | `index.html` + `assets/js/site.js` | Conservar base/hero; integrar selector aprobado bajo `#ubicaciones` |
+| `/locations` | `locations.html` | Directorio del mismo registro; no mantener sucursales en dos listas editables |
+| `/houston` | `houston.html` | Ficha donante importada; actualizar por fuente aprobada, no retoques del HTML generado |
+| `/en/houston/` | `en/houston/index.html` | Traducción correspondiente; navegación conserva sede |
+| `/houston/menu/` | `houston/menu/index.html` | Carta propia EN autorizada; fallback explícito desde ES |
+| `/san-antonio` | `san-antonio.html` | Sustituir ficha por candidata aprobada, conservar identidad/CTA locales |
+| `/the-woodlands` | `the-woodlands.html` | Mismo contrato, carta/medios propios |
+| `/san-ignacio` | `san-ignacio.html` | Nombre público nuevo Guadalajara; orientación Zona Chapalita, Zapopan. Propuesta: conservar URL por ahora |
+| `/guadalajara` | No existe fuente | Solo candidato a migración futura; no crear duplicado de `/san-ignacio` |
+| `/el-paso` | `el-paso.html` | Ficha de preapertura propia, 9-oct; estado abierto requiere confirmación operativa |
+| Moreno Valley / San Diego | Anuncios en datos del home, sin HTML propio | Próximamente USA, sin fechas. No inventar href hacia una ficha inexistente ni usar Houston |
+| `/catering` | `catering.html` | Integrar página aprobada con cobertura/contacto reales |
+| `/eventos` | `eventos.html` | Auditar propósito actual antes de confundir contratación privada con cartelera pública |
+| `/la-cantina` | `la-cantina.html` | Página de experiencia, no sustituto de carta por sucursal |
+| `/tienda` | `tienda.html` | Revisar operación real y CTA; no publicar compra simulada |
+| `/aviso-de-privacidad` | `aviso-de-privacidad.html` | Comprobar adecuación al tratamiento de datos y proveedores reales |
+| `/maricarmen` y aliases | Archivo retirado fuera de paquete | Mantener retirada; preservar historial privado, no redirigir indiscriminadamente al home |
+| `/dashboard`, `/listings`, `/reputation`, `/requests`, `/reports`, `/review-detail` y `.html` | Antecedentes demo todavía en raíz, fuera de allowlist | Exclusión/enlaces/datos corregidos en candidato; falta desplegar y verificar 404/410 HTTP real |
+| `/pruebas/*` | Solo donante | Nunca importar como páginas indexables del sitio oficial |
+
+## Regla para cada cambio de URL
+
+Registrar en el PR: ruta origen/destino, motivo, estado HTTP esperado, canonical/hreflang/sitemap,
+enlaces/anclas afectados, analítica, rollback y comprobación de aliases `.html`, `/` final y host.
+No fijar redirects sin comprobar primero comportamiento de Pages. No enviar todas las rutas
+retiradas al home; no fabricar variantes EN sin contenido. Una ficha por sede; mapa/Visítanos
+como sección. Dirección postal, nombre comercial e ID interno son campos diferentes.
+
+Prueba de aceptación: origen resuelve exactamente según contrato, destino sin cadena/bucle,
+enlaces públicos y sitemap usan URL canónica, no aparecen rutas de ensayo ni duplicados indexables.
+El manifiesto ejecutable `scripts/public-manifest.json` es dueño de archivos publicables; esta tabla
+es política/intención de migración, no segunda allowlist. El check contrasta sitemap, enlaces y rutas.

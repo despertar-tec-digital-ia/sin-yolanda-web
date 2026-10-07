@@ -30,11 +30,14 @@ jobs:
       - run: npm run check
       - run: npm run build
       - name: Require a clean, traceable artifact
-        run: node -e "const r=require('./.artifacts/release.json'); if(r.dirty || !/^[a-f0-9]{40}$/.test(r.commit)) process.exit(1)"
+        run: node -e "const r=require('./.artifacts/release.json'); if(r.dirty || r.commit!==process.env.GITHUB_SHA) process.exit(1)"
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: public-site-${{ github.sha }}
-          path: .artifacts/
+          path: |
+            .artifacts/public/
+            .artifacts/release.json
           if-no-files-found: error
           retention-days: 7
-          include-hidden-files: false
+          # The parent is hidden; only these two generated, validated paths are uploaded.
+          include-hidden-files: true

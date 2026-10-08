@@ -311,6 +311,8 @@
 #experiencia .experience-media {
   position: relative;
   overflow: hidden;
+  width: 100%;
+  min-width: 0;
   min-height: 520px;
 }
 #experiencia .experience-media img {

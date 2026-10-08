@@ -241,7 +241,7 @@
 
         <section class="reserve-cta" id="reserve">
           <div><p class="eyebrow">¿Sin Yolanda? Si sabes, sabes.</p><h2 class="reveal">Ya quedó.</h2></div>
-          <div><a class="button button-light" href="#ubicaciones">Reservar mesa</a></div>
+          <div><a class="button button-light" href="#ubicaciones" data-select-location>Reservar mesa</a></div>
         </section>
       </main>
       ${publicFooter()}`;

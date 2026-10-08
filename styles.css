@@ -569,6 +569,16 @@ p {
   margin-right: 1rem;
 }
 
+body[data-page="eventos"] .reserve-cta > div:last-child {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+body[data-page="eventos"] .reserve-cta .button {
+  margin-right: 0;
+}
+
 .public-footer {
   display: grid;
   grid-template-columns: 1.2fr 0.6fr 0.8fr;
@@ -640,6 +650,18 @@ p {
 
 .branch-hero-copy h1 {
   font-size: clamp(3.3rem, 7vw, 7.6rem);
+}
+
+@media (max-width: 420px) {
+  .branch-hero-copy h1 {
+    font-size: clamp(2.3rem, 12.5vw, 3.3rem);
+  }
+}
+
+@media (max-width: 360px) {
+  .legal-wrap h1 {
+    font-size: clamp(2.3rem, 12.5vw, 2.75rem);
+  }
 }
 
 .breadcrumbs {
@@ -2797,6 +2819,17 @@ a.row-link {
   border: 1px solid var(--line);
   border-radius: 18px;
   padding: 2.5rem 1.5rem;
+}
+body[data-page="home"] .cumple-section .section-heading {
+  grid-template-columns: minmax(0, 1fr);
+}
+body[data-page="home"] .cumple-section .section-heading h2 {
+  margin-inline: auto;
+}
+@media (max-width: 360px) {
+  body[data-page="home"] .cumple-section .section-heading h2 {
+    font-size: 2rem;
+  }
 }
 .cumple-copy { max-width: 40rem; margin: 0 auto 1.5rem; }
 .cumple-section .hero-actions { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; }

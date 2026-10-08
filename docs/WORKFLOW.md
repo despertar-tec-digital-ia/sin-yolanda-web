@@ -1,6 +1,6 @@
 # Forma de trabajar y publicar
 
-**Última actualización:** 2026-10-07 · **Responsables:** Luis, técnica; Karina, negocio/contenido y hero.
+**Última actualización:** 2026-10-08 · **Responsables:** Luis, técnica; Karina, negocio/contenido y hero.
 **Estado:** CI de PR verificado en GitHub (run `37689049591`, 7-oct), artefacto descargado y sus
 77 hashes comprobados. La rama aún no está integrada a main. CD, protecciones y secretos no están
 activados por este lote; no hay nuevo despliegue. La aprobación del documento no equivale a release.
@@ -152,6 +152,42 @@ ruta → ROUTES; no duplicar reseñas largas de sesión. Un release registra com
 artefacto, pruebas, aprobación y rollback. Archivar evidencia de QA sin datos privados ni secretos.
 
 ## 7. Activación por pasos
+
+### Primer lote de correcciones de QA integral · 8-oct, solo local
+
+Luis autoriza corregir QV01/02/04/06/12/13/17 sin rediseñar ni publicar. La clasificación completa
+y los pendientes viven en el plan operativo privado del cliente, no se duplican aquí.
+
+- Experiencia: `width:100%`/`min-width:0` hace que el marco llene la columna real, también en tablet;
+  foto original, focal, `cover`, proporción apilada y límite de altura conservados.
+- CTA final de reserva: comparte `data-select-location`; restaura Todas únicamente desde
+  Próximamente, conserva país y navegación/modificadores nativos.
+- H1 de fichas genéricas: ajuste local de escala hasta 420 px; Guadalajara/TW caben en320/390
+  dentro de su columna, no solo del viewport. Houston importado no usa esa regla.
+- Privacidad: escala local del H1 hasta 360 px, sin modificar texto legal.
+- Cumpleaños: un solo eje para título/copy/CTA; mínimo de 32 px solo hasta 360 px evita invadir margen.
+- Idioma: sincronización única de resaltado/aria-pressed al construir o actualizar el control,
+  incluido ES inicial y reconstrucción por MutationObserver.
+- Eventos: grupo de acciones `flex-wrap` con gap 16 px en ambas direcciones, destinos intactos.
+
+Versión compartida `20261008-qv-batch1`; referencias HTML y prueba de cache actualizadas juntas.
+Sin nuevas rutas, datos, recursos de marca, dependencias de build ni importaciones del donante.
+Hero/video/póster, selector y cartelera aceptados conservados; fuente de Houston intacta.
+
+**Verificación:** `npm run check` 42/42, 90 archivos/15 HTML/171 referencias. Siete regresiones VM
+detectan los contratos de reserva/idioma antes del fix y pasan después. `qa:visual-refinement`
+agrega 35 combinaciones Chromium320–1440, ES/EN según página, con medidas de columna/texto/ejes/gaps,
+capturas recorridas y reporte que distingue ejecución incompleta/fatal de aprobación. Se fuerza
+descubrimiento/carga de la fuente del H1 antes de medir: `fonts.ready` sin primer layout puede
+capturar el fallback y ocultar un recorte. `qa:selector` conserva once viewports y recorridos previos,
+añadiendo CTA final, ancho de columna, ES inicial y reconstrucción nativa del toggle en ES/EN.
+Capturas finales inspeccionadas; evidencia ignorada `qa-first-batch-candidate-20261008-final` y
+`qa-first-batch-selector-20261008-final` bajo `.artifacts/`; paquete final fresco separado.
+
+Gate geométrico local, no automatización browser nueva en GitHub. Pruebas portables sí entran al
+check existente; no se ejecutó CI remoto. Sin Safari/dispositivo físico/hosting ni certificación
+comercial/SEO integral. Quedan doce hallazgos QV y las importaciones de fichas/Catering/cartas;
+el sitio completo no está aprobado para lanzamiento. Sin push, merge, deploy ni credenciales.
 
 ### Primer lote correctivo local · 7-oct, posterior a la auditoría
 

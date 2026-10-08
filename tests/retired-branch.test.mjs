@@ -23,7 +23,7 @@ test('retirement is not a destructive menu rewrite', () => {
 });
 test('every consumer requests the updated scripts rather than cached retired data', () => {
   const { pages, assetVersion } = JSON.parse(readFileSync(new URL('scripts/public-manifest.json', root), 'utf8'));
-  assert.equal(assetVersion, '20261008-calendar');
+  assert.equal(assetVersion, '20261008-qv-batch1');
   for (const name of pages) {
     const html = readFileSync(new URL(name, root), 'utf8');
     for (const [,source] of html.matchAll(/src="(assets\/js\/(?:public-data|site)\.js[^\"]*)"/g)) {

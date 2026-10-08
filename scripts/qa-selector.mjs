@@ -16,7 +16,7 @@ mkdirSync(output, { recursive: true });
 const require = createRequire(resolve(process.env.SY_QA_PACKAGE_ROOT, '../package.json'));
 const { chromium } = require('playwright');
 const browser = await chromium.launch({ headless: true });
-const report = { version: 4, origin: origin.origin, capturedAt: new Date().toISOString(),
+const report = { version: 5, origin: origin.origin, capturedAt: new Date().toISOString(),
   scope: 'Local home corrections and retained navigation, not whole-site launch approval',
   viewports: [], interactions: {}, remainingFindings: [] };
 const blockShot = (name) => ({ path: resolve(output, name), animations: 'disabled',
@@ -97,6 +97,10 @@ try {
     [1440, 900, false], [1920, 1080, false], [1440, 900, true]]) {
     const { page, context, errors } = await pageFor(width, height, touch);
     const record = { width, height, touch };
+    assert.equal(await page.locator('[data-lang-btn="es"]').getAttribute('aria-pressed'), 'true');
+    assert.equal(await page.locator('[data-lang-btn="es"]').evaluate(el => el.classList.contains('active')), true,
+      'The initial ES preference must be visibly selected');
+    assert.equal(await page.locator('[data-lang-btn="en"]').evaluate(el => el.classList.contains('active')), false);
     await page.locator('#inicio').evaluate(el => Promise.all(el.getAnimations({ subtree: true })
       .filter(animation => animation.effect.getComputedTiming().iterations !== Infinity)
       .map(animation => animation.finished.catch(() => {}))));
@@ -155,13 +159,17 @@ try {
     record.experience = await page.locator('#experiencia').evaluate(el => {
       const frame = el.querySelector('.experience-media'), img = frame.querySelector('img');
       const f = frame.getBoundingClientRect(), i = img.getBoundingClientRect(), c = el.querySelector('.experience-copy').getBoundingClientRect();
+      const columns = getComputedStyle(frame.parentElement).gridTemplateColumns.split(/\s+/).map(parseFloat);
       return { frameWidth: f.width, frameHeight: f.height, imageWidth: i.width, imageHeight: i.height,
+        columnWidth: columns[0], frameLeft: f.left, parentLeft: frame.parentElement.getBoundingClientRect().left,
         fit: getComputedStyle(img).objectFit, alt: img.alt, copyTop: c.top, frameBottom: f.bottom, copyBottom: c.bottom,
         loaded: img.complete && img.naturalWidth > 0 };
     });
     assert.ok(record.experience.loaded && record.experience.fit === 'cover');
     assert.ok(Math.abs(record.experience.frameWidth - record.experience.imageWidth) < 1 &&
       Math.abs(record.experience.frameHeight - record.experience.imageHeight) < 1);
+    assert.ok(Math.abs(record.experience.frameWidth - record.experience.columnWidth) < 1,
+      'The photo frame must fill its real grid column, not leave an empty tablet strip');
     if (width <= 900) assert.ok(record.experience.copyTop >= record.experience.frameBottom - 1);
     else assert.ok(Math.abs(record.experience.copyBottom - record.experience.frameBottom) < 1);
     await page.locator('#experiencia').screenshot(blockShot(`experience-${width}-${touch ? 'touch' : 'mouse'}.png`));
@@ -233,9 +241,17 @@ try {
     await page.locator('[data-venue-filter="mx"]').click();
     await page.locator('#cumple .button').click();
     assert.equal(await page.locator('[data-venue-filter="mx"]').getAttribute('aria-pressed'), 'true');
+    await page.locator('[data-venue-filter="soon"]').click();
+    await page.locator('#reserve .button').click();
+    assert.equal(await page.locator('[data-venue-filter="all"]').getAttribute('aria-pressed'), 'true');
+    assert.equal(await page.evaluate(() => document.activeElement.id), 'ubicaciones');
+    await page.locator('[data-venue-filter="us"]').click();
+    await page.locator('#reserve .button').click();
+    assert.equal(await page.locator('[data-venue-filter="us"]').getAttribute('aria-pressed'), 'true');
     await page.locator('[data-venue-filter="all"]').click();
     report.interactions.homeActions = { nativePretextClick: true, keyboardFocusAtSelector: true,
-      birthdayChoosesLocation: true, clearsOnlySoonFilter: true, ownCampaignLocations: agenda, noDraftCalendar: true, noOpeningModal: true };
+      birthdayChoosesLocation: true, finalBookingChoosesLocation: true, clearsOnlySoonFilter: true,
+      ownCampaignLocations: agenda, noDraftCalendar: true, noOpeningModal: true };
     const houston = page.locator('[data-branch-id="houston"]');
     await houston.hover(); await page.waitForTimeout(500);
     assert.deepEqual(expanded(await galleryState(page)), ['houston']);
@@ -292,12 +308,23 @@ try {
     await page.locator('[data-venue-filter="soon"]').click();
     assert.equal(await page.locator('[data-venue-status]').innerText(), '3 locations');
     report.interactions.english = { banner: await page.locator('.opening-announcement').innerText(), selector: await page.locator('#venue-heading').innerText() };
+    // Controlled component removal verifies the native MutationObserver, not just
+    // its VM callback. The recreated control must retain the active preference.
+    await page.locator('.lang-toggle').evaluate(el => el.remove());
+    await page.waitForFunction(() => document.querySelectorAll('.lang-toggle').length === 1 &&
+      document.querySelector('[data-lang-btn="en"]').classList.contains('active'));
+    assert.equal(await page.locator('[data-lang-btn="en"]').getAttribute('aria-pressed'), 'true');
     await page.locator('[data-lang-btn="es"]').click();
     assert.equal(await page.locator('#experiencia img').getAttribute('alt'), 'Ruleta de shots y bebidas sobre una mesa de Sin Yolanda');
     assert.equal(await page.locator('[data-branch-id="el-paso"] .venue-badge').innerText(), 'Abre el 9 de octubre');
     assert.equal(await page.locator('#agenda-heading').innerText(), 'Lo que viene.');
     for (const date of await page.locator('#cartelera time[datetime]').all()) assert.match(await date.innerText(), /\d+\s+(oct|nov)\b/);
     assert.equal(await page.locator('.pretexto-card small').first().innerText(), 'Elegir sucursal');
+    await page.locator('.lang-toggle').evaluate(el => el.remove());
+    await page.waitForFunction(() => document.querySelectorAll('.lang-toggle').length === 1 &&
+      document.querySelector('[data-lang-btn="es"]').classList.contains('active'));
+    assert.equal(await page.locator('[data-lang-btn="es"]').getAttribute('aria-pressed'), 'true');
+    report.interactions.languageToggleRecreation = { spanish: true, english: true, nativeObserver: true };
     await context.close();
   }
   {

@@ -442,6 +442,14 @@
     [/^Llamar a (.+)$/, "Call $1"],
   ];
 
+  function syncToggleState() {
+    document.querySelectorAll("[data-lang-btn]").forEach((button) => {
+      const selected = button.dataset.langBtn === current;
+      button.setAttribute("aria-pressed", String(selected));
+      button.classList.toggle("active", selected);
+    });
+  }
+
   function apply(lang) {
     current = lang;
     document.documentElement.lang = lang === "en" ? "en" : "es";
@@ -490,10 +498,7 @@
       }
     });
 
-    document.querySelectorAll("[data-lang-btn]").forEach((b) => {
-      b.setAttribute("aria-pressed", String(b.dataset.langBtn === lang));
-      b.classList.toggle("active", b.dataset.langBtn === lang);
-    });
+    syncToggleState();
   }
 
   function buildToggle() {
@@ -508,6 +513,7 @@
       '<button type="button" data-lang-btn="es" aria-pressed="true">ES</button>' +
       '<button type="button" data-lang-btn="en" aria-pressed="false">EN</button>';
     nav.appendChild(wrap);
+    syncToggleState();
     wrap.addEventListener("click", (e) => {
       const btn = e.target.closest("[data-lang-btn]");
       if (!btn) return;

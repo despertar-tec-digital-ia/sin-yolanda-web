@@ -4,6 +4,12 @@
 **Estado:** inventario de fuentes versionadas y destinos propuestos; no es un crawl HTTP completo.
 No aplicar redirects ni crear páginas solo por figurar en esta tabla.
 
+**Revalidación HTTP posterior 7-oct:** `/houston` sirve la ficha genérica nueva; `.html` y slash
+final resuelven al canonical sin slash. Carta y EN responden 200 antiguo en URL habitual pero 404
+con query fresca y en deployment `766a7c6c`; no considerarlas presentes en ese release. Maricarmen
+y ruta inexistente dan 404 real. Panel demo/archivos de desarrollo siguen públicos. QA/plan dueño:
+`WORKFLOW.md` §7, «Paso 1 revisado». No se cambiaron rutas ni redirecciones en esta revisión.
+
 | Ruta | Fuente actual en repo | Tratamiento acordado/propuesto |
 |---|---|---|
 | `/` | `index.html` + `assets/js/site.js` | Conservar base/hero; integrar selector aprobado bajo `#ubicaciones` |

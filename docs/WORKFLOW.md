@@ -150,6 +150,106 @@ artefacto, pruebas, aprobación y rollback. Archivar evidencia de QA sin datos p
 
 ## 7. Activación por pasos
 
+### Paso 1 revisado: producción, selector y rótulo · 7-oct
+
+Auditoría de lectura sobre la publicación actual, cotejada contra `main`, rama `rediseno-elplan`
+y candidato PR #7. Ninguna coincide con los nueve archivos de texto servidos auditados como conjunto;
+la rama adicional es del 26-sep. Se preservaron esos archivos con SHA-256 en evidencia local ignorada.
+Esta captura es un respaldo de las fuentes inspeccionadas, **no** una copia integral del release.
+No se editaron páginas, permisos ni producción.
+
+| Hallazgo comprobado | Ajuste y prueba de aceptación del siguiente lote |
+|---|---|
+| A 320/390 px las cinco tarjetas tienen altura 0 y no se pueden tocar | Retícula/lista visible con un toque hacia ficha propia; altura y nombres legibles en móvil, sin depender de hover |
+| Hover mantiene dos tarjetas grandes; al salir vuelve a Guadalajara | Una sola preview, último hover/foco retenido; clic/Enter navegan a la primera, modificadores conservan acción nativa |
+| Primer clic y primer Enter en Houston solo expanden | Separar preview y navegación; ninguna interceptación del enlace para abrirlo |
+| Nombres/badge se recortan en 768–1920 px; anclas tienen `role=listitem` | Recuperar solución de nombres del selector aprobado y semántica `ul > li > a`; foco visible ya funciona y debe conservarse |
+| Foto The Woodlands devuelve 400 | Medio propio conservado en banco, derivado optimizado y fallback; no depender del hotlink fallido |
+| Rótulo usa Alfa Slab One sin cargarla; fotos calculan 1,050 px de alto | Cargar la fuente autorizada y definir tamaño/encuadre; comparar la adaptación, sin cambiar el hero reservado |
+| Selector en EN conserva título/CTA en ES; próximas aperturas sin foto quedan omitidas | Textos por idioma; heading «Cuál te queda» aprobado; registro único con fallback sin inventar fotos/URLs |
+| `/houston/menu/` y `/en/houston/`: URL habitual 200 antiguo, query fresca y deployment actual 404 | Recuperar ambas en el artefacto; smoke contra URL inmutable y alias con query fresca, no certificar por un 200 cacheado |
+| Houston ES usa ficha genérica/teléfono anterior; Guadalajara tiene `tel:` enmascarados inválidos | Restaurar ficha aprobada y NAP confirmado en contenido/schema/CTA; no copiar Houston a otras sedes |
+| `/dashboard`, archivos de desarrollo siguen 200 público | Reconciliar exclusión del PR #7 sobre la nueva fuente; verificar cada ruta/alias en HTTP, no solo ocultar enlaces |
+| Sin JS, home no tiene contenido/enlaces/H1 | Planificar HTML inicial de contenido/enlaces esenciales, conservando presentación; no inferir desindexación sin GSC |
+
+**Se conserva:** enlaces de las cinco tarjetas apuntan a su sede; Guadalajara y Zona Chapalita ya
+figuran en el selector; Maricarmen/URL desconocida dan 404. Seis tamaños sin overflow horizontal ni
+excepciones JS observadas. Preferencia de movimiento reducido elimina transiciones del selector;
+no constituye certificación completa de vídeo/accesibilidad. Los filtros sí existen en `/locations`,
+pero no en el nuevo selector del home. El título «Ocho formas» del directorio no refleja los siete
+registros actuales. El Paso muestra «Próxima apertura», sin destacar aún 9-oct; Moreno Valley/San
+Diego existen en datos pero no en la galería por depender de `venuePhoto`.
+
+**Orden propuesto:** reconciliar fuente publicada y controles de paquete → corregir selector/
+destinos/fotos/teléfonos → restaurar Houston/carta/EN → comparación del rótulo/idiomas → primer
+preview conectado y aprobación concreta. Generación HTML inicial y demás bloques conservan su
+lote; no activar un workflow que pueda reemplazar cambios fuera de Git por el candidato antiguo.
+
+**Repetición:** `npm run audit:live` es diagnóstico GET-only, no gate de despliegue. Requiere
+Playwright instalado indicado por `SY_QA_PACKAGE_ROOT`; no añade una dependencia al build del sitio.
+`SY_AUDIT_ORIGIN` elige origen público y `SY_AUDIT_DEPLOYMENT` permite comprobar la URL inmutable de
+Pages. Fuentes/reportes/capturas se guardan en `.artifacts/live-audit-<fecha>` fuera del paquete;
+no imprimir el contenido de `mock-data.js`. Compara URL habitual/fresca, revisa fuentes estables,
+fotos, seis viewports, hover/salida/clic/Enter/tacto/EN/sin-JS y movimiento reducido. Bloquea POST
+y telemetría en navegador. Resultado 7-oct: seis viewports y seis escenarios completados; nueve
+fuentes sin cambios entre principio/fin. No probado en dispositivos reales/Safari ni con Lighthouse.
+
+### Mapa revalidado 7-oct: primero reconciliar producción
+
+**No publicar el candidato actual directamente.** Durante la preparación de CD se comprobó que
+Pages recibió nuevas publicaciones sin conexión Git, mientras `main` permanece en `463396d`
+(1-oct). El despliegue observado `766a7c6c-f168-49d2-8d53-bbde1e492235` difiere del repositorio
+en home, JS, CSS y Houston. El candidato no incorpora necesariamente esos cambios; que su CI
+esté verde no demuestra que preserve el hero actualmente publicado.
+
+| Etapa | Estado comprobado | Siguiente acción y aceptación |
+|---|---|---|
+| Fuente compartida | Repo público en organización; Luis/Karina ADMIN; PR #7 abierto y verde | Obtener fuente más reciente del publicador en rama/ZIP, comparar contra Pages y llevar cambios aprobados al repo; no sustituir carpetas ni atribuir un upload a un commit por su etiqueta |
+| Calidad | CI funciona en PR; `main` sin protección, cero rulesets/ambientes | Integrar cambios revisados; proponer PR obligatorio, check `Public artifact checks`, revisión humana y resolución de conversaciones; workflows requieren revisión técnica |
+| Preview | Pages `sin-yolanda-web`, sin conexión Git, producción `main` | Actions + Wrangler sobre el mismo proyecto; rama explícita `review-<sha>`, entorno `preview` aprobado, URL noindex y revisión del artefacto exacto |
+| Release | Aún no hay CD | Promover el mismo artefacto comprobado mediante entorno `production` con aprobación humana; nunca publicar automáticamente cualquier push |
+| Verificación | Falta smoke de release conectado | Comprobar rutas públicas, carta/idiomas, recursos y 404 reales de retiradas/archivos internos; registrar hashes, run y deployment ID |
+| Recuperación | Hay historial de Pages, no rollback ensayado en este flujo | Identificar versión segura comprobada antes de liberar; un deployment anterior puede reintroducir demos y no cuenta automáticamente como respaldo seguro |
+
+**Controles propuestos, no instalados:**
+
+- Inicio simple con ramas de tarea + PR a `main`; no añadir `dev` si no hay necesidad real.
+  El merge por sí solo no publica. Confirmar política de revisión/bypass antes de activarla.
+- Un workflow manual de release desde código de control revisado en `main` seleccionará un run
+  de CI exitoso de `main`, con repo/workflow/evento/SHA/digest comprobados. No aceptar como release
+  artefactos arbitrarios de PR ni ejecutar su contenido con secretos.
+- Preparación/validación sin token Cloudflare; jobs separados de subida reciben el secreto solo
+  después del gate de ambiente. Ambas etapas usan exactamente los mismos archivos/hashes; no
+  recompilar después de la aprobación. Rama/proyecto explícitos, sin defaults implícitos de Wrangler.
+- Exclusión de despliegues concurrentes a producción, sin cancelar un deploy iniciado; comprobar
+  deployment vigente contra el baseline aprobado justo antes de publicar. Esto no bloquea a un
+  operador manual en Cloudflare: coordinar una ventana sin uploads fuera del flujo.
+- Una aprobación de producción valida una versión concreta con su preview; no es una autorización
+  perpetua. Karina revisa contenido/hero; Luis revisa controles técnicos. GitHub debe hacer cumplir
+  los gates, sin aprobación automática del asistente.
+- Token de cuenta con Cloudflare Pages Edit, sin DNS/pagos, en config Doppler específica por
+  servicio/ambiente. Réplica de consumo en secreto de ambiente Actions: instalación/rotación
+  administradas sin pegar valores al chat. Tokens separados no implican aislamiento por proyecto;
+  ese permiso alcanza Pages de la cuenta y requiere protección del workflow y los colaboradores.
+- No se necesita una API key de IA ni SSH al VPS para este flujo. El panel real y la demo VPS
+  conservan sus pipelines separados. La preview Pages del oficial no reemplaza la demo de diseño.
+
+**Acceso observado:** sesión de Cloudflare recuperada en Brave sin pedir contraseñas. No hay
+secretos de repositorio Actions ni ambientes; no se inspeccionaron secretos heredados de la org.
+Las configs Doppler relacionadas consultadas por nombres no contienen la credencial Pages de CI.
+No se creó/rotó ningún token ni se cambió configuración remota durante este mapeo.
+
+**Puerta inmediata:** fuente actual de Karina → reconciliación y QA → instalación de controles/
+credencial autorizada → primer preview → aprobación de release → smoke/rollback. Los pasos
+siguientes son el orden general; el PR previo no omite esta reconciliación.
+
+**Aclaración del mismo 7-oct:** Luis confirma que acaba de subir cambios; Karina incorporó una
+adaptación del selector y de «No hay tiempo para llorar». Añadir su revisión al paso 1, no tratar
+el candidato anterior como versión vigente ni reemplazar automáticamente esos componentes.
+Comprobar dónde quedó la fuente actual (Git/rama/artefacto) antes de solicitarla otra vez.
+QA de ese paso completada en «Paso 1 revisado» arriba; quedan correcciones y su posterior
+verificación, no una certificación del sitio completo. El hero sigue reservado a Karina.
+
 1. Revisar/compartir este paquete de trabajo en PR, sin deploy. Confirmar herramienta de Karina.
 2. Reparar portabilidad, empaquetado público y discrepancias bloqueantes con tests separados.
 3. Añadir CI sin credenciales y demostrar éxito/fallo real de PR; instalar checks obligatorios.

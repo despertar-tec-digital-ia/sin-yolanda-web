@@ -16,7 +16,7 @@ mkdirSync(output, { recursive: true });
 const require = createRequire(resolve(process.env.SY_QA_PACKAGE_ROOT, '../package.json'));
 const { chromium } = require('playwright');
 const browser = await chromium.launch({ headless: true });
-const report = { version: 2, origin: origin.origin, capturedAt: new Date().toISOString(),
+const report = { version: 3, origin: origin.origin, capturedAt: new Date().toISOString(),
   scope: 'Local home corrections and retained navigation, not whole-site launch approval',
   viewports: [], interactions: {}, remainingFindings: [] };
 const blockShot = (name) => ({ path: resolve(output, name), animations: 'disabled',
@@ -115,6 +115,23 @@ try {
     record.planPhotos = await page.locator('#plan img').evaluateAll(imgs => imgs.map(i => ({
       src: i.getAttribute('src'), position: getComputedStyle(i).objectPosition, loaded: i.complete && i.naturalWidth > 0 })));
     assert.ok(record.planPhotos.every(i => i.loaded));
+    await revealWithin(page, page.locator('.pretextos-section'));
+    record.pretexts = await page.locator('.pretexto-card').evaluateAll(items => items.map(el => ({
+      tag: el.tagName, href: el.getAttribute('href'), height: el.getBoundingClientRect().height,
+      width: el.getBoundingClientRect().width, clipped: el.scrollWidth > el.clientWidth + 1,
+    })));
+    assert.equal(record.pretexts.length, 6);
+    assert.ok(record.pretexts.every(item => item.tag === 'A' && item.href === '#ubicaciones' && item.height >= 44 && !item.clipped));
+    record.agenda = await page.locator('#cartelera').evaluate(el => ({
+      heading: el.querySelector('h2').textContent, text: el.innerText,
+      links: [...el.querySelectorAll('[data-agenda-branch]')].map(a => ({
+        id: a.dataset.agendaBranch, href: a.getAttribute('href'), target: a.target, rel: a.rel,
+        height: a.getBoundingClientRect().height, clipped: a.scrollWidth > a.clientWidth + 1,
+      })),
+    }));
+    assert.equal(record.agenda.links.length, 4);
+    assert.ok(record.agenda.links.every(a => a.height >= 44 && !a.clipped && a.target === '_blank' && a.rel.includes('noopener')));
+    assert.doesNotMatch(record.agenda.text, /TODO|CONFIRMAR|Brunch|8:00|Esta semana/i);
     if ([390, 768, 1440].includes(width) && (width !== 1440 || !touch)) {
       // Keep section evidence free of sticky-header capture artefacts; inspect navigation separately.
       for (const selector of ['#plan', '.pretextos-section', '#cartelera', '#botaneo', '#cumple', '.public-footer']) {
@@ -128,17 +145,28 @@ try {
   }
   {
     const { page, context } = await pageFor();
-    const caveat = await page.locator('#cartelera .data-caveat').textContent();
-    if (/TODO|CONFIRMAR/i.test(caveat)) report.remainingFindings.push({
-      id: 'home-programming-draft', severity: 'P1', observed: caveat.trim(),
-      next: 'Replace with source-approved branch-specific programming, or withhold the draft block from release' });
+    assert.equal(await page.locator('#demo-modal').count(), 0);
+    const expectedAgenda = await page.evaluate(() => window.SY_DATA.branches.filter(b => b.status === 'active')
+      .map(b => ({ id: b.id, href: b.socialUrl })));
+    const agenda = await page.locator('[data-agenda-branch]').evaluateAll(links => links.map(a => ({ id: a.dataset.agendaBranch, href: a.href })));
+    assert.deepEqual(agenda, expectedAgenda);
     await page.locator('.pretexto-card').first().click();
-    if (await page.locator('#demo-modal [href*="sinyolandaelpaso"]').isVisible()) {
-      report.remainingFindings.push({ id: 'home-pretext-wrong-destination', severity: 'P1',
-        observed: 'A birthday pretext opens El Paso opening updates, not a reservation flow',
-        next: 'Connect to the location selector or the approved group-event booking flow' });
-    }
-    await page.locator('#demo-modal .modal-close').click();
+    assert.equal(new URL(page.url()).hash, '#ubicaciones');
+    assert.equal(await page.evaluate(() => document.activeElement.id), 'ubicaciones');
+    await page.locator('#cumple .button').click();
+    assert.equal(new URL(page.url()).hash, '#ubicaciones');
+    await page.locator('.pretexto-card').nth(1).focus(); await page.keyboard.press('Enter');
+    assert.equal(await page.evaluate(() => document.activeElement.id), 'ubicaciones');
+    await page.locator('[data-venue-filter="soon"]').click();
+    await page.locator('.pretexto-card').nth(2).click();
+    assert.equal(await page.locator('[data-venue-filter="all"]').getAttribute('aria-pressed'), 'true');
+    assert.equal((await galleryState(page)).filter(item => !item.hidden).length, 7);
+    await page.locator('[data-venue-filter="mx"]').click();
+    await page.locator('#cumple .button').click();
+    assert.equal(await page.locator('[data-venue-filter="mx"]').getAttribute('aria-pressed'), 'true');
+    await page.locator('[data-venue-filter="all"]').click();
+    report.interactions.homeActions = { nativePretextClick: true, keyboardFocusAtSelector: true,
+      birthdayChoosesLocation: true, clearsOnlySoonFilter: true, ownInstagramProfiles: agenda, noDraftCalendar: true, noOpeningModal: true };
     const houston = page.locator('[data-branch-id="houston"]');
     await houston.hover(); await page.waitForTimeout(500);
     assert.deepEqual(expanded(await galleryState(page)), ['houston']);
@@ -165,6 +193,12 @@ try {
   }
   for (const touch of [false, true]) {
     const { page, context } = await pageFor(touch ? 390 : 1440, touch ? 844 : 900, touch);
+    if (touch) {
+      await page.locator('[data-venue-filter="soon"]').tap();
+      await page.locator('.pretexto-card').first().tap();
+      assert.equal(new URL(page.url()).hash, '#ubicaciones');
+      assert.equal(await page.locator('[data-venue-filter="all"]').getAttribute('aria-pressed'), 'true');
+    }
     const card = page.locator('[data-branch-id="houston"]');
     if (touch) await card.tap();
     else { await card.focus(); assert.deepEqual(expanded(await galleryState(page)), ['houston']); await page.keyboard.press('Enter'); }
@@ -182,12 +216,17 @@ try {
     assert.equal(await page.locator('[data-branch-id="el-paso"] .venue-badge').innerText(), 'Opens October 9');
     assert.equal((await page.locator('[data-branch-id="el-paso"] .venue-opening-date > span').textContent()).trim(), 'Opens');
     assert.equal(await page.locator('#experiencia img').getAttribute('alt'), 'A shot roulette and drinks on a Sin Yolanda table');
+    assert.equal(await page.locator('#agenda-heading').innerText(), "What's on at your cantina.");
+    assert.equal(await page.locator('.pretexto-card small').first().innerText(), 'Choose a location');
+    assert.equal(await page.locator('.pretexto-card strong').nth(1).innerText(), 'Payday');
     await page.locator('[data-venue-filter="soon"]').click();
     assert.equal(await page.locator('[data-venue-status]').innerText(), '3 locations');
     report.interactions.english = { banner: await page.locator('.opening-announcement').innerText(), selector: await page.locator('#venue-heading').innerText() };
     await page.locator('[data-lang-btn="es"]').click();
     assert.equal(await page.locator('#experiencia img').getAttribute('alt'), 'Ruleta de shots y bebidas sobre una mesa de Sin Yolanda');
     assert.equal(await page.locator('[data-branch-id="el-paso"] .venue-badge').innerText(), 'Abre el 9 de octubre');
+    assert.equal(await page.locator('#agenda-heading').innerText(), 'La cartelera de tu cantina.');
+    assert.equal(await page.locator('.pretexto-card small').first().innerText(), 'Elegir sucursal');
     await context.close();
   }
   {
@@ -207,6 +246,34 @@ try {
     assert.equal(await page.locator('[data-venue-item]').first().evaluate(el => getComputedStyle(el).transitionDuration), '0s');
     report.interactions.reducedMotion = true;
     await context.close();
+  }
+  report.branchAgendas = [];
+  for (const [branch, profile] of [['san-ignacio', 'sinyolandagdl'], ['san-antonio', 'sinyolanda.sa'], ['the-woodlands', 'sinyolanda.tw']]) {
+    for (const width of [390, 1440]) {
+      const { page, context, errors } = await pageFor(width, width === 390 ? 844 : 900, width === 390);
+      await page.goto(new URL(branch + '.html', origin).href, { waitUntil: 'domcontentloaded' });
+      const agenda = page.locator('#cartelera');
+      await agenda.waitFor();
+      await page.evaluate(() => document.fonts.ready);
+      await agenda.scrollIntoViewIfNeeded();
+      const link = agenda.locator('a');
+      assert.equal(await link.getAttribute('href'), 'https://www.instagram.com/' + profile + '/');
+      assert.equal(await link.getAttribute('target'), '_blank');
+      assert.match(await link.getAttribute('rel'), /noopener/);
+      assert.doesNotMatch(await agenda.innerText(), /TODO|CONFIRMAR|de ejemplo|Brunch|8:00/i);
+      assert.equal(await agenda.locator('h2').innerText(), 'Eventos y promociones');
+      assert.equal(await agenda.evaluate(el => el.scrollWidth > el.clientWidth + 1), false);
+      await agenda.screenshot(blockShot(`branch-agenda-${branch}-${width}.png`));
+      // Switch through the site's actual language preference, without submitting anything.
+      await page.evaluate(() => { localStorage.setItem('sy-lang', 'en'); });
+      await page.reload({ waitUntil: 'domcontentloaded' });
+      await agenda.waitFor();
+      assert.equal(await agenda.locator('h2').innerText(), 'Events and promotions');
+      assert.equal(await link.getAttribute('href'), 'https://www.instagram.com/' + profile + '/');
+      assert.deepEqual(errors, []);
+      report.branchAgendas.push({ branch, width, ownProfile: true, english: true });
+      await context.close();
+    }
   }
   for (const path of ['houston.html', 'en/houston/', 'houston/menu/']) {
     const response = await fetch(new URL(path, origin));

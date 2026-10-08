@@ -24,6 +24,13 @@ function amend(root, fn) {
 test('clean standalone source passes checks without donor or fixed folder name', t => {
   assert.equal(checkPublic(fixture(t)).pages,15);
 });
+test('reject stale home action stylesheet before release', t => {
+  const root=fixture(t),file=join(root,'index.html');
+  const source=readFileSync(file,'utf8');
+  assert.match(source, /assets\/css\/home-actions\.css\?v=/);
+  writeFileSync(file,source.replace(/(assets\/css\/home-actions\.css\?v=)[^"']+/, '$1stale'));
+  assert.throws(()=>checkPublic(root), /Stale shared asset version/);
+});
 test('public package is deterministic, excludes incidental files and cannot overwrite', t => {
   const root=fixture(t);
   writeFileSync(join(root,'accidental.html'),'never publish');

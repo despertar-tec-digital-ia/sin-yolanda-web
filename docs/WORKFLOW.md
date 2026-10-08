@@ -215,13 +215,31 @@ Gate local, **no cableado todavía a CI/CD**. No Safari/dispositivos reales/Ligh
 Persisten HTML inicial/SEO, contenido simulado/notas heredadas de otros bloques, importaciones
 restantes y controles remotos. No certificar el sitio entero ni publicar sin revisión/aprobación.
 
-**Dos fallos de recorrido registrados para el siguiente lote (no corregidos por estas fotos):**
-cartelera muestra `TODO: CONFIRMAR CON OPERACIÓN` y datos de prueba; una tarjeta Cumpleaños de
-«Los pretextos» abre novedades de El Paso en lugar de reserva/grupo. QA los observa en
-`remainingFindings`, no los convierte en checks aprobados. Reemplazar cartelera por programación
-confirmada por sede (o retirar borradores del release); conectar pretextos con selector/flujo
-aprobado. Revisar hero→rótulo→plan→pretextos→cartelera→experiencia→sucursales como recorrido,
-no cambiar datos de negocio ni importar automáticamente contenido del donante por esta revisión.
+**Siguiente lote local: cartelera y entradas de celebración · 7-oct:** los dos fallos anteriores
+quedan corregidos en la candidata, no en el dominio. Cartelera ya no presenta notas internas ni
+agenda compartida de prueba. Los registros Houston del donante siguen en revisión/bloqueados;
+no se reclasifican como aprobados. Se usa un acceso neutro al Instagram ya registrado de cada
+sede activa, solo si su URL es válida. Sin fechas, beneficios, boletos, extracción automática ni
+promesa de disponibilidad. El módulo se omite sin perfiles elegibles. Las fichas genéricas de
+Guadalajara/SA/TW reciben el mismo criterio por sede, sin repetir eventos ficticios; la ficha
+estática Houston no se modifica. Los perfiles no se verificaron de nuevo contra Instagram en este lote.
+
+Diseño home: lista tipográfica con separadores sobre el granate existente, sin duplicar las fotos
+del selector. `home-actions.css` se carga solo en el home y entra en allowlist/versionado; el check
+rechaza su versión obsoleta. Los seis pretextos y el CTA cumpleaños son enlaces nativos a
+`#ubicaciones`, con foco de teclado y sin modal de novedades ni ciudad/reserva por defecto.
+Si solo se muestran próximas aperturas, la entrada restaura «Todas»; conserva un filtro de país
+ya elegido. Copy cumpleaños sin promesas de pastel/servicio no confirmadas. El home deja de
+renderizar el modal heredado; los otros formularios conservan su lote separado.
+
+`npm run check`: **32 tests**, 90 archivos/15 HTML, 173 referencias. `qa:selector` conserva las diez
+combinaciones previas y añade agenda/pretextos/cumpleaños, destinos, filtro, foco/Enter/tacto y
+ES/EN; seis recorridos adicionales verifican las agendas de tres fichas a 390/1440 px. Capturas
+home/fichas revisadas; reporte local ignorado `.artifacts/home-actions-qa-release/report.json`.
+No overflow de los bloques nuevos ni excepciones JS en esos recorridos. No es QA integral del
+sitio, Safari, dispositivos reales, backend ni certificación de contenido comercial. HTML inicial/SEO,
+importaciones Catering/fichas/cartas y aprobación/publicación automatizada por fechas siguen pendientes.
+Hero/rótulo/selector/fotos preservados; rutas sin cambios, sin merge/deploy/settings/credenciales.
 
 ### Paso 1 revisado: producción, selector y rótulo · 7-oct
 

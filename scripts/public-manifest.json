@@ -81,6 +81,7 @@
     "images/opentable-mark.svg",
     "images/sin-yolanda-logo.png",
     "assets/css/venue-selector.css",
+    "assets/css/home-actions.css",
     "assets/js/venue-selector.js",
     "licenses/react-bits.txt",
     "assets/media/hero-fiesta-real.mp4",
@@ -93,5 +94,5 @@
     "assets/media/venues/the-woodlands.webp",
     "assets/media/venues/houston.webp"
   ],
-  "assetVersion": "20261008-visual"
+  "assetVersion": "20261008-agenda"
 }

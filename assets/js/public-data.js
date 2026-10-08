@@ -289,21 +289,5 @@ window.SY_DATA = {
       "venuePhotoKind": "brand-illustrative"
     }
   ],
-  "events": [
-    {
-      "title": "Noche de canto",
-      "date": "Jue–Sáb · desde las 8:00 pm",
-      "description": "El micrófono recorre las mesas y la cantina entera se vuelve coro. Disponibilidad sujeta a cada sucursal."
-    },
-    {
-      "title": "Celebraciones",
-      "date": "Reservación para grupos",
-      "description": "Cumpleaños, aniversarios y quince años con menú y mesa reservada. Coordina con la sucursal."
-    },
-    {
-      "title": "Brunch de domingo",
-      "date": "Dom · 12:00 pm",
-      "description": "Disponible en las sucursales de Texas con horario diurno. Sujeto a disponibilidad local."
-    }
-  ]
+  "events": []
 };

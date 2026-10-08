@@ -92,7 +92,7 @@
   function venueShowcase() {
     const branches = data.branches.filter((branch) => ["active", "coming-soon"].includes(branch.status));
     return `
-        <section class="section venue-showcase" id="ubicaciones" aria-labelledby="venue-heading">
+        <section class="section venue-showcase" id="ubicaciones" tabindex="-1" aria-labelledby="venue-heading">
           <div class="section-heading"><div><h2 id="venue-heading">Cuál te queda</h2></div><p>México y Estados Unidos</p></div>
           <div class="filter-chips" role="group" aria-label="Filtrar ubicaciones" data-venue-filters>
             <button class="filter active" type="button" data-venue-filter="all" aria-pressed="true">Todas</button>
@@ -142,7 +142,6 @@
   }
 
   function homePage() {
-    const waGdl = `https://wa.me/523310186159?text=${encodeURIComponent("Hola, quiero reservar una mesa en Sin Yolanda Guadalajara.")}`;
     const plan = [
       ["Comida", "images/houston-entry-study/table-1600.webp", "Para el centro de la mesa. Se comparte o no se pide."],
       ["Tragos", "assets/media/cocktail.webp", "Coquetos. Sin lista de precios: pregunta y te contamos."],
@@ -159,8 +158,6 @@
       ["Viernes", "¿Neta necesitas más pretexto?"],
       ["Porque sí", "El mejor de todos."],
     ];
-    const abiertas = data.branches.filter((b) => b.status === "active");
-    const proximas = data.branches.filter((b) => b.status === "coming-soon");
     return `
       ${publicHeader()}
       <main>
@@ -219,15 +216,11 @@
         <section class="section pretextos-section">
           <div class="section-heading"><div><p class="eyebrow">Los pretextos</p><h2 class="reveal">Se aceptan pretextos chiquitos.</h2></div></div>
           <div class="pretextos-grid">
-            ${pretextos.map(([nombre, remate], i) => `<button class="pretexto-card reveal-scale" type="button" style="animation-delay:${0.08 * i}s" data-open-modal="news"><span>0${i + 1}</span><strong>${nombre}</strong><em>“${remate}”</em><small>Cuéntanos y apartamos mesa</small></button>`).join("")}
+            ${pretextos.map(([nombre, remate], i) => `<a class="pretexto-card reveal-scale" href="#ubicaciones" data-select-location style="animation-delay:${0.08 * i}s"><strong>${nombre}</strong><em>“${remate}”</em><small>Elegir sucursal</small></a>`).join("")}
           </div>
         </section>
 
-        <section class="section cartelera-section" id="cartelera">
-          <div class="section-heading"><div><p class="eyebrow">Cartelera</p><h2 class="reveal">Esta semana se puso bueno.</h2></div><p>Los eventos de cada casa, aquí apenas se están armando.</p></div>
-          <div class="event-grid">${data.events.map((event) => `<article><span>${event.date}</span><h3>${event.title}</h3><p>${event.description}</p><a class="text-button" href="#ubicaciones">Reservar evento</a></article>`).join("")}</div>
-          <p class="data-caveat">TODO: CONFIRMAR CON OPERACIÓN — cartelera con eventos reales por sucursal.</p>
-        </section>
+        ${homeAgenda()}
 
         <section class="experience-section" id="experiencia">
           <div class="experience-media"><img src="assets/media/celebration.webp" alt="Ruleta de shots y bebidas sobre una mesa de Sin Yolanda" loading="lazy" width="1600" height="2000" /></div>
@@ -251,10 +244,9 @@
 
         <section class="section cumple-section" id="cumple">
           <div class="section-heading"><div><p class="eyebrow">Celebraciones</p><h2 class="reveal">¿Cumpleaños?</h2></div></div>
-          <p class="cumple-copy">Aquí se entera todo el lugar. Avísanos y ya sabemos qué hacer: mesa larga, pastel y una canción que nadie te va a dejar cantar solo.</p>
+          <p class="cumple-copy">Tu gente, una mesa y un buen pretexto. Elige tu sucursal y consulta disponibilidad para celebrar.</p>
           <div class="hero-actions">
-            <a class="button button-primary" href="${waGdl}" target="_blank" rel="noopener">Armar mi cumpleaños</a>
-            <a class="button button-ghost" href="locations.html">Ver sucursales</a>
+            <a class="button button-primary" href="#ubicaciones" data-select-location>Elegir sucursal</a>
           </div>
         </section>
 
@@ -265,10 +257,39 @@
           <div><a class="button button-light" href="#ubicaciones">Reservar mesa</a></div>
         </section>
       </main>
-      ${publicFooter()}
-      ${modalMarkup()}`;
+      ${publicFooter()}`;
   }
 
+  function hasAgendaProfile(branch) {
+    // Reuse the registered location's own public profile, never a guessed account.
+    return branch.status === "active" && /^https:\/\/www\.instagram\.com\/[a-z0-9._]+\/$/i.test(branch.socialUrl || "");
+  }
+
+  function homeAgenda() {
+    const branches = data.branches.filter(hasAgendaProfile);
+    if (!branches.length) return "";
+    return `<section class="section cartelera-section home-agenda" id="cartelera" aria-labelledby="agenda-heading">
+      <div class="home-agenda-intro">
+        <h2 id="agenda-heading">La cartelera de tu cantina.</h2>
+        <p>Los eventos y las promociones cambian por sucursal. Consulta lo más reciente en su Instagram.</p>
+      </div>
+      <ul class="home-agenda-links" aria-label="Agendas en Instagram">
+        ${branches.map(branch => `<li><a href="${branch.socialUrl}" target="_blank" rel="noopener noreferrer" data-agenda-branch="${branch.id}">
+          <span class="home-agenda-place"><strong>${branch.shortName}</strong><span>${branch.venueCity || branch.city}</span></span>
+          <span class="home-agenda-action"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/></svg><span>Instagram</span><svg viewBox="0 0 20 20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 15 15 5M5 5h10v10"/></svg></span>
+        </a></li>`).join("")}
+      </ul>
+    </section>`;
+  }
+
+  function branchAgenda(branch) {
+    if (!hasAgendaProfile(branch)) return "";
+    return `<section class="section" id="cartelera">
+      <div class="section-heading"><div><h2>Eventos y promociones</h2></div></div>
+      <p>Consulta la programación de esta sucursal en su Instagram.</p>
+      <a class="text-button" href="${branch.socialUrl}" target="_blank" rel="noopener noreferrer">Ver agenda en Instagram</a>
+    </section>`;
+  }
 
   function locationsPage() {
     return `
@@ -379,10 +400,7 @@
           <div><p class="eyebrow">Menú de muestra</p><h2 class="reveal">Se botanea en serio.</h2><p>Una selección breve para demostrar cómo el menú puede adaptarse por ciudad, idioma y disponibilidad.</p><div class="mini-menu"><span>Coctelería de autor</span><span>Entradas para compartir</span><span>Cocina mexicana</span><span>Brunch seleccionado</span></div><a class="button button-primary" href="${branch.menuUrl}" target="_blank" rel="noopener">Ver menú</a></div>
         </section>
 
-        <section class="section">
-          <div class="section-heading"><div><p class="eyebrow">Eventos</p><h2 class="reveal">Una agenda propia.</h2></div><p>Programación de ejemplo para mostrar el flujo de comunicación y reservación.</p></div>
-          <div class="event-grid">${data.events.map((event) => `<article><span>${event.date}</span><h3>${event.title}</h3><p>${event.description}</p><a class="text-button" href="${branch.reserveChannel === "opentable" ? branch.reserveUrl : `https://wa.me/${branch.whatsapp}`}" target="_blank" rel="noopener">Reservar</a></article>`).join("")}</div>
-        </section>
+        ${branchAgenda(branch)}
 
         <section class="gallery-section"><div class="section-heading"><div><p class="eyebrow">Galería</p><h2 class="reveal">La atmósfera habla primero.</h2></div></div><div class="gallery-grid">${branch.gallery.map((image, index) => `<img src="${image}" alt="${branch.shortName}, fotografía de ambiente ${index + 1}" />`).join("")}</div></section>
 
@@ -429,6 +447,17 @@
 
     document.querySelectorAll("[data-scroll-to]").forEach((button) => {
       button.addEventListener("click", () => document.getElementById(button.dataset.scrollTo)?.scrollIntoView({ behavior: "smooth" }));
+    });
+
+    // A booking entry should not strand the visitor in the coming-soon filter.
+    // Preserve native navigation and existing country choices; only clear "soon".
+    document.querySelectorAll("[data-select-location]").forEach((link) => {
+      link.addEventListener("click", (event) => {
+        if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        if (document.querySelector('[data-venue-filter="soon"][aria-pressed="true"]')) {
+          document.querySelector('[data-venue-filter="all"]')?.click();
+        }
+      });
     });
 
   }

@@ -18,7 +18,7 @@ export function checkPublic(root = projectRoot) {
   for (const path of files.filter(f => /\.(html|css|js)$/.test(f))) {
     const source = read(path);
     if (path.endsWith('.html')) {
-      for (const [,href] of source.matchAll(/(?:href|src)="((?:styles\.css|assets\/(?:js|css)\/(?:public-data|site|i18n|venue-selector)\.(?:js|css))[^\"]*)"/g)) {
+      for (const [,href] of source.matchAll(/(?:href|src)="((?:styles\.css|assets\/(?:js|css)\/(?:public-data|site|i18n|venue-selector|home-actions)\.(?:js|css))[^\"]*)"/g)) {
         assert.ok(href.endsWith('?v=' + manifest.assetVersion), 'Stale shared asset version: ' + path);
       }
     }

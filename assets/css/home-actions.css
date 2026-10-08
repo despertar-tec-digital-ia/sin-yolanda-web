@@ -1,0 +1,79 @@
+/* Home-only action refinements. Reuse the accepted brand palette and type;
+ * the reserved hero and existing rótulo/selector stay untouched.
+ */
+body[data-page="home"] .pretexto-card {
+  text-decoration: none;
+}
+body[data-page="home"] .pretexto-card:focus-visible {
+  outline: 3px solid var(--cream);
+  outline-offset: 4px;
+  border-color: var(--orange);
+}
+
+/* An agenda gateway, not a second location selector or an invented event grid. */
+body[data-page="home"] .home-agenda {
+  display: grid;
+  grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
+  gap: clamp(2rem, 6vw, 6rem);
+  align-items: start;
+  background: var(--maroon);
+  color: var(--cream);
+}
+.home-agenda-intro h2 {
+  max-width: 10ch;
+  margin: 0 0 1.5rem;
+  font-size: clamp(2rem, 4vw, 3.9rem);
+  line-height: 1.06;
+}
+.home-agenda-intro p {
+  max-width: 36ch;
+  margin: 0;
+  color: var(--cream);
+  line-height: 1.65;
+}
+.home-agenda-links {
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.home-agenda-links li { border-top: 1px solid rgba(243, 236, 223, .3); }
+.home-agenda-links li:last-child { border-bottom: 1px solid rgba(243, 236, 223, .3); }
+.home-agenda-links a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  min-height: 106px;
+  padding: 1.3rem .4rem;
+  color: inherit;
+  text-decoration: none;
+  transition: background-color .2s ease;
+}
+.home-agenda-links a:hover { background: rgba(243, 236, 223, .07); }
+.home-agenda-links a:focus-visible {
+  outline: 3px solid var(--cream);
+  outline-offset: 3px;
+}
+.home-agenda-place { min-width: 0; }
+.home-agenda-place strong {
+  display: block;
+  margin-bottom: .25rem;
+  font: 400 clamp(1.8rem, 2.8vw, 2.75rem)/1 "SY Venue Display", Impact, sans-serif;
+}
+.home-agenda-place > span { display: block; font-size: .875rem; }
+.home-agenda-action { display: flex; align-items: center; gap: .55rem; flex: 0 0 auto; }
+.home-agenda-action svg { width: 20px; height: 20px; }
+.home-agenda-action > span { font-size: .875rem; }
+@media (max-width: 900px) {
+  body[data-page="home"] .home-agenda { grid-template-columns: minmax(0, 1fr); }
+  .home-agenda-intro h2 { max-width: 16ch; }
+}
+@media (max-width: 400px) {
+  .home-agenda-links a { gap: .65rem; }
+  .home-agenda-action { gap: .35rem; }
+  .home-agenda-action > svg:last-child { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-agenda-links a { transition: none; }
+}

@@ -8,6 +8,9 @@ No aplicar redirects ni crear páginas solo por figurar en esta tabla.
 nativos a la ficha propia. Moreno Valley/San Diego sin href hasta tener página real. Houston
 ES/EN/carta 30-sep recuperados en paquete, no producción. Guadalajara mantiene `/san-ignacio`;
 sin nueva ruta `/guadalajara`, redirects ni duplicados. Detalle y QA: `WORKFLOW.md` §7.
+**Recorrido home posterior, solo local:** pretextos/cumpleaños enlazan `/#ubicaciones` mediante
+anclas nativas; `/#cartelera` es un acceso a los perfiles Instagram registrados de sedes activas,
+no una nueva página ni calendario público aprobado. Sin rutas/redirects nuevos; no cambia el sitemap.
 
 **Revalidación HTTP posterior 7-oct:** `/houston` sirve la ficha genérica nueva; `.html` y slash
 final resuelven al canonical sin slash. Carta y EN responden 200 antiguo en URL habitual pero 404

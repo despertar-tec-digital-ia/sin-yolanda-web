@@ -144,6 +144,8 @@ automatizar vigencia con aprobar contenido nuevo leído de Instagram. Sin agenda
 | D06 · 7-oct | Implementada en candidato | Lista pública explícita y JS/datos separados del panel demo | Pruebas negativas; falta despliegue autorizado para retirar el demo del dominio |
 | D07 · 7-oct | Implementada en candidato | CI read-only sin secretos ni publicación | Validar run remoto; CD/credenciales/protecciones se activan aparte |
 | D08 · 7-oct | Solicitada por Luis; candidata local | Franja naranja El Paso directamente después del hero, fecha 9-oct y enlace a su ficha | Anuncio independiente del hero; estado/fecha del registro público, no declarar apertura por el reloj |
+| D09 · 7-oct | Encargada por Luis; candidata local | Rótulo existente como H1 sobre el video de Karina; quitar copy antiguo y bloque/fotos duplicados | Conservar SVG/fuente y hashes de video/póster; geometría móvil/desktop y texto visible al scroll. Sin publicación |
+| D10 · 7-oct | Corrección solicitada por Luis; candidata local | Cartelera de campañas comunes desde calendarios vivos, crema/tinta/naranja; no Instagram ni granate | Halloween31-oct y Catrinas con fecha propia por sede. No extrapolar promos/horarios/beneficios ni considerar el PDF tentativo agenda confirmada |
 
 Agregar una fila solo si cambia el contrato. Cambios de implementación → PR/commit; cambios de
 ruta → ROUTES; no duplicar reseñas largas de sesión. Un release registra commit, sourceRef/hash,
@@ -215,7 +217,7 @@ Gate local, **no cableado todavía a CI/CD**. No Safari/dispositivos reales/Ligh
 Persisten HTML inicial/SEO, contenido simulado/notas heredadas de otros bloques, importaciones
 restantes y controles remotos. No certificar el sitio entero ni publicar sin revisión/aprobación.
 
-**Siguiente lote local: cartelera y entradas de celebración · 7-oct:** los dos fallos anteriores
+**Antecedente superado por D09/D10: cartelera y entradas de celebración · 7-oct:** los dos fallos anteriores
 quedan corregidos en la candidata, no en el dominio. Cartelera ya no presenta notas internas ni
 agenda compartida de prueba. Los registros Houston del donante siguen en revisión/bloqueados;
 no se reclasifican como aprobados. Se usa un acceso neutro al Instagram ya registrado de cada
@@ -240,6 +242,40 @@ No overflow de los bloques nuevos ni excepciones JS en esos recorridos. No es QA
 sitio, Safari, dispositivos reales, backend ni certificación de contenido comercial. HTML inicial/SEO,
 importaciones Catering/fichas/cartas y aprobación/publicación automatizada por fechas siguen pendientes.
 Hero/rótulo/selector/fotos preservados; rutas sin cambios, sin merge/deploy/settings/credenciales.
+
+**Corrección de rumbo D09/D10 · 7-oct, solo candidata local:** Luis descarta la lista Instagram y
+el fondo granate de cartelera, y encarga integrar «No hay tiempo para llorar» dentro del hero.
+El SVG/fuente ya aceptados pasan a un H1 con texto accesible; video/póster siguen idénticos.
+Se retira `#rotulo` con las dos fotos y CTA duplicado. La franja El Paso continúa entre hero y
+`#plan`, sin solape. Arte dimensionado por ancho/altura disponible; CTAs en flujo. Corregido
+divisor de parallax que desvanecía el copy con 1 px de scroll; ahora solo se mueve el video.
+
+Fuentes recuperadas: calendarios vivos enlazados por el Doc de eventos/reservas de Karina. La
+copia SA del 2-oct estaba superada por una edición del 7-oct: Catrinas es **1-nov**, no 24-oct.
+Houston/Woodlands coinciden con sus cortes; el home usa Halloween **31-oct** en HOU/SA/TW y
+Catrinas **24-oct Houston / 30-oct Woodlands / 1-nov SA**. Registro privado de fuentes/celdas:
+ingesta marketing del cliente, bloque `liveCalendars`; ningún contacto privado cruza al paquete.
+Estas actividades no se atribuyen a Guadalajara/El Paso/otras sedes sin registro. Thanksgiving
+sigue pendiente en Woodlands. PDF estacional contiene propuestas; PDF de oportunidades contiene
+actividades externas, no actuaciones en las cantinas. No son sustitutos de estas agendas propias.
+
+El home presenta fechas/campañas comunes y enlaza la ficha real de cada sede. El registro público
+no incluye precios, premios, participantes ni horarios sin revisión. `visibleFrom` es un control
+editorial local, no una fecha de lanzamiento aportada por marketing. Cada ocurrencia se retira al
+cambiar su día civil en `America/Chicago` (DST probado); se recalcula rango visible y se omite
+todo el módulo si no quedan campañas. Se evalúa al cargar, sin importación de Instagram/Drive,
+scheduler, actualización en una pestaña abierta ni Event schema inventado. Condiciones/promos
+y artes específicos van en las fichas cuando se importe su lote. Las tres fichas genéricas aún
+conservan su enlace neutro de agenda; Houston sigue en el corte 30-sep. No afirmar que estén completas.
+El handle `sinyolandaelpaso` suministrado por Luis ya coincide con su registro; no cambia su estado.
+
+Verificación: `npm run check` **35/35**, 90 archivos/15 HTML/171 referencias; sonda v4 con
+**once** combinaciones, incluida 320×568, geometría del H1/arte/header/CTAs, permanencia tras10px,
+campañas/fechas/destinos e idiomas, además de los recorridos previos de selector/fotos/entradas.
+Dos rondas pasan; capturas inspeccionadas y reporte final:
+`.artifacts/hero-calendar-qa-final/report.json`. El paquete de prueba es candidato dirty;
+el release limpio se prepara después del commit y debe cotejar sus hashes. No es Safari, dispositivo
+real ni QA/SEO integral. Sin producción, merge, DNS, credenciales ni cambios al donante.
 
 ### Paso 1 revisado: producción, selector y rótulo · 7-oct
 

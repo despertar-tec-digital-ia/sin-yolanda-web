@@ -16,7 +16,7 @@ mkdirSync(output, { recursive: true });
 const require = createRequire(resolve(process.env.SY_QA_PACKAGE_ROOT, '../package.json'));
 const { chromium } = require('playwright');
 const browser = await chromium.launch({ headless: true });
-const report = { version: 3, origin: origin.origin, capturedAt: new Date().toISOString(),
+const report = { version: 4, origin: origin.origin, capturedAt: new Date().toISOString(),
   scope: 'Local home corrections and retained navigation, not whole-site launch approval',
   viewports: [], interactions: {}, remainingFindings: [] };
 const blockShot = (name) => ({ path: resolve(output, name), animations: 'disabled',
@@ -24,6 +24,15 @@ const blockShot = (name) => ({ path: resolve(output, name), animations: 'disable
 async function pageFor(width = 1440, height = 900, touch = false, reduced = false) {
   const context = await browser.newContext({ viewport: { width, height }, hasTouch: touch, isMobile: touch,
     reducedMotion: reduced ? 'reduce' : 'no-preference', serviceWorkers: 'block' });
+  // Keep calendar evidence reproducible when this candidate is checked after its campaigns expire.
+  await context.addInitScript(() => {
+    const NativeDate = Date;
+    const fixedNow = NativeDate.parse('2026-10-07T18:00:00Z');
+    window.Date = class extends NativeDate {
+      constructor(...args) { super(...(args.length ? args : [fixedNow])); }
+      static now() { return fixedNow; }
+    };
+  });
   await context.route('**/*', route => !['GET', 'HEAD'].includes(route.request().method()) ||
     /umami|google-analytics|analytics\.google|\/collect(?:\?|$)/i.test(route.request().url()) ? route.abort() : route.continue());
   const page = await context.newPage();
@@ -55,18 +64,75 @@ async function revealWithin(page, block) {
     await page.waitForFunction(el => el.classList.contains('revealed'), await node.elementHandle(), { timeout: 3000 });
   }
 }
+async function heroState(page) {
+  return page.locator('#inicio').evaluate(hero => {
+    const box = element => {
+      const { top, right, bottom, left, width, height } = element.getBoundingClientRect();
+      return { top, right, bottom, left, width, height };
+    };
+    const copy = hero.querySelector('.hero-copy-cinema');
+    const title = hero.querySelector('h1.hero-rotulo');
+    const art = title?.querySelector('svg.rotulo-art');
+    const subtitle = hero.querySelector('.hero-sub');
+    const actions = hero.querySelector('.hero-actions');
+    return { hero: box(hero), header: box(document.querySelector('.public-header')),
+      h1Count: hero.querySelectorAll('h1').length, title: title ? box(title) : null,
+      accessibleTitle: title?.querySelector('.rotulo-sr')?.textContent.trim(), art: art ? box(art) : null,
+      viewBox: art?.getAttribute('viewBox'), decorative: art?.getAttribute('aria-hidden'),
+      subtitle: subtitle ? box(subtitle) : null, actions: actions ? box(actions) : null,
+      copyOpacity: Number(getComputedStyle(copy).opacity),
+      buttons: [...actions.querySelectorAll('a')].map(a => {
+        let opacity = 1;
+        for (let node = a; node && node !== hero.parentElement; node = node.parentElement) opacity *= Number(getComputedStyle(node).opacity);
+        return { ...box(a), href: a.getAttribute('href'), text: a.innerText,
+          fontSize: parseFloat(getComputedStyle(a).fontSize), opacity,
+          clipped: a.scrollWidth > a.clientWidth + 1 || a.scrollHeight > a.clientHeight + 1 };
+      }),
+    };
+  });
+}
 try {
-  for (const [width, height, touch] of [[320, 740, true], [390, 844, true], [560, 900, true],
+  for (const [width, height, touch] of [[320, 568, true], [320, 740, true], [390, 844, true], [560, 900, true],
     [768, 1024, true], [900, 1100, true], [1024, 768, true], [1100, 720, false],
     [1440, 900, false], [1920, 1080, false], [1440, 900, true]]) {
     const { page, context, errors } = await pageFor(width, height, touch);
     const record = { width, height, touch };
+    await page.locator('#inicio').evaluate(el => Promise.all(el.getAnimations({ subtree: true })
+      .filter(animation => animation.effect.getComputedTiming().iterations !== Infinity)
+      .map(animation => animation.finished.catch(() => {}))));
+    assert.equal(await page.locator('#rotulo, .rotulo-photos').count(), 0, 'The duplicate photo/rotulo section is removed');
+    assert.ok(await page.evaluate(() => document.fonts.check('16px "Alfa Slab One"')));
+    record.hero = await heroState(page);
+    assert.equal(record.hero.h1Count, 1);
+    assert.equal(record.hero.accessibleTitle, 'No hay tiempo para llorar');
+    assert.equal(record.hero.viewBox, '0 0 600 540');
+    assert.equal(record.hero.decorative, 'true');
+    assert.equal(record.hero.copyOpacity, 1);
+    assert.ok(record.hero.title && record.hero.art && record.hero.art.width > 120 && record.hero.art.height > 100);
+    assert.ok(Math.abs(record.hero.art.height / record.hero.art.width - 540 / 600) < .02);
+    assert.ok(record.hero.title.top >= record.hero.header.bottom - 1, 'Header must not overlap the headline');
+    assert.ok(record.hero.art.left >= 0 && record.hero.art.right <= width + 1, 'The original artwork stays inside the viewport');
+    assert.ok(record.hero.title.bottom <= record.hero.subtitle.top + 1 && record.hero.subtitle.bottom <= record.hero.actions.top + 1,
+      'Headline, supporting copy and booking actions must have separate space');
+    assert.ok(record.hero.buttons.length >= 1 && record.hero.buttons.every(a =>
+      a.height >= 44 && a.fontSize >= 14 && !a.clipped && a.opacity >= .99 && a.href === '#ubicaciones' &&
+      a.left >= 0 && a.right <= width + 1 && a.top >= record.hero.title.bottom && a.bottom <= record.hero.hero.bottom + 1),
+      'Booking actions must be legible, contained and native');
+    await page.evaluate(() => window.scrollTo({ top: 10, behavior: 'instant' }));
+    await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+    record.heroAfterScroll = await heroState(page);
+    assert.equal(record.heroAfterScroll.copyOpacity, 1, 'Scrolling ten pixels must not fade the headline or booking actions');
+    assert.ok(record.heroAfterScroll.buttons.every(a => a.opacity >= .99));
+    await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
+    await page.screenshot({ path: resolve(output, `hero-${width}-${height}-${touch ? 'touch' : 'mouse'}.png`), animations: 'disabled' });
     await page.locator('.opening-announcement').scrollIntoViewIfNeeded();
     record.banner = await page.locator('.opening-announcement').evaluate(el => ({ width: el.getBoundingClientRect().width,
       height: el.getBoundingClientRect().height, previousHero: el.previousElementSibling.id === 'inicio',
+      nextPlan: el.nextElementSibling.id === 'plan',
       text: el.innerText, links: [...el.querySelectorAll('a')].map(a => a.getAttribute('href')) }));
     assert.equal(record.banner.width, width);
     assert.equal(record.banner.previousHero, true);
+    assert.equal(record.banner.nextPlan, true);
     assert.deepEqual(record.banner.links, ['el-paso.html', 'el-paso.html']);
     await page.screenshot({ path: resolve(output, `banner-${width}-${touch ? 'touch' : 'mouse'}.png`), animations: 'disabled' });
     await page.locator('.venue-showcase').scrollIntoViewIfNeeded();
@@ -83,16 +149,6 @@ try {
       clipped: el.scrollWidth > el.clientWidth + 1 || el.scrollHeight > el.clientHeight + 1 }));
     assert.equal(record.openingBadge.text, 'Abre el 9 de octubre');
     assert.ok(record.openingBadge.fontSize >= 16 && !record.openingBadge.clipped);
-    await page.locator('#rotulo').scrollIntoViewIfNeeded();
-    await page.locator('#rotulo img').evaluateAll(imgs => Promise.all(imgs.map(i => i.decode())));
-    record.rotulo = await page.locator('#rotulo').evaluate(el => ({ height: el.getBoundingClientRect().height,
-      images: [...el.querySelectorAll('img')].map(i => ({ width: i.clientWidth, height: i.clientHeight,
-        loaded: i.complete && i.naturalWidth > 0 })) }));
-    // Updated acceptance: Luis retained the published tall windows, not the previous short crop.
-    assert.ok(record.rotulo.images.every(img => img.loaded && img.height <= 1051 &&
-      Math.abs(img.height / img.width - 105 / 23) < .04));
-    assert.ok(await page.evaluate(() => document.fonts.check('16px "Alfa Slab One"')));
-    await page.locator('#rotulo').screenshot(blockShot(`rotulo-${width}-${touch ? 'touch' : 'mouse'}.png`));
     await page.locator('#experiencia').scrollIntoViewIfNeeded();
     await revealWithin(page, page.locator('#experiencia'));
     await page.locator('#experiencia img').evaluate(img => img.decode());
@@ -124,14 +180,23 @@ try {
     assert.ok(record.pretexts.every(item => item.tag === 'A' && item.href === '#ubicaciones' && item.height >= 44 && !item.clipped));
     record.agenda = await page.locator('#cartelera').evaluate(el => ({
       heading: el.querySelector('h2').textContent, text: el.innerText,
+      campaigns: [...el.querySelectorAll('[data-campaign]')].map(card => ({ id: card.dataset.campaign,
+        dates: [...card.querySelectorAll('.campaign-locations time[datetime]')].map(time => time.getAttribute('datetime')),
+        range: [...card.querySelectorAll('.campaign-dates time[datetime]')].map(time => time.getAttribute('datetime')) })),
       links: [...el.querySelectorAll('[data-agenda-branch]')].map(a => ({
         id: a.dataset.agendaBranch, href: a.getAttribute('href'), target: a.target, rel: a.rel,
         height: a.getBoundingClientRect().height, clipped: a.scrollWidth > a.clientWidth + 1,
       })),
     }));
-    assert.equal(record.agenda.links.length, 4);
-    assert.ok(record.agenda.links.every(a => a.height >= 44 && !a.clipped && a.target === '_blank' && a.rel.includes('noopener')));
-    assert.doesNotMatch(record.agenda.text, /TODO|CONFIRMAR|Brunch|8:00|Esta semana/i);
+    assert.equal(record.agenda.heading, 'Lo que viene.');
+    assert.deepEqual(record.agenda.campaigns.map(card => card.id).sort(), ['catrinas-2026', 'halloween-2026']);
+    assert.deepEqual(record.agenda.campaigns.find(card => card.id === 'halloween-2026').dates.sort(), ['2026-10-31', '2026-10-31', '2026-10-31']);
+    assert.deepEqual(record.agenda.campaigns.find(card => card.id === 'catrinas-2026').dates.sort(), ['2026-10-24', '2026-10-30', '2026-11-01']);
+    assert.deepEqual(record.agenda.campaigns.find(card => card.id === 'halloween-2026').range, ['2026-10-31']);
+    assert.deepEqual(record.agenda.campaigns.find(card => card.id === 'catrinas-2026').range, ['2026-10-24', '2026-11-01']);
+    assert.equal(record.agenda.links.length, 6);
+    assert.ok(record.agenda.links.every(a => a.height >= 44 && !a.clipped && !a.target && /^[a-z-]+\.html$/.test(a.href)));
+    assert.doesNotMatch(record.agenda.text, /TODO|CONFIRMAR|Brunch|8:00|Esta semana|Instagram|\$|descuento/i);
     if ([390, 768, 1440].includes(width) && (width !== 1440 || !touch)) {
       // Keep section evidence free of sticky-header capture artefacts; inspect navigation separately.
       for (const selector of ['#plan', '.pretextos-section', '#cartelera', '#botaneo', '#cumple', '.public-footer']) {
@@ -146,10 +211,14 @@ try {
   {
     const { page, context } = await pageFor();
     assert.equal(await page.locator('#demo-modal').count(), 0);
-    const expectedAgenda = await page.evaluate(() => window.SY_DATA.branches.filter(b => b.status === 'active')
-      .map(b => ({ id: b.id, href: b.socialUrl })));
-    const agenda = await page.locator('[data-agenda-branch]').evaluateAll(links => links.map(a => ({ id: a.dataset.agendaBranch, href: a.href })));
-    assert.deepEqual(agenda, expectedAgenda);
+    const expectedAgenda = await page.evaluate(() => window.SY_DATA.events.flatMap(campaign => campaign.occurrences.map(occurrence => {
+      const branch = window.SY_DATA.branches.find(branch => branch.id === occurrence.branchId);
+      return { campaign: campaign.id, id: branch.id, href: branch.page };
+    })));
+    const agenda = await page.locator('[data-agenda-branch]').evaluateAll(links => links.map(a => ({
+      campaign: a.closest('[data-campaign]').dataset.campaign, id: a.dataset.agendaBranch, href: a.getAttribute('href') })));
+    const campaignBranchOrder = (a, b) => (a.campaign + '/' + a.id).localeCompare(b.campaign + '/' + b.id);
+    assert.deepEqual(agenda.sort(campaignBranchOrder), expectedAgenda.sort(campaignBranchOrder));
     await page.locator('.pretexto-card').first().click();
     assert.equal(new URL(page.url()).hash, '#ubicaciones');
     assert.equal(await page.evaluate(() => document.activeElement.id), 'ubicaciones');
@@ -166,7 +235,7 @@ try {
     assert.equal(await page.locator('[data-venue-filter="mx"]').getAttribute('aria-pressed'), 'true');
     await page.locator('[data-venue-filter="all"]').click();
     report.interactions.homeActions = { nativePretextClick: true, keyboardFocusAtSelector: true,
-      birthdayChoosesLocation: true, clearsOnlySoonFilter: true, ownInstagramProfiles: agenda, noDraftCalendar: true, noOpeningModal: true };
+      birthdayChoosesLocation: true, clearsOnlySoonFilter: true, ownCampaignLocations: agenda, noDraftCalendar: true, noOpeningModal: true };
     const houston = page.locator('[data-branch-id="houston"]');
     await houston.hover(); await page.waitForTimeout(500);
     assert.deepEqual(expanded(await galleryState(page)), ['houston']);
@@ -216,7 +285,8 @@ try {
     assert.equal(await page.locator('[data-branch-id="el-paso"] .venue-badge').innerText(), 'Opens October 9');
     assert.equal((await page.locator('[data-branch-id="el-paso"] .venue-opening-date > span').textContent()).trim(), 'Opens');
     assert.equal(await page.locator('#experiencia img').getAttribute('alt'), 'A shot roulette and drinks on a Sin Yolanda table');
-    assert.equal(await page.locator('#agenda-heading').innerText(), "What's on at your cantina.");
+    assert.equal(await page.locator('#agenda-heading').innerText(), "What's coming up.");
+    for (const date of await page.locator('#cartelera time[datetime]').all()) assert.match(await date.innerText(), /\d+\s+(Oct|Nov)\b/);
     assert.equal(await page.locator('.pretexto-card small').first().innerText(), 'Choose a location');
     assert.equal(await page.locator('.pretexto-card strong').nth(1).innerText(), 'Payday');
     await page.locator('[data-venue-filter="soon"]').click();
@@ -225,7 +295,8 @@ try {
     await page.locator('[data-lang-btn="es"]').click();
     assert.equal(await page.locator('#experiencia img').getAttribute('alt'), 'Ruleta de shots y bebidas sobre una mesa de Sin Yolanda');
     assert.equal(await page.locator('[data-branch-id="el-paso"] .venue-badge').innerText(), 'Abre el 9 de octubre');
-    assert.equal(await page.locator('#agenda-heading').innerText(), 'La cartelera de tu cantina.');
+    assert.equal(await page.locator('#agenda-heading').innerText(), 'Lo que viene.');
+    for (const date of await page.locator('#cartelera time[datetime]').all()) assert.match(await date.innerText(), /\d+\s+(oct|nov)\b/);
     assert.equal(await page.locator('.pretexto-card small').first().innerText(), 'Elegir sucursal');
     await context.close();
   }

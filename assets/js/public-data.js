@@ -289,5 +289,32 @@ window.SY_DATA = {
       "venuePhotoKind": "brand-illustrative"
     }
   ],
-  "events": []
+  "events": [
+    {
+      "id": "catrinas-2026",
+      "placement": "home",
+      "status": "scheduled",
+      "visibleFrom": "2026-10-01",
+      "title": "Noches de Catrinas",
+      "description": "Tradición mexicana, coctelería y una noche para venir de catrina.",
+      "occurrences": [
+        { "branchId": "houston", "date": "2026-10-24", "timeZone": "America/Chicago" },
+        { "branchId": "the-woodlands", "date": "2026-10-30", "timeZone": "America/Chicago" },
+        { "branchId": "san-antonio", "date": "2026-11-01", "timeZone": "America/Chicago" }
+      ]
+    },
+    {
+      "id": "halloween-2026",
+      "placement": "home",
+      "status": "scheduled",
+      "visibleFrom": "2026-10-01",
+      "title": "Halloween Night",
+      "description": "Ven con tu disfraz. El concurso se vive en cada cantina.",
+      "occurrences": [
+        { "branchId": "houston", "date": "2026-10-31", "timeZone": "America/Chicago" },
+        { "branchId": "the-woodlands", "date": "2026-10-31", "timeZone": "America/Chicago" },
+        { "branchId": "san-antonio", "date": "2026-10-31", "timeZone": "America/Chicago" }
+      ]
+    }
+  ]
 };

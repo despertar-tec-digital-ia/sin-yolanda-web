@@ -177,12 +177,14 @@
           </div>
           <div class="hero-overlay hero-overlay-cinema"></div>
           <div class="hero-copy hero-copy-cinema">
-            <p class="eyebrow hero-eyebrow">Cantina contemporánea</p>
-            <h1 class="hero-title">El plan ya está armado.</h1>
+            <h1 class="hero-rotulo">
+              <span class="rotulo-sr">No hay tiempo para llorar</span>
+              <svg class="rotulo-art" viewBox="0 0 600 540" aria-hidden="true" focusable="false"><defs><path id="rotulo-arch" d="M85 109 Q300 42 515 109"></path><path id="rotulo-time-arch" d="M20 255 Q300 177 580 255"></path><path id="rotulo-last-arch" d="M25 427 Q300 507 575 427"></path><g id="rotulo-no-hay"><text class="rotulo-overture"><textPath href="#rotulo-arch" startOffset="50%" text-anchor="middle">NO HAY</textPath></text></g><g id="rotulo-tiempo"><text textLength="534" lengthAdjust="spacingAndGlyphs" class="rotulo-main-word"><textPath href="#rotulo-time-arch" startOffset="50%" text-anchor="middle">TIEMPO</textPath></text></g><g id="rotulo-llorar"><text textLength="534" lengthAdjust="spacingAndGlyphs" class="rotulo-last-word"><textPath href="#rotulo-last-arch" startOffset="50%" text-anchor="middle">LLORAR</textPath></text></g></defs><g class="rotulo-top"><use href="#rotulo-no-hay" class="rotulo-edge" transform="translate(3 4)"></use><use href="#rotulo-no-hay" class="rotulo-face"></use></g><g class="rotulo-center"><use href="#rotulo-tiempo" class="rotulo-depth" transform="translate(7 9.1)"></use><use href="#rotulo-tiempo" class="rotulo-depth" transform="translate(6 7.8)"></use><use href="#rotulo-tiempo" class="rotulo-depth" transform="translate(5 6.5)"></use><use href="#rotulo-tiempo" class="rotulo-depth" transform="translate(4 5.2)"></use><use href="#rotulo-tiempo" class="rotulo-depth" transform="translate(3 3.9)"></use><use href="#rotulo-tiempo" class="rotulo-depth" transform="translate(2 2.6)"></use><use href="#rotulo-tiempo" class="rotulo-depth" transform="translate(1 1.3)"></use><use href="#rotulo-tiempo" class="rotulo-outline"></use><use href="#rotulo-tiempo" class="rotulo-face"></use></g><g class="rotulo-bridge" fill="currentColor"><path d="M95 295 Q155 279 220 295 Q155 285 95 300Z"></path><text x="300" y="307" text-anchor="middle">para</text><path d="M505 295 Q445 279 380 295 Q445 285 505 300Z"></path></g><g class="rotulo-finale"><use href="#rotulo-llorar" class="rotulo-depth" transform="translate(7 9.1)"></use><use href="#rotulo-llorar" class="rotulo-depth" transform="translate(6 7.8)"></use><use href="#rotulo-llorar" class="rotulo-depth" transform="translate(5 6.5)"></use><use href="#rotulo-llorar" class="rotulo-depth" transform="translate(4 5.2)"></use><use href="#rotulo-llorar" class="rotulo-depth" transform="translate(3 3.9)"></use><use href="#rotulo-llorar" class="rotulo-depth" transform="translate(2 2.6)"></use><use href="#rotulo-llorar" class="rotulo-depth" transform="translate(1 1.3)"></use><use href="#rotulo-llorar" class="rotulo-outline"></use><use href="#rotulo-llorar" class="rotulo-face"></use><path class="rotulo-underline" d="M100 485 Q300 528 500 485 Q300 543 100 485Z"></path></g></svg>
+            </h1>
             <p class="hero-sub">Comida que sí llena, tragos coquetos y canciones que se gritan completas.</p>
             <div class="hero-actions">
-              <a class="button button-primary" href="#ubicaciones">Reserva tu mesa</a>
-              <a class="button button-ghost-light" href="#ubicaciones">Encuentra tu Sin Yolanda</a>
+              <a class="button button-primary" href="#ubicaciones" data-select-location>Reserva tu mesa</a>
+              <a class="button button-ghost-light" href="#ubicaciones" data-select-location>Encuentra tu Sin Yolanda</a>
             </div>
             <p class="hero-micro">México · Texas</p>
           </div>
@@ -190,21 +192,6 @@
 
         ${openingAnnouncement()}
 
-        <section class="rotulo-banner" id="rotulo" aria-label="Aquí no se llora">
-          <div class="rotulo-inner">
-            <div class="rotulo-photos" aria-hidden="true">
-              <img src="assets/media/banner-canto.jpg" alt="" loading="lazy" width="700" height="1050" />
-              <img src="assets/media/banner-celebracion.jpg" alt="" loading="lazy" width="700" height="1050" />
-            </div>
-            <div class="rotulo-type">
-              <svg class="rotulo-art" viewBox="0 0 600 540" aria-hidden="true" focusable="false"><defs><path id="rotulo-arch" d="M85 109 Q300 42 515 109"></path><path id="rotulo-time-arch" d="M20 255 Q300 177 580 255"></path><path id="rotulo-last-arch" d="M25 427 Q300 507 575 427"></path><g id="rotulo-no-hay"><text class="rotulo-overture"><textPath href="#rotulo-arch" startOffset="50%" text-anchor="middle">NO HAY</textPath></text></g><g id="rotulo-tiempo"><text textLength="534" lengthAdjust="spacingAndGlyphs" class="rotulo-main-word"><textPath href="#rotulo-time-arch" startOffset="50%" text-anchor="middle">TIEMPO</textPath></text></g><g id="rotulo-llorar"><text textLength="534" lengthAdjust="spacingAndGlyphs" class="rotulo-last-word"><textPath href="#rotulo-last-arch" startOffset="50%" text-anchor="middle">LLORAR</textPath></text></g></defs><g class="rotulo-top"><use href="#rotulo-no-hay" class="rotulo-edge" transform="translate(3 4)"></use><use href="#rotulo-no-hay" class="rotulo-face"></use></g><g class="rotulo-center"><use href="#rotulo-tiempo" class="rotulo-depth" transform="translate(7 9.1)"></use><use href="#rotulo-tiempo" class="rotulo-depth" transform="translate(6 7.8)"></use><use href="#rotulo-tiempo" class="rotulo-depth" transform="translate(5 6.5)"></use><use href="#rotulo-tiempo" class="rotulo-depth" transform="translate(4 5.2)"></use><use href="#rotulo-tiempo" class="rotulo-depth" transform="translate(3 3.9)"></use><use href="#rotulo-tiempo" class="rotulo-depth" transform="translate(2 2.6)"></use><use href="#rotulo-tiempo" class="rotulo-depth" transform="translate(1 1.3)"></use><use href="#rotulo-tiempo" class="rotulo-outline"></use><use href="#rotulo-tiempo" class="rotulo-face"></use></g><g class="rotulo-bridge" fill="currentColor"><path d="M95 295 Q155 279 220 295 Q155 285 95 300Z"></path><text x="300" y="307" text-anchor="middle">para</text><path d="M505 295 Q445 279 380 295 Q445 285 505 300Z"></path></g><g class="rotulo-finale"><use href="#rotulo-llorar" class="rotulo-depth" transform="translate(7 9.1)"></use><use href="#rotulo-llorar" class="rotulo-depth" transform="translate(6 7.8)"></use><use href="#rotulo-llorar" class="rotulo-depth" transform="translate(5 6.5)"></use><use href="#rotulo-llorar" class="rotulo-depth" transform="translate(4 5.2)"></use><use href="#rotulo-llorar" class="rotulo-depth" transform="translate(3 3.9)"></use><use href="#rotulo-llorar" class="rotulo-depth" transform="translate(2 2.6)"></use><use href="#rotulo-llorar" class="rotulo-depth" transform="translate(1 1.3)"></use><use href="#rotulo-llorar" class="rotulo-outline"></use><use href="#rotulo-llorar" class="rotulo-face"></use><path class="rotulo-underline" d="M100 485 Q300 528 500 485 Q300 543 100 485Z"></path></g></svg>
-              <h2 class="rotulo-sr">No hay tiempo para llorar</h2>
-            </div>
-            <div class="rotulo-invitation">
-              <a class="rotulo-cta" href="#ubicaciones">Elige tu sucursal <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16m-6-6 6 6 6-6"></path></svg></a>
-            </div>
-          </div>
-        </section>
 
         <section class="section section-after-hero" id="plan">
           <div class="section-heading"><div><p class="eyebrow">El plan</p><h2 class="reveal">El plan ya está armado.</h2></div><p>Tú solo trae el pretexto.</p></div>
@@ -265,20 +252,67 @@
     return branch.status === "active" && /^https:\/\/www\.instagram\.com\/[a-z0-9._]+\/$/i.test(branch.socialUrl || "");
   }
 
-  function homeAgenda() {
-    const branches = data.branches.filter(hasAgendaProfile);
-    if (!branches.length) return "";
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, char => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[char]));
+  }
+
+  function validCalendarDate(value) {
+    return typeof value === "string" && /^\d{4}-\d{2}-\d{2}$/.test(value) &&
+      Number.isFinite(Date.parse(value)) && new Date(value).toISOString().slice(0, 10) === value;
+  }
+
+  function calendarDay(timeZone, now = new Date()) {
+    try {
+      const parts = new Intl.DateTimeFormat("en", { timeZone, year: "numeric", month: "2-digit", day: "2-digit" }).formatToParts(now);
+      const part = type => parts.find(value => value.type === type).value;
+      return `${part("year")}-${part("month")}-${part("day")}`;
+    } catch (_) { return ""; }
+  }
+
+  function calendarLabel(date) {
+    const months = ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"];
+    return `<time datetime="${date}">${Number(date.slice(8))} <span>${months[Number(date.slice(5, 7)) - 1]}</span></time>`;
+  }
+
+  function homeCampaigns(now = new Date()) {
+    const today = calendarDay("America/Chicago", now);
+    if (!today) return [];
+    return (data.events || []).filter(event => event.placement === "home" && event.status === "scheduled" &&
+      validCalendarDate(event.visibleFrom) && event.visibleFrom <= today && Array.isArray(event.occurrences))
+      .map(event => {
+        const locations = event.occurrences.map(occurrence => ({ ...occurrence,
+          branch: data.branches.find(branch => branch.id === occurrence.branchId) }))
+          .filter(occurrence => validCalendarDate(occurrence.date) && occurrence.timeZone &&
+            calendarDay(occurrence.timeZone, now) && occurrence.branch?.status === "active" &&
+            /^[a-z0-9-]+\.html$/.test(occurrence.branch.page));
+        // Home campaigns span locations; local-only promotions stay on their fichas.
+        if (new Set(locations.map(occurrence => occurrence.branchId)).size < 2) return null;
+        const occurrences = locations.filter(occurrence => occurrence.date >= calendarDay(occurrence.timeZone, now))
+          .sort((a, b) => a.date.localeCompare(b.date) || a.branchId.localeCompare(b.branchId));
+        return occurrences.length ? { ...event, occurrences } : null;
+      }).filter(Boolean).sort((a, b) => a.occurrences[0].date.localeCompare(b.occurrences[0].date));
+  }
+
+  function homeAgenda(now = new Date()) {
+    const campaigns = homeCampaigns(now);
+    if (!campaigns.length) return "";
     return `<section class="section cartelera-section home-agenda" id="cartelera" aria-labelledby="agenda-heading">
       <div class="home-agenda-intro">
-        <h2 id="agenda-heading">La cartelera de tu cantina.</h2>
-        <p>Los eventos y las promociones cambian por sucursal. Consulta lo más reciente en su Instagram.</p>
+        <h2 id="agenda-heading">Lo que viene.</h2>
+        <p>Hay fechas que se celebran en más de una cantina. Encuentra la tuya.</p>
       </div>
-      <ul class="home-agenda-links" aria-label="Agendas en Instagram">
-        ${branches.map(branch => `<li><a href="${branch.socialUrl}" target="_blank" rel="noopener noreferrer" data-agenda-branch="${branch.id}">
-          <span class="home-agenda-place"><strong>${branch.shortName}</strong><span>${branch.venueCity || branch.city}</span></span>
-          <span class="home-agenda-action"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/></svg><span>Instagram</span><svg viewBox="0 0 20 20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 15 15 5M5 5h10v10"/></svg></span>
-        </a></li>`).join("")}
-      </ul>
+      <div class="home-campaigns">
+        ${campaigns.map(event => {
+          const first = event.occurrences[0].date, last = event.occurrences[event.occurrences.length - 1].date;
+          return `<article class="home-campaign" data-campaign="${escapeHtml(event.id)}">
+            <div class="campaign-dates">${calendarLabel(first)}${first === last ? "" : `<span aria-hidden="true">—</span>${calendarLabel(last)}`}</div>
+            <div class="campaign-copy"><h3>${escapeHtml(event.title)}</h3><p>${escapeHtml(event.description)}</p></div>
+            <ul class="campaign-locations" aria-label="Sucursales y fechas">
+              ${event.occurrences.map(occurrence => `<li><a href="${occurrence.branch.page}" data-agenda-branch="${escapeHtml(occurrence.branchId)}"><span>${escapeHtml(occurrence.branch.shortName)}</span>${calendarLabel(occurrence.date)}<svg viewBox="0 0 20 20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 10h12M10 4l6 6-6 6"/></svg></a></li>`).join("")}
+            </ul>
+          </article>`;
+        }).join("")}
+      </div>
     </section>`;
   }
 
@@ -754,7 +788,6 @@
     const hero = document.querySelector(".home-hero-cinema");
     if (!hero) return;
     const video = hero.querySelector("[data-hero-video]");
-    const copy = hero.querySelector(".hero-copy-cinema");
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const fine = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
@@ -765,12 +798,10 @@
       ticking = false;
       const rect = hero.getBoundingClientRect();
       const vh = window.innerHeight || 1;
-      const p = Math.min(Math.max(-rect.top / (rect.height - vh || 1), 0), 1);
+      // Move the background gently, never fade the title/actions after a pixel
+      // of scrolling or use a negative divisor on a short viewport.
+      const p = Math.min(Math.max(-rect.top / Math.max(rect.height, vh, 1), 0), 1);
       video.style.transform = `translateY(${-3 * p}%) scale(${1 + 0.05 * p})`;
-      if (copy) {
-        copy.style.opacity = String(1 - p);
-        copy.style.transform = `translateY(${50 * p}px)`;
-      }
     };
     const onScroll = () => {
       if (!ticking) { ticking = true; requestAnimationFrame(update); }

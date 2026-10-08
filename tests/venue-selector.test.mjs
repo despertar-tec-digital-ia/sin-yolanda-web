@@ -23,12 +23,12 @@ test('selector has seven real records, native links and non-linked future announ
   assert.ok(data.branches.filter(b => b.status === 'coming-soon').every(b => b.region === 'us'));
 });
 
-test('opening strip has a real date/destination and appears directly after the preserved hero', () => {
+test('opening strip has a real date/destination between the hero and plan', () => {
   const html = render('openingAnnouncement');
   assert.match(html, /datetime="2026-10-09"/);
   assert.match(html, /Conoce la sucursal/);
   assert.equal((html.match(/href="el-paso.html"/g) || []).length, 2);
-  assert.match(source, /<\/section>\s*\$\{openingAnnouncement\(\)\}\s*<section class="rotulo-banner"/);
+  assert.match(source, /<\/section>\s*\$\{openingAnnouncement\(\)\}\s*<section class="section section-after-hero" id="plan"/);
   const withoutDate = structuredClone(data);
   withoutDate.branches.find(b => b.id === 'el-paso').openingDate = '';
   assert.equal(render('openingAnnouncement', withoutDate), '');
@@ -55,12 +55,29 @@ test('future photos are illustrative brand media, without invented dates or dest
   assert.doesNotMatch(render('venueShowcase', opened), /venue-badge--opening|venue-opening-date/);
 });
 
-test('reconciled home hero and video remain byte-for-byte identical to the audited published source', () => {
+test('authorized hero uses the original rotulo as its H1 and preserves the audited video and poster', () => {
   const hash = s => createHash('sha256').update(s).digest('hex');
   const hero = source.match(/<section class="home-hero home-hero-cinema"[\s\S]*?<\/section>/)[0];
-  assert.equal(hash(hero), '8ea0e9317329fcd214295f209aef25a06272fed997e7612bb4449ed18ada4e8e');
+  const title = hero.match(/<h1\b[^>]*class="[^"]*\bhero-rotulo\b[^"]*"[^>]*>[\s\S]*?<\/h1>/)?.[0];
+  assert.ok(title, 'The artwork must be the home H1, not a second decorative heading');
+  assert.match(title, /<span\b[^>]*class="[^"]*\brotulo-sr\b[^"]*"[^>]*>No hay tiempo para llorar<\/span>/);
+  assert.match(title, /<svg\b[^>]*viewBox="0 0 600 540"[^>]*aria-hidden="true"/);
+  for (const [id, path] of [['rotulo-arch', 'M85 109 Q300 42 515 109'],
+    ['rotulo-time-arch', 'M20 255 Q300 177 580 255'], ['rotulo-last-arch', 'M25 427 Q300 507 575 427']]) {
+    assert.ok(title.includes(`id="${id}" d="${path}"`), 'Preserve the approved artwork path: ' + id);
+  }
+  assert.doesNotMatch(hero, /Cantina contemporánea|El plan ya está armado/);
+  assert.doesNotMatch(source, /<section\b[^>]*id="rotulo"|class="rotulo-photos"/);
+  assert.match(hero, /poster="assets\/media\/hero-fiesta-real-poster\.webp"/);
+  assert.match(hero, /<source src="assets\/media\/hero-fiesta-real\.mp4" type="video\/mp4"/);
+  for (const attribute of ['autoplay', 'muted', 'loop', 'playsinline']) assert.match(hero, new RegExp('\\b' + attribute + '\\b'));
   const media = readFileSync(new URL('../assets/media/hero-fiesta-real.mp4', import.meta.url));
   assert.equal(hash(media), 'e03997b6c3842b466bfb04b45906aa7655c9770c16636f70133e251e39d3b0ce');
+  const poster = readFileSync(new URL('../assets/media/hero-fiesta-real-poster.webp', import.meta.url));
+  assert.equal(hash(poster), '75752e160287d825f6f2bc4dafd875d8ecb79f67558dc39a7e7951ee267d4688');
+  const cinema = renderer('initHeroCinema');
+  assert.doesNotMatch(cinema, /style\.opacity|copy\.style|querySelector\(["']\.hero-copy/,
+    'Scroll may move the video, but must not hide or move the title and booking actions');
 });
 
 function harness() {

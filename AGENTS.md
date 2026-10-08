@@ -17,6 +17,9 @@ carpetas privadas de una computadora. Última actualización: 2026-10-07.
 - La web oficial de Karina es la base. **Hero del home reservado a Karina**: no modificar su video,
   copy, composición ni comportamiento sin un encargo explícito para ese bloque. Si el cambio de
   CSS/JS compartido puede afectarlo, comparar antes/después y pedir revisión a su responsable.
+  **Excepción D09, encargada por Luis el 7-oct:** probar el rótulo existente «No hay tiempo para
+  llorar» dentro del hero sobre el mismo video/póster y retirar su sección duplicada inferior.
+  Es candidata local; no autoriza sustituir medios, merge ni publicación.
 - Incorporar componentes aprobados no autoriza un rediseño completo ni sustituir otras páginas.
 - Cada sede tiene datos, menú, moneda, idioma, medios, reservas y ofertas propios. No rellenar
   faltantes con Houston. No inventar promociones, fechas, horarios, reseñas ni beneficios.

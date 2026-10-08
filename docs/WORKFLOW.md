@@ -3,7 +3,31 @@
 **Última actualización:** 2026-10-08 · **Responsables:** Luis, técnica; Karina, negocio/contenido y hero.
 **Estado:** CI de PR verificado en GitHub (run `37689049591`, 7-oct), artefacto descargado y sus
 77 hashes comprobados. La rama aún no está integrada a main. CD, protecciones y secretos no están
-activados por este lote; no hay nuevo despliegue. La aprobación del documento no equivale a release.
+activados por este lote. El 8-oct Luis autoriza un release limitado del candidato actual; preparación
+y resultado se registran abajo. La aprobación del documento no equivale a otros releases.
+
+### Release limitado autorizado · 8-oct
+
+Luis solicita publicar el candidato actual aunque queden mejoras. El contenido autorizado es
+`ffb6be1b99cc73ce934dc43d468fb4d4e1ec73c9`, sin nuevos cambios visuales. La aprobación acotada
+en `releases/2026-10-08-limited-approval.json` fija dominio y digest de todos los archivos públicos.
+La envoltura técnica añade el modo `limited-production`: exige Git limpio, fuente existente/ancestro
+y hash coincidente antes de crear salida. No cambia `publicationApproved:false`, no certifica
+cartas/datos/derechos ni autoriza releases posteriores. Las 16 páginas pendientes conservan
+noindex y exclusión del sitemap; el home mantiene su indexación. No publicar el paquete review
+con su cabecera noindex global en el dominio oficial.
+
+CI comprueba un artefacto explícito de revisión noindex, sin credenciales ni permiso de release.
+Producción normal sigue bloqueada; esta publicación usa aprobación humana específica y carga
+directa de Pages. No afirmar que CD esté automatizado. Tests locales: 103/103. QA visual previa:
+42 casos + 10 recorridos del home; medios/maps externos no certificados por esas sondas.
+
+Baseline Pages comprobado: `766a7c6c-f168-49d2-8d53-bbde1e492235`, fuentes públicas principales
+sin cambios frente a la captura previa. Su `/dashboard` todavía responde 200: NO es un rollback
+seguro automático porque reintroduciría el panel demo. Recuperación preferente: volver a publicar
+el paquete limitado verificado; cualquier retorno histórico requiere revisar sus exclusiones.
+No se cambia DNS, correo, panel operativo, facturación ni credenciales. Resultado del upload y
+smoke remoto se añaden únicamente después de observarlos.
 
 ## 1. Una casa por tipo de información
 

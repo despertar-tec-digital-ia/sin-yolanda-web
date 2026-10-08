@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "targetOrigin": "https://sin-yolanda.com",
+  "authorizer": "Luis",
+  "sourceCommit": "ffb6be1b99cc73ce934dc43d468fb4d4e1ec73c9",
+  "publicDigest": "2508a23e076300f941899a17d90fb1a067dbff848dcb4cab7f24ef5075e1e388",
+  "authorization": "Luis autoriza el 8 de octubre de 2026 publicar el candidato actual en sin-yolanda.com aunque quedan cambios pendientes. Autorización exclusiva para estos archivos y hashes; no acredita verificación comercial de datos, cartas o permisos de medios. Las 16 páginas de revisión conservan noindex y exclusión del sitemap; el home no recibe noindex global. No autoriza releases posteriores, DNS, credenciales ni CI/CD automático."
+}

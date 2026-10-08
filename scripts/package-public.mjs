@@ -1,5 +1,5 @@
 // Static, self-contained release: nothing outside the reviewed allowlist is copied.
-import { copyFileSync, existsSync, mkdirSync, readFileSync, writeFileSync, lstatSync } from 'node:fs';
+import { copyFileSync, existsSync, mkdirSync, readFileSync, writeFileSync, lstatSync, realpathSync } from 'node:fs';
 import { resolve, dirname, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
@@ -42,8 +42,45 @@ export function inspectPublic(root = projectRoot) {
   return { manifest, files: files.sort() };
 }
 
-export function packagePublic({ root = projectRoot, destination, metadata, audience = 'production' } = {}) {
-  assert.ok(['production', 'review'].includes(audience), 'Unknown package audience');
+export function publicSourceDigest(hashes) {
+  const sorted = Object.fromEntries(Object.keys(hashes).sort().map(path => [path, hashes[path]]));
+  return createHash('sha256').update(JSON.stringify(sorted)).digest('hex');
+}
+
+function inspectLimitedApproval({ root, approval, commit, dirty, publicDigest, out }) {
+  assert.ok(typeof approval === 'string' && approval.trim(), 'Limited production requires an explicit approval JSON file');
+  const approvalPath = resolve(approval);
+  assert.ok(approvalPath !== out && !approvalPath.startsWith(out + sep), 'Approval belongs outside the public directory');
+  assert.ok(lstatSync(approvalPath).isFile() && !lstatSync(approvalPath).isSymbolicLink(), 'Approval must be a regular JSON file');
+  const record = JSON.parse(readFileSync(approvalPath, 'utf8'));
+  assert.ok(record && typeof record === 'object' && !Array.isArray(record), 'Invalid limited approval object');
+  assert.equal(record.version, 1, 'Unsupported limited approval version');
+  assert.equal(record.targetOrigin, 'https://sin-yolanda.com', 'Limited approval target must be the exact official origin');
+  assert.equal(record.authorizer, 'Luis', 'Limited approval requires authorizer Luis');
+  assert.match(record.sourceCommit ?? '', /^[a-f0-9]{40}$/, 'Approval sourceCommit must be a full commit SHA');
+  assert.match(record.publicDigest ?? '', /^[a-f0-9]{64}$/, 'Approval publicDigest must be a SHA-256 digest');
+  assert.ok(typeof record.authorization === 'string' && record.authorization.trim(), 'Approval authorization text is required');
+  assert.ok(commit && !dirty, 'Limited production requires an actual clean Git HEAD');
+  assert.equal(realpathSync(execFileSync('git', ['rev-parse', '--show-toplevel'], { cwd: root, encoding: 'utf8' }).trim()),
+    realpathSync(root), 'Limited production must use the repository root');
+  try {
+    assert.equal(execFileSync('git', ['cat-file', '-t', record.sourceCommit],
+      { cwd: root, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }).trim(), 'commit');
+    execFileSync('git', ['merge-base', '--is-ancestor', record.sourceCommit, commit],
+      { cwd: root, stdio: ['ignore', 'ignore', 'ignore'] });
+  } catch {
+    assert.fail('Approval sourceCommit must exist and be an ancestor of HEAD');
+  }
+  assert.equal(record.publicDigest, publicDigest, 'Approval publicDigest differs from inspected public sources');
+  // Keep only the authorization contract in the external receipt, never arbitrary
+  // fields from an approval file, and do not alter commercial approval flags.
+  return { version: record.version, targetOrigin: record.targetOrigin, authorizer: record.authorizer,
+    sourceCommit: record.sourceCommit, publicDigest: record.publicDigest, authorization: record.authorization };
+}
+
+export function packagePublic({ root = projectRoot, destination, metadata, audience = 'production', approval } = {}) {
+  assert.ok(['production', 'review', 'limited-production'].includes(audience), 'Unknown package audience');
+  assert.ok(approval === undefined || audience === 'limited-production', 'Approval applies only to the explicit limited-production audience');
   assert.ok(destination, 'Provide a fresh artifact directory');
   const out = resolve(destination);
   assert.notEqual(out, resolve(root), 'Output cannot be repository root');
@@ -54,12 +91,15 @@ export function packagePublic({ root = projectRoot, destination, metadata, audie
     assert.ok(!existsSync(reportPath), 'Refuse to overwrite release metadata');
   }
   const { files, manifest } = inspectPublic(root); // Validate everything before creating any output.
-  assert.ok(audience === 'review' || !(manifest.reviewPages ?? []).length,
+  assert.ok(audience !== 'production' || !(manifest.reviewPages ?? []).length,
     'Review-only pages cannot enter a production package; use an explicit local review audience');
   const hashes = Object.fromEntries(files.map(path => [path, createHash('sha256').update(readFileSync(resolve(root, path))).digest('hex')]));
+  const publicDigest = publicSourceDigest(hashes); // Source bytes, before review-only header mutation.
   let commit = null;
   try { commit = execFileSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }).trim(); } catch {}
   const dirty = commit ? Boolean(execFileSync('git', ['status', '--porcelain'], { cwd: root, encoding: 'utf8' }).trim()) : true;
+  const approved = audience === 'limited-production'
+    ? inspectLimitedApproval({ root, approval, commit, dirty, publicDigest, out }) : null;
   for (const path of files) {
     mkdirSync(dirname(resolve(out, path)), { recursive: true });
     copyFileSync(resolve(root, path), resolve(out, path));
@@ -70,7 +110,8 @@ export function packagePublic({ root = projectRoot, destination, metadata, audie
     writeFileSync(headers, readFileSync(headers, 'utf8') + '\n/*\n  X-Robots-Tag: noindex, nofollow\n');
     hashes._headers = createHash('sha256').update(readFileSync(headers)).digest('hex');
   }
-  const report = { version: 1, commit, dirty, audience, reviewPages: manifest.reviewPages ?? [], fileCount: files.length, hashes };
+  const report = { version: 1, commit, dirty, audience, reviewPages: manifest.reviewPages ?? [], fileCount: files.length, hashes, publicDigest,
+    ...(approved ? { approval: approved } : {}) };
   if (reportPath) {
     mkdirSync(dirname(reportPath), { recursive: true });
     writeFileSync(reportPath, JSON.stringify(report, null, 2) + '\n');
@@ -82,6 +123,8 @@ if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.ur
   const destination = process.argv[2];
   const flag = process.argv.indexOf('--audience');
   const audience = flag < 0 ? 'production' : process.argv[flag + 1];
-  const report = packagePublic({ destination, audience, metadata: destination ? resolve(destination, '../release.json') : undefined });
-  console.log(JSON.stringify({ commit: report.commit, dirty: report.dirty, audience: report.audience, fileCount: report.fileCount }));
+  const approvalFlag = process.argv.indexOf('--approval');
+  const approval = approvalFlag < 0 ? undefined : process.argv[approvalFlag + 1];
+  const report = packagePublic({ destination, audience, approval, metadata: destination ? resolve(destination, '../release.json') : undefined });
+  console.log(JSON.stringify({ commit: report.commit, dirty: report.dirty, audience: report.audience, fileCount: report.fileCount, publicDigest: report.publicDigest }));
 }

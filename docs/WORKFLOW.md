@@ -1,10 +1,10 @@
 # Forma de trabajar y publicar
 
 **Última actualización:** 2026-10-08 · **Responsables:** Luis, técnica; Karina, negocio/contenido y hero.
-**Estado:** CI de PR verificado en GitHub (run `37689049591`, 7-oct), artefacto descargado y sus
-77 hashes comprobados. La rama aún no está integrada a main. CD, protecciones y secretos no están
-activados por este lote. El 8-oct Luis autoriza un release limitado del candidato actual; preparación
-y resultado se registran abajo. La aprobación del documento no equivale a otros releases.
+**Estado:** candidato integrado en `main` y release limitado publicado el 8-oct; CI de PR y main
+verificado, publicación Pages manual y smoke remoto comprobado. CD automático, protecciones y
+secretos no están activados por este lote. Preparación, resultado y límites se registran abajo.
+La aprobación de este release no equivale a autorizar otros releases.
 
 ### Release limitado autorizado · 8-oct
 
@@ -39,6 +39,10 @@ Cloudflare. Se restaura localmente esa transformación exacta en sus tres aliase
 a coincidir, sin modificar sitio/settings ni eximir otras diferencias. La URL inmutable añade
 noindex propio de Cloudflare; el home del dominio oficial NO lo recibe. Las 16 páginas pendientes
 conservan su meta noindex. Recibos completos ignorados en `.artifacts/limited-production-20261008-befc2a4/`.
+Smoke remoto: 13/13 casos pasan; enlaces home→ficha propia, menús, idiomas, Catering y tablet,
+sin errores JS, recursos propios fallidos ni overflow. Recibo y capturas ignorados en
+`.artifacts/production-smoke-20261008-d149688f-recovered/`. La sonda bloquea RPC POST de Google;
+una revisión aparte en navegador normal comprueba teselas, ficha y pin de Houston visibles.
 No es certificación comercial, carga, Safari ni CI/CD completo; pendientes conservados.
 
 ## 1. Una casa por tipo de información
@@ -82,6 +86,9 @@ aprobar PR. Observación 7-oct; no se inspeccionaron secretos heredados de organ
 Estos controles aún no están activos y se revalidan antes de configurarlos.
 
 ## 3. Implementación del primer lote y límites
+
+Antecedente del 7-oct: los estados de este apartado describen ese lote, no sustituyen el release
+publicado del 8-oct registrado arriba.
 
 **Diagnóstico previo (corregido en este candidato, no en producción):**
 

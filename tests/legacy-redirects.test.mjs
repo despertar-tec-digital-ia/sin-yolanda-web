@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
-import { existsSync, mkdtempSync, readFileSync, rmSync, statSync, symlinkSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, statSync, symlinkSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { inspectPlugin, packagePlugin, pluginName, projectRoot, sourceRoot } from '../scripts/legacy-redirects/package.mjs';
 import { inspectPublic } from '../scripts/package-public.mjs';
@@ -17,6 +17,11 @@ const php = phpCandidates.find(binary => {
 const phpOptions = php ? {} : { skip: 'PHP runtime unavailable: resolver and WordPress adapter are not runtime verified' };
 const engine = join(root, 'redirect-engine.php');
 const entry = join(root, 'sin-yolanda-legacy-redirects.php');
+function temporaryArtifact(prefix) {
+  const artifacts = join(projectRoot, '.artifacts');
+  mkdirSync(artifacts, { recursive: true });
+  return mkdtempSync(join(artifacts, prefix));
+}
 const approved = [
   ['sinyolandagdl.com', '/', '/san-ignacio'],
   ['sinyolandagdl.com', '/menu/', '/san-ignacio/menu/'],
@@ -158,7 +163,7 @@ test('WordPress adapter preserves editor/admin/REST/AJAX flows and issues 301 on
 });
 
 test('plugin ZIP includes only the exact three source files and cannot enter the public artifact', t => {
-  const temporary = mkdtempSync(join(projectRoot, '.artifacts/sy-legacy-plugin-test-'));
+  const temporary = temporaryArtifact('sy-legacy-plugin-test-');
   t.after(() => rmSync(temporary, { recursive: true, force: true }));
   const destination = join(temporary, 'plugin.zip');
   const report = packagePlugin(destination);
@@ -284,7 +289,7 @@ test('anonymous central preflight requires 200, canonical, indexability and cock
 });
 
 test('ZIP validation matches the exact source and private snapshot excludes action nonces', t => {
-  const temporary = mkdtempSync(join(projectRoot, '.artifacts/sy-wp-deploy-test-'));
+  const temporary = temporaryArtifact('sy-wp-deploy-test-');
   t.after(() => rmSync(temporary, { recursive: true, force: true }));
   const zip = join(temporary, 'plugin.zip');
   const report = packagePlugin(zip);
@@ -300,7 +305,7 @@ test('ZIP validation matches the exact source and private snapshot excludes acti
 });
 
 test('activation receipt binds exact uploaded artifact, host, plugin and prior installation state', t => {
-  const temporary = mkdtempSync(join(projectRoot, '.artifacts/sy-wp-receipt-test-'));
+  const temporary = temporaryArtifact('sy-wp-receipt-test-');
   t.after(() => rmSync(temporary, { recursive: true, force: true }));
   const path = join(temporary, 'plugin.zip'); packagePlugin(path); const zip = verifyZip(path);
   const snapshot = writeSnapshot('tx', [{ file: 'cache/cache.php', active: true, version: '1' }], { settings: { observedOrigin: wpOrigin }, pages: [] });

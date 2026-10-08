@@ -4,6 +4,11 @@
 **Estado:** inventario de fuentes versionadas y destinos propuestos; no es un crawl HTTP completo.
 No aplicar redirects ni crear páginas solo por figurar en esta tabla.
 
+**Release limitado8-oct publicado:** nuestras fichas, cartas disponibles y Catering ya están en
+el dominio mediante Pages `d149688f`, fuente `befc2a4` integrada por PR #9. Rutas/aliases/404
+comprobados; las 16 páginas pendientes conservan noindex y exclusión del sitemap. Los párrafos
+«local/no publicado» de abajo describen los cortes previos. Release y límites → WORKFLOW.
+
 **Corte local8-oct:** las cinco fichas ya usan nuestras composiciones del donante fijado en
 `branch-import-manifest.json`, conectadas a sus cartas disponibles. Se añadieron EN de SA/TW/El Paso,
 cartas SA ES/EN y TW/GDL ES, y Catering EN. Es integración de revisión noindex, sin publicación;

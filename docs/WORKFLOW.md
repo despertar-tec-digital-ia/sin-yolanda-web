@@ -146,12 +146,67 @@ automatizar vigencia con aprobar contenido nuevo leído de Instagram. Sin agenda
 | D08 · 7-oct | Solicitada por Luis; candidata local | Franja naranja El Paso directamente después del hero, fecha 9-oct y enlace a su ficha | Anuncio independiente del hero; estado/fecha del registro público, no declarar apertura por el reloj |
 | D09 · 7-oct | Encargada por Luis; candidata local | Rótulo existente como H1 sobre el video de Karina; quitar copy antiguo y bloque/fotos duplicados | Conservar SVG/fuente y hashes de video/póster; geometría móvil/desktop y texto visible al scroll. Sin publicación |
 | D10 · 7-oct | Corrección solicitada por Luis; candidata local | Cartelera de campañas comunes desde calendarios vivos, crema/tinta/naranja; no Instagram ni granate | Halloween31-oct y Catrinas con fecha propia por sede. No extrapolar promos/horarios/beneficios ni considerar el PDF tentativo agenda confirmada |
+| D11 · 8-oct | Solicitada Luis; solo candidato local | Preservar información de fichas vivas de Karina antes de sustituirlas por nuestras fichas/cartas | Snapshot público inmutable y conciliación por sede en BRANCH-CONTENT; lo observado no reemplaza datos ya confirmados |
+| D12 · 8-oct | Planificada; no implementada | Revisar identidad tipográfica, color por función/sede, header y transiciones después de la integración | Diagnóstico/propuesta/piloto/QA antes de réplica; plan operativo privado como dueño, sin rediseño inmediato |
 
 Agregar una fila solo si cambia el contrato. Cambios de implementación → PR/commit; cambios de
 ruta → ROUTES; no duplicar reseñas largas de sesión. Un release registra commit, sourceRef/hash,
 artefacto, pruebas, aprobación y rollback. Archivar evidencia de QA sin datos privados ni secretos.
 
 ## 7. Activación por pasos
+
+### Importación conectada y conservación de contenido · 8-oct, revisión local
+
+Antes del cambio se capturaron las cinco fichas públicas del dominio y su registro de siete
+sedes/anuncios. Siete fuentes estables al inicio/final; solo campos públicos, sin mocks completos
+ni colecciones administrativas. Fuente y conciliación → `BRANCH-CONTENT.md` y snapshot enlazado.
+No se presenta como respaldo integral de Pages ni validación de horarios/reseñas/oferta.
+
+Donante limpio `cbffdc4abd7b274d9de16f5059d079bb70e9877b`, build fresco Astro sin errores:
+9 fichas (Houston/SA/TW/El Paso ES+EN, Guadalajara ES), 5 cartas (Houston EN, SA ES/EN,
+TW/GDL ES) y Catering ES/EN. Importación selectiva, no copia de todo `dist`. Sin Maricarmen,
+home donante, rutas de prueba ni fichas ficticias para futuras aperturas. Guadalajara cambia
+solo presentación, no la dirección Avenida San Ignacio78 ni ID/slug. El Paso mantiene preapertura.
+
+Home/selector/hero/CSS permanecen aceptados; únicamente se actualizan enlaces de cartas propias
+y versión de caché `20261008-branch-review`. Logo/selector/vuelta desde fichas y Catering conectan
+al home `/#ubicaciones`; idiomas conservan servicio/sede. Houston incorpora la composición
+posterior de Catering y footer de carta. Datos nuevos del snapshot de Karina se concilian después,
+no se copian sus bloques de agenda de ejemplo o FAQ repetidas. Teléfono confirmado Houston intacto.
+
+**Dos audiencias explícitas:** `import-branches --audience review` retiene noindex/procedencia;
+`publicationApproved:false` y bloqueos quedan en el manifiesto. `sync-review-imports` exige
+captura completa/estable y reportes explícitos, conecta allowlist y excluye esas16páginas del sitemap.
+El paquete de revisión tiene23HTML/184archivos y header global noindex; no expone archivo/docs/tests.
+El empaquetado productivo por defecto **rechaza** las páginas review. `build:review` es independiente;
+CI productivo previo no se cambió ni se ejecutó remoto, y no se simula verde su job de empaquetado.
+Futuro flujo de preview/CI se adapta en su lote antes de promover esta rama.
+
+Permisos/datos pendientes de cartas/otras sedes, medios nuevos de Catering/programación y vigencia
+temporal no quedan aprobados por importar. El flag general de Houston cubre medios anteriores,
+no cualquier subbloque añadido. El importador no lo toma como permiso global y producción permanece
+bloqueada. Promos de Houston aún conservan el fallback de Instagram del donante: no es la ingesta
+de contenido solicitada ni cierre del pendiente. Fuente/blockers → manifiesto y BRANCH-CONTENT.
+
+`serve-review` sirve únicamente archivos hash-verificados de un paquete ignorado, en127.0.0.1,
+GET/HEAD, no listado de carpetas. `/houston/` ya resuelve ficha aunque exista su carpeta de menú;
+no se atribuye al hosting el listado del antiguo servidor Python. Capturas/journeys de integración
+no equivalen a aprobación comercial o de producción.
+
+**QA local final:** `npm run check` pasa96/96 pruebas. Chromium:42casos a320/390/768/1440
+según tipo de página y10recorridos home→ficha a390/1440, sin fallos. Evidencia ignorada
+`.artifacts/branch-integration-qa-20261008-capture-fixed/report.json`; capturas de ficha, carta,
+Catering y footer inspeccionadas. Imágenes decodificadas después de volver de menú/idioma;
+la primera captura del teaser quedó blanca por adelantar la captura a la imagen lazy recreada,
+no por falta de CSS (ese componente usa estilo inline). La sonda ahora comprueba carga/pintado
+del teaser y no fuerza estilos para fabricar una imagen correcta.
+
+Servicios externos excluidos: Maps se verifica por proveedor/identidad del iframe, no por carga
+remota; no reservas, formularios, pagos ni telemetría enviados. No Safari/dispositivo físico,
+rendimiento/carga ni QA integral de todos los pendientes QV. Home markup idéntico al corte48acc98
+salvo versión de caché; CSS/JS compartidos intactos salvo cuatro enlaces de cartas en public-data.
+Paquete productivo rechazado antes de escribir salida, con destino fresco. No push, merge, deploy
+ni cambio de credenciales/Cloudflare. CI/CD requiere su adaptación y aprobación separadas.
 
 ### Primer lote de correcciones de QA integral · 8-oct, solo local
 

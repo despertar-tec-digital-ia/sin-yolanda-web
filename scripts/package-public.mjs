@@ -34,10 +34,16 @@ export function inspectPublic(root = projectRoot) {
     }
   }
   assert.ok(manifest.pages.every(p => p.endsWith('.html')), 'Pages must be HTML');
+  const reviewPages = manifest.reviewPages ?? [];
+  assert.ok(Array.isArray(reviewPages) && new Set(reviewPages).size === reviewPages.length
+    && reviewPages.every(path => manifest.pages.includes(path)), 'Invalid review-only page list');
+  for (const path of reviewPages) assert.match(readFileSync(resolve(root, path), 'utf8'),
+    /<meta name="robots" content="noindex,nofollow">/, 'Review page must remain noindex: ' + path);
   return { manifest, files: files.sort() };
 }
 
-export function packagePublic({ root = projectRoot, destination, metadata } = {}) {
+export function packagePublic({ root = projectRoot, destination, metadata, audience = 'production' } = {}) {
+  assert.ok(['production', 'review'].includes(audience), 'Unknown package audience');
   assert.ok(destination, 'Provide a fresh artifact directory');
   const out = resolve(destination);
   assert.notEqual(out, resolve(root), 'Output cannot be repository root');
@@ -47,7 +53,9 @@ export function packagePublic({ root = projectRoot, destination, metadata } = {}
     assert.ok(reportPath !== out && !reportPath.startsWith(out + sep), 'Release metadata belongs outside public directory');
     assert.ok(!existsSync(reportPath), 'Refuse to overwrite release metadata');
   }
-  const { files } = inspectPublic(root); // Validate everything before creating any output.
+  const { files, manifest } = inspectPublic(root); // Validate everything before creating any output.
+  assert.ok(audience === 'review' || !(manifest.reviewPages ?? []).length,
+    'Review-only pages cannot enter a production package; use an explicit local review audience');
   const hashes = Object.fromEntries(files.map(path => [path, createHash('sha256').update(readFileSync(resolve(root, path))).digest('hex')]));
   let commit = null;
   try { commit = execFileSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }).trim(); } catch {}
@@ -56,7 +64,13 @@ export function packagePublic({ root = projectRoot, destination, metadata } = {}
     mkdirSync(dirname(resolve(out, path)), { recursive: true });
     copyFileSync(resolve(root, path), resolve(out, path));
   }
-  const report = { version: 1, commit, dirty, fileCount: files.length, hashes };
+  if (audience === 'review') {
+    // Protect the entire candidate, including its unchanged indexable home, if served by a preview host.
+    const headers = resolve(out, '_headers');
+    writeFileSync(headers, readFileSync(headers, 'utf8') + '\n/*\n  X-Robots-Tag: noindex, nofollow\n');
+    hashes._headers = createHash('sha256').update(readFileSync(headers)).digest('hex');
+  }
+  const report = { version: 1, commit, dirty, audience, reviewPages: manifest.reviewPages ?? [], fileCount: files.length, hashes };
   if (reportPath) {
     mkdirSync(dirname(reportPath), { recursive: true });
     writeFileSync(reportPath, JSON.stringify(report, null, 2) + '\n');
@@ -66,6 +80,8 @@ export function packagePublic({ root = projectRoot, destination, metadata } = {}
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const destination = process.argv[2];
-  const report = packagePublic({ destination, metadata: destination ? resolve(destination, '../release.json') : undefined });
-  console.log(JSON.stringify({ commit: report.commit, dirty: report.dirty, fileCount: report.fileCount }));
+  const flag = process.argv.indexOf('--audience');
+  const audience = flag < 0 ? 'production' : process.argv[flag + 1];
+  const report = packagePublic({ destination, audience, metadata: destination ? resolve(destination, '../release.json') : undefined });
+  console.log(JSON.stringify({ commit: report.commit, dirty: report.dirty, audience: report.audience, fileCount: report.fileCount }));
 }

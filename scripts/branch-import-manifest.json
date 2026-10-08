@@ -1,5 +1,8 @@
 {
   "houston": {
+    "sourceRef": "cbffdc4abd7b274d9de16f5059d079bb70e9877b",
+    "publicationApproved": false,
+    "blockingReasons": ["Latest donor includes review-only Catering media and programming; prior approval of hero/food/footer does not authorize those new subblocks.", "Event freshness needs an authorized release trigger; local import is not publication."],
     "mapIdentity": "0x8640c19b1c06c689:0xaac06ea799d5fea1",
     "mapName": "Sin Yolanda Houston",
     "routes": [
@@ -34,6 +37,73 @@
         "url": "https://www.opentable.com/r/sin-yolanda-houston"
       }
     },
-    "factsEvidence": "Existing published address/reservation; phone confirmed by Luis from Houston hours poster, 2026-10-02. No new visual import."
+    "factsEvidence": "Existing published address/reservation; phone confirmed by Luis from Houston hours poster, 2026-10-02. Latest donor is selected for local review only."
+  },
+  "san-antonio": {
+    "sourceRef": "cbffdc4abd7b274d9de16f5059d079bb70e9877b",
+    "publicationApproved": false,
+    "mapIdentity": "0x865c58ab41b6aef9:0xb6fa48dca10b3dc3",
+    "mapName": "Sin Yolanda San Antonio",
+    "routes": [
+      {"from":"san-antonio/index.html","to":"san-antonio.html","lang":"es","canonical":"https://sin-yolanda.com/san-antonio"},
+      {"from":"en/san-antonio/index.html","to":"en/san-antonio/index.html","lang":"en","canonical":"https://sin-yolanda.com/en/san-antonio/"},
+      {"from":"san-antonio/menu/index.html","to":"san-antonio/menu/index.html","lang":"es","kind":"menu","canonical":"https://sin-yolanda.com/san-antonio/menu/"},
+      {"from":"en/san-antonio/menu/index.html","to":"en/san-antonio/menu/index.html","lang":"en","kind":"menu","canonical":"https://sin-yolanda.com/en/san-antonio/menu/"}
+    ],
+    "facts":{"street":"415 East Commerce Street","city":"San Antonio","postalCode":"78205","phone":{"e164":"+12102720133"},"reservation":{"url":"https://www.opentable.com/r/sin-yolanda-san-antonio"}},
+    "factsEvidence":"Donor public branch snapshot; source observation is not business approval.",
+    "blockingReasons":["Selected media is authorized only for review.","Menu v36 ES/EN price/recipe conflicts and commercial edition approval remain pending.","Reconcile preserved current Karina branch content before official release."]
+  },
+  "the-woodlands": {
+    "sourceRef": "cbffdc4abd7b274d9de16f5059d079bb70e9877b",
+    "publicationApproved": false,
+    "mapIdentity": "0x8647370053dc47eb:0xaefabc39e3850928",
+    "mapName": "Sin Yolanda",
+    "routes": [
+      {"from":"the-woodlands/index.html","to":"the-woodlands.html","lang":"es","canonical":"https://sin-yolanda.com/the-woodlands"},
+      {"from":"en/the-woodlands/index.html","to":"en/the-woodlands/index.html","lang":"en","canonical":"https://sin-yolanda.com/en/the-woodlands/"},
+      {"from":"the-woodlands/menu/index.html","to":"the-woodlands/menu/index.html","lang":"es","kind":"menu","canonical":"https://sin-yolanda.com/the-woodlands/menu/"}
+    ],
+    "facts":{"street":"1400 Research Forest Dr, Suite 180","city":"Shenandoah","postalCode":"77381","phone":{"e164":"+13463823863"},"reservation":{"url":"https://www.opentable.com/r/sin-yolanda-woodlands-shenandoah"}},
+    "factsEvidence":"Donor public branch snapshot. Suite 180 retained from existing site record; profile observation is not business approval.",
+    "blockingReasons":["Selected media is authorized only for review.","Own ES menu lacks Entradas; no complete EN edition is inferred.","Reconcile preserved current Karina branch content before official release."]
+  },
+  "san-ignacio": {
+    "sourceRef": "cbffdc4abd7b274d9de16f5059d079bb70e9877b",
+    "publicationApproved": false,
+    "displayName": "Guadalajara",
+    "mapIdentity": "0x8428af00227c9289:0xe463063e9a1dc24",
+    "mapName": "Sin Yolanda",
+    "routes": [
+      {"from":"san-ignacio/index.html","to":"san-ignacio.html","lang":"es","canonical":"https://sin-yolanda.com/san-ignacio"},
+      {"from":"san-ignacio/menu/index.html","to":"san-ignacio/menu/index.html","lang":"es","kind":"menu","canonical":"https://sin-yolanda.com/san-ignacio/menu/"}
+    ],
+    "facts":{"street":"Avenida San Ignacio 78","city":"Zapopan","postalCode":"45040","phone":{"e164":"+523310186159"},"reservation":{"url":"https://wa.me/5213310186159"}},
+    "factsEvidence":"Donor public branch snapshot; public display rename Guadalajara requested by Luis, retaining historical slug and postal address.",
+    "blockingReasons":["Selected media is authorized only for review.","Mixed-source ES menu conflicts in Hija de la Guayaba measures and Torres 15 volume remain pending.","Reconcile preserved current Karina branch content before official release."]
+  },
+  "el-paso": {
+    "sourceRef": "cbffdc4abd7b274d9de16f5059d079bb70e9877b",
+    "publicationApproved": false,
+    "mapIdentity": "0x86e757bbd9089cdd:0xd0eb4f4f45aba5ee",
+    "mapName": "Sin Yolanda El Paso",
+    "routes": [
+      {"from":"el-paso/index.html","to":"el-paso.html","lang":"es","canonical":"https://sin-yolanda.com/el-paso"},
+      {"from":"en/el-paso/index.html","to":"en/el-paso/index.html","lang":"en","canonical":"https://sin-yolanda.com/en/el-paso/"}
+    ],
+    "facts":{"street":"340 Vin Rambla Dr","city":"El Paso","postalCode":"79912"},
+    "factsEvidence":"Donor preopening public snapshot; opening date October 9, 2026 is not confirmation that the venue is open.",
+    "blockingReasons":["Campaign ambience is illustrative review material, not photographic evidence of this venue.","Hours, phone, own menu and reservations require operational confirmation; do not borrow another branch's offer.","Reconcile preserved current Karina branch content before official release."]
+  },
+  "catering": {
+    "kind": "catering",
+    "sourceRef": "cbffdc4abd7b274d9de16f5059d079bb70e9877b",
+    "publicationApproved": false,
+    "routes": [
+      {"from":"catering/index.html","to":"catering.html","lang":"es","canonical":"https://sin-yolanda.com/catering"},
+      {"from":"en/catering/index.html","to":"en/catering/index.html","lang":"en","canonical":"https://sin-yolanda.com/en/catering/"}
+    ],
+    "factsEvidence":"Fiesta composition accepted for demo review; source coverage, media rights and commercial offering approval are separate.",
+    "blockingReasons":["Catering media and commercial offering remain review-only.","Do not activate contact or coverage from another branch by inference.","Review provenance and preserved Karina service information before official release."]
   }
 }

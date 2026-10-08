@@ -10,7 +10,8 @@ export function checkPublic(root = projectRoot) {
   assert.match(manifest.assetVersion, /^\d{8}-[a-z0-9-]+$/, 'Explicit shared asset version required');
   const fileSet = new Set(files);
   const read = path => readFileSync(resolve(root, path), 'utf8');
-  const routes = new Set(manifest.pages.map(path => path === 'index.html' ? '/' : '/' + path.replace(/index\.html$/, '').replace(/\.html$/, '')));
+  const routes = new Set(manifest.pages.filter(path => !(manifest.reviewPages ?? []).includes(path))
+    .map(path => path === 'index.html' ? '/' : '/' + path.replace(/index\.html$/, '').replace(/\.html$/, '')));
   const sitemap = [...read('sitemap.xml').matchAll(/<loc>([^<]+)<\/loc>/g)].map(([,href]) => new URL(href).pathname);
   assert.equal(new Set(sitemap).size, sitemap.length, 'Duplicate sitemap URL');
   assert.deepEqual(sitemap.sort(), [...routes].filter(r => r !== '/404').sort(), 'Sitemap differs from public routes');

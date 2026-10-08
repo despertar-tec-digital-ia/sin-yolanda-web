@@ -44,6 +44,13 @@ secretos; desplegar ese directorio con Wrangler al proyecto `sin-yolanda-web`, r
 hash del commit. `node scripts/package-public.mjs <directorio-nuevo>` crea ese artefacto;
 usa la allowlist `scripts/public-manifest.json` y rechaza rutas demo, enlaces hacia ellas y symlinks.
 El reporte `release.json` queda fuera de la carpeta pública: commit, estado dirty y SHA-256 por archivo.
+
+**Integración local8-oct:** contenido público anterior guardado y nuestras fichas/cartas conectadas;
+ver `docs/BRANCH-CONTENT.md` y `docs/WORKFLOW.md` §7. Las16rutas importadas son de revisión,
+noindex y excluidas del sitemap hasta aprobar datos/medios. `npm run build` bloquea un paquete
+productivo con esas páginas; `npm run build:review` genera solo el candidato de revisión en un
+directorio nuevo. No cambia producción ni CI/CD remoto. Preview local mediante `serve-review.mjs`
+sobre paquete/hash explícitos, no servir la raíz del checkout ni el `dist` entero del donante.
 CI no publica; conserva el artefacto para revisión. Requiere autorización explícita
 y rollback; verificar dominio después de publicar.
 

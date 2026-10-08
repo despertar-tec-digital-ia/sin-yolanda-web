@@ -1,8 +1,14 @@
 # Registro de rutas y cambios
 
-**Última actualización:** 2026-10-07 · **Dueño:** Luis, con aprobación de producto/contenido de Karina.
+**Última actualización:** 2026-10-08 · **Dueño:** Luis, con aprobación de producto/contenido de Karina.
 **Estado:** inventario de fuentes versionadas y destinos propuestos; no es un crawl HTTP completo.
 No aplicar redirects ni crear páginas solo por figurar en esta tabla.
+
+**Corte local8-oct:** las cinco fichas ya usan nuestras composiciones del donante fijado en
+`branch-import-manifest.json`, conectadas a sus cartas disponibles. Se añadieron EN de SA/TW/El Paso,
+cartas SA ES/EN y TW/GDL ES, y Catering EN. Es integración de revisión noindex, sin publicación;
+estas rutas se excluyen temporalmente del sitemap del candidato. No eliminar rutas del dominio
+en producción por este inventario. Datos públicos anteriores preservados en BRANCH-CONTENT.
 
 **Candidata local posterior 7-oct:** franja a `el-paso.html` debajo del hero; selector con enlaces
 nativos a la ficha propia. Moreno Valley/San Diego sin href hasta tener página real. Houston
@@ -27,12 +33,19 @@ y ruta inexistente dan 404 real. Panel demo/archivos de desarrollo siguen públi
 | `/en/houston/` | `en/houston/index.html` | Traducción correspondiente; navegación conserva sede |
 | `/houston/menu/` | `houston/menu/index.html` | Carta propia EN autorizada; fallback explícito desde ES |
 | `/san-antonio` | `san-antonio.html` | Sustituir ficha por candidata aprobada, conservar identidad/CTA locales |
+| `/en/san-antonio/` | `en/san-antonio/index.html` | Ficha EN propia; candidata local de revisión |
+| `/san-antonio/menu/` y `/en/san-antonio/menu/` | `san-antonio/menu/index.html` y `en/san-antonio/menu/index.html` | Cartas ES/EN propias, no aprobación de conflictos de precios/recetas |
 | `/the-woodlands` | `the-woodlands.html` | Mismo contrato, carta/medios propios |
+| `/en/the-woodlands/` | `en/the-woodlands/index.html` | Ficha EN; fallback a su carta ES, no inventar edición EN |
+| `/the-woodlands/menu/` | `the-woodlands/menu/index.html` | Carta ES propia, faltan Entradas para aprobar edición completa |
 | `/san-ignacio` | `san-ignacio.html` | Nombre público nuevo Guadalajara; orientación Zona Chapalita, Zapopan. Propuesta: conservar URL por ahora |
+| `/san-ignacio/menu/` | `san-ignacio/menu/index.html` | Carta ES propia, conserva conflictos pendientes y nombre Guadalajara |
 | `/guadalajara` | No existe fuente | Solo candidato a migración futura; no crear duplicado de `/san-ignacio` |
 | `/el-paso` | `el-paso.html` | Ficha de preapertura propia, 9-oct; estado abierto requiere confirmación operativa |
+| `/en/el-paso/` | `en/el-paso/index.html` | Misma preapertura en EN, sin carta/horarios/reserva fabricados |
 | Moreno Valley / San Diego | Anuncios en datos del home, sin HTML propio | Próximamente USA, sin fechas. No inventar href hacia una ficha inexistente ni usar Houston |
 | `/catering` | `catering.html` | Integrar página aprobada con cobertura/contacto reales |
+| `/en/catering/` | `en/catering/index.html` | Composición Fiesta EN, misma cobertura y gates; candidata noindex |
 | `/eventos` | `eventos.html` | Auditar propósito actual antes de confundir contratación privada con cartelera pública |
 | `/la-cantina` | `la-cantina.html` | Página de experiencia, no sustituto de carta por sucursal |
 | `/tienda` | `tienda.html` | Revisar operación real y CTA; no publicar compra simulada |

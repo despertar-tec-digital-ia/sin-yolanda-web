@@ -22,7 +22,7 @@ function amend(root, fn) {
   writeFileSync(file,JSON.stringify(manifest));
 }
 test('clean standalone source passes checks without donor or fixed folder name', t => {
-  assert.equal(checkPublic(fixture(t)).pages,15);
+  assert.equal(checkPublic(fixture(t)).pages, JSON.parse(readFileSync(join(projectRoot,'scripts/public-manifest.json'),'utf8')).pages.length);
 });
 test('reject stale home action stylesheet before release', t => {
   const root=fixture(t),file=join(root,'index.html');
@@ -35,12 +35,35 @@ test('public package is deterministic, excludes incidental files and cannot over
   const root=fixture(t);
   writeFileSync(join(root,'accidental.html'),'never publish');
   writeFileSync(join(root,'dashboard.html'),'never publish');
-  const first=packagePublic({root,destination:join(root,'out-a')});
-  const second=packagePublic({root,destination:join(root,'out-b')});
+  const first=packagePublic({root,destination:join(root,'out-a'),audience:'review'});
+  const second=packagePublic({root,destination:join(root,'out-b'),audience:'review'});
   assert.deepEqual(first.hashes,second.hashes);
   for(const file of ['dashboard.html','accidental.html','assets/js/mock-data.js','scripts','tests','README.md'])
     assert.ok(!existsSync(join(root,'out-a',file)),file);
   assert.throws(()=>packagePublic({root,destination:join(root,'out-a')}), /overwrite/);
+});
+test('review-only pages cannot be packaged for production or inserted into sitemap', t => {
+  const root=fixture(t);
+  amend(root,m=>m.reviewPages=['houston.html']);
+  const page=join(root,'houston.html');
+  writeFileSync(page,readFileSync(page,'utf8').replace(/<meta name="robots" content="[^"]+">/, '<meta name="robots" content="noindex,nofollow">'));
+  assert.throws(()=>packagePublic({root,destination:join(root,'production')}), /Review-only pages/);
+  assert.ok(!existsSync(join(root,'production')));
+  const review=packagePublic({root,destination:join(root,'review'),audience:'review'});
+  assert.equal(review.audience,'review');
+  assert.ok(review.reviewPages.includes('houston.html'));
+  assert.match(readFileSync(join(root,'review/_headers'),'utf8'), /X-Robots-Tag: noindex, nofollow/);
+  const sitemap=join(root,'sitemap.xml');
+  writeFileSync(sitemap,readFileSync(sitemap,'utf8').replace('</urlset>', '<url><loc>https://sin-yolanda.com/houston</loc></url></urlset>'));
+  assert.throws(()=>checkPublic(root), /Duplicate sitemap|Sitemap differs/);
+});
+test('review list is a subset of pages with explicit noindex; unknown audience fails closed',t=>{
+  const root=fixture(t);
+  amend(root,m=>m.reviewPages=['ghost.html']);
+  assert.throws(()=>inspectPublic(root), /Invalid review-only/);
+  amend(root,m=>m.reviewPages=['index.html']);
+  assert.throws(()=>inspectPublic(root), /Review page must remain noindex/);
+  assert.throws(()=>packagePublic({root,destination:join(root,'output'),audience:'guess'}), /Unknown package audience/);
 });
 for(const file of ['dashboard.html','assets/js/mock-data.js','../escape.html','.env','archive/retired/maricarmen.html']) {
   test('reject forbidden manifest entry: '+file, t=>{

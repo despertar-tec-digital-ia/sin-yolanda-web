@@ -1,0 +1,112 @@
+{
+  "version": 1,
+  "capturedAt": "2026-10-08T16:19:42.511Z",
+  "origin": "https://sin-yolanda.com",
+  "scope": "Observed public branch content; not business verification or a complete site backup.",
+  "rawSourcesStored": false,
+  "complete": true,
+  "branches": [
+    {
+      "id": "san-ignacio",
+      "file": "san-ignacio.json",
+      "renderedHeadings": 12,
+      "publicLinks": 25,
+      "sourceSha256": "29c46db0dd7e2138eca7a03e9e25908efbf03443d1ebc0a940dfb5fa7aa5e7aa"
+    },
+    {
+      "id": "san-antonio",
+      "file": "san-antonio.json",
+      "renderedHeadings": 12,
+      "publicLinks": 24,
+      "sourceSha256": "10eee7533edfa244a8b7798b1855d95ed8eb94677fc37afe9d474dae8342a7ad"
+    },
+    {
+      "id": "the-woodlands",
+      "file": "the-woodlands.json",
+      "renderedHeadings": 12,
+      "publicLinks": 24,
+      "sourceSha256": "ae866396fc260ddfe7cfec85ba81d7210a6a7efb73993192e2b0ad848c0b5b77"
+    },
+    {
+      "id": "houston",
+      "file": "houston.json",
+      "renderedHeadings": 12,
+      "publicLinks": 24,
+      "sourceSha256": "70a43ad585e1480efbfbaf10503b7f01a2b25150d315886a291697c66e379039"
+    },
+    {
+      "id": "el-paso",
+      "file": "el-paso.json",
+      "renderedHeadings": 8,
+      "publicLinks": 14,
+      "sourceSha256": "d2d7e77d42ab342d5e7b460ebe1c2a1c24699f98335f5151c0be4cf5d0b1e1da"
+    }
+  ],
+  "sources": [
+    {
+      "path": "/",
+      "url": "https://sin-yolanda.com/",
+      "status": 200,
+      "bytes": 2807,
+      "sha256": "10c9a1c91741f1a0d95818f10cd8881b648eafcca8df5b2cf1e3e84844a450bf",
+      "stable": true
+    },
+    {
+      "path": "/assets/js/mock-data.js",
+      "url": "https://sin-yolanda.com/assets/js/mock-data.js",
+      "status": 200,
+      "bytes": 17383,
+      "sha256": "32310d577e034ef14411cd8c6d51e2bead99eaaa0c1036ad11e0e8bf90589408",
+      "stable": true
+    },
+    {
+      "path": "/san-ignacio",
+      "url": "https://sin-yolanda.com/san-ignacio",
+      "status": 200,
+      "bytes": 3427,
+      "sha256": "29c46db0dd7e2138eca7a03e9e25908efbf03443d1ebc0a940dfb5fa7aa5e7aa",
+      "stable": true
+    },
+    {
+      "path": "/san-antonio",
+      "url": "https://sin-yolanda.com/san-antonio",
+      "status": 200,
+      "bytes": 3424,
+      "sha256": "10eee7533edfa244a8b7798b1855d95ed8eb94677fc37afe9d474dae8342a7ad",
+      "stable": true
+    },
+    {
+      "path": "/the-woodlands",
+      "url": "https://sin-yolanda.com/the-woodlands",
+      "status": 200,
+      "bytes": 3481,
+      "sha256": "ae866396fc260ddfe7cfec85ba81d7210a6a7efb73993192e2b0ad848c0b5b77",
+      "stable": true
+    },
+    {
+      "path": "/houston",
+      "url": "https://sin-yolanda.com/houston",
+      "status": 200,
+      "bytes": 3335,
+      "sha256": "70a43ad585e1480efbfbaf10503b7f01a2b25150d315886a291697c66e379039",
+      "stable": true
+    },
+    {
+      "path": "/el-paso",
+      "url": "https://sin-yolanda.com/el-paso",
+      "status": 200,
+      "bytes": 2905,
+      "sha256": "d2d7e77d42ab342d5e7b460ebe1c2a1c24699f98335f5151c0be4cf5d0b1e1da",
+      "stable": true
+    }
+  ],
+  "errors": [],
+  "registry": {
+    "file": "public-registry.json",
+    "records": 7,
+    "announcementsWithoutPage": [
+      "moreno-valley",
+      "san-diego"
+    ]
+  }
+}

@@ -5,7 +5,7 @@ import vm from 'node:vm';
 const root = new URL('../', import.meta.url);
 test('retired branch is absent from public data, navigation, metadata and sitemap', () => {
   const context = { window: {} };
-  vm.runInNewContext(readFileSync(new URL('assets/js/mock-data.js', root), 'utf8'), context);
+  vm.runInNewContext(readFileSync(new URL('assets/js/public-data.js', root), 'utf8'), context);
   assert.deepEqual(Array.from(context.window.SY_DATA.branches, branch => branch.id),
     ['san-ignacio', 'san-antonio', 'the-woodlands', 'houston', 'el-paso', 'moreno-valley', 'san-diego']);
   assert.ok(!context.window.SY_DATA.branches.some(branch => branch.id === 'maricarmen'));
@@ -22,10 +22,12 @@ test('retirement is not a destructive menu rewrite', () => {
   assert.match(readFileSync(new URL('houston.html', root), 'utf8'), /<iframe/);
 });
 test('every consumer requests the updated scripts rather than cached retired data', () => {
-  for (const name of readdirSync(root).filter(name => name.endsWith('.html'))) {
+  const { pages, assetVersion } = JSON.parse(readFileSync(new URL('scripts/public-manifest.json', root), 'utf8'));
+  assert.equal(assetVersion, '20261008-branch-review');
+  for (const name of pages) {
     const html = readFileSync(new URL(name, root), 'utf8');
-    for (const [,source] of html.matchAll(/src="(assets\/js\/(?:mock-data|site|i18n)\.js[^\"]*)"/g)) {
-      assert.match(source, /\?v=20260930-retirement$/, name);
+    for (const [,source] of html.matchAll(/src="(assets\/js\/(?:public-data|site)\.js[^\"]*)"/g)) {
+      assert.ok(source.endsWith('?v=' + assetVersion), name);
     }
   }
 });

@@ -569,6 +569,16 @@ p {
   margin-right: 1rem;
 }
 
+body[data-page="eventos"] .reserve-cta > div:last-child {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+body[data-page="eventos"] .reserve-cta .button {
+  margin-right: 0;
+}
+
 .public-footer {
   display: grid;
   grid-template-columns: 1.2fr 0.6fr 0.8fr;
@@ -640,6 +650,18 @@ p {
 
 .branch-hero-copy h1 {
   font-size: clamp(3.3rem, 7vw, 7.6rem);
+}
+
+@media (max-width: 420px) {
+  .branch-hero-copy h1 {
+    font-size: clamp(2.3rem, 12.5vw, 3.3rem);
+  }
+}
+
+@media (max-width: 360px) {
+  .legal-wrap h1 {
+    font-size: clamp(2.3rem, 12.5vw, 2.75rem);
+  }
 }
 
 .breadcrumbs {
@@ -2798,6 +2820,17 @@ a.row-link {
   border-radius: 18px;
   padding: 2.5rem 1.5rem;
 }
+body[data-page="home"] .cumple-section .section-heading {
+  grid-template-columns: minmax(0, 1fr);
+}
+body[data-page="home"] .cumple-section .section-heading h2 {
+  margin-inline: auto;
+}
+@media (max-width: 360px) {
+  body[data-page="home"] .cumple-section .section-heading h2 {
+    font-size: 2rem;
+  }
+}
 .cumple-copy { max-width: 40rem; margin: 0 auto 1.5rem; }
 .cumple-section .hero-actions { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; }
 @media (max-width: 860px) {
@@ -2935,4 +2968,184 @@ a.row-link {
 }
 @media (max-width: 760px) {
   .section-after-hero { border-radius: 14px 14px 0 0; margin-top: -14px; }
+}
+/* ============================================================
+   ROTULO BANNER + VENUE GALLERY (port de demo-sin-yolanda)
+   Paleta Sin Yolanda: ink/maroon/orange/gold/cream
+   ============================================================ */
+
+/* ---- Banner rótulo ---- */
+.rotulo-banner {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(120% 90% at 50% 0%, rgba(216, 97, 61, 0.16), transparent 55%),
+    linear-gradient(180deg, var(--maroon) 0%, var(--ink-soft) 78%);
+  color: var(--cream);
+  padding: clamp(56px, 8vw, 96px) 16px;
+}
+.rotulo-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(28px, 4vw, 44px);
+  justify-items: center;
+  align-items: center;
+  text-align: center;
+}
+.rotulo-photos {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+}
+.rotulo-photos img {
+  width: min(230px, 40vw);
+  aspect-ratio: 7 / 10;
+  object-fit: cover;
+  border-radius: 120px 120px 16px 16px / 90px 90px 16px 16px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+  transform: rotate(-2.2deg);
+}
+.rotulo-photos img:last-child { transform: rotate(2.2deg); }
+.rotulo-type { width: 100%; }
+.rotulo-art {
+  width: min(620px, 92vw);
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  overflow: visible;
+  color: var(--cream);
+}
+.rotulo-face { fill: var(--cream); }
+.rotulo-depth, .rotulo-edge { fill: var(--maroon); stroke: var(--maroon); stroke-width: 2px; stroke-linejoin: round; }
+.rotulo-outline { fill: var(--orange); stroke: var(--orange); stroke-width: 3px; stroke-linejoin: round; }
+.rotulo-bridge text { font: italic 400 42px Georgia, serif; }
+.rotulo-underline { fill: var(--gold); }
+.rotulo-overture { font: 400 72px "Alfa Slab One", Georgia, serif; letter-spacing: 1px; }
+.rotulo-main-word { font: 400 144px "Alfa Slab One", Georgia, serif; }
+.rotulo-last-word { font: 400 136px "Alfa Slab One", Georgia, serif; }
+.rotulo-sr {
+  position: absolute; width: 1px; height: 1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+}
+.rotulo-invitation { margin-top: 6px; }
+.rotulo-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 225px;
+  min-height: 58px;
+  justify-content: space-between;
+  padding: 15px 24px;
+  border-radius: 3px;
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  color: var(--cream);
+  background: var(--maroon);
+  border: 1px solid rgba(243, 236, 223, 0.25);
+  text-decoration: none;
+  transition: background 0.2s var(--ease-golden), transform 0.2s var(--ease-golden);
+}
+.rotulo-cta svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.6px; transition: transform 0.2s; }
+.rotulo-cta:hover { background: var(--orange-deep); transform: translateY(-2px); }
+.rotulo-cta:hover svg { transform: translateY(3px); }
+@media (min-width: 880px) {
+  .rotulo-inner { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.25fr); text-align: left; }
+  .rotulo-invitation { grid-column: 2; justify-self: start; }
+}
+
+/* ---- Galería de sucursales (acordeón horizontal) ---- */
+.venue-showcase { background: var(--panel); }
+.venue-gallery {
+  display: flex;
+  gap: 10px;
+  height: clamp(380px, 56vh, 520px);
+  overflow: hidden;
+  border-radius: var(--radius);
+}
+.venue-card {
+  position: relative;
+  flex: 1 1 0%;
+  min-width: 0;
+  display: block;
+  overflow: hidden;
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: var(--paper);
+  cursor: pointer;
+  transition: flex-grow 0.55s var(--ease-golden);
+  background-image: var(--venue-photo);
+  background-size: cover;
+  background-position: 50% 50%;
+}
+.venue-card.is-open, .venue-card:hover { flex-grow: 3.2; }
+.venue-frame { position: absolute; inset: 0; display: block; }
+.venue-shade {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(10, 8, 7, 0.42) 0%, rgba(10, 8, 7, 0.05) 38%, rgba(10, 8, 7, 0.82) 100%);
+  transition: background 0.4s;
+}
+.venue-location {
+  position: absolute; top: 18px; left: 18px; right: 18px;
+  font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: rgba(251, 247, 240, 0.85);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.venue-label {
+  position: absolute; left: 18px; right: 18px; bottom: 18px;
+  display: grid; gap: 4px;
+  white-space: nowrap;
+}
+.venue-label strong {
+  font-family: Syne, sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.1rem, 2.2vw, 1.7rem);
+  line-height: 1.05;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.55);
+  overflow: hidden; text-overflow: ellipsis;
+}
+.venue-city, .venue-invitation {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.35s var(--ease-golden) 0.12s, transform 0.35s var(--ease-golden) 0.12s;
+  font-size: 0.92rem;
+}
+.venue-card.is-open .venue-city, .venue-card:hover .venue-city,
+.venue-card.is-open .venue-invitation, .venue-card:hover .venue-invitation {
+  opacity: 1; transform: none;
+}
+.venue-invitation {
+  display: inline-flex; align-items: center; gap: 8px;
+  color: var(--gold); font-weight: 600; font-size: 0.88rem;
+}
+.venue-invitation svg { width: 18px; height: 18px; }
+.venue-badge {
+  justify-self: start;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--orange);
+  color: var(--paper);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+@media (max-width: 760px) {
+  .venue-gallery {
+    flex-direction: column;
+    height: auto;
+    overflow: visible;
+  }
+  .venue-card {
+    height: 84px;
+    transition: height 0.45s var(--ease-golden);
+  }
+  .venue-card.is-open, .venue-card:hover { height: 300px; flex-grow: 1; }
+  .venue-location { top: 14px; left: 14px; right: 14px; }
+  .venue-label { left: 14px; right: 14px; bottom: 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .venue-card, .venue-city, .venue-invitation, .rotulo-cta, .rotulo-cta svg { transition: none; }
 }

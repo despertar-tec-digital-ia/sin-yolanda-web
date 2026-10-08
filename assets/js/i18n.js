@@ -41,6 +41,14 @@
     "México": "Mexico",
     "Estados Unidos": "United States",
     "Filtrar ubicaciones": "Filter locations",
+    "Cuál te queda": "Find your cantina",
+    "México y Estados Unidos": "Mexico and United States",
+    "Jalisco, México": "Jalisco, Mexico",
+    "Zona Chapalita, Zapopan": "Chapalita area, Zapopan",
+    "Abre el 9 de octubre": "Opens October 9",
+    "Abre": "Opens",
+    "Ruleta de shots y bebidas sobre una mesa de Sin Yolanda": "A shot roulette and drinks on a Sin Yolanda table",
+    "Elige tu sucursal": "Choose your location",
 
     /* ---------- TARJETAS / CTAS ---------- */
     "Ver sucursal": "View location",
@@ -48,6 +56,8 @@
     "Seguir la apertura": "Follow the opening",
     "Recibir novedades": "Get updates",
     "Próxima apertura": "Opening soon",
+    "9 de octubre": "October 9",
+    "Conoce la sucursal": "View location",
     "Reservar evento": "Book an event",
 
     /* ---------- SECCIONES HOME ---------- */
@@ -66,6 +76,34 @@
     "Elige ubicación. Nosotros hacemos el resto.": "Pick a location. We handle the rest.",
     "Reserva por el canal oficial de tu sucursal: OpenTable en Texas y WhatsApp en Guadalajara.": "Book through your location's official channel: OpenTable in Texas, WhatsApp in Guadalajara.",
     "Elegir ubicación": "Choose a location",
+    "Elegir sucursal": "Choose a location",
+    "Se aceptan pretextos chiquitos.": "Every little excuse counts.",
+    "Quincena": "Payday",
+    "Renuncia": "Quitting day",
+    "Divorcio": "Divorce",
+    "Viernes": "Friday",
+    "Porque sí": "Just because",
+    "“Aquí se entera todo el lugar.”": "“The whole cantina will hear about it.”",
+    "“Cayó. Eso cuenta.”": "“Payday landed. That counts.”",
+    "“Mañana vemos qué sigue. Hoy se arma.”": "“Tomorrow is tomorrow. Tonight is tonight.”",
+    "“¿Ya firmaste? Pues eso se festeja.”": "“Signed the papers? That's worth a celebration.”",
+    "“¿Neta necesitas más pretexto?”": "“Do you really need another excuse?”",
+    "“El mejor de todos.”": "“The best reason of all.”",
+    "La cartelera de tu cantina.": "What's on at your cantina.",
+    "Lo que viene.": "What's coming up.",
+    "Hay fechas que se celebran en más de una cantina. Encuentra la tuya.": "Some dates bring more than one cantina together. Find yours.",
+    "Tradición mexicana, coctelería y una noche para venir de catrina.": "Mexican tradition, cocktails and a night to dress as a catrina.",
+    "Ven con tu disfraz. El concurso se vive en cada cantina.": "Come in costume. Each cantina has its own contest.",
+    "Sucursales y fechas": "Locations and dates",
+    "oct": "Oct",
+    "nov": "Nov",
+    "Los eventos y las promociones cambian por sucursal. Consulta lo más reciente en su Instagram.": "Events and promotions vary by location. Check its Instagram for the latest.",
+    "Agendas en Instagram": "What's on, on Instagram",
+    "Eventos y promociones": "Events and promotions",
+    "Consulta la programación de esta sucursal en su Instagram.": "Check this location's Instagram for its latest events and promotions.",
+    "Ver agenda en Instagram": "See what's on, on Instagram",
+    "¿Cumpleaños?": "Birthday plans?",
+    "Tu gente, una mesa y un buen pretexto. Elige tu sucursal y consulta disponibilidad para celebrar.": "Your people, a table and a good excuse. Choose your location and check availability for your celebration.",
 
     /* ---------- MODAL ---------- */
     "Recibir novedades de la apertura": "Get opening updates",
@@ -385,7 +423,7 @@
     [/\bJalisco\b/g, "Jalisco"],
   ];
   const LANG_KEY = "sy-lang";
-  const TRANSLATABLE_SELECTOR = "h1, h2, h3, h4, h5, h6, p, a, span, strong, em, li, blockquote, dt, dd, option, small, button:not([aria-label]), label, figcaption, summary";
+  const TRANSLATABLE_SELECTOR = "h1, h2, h3, h4, h5, h6, p, a, span, strong, em, li, blockquote, dt, dd, option, small, button:not([aria-label]), label, figcaption, summary, .opening-announcement time";
 
   let current = "es";
 
@@ -403,6 +441,14 @@
     [/^Reservaciones en (.+)$/, "Reservations at $1"],
     [/^Llamar a (.+)$/, "Call $1"],
   ];
+
+  function syncToggleState() {
+    document.querySelectorAll("[data-lang-btn]").forEach((button) => {
+      const selected = button.dataset.langBtn === current;
+      button.setAttribute("aria-pressed", String(selected));
+      button.classList.toggle("active", selected);
+    });
+  }
 
   function apply(lang) {
     current = lang;
@@ -431,28 +477,28 @@
       });
     });
 
-    document.querySelectorAll("[aria-label]").forEach((el) => {
-      const a = el.getAttribute("aria-label");
-      if (!a) return;
-      if (lang === "en") {
-        if (el._syA === undefined) el._syA = a;
-        let rep = null;
-        for (const [re, tpl] of PREFIX_SWAPS) {
-          const m = a.match(re);
-          if (m) { rep = tpl.replace("$1", m[1]); break; }
+    document.querySelectorAll("[aria-label], img[alt]").forEach((el) => {
+      for (const attribute of ["aria-label", "alt"]) {
+        const a = el.getAttribute(attribute);
+        if (!a) continue;
+        const cacheKey = attribute === "alt" ? "_syAlt" : "_syA";
+        if (lang === "en") {
+          if (el[cacheKey] === undefined) el[cacheKey] = a;
+          let rep = null;
+          for (const [re, tpl] of PREFIX_SWAPS) {
+            const m = a.match(re);
+            if (m) { rep = tpl.replace("$1", m[1]); break; }
+          }
+          if (!rep) rep = DICT[norm(a)] || wordSwap(a);
+          if (rep && rep !== a) el.setAttribute(attribute, rep);
+        } else if (el[cacheKey] !== undefined) {
+          el.setAttribute(attribute, el[cacheKey]);
+          delete el[cacheKey];
         }
-        if (!rep) rep = DICT[norm(a)] || wordSwap(a);
-        if (rep && rep !== a) el.setAttribute("aria-label", rep);
-      } else if (el._syA !== undefined) {
-        el.setAttribute("aria-label", el._syA);
-        delete el._syA;
       }
     });
 
-    document.querySelectorAll("[data-lang-btn]").forEach((b) => {
-      b.setAttribute("aria-pressed", String(b.dataset.langBtn === lang));
-      b.classList.toggle("active", b.dataset.langBtn === lang);
-    });
+    syncToggleState();
   }
 
   function buildToggle() {
@@ -467,6 +513,7 @@
       '<button type="button" data-lang-btn="es" aria-pressed="true">ES</button>' +
       '<button type="button" data-lang-btn="en" aria-pressed="false">EN</button>';
     nav.appendChild(wrap);
+    syncToggleState();
     wrap.addEventListener("click", (e) => {
       const btn = e.target.closest("[data-lang-btn]");
       if (!btn) return;

@@ -8,7 +8,6 @@
 
   const branchById = (id) => data.branches.find((branch) => branch.id === id);
   const displayRating = (value) => (value ? value.toFixed(1) : "—");
-  const demoNote = `<p class="prototype-note">Datos de sucursales verificados con Google Business Profile · 24 sep 2026 · Bandeja de reseñas y flujos internos en demostración</p>`;
   const statusBadge = (label, tone = "neutral") => `<span class="status status-${tone}">${label}</span>`;
 
   function publicHeader() {
@@ -25,7 +24,6 @@
           <a href="la-cantina.html">La Cantina</a>
           <a href="index.html#cumple">Cumpleaños</a>
           <a class="nav-cta" href="locations.html">Reservar mesa</a>
-          <a class="nav-panel" href="dashboard.html" rel="nofollow">Panel</a>
         </nav>
       </header>`;
   }
@@ -47,7 +45,7 @@
         </div>
         <div>
           <strong>Sucursales abiertas</strong>
-          <a href="san-ignacio.html">San Ignacio · Av. San Ignacio 78, Zapopan, Jal.</a>
+          <a href="san-ignacio.html">Sin Yolanda Guadalajara · Av. San Ignacio 78, Zapopan, Jal.</a>
           <a href="san-antonio.html">San Antonio · 415 E Commerce St, TX</a>
           <a href="the-woodlands.html">The Woodlands · 1400 Research Forest Dr, Shenandoah, TX</a>
           <a href="houston.html">Houston · 4901 Washington Ave, TX</a>
@@ -61,69 +59,15 @@
         <div>
           <strong>Reservaciones</strong>
           <p>OpenTable en Texas · WhatsApp en Guadalajara.</p>
-          <a class="footer-hub" href="dashboard.html" rel="nofollow">Digital Hub · Panel interno</a>
           <a class="footer-hub" href="aviso-de-privacidad.html">Aviso de privacidad</a>
         </div>
       </footer>`;
   }
 
-  function internalNav() {
-    const links = [
-      ["dashboard", "dashboard.html", "Resumen"],
-      ["branches", "dashboard.html#branch-comparison", "Sucursales"],
-      ["listings", "listings.html", "Listings"],
-      ["reputation", "reputation.html", "Reputación"],
-      ["alerts", "reputation.html#alerts", "Alertas"],
-      ["requests", "requests.html", "Solicitudes"],
-      ["reports", "reports.html", "Reportes"],
-    ];
-    return `
-      <aside class="sidebar" id="dashboard-nav">
-        <a class="sidebar-brand" href="index.html">
-          <img src="assets/media/brand-logo-gdl.png" alt="Sin Yolanda" />
-          <span>Digital Hub</span>
-        </a>
-        <nav aria-label="Navegación del panel">
-          ${links.map(([key, href, label]) => `<a class="${page === key || (page === "review-detail" && key === "reputation") ? "active" : ""}" href="${href}">${label}</a>`).join("")}
-        </nav>
-        <div class="sidebar-foot">
-          <span>Panel interno</span>
-          <a href="index.html">Ver sitio público</a>
-        </div>
-      </aside>`;
-  }
-
-  function internalTopbar(title, eyebrow) {
-    return `
-      <header class="dashboard-topbar">
-        <button class="dashboard-menu" type="button" aria-expanded="false" aria-controls="dashboard-nav">Menú</button>
-        <div>
-          <p>${eyebrow}</p>
-          <h1>${title}</h1>
-        </div>
-        <div class="topbar-controls">
-          <label><span>Sucursal</span><select id="global-branch"><option value="all">Todas las sucursales</option>${data.branches.map((branch) => `<option value="${branch.id}">${branch.shortName}</option>`).join("")}</select></label>
-          <label><span>Periodo</span><select><option>Septiembre 2026</option><option>Últimos 90 días</option><option>Este año</option></select></label>
-          <div class="profile-chip"><span>KM</span><div><strong>Vista dirección</strong><small>Actualizado 24 · sep</small></div></div>
-        </div>
-      </header>`;
-  }
-
-  function internalLayout(title, eyebrow, content) {
-    return `
-      <div class="dashboard-shell">
-        ${internalNav()}
-        <div class="dashboard-main">
-          ${internalTopbar(title, eyebrow)}
-          <main class="dashboard-content">${demoNote}${content}</main>
-        </div>
-      </div>`;
-  }
-
   function locationCard(branch) {
     const isSoon = branch.status === "coming-soon";
     return `
-      <article class="location-card" data-region="${branch.region}">
+      <article class="location-card" data-region="${branch.region}" data-status="${branch.status}">
         <div class="location-card-media">
           <img src="${branch.image}" alt="${branch.name}" />
           ${statusBadge(branch.statusLabel, isSoon ? "warning" : "success")}
@@ -134,9 +78,9 @@
           <span>${branch.concept}</span>
           <div class="card-actions">
             ${isSoon
-              ? `${branch.socialUrl
+              ? `${branch.page !== "#" ? `<a class="button button-primary" href="${branch.page}">Ver sucursal</a>` : ""}${branch.socialUrl
                   ? `<a class="button button-primary" href="${branch.socialUrl}" target="_blank" rel="noopener">Seguir la apertura</a>`
-                  : ""}<button class="button ${branch.socialUrl ? "button-ghost" : "button-primary"}" type="button" data-open-modal="news">Recibir novedades</button>`
+                  : ""}`
               : `<a class="button button-primary" href="${branch.reserveChannel === "opentable" ? branch.reserveUrl : `https://wa.me/${branch.whatsapp}`}" target="_blank" rel="noopener">Reservar</a>
                  <a class="button button-ghost" href="${branch.page}">Ver sucursal</a>
                  <a class="text-button" href="${branch.mapsUrl}" target="_blank" rel="noopener">Cómo llegar</a>`}
@@ -145,15 +89,66 @@
       </article>`;
   }
 
+  function venueShowcase() {
+    const branches = data.branches.filter((branch) => ["active", "coming-soon"].includes(branch.status));
+    return `
+        <section class="section venue-showcase" id="ubicaciones" tabindex="-1" aria-labelledby="venue-heading">
+          <div class="section-heading"><div><h2 id="venue-heading">Cuál te queda</h2></div><p>México y Estados Unidos</p></div>
+          <div class="filter-chips" role="group" aria-label="Filtrar ubicaciones" data-venue-filters>
+            <button class="filter active" type="button" data-venue-filter="all" aria-pressed="true">Todas</button>
+            <button class="filter" type="button" data-venue-filter="mx" aria-pressed="false">México</button>
+            <button class="filter" type="button" data-venue-filter="us" aria-pressed="false">Estados Unidos</button>
+            <button class="filter" type="button" data-venue-filter="soon" aria-pressed="false">Próximamente</button>
+          </div>
+          <ul class="venue-gallery" data-venue-gallery>
+            ${branches.map((branch, index) => {
+              const hasPage = branch.page !== "#";
+              const tag = hasPage ? "a" : "div";
+              const name = branch.shortName;
+              const hasOpeningDate = branch.status === "coming-soon" && branch.openingDate === "2026-10-09";
+              const opening = hasOpeningDate ? "Abre el 9 de octubre" : "Próximamente";
+              return `<li class="venue-item${index === 0 ? " is-open" : ""}" data-venue-item data-region="${branch.region}" data-status="${branch.status}">
+              <${tag} class="venue-card${index === 0 ? " is-open" : ""}${branch.status === "coming-soon" ? " venue-card--soon" : ""}${branch.venuePhoto ? "" : " venue-card--announcement"}"${hasPage ? ` href="${branch.page}"` : ""} data-venue data-branch-id="${branch.id}">
+                <span class="venue-frame" aria-hidden="true">${branch.venuePhoto ? `<img src="${branch.venuePhoto}" alt="" width="1400" height="1000" loading="lazy" decoding="async" style="object-position:${branch.venuePosition || "50% 50%"}" />` : `<span class="venue-announcement">Sin Yolanda<span>Próximamente</span></span>`}<span class="venue-shade"></span></span>
+                <span class="venue-location" aria-hidden="true">${branch.country === "México" ? "Jalisco, México" : branch.city}</span>
+                <span class="venue-collapsed" aria-hidden="true">${name}</span>
+                ${hasOpeningDate ? `<span class="venue-opening-date" aria-hidden="true"><span>Abre</span>9 OCT</span>` : ""}
+                <span class="venue-label">
+                  ${branch.status === "coming-soon" ? `<span class="venue-badge${hasOpeningDate ? " venue-badge--opening" : ""}">${opening}</span>` : ""}
+                  <strong>${name}</strong>
+                  <span class="venue-city">${branch.venueCity || branch.city}</span>
+                  ${hasPage ? `<span class="venue-invitation" aria-hidden="true">Ver sucursal <svg viewBox="0 0 20 20" fill="none"><path d="M4 10h12m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.5"></path></svg></span>` : ""}
+                </span>
+              </${tag}>
+              </li>`;
+            }).join("")}
+          </ul>
+          <p class="venue-sr" data-venue-status aria-live="polite" aria-atomic="true"></p>
+        </section>`;
+  }
+
+  function openingAnnouncement() {
+    const branch = data.branches.find((item) => item.id === "el-paso");
+    if (!branch || branch.status !== "coming-soon" || branch.openingDate !== "2026-10-09") return "";
+    return `<aside class="opening-announcement" aria-label="Próxima apertura">
+      <div class="opening-announcement-inner">
+        <p class="opening-announcement-details"><span>Próxima apertura</span>
+          <strong><a href="${branch.page}">El Paso</a></strong>
+          <time datetime="${branch.openingDate}">9 de octubre</time></p>
+        <a class="opening-announcement-link" href="${branch.page}">Conoce la sucursal
+          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h12m-5-5 5 5-5 5"/></svg></a>
+      </div>
+    </aside>`;
+  }
+
   function homePage() {
-    const waGdl = `https://wa.me/523310186159?text=${encodeURIComponent("Hola, quiero reservar una mesa en Sin Yolanda San Ignacio.")}`;
     const plan = [
-      ["Comida", "assets/media/dining.webp", "Para el centro de la mesa. Se comparte o no se pide."],
+      ["Comida", "images/houston-entry-study/table-1600.webp", "Para el centro de la mesa. Se comparte o no se pide."],
       ["Tragos", "assets/media/cocktail.webp", "Coquetos. Sin lista de precios: pregunta y te contamos."],
-      ["Música", "assets/media/karaoke.webp", "Canciones que te sabes completas."],
-      ["Micrófono", "assets/media/celebration.webp", "Pasa por las mesas. Nadie se lo niega a nadie."],
+      ["Música", "assets/media/hero-night.webp", "Canciones que te sabes completas.", "50% 22%"],
+      ["Micrófono", "assets/media/karaoke.webp", "Pasa por las mesas. Nadie se lo niega a nadie.", "50% 42%"],
       ["La banda", "assets/media/interior.webp", "Trae a los cuatro. Aquí caben todos."],
-      ["Celebraciones", "assets/media/hospitality.webp", "Cumpleaños, renuncias, quincenas. Cualquier pretexto."],
+      ["Celebraciones", "assets/media/hospitality.webp", "Cumpleaños, renuncias, quincenas. Cualquier pretexto.", "50% 12%"],
     ];
     const pretextos = [
       ["Cumpleaños", "Aquí se entera todo el lugar."],
@@ -163,8 +158,6 @@
       ["Viernes", "¿Neta necesitas más pretexto?"],
       ["Porque sí", "El mejor de todos."],
     ];
-    const abiertas = data.branches.filter((b) => b.status === "active");
-    const proximas = data.branches.filter((b) => b.status === "coming-soon");
     return `
       ${publicHeader()}
       <main>
@@ -177,46 +170,47 @@
               loop
               playsinline
               preload="metadata"
-              poster="assets/media/hero-celebration-poster.webp"
+              poster="assets/media/hero-fiesta-real-poster.webp"
               data-hero-video>
-              <source src="assets/media/hero-celebration.mp4" type="video/mp4" />
+              <source src="assets/media/hero-fiesta-real.mp4" type="video/mp4" />
             </video>
           </div>
           <div class="hero-overlay hero-overlay-cinema"></div>
           <div class="hero-copy hero-copy-cinema">
-            <p class="eyebrow hero-eyebrow">Cantina contemporánea</p>
-            <h1 class="hero-title">El plan ya está armado.</h1>
+            <h1 class="hero-rotulo">
+              <span class="rotulo-sr">No hay tiempo para llorar</span>
+              <svg class="rotulo-art" viewBox="0 0 600 540" aria-hidden="true" focusable="false"><defs><path id="rotulo-arch" d="M85 109 Q300 42 515 109"></path><path id="rotulo-time-arch" d="M20 255 Q300 177 580 255"></path><path id="rotulo-last-arch" d="M25 427 Q300 507 575 427"></path><g id="rotulo-no-hay"><text class="rotulo-overture"><textPath href="#rotulo-arch" startOffset="50%" text-anchor="middle">NO HAY</textPath></text></g><g id="rotulo-tiempo"><text textLength="534" lengthAdjust="spacingAndGlyphs" class="rotulo-main-word"><textPath href="#rotulo-time-arch" startOffset="50%" text-anchor="middle">TIEMPO</textPath></text></g><g id="rotulo-llorar"><text textLength="534" lengthAdjust="spacingAndGlyphs" class="rotulo-last-word"><textPath href="#rotulo-last-arch" startOffset="50%" text-anchor="middle">LLORAR</textPath></text></g></defs><g class="rotulo-top"><use href="#rotulo-no-hay" class="rotulo-edge" transform="translate(3 4)"></use><use href="#rotulo-no-hay" class="rotulo-face"></use></g><g class="rotulo-center"><use href="#rotulo-tiempo" class="rotulo-depth" transform="translate(7 9.1)"></use><use href="#rotulo-tiempo" class="rotulo-depth" transform="translate(6 7.8)"></use><use href="#rotulo-tiempo" class="rotulo-depth" transform="translate(5 6.5)"></use><use href="#rotulo-tiempo" class="rotulo-depth" transform="translate(4 5.2)"></use><use href="#rotulo-tiempo" class="rotulo-depth" transform="translate(3 3.9)"></use><use href="#rotulo-tiempo" class="rotulo-depth" transform="translate(2 2.6)"></use><use href="#rotulo-tiempo" class="rotulo-depth" transform="translate(1 1.3)"></use><use href="#rotulo-tiempo" class="rotulo-outline"></use><use href="#rotulo-tiempo" class="rotulo-face"></use></g><g class="rotulo-bridge" fill="currentColor"><path d="M95 295 Q155 279 220 295 Q155 285 95 300Z"></path><text x="300" y="307" text-anchor="middle">para</text><path d="M505 295 Q445 279 380 295 Q445 285 505 300Z"></path></g><g class="rotulo-finale"><use href="#rotulo-llorar" class="rotulo-depth" transform="translate(7 9.1)"></use><use href="#rotulo-llorar" class="rotulo-depth" transform="translate(6 7.8)"></use><use href="#rotulo-llorar" class="rotulo-depth" transform="translate(5 6.5)"></use><use href="#rotulo-llorar" class="rotulo-depth" transform="translate(4 5.2)"></use><use href="#rotulo-llorar" class="rotulo-depth" transform="translate(3 3.9)"></use><use href="#rotulo-llorar" class="rotulo-depth" transform="translate(2 2.6)"></use><use href="#rotulo-llorar" class="rotulo-depth" transform="translate(1 1.3)"></use><use href="#rotulo-llorar" class="rotulo-outline"></use><use href="#rotulo-llorar" class="rotulo-face"></use><path class="rotulo-underline" d="M100 485 Q300 528 500 485 Q300 543 100 485Z"></path></g></svg>
+            </h1>
             <p class="hero-sub">Comida que sí llena, tragos coquetos y canciones que se gritan completas.</p>
             <div class="hero-actions">
-              <a class="button button-primary" href="#ubicaciones">Reserva tu mesa</a>
-              <a class="button button-ghost-light" href="#ubicaciones">Encuentra tu Sin Yolanda</a>
+              <a class="button button-primary" href="#ubicaciones" data-select-location>Reserva tu mesa</a>
+              <a class="button button-ghost-light" href="#ubicaciones" data-select-location>Encuentra tu Sin Yolanda</a>
             </div>
             <p class="hero-micro">México · Texas</p>
           </div>
         </section>
 
+        ${openingAnnouncement()}
+
+
         <section class="section section-after-hero" id="plan">
           <div class="section-heading"><div><p class="eyebrow">El plan</p><h2 class="reveal">El plan ya está armado.</h2></div><p>Tú solo trae el pretexto.</p></div>
           <div class="event-grid">
-            ${plan.map(([titulo, img, texto], i) => `<article class="reveal-scale" style="animation-delay:${0.08 * i}s"><img src="${img}" alt="${titulo}" loading="lazy" width="640" height="420" /><h3>${titulo}</h3><p>${texto}</p></article>`).join("")}
+            ${plan.map(([titulo, img, texto, position = "50% 50%"], i) => `<article class="reveal-scale" style="animation-delay:${0.08 * i}s"><img src="${img}" alt="${titulo}" loading="lazy" width="640" height="420" style="object-position:${position}" /><h3>${titulo}</h3><p>${texto}</p></article>`).join("")}
           </div>
         </section>
 
         <section class="section pretextos-section">
           <div class="section-heading"><div><p class="eyebrow">Los pretextos</p><h2 class="reveal">Se aceptan pretextos chiquitos.</h2></div></div>
           <div class="pretextos-grid">
-            ${pretextos.map(([nombre, remate], i) => `<button class="pretexto-card reveal-scale" type="button" style="animation-delay:${0.08 * i}s" data-open-modal="news"><span>0${i + 1}</span><strong>${nombre}</strong><em>“${remate}”</em><small>Cuéntanos y apartamos mesa</small></button>`).join("")}
+            ${pretextos.map(([nombre, remate], i) => `<a class="pretexto-card reveal-scale" href="#ubicaciones" data-select-location style="animation-delay:${0.08 * i}s"><strong>${nombre}</strong><em>“${remate}”</em><small>Elegir sucursal</small></a>`).join("")}
           </div>
         </section>
 
-        <section class="section cartelera-section" id="cartelera">
-          <div class="section-heading"><div><p class="eyebrow">Cartelera</p><h2 class="reveal">Esta semana se puso bueno.</h2></div><p>Los eventos de cada casa, aquí apenas se están armando.</p></div>
-          <div class="event-grid">${data.events.map((event) => `<article><span>${event.date}</span><h3>${event.title}</h3><p>${event.description}</p><a class="text-button" href="#ubicaciones">Reservar evento</a></article>`).join("")}</div>
-          <p class="data-caveat">TODO: CONFIRMAR CON OPERACIÓN — cartelera con eventos reales por sucursal.</p>
-        </section>
+        ${homeAgenda()}
 
         <section class="experience-section" id="experiencia">
-          <div class="experience-media"><img src="assets/media/celebration.webp" alt="Amigos cantando en Sin Yolanda" loading="lazy" width="640" height="420" /></div>
+          <div class="experience-media"><img src="assets/media/celebration.webp" alt="Ruleta de shots y bebidas sobre una mesa de Sin Yolanda" loading="lazy" width="1600" height="2000" /></div>
           <div class="experience-copy">
             <p class="eyebrow">La casa por dentro</p>
             <h2 class="reveal">Trae a los cuatro.</h2>
@@ -237,33 +231,99 @@
 
         <section class="section cumple-section" id="cumple">
           <div class="section-heading"><div><p class="eyebrow">Celebraciones</p><h2 class="reveal">¿Cumpleaños?</h2></div></div>
-          <p class="cumple-copy">Aquí se entera todo el lugar. Avísanos y ya sabemos qué hacer: mesa larga, pastel y una canción que nadie te va a dejar cantar solo.</p>
+          <p class="cumple-copy">Tu gente, una mesa y un buen pretexto. Elige tu sucursal y consulta disponibilidad para celebrar.</p>
           <div class="hero-actions">
-            <a class="button button-primary" href="${waGdl}" target="_blank" rel="noopener">Armar mi cumpleaños</a>
-            <a class="button button-ghost" href="locations.html">Ver sucursales</a>
+            <a class="button button-primary" href="#ubicaciones" data-select-location>Elegir sucursal</a>
           </div>
         </section>
 
-        <section class="section location-showcase" id="ubicaciones">
-          <div class="section-heading"><div><p class="eyebrow">Ubicaciones</p><h2 class="reveal">¿Cuál te queda?</h2></div></div>
-          <div class="filter-chips" role="group" aria-label="Filtrar ubicaciones">
-            <button class="filter active" type="button" data-filter="all">Todas</button>
-            <button class="filter" type="button" data-filter="mx">México</button>
-            <button class="filter" type="button" data-filter="us">Estados Unidos</button>
-            <button class="filter" type="button" data-filter="soon">Próximamente</button>
-          </div>
-          <div class="location-grid">${data.branches.map(locationCard).join("")}</div>
-        </section>
+        ${venueShowcase()}
 
         <section class="reserve-cta" id="reserve">
           <div><p class="eyebrow">¿Sin Yolanda? Si sabes, sabes.</p><h2 class="reveal">Ya quedó.</h2></div>
-          <div><a class="button button-light" href="#ubicaciones">Reservar mesa</a></div>
+          <div><a class="button button-light" href="#ubicaciones" data-select-location>Reservar mesa</a></div>
         </section>
       </main>
-      ${publicFooter()}
-      ${modalMarkup()}`;
+      ${publicFooter()}`;
   }
 
+  function hasAgendaProfile(branch) {
+    // Reuse the registered location's own public profile, never a guessed account.
+    return branch.status === "active" && /^https:\/\/www\.instagram\.com\/[a-z0-9._]+\/$/i.test(branch.socialUrl || "");
+  }
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, char => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[char]));
+  }
+
+  function validCalendarDate(value) {
+    return typeof value === "string" && /^\d{4}-\d{2}-\d{2}$/.test(value) &&
+      Number.isFinite(Date.parse(value)) && new Date(value).toISOString().slice(0, 10) === value;
+  }
+
+  function calendarDay(timeZone, now = new Date()) {
+    try {
+      const parts = new Intl.DateTimeFormat("en", { timeZone, year: "numeric", month: "2-digit", day: "2-digit" }).formatToParts(now);
+      const part = type => parts.find(value => value.type === type).value;
+      return `${part("year")}-${part("month")}-${part("day")}`;
+    } catch (_) { return ""; }
+  }
+
+  function calendarLabel(date) {
+    const months = ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"];
+    return `<time datetime="${date}">${Number(date.slice(8))} <span>${months[Number(date.slice(5, 7)) - 1]}</span></time>`;
+  }
+
+  function homeCampaigns(now = new Date()) {
+    const today = calendarDay("America/Chicago", now);
+    if (!today) return [];
+    return (data.events || []).filter(event => event.placement === "home" && event.status === "scheduled" &&
+      validCalendarDate(event.visibleFrom) && event.visibleFrom <= today && Array.isArray(event.occurrences))
+      .map(event => {
+        const locations = event.occurrences.map(occurrence => ({ ...occurrence,
+          branch: data.branches.find(branch => branch.id === occurrence.branchId) }))
+          .filter(occurrence => validCalendarDate(occurrence.date) && occurrence.timeZone &&
+            calendarDay(occurrence.timeZone, now) && occurrence.branch?.status === "active" &&
+            /^[a-z0-9-]+\.html$/.test(occurrence.branch.page));
+        // Home campaigns span locations; local-only promotions stay on their fichas.
+        if (new Set(locations.map(occurrence => occurrence.branchId)).size < 2) return null;
+        const occurrences = locations.filter(occurrence => occurrence.date >= calendarDay(occurrence.timeZone, now))
+          .sort((a, b) => a.date.localeCompare(b.date) || a.branchId.localeCompare(b.branchId));
+        return occurrences.length ? { ...event, occurrences } : null;
+      }).filter(Boolean).sort((a, b) => a.occurrences[0].date.localeCompare(b.occurrences[0].date));
+  }
+
+  function homeAgenda(now = new Date()) {
+    const campaigns = homeCampaigns(now);
+    if (!campaigns.length) return "";
+    return `<section class="section cartelera-section home-agenda" id="cartelera" aria-labelledby="agenda-heading">
+      <div class="home-agenda-intro">
+        <h2 id="agenda-heading">Lo que viene.</h2>
+        <p>Hay fechas que se celebran en más de una cantina. Encuentra la tuya.</p>
+      </div>
+      <div class="home-campaigns">
+        ${campaigns.map(event => {
+          const first = event.occurrences[0].date, last = event.occurrences[event.occurrences.length - 1].date;
+          return `<article class="home-campaign" data-campaign="${escapeHtml(event.id)}">
+            <div class="campaign-dates">${calendarLabel(first)}${first === last ? "" : `<span aria-hidden="true">—</span>${calendarLabel(last)}`}</div>
+            <div class="campaign-copy"><h3>${escapeHtml(event.title)}</h3><p>${escapeHtml(event.description)}</p></div>
+            <ul class="campaign-locations" aria-label="Sucursales y fechas">
+              ${event.occurrences.map(occurrence => `<li><a href="${occurrence.branch.page}" data-agenda-branch="${escapeHtml(occurrence.branchId)}"><span>${escapeHtml(occurrence.branch.shortName)}</span>${calendarLabel(occurrence.date)}<svg viewBox="0 0 20 20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 10h12M10 4l6 6-6 6"/></svg></a></li>`).join("")}
+            </ul>
+          </article>`;
+        }).join("")}
+      </div>
+    </section>`;
+  }
+
+  function branchAgenda(branch) {
+    if (!hasAgendaProfile(branch)) return "";
+    return `<section class="section" id="cartelera">
+      <div class="section-heading"><div><h2>Eventos y promociones</h2></div></div>
+      <p>Consulta la programación de esta sucursal en su Instagram.</p>
+      <a class="text-button" href="${branch.socialUrl}" target="_blank" rel="noopener noreferrer">Ver agenda en Instagram</a>
+    </section>`;
+  }
 
   function locationsPage() {
     return `
@@ -326,31 +386,6 @@
       </section>`;
   }
 
-  function reservationChannelsPanel() {
-    return `
-      <section class="panel reservation-channels-panel">
-        <div class="panel-heading">
-          <div><p class="eyebrow">Canales de reservación</p><h2>Cómo llegan las solicitudes</h2></div>
-          <span class="legend">Distribución demostrativa por sucursal</span>
-        </div>
-        <div class="table-wrap">
-          <table class="channel-table">
-            <thead><tr><th>Sucursal</th><th>OpenTable</th><th>Direct Website</th><th>WhatsApp</th><th>Teléfono</th></tr></thead>
-            <tbody>${data.reservationChannels.map((row) => `
-              <tr>
-                <td><strong>${row.branch}</strong></td>
-                <td><div class="channel-value"><i style="width:${row.openTable}%"></i><span>${row.openTable}%</span></div></td>
-                <td><div class="channel-value direct"><i style="width:${row.direct}%"></i><span>${row.direct}%</span></div></td>
-                <td><div class="channel-value whatsapp"><i style="width:${row.whatsapp}%"></i><span>${row.whatsapp}%</span></div></td>
-                <td><div class="channel-value phone"><i style="width:${row.phone}%"></i><span>${row.phone}%</span></div></td>
-              </tr>`).join("")}
-            </tbody>
-          </table>
-        </div>
-        <p class="channel-note">Los porcentajes son simulados y muestran cómo el sistema podría comparar canales sin sustituir las plataformas existentes.</p>
-      </section>`;
-  }
-
   function quoteCards(branch) {
     if (branch.quotes && branch.quotes.length) {
       return branch.quotes.map((quote) => `<div class="quote-card reveal-scale" style="animation-delay:0.1s"><span>${"★".repeat(quote.stars)}${"☆".repeat(5 - quote.stars)}</span><blockquote>“${quote.text}”</blockquote><p>${quote.source}</p></div>`).join("");
@@ -399,10 +434,7 @@
           <div><p class="eyebrow">Menú de muestra</p><h2 class="reveal">Se botanea en serio.</h2><p>Una selección breve para demostrar cómo el menú puede adaptarse por ciudad, idioma y disponibilidad.</p><div class="mini-menu"><span>Coctelería de autor</span><span>Entradas para compartir</span><span>Cocina mexicana</span><span>Brunch seleccionado</span></div><a class="button button-primary" href="${branch.menuUrl}" target="_blank" rel="noopener">Ver menú</a></div>
         </section>
 
-        <section class="section">
-          <div class="section-heading"><div><p class="eyebrow">Eventos</p><h2 class="reveal">Una agenda propia.</h2></div><p>Programación de ejemplo para mostrar el flujo de comunicación y reservación.</p></div>
-          <div class="event-grid">${data.events.map((event) => `<article><span>${event.date}</span><h3>${event.title}</h3><p>${event.description}</p><a class="text-button" href="${branch.reserveChannel === "opentable" ? branch.reserveUrl : `https://wa.me/${branch.whatsapp}`}" target="_blank" rel="noopener">Reservar</a></article>`).join("")}</div>
-        </section>
+        ${branchAgenda(branch)}
 
         <section class="gallery-section"><div class="section-heading"><div><p class="eyebrow">Galería</p><h2 class="reveal">La atmósfera habla primero.</h2></div></div><div class="gallery-grid">${branch.gallery.map((image, index) => `<img src="${image}" alt="${branch.shortName}, fotografía de ambiente ${index + 1}" />`).join("")}</div></section>
 
@@ -424,202 +456,6 @@
       ${modalMarkup()}`;
   }
 
-  function kpiCard(value, label, note, tone = "") {
-    return `<article class="kpi-card ${tone}"><span>${label}</span><strong>${value}</strong><small>${note}</small></article>`;
-  }
-
-  function branchComparisonRows() {
-    return data.branches.map((branch) => `
-      <tr>
-        <td><strong>${branch.shortName}</strong><small>${branch.city}</small></td>
-        <td>${branch.country}</td>
-        <td>${displayRating(branch.rating)}</td>
-        <td>${branch.newReviews}</td>
-        <td>${branch.pendingReviews}</td>
-        <td>${branch.alerts}</td>
-        <td><div class="progress"><span style="width:${branch.listings}%"></span></div><small>${branch.listings}%</small></td>
-        <td>${statusBadge(branch.status === "coming-soon" ? "Preparación" : branch.alerts > 1 ? "Atención" : "Estable", branch.status === "coming-soon" ? "warning" : branch.alerts > 1 ? "danger" : "success")}</td>
-      </tr>`).join("");
-  }
-
-  function dashboardPage() {
-    const m = data.metrics;
-    const content = `
-      <section class="kpi-grid wide">
-        ${kpiCard(m.activeBranches, "Sucursales activas", "México y Estados Unidos")}
-        ${kpiCard(m.nextOpening, "Próxima apertura", "Infraestructura en preparación", "accent")}
-        ${kpiCard(m.rating, "Calificación promedio", "Promedio de 5 sucursales")}
-        ${kpiCard(m.newReviews, "Reseñas en Google", "Total acumulado")}
-        ${kpiCard(m.pendingReviews, "Pendientes de respuesta", "Requieren revisión", "warning")}
-        ${kpiCard(m.criticalAlerts, "Alertas de atención", "Conflicto NAP en directorios", "danger")}
-        ${kpiCard(m.pendingRequests, "Solicitudes pendientes", "Todas las áreas")}
-        ${kpiCard(`${m.listingsComplete}%`, "Listings completos", "Promedio de marca")}
-      </section>
-      <section class="panel" id="branch-comparison">
-        <div class="panel-heading"><div><p class="eyebrow">Comparativo</p><h2>Salud digital por sucursal</h2></div><a class="text-button" href="reports.html">Ver reporte ejecutivo</a></div>
-        <div class="table-wrap"><table><thead><tr><th>Sucursal</th><th>País</th><th>Calificación</th><th>Nuevas</th><th>Pendientes</th><th>Alertas</th><th>Listings</th><th>Estado</th></tr></thead><tbody>${branchComparisonRows()}</tbody></table></div>
-      </section>
-      ${reservationChannelsPanel()}
-      <div class="dashboard-grid two">
-        <section class="panel"><div class="panel-heading"><div><p class="eyebrow">Actividad reciente</p><h2>Lo que está ocurriendo</h2></div></div><div class="activity-feed">${data.activity.map((item) => `<div><time>${item.time}</time><span></span><p><strong>${item.title}</strong><small>${item.meta}</small></p></div>`).join("")}</div></section>
-        <section class="panel"><div class="panel-heading"><div><p class="eyebrow">Acciones rápidas</p><h2>Resolver sin perder contexto</h2></div></div><div class="quick-actions"><a href="requests.html#new-request">Nueva solicitud<span>Crear y asignar</span></a><a href="reputation.html#alerts">Revisar alertas<span>${m.criticalAlerts} activas</span></a><a href="reputation.html">Ver reputación<span>${m.pendingReviews} pendientes</span></a><a href="listings.html">Consultar listings<span>${m.listingsComplete}% completos</span></a><a href="reports.html">Generar reporte<span>Vista mensual</span></a></div></section>
-      </div>`;
-    return internalLayout("Sin Yolanda Digital Hub", "Resumen corporativo", content);
-  }
-
-  function listingsPage() {
-    const statusClass = { verified: "success", active: "neutral", pending: "warning", review: "danger", unclaimed: "danger", na: "muted" };
-    const rows = data.branches.map((branch) => `<tr><td><button class="row-link listing-branch" data-branch="${branch.id}" type="button"><strong>${branch.shortName}</strong><small>${branch.country}</small></button></td>${data.listings[branch.id].map((status, index) => `<td><button class="status status-${statusClass[status]}" type="button" data-listing="${branch.id}" data-directory="${index}">${data.statusLabels[status]}</button></td>`).join("")}</tr>`).join("");
-    const content = `
-      <section class="kpi-grid six">
-        ${kpiCard(54, "Directorios revisados", "Corroborado 24 sep")}
-        ${kpiCard(39, "Perfiles activos", "Entre 5 sucursales")}
-        ${kpiCard(2, "Perfiles pendientes", "Yelp Houston y Bing Houston", "warning")}
-        ${kpiCard(6, "Inconsistencias", "Ejemplos simulados", "danger")}
-        ${kpiCard(4, "Verificaciones", "Pendientes", "warning")}
-        ${kpiCard(17, "Cambios del mes", "Flujo demostrativo")}
-      </section>
-      <section class="panel">
-        <div class="panel-heading"><div><p class="eyebrow">Matriz de presencia</p><h2>Una fuente de verdad por sucursal</h2></div><span class="legend">Selecciona una celda para ver el detalle</span></div>
-        <div class="table-wrap listing-table"><table><thead><tr><th>Sucursal</th>${data.listingsDirectories.map((directory) => `<th>${directory}</th>`).join("")}</tr></thead><tbody>${rows}</tbody></table></div>
-      </section>
-      <section class="panel listing-detail" id="listing-detail">${listingDetail("san-antonio", 1)}</section>
-      <section class="panel opening-checklist"><div><p class="eyebrow">Próxima apertura</p><h2>Checklist replicable</h2><p>Sin revelar ubicación, el equipo puede preparar activos, responsables y dependencias.</p></div><div class="check-grid">${["Página web", "Google", "Apple Maps", "Bing", "Waze", "Tripadvisor", "Yelp", "Redes", "Fotografías", "Menú", "Reservaciones", "Verificación final"].map((item, index) => `<label><input type="checkbox" ${index < 3 ? "checked" : ""} /><span>${item}</span></label>`).join("")}</div></section>`;
-    return internalLayout("Listings y directorios", "Presencia digital", content);
-  }
-
-  function listingDetail(id, directoryIndex) {
-    const branch = branchById(id);
-    const directory = data.listingsDirectories[directoryIndex];
-    const state = data.listings[id][directoryIndex];
-    return `
-      <div class="panel-heading"><div><p class="eyebrow">Detalle seleccionado</p><h2>${branch.shortName} · ${directory}</h2></div>${statusBadge(data.statusLabels[state], state === "verified" ? "success" : state === "review" ? "danger" : "warning")}</div>
-      <div class="detail-grid">
-        <dl><div><dt>Nombre publicado</dt><dd>${branch.name}</dd></div><div><dt>Nombre oficial</dt><dd>Dato por confirmar con Dirección</dd></div><div><dt>Dirección</dt><dd>${branch.address}</dd></div><div><dt>Teléfono</dt><dd>${branch.phone}</dd></div><div><dt>Horario</dt><dd>${branch.hours}</dd></div></dl>
-        <dl><div><dt>URL</dt><dd>Enlace demostrativo</dd></div><div><dt>Última revisión</dt><dd>29 Jul 2026 · Simulada</dd></div><div><dt>Responsable</dt><dd>Agencia / Marketing</dd></div><div><dt>Incidencia</dt><dd>Ejemplo: horario distinto entre plataformas</dd></div><div><dt>Acción recomendada</dt><dd>Validar NAP y documentar evidencia antes de publicar</dd></div></dl>
-      </div>`;
-  }
-
-  function reputationPage() {
-    const m = data.metrics;
-    const reviewRows = data.reviews.map((review) => {
-      const branch = branchById(review.branch);
-      return `<tr class="review-row" data-branch="${review.branch}" data-platform="${review.platform}" data-risk="${review.risk}" data-status="${review.status}"><td>${review.platform}</td><td><strong>${branch.shortName}</strong></td><td>${"★".repeat(review.rating)}${"☆".repeat(5 - review.rating)}</td><td>${review.customer}</td><td>${review.date}</td><td class="review-excerpt">${review.excerpt}</td><td>${review.topic}</td><td>${review.sentiment}</td><td>${statusBadge(review.risk, review.risk === "Alto" ? "danger" : review.risk === "Medio" ? "warning" : "success")}</td><td>${review.status}</td><td><a class="row-link" href="review-detail.html">Abrir</a></td></tr>`;
-    }).join("");
-    const content = `
-      <section class="kpi-grid wide">
-        ${kpiCard(m.rating, "Calificación promedio", "Marca completa")}
-        ${kpiCard(m.newReviews, "Reseñas en Google", "Total acumulado")}
-        ${kpiCard(80, "Positivas", "Volumen julio · USA", "success")}
-        ${kpiCard(21, "Mixtas", "Volumen julio · USA")}
-        ${kpiCard(18, "Negativas", "Volumen julio · USA", "danger")}
-        ${kpiCard(m.pendingReviews, "Pendientes", "Requieren decisión", "warning")}
-        ${kpiCard(m.criticalAlerts, "Alertas de atención", "Revisión humana", "danger")}
-        ${kpiCard(m.responseTime, "Tiempo medio", "Último corte medido")}
-      </section>
-      <div class="dashboard-grid two">
-        <section class="panel"><div class="panel-heading"><div><p class="eyebrow">Temas recurrentes</p><h2>Qué está moviendo la conversación</h2></div></div><div class="bar-list">${data.topics.map((topic) => `<div><span>${topic.label}</span><div><i style="width:${topic.value}%"></i></div><strong>${topic.value}</strong></div>`).join("")}</div></section>
-        <section class="panel"><div class="panel-heading"><div><p class="eyebrow">Comparativo</p><h2>Reputación por sucursal</h2></div></div><div class="branch-score-list">${data.branches.filter((branch) => branch.status === "active").map((branch) => `<div><span>${branch.shortName}</span><strong>${branch.rating}</strong><div class="progress"><span style="width:${branch.rating * 20}%"></span></div><small>${branch.pendingReviews} pendientes</small></div>`).join("")}</div></section>
-      </div>
-      <section class="panel" id="review-inbox">
-        <div class="panel-heading"><div><p class="eyebrow">Bandeja de reseñas</p><h2>Priorizar, investigar y responder</h2></div></div>
-        <div class="filter-controls">
-          <select id="review-branch"><option value="all">Todas las sucursales</option>${data.branches.filter((branch) => branch.status === "active").map((branch) => `<option value="${branch.id}">${branch.shortName}</option>`).join("")}</select>
-          <select id="review-platform"><option value="all">Todas las plataformas</option><option>Google</option><option>Yelp</option><option>Tripadvisor</option></select>
-          <select id="review-risk"><option value="all">Todo riesgo</option><option>Alto</option><option>Medio</option><option>Bajo</option></select>
-          <select id="review-status"><option value="all">Todos los estados</option><option>Investigación</option><option>Borrador</option><option>Respondida</option><option>Pendiente</option><option>Asignada</option></select>
-        </div>
-        <div class="table-wrap"><table><thead><tr><th>Plataforma</th><th>Sucursal</th><th>Calificación</th><th>Cliente</th><th>Fecha</th><th>Fragmento</th><th>Tema</th><th>Sentimiento</th><th>Riesgo</th><th>Estado</th><th></th></tr></thead><tbody>${reviewRows}</tbody></table></div>
-      </section>
-      <section class="panel" id="alerts"><div class="panel-heading"><div><p class="eyebrow">Alertas operativas</p><h2>Casos que necesitan contexto humano</h2></div></div><div class="alert-list">${data.alerts.map((alert) => `<article class="alert-${alert.level}"><span>${alert.level === "critical" ? "Crítica" : alert.level === "positive" ? "Positiva" : "Seguimiento"}</span><div><strong>${alert.title}</strong><p>${alert.branch} · ${alert.owner}</p></div><time>${alert.age}</time><a href="review-detail.html">Revisar</a></article>`).join("")}</div></section>
-      <section class="panel"><div class="panel-heading"><div><p class="eyebrow">Menciones del personal</p><h2>Reconocimiento y oportunidades</h2></div></div><div class="recognition-grid"><article><strong>12</strong><span>Menciones positivas</span><p>San Antonio · Equipo de hospitalidad</p></article><article><strong>9</strong><span>Menciones positivas</span><p>Maricarmen · Equipo de celebraciones</p></article><article><strong>6</strong><span>Oportunidades detectadas</span><p>Marca completa · Seguimiento formativo</p></article></div></section>`;
-    return internalLayout("Reputación y experiencia", "Escucha activa", content);
-  }
-
-  function reviewDetailPage() {
-    const review = data.reviews[0];
-    const branch = branchById(review.branch);
-    const content = `
-      <nav class="breadcrumbs internal"><a href="reputation.html">Reputación</a><span>/</span><span>${review.id}</span></nav>
-      <section class="review-case">
-        <div class="case-main panel">
-          <div class="panel-heading"><div><p class="eyebrow">${review.platform} · ${branch.shortName}</p><h2>Caso ${review.id}</h2></div>${statusBadge(review.risk, "danger")}</div>
-          <div class="review-full"><div><strong>${"★".repeat(review.rating)}${"☆".repeat(5 - review.rating)}</strong><span>${review.date}</span></div><blockquote>${review.excerpt}</blockquote><p>${review.customer} · Identidad anonimizada para la demostración</p></div>
-          <div class="analysis-grid"><article><span>Tema detectado</span><strong>${review.topic}</strong></article><article><span>Riesgo</span><strong>${review.risk}</strong></article><article><span>Responsable</span><strong>${review.owner}</strong></article><article><span>Estado</span><strong id="case-status">${review.status}</strong></article></div>
-          <div class="case-analysis"><h3>Análisis resumido</h3><p>La reseña combina una fricción de reservación con una expectativa de servicio. Requiere validar el registro de la reserva y la hora de llegada antes de preparar una respuesta.</p><h3>Evidencias</h3><div class="evidence-placeholder">Sin evidencias adjuntas · Espacio preparado para capturas, notas y comprobantes internos.</div></div>
-          <div class="suggested-response"><p class="eyebrow">Respuesta sugerida</p><textarea aria-label="Respuesta sugerida">Gracias por compartirnos lo ocurrido. Queremos revisar la reservación y entender mejor el tiempo de espera. Por favor permítenos validar el caso con el equipo de la sucursal antes de darte seguimiento.</textarea><small>Borrador demostrativo. Requiere aprobación humana antes de publicarse.</small></div>
-          <div class="case-actions">${["Asignar", "Solicitar investigación", "Agregar nota", "Generar borrador", "Aprobar respuesta", "Marcar como publicada", "Cerrar caso"].map((label) => `<button class="button ${label === "Cerrar caso" ? "button-primary" : "button-ghost"} review-action" type="button" data-action="${label}">${label}</button>`).join("")}</div>
-        </div>
-        <aside class="case-timeline panel"><p class="eyebrow">Línea de tiempo</p><h2>Historial del caso</h2><ol id="case-timeline"><li class="done"><strong>Reseña detectada</strong><span>Hoy · 8:40</span></li><li class="done"><strong>Alerta enviada</strong><span>Hoy · 8:42</span></li><li class="current"><strong>Caso asignado</strong><span>Hoy · 9:05</span></li><li><strong>Operación investiga</strong><span>Pendiente</span></li><li><strong>Marketing aprueba</strong><span>Pendiente</span></li><li><strong>Agencia publica</strong><span>Pendiente</span></li><li><strong>Caso cerrado</strong><span>Pendiente</span></li></ol></aside>
-      </section>`;
-    return internalLayout("Detalle de reseña", "Caso operativo", content);
-  }
-
-  function requestsPage() {
-    const rows = data.requests.map((request) => requestRow(request)).join("");
-    const content = `
-      <section class="kpi-grid six">
-        ${kpiCard(14, "Abiertas", "Todas las sucursales")}
-        ${kpiCard(6, "En revisión", "Operaciones y Marketing", "warning")}
-        ${kpiCard(9, "Aprobadas", "Este mes", "success")}
-        ${kpiCard(17, "Publicadas", "Con evidencia")}
-        ${kpiCard(3, "Urgentes", "Atención prioritaria", "danger")}
-        ${kpiCard("18 h", "Resolución promedio", "Dato simulado")}
-      </section>
-      <section class="workflow-strip"><div><strong>1</strong><span>Gerente solicita</span></div><i></i><div><strong>2</strong><span>Operaciones valida</span></div><i></i><div><strong>3</strong><span>Marketing aprueba</span></div><i></i><div><strong>4</strong><span>Agencia publica</span></div><i></i><div><strong>5</strong><span>Agencia verifica</span></div></section>
-      <section class="panel"><div class="panel-heading"><div><p class="eyebrow">Centro de solicitudes</p><h2>Seguimiento con responsable y evidencia</h2></div><button class="button button-primary" type="button" data-scroll-to="new-request">Nueva solicitud</button></div><div class="table-wrap"><table><thead><tr><th>Folio</th><th>Fecha</th><th>Sucursal</th><th>Tipo</th><th>Solicitante</th><th>Prioridad</th><th>Responsable</th><th>Estado</th><th>Actualización</th></tr></thead><tbody id="request-table">${rows}</tbody></table></div></section>
-      <section class="panel request-form-panel" id="new-request">
-        <div><p class="eyebrow">Nueva solicitud</p><h2>Dar contexto desde el inicio</h2><p>El formulario es visual y no envía información a ningún sistema real.</p></div>
-        <form id="request-form">
-          <label>Sucursal<select name="branch" required>${data.branches.filter((branch) => branch.status === "active").map((branch) => `<option>${branch.shortName}</option>`).join("")}</select></label>
-          <label>Tipo de solicitud<select name="type" required>${["Cambio de horario", "Horario especial", "Evento", "Promoción", "Menú", "Fotografía", "Teléfono", "Reservaciones", "Corrección de dirección", "Cierre temporal", "Incidente operativo", "Reseña delicada", "Otro"].map((type) => `<option>${type}</option>`).join("")}</select></label>
-          <label class="wide-field">Título<input name="title" required placeholder="Describe el cambio en una frase" /></label>
-          <label class="wide-field">Descripción<textarea name="description" required placeholder="Incluye contexto, fecha y resultado esperado"></textarea></label>
-          <label>Fecha de inicio<input type="date" name="start" /></label>
-          <label>Fecha de finalización<input type="date" name="end" /></label>
-          <label>Prioridad<select name="priority"><option>Media</option><option>Baja</option><option>Alta</option><option>Urgente</option></select></label>
-          <label>Persona responsable<select name="owner"><option>Operaciones</option><option>Marketing</option><option>Gerencia</option><option>Agencia</option></select></label>
-          <label class="wide-field">Plataformas afectadas<input name="platforms" placeholder="Google, sitio web, redes..." /></label>
-          <label class="wide-field upload-field">Evidencia<input type="file" name="evidence" /><span>Adjuntar captura o documento · Solo demostración</span></label>
-          <button class="button button-primary" type="submit">Crear solicitud simulada</button>
-        </form>
-      </section>
-      <section class="panel"><div class="panel-heading"><div><p class="eyebrow">Historial de ejemplo</p><h2>SOL-126 · Horario especial</h2></div>${statusBadge("En revisión", "warning")}</div><div class="history-grid"><div><span>Solicitud inicial</span><strong>Gerencia San Ignacio</strong><small>29 Jul · 9:24</small></div><div><span>Comentario</span><strong>Operaciones solicita horario de cierre</strong><small>29 Jul · 9:38</small></div><div><span>Responsable</span><strong>Operaciones México</strong><small>Asignado</small></div><div><span>Publicación</span><strong>Pendiente</strong><small>Sin evidencia todavía</small></div></div></section>`;
-    return internalLayout("Solicitudes y cambios", "Centro para gerentes", content);
-  }
-
-  function requestRow(request) {
-    const tone = request.priority === "Urgente" ? "danger" : request.status === "Publicada" || request.status === "Verificada" ? "success" : request.status === "En revisión" ? "warning" : "neutral";
-    return `<tr><td><strong>${request.folio}</strong></td><td>${request.date}</td><td>${request.branch}</td><td>${request.type}</td><td>${request.requester}</td><td>${statusBadge(request.priority, tone)}</td><td>${request.owner}</td><td>${request.status}</td><td>${request.updated}</td></tr>`;
-  }
-
-  function reportsPage() {
-    const content = `
-      <section class="executive-summary">
-        <div><p class="eyebrow">Reporte mensual · Julio 2026 (último corte)</p><h2>La marca mantiene una operación digital estable, con oportunidades concentradas en reservaciones y consistencia de listings.</h2></div>
-        <div class="summary-score"><span>Estado general</span><strong>82</strong><small>de 100 · Simulado</small></div>
-      </section>
-      <section class="kpi-grid wide">
-        ${kpiCard("+0.2", "Variación de calificación", "Contra mes anterior", "success")}
-        ${kpiCard(213, "Reseñas recibidas", "5 sucursales")}
-        ${kpiCard(7, "Alertas críticas", "Todas atendidas", "danger")}
-        ${kpiCard(11, "Casos resueltos", "Con seguimiento")}
-        ${kpiCard(17, "Solicitudes completadas", "Este mes")}
-        ${kpiCard(9, "Listings corregidos", "Con evidencia")}
-        ${kpiCard("San Antonio", "Sucursal destacada", "Volumen y consistencia", "accent")}
-        ${kpiCard("Reservaciones", "Área de oportunidad", "Proceso y comunicación", "warning")}
-      </section>
-      <div class="dashboard-grid two">
-        <section class="panel"><div class="panel-heading"><div><p class="eyebrow">México vs. Estados Unidos</p><h2>Comparación regional</h2></div></div><div class="region-compare"><article><span>México</span><strong>4.6</strong><div class="progress"><span style="width:92%"></span></div><p>73 reseñas · 79% listings</p></article><article><span>Estados Unidos</span><strong>4.4</strong><div class="progress"><span style="width:88%"></span></div><p>140 reseñas · 85% listings</p></article></div></section>
-        <section class="panel"><div class="panel-heading"><div><p class="eyebrow">Evolución mensual</p><h2>Índice de salud digital</h2></div></div><div class="trend-chart">${data.monthlyTrend.map((value, index) => `<div><span style="height:${value}%"></span><small>${["Feb", "Mar", "Abr", "May", "Jun", "Jul"][index]}</small></div>`).join("")}</div></section>
-      </div>
-      <section class="panel"><div class="panel-heading"><div><p class="eyebrow">Sucursal vs. marca</p><h2>Lectura comparativa</h2></div></div><div class="branch-report-grid">${data.branches.filter((branch) => branch.status === "active").map((branch) => `<article><span>${branch.shortName}</span><strong>${branch.rating}</strong><div class="progress"><span style="width:${branch.rating * 20}%"></span></div><p>${branch.listings}% listings · ${branch.alerts} alertas</p></article>`).join("")}</div></section>
-      ${reservationChannelsPanel()}
-      <section class="panel recommendations"><div><p class="eyebrow">Recomendaciones</p><h2>Próximas decisiones</h2></div><ol><li>Actualizar y documentar horarios especiales por sucursal.</li><li>Revisar el proceso de reservaciones y confirmaciones.</li><li>Documentar políticas para grupos y celebraciones.</li><li>Fortalecer la respuesta a reseñas críticas con aprobación humana.</li><li>Completar directorios pendientes y conservar evidencia.</li><li>Preparar la presencia digital de la sexta sucursal.</li></ol></section>
-      <section class="report-actions"><button class="button button-primary" type="button" data-demo-action="La descarga en PDF se habilitará en la versión operativa.">Descargar PDF</button><button class="button button-ghost" type="button" data-demo-action="Enlace de reporte copiado en una implementación real.">Compartir reporte</button><button class="button button-ghost" type="button" data-demo-action="La programación de envíos requiere responsables y correos aprobados.">Programar envío</button></section>`;
-    return internalLayout("Reporte ejecutivo", "Dirección y propietarios", content);
-  }
-
   function modalMarkup() {
     return `<div class="modal" id="demo-modal" aria-hidden="true"><div class="modal-backdrop" data-close-modal></div><section role="dialog" aria-modal="true" aria-labelledby="modal-title"><button class="modal-close" type="button" data-close-modal aria-label="Cerrar">×</button><p class="eyebrow">Próxima apertura</p><h2 id="modal-title">Recibe novedades.</h2><p>Déjanos tu correo y te avisamos cuando abramos en El Paso. Mientras tanto, sigue @sinyolandaelpaso en Instagram.</p><a class="button button-primary" href="https://www.instagram.com/sinyolandaelpaso/" target="_blank" rel="noopener">Seguir @sinyolandaelpaso</a><small>El boletín por correo se activará con la conexión del sistema.</small></section></div>`;
   }
@@ -639,16 +475,6 @@
       });
     }
 
-    const dashboardMenu = document.querySelector(".dashboard-menu");
-    const sidebar = document.querySelector(".sidebar");
-    if (dashboardMenu && sidebar) {
-      dashboardMenu.addEventListener("click", () => {
-        const expanded = dashboardMenu.getAttribute("aria-expanded") === "true";
-        dashboardMenu.setAttribute("aria-expanded", String(!expanded));
-        sidebar.classList.toggle("open", !expanded);
-      });
-    }
-
     document.querySelectorAll("[data-demo-action]").forEach((button) => {
       button.addEventListener("click", () => showToast(button.dataset.demoAction));
     });
@@ -657,10 +483,17 @@
       button.addEventListener("click", () => document.getElementById(button.dataset.scrollTo)?.scrollIntoView({ behavior: "smooth" }));
     });
 
-    document.getElementById("global-branch")?.addEventListener("change", (event) => {
-      const selected = event.target.options[event.target.selectedIndex].text;
-      showToast(`Filtro demostrativo actualizado: ${selected}.`);
+    // A booking entry should not strand the visitor in the coming-soon filter.
+    // Preserve native navigation and existing country choices; only clear "soon".
+    document.querySelectorAll("[data-select-location]").forEach((link) => {
+      link.addEventListener("click", (event) => {
+        if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        if (document.querySelector('[data-venue-filter="soon"][aria-pressed="true"]')) {
+          document.querySelector('[data-venue-filter="all"]')?.click();
+        }
+      });
     });
+
   }
 
   function bindLocationFilters() {
@@ -670,7 +503,8 @@
       filter.addEventListener("click", () => {
         filters.forEach((item) => item.classList.toggle("active", item === filter));
         cards.forEach((card) => {
-          card.hidden = filter.dataset.filter !== "all" && card.dataset.region !== filter.dataset.filter;
+          card.hidden = filter.dataset.filter === "soon" ? card.dataset.status !== "coming-soon"
+            : filter.dataset.filter !== "all" && card.dataset.region !== filter.dataset.filter;
         });
       });
     });
@@ -691,73 +525,6 @@
     modal.querySelectorAll("[data-close-modal]").forEach((button) => button.addEventListener("click", close));
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape") close();
-    });
-  }
-
-  function bindListings() {
-    document.querySelectorAll("[data-listing]").forEach((button) => {
-      button.addEventListener("click", () => {
-        document.getElementById("listing-detail").innerHTML = listingDetail(button.dataset.listing, Number(button.dataset.directory));
-        document.getElementById("listing-detail").scrollIntoView({ behavior: "smooth", block: "center" });
-      });
-    });
-    document.querySelectorAll(".listing-branch").forEach((button) => {
-      button.addEventListener("click", () => {
-        document.getElementById("listing-detail").innerHTML = listingDetail(button.dataset.branch, 1);
-        document.getElementById("listing-detail").scrollIntoView({ behavior: "smooth", block: "center" });
-      });
-    });
-  }
-
-  function bindReviewFilters() {
-    const controls = ["review-branch", "review-platform", "review-risk", "review-status"].map((id) => document.getElementById(id));
-    if (!controls[0]) return;
-    const apply = () => {
-      document.querySelectorAll(".review-row").forEach((row) => {
-        const visible =
-          (controls[0].value === "all" || row.dataset.branch === controls[0].value) &&
-          (controls[1].value === "all" || row.dataset.platform === controls[1].value) &&
-          (controls[2].value === "all" || row.dataset.risk === controls[2].value) &&
-          (controls[3].value === "all" || row.dataset.status === controls[3].value);
-        row.hidden = !visible;
-      });
-    };
-    controls.forEach((control) => control.addEventListener("change", apply));
-  }
-
-  function bindReviewActions() {
-    document.querySelectorAll(".review-action").forEach((button) => {
-      button.addEventListener("click", () => {
-        document.getElementById("case-status").textContent = button.dataset.action;
-        const item = document.createElement("li");
-        item.className = "current";
-        item.innerHTML = `<strong>${button.dataset.action}</strong><span>Ahora · Acción simulada</span>`;
-        document.getElementById("case-timeline").prepend(item);
-        showToast(`${button.dataset.action}: cambio aplicado únicamente en esta demostración.`);
-      });
-    });
-  }
-
-  function bindRequestForm() {
-    const form = document.getElementById("request-form");
-    if (!form) return;
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
-      const values = new FormData(form);
-      const request = {
-        folio: `SOL-${127 + document.querySelectorAll("#request-table tr").length}`,
-        date: "Ahora",
-        branch: values.get("branch"),
-        type: values.get("type"),
-        requester: "Gerencia",
-        priority: values.get("priority"),
-        owner: values.get("owner"),
-        status: "Nueva",
-        updated: "Hace un momento",
-      };
-      document.getElementById("request-table").insertAdjacentHTML("afterbegin", requestRow(request));
-      form.reset();
-      showToast("Solicitud simulada creada. No se guardó ni envió información.");
     });
   }
 
@@ -1021,7 +788,6 @@
     const hero = document.querySelector(".home-hero-cinema");
     if (!hero) return;
     const video = hero.querySelector("[data-hero-video]");
-    const copy = hero.querySelector(".hero-copy-cinema");
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const fine = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
@@ -1032,12 +798,10 @@
       ticking = false;
       const rect = hero.getBoundingClientRect();
       const vh = window.innerHeight || 1;
-      const p = Math.min(Math.max(-rect.top / (rect.height - vh || 1), 0), 1);
+      // Move the background gently, never fade the title/actions after a pixel
+      // of scrolling or use a negative divisor on a short viewport.
+      const p = Math.min(Math.max(-rect.top / Math.max(rect.height, vh, 1), 0), 1);
       video.style.transform = `translateY(${-3 * p}%) scale(${1 + 0.05 * p})`;
-      if (copy) {
-        copy.style.opacity = String(1 - p);
-        copy.style.transform = `translateY(${50 * p}px)`;
-      }
     };
     const onScroll = () => {
       if (!ticking) { ticking = true; requestAnimationFrame(update); }
@@ -1051,12 +815,6 @@
     home: homePage,
     locations: locationsPage,
     branch: branchPage,
-    dashboard: dashboardPage,
-    listings: listingsPage,
-    reputation: reputationPage,
-    "review-detail": reviewDetailPage,
-    requests: requestsPage,
-    reports: reportsPage,
     catering: cateringPage,
     "la-cantina": laCantinaPage,
     eventos: eventosPage,
@@ -1069,10 +827,6 @@
   initHeroCinema();
   bindLocationFilters();
   bindModal();
-  bindListings();
-  bindReviewFilters();
-  bindReviewActions();
-  bindRequestForm();
   bindReservationModules();
   scrollToReveal();
 })();

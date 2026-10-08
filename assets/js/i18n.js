@@ -41,6 +41,12 @@
     "México": "Mexico",
     "Estados Unidos": "United States",
     "Filtrar ubicaciones": "Filter locations",
+    "Cuál te queda": "Find your cantina",
+    "México y Estados Unidos": "Mexico and United States",
+    "Jalisco, México": "Jalisco, Mexico",
+    "Zona Chapalita, Zapopan": "Chapalita area, Zapopan",
+    "Abre 9 de octubre": "Opens October 9",
+    "Elige tu sucursal": "Choose your location",
 
     /* ---------- TARJETAS / CTAS ---------- */
     "Ver sucursal": "View location",
@@ -48,6 +54,8 @@
     "Seguir la apertura": "Follow the opening",
     "Recibir novedades": "Get updates",
     "Próxima apertura": "Opening soon",
+    "9 de octubre": "October 9",
+    "Conoce la sucursal": "View location",
     "Reservar evento": "Book an event",
 
     /* ---------- SECCIONES HOME ---------- */
@@ -385,7 +393,7 @@
     [/\bJalisco\b/g, "Jalisco"],
   ];
   const LANG_KEY = "sy-lang";
-  const TRANSLATABLE_SELECTOR = "h1, h2, h3, h4, h5, h6, p, a, span, strong, em, li, blockquote, dt, dd, option, small, button:not([aria-label]), label, figcaption, summary";
+  const TRANSLATABLE_SELECTOR = "h1, h2, h3, h4, h5, h6, p, a, span, strong, em, li, blockquote, dt, dd, option, small, button:not([aria-label]), label, figcaption, summary, .opening-announcement time";
 
   let current = "es";
 

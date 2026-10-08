@@ -79,6 +79,19 @@
     "images/houston-hands.webp",
     "images/houston-menu-cenefa.webp",
     "images/opentable-mark.svg",
-    "images/sin-yolanda-logo.png"
-  ]
+    "images/sin-yolanda-logo.png",
+    "assets/css/venue-selector.css",
+    "assets/js/venue-selector.js",
+    "licenses/react-bits.txt",
+    "assets/media/hero-fiesta-real.mp4",
+    "assets/media/hero-fiesta-real-poster.webp",
+    "assets/media/banner-canto.jpg",
+    "assets/media/banner-celebracion.jpg",
+    "assets/media/venue-elpaso.webp",
+    "assets/media/venues/san-ignacio.webp",
+    "assets/media/venues/san-antonio.webp",
+    "assets/media/venues/the-woodlands.webp",
+    "assets/media/venues/houston.webp"
+  ],
+  "assetVersion": "20261008-source"
 }

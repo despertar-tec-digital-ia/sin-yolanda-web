@@ -45,7 +45,7 @@
         </div>
         <div>
           <strong>Sucursales abiertas</strong>
-          <a href="san-ignacio.html">San Ignacio · Av. San Ignacio 78, Zapopan, Jal.</a>
+          <a href="san-ignacio.html">Sin Yolanda Guadalajara · Av. San Ignacio 78, Zapopan, Jal.</a>
           <a href="san-antonio.html">San Antonio · 415 E Commerce St, TX</a>
           <a href="the-woodlands.html">The Woodlands · 1400 Research Forest Dr, Shenandoah, TX</a>
           <a href="houston.html">Houston · 4901 Washington Ave, TX</a>
@@ -67,7 +67,7 @@
   function locationCard(branch) {
     const isSoon = branch.status === "coming-soon";
     return `
-      <article class="location-card" data-region="${branch.region}">
+      <article class="location-card" data-region="${branch.region}" data-status="${branch.status}">
         <div class="location-card-media">
           <img src="${branch.image}" alt="${branch.name}" />
           ${statusBadge(branch.statusLabel, isSoon ? "warning" : "success")}
@@ -78,9 +78,9 @@
           <span>${branch.concept}</span>
           <div class="card-actions">
             ${isSoon
-              ? `${branch.socialUrl
+              ? `${branch.page !== "#" ? `<a class="button button-primary" href="${branch.page}">Ver sucursal</a>` : ""}${branch.socialUrl
                   ? `<a class="button button-primary" href="${branch.socialUrl}" target="_blank" rel="noopener">Seguir la apertura</a>`
-                  : ""}<button class="button ${branch.socialUrl ? "button-ghost" : "button-primary"}" type="button" data-open-modal="news">Recibir novedades</button>`
+                  : ""}`
               : `<a class="button button-primary" href="${branch.reserveChannel === "opentable" ? branch.reserveUrl : `https://wa.me/${branch.whatsapp}`}" target="_blank" rel="noopener">Reservar</a>
                  <a class="button button-ghost" href="${branch.page}">Ver sucursal</a>
                  <a class="text-button" href="${branch.mapsUrl}" target="_blank" rel="noopener">Cómo llegar</a>`}
@@ -89,8 +89,59 @@
       </article>`;
   }
 
+  function venueShowcase() {
+    const branches = data.branches.filter((branch) => ["active", "coming-soon"].includes(branch.status));
+    return `
+        <section class="section venue-showcase" id="ubicaciones" aria-labelledby="venue-heading">
+          <div class="section-heading"><div><h2 id="venue-heading">Cuál te queda</h2></div><p>México y Estados Unidos</p></div>
+          <div class="filter-chips" role="group" aria-label="Filtrar ubicaciones" data-venue-filters>
+            <button class="filter active" type="button" data-venue-filter="all" aria-pressed="true">Todas</button>
+            <button class="filter" type="button" data-venue-filter="mx" aria-pressed="false">México</button>
+            <button class="filter" type="button" data-venue-filter="us" aria-pressed="false">Estados Unidos</button>
+            <button class="filter" type="button" data-venue-filter="soon" aria-pressed="false">Próximamente</button>
+          </div>
+          <ul class="venue-gallery" data-venue-gallery>
+            ${branches.map((branch, index) => {
+              const hasPage = branch.page !== "#";
+              const tag = hasPage ? "a" : "div";
+              const name = branch.shortName;
+              const opening = branch.openingDate === "2026-10-09" ? "Abre 9 de octubre" : "Próximamente";
+              return `<li class="venue-item${index === 0 ? " is-open" : ""}" data-venue-item data-region="${branch.region}" data-status="${branch.status}">
+              <${tag} class="venue-card${index === 0 ? " is-open" : ""}${branch.status === "coming-soon" ? " venue-card--soon" : ""}${branch.venuePhoto ? "" : " venue-card--announcement"}"${hasPage ? ` href="${branch.page}"` : ""} data-venue data-branch-id="${branch.id}">
+                <span class="venue-frame" aria-hidden="true">${branch.venuePhoto ? `<img src="${branch.venuePhoto}" alt="" width="1400" height="1000" loading="lazy" decoding="async" style="object-position:${branch.venuePosition || "50% 50%"}" />` : `<span class="venue-announcement">Sin Yolanda<span>Próximamente</span></span>`}<span class="venue-shade"></span></span>
+                <span class="venue-location" aria-hidden="true">${branch.country === "México" ? "Jalisco, México" : branch.city}</span>
+                <span class="venue-collapsed" aria-hidden="true">${name}</span>
+                ${branch.openingDate === "2026-10-09" ? `<span class="venue-opening-date" aria-hidden="true">9 OCT</span>` : ""}
+                <span class="venue-label">
+                  ${branch.status === "coming-soon" ? `<span class="venue-badge">${opening}</span>` : ""}
+                  <strong>${name}</strong>
+                  <span class="venue-city">${branch.venueCity || branch.city}</span>
+                  ${hasPage ? `<span class="venue-invitation" aria-hidden="true">Ver sucursal <svg viewBox="0 0 20 20" fill="none"><path d="M4 10h12m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.5"></path></svg></span>` : ""}
+                </span>
+              </${tag}>
+              </li>`;
+            }).join("")}
+          </ul>
+          <p class="venue-sr" data-venue-status aria-live="polite" aria-atomic="true"></p>
+        </section>`;
+  }
+
+  function openingAnnouncement() {
+    const branch = data.branches.find((item) => item.id === "el-paso");
+    if (!branch || branch.status !== "coming-soon" || branch.openingDate !== "2026-10-09") return "";
+    return `<aside class="opening-announcement" aria-label="Próxima apertura">
+      <div class="opening-announcement-inner">
+        <p class="opening-announcement-details"><span>Próxima apertura</span>
+          <strong><a href="${branch.page}">El Paso</a></strong>
+          <time datetime="${branch.openingDate}">9 de octubre</time></p>
+        <a class="opening-announcement-link" href="${branch.page}">Conoce la sucursal
+          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h12m-5-5 5 5-5 5"/></svg></a>
+      </div>
+    </aside>`;
+  }
+
   function homePage() {
-    const waGdl = `https://wa.me/523310186159?text=${encodeURIComponent("Hola, quiero reservar una mesa en Sin Yolanda San Ignacio.")}`;
+    const waGdl = `https://wa.me/523310186159?text=${encodeURIComponent("Hola, quiero reservar una mesa en Sin Yolanda Guadalajara.")}`;
     const plan = [
       ["Comida", "assets/media/dining.webp", "Para el centro de la mesa. Se comparte o no se pide."],
       ["Tragos", "assets/media/cocktail.webp", "Coquetos. Sin lista de precios: pregunta y te contamos."],
@@ -121,9 +172,9 @@
               loop
               playsinline
               preload="metadata"
-              poster="assets/media/hero-celebration-poster.webp"
+              poster="assets/media/hero-fiesta-real-poster.webp"
               data-hero-video>
-              <source src="assets/media/hero-celebration.mp4" type="video/mp4" />
+              <source src="assets/media/hero-fiesta-real.mp4" type="video/mp4" />
             </video>
           </div>
           <div class="hero-overlay hero-overlay-cinema"></div>
@@ -136,6 +187,24 @@
               <a class="button button-ghost-light" href="#ubicaciones">Encuentra tu Sin Yolanda</a>
             </div>
             <p class="hero-micro">México · Texas</p>
+          </div>
+        </section>
+
+        ${openingAnnouncement()}
+
+        <section class="rotulo-banner" id="rotulo" aria-label="Aquí no se llora">
+          <div class="rotulo-inner">
+            <div class="rotulo-photos" aria-hidden="true">
+              <img src="assets/media/banner-canto.jpg" alt="" loading="lazy" width="700" height="1050" />
+              <img src="assets/media/banner-celebracion.jpg" alt="" loading="lazy" width="700" height="1050" />
+            </div>
+            <div class="rotulo-type">
+              <svg class="rotulo-art" viewBox="0 0 600 540" aria-hidden="true" focusable="false"><defs><path id="rotulo-arch" d="M85 109 Q300 42 515 109"></path><path id="rotulo-time-arch" d="M20 255 Q300 177 580 255"></path><path id="rotulo-last-arch" d="M25 427 Q300 507 575 427"></path><g id="rotulo-no-hay"><text class="rotulo-overture"><textPath href="#rotulo-arch" startOffset="50%" text-anchor="middle">NO HAY</textPath></text></g><g id="rotulo-tiempo"><text textLength="534" lengthAdjust="spacingAndGlyphs" class="rotulo-main-word"><textPath href="#rotulo-time-arch" startOffset="50%" text-anchor="middle">TIEMPO</textPath></text></g><g id="rotulo-llorar"><text textLength="534" lengthAdjust="spacingAndGlyphs" class="rotulo-last-word"><textPath href="#rotulo-last-arch" startOffset="50%" text-anchor="middle">LLORAR</textPath></text></g></defs><g class="rotulo-top"><use href="#rotulo-no-hay" class="rotulo-edge" transform="translate(3 4)"></use><use href="#rotulo-no-hay" class="rotulo-face"></use></g><g class="rotulo-center"><use href="#rotulo-tiempo" class="rotulo-depth" transform="translate(7 9.1)"></use><use href="#rotulo-tiempo" class="rotulo-depth" transform="translate(6 7.8)"></use><use href="#rotulo-tiempo" class="rotulo-depth" transform="translate(5 6.5)"></use><use href="#rotulo-tiempo" class="rotulo-depth" transform="translate(4 5.2)"></use><use href="#rotulo-tiempo" class="rotulo-depth" transform="translate(3 3.9)"></use><use href="#rotulo-tiempo" class="rotulo-depth" transform="translate(2 2.6)"></use><use href="#rotulo-tiempo" class="rotulo-depth" transform="translate(1 1.3)"></use><use href="#rotulo-tiempo" class="rotulo-outline"></use><use href="#rotulo-tiempo" class="rotulo-face"></use></g><g class="rotulo-bridge" fill="currentColor"><path d="M95 295 Q155 279 220 295 Q155 285 95 300Z"></path><text x="300" y="307" text-anchor="middle">para</text><path d="M505 295 Q445 279 380 295 Q445 285 505 300Z"></path></g><g class="rotulo-finale"><use href="#rotulo-llorar" class="rotulo-depth" transform="translate(7 9.1)"></use><use href="#rotulo-llorar" class="rotulo-depth" transform="translate(6 7.8)"></use><use href="#rotulo-llorar" class="rotulo-depth" transform="translate(5 6.5)"></use><use href="#rotulo-llorar" class="rotulo-depth" transform="translate(4 5.2)"></use><use href="#rotulo-llorar" class="rotulo-depth" transform="translate(3 3.9)"></use><use href="#rotulo-llorar" class="rotulo-depth" transform="translate(2 2.6)"></use><use href="#rotulo-llorar" class="rotulo-depth" transform="translate(1 1.3)"></use><use href="#rotulo-llorar" class="rotulo-outline"></use><use href="#rotulo-llorar" class="rotulo-face"></use><path class="rotulo-underline" d="M100 485 Q300 528 500 485 Q300 543 100 485Z"></path></g></svg>
+              <h2 class="rotulo-sr">No hay tiempo para llorar</h2>
+            </div>
+            <div class="rotulo-invitation">
+              <a class="rotulo-cta" href="#ubicaciones">Elige tu sucursal <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16m-6-6 6 6 6-6"></path></svg></a>
+            </div>
           </div>
         </section>
 
@@ -188,16 +257,7 @@
           </div>
         </section>
 
-        <section class="section location-showcase" id="ubicaciones">
-          <div class="section-heading"><div><p class="eyebrow">Ubicaciones</p><h2 class="reveal">¿Cuál te queda?</h2></div></div>
-          <div class="filter-chips" role="group" aria-label="Filtrar ubicaciones">
-            <button class="filter active" type="button" data-filter="all">Todas</button>
-            <button class="filter" type="button" data-filter="mx">México</button>
-            <button class="filter" type="button" data-filter="us">Estados Unidos</button>
-            <button class="filter" type="button" data-filter="soon">Próximamente</button>
-          </div>
-          <div class="location-grid">${data.branches.map(locationCard).join("")}</div>
-        </section>
+        ${venueShowcase()}
 
         <section class="reserve-cta" id="reserve">
           <div><p class="eyebrow">¿Sin Yolanda? Si sabes, sabes.</p><h2 class="reveal">Ya quedó.</h2></div>
@@ -379,7 +439,8 @@
       filter.addEventListener("click", () => {
         filters.forEach((item) => item.classList.toggle("active", item === filter));
         cards.forEach((card) => {
-          card.hidden = filter.dataset.filter !== "all" && card.dataset.region !== filter.dataset.filter;
+          card.hidden = filter.dataset.filter === "soon" ? card.dataset.status !== "coming-soon"
+            : filter.dataset.filter !== "all" && card.dataset.region !== filter.dataset.filter;
         });
       });
     });

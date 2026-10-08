@@ -4,6 +4,11 @@
 **Estado:** inventario de fuentes versionadas y destinos propuestos; no es un crawl HTTP completo.
 No aplicar redirects ni crear páginas solo por figurar en esta tabla.
 
+**Candidata local posterior 7-oct:** franja a `el-paso.html` debajo del hero; selector con enlaces
+nativos a la ficha propia. Moreno Valley/San Diego sin href hasta tener página real. Houston
+ES/EN/carta 30-sep recuperados en paquete, no producción. Guadalajara mantiene `/san-ignacio`;
+sin nueva ruta `/guadalajara`, redirects ni duplicados. Detalle y QA: `WORKFLOW.md` §7.
+
 **Revalidación HTTP posterior 7-oct:** `/houston` sirve la ficha genérica nueva; `.html` y slash
 final resuelven al canonical sin slash. Carta y EN responden 200 antiguo en URL habitual pero 404
 con query fresca y en deployment `766a7c6c`; no considerarlas presentes en ese release. Maricarmen

@@ -143,12 +143,54 @@ automatizar vigencia con aprobar contenido nuevo leído de Instagram. Sin agenda
 | D05 · 7-oct | Implementada en candidato | Release estático autocontenido, donante separado y explícito | Tests/build sin sibling; futura importación requiere build fresco verificado |
 | D06 · 7-oct | Implementada en candidato | Lista pública explícita y JS/datos separados del panel demo | Pruebas negativas; falta despliegue autorizado para retirar el demo del dominio |
 | D07 · 7-oct | Implementada en candidato | CI read-only sin secretos ni publicación | Validar run remoto; CD/credenciales/protecciones se activan aparte |
+| D08 · 7-oct | Solicitada por Luis; candidata local | Franja naranja El Paso directamente después del hero, fecha 9-oct y enlace a su ficha | Anuncio independiente del hero; estado/fecha del registro público, no declarar apertura por el reloj |
 
 Agregar una fila solo si cambia el contrato. Cambios de implementación → PR/commit; cambios de
 ruta → ROUTES; no duplicar reseñas largas de sesión. Un release registra commit, sourceRef/hash,
 artefacto, pruebas, aprobación y rollback. Archivar evidencia de QA sin datos privados ni secretos.
 
 ## 7. Activación por pasos
+
+### Primer lote correctivo local · 7-oct, posterior a la auditoría
+
+Rama `fix/live-source-selector`, sobre PR #7. **No publicado ni fusionado.** Se recuperaron los
+cambios públicos del upload `766a7c6c` dentro del alcance: video/póster, home, rótulo/fotos y 180
+líneas nuevas de CSS. Nueve fuentes auditadas revalidadas sin cambios; otras páginas cotejadas.
+No trasladar demos, datos internos, scripts de despliegue ni ofuscación de email inyectada por
+Cloudflare. El 404 conserva copy neutro, no ocho sucursales. No es respaldo integral de Pages.
+
+Hero: HTML idéntico al publicado, SHA-256 `8ea0e9317329fcd214295f209aef25a06272fed997e7612bb4449ed18ada4e8e`;
+video idéntico, ambos controlados por test. Video, póster, copy y comportamiento conservados;
+nuevo CSS limitado al selector/rótulo/franja. Header/footer públicos sin enlace al panel.
+Selector: `ul > li > a`, primer clic/Enter/tacto nativos, una preview y último hover/foco retenido.
+Retícula móvil/tablet/tacto; acordeón desde 1100 px solo con puntero fino/hover. Filtros con
+7/1/6/3 registros; futuras sedes sin página son anuncios no enlazados, sin fotos inventadas.
+Más de siete tarjetas pasa a retícula. Guadalajara conserva ID/ruta y orientación Chapalita.
+Rótulo conserva SVG; carga Alfa real, corrige altura de fotos y CTA. Licencia del patrón en
+`licenses/react-bits.txt` (MIT + Commons Clause), no retirar al distribuir.
+
+Fotos: Guadalajara/SA/Houston conservan motivos publicados en WebP local a resolución original.
+El Paso conserva el recurso ilustrativo del upload, no afirmar foto propia. TW tenía hotlink roto:
+candidata real del banco revisado `the-woodlands-hero-1600.webp`, sin generación IA. Sustitución y
+permisos requieren revisión de release; QA no concede permiso comercial. Franja: ancho completo,
+naranja cálido contrastado, El Paso/fecha `time`/CTA a ficha propia; ES/EN y apilado móvil. Confirmar
+operación antes de cambiar El Paso a abierta o retirar el anuncio; no inventar fechas para otras.
+
+Houston: paquete recupera ficha ES/EN + carta del corte 30-sep, OpenTable, teléfono confirmado y
+mapa Google fijo. **No importado aún el Catering/cartelera posterior ni las otras fichas donantes.**
+Metadatos del directorio usan Guadalajara/teléfono Houston confirmado; rutas/canonicals intactos.
+`npm run check`: 24 tests; paquete 89 archivos/15 HTML, 173 referencias. `qa:selector`: ocho
+combinaciones 320–1920 px, desktop táctil incluido, filtros/fotos pintadas/nombres/altura, último
+hover, primer clic/Enter/toque, ES/EN, movimiento reducido y mapa/carta. Cinco rutas/archivos
+excluidos responden 404 en servidor del artefacto. Capturas revisadas; evidencia local ignorada
+`.artifacts/selector-qa-20261008-final/report.json`. Iteraciones detectaron y corrigieron capa que
+tapaba fotos y fecha EN sin traducir, no solo overflow. Hero preservado, no rediseñado.
+
+Repetir sobre artefacto fresco: `SY_QA_ORIGIN` local y `SY_QA_PACKAGE_ROOT` con Playwright instalado,
+`npm run qa:selector`. Sonda GET-only/bloqueo de envíos/telemetría, evidencia fuera del paquete.
+Gate local, **no cableado todavía a CI/CD**. No Safari/dispositivos reales/Lighthouse/backend.
+Persisten HTML inicial/SEO, contenido simulado/notas heredadas de otros bloques, importaciones
+restantes y controles remotos. No certificar el sitio entero ni publicar sin revisión/aprobación.
 
 ### Paso 1 revisado: producción, selector y rótulo · 7-oct
 

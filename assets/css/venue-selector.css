@@ -1,7 +1,7 @@
 /* Sin Yolanda adaptation of the reviewed AccordionGallery pattern.
  * Original: David Haz, 5c73f3d065d4c074ae3c5fa66b4918e07fc999fa.
  * MIT + Commons Clause notice: /licenses/react-bits.txt.
- * Scoped to the selector/rótulo: the cinematic hero is deliberately untouched.
+ * Scoped home refinements: the cinematic hero is deliberately untouched.
  */
 @font-face {
   font-family: "SY Venue Display";
@@ -173,6 +173,12 @@
   background: var(--cream);
   color: var(--maroon);
 }
+.venue-showcase .venue-badge--opening {
+  padding: 7px 13px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
 .venue-showcase .venue-collapsed,
 .venue-showcase .venue-opening-date { display: none; }
 .venue-showcase .venue-collapsed,
@@ -250,8 +256,15 @@
     position: absolute;
     inset: 22px 0 auto;
     color: var(--cream);
-    font: 400 24px/1 "SY Venue Display", Impact, sans-serif;
+    font: 400 32px/1 "SY Venue Display", Impact, sans-serif;
     text-align: center;
+  }
+  .venue-showcase .venue-opening-date > span {
+    display: block;
+    margin-bottom: 5px;
+    font: 600 10px/1.3 Inter, sans-serif;
+    letter-spacing: .08em;
+    text-transform: uppercase;
   }
   .venue-showcase .venue-gallery:not(.venue-gallery--many) .is-open .venue-opening-date { display: none; }
   .venue-showcase .venue-gallery:not(.venue-gallery--many) .venue-announcement { font-size: 0; }
@@ -279,14 +292,40 @@
   .venue-showcase .venue-location { transition: none !important; }
 }
 
-/* Correct the HTML intrinsic-height bug without altering the rótulo artwork. */
-.rotulo-photos img { height: auto; }
+/* Luis explicitly retained Karina's tall photo windows. Preserve their published
+ * 230 × 1050 proportion, scaling both axes together on narrower screens.
+ * The natural media/artwork and its rounded arch treatment remain unchanged.
+ */
+.rotulo-photos img { height: auto; aspect-ratio: 23 / 105; }
 .rotulo-art { max-width: 100%; }
-.rotulo-photos { align-items: center; }
+.rotulo-photos { width: 100%; align-items: center; }
 @media (min-width: 880px) {
-  .rotulo-inner { gap: 24px 40px; }
-  .rotulo-photos { grid-column: 1; grid-row: 1 / 3; min-width: 0; }
-  .rotulo-photos img { width: min(46%, 210px); }
-  .rotulo-type { grid-column: 2; grid-row: 1; min-width: 0; }
-  .rotulo-invitation { grid-column: 2; grid-row: 2; margin-top: 0; }
+  .rotulo-photos { min-width: 0; }
+  .rotulo-photos img { width: min(230px, calc((100% - 14px) / 2)); }
+  .rotulo-type { min-width: 0; }
+}
+
+/* The home uses experience-media, not the older experience-photo selector.
+ * Fill the grid cell without stretching the portrait into a landscape image.
+ */
+#experiencia .experience-media {
+  position: relative;
+  overflow: hidden;
+  min-height: 520px;
+}
+#experiencia .experience-media img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+@media (max-width: 900px) {
+  #experiencia .experience-media {
+    min-height: 0;
+    aspect-ratio: 4 / 5;
+    max-height: 720px;
+  }
 }

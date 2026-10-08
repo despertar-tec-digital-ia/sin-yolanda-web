@@ -11,8 +11,9 @@ Las decisiones, responsabilidades, requisitos de CI/accesos y bloqueos están en
 **7-oct: CI de PR y paquete público verificados; sin nuevo despliegue ni CD activo.** El hero del home
 queda bajo responsabilidad de Karina. Las instrucciones no sustituyen protecciones de GitHub.
 **Candidata local posterior:** fuente reciente reconciliada dentro del primer lote, selector
-responsive, franja El Paso y Houston ES/EN/carta recuperados. 24 tests + ocho combinaciones de
-navegador; alcance/evidencia/límites en `docs/WORKFLOW.md` §7. Sin merge ni despliegue.
+responsive, franja El Paso y Houston ES/EN/carta recuperados. Refinamiento de fotos/fecha y
+QA posterior: 26 tests + diez combinaciones de navegador; alcance/evidencia/límites en
+`docs/WORKFLOW.md` §7. Sin merge ni despliegue.
 
 ## Stack
 - HTML/CSS/JS vanilla; validación/empaquetado determinista con Node, sin dependencias npm.

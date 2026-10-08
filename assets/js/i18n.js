@@ -45,7 +45,9 @@
     "México y Estados Unidos": "Mexico and United States",
     "Jalisco, México": "Jalisco, Mexico",
     "Zona Chapalita, Zapopan": "Chapalita area, Zapopan",
-    "Abre 9 de octubre": "Opens October 9",
+    "Abre el 9 de octubre": "Opens October 9",
+    "Abre": "Opens",
+    "Ruleta de shots y bebidas sobre una mesa de Sin Yolanda": "A shot roulette and drinks on a Sin Yolanda table",
     "Elige tu sucursal": "Choose your location",
 
     /* ---------- TARJETAS / CTAS ---------- */
@@ -439,21 +441,24 @@
       });
     });
 
-    document.querySelectorAll("[aria-label]").forEach((el) => {
-      const a = el.getAttribute("aria-label");
-      if (!a) return;
-      if (lang === "en") {
-        if (el._syA === undefined) el._syA = a;
-        let rep = null;
-        for (const [re, tpl] of PREFIX_SWAPS) {
-          const m = a.match(re);
-          if (m) { rep = tpl.replace("$1", m[1]); break; }
+    document.querySelectorAll("[aria-label], img[alt]").forEach((el) => {
+      for (const attribute of ["aria-label", "alt"]) {
+        const a = el.getAttribute(attribute);
+        if (!a) continue;
+        const cacheKey = attribute === "alt" ? "_syAlt" : "_syA";
+        if (lang === "en") {
+          if (el[cacheKey] === undefined) el[cacheKey] = a;
+          let rep = null;
+          for (const [re, tpl] of PREFIX_SWAPS) {
+            const m = a.match(re);
+            if (m) { rep = tpl.replace("$1", m[1]); break; }
+          }
+          if (!rep) rep = DICT[norm(a)] || wordSwap(a);
+          if (rep && rep !== a) el.setAttribute(attribute, rep);
+        } else if (el[cacheKey] !== undefined) {
+          el.setAttribute(attribute, el[cacheKey]);
+          delete el[cacheKey];
         }
-        if (!rep) rep = DICT[norm(a)] || wordSwap(a);
-        if (rep && rep !== a) el.setAttribute("aria-label", rep);
-      } else if (el._syA !== undefined) {
-        el.setAttribute("aria-label", el._syA);
-        delete el._syA;
       }
     });
 

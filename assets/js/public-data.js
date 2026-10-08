@@ -247,7 +247,10 @@ window.SY_DATA = {
       "menuUrl": "",
       "rating": null,
       "reviewsTotal": 0,
-      "quotes": []
+      "quotes": [],
+      "venuePhoto": "assets/media/interior.webp",
+      "venuePosition": "42% 50%",
+      "venuePhotoKind": "brand-illustrative"
     },
     {
       "id": "san-diego",
@@ -280,7 +283,10 @@ window.SY_DATA = {
       "menuUrl": "",
       "rating": null,
       "reviewsTotal": 0,
-      "quotes": []
+      "quotes": [],
+      "venuePhoto": "assets/media/karaoke.webp",
+      "venuePosition": "48% 42%",
+      "venuePhotoKind": "brand-illustrative"
     }
   ],
   "events": [

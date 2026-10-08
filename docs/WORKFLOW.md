@@ -164,9 +164,14 @@ video idéntico, ambos controlados por test. Video, póster, copy y comportamien
 nuevo CSS limitado al selector/rótulo/franja. Header/footer públicos sin enlace al panel.
 Selector: `ul > li > a`, primer clic/Enter/tacto nativos, una preview y último hover/foco retenido.
 Retícula móvil/tablet/tacto; acordeón desde 1100 px solo con puntero fino/hover. Filtros con
-7/1/6/3 registros; futuras sedes sin página son anuncios no enlazados, sin fotos inventadas.
+7/1/6/3 registros; futuras sedes sin página son anuncios no enlazados, sin destinos inventados.
 Más de siete tarjetas pasa a retícula. Guadalajara conserva ID/ruta y orientación Chapalita.
-Rótulo conserva SVG; carga Alfa real, corrige altura de fotos y CTA. Licencia del patrón en
+Rótulo conserva SVG y carga Alfa real. **Feedback posterior de Luis:** retener las ventanas
+alargadas de Karina (230×1050 como proporción), no el recorte corto del primer candidato.
+Se escalan ambas dimensiones juntas para móvil/tablet, sin cambiar originales/arte ni el hero.
+El límite anterior de QA «foto <700px» se reemplaza por proporción 105/23, carga y contención
+responsive: cambió la aceptación visual explícita, no se oculta un fallo. CTA bajo el rótulo.
+Licencia del patrón en
 `licenses/react-bits.txt` (MIT + Commons Clause), no retirar al distribuir.
 
 Fotos: Guadalajara/SA/Houston conservan motivos publicados en WebP local a resolución original.
@@ -176,21 +181,47 @@ permisos requieren revisión de release; QA no concede permiso comercial. Franja
 naranja cálido contrastado, El Paso/fecha `time`/CTA a ficha propia; ES/EN y apilado móvil. Confirmar
 operación antes de cambiar El Paso a abierta o retirar el anuncio; no inventar fechas para otras.
 
+**Refinamiento de fotos/fecha, 7-oct:** Moreno Valley reutiliza `interior.webp`, San Diego
+`karaoke.webp` (banco general, DSC04344); `venuePhotoKind: brand-illustrative` registra que
+no son fotografías de esos futuros locales. Solo prueba local; revisión de derechos de release
+sigue separada. No se crean fechas/páginas/reservas. El Paso tiene badge de 16px y «ABRE / 9 OCT»
+en preview cerrada, claramente preapertura. No se cambia su estado al pasar el reloj.
+«Trae a los cuatro»: el markup empleaba `experience-media`, pero CSS estilaba `experience-photo`;
+la foto vertical quedaba a 640×420, deformada y con hueco debajo. Corrección solo en el home:
+imagen a sangre con `object-fit: cover`, celda completa en desktop, proporción natural 4:5 apilada
+en móvil. Alt de ruleta corregido y reversible ES/EN; sin alterar media original. Revisión de «El plan»:
+Comida usa foto real de tacos ya incluida en el paquete, Micrófono muestra micrófonos, Música
+ambiente de marca; Celebraciones cambia su focal para no cortar el rostro. No son datos de oferta.
+
 Houston: paquete recupera ficha ES/EN + carta del corte 30-sep, OpenTable, teléfono confirmado y
 mapa Google fijo. **No importado aún el Catering/cartelera posterior ni las otras fichas donantes.**
 Metadatos del directorio usan Guadalajara/teléfono Houston confirmado; rutas/canonicals intactos.
-`npm run check`: 24 tests; paquete 89 archivos/15 HTML, 173 referencias. `qa:selector`: ocho
-combinaciones 320–1920 px, desktop táctil incluido, filtros/fotos pintadas/nombres/altura, último
-hover, primer clic/Enter/toque, ES/EN, movimiento reducido y mapa/carta. Cinco rutas/archivos
+`npm run check`: 26 tests; paquete 89 archivos/15 HTML, 173 referencias. `qa:selector`: diez
+combinaciones 320–1920 px, desktop táctil y umbrales 900/1100 incluidos, filtros/fotos pintadas/
+nombres/altura, último hover, primer clic/Enter/toque, ES/EN reversible/menú móvil, movimiento
+reducido y mapa/carta. Nuevas relaciones de encuadre verifican foto/celda y orden apilado de
+«Trae a los cuatro», proporción alta del rótulo, siete previews con foto y fecha legible. Cinco rutas/archivos
 excluidos responden 404 en servidor del artefacto. Capturas revisadas; evidencia local ignorada
-`.artifacts/selector-qa-20261008-final/report.json`. Iteraciones detectaron y corrigieron capa que
+`.artifacts/visual-refinement-qa-20261008-final-walk/report.json`. Referencia previa y encuadres revisados
+en `.artifacts/visual-refinement-before-20261008/`. Iteraciones detectaron y corrigieron capa que
 tapaba fotos y fecha EN sin traducir, no solo overflow. Hero preservado, no rediseñado.
+Las capturas por bloque recorren primero sus elementos como al hacer scroll: capturar directamente
+una sección larga fuera de pantalla dejaba tarjetas aún sin revelar. Reproducido en móvil;
+el scroll real sí las muestra. Se corrige la sonda, no se fuerza opacidad del sitio para esconderlo.
 
 Repetir sobre artefacto fresco: `SY_QA_ORIGIN` local y `SY_QA_PACKAGE_ROOT` con Playwright instalado,
 `npm run qa:selector`. Sonda GET-only/bloqueo de envíos/telemetría, evidencia fuera del paquete.
 Gate local, **no cableado todavía a CI/CD**. No Safari/dispositivos reales/Lighthouse/backend.
 Persisten HTML inicial/SEO, contenido simulado/notas heredadas de otros bloques, importaciones
 restantes y controles remotos. No certificar el sitio entero ni publicar sin revisión/aprobación.
+
+**Dos fallos de recorrido registrados para el siguiente lote (no corregidos por estas fotos):**
+cartelera muestra `TODO: CONFIRMAR CON OPERACIÓN` y datos de prueba; una tarjeta Cumpleaños de
+«Los pretextos» abre novedades de El Paso en lugar de reserva/grupo. QA los observa en
+`remainingFindings`, no los convierte en checks aprobados. Reemplazar cartelera por programación
+confirmada por sede (o retirar borradores del release); conectar pretextos con selector/flujo
+aprobado. Revisar hero→rótulo→plan→pretextos→cartelera→experiencia→sucursales como recorrido,
+no cambiar datos de negocio ni importar automáticamente contenido del donante por esta revisión.
 
 ### Paso 1 revisado: producción, selector y rótulo · 7-oct
 

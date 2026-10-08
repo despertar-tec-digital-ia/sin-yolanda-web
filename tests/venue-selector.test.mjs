@@ -37,6 +37,24 @@ test('opening strip has a real date/destination and appears directly after the p
   assert.equal(render('openingAnnouncement', opened), '');
 });
 
+test('future photos are illustrative brand media, without invented dates or destinations', () => {
+  for (const id of ['moreno-valley', 'san-diego']) {
+    const branch = data.branches.find(b => b.id === id);
+    assert.equal(branch.venuePhotoKind, 'brand-illustrative');
+    assert.match(branch.venuePhoto, /^assets\/media\/.*\.webp$/);
+    assert.ok(readFileSync(new URL('../' + branch.venuePhoto, import.meta.url)).length > 0);
+    assert.equal(branch.page, '#');
+    assert.ok(!branch.openingDate);
+  }
+  const html = render('venueShowcase');
+  assert.equal((html.match(/<img /g) || []).length, 7);
+  assert.equal((html.match(/venue-badge--opening/g) || []).length, 1);
+  assert.match(html, /Abre el 9 de octubre/);
+  const opened = structuredClone(data);
+  opened.branches.find(b => b.id === 'el-paso').status = 'active';
+  assert.doesNotMatch(render('venueShowcase', opened), /venue-badge--opening|venue-opening-date/);
+});
+
 test('reconciled home hero and video remain byte-for-byte identical to the audited published source', () => {
   const hash = s => createHash('sha256').update(s).digest('hex');
   const hero = source.match(/<section class="home-hero home-hero-cinema"[\s\S]*?<\/section>/)[0];

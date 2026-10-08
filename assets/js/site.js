@@ -105,15 +105,16 @@
               const hasPage = branch.page !== "#";
               const tag = hasPage ? "a" : "div";
               const name = branch.shortName;
-              const opening = branch.openingDate === "2026-10-09" ? "Abre 9 de octubre" : "Próximamente";
+              const hasOpeningDate = branch.status === "coming-soon" && branch.openingDate === "2026-10-09";
+              const opening = hasOpeningDate ? "Abre el 9 de octubre" : "Próximamente";
               return `<li class="venue-item${index === 0 ? " is-open" : ""}" data-venue-item data-region="${branch.region}" data-status="${branch.status}">
               <${tag} class="venue-card${index === 0 ? " is-open" : ""}${branch.status === "coming-soon" ? " venue-card--soon" : ""}${branch.venuePhoto ? "" : " venue-card--announcement"}"${hasPage ? ` href="${branch.page}"` : ""} data-venue data-branch-id="${branch.id}">
                 <span class="venue-frame" aria-hidden="true">${branch.venuePhoto ? `<img src="${branch.venuePhoto}" alt="" width="1400" height="1000" loading="lazy" decoding="async" style="object-position:${branch.venuePosition || "50% 50%"}" />` : `<span class="venue-announcement">Sin Yolanda<span>Próximamente</span></span>`}<span class="venue-shade"></span></span>
                 <span class="venue-location" aria-hidden="true">${branch.country === "México" ? "Jalisco, México" : branch.city}</span>
                 <span class="venue-collapsed" aria-hidden="true">${name}</span>
-                ${branch.openingDate === "2026-10-09" ? `<span class="venue-opening-date" aria-hidden="true">9 OCT</span>` : ""}
+                ${hasOpeningDate ? `<span class="venue-opening-date" aria-hidden="true"><span>Abre</span>9 OCT</span>` : ""}
                 <span class="venue-label">
-                  ${branch.status === "coming-soon" ? `<span class="venue-badge">${opening}</span>` : ""}
+                  ${branch.status === "coming-soon" ? `<span class="venue-badge${hasOpeningDate ? " venue-badge--opening" : ""}">${opening}</span>` : ""}
                   <strong>${name}</strong>
                   <span class="venue-city">${branch.venueCity || branch.city}</span>
                   ${hasPage ? `<span class="venue-invitation" aria-hidden="true">Ver sucursal <svg viewBox="0 0 20 20" fill="none"><path d="M4 10h12m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.5"></path></svg></span>` : ""}
@@ -143,12 +144,12 @@
   function homePage() {
     const waGdl = `https://wa.me/523310186159?text=${encodeURIComponent("Hola, quiero reservar una mesa en Sin Yolanda Guadalajara.")}`;
     const plan = [
-      ["Comida", "assets/media/dining.webp", "Para el centro de la mesa. Se comparte o no se pide."],
+      ["Comida", "images/houston-entry-study/table-1600.webp", "Para el centro de la mesa. Se comparte o no se pide."],
       ["Tragos", "assets/media/cocktail.webp", "Coquetos. Sin lista de precios: pregunta y te contamos."],
-      ["Música", "assets/media/karaoke.webp", "Canciones que te sabes completas."],
-      ["Micrófono", "assets/media/celebration.webp", "Pasa por las mesas. Nadie se lo niega a nadie."],
+      ["Música", "assets/media/hero-night.webp", "Canciones que te sabes completas.", "50% 22%"],
+      ["Micrófono", "assets/media/karaoke.webp", "Pasa por las mesas. Nadie se lo niega a nadie.", "50% 42%"],
       ["La banda", "assets/media/interior.webp", "Trae a los cuatro. Aquí caben todos."],
-      ["Celebraciones", "assets/media/hospitality.webp", "Cumpleaños, renuncias, quincenas. Cualquier pretexto."],
+      ["Celebraciones", "assets/media/hospitality.webp", "Cumpleaños, renuncias, quincenas. Cualquier pretexto.", "50% 12%"],
     ];
     const pretextos = [
       ["Cumpleaños", "Aquí se entera todo el lugar."],
@@ -211,7 +212,7 @@
         <section class="section section-after-hero" id="plan">
           <div class="section-heading"><div><p class="eyebrow">El plan</p><h2 class="reveal">El plan ya está armado.</h2></div><p>Tú solo trae el pretexto.</p></div>
           <div class="event-grid">
-            ${plan.map(([titulo, img, texto], i) => `<article class="reveal-scale" style="animation-delay:${0.08 * i}s"><img src="${img}" alt="${titulo}" loading="lazy" width="640" height="420" /><h3>${titulo}</h3><p>${texto}</p></article>`).join("")}
+            ${plan.map(([titulo, img, texto, position = "50% 50%"], i) => `<article class="reveal-scale" style="animation-delay:${0.08 * i}s"><img src="${img}" alt="${titulo}" loading="lazy" width="640" height="420" style="object-position:${position}" /><h3>${titulo}</h3><p>${texto}</p></article>`).join("")}
           </div>
         </section>
 
@@ -229,7 +230,7 @@
         </section>
 
         <section class="experience-section" id="experiencia">
-          <div class="experience-media"><img src="assets/media/celebration.webp" alt="Amigos cantando en Sin Yolanda" loading="lazy" width="640" height="420" /></div>
+          <div class="experience-media"><img src="assets/media/celebration.webp" alt="Ruleta de shots y bebidas sobre una mesa de Sin Yolanda" loading="lazy" width="1600" height="2000" /></div>
           <div class="experience-copy">
             <p class="eyebrow">La casa por dentro</p>
             <h2 class="reveal">Trae a los cuatro.</h2>

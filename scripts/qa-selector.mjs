@@ -16,7 +16,11 @@ mkdirSync(output, { recursive: true });
 const require = createRequire(resolve(process.env.SY_QA_PACKAGE_ROOT, '../package.json'));
 const { chromium } = require('playwright');
 const browser = await chromium.launch({ headless: true });
-const report = { version: 1, origin: origin.origin, capturedAt: new Date().toISOString(), viewports: [], interactions: {} };
+const report = { version: 2, origin: origin.origin, capturedAt: new Date().toISOString(),
+  scope: 'Local home corrections and retained navigation, not whole-site launch approval',
+  viewports: [], interactions: {}, remainingFindings: [] };
+const blockShot = (name) => ({ path: resolve(output, name), animations: 'disabled',
+  style: '.public-header { visibility: hidden !important; }' });
 async function pageFor(width = 1440, height = 900, touch = false, reduced = false) {
   const context = await browser.newContext({ viewport: { width, height }, hasTouch: touch, isMobile: touch,
     reducedMotion: reduced ? 'reduce' : 'no-preference', serviceWorkers: 'block' });
@@ -43,9 +47,18 @@ async function galleryState(page) {
   }));
 }
 const expanded = state => state.filter(item => !item.hidden && item.open).map(item => item.id);
+async function revealWithin(page, block) {
+  // Walk the block as a visitor does. A full-section screenshot can otherwise
+  // capture off-screen opacity-zero cards before IntersectionObserver runs.
+  for (const node of await block.locator('.reveal, .reveal-scale').all()) {
+    await node.scrollIntoViewIfNeeded();
+    await page.waitForFunction(el => el.classList.contains('revealed'), await node.elementHandle(), { timeout: 3000 });
+  }
+}
 try {
   for (const [width, height, touch] of [[320, 740, true], [390, 844, true], [560, 900, true],
-    [768, 1024, true], [1024, 768, true], [1440, 900, false], [1920, 1080, false], [1440, 900, true]]) {
+    [768, 1024, true], [900, 1100, true], [1024, 768, true], [1100, 720, false],
+    [1440, 900, false], [1920, 1080, false], [1440, 900, true]]) {
     const { page, context, errors } = await pageFor(width, height, touch);
     const record = { width, height, touch };
     await page.locator('.opening-announcement').scrollIntoViewIfNeeded();
@@ -61,28 +74,82 @@ try {
     record.cards = await galleryState(page);
     assert.equal(record.cards.length, 7);
     assert.ok(record.cards.every(card => card.height > 200 && !card.nameClipped && !card.role));
-    assert.ok(record.cards.filter(card => card.imageLoaded !== null).every(card => card.imageLoaded && card.imageLayer >= 0));
+    assert.ok(record.cards.every(card => card.imageLoaded && card.imageLayer >= 0));
     record.overflow = await page.evaluate(() => document.documentElement.scrollWidth > innerWidth);
     assert.equal(record.overflow, false);
-    await page.locator('.venue-showcase').screenshot({ path: resolve(output, `selector-${width}-${touch ? 'touch' : 'mouse'}.png`), animations: 'disabled' });
+    await page.locator('.venue-showcase').screenshot(blockShot(`selector-${width}-${touch ? 'touch' : 'mouse'}.png`));
+    record.openingBadge = await page.locator('[data-branch-id="el-paso"] .venue-badge').evaluate(el => ({
+      text: el.innerText, fontSize: parseFloat(getComputedStyle(el).fontSize),
+      clipped: el.scrollWidth > el.clientWidth + 1 || el.scrollHeight > el.clientHeight + 1 }));
+    assert.equal(record.openingBadge.text, 'Abre el 9 de octubre');
+    assert.ok(record.openingBadge.fontSize >= 16 && !record.openingBadge.clipped);
     await page.locator('#rotulo').scrollIntoViewIfNeeded();
+    await page.locator('#rotulo img').evaluateAll(imgs => Promise.all(imgs.map(i => i.decode())));
     record.rotulo = await page.locator('#rotulo').evaluate(el => ({ height: el.getBoundingClientRect().height,
-      images: [...el.querySelectorAll('img')].map(i => ({ height: i.getBoundingClientRect().height, loaded: i.complete && i.naturalWidth > 0 })) }));
-    assert.ok(record.rotulo.images.every(img => img.loaded && img.height < 700));
+      images: [...el.querySelectorAll('img')].map(i => ({ width: i.clientWidth, height: i.clientHeight,
+        loaded: i.complete && i.naturalWidth > 0 })) }));
+    // Updated acceptance: Luis retained the published tall windows, not the previous short crop.
+    assert.ok(record.rotulo.images.every(img => img.loaded && img.height <= 1051 &&
+      Math.abs(img.height / img.width - 105 / 23) < .04));
     assert.ok(await page.evaluate(() => document.fonts.check('16px "Alfa Slab One"')));
-    await page.locator('#rotulo').screenshot({ path: resolve(output, `rotulo-${width}-${touch ? 'touch' : 'mouse'}.png`), animations: 'disabled' });
+    await page.locator('#rotulo').screenshot(blockShot(`rotulo-${width}-${touch ? 'touch' : 'mouse'}.png`));
+    await page.locator('#experiencia').scrollIntoViewIfNeeded();
+    await revealWithin(page, page.locator('#experiencia'));
+    await page.locator('#experiencia img').evaluate(img => img.decode());
+    record.experience = await page.locator('#experiencia').evaluate(el => {
+      const frame = el.querySelector('.experience-media'), img = frame.querySelector('img');
+      const f = frame.getBoundingClientRect(), i = img.getBoundingClientRect(), c = el.querySelector('.experience-copy').getBoundingClientRect();
+      return { frameWidth: f.width, frameHeight: f.height, imageWidth: i.width, imageHeight: i.height,
+        fit: getComputedStyle(img).objectFit, alt: img.alt, copyTop: c.top, frameBottom: f.bottom, copyBottom: c.bottom,
+        loaded: img.complete && img.naturalWidth > 0 };
+    });
+    assert.ok(record.experience.loaded && record.experience.fit === 'cover');
+    assert.ok(Math.abs(record.experience.frameWidth - record.experience.imageWidth) < 1 &&
+      Math.abs(record.experience.frameHeight - record.experience.imageHeight) < 1);
+    if (width <= 900) assert.ok(record.experience.copyTop >= record.experience.frameBottom - 1);
+    else assert.ok(Math.abs(record.experience.copyBottom - record.experience.frameBottom) < 1);
+    await page.locator('#experiencia').screenshot(blockShot(`experience-${width}-${touch ? 'touch' : 'mouse'}.png`));
+    await page.locator('#plan img').evaluateAll(imgs => Promise.all(imgs.map(i => i.decode())));
+    await revealWithin(page, page.locator('#plan'));
+    assert.equal(await page.locator('#plan img').count(), 6);
+    record.planPhotos = await page.locator('#plan img').evaluateAll(imgs => imgs.map(i => ({
+      src: i.getAttribute('src'), position: getComputedStyle(i).objectPosition, loaded: i.complete && i.naturalWidth > 0 })));
+    assert.ok(record.planPhotos.every(i => i.loaded));
+    if ([390, 768, 1440].includes(width) && (width !== 1440 || !touch)) {
+      // Keep section evidence free of sticky-header capture artefacts; inspect navigation separately.
+      for (const selector of ['#plan', '.pretextos-section', '#cartelera', '#botaneo', '#cumple', '.public-footer']) {
+        await revealWithin(page, page.locator(selector));
+        await page.locator(selector).screenshot(blockShot(`home-${selector.replace(/[.#]/g, '')}-${width}.png`));
+      }
+    }
     assert.deepEqual(errors, []);
     record.errors = errors; report.viewports.push(record);
     await context.close();
   }
   {
     const { page, context } = await pageFor();
+    const caveat = await page.locator('#cartelera .data-caveat').textContent();
+    if (/TODO|CONFIRMAR/i.test(caveat)) report.remainingFindings.push({
+      id: 'home-programming-draft', severity: 'P1', observed: caveat.trim(),
+      next: 'Replace with source-approved branch-specific programming, or withhold the draft block from release' });
+    await page.locator('.pretexto-card').first().click();
+    if (await page.locator('#demo-modal [href*="sinyolandaelpaso"]').isVisible()) {
+      report.remainingFindings.push({ id: 'home-pretext-wrong-destination', severity: 'P1',
+        observed: 'A birthday pretext opens El Paso opening updates, not a reservation flow',
+        next: 'Connect to the location selector or the approved group-event booking flow' });
+    }
+    await page.locator('#demo-modal .modal-close').click();
     const houston = page.locator('[data-branch-id="houston"]');
     await houston.hover(); await page.waitForTimeout(500);
     assert.deepEqual(expanded(await galleryState(page)), ['houston']);
     await page.mouse.move(0, 0); await page.waitForTimeout(500);
     assert.deepEqual(expanded(await galleryState(page)), ['houston']);
     await page.locator('.venue-showcase').screenshot({ path: resolve(output, 'selector-last-hover-houston.png'), animations: 'disabled' });
+    for (const id of ['el-paso', 'moreno-valley', 'san-diego']) {
+      await page.locator(`[data-branch-id="${id}"]`).hover(); await page.waitForTimeout(500);
+      assert.deepEqual(expanded(await galleryState(page)), [id]);
+      await page.locator('.venue-showcase').screenshot(blockShot(`selector-preview-${id}.png`));
+    }
     for (const [filter, count] of [['mx', 1], ['us', 6], ['soon', 3], ['all', 7]]) {
       await page.locator(`[data-venue-filter="${filter}"]`).click();
       assert.equal((await galleryState(page)).filter(item => !item.hidden).length, count);
@@ -112,9 +179,27 @@ try {
     assert.equal(await page.locator('.opening-announcement time').innerText(), 'October 9');
     assert.equal((await page.locator('.opening-announcement-link').innerText()).trim(), 'View location');
     assert.equal(await page.locator('#venue-heading').innerText(), 'Find your cantina');
+    assert.equal(await page.locator('[data-branch-id="el-paso"] .venue-badge').innerText(), 'Opens October 9');
+    assert.equal((await page.locator('[data-branch-id="el-paso"] .venue-opening-date > span').textContent()).trim(), 'Opens');
+    assert.equal(await page.locator('#experiencia img').getAttribute('alt'), 'A shot roulette and drinks on a Sin Yolanda table');
     await page.locator('[data-venue-filter="soon"]').click();
     assert.equal(await page.locator('[data-venue-status]').innerText(), '3 locations');
     report.interactions.english = { banner: await page.locator('.opening-announcement').innerText(), selector: await page.locator('#venue-heading').innerText() };
+    await page.locator('[data-lang-btn="es"]').click();
+    assert.equal(await page.locator('#experiencia img').getAttribute('alt'), 'Ruleta de shots y bebidas sobre una mesa de Sin Yolanda');
+    assert.equal(await page.locator('[data-branch-id="el-paso"] .venue-badge').innerText(), 'Abre el 9 de octubre');
+    await context.close();
+  }
+  {
+    const { page, context } = await pageFor(390, 844, true);
+    const toggle = page.locator('.menu-toggle');
+    await toggle.click();
+    assert.equal(await toggle.getAttribute('aria-expanded'), 'true');
+    await page.locator('[data-lang-btn="en"]').click();
+    assert.equal(await page.locator('[data-branch-id="el-paso"] .venue-badge').innerText(), 'Opens October 9');
+    await toggle.click();
+    assert.equal(await toggle.getAttribute('aria-expanded'), 'false');
+    report.interactions.mobileMenu = { openClose: true, english: true };
     await context.close();
   }
   {

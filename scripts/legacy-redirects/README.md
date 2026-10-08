@@ -1,6 +1,9 @@
 # Redirecciones WordPress de Sin Yolanda
 
-Candidato local v1.0.0. No instalado ni activado. El mapa ejecutable único vive en
+v1.0.0 instalado y activo en GDL/TX/USA el 8-oct-2026 por autorización de Luis; pruebas
+anónimas posteriores: 69/69. Recibos, límites y reversión →
+[`docs/MIGRATION-AND-MEASUREMENT.md`](../../docs/MIGRATION-AND-MEASUREMENT.md).
+El mapa ejecutable único vive en
 `sin-yolanda-legacy-redirects/redirects.json`; contiene 16 rutas: GDL 3, TX 4 y USA 9.
 El plugin no entra en `scripts/public-manifest.json` ni en el sitio de Pages.
 
@@ -48,7 +51,8 @@ redirección existentes; ninguna otra regla debe interceptar antes al plugin. No
 
 Con autorización de producción: subir el mismo ZIP en cada WordPress mediante el administrador,
 instalar y activar. No incluye opciones remotas, creación de usuarios ni aplicación passwords.
-Comprobar GET y HEAD en apex/www de cada ruta, respuesta 301 y Location exacto en un único salto;
+Comprobar GET y HEAD en apex/www de cada ruta, respuesta 301 y Location exacto desde HTTPS;
+separar un upgrade HTTP→HTTPS previo del proveedor de la regla del plugin.
 comprobar también exclusiones/formularios/admin y destino 200 indexable. Las UTMs registradas
 van antes del fragmento; los datos arbitrarios no cruzan. Mantener historial Umami separado.
 
@@ -93,3 +97,29 @@ El hash acredita el artefacto enviado, no una lectura remota de todos los archiv
 Las pruebas de parser/sesión usan HTML y respuestas HTTP de fixture, sin acceso a credenciales
 reales ni cambios remotos. Una inspección real acredita acceso/estructura actual; solo el recibo
 y smoke posteriores a la operación autorizada acreditan instalación/activación y resultado servido.
+
+## Verificación HTTP posterior a la activación
+
+`verify-live.mjs --site gdl|tx|usa|all --output <directorio-nuevo-en-.artifacts>` comprueba las
+16 equivalencias con GET/HEAD y casos representativos de www/slash/HTTP. Sigue hasta cuatro
+saltos; separa el upgrade/canonical previo de proveedor del 301 atribuido a nuestro plugin.
+No usa cookies, credenciales, JavaScript, POST ni envío de formularios. Su único dato de proyecto
+es el JSON público del mapa; no necesita `.secrets` ni sesiones del operador.
+
+Cada destino se consulta una vez por método/ruta y se reutiliza para comprobar 200, canonical,
+robots y `#cocktails`. Se prueban UTM registradas, descarte de valores libres y conservación de
+requests de formulario. También selector TX, formulario/special-menu/Catering USA, REST y una
+imagen pública conocida por sitio obtenida del inventario anónimo de medios, sin guardar ese JSON.
+El contrato es acotado: no explora combinaciones exhaustivas ni hace crawling general.
+
+El JSON 0600 conserva estados, Location saneada, clasificación de saltos, hashes y metadatos;
+no guarda cuerpos ni queries arbitrarias. Un destino/origen inesperado nunca se sigue. Una sonda
+fallida o incompleta no acredita migración, y este verificador no demuestra funcionamiento de
+POST/formularios, permisos comerciales, analítica JS o administración autenticada.
+
+La query sintética `name` conserva su contrato propio: debe permanecer en WordPress sin
+interceptarse por el plugin ni reenviarse al central, y puede recibir 200 o el 404 nativo provocado
+por el routing de WordPress. El reporte guarda `nativeStatus` y una nota explícita de que esa
+sonda **no certifica un formulario funcional**. Los formularios/páginas reales excluidos, el
+selector de cartas, REST y el upload público conocido siguen exigiendo 200. Se conserva el
+reporte anterior si cambia el contrato; nunca se reemplaza una sonda fallida por otro parámetro.

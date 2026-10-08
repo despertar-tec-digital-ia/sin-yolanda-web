@@ -13,10 +13,12 @@ Luis autoriza un segundo lote técnico: cobertura Umami, indexación de destinos
 excepciones y reversión → [MIGRATION-AND-MEASUREMENT.md](MIGRATION-AND-MEASUREMENT.md).
 La indexación explícita de 12 páginas sustituye su gate noindex previo, pero conserva procedencia
 del donante y aprobaciones comerciales pendientes. El Paso/Catering ES/EN siguen protegidos.
-Se verifica y publica primero el central; las reglas WordPress se activan después por sitio.
+Central publicado desde PR #11/main `d6734c2`, deployment
+`7b5a7d5b-44fa-4d6a-8dc5-222acc134c4d`; después se instalaron y activaron los tres plugins.
 GA4 queda separado hasta confirmar propiedad/cuenta. Este lote no instala CD automático.
-Estado antes de publicación: 22 páginas medibles + 404 excluido; pruebas técnicas locales pasan.
-El resultado remoto se registra al completar la ejecución, sin certificar por documentación.
+Resultado: 22 páginas medibles + 404 excluido; 12 destinos indexables y cuatro protegidos.
+Las 16 reglas GET/HEAD y variantes/exclusiones pasaron 69/69 comprobaciones remotas.
+Evidencia y límites en el documento enlazado; no certifica datos comerciales ni todo el tráfico.
 
 ### Release limitado autorizado · 8-oct
 

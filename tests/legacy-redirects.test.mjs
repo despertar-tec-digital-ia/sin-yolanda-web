@@ -321,3 +321,18 @@ test('activation receipt binds exact uploaded artifact, host, plugin and prior i
   }
   assert.throws(() => validateInstallationReceipt(undefined, 'tx', zip, wpOrigin), /requires --backup/);
 });
+
+test('WordPress relative admin actions use the document directory without weakening target checks', () => {
+  const relative = pluginFixture.replaceAll(wpOrigin + '/wp-admin/plugins.php?', 'plugins.php?');
+  const parsed = parsePlugins(relative, wpOrigin);
+  assert.equal(new URL(parsed[1].actions.activate).pathname, '/wp-admin/plugins.php');
+  assert.equal(new URL(parsed[1].actions.activate).searchParams.get('plugin'), pluginFile);
+  assert.doesNotThrow(() => verifyUploadOutcome({ status: 200, text: relative }, wpOrigin));
+  const upload = uploadFixture.replace(wpOrigin + '/wp-admin/update.php?', 'update.php?');
+  assert.equal(parseUploadForm(upload, wpOrigin).action, wpOrigin + '/wp-admin/update.php?action=upload-plugin');
+  for (const suffix of ['&action=delete-selected', '&plugin=other%2Fplugin.php', '&_wpnonce=anothernonce']) {
+    assert.throws(() => actionLink(parsed[1].actions.activate + suffix, wpOrigin, 'activate'), /exact installed plugin/);
+  }
+  assert.throws(() => actionLink('/plugins.php?action=activate&plugin=' + encodeURIComponent(pluginFile) + '&_wpnonce=a1b2c3d4e5', wpOrigin, 'activate'), /exact installed plugin/);
+  assert.throws(() => parseUploadForm(upload.replace('action=upload-plugin', 'action=upload-plugin&action=other'), wpOrigin), /exact WordPress/);
+});

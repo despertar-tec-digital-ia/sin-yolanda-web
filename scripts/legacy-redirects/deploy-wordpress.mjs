@@ -67,9 +67,9 @@ function forms(html) {
     ...attributes(match[1]), inputs: [...match[2].matchAll(/<input\b([^>]*)>/gi)].map(input => attributes(input[1])),
   }));
 }
-export function fixedUrl(value, origin) {
+export function fixedUrl(value, origin, documentUrl = origin) {
   let url;
-  try { url = new URL(value, origin); } catch { fail('Invalid WordPress action URL'); }
+  try { url = new URL(value, documentUrl); } catch { fail('Invalid WordPress action URL'); }
   if (url.origin !== origin || url.protocol !== 'https:' || url.username || url.password || url.hash) fail('WordPress action leaves the fixed HTTPS origin');
   return url;
 }
@@ -77,7 +77,7 @@ export function parseLoginForm(html, loginUrl) {
   if (challenge(html)) fail('Login requires an interactive authentication challenge');
   const form = forms(html).find(form => form.inputs.some(input => input.name === 'log') && form.inputs.some(input => input.name === 'pwd'));
   if (!form || (form.method ?? '').toLowerCase() !== 'post') fail('Supported WordPress login form was not found');
-  const login = new URL(loginUrl), action = fixedUrl(form.action || loginUrl, login.origin);
+  const login = new URL(loginUrl), action = fixedUrl(form.action || loginUrl, login.origin, loginUrl);
   if (![login.pathname, '/wp-login.php'].includes(action.pathname)) fail('Unexpected WordPress login action');
   return { action: action.href, hidden: Object.fromEntries(form.inputs.filter(input => input.type === 'hidden'
     && ['testcookie', '_wpnonce'].includes(input.name)).map(input => [input.name, input.value ?? ''])) };
@@ -85,20 +85,22 @@ export function parseLoginForm(html, loginUrl) {
 export function parseUploadForm(html, origin) {
   const form = forms(html).find(form => form.inputs.some(input => input.name === 'pluginzip' && input.type === 'file'));
   if (!form) return null;
-  const action = fixedUrl(form.action || '', origin);
+  const action = fixedUrl(form.action || '', origin, origin + '/wp-admin/plugin-install.php?tab=upload');
   const nonce = form.inputs.find(input => input.name === '_wpnonce')?.value;
   if ((form.method ?? '').toLowerCase() !== 'post' || (form.enctype ?? '').toLowerCase() !== 'multipart/form-data'
     || action.pathname !== '/wp-admin/update.php' || action.searchParams.get('action') !== 'upload-plugin'
-    || [...action.searchParams.keys()].some(key => key !== 'action') || !/^[a-zA-Z0-9]{8,64}$/.test(nonce ?? '')) {
+    || [...action.searchParams.keys()].some(key => key !== 'action') || action.searchParams.getAll('action').length !== 1
+    || !/^[a-zA-Z0-9]{8,64}$/.test(nonce ?? '')) {
     fail('Upload form failed its exact WordPress contract');
   }
   return { action: action.href, nonce };
 }
 export function actionLink(value, origin, action) {
-  const url = fixedUrl(value, origin);
+  const url = fixedUrl(value, origin, origin + '/wp-admin/plugins.php');
   if (url.pathname !== '/wp-admin/plugins.php' || url.searchParams.get('action') !== action
     || url.searchParams.get('plugin') !== pluginFile || !/^[a-zA-Z0-9]{8,64}$/.test(url.searchParams.get('_wpnonce') ?? '')
-    || [...url.searchParams.keys()].some(key => !['action', 'plugin', '_wpnonce', 'plugin_status', 'paged', 's'].includes(key))) {
+    || [...url.searchParams.keys()].some(key => !['action', 'plugin', '_wpnonce', 'plugin_status', 'paged', 's'].includes(key))
+    || new Set(url.searchParams.keys()).size !== [...url.searchParams.keys()].length) {
     fail('Plugin action does not target the exact installed plugin');
   }
   return url.href;
@@ -110,7 +112,7 @@ export function verifyUploadOutcome(response, origin) {
   }
   const links = [...response.text.matchAll(/<a\b([^>]*)>/gi)].map(match => attributes(match[1]).href).filter(Boolean);
   const installedLink = links.find(value => {
-    try { const url = new URL(value, origin); return url.searchParams.get('action') === 'activate' && url.searchParams.get('plugin') === pluginFile; }
+    try { const url = new URL(value, origin + '/wp-admin/update.php'); return url.searchParams.get('action') === 'activate' && url.searchParams.get('plugin') === pluginFile; }
     catch { return false; }
   });
   if (!installedLink) fail('Upload did not return the exact installed plugin action; stop and inspect');
@@ -127,7 +129,7 @@ export function parsePlugins(html, origin) {
     const links = [...match[2].matchAll(/<a\b([^>]*)>/gi)].map(link => attributes(link[1]).href).filter(Boolean);
     const actions = {};
     if (file === pluginFile) for (const candidate of links) {
-      let url; try { url = new URL(candidate, origin); } catch { continue; }
+      let url; try { url = new URL(candidate, origin + '/wp-admin/plugins.php'); } catch { continue; }
       const action = url.searchParams.get('action');
       if (action === 'activate' || action === 'deactivate') actions[action] = actionLink(candidate, origin, action);
     }

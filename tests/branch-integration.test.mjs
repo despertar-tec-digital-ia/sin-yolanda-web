@@ -7,6 +7,7 @@ const root = new URL('../', import.meta.url);
 const read = path => readFileSync(new URL(path, root), 'utf8');
 const importManifest = JSON.parse(read('scripts/branch-import-manifest.json'));
 const publicManifest = JSON.parse(read('scripts/public-manifest.json'));
+const indexationPolicy = JSON.parse(read('scripts/indexation-policy.json'));
 const archiveRoot = 'archive/source-snapshots/karina-public-20261008-0924/';
 const archived = JSON.parse(read(archiveRoot + 'manifest.json'));
 const context = { window: {} };
@@ -54,12 +55,13 @@ for (const [id, selection] of Object.entries(importManifest)) {
     test(`local imported ${route.to} preserves exact route/language and review provenance`, () => {
       const html = read(route.to);
       assert.ok(publicManifest.pages.includes(route.to));
-      assert.ok(publicManifest.reviewPages.includes(route.to));
+      const indexable = indexationPolicy.pages.includes(route.to);
+      assert.equal(publicManifest.reviewPages.includes(route.to), !indexable);
       assert.equal(selection.publicationApproved, false);
       assert.match(selection.sourceRef, /^[a-f0-9]{40}$/);
       assert.ok(html.includes('data-import-source-ref="' + selection.sourceRef + '"'));
       assert.match(html, /data-import-audience="review"/);
-      assert.match(html, /<meta name="robots" content="noindex,nofollow">/);
+      assert.ok(html.includes('<meta name="robots" content="' + (indexable ? 'index,follow,max-image-preview:large' : 'noindex,nofollow') + '">'));
       assert.ok(html.includes('<html lang="' + route.lang + '"'));
       assert.equal((html.match(/<h1\b/g) ?? []).length, 1);
       assert.equal((html.match(/rel="canonical"/g) ?? []).length, 1);

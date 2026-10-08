@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "pluginVersion": "1.0.0",
+  "targetOrigin": "https://sin-yolanda.com",
+  "status": 301,
+  "utmValues": {
+    "utm_source": ["instagram", "facebook", "google", "google_maps", "bing", "whatsapp", "qr", "newsletter", "opentable", "tripadvisor"],
+    "utm_medium": ["organic", "referral", "social", "paid_social", "cpc", "email", "qr"],
+    "utm_campaign": [],
+    "utm_id": [],
+    "utm_term": [],
+    "utm_content": []
+  },
+  "sites": {
+    "sinyolandagdl.com": {
+      "/": "/san-ignacio",
+      "/menu/": "/san-ignacio/menu/",
+      "/cocteles-shots/": "/san-ignacio/menu/#cocktails"
+    },
+    "sinyolandatx.com": {
+      "/": "/san-antonio",
+      "/menu/": "/san-antonio/menu/",
+      "/english/": "/en/san-antonio/menu/",
+      "/cocktails/": "/san-antonio/menu/#cocktails"
+    },
+    "sinyolandausa.com": {
+      "/": "/the-woodlands",
+      "/sinyolanda-thewoodlands/": "/the-woodlands",
+      "/houston/": "/houston",
+      "/houston/menu/": "/houston/menu/",
+      "/sinyolanda-sanantonio/": "/san-antonio",
+      "/sinyolanda-sanantonio/menu-espanol/": "/san-antonio/menu/",
+      "/sinyolanda-sanantonio/english-menu/": "/en/san-antonio/menu/",
+      "/sinyolanda-thewoodlands/menu-espanol/": "/the-woodlands/menu/",
+      "/sinyolanda-thewoodlands/english-menu/": "/the-woodlands/menu/"
+    }
+  }
+}

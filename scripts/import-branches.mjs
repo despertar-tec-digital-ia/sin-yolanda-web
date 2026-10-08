@@ -35,6 +35,8 @@ const catering = selection.kind === 'catering';
 const branch = catering ? undefined : branches.find(item => item.id === branchId);
 if (!catering && (!branch || branch.publicEnabled === false)) throw new Error('Unknown or retired source branch');
 const routes = selection.routes;
+const indexationPolicy = JSON.parse(readFileSync(resolve(root, 'scripts/indexation-policy.json'), 'utf8'));
+if (!dryRun && routes.some(route => indexationPolicy.pages.includes(route.to))) throw new Error('Promoted migration routes require a new explicit source/indexation decision before replacement; review dry-run remains available.');
 if (!Array.isArray(routes) || !routes.length) throw new Error('Explicit routes are required');
 const assets = new Set(), output = new Map();
 const safe = path => typeof path === 'string' && !path.startsWith('/') && !path.split('/').includes('..') && /^[A-Za-z0-9._~%/-]+$/.test(path);

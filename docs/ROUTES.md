@@ -4,6 +4,11 @@
 **Estado:** inventario de fuentes versionadas y destinos propuestos; no es un crawl HTTP completo.
 No aplicar redirects ni crear páginas solo por figurar en esta tabla.
 
+**Lote técnico posterior autorizado el 8-oct:** 12 destinos de fichas/cartas se preparan para
+indexación antes de 16 reglas301 exactas WordPress; cuatro páginas El Paso/Catering conservan
+noindex. Mapa ejecutable, excepciones y estado → [MIGRATION-AND-MEASUREMENT.md](MIGRATION-AND-MEASUREMENT.md).
+La descripción del primer release siguiente es histórica, no la nueva política de indexación.
+
 **Release limitado8-oct publicado:** nuestras fichas, cartas disponibles y Catering ya están en
 el dominio mediante Pages `d149688f`, fuente `befc2a4` integrada por PR #9. Rutas/aliases/404
 comprobados; las 16 páginas pendientes conservan noindex y exclusión del sitemap. Los párrafos

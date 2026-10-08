@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "authorizer": "Luis",
+  "authorizedOn": "2026-10-08",
+  "sourceRef": "cbffdc4abd7b274d9de16f5059d079bb70e9877b",
+  "purpose": "Technical indexation of existing public branch/menu destinations before exact legacy 301 redirects. Does not certify commercial facts or media rights.",
+  "pages": [
+    "houston.html",
+    "en/houston/index.html",
+    "houston/menu/index.html",
+    "san-antonio.html",
+    "en/san-antonio/index.html",
+    "san-antonio/menu/index.html",
+    "en/san-antonio/menu/index.html",
+    "the-woodlands.html",
+    "en/the-woodlands/index.html",
+    "the-woodlands/menu/index.html",
+    "san-ignacio.html",
+    "san-ignacio/menu/index.html"
+  ]
+}

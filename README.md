@@ -45,7 +45,7 @@ hash del commit. `node scripts/package-public.mjs <directorio-nuevo>` crea ese a
 usa la allowlist `scripts/public-manifest.json` y rechaza rutas demo, enlaces hacia ellas y symlinks.
 El reporte `release.json` queda fuera de la carpeta pública: commit, estado dirty y SHA-256 por archivo.
 
-**Integración local8-oct:** contenido público anterior guardado y nuestras fichas/cartas conectadas;
+**Corte histórico, integración local8-oct:** contenido público anterior guardado y nuestras fichas/cartas conectadas;
 ver `docs/BRANCH-CONTENT.md` y `docs/WORKFLOW.md` §7. Las16rutas importadas son de revisión,
 noindex y excluidas del sitemap hasta aprobar datos/medios. `npm run build` bloquea un paquete
 productivo con esas páginas; `npm run build:review` genera solo el candidato de revisión en un
@@ -53,6 +53,11 @@ directorio nuevo. No cambia producción ni CI/CD remoto. Preview local mediante 
 sobre paquete/hash explícitos, no servir la raíz del checkout ni el `dist` entero del donante.
 CI no publica; conserva el artefacto para revisión. Requiere autorización explícita
 y rollback; verificar dominio después de publicar.
+
+**Lote técnico posterior autorizado8-oct:** [migración y medición](docs/MIGRATION-AND-MEASUREMENT.md)
+prepara 12 destinos indexables, mantiene cuatro gates de revisión y centraliza Umami en 22 páginas
+con 404 excluido. Este permiso no certifica precios/medios ni habilita CD; un release limitado exige
+su aprobación exacta por commit/digest, distinta del corte histórico anterior.
 
 ### Houston (cierre publicado 30-sep-2026)
 

@@ -6,6 +6,18 @@ verificado, publicación Pages manual y smoke remoto comprobado. CD automático,
 secretos no están activados por este lote. Preparación, resultado y límites se registran abajo.
 La aprobación de este release no equivale a autorizar otros releases.
 
+### Lote de migración y medición autorizado · 8-oct
+
+Luis autoriza un segundo lote técnico: cobertura Umami, indexación de destinos existentes y
+16 redirecciones exactas desde los tres WordPress, sin DNS/correo ni cambio de diseño. Contratos,
+excepciones y reversión → [MIGRATION-AND-MEASUREMENT.md](MIGRATION-AND-MEASUREMENT.md).
+La indexación explícita de 12 páginas sustituye su gate noindex previo, pero conserva procedencia
+del donante y aprobaciones comerciales pendientes. El Paso/Catering ES/EN siguen protegidos.
+Se verifica y publica primero el central; las reglas WordPress se activan después por sitio.
+GA4 queda separado hasta confirmar propiedad/cuenta. Este lote no instala CD automático.
+Estado antes de publicación: 22 páginas medibles + 404 excluido; pruebas técnicas locales pasan.
+El resultado remoto se registra al completar la ejecución, sin certificar por documentación.
+
 ### Release limitado autorizado · 8-oct
 
 Luis solicita publicar el candidato actual aunque queden mejoras. El contenido autorizado es

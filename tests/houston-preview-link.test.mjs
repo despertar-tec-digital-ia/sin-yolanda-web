@@ -51,8 +51,8 @@ test('Houston candidate has current source menu, shared facts, privacy and recip
     assert.doesNotMatch(html, /menu-sy-houston\.despertartdigital\.cloud|href="\/pruebas\//);
     assert.match(html.match(/<iframe\b[^>]+>/)[0], /loading="lazy"/);
   }
-  assert.doesNotMatch(readFileSync(new URL('../sitemap.xml', import.meta.url), 'utf8'), /<loc>https:\/\/sin-yolanda\.com\/en\/houston\/<\/loc>/,
-    'An imported review candidate must not be advertised as commercially indexable');
+  assert.match(readFileSync(new URL('../sitemap.xml', import.meta.url), 'utf8'), /<loc>https:\/\/sin-yolanda\.com\/en\/houston\/<\/loc>/,
+    'The exact public migration destination is indexable without certifying business approval');
 });
 
 test('customer menu is included with all 126 offers and no review UI', () => {
@@ -60,7 +60,7 @@ test('customer menu is included with all 126 offers and no review UI', () => {
   const schema = JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
   assert.equal(schema['@type'], 'Menu');
   assert.equal(schema.hasMenuSection.flatMap(section => section.hasMenuItem).length, 126);
-  assert.match(html, /content="noindex,nofollow"/);
+  assert.match(html, /content="index,follow,max-image-preview:large"/);
   assert.match(html, /data-import-audience="review"/);
   assert.doesNotMatch(html, /Prueba local|Editorial review pending|href="\/pruebas\//);
   assert.match(html, /href="\/en\/houston\/"/, 'English menu returns to the English page of the same branch');
@@ -82,7 +82,7 @@ test('the official Houston page has the verified interactive map, local assets a
   ]) {
     const html = readFileSync(new URL(`../${file}`, import.meta.url), 'utf8');
     assert.match(html, new RegExp(`<html lang="${lang}">`));
-    assert.match(html, /<meta name="robots" content="noindex,nofollow">/);
+    assert.match(html, /<meta name="robots" content="index,follow,max-image-preview:large">/);
     assert.match(html, /data-import-audience="review"/);
     assert.ok(html.includes(`<link rel="canonical" href="${canonical}">`));
     assert.match(html, /https:\/\/www\.google\.com\/maps\/embed\?pb=/);

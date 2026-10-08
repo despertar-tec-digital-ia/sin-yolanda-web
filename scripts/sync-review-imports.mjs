@@ -3,6 +3,8 @@ import assert from 'node:assert/strict';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 const root = resolve(import.meta.dirname, '..');
+const indexationPolicy = JSON.parse(readFileSync(resolve(root, 'scripts/indexation-policy.json'), 'utf8'));
+assert.equal(indexationPolicy.pages.length, 0, 'Existing migration indexation requires a new explicit source/indexation decision before reimport; do not silently reset live routes to noindex.');
 const snapshotFlag = process.argv.indexOf('--snapshot');
 assert.ok(snapshotFlag >= 0, 'Explicit preserved source snapshot required');
 const snapshot = process.argv[snapshotFlag + 1];

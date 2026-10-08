@@ -143,12 +143,139 @@ automatizar vigencia con aprobar contenido nuevo leído de Instagram. Sin agenda
 | D05 · 7-oct | Implementada en candidato | Release estático autocontenido, donante separado y explícito | Tests/build sin sibling; futura importación requiere build fresco verificado |
 | D06 · 7-oct | Implementada en candidato | Lista pública explícita y JS/datos separados del panel demo | Pruebas negativas; falta despliegue autorizado para retirar el demo del dominio |
 | D07 · 7-oct | Implementada en candidato | CI read-only sin secretos ni publicación | Validar run remoto; CD/credenciales/protecciones se activan aparte |
+| D08 · 7-oct | Solicitada por Luis; candidata local | Franja naranja El Paso directamente después del hero, fecha 9-oct y enlace a su ficha | Anuncio independiente del hero; estado/fecha del registro público, no declarar apertura por el reloj |
+| D09 · 7-oct | Encargada por Luis; candidata local | Rótulo existente como H1 sobre el video de Karina; quitar copy antiguo y bloque/fotos duplicados | Conservar SVG/fuente y hashes de video/póster; geometría móvil/desktop y texto visible al scroll. Sin publicación |
+| D10 · 7-oct | Corrección solicitada por Luis; candidata local | Cartelera de campañas comunes desde calendarios vivos, crema/tinta/naranja; no Instagram ni granate | Halloween31-oct y Catrinas con fecha propia por sede. No extrapolar promos/horarios/beneficios ni considerar el PDF tentativo agenda confirmada |
 
 Agregar una fila solo si cambia el contrato. Cambios de implementación → PR/commit; cambios de
 ruta → ROUTES; no duplicar reseñas largas de sesión. Un release registra commit, sourceRef/hash,
 artefacto, pruebas, aprobación y rollback. Archivar evidencia de QA sin datos privados ni secretos.
 
 ## 7. Activación por pasos
+
+### Primer lote correctivo local · 7-oct, posterior a la auditoría
+
+Rama `fix/live-source-selector`, sobre PR #7. **No publicado ni fusionado.** Se recuperaron los
+cambios públicos del upload `766a7c6c` dentro del alcance: video/póster, home, rótulo/fotos y 180
+líneas nuevas de CSS. Nueve fuentes auditadas revalidadas sin cambios; otras páginas cotejadas.
+No trasladar demos, datos internos, scripts de despliegue ni ofuscación de email inyectada por
+Cloudflare. El 404 conserva copy neutro, no ocho sucursales. No es respaldo integral de Pages.
+
+Hero: HTML idéntico al publicado, SHA-256 `8ea0e9317329fcd214295f209aef25a06272fed997e7612bb4449ed18ada4e8e`;
+video idéntico, ambos controlados por test. Video, póster, copy y comportamiento conservados;
+nuevo CSS limitado al selector/rótulo/franja. Header/footer públicos sin enlace al panel.
+Selector: `ul > li > a`, primer clic/Enter/tacto nativos, una preview y último hover/foco retenido.
+Retícula móvil/tablet/tacto; acordeón desde 1100 px solo con puntero fino/hover. Filtros con
+7/1/6/3 registros; futuras sedes sin página son anuncios no enlazados, sin destinos inventados.
+Más de siete tarjetas pasa a retícula. Guadalajara conserva ID/ruta y orientación Chapalita.
+Rótulo conserva SVG y carga Alfa real. **Feedback posterior de Luis:** retener las ventanas
+alargadas de Karina (230×1050 como proporción), no el recorte corto del primer candidato.
+Se escalan ambas dimensiones juntas para móvil/tablet, sin cambiar originales/arte ni el hero.
+El límite anterior de QA «foto <700px» se reemplaza por proporción 105/23, carga y contención
+responsive: cambió la aceptación visual explícita, no se oculta un fallo. CTA bajo el rótulo.
+Licencia del patrón en
+`licenses/react-bits.txt` (MIT + Commons Clause), no retirar al distribuir.
+
+Fotos: Guadalajara/SA/Houston conservan motivos publicados en WebP local a resolución original.
+El Paso conserva el recurso ilustrativo del upload, no afirmar foto propia. TW tenía hotlink roto:
+candidata real del banco revisado `the-woodlands-hero-1600.webp`, sin generación IA. Sustitución y
+permisos requieren revisión de release; QA no concede permiso comercial. Franja: ancho completo,
+naranja cálido contrastado, El Paso/fecha `time`/CTA a ficha propia; ES/EN y apilado móvil. Confirmar
+operación antes de cambiar El Paso a abierta o retirar el anuncio; no inventar fechas para otras.
+
+**Refinamiento de fotos/fecha, 7-oct:** Moreno Valley reutiliza `interior.webp`, San Diego
+`karaoke.webp` (banco general, DSC04344); `venuePhotoKind: brand-illustrative` registra que
+no son fotografías de esos futuros locales. Solo prueba local; revisión de derechos de release
+sigue separada. No se crean fechas/páginas/reservas. El Paso tiene badge de 16px y «ABRE / 9 OCT»
+en preview cerrada, claramente preapertura. No se cambia su estado al pasar el reloj.
+«Trae a los cuatro»: el markup empleaba `experience-media`, pero CSS estilaba `experience-photo`;
+la foto vertical quedaba a 640×420, deformada y con hueco debajo. Corrección solo en el home:
+imagen a sangre con `object-fit: cover`, celda completa en desktop, proporción natural 4:5 apilada
+en móvil. Alt de ruleta corregido y reversible ES/EN; sin alterar media original. Revisión de «El plan»:
+Comida usa foto real de tacos ya incluida en el paquete, Micrófono muestra micrófonos, Música
+ambiente de marca; Celebraciones cambia su focal para no cortar el rostro. No son datos de oferta.
+
+Houston: paquete recupera ficha ES/EN + carta del corte 30-sep, OpenTable, teléfono confirmado y
+mapa Google fijo. **No importado aún el Catering/cartelera posterior ni las otras fichas donantes.**
+Metadatos del directorio usan Guadalajara/teléfono Houston confirmado; rutas/canonicals intactos.
+`npm run check`: 26 tests; paquete 89 archivos/15 HTML, 173 referencias. `qa:selector`: diez
+combinaciones 320–1920 px, desktop táctil y umbrales 900/1100 incluidos, filtros/fotos pintadas/
+nombres/altura, último hover, primer clic/Enter/toque, ES/EN reversible/menú móvil, movimiento
+reducido y mapa/carta. Nuevas relaciones de encuadre verifican foto/celda y orden apilado de
+«Trae a los cuatro», proporción alta del rótulo, siete previews con foto y fecha legible. Cinco rutas/archivos
+excluidos responden 404 en servidor del artefacto. Capturas revisadas; evidencia local ignorada
+`.artifacts/visual-refinement-qa-20261008-final-walk/report.json`. Referencia previa y encuadres revisados
+en `.artifacts/visual-refinement-before-20261008/`. Iteraciones detectaron y corrigieron capa que
+tapaba fotos y fecha EN sin traducir, no solo overflow. Hero preservado, no rediseñado.
+Las capturas por bloque recorren primero sus elementos como al hacer scroll: capturar directamente
+una sección larga fuera de pantalla dejaba tarjetas aún sin revelar. Reproducido en móvil;
+el scroll real sí las muestra. Se corrige la sonda, no se fuerza opacidad del sitio para esconderlo.
+
+Repetir sobre artefacto fresco: `SY_QA_ORIGIN` local y `SY_QA_PACKAGE_ROOT` con Playwright instalado,
+`npm run qa:selector`. Sonda GET-only/bloqueo de envíos/telemetría, evidencia fuera del paquete.
+Gate local, **no cableado todavía a CI/CD**. No Safari/dispositivos reales/Lighthouse/backend.
+Persisten HTML inicial/SEO, contenido simulado/notas heredadas de otros bloques, importaciones
+restantes y controles remotos. No certificar el sitio entero ni publicar sin revisión/aprobación.
+
+**Antecedente superado por D09/D10: cartelera y entradas de celebración · 7-oct:** los dos fallos anteriores
+quedan corregidos en la candidata, no en el dominio. Cartelera ya no presenta notas internas ni
+agenda compartida de prueba. Los registros Houston del donante siguen en revisión/bloqueados;
+no se reclasifican como aprobados. Se usa un acceso neutro al Instagram ya registrado de cada
+sede activa, solo si su URL es válida. Sin fechas, beneficios, boletos, extracción automática ni
+promesa de disponibilidad. El módulo se omite sin perfiles elegibles. Las fichas genéricas de
+Guadalajara/SA/TW reciben el mismo criterio por sede, sin repetir eventos ficticios; la ficha
+estática Houston no se modifica. Los perfiles no se verificaron de nuevo contra Instagram en este lote.
+
+Diseño home: lista tipográfica con separadores sobre el granate existente, sin duplicar las fotos
+del selector. `home-actions.css` se carga solo en el home y entra en allowlist/versionado; el check
+rechaza su versión obsoleta. Los seis pretextos y el CTA cumpleaños son enlaces nativos a
+`#ubicaciones`, con foco de teclado y sin modal de novedades ni ciudad/reserva por defecto.
+Si solo se muestran próximas aperturas, la entrada restaura «Todas»; conserva un filtro de país
+ya elegido. Copy cumpleaños sin promesas de pastel/servicio no confirmadas. El home deja de
+renderizar el modal heredado; los otros formularios conservan su lote separado.
+
+`npm run check`: **32 tests**, 90 archivos/15 HTML, 173 referencias. `qa:selector` conserva las diez
+combinaciones previas y añade agenda/pretextos/cumpleaños, destinos, filtro, foco/Enter/tacto y
+ES/EN; seis recorridos adicionales verifican las agendas de tres fichas a 390/1440 px. Capturas
+home/fichas revisadas; reporte local ignorado `.artifacts/home-actions-qa-release/report.json`.
+No overflow de los bloques nuevos ni excepciones JS en esos recorridos. No es QA integral del
+sitio, Safari, dispositivos reales, backend ni certificación de contenido comercial. HTML inicial/SEO,
+importaciones Catering/fichas/cartas y aprobación/publicación automatizada por fechas siguen pendientes.
+Hero/rótulo/selector/fotos preservados; rutas sin cambios, sin merge/deploy/settings/credenciales.
+
+**Corrección de rumbo D09/D10 · 7-oct, solo candidata local:** Luis descarta la lista Instagram y
+el fondo granate de cartelera, y encarga integrar «No hay tiempo para llorar» dentro del hero.
+El SVG/fuente ya aceptados pasan a un H1 con texto accesible; video/póster siguen idénticos.
+Se retira `#rotulo` con las dos fotos y CTA duplicado. La franja El Paso continúa entre hero y
+`#plan`, sin solape. Arte dimensionado por ancho/altura disponible; CTAs en flujo. Corregido
+divisor de parallax que desvanecía el copy con 1 px de scroll; ahora solo se mueve el video.
+
+Fuentes recuperadas: calendarios vivos enlazados por el Doc de eventos/reservas de Karina. La
+copia SA del 2-oct estaba superada por una edición del 7-oct: Catrinas es **1-nov**, no 24-oct.
+Houston/Woodlands coinciden con sus cortes; el home usa Halloween **31-oct** en HOU/SA/TW y
+Catrinas **24-oct Houston / 30-oct Woodlands / 1-nov SA**. Registro privado de fuentes/celdas:
+ingesta marketing del cliente, bloque `liveCalendars`; ningún contacto privado cruza al paquete.
+Estas actividades no se atribuyen a Guadalajara/El Paso/otras sedes sin registro. Thanksgiving
+sigue pendiente en Woodlands. PDF estacional contiene propuestas; PDF de oportunidades contiene
+actividades externas, no actuaciones en las cantinas. No son sustitutos de estas agendas propias.
+
+El home presenta fechas/campañas comunes y enlaza la ficha real de cada sede. El registro público
+no incluye precios, premios, participantes ni horarios sin revisión. `visibleFrom` es un control
+editorial local, no una fecha de lanzamiento aportada por marketing. Cada ocurrencia se retira al
+cambiar su día civil en `America/Chicago` (DST probado); se recalcula rango visible y se omite
+todo el módulo si no quedan campañas. Se evalúa al cargar, sin importación de Instagram/Drive,
+scheduler, actualización en una pestaña abierta ni Event schema inventado. Condiciones/promos
+y artes específicos van en las fichas cuando se importe su lote. Las tres fichas genéricas aún
+conservan su enlace neutro de agenda; Houston sigue en el corte 30-sep. No afirmar que estén completas.
+El handle `sinyolandaelpaso` suministrado por Luis ya coincide con su registro; no cambia su estado.
+
+Verificación: `npm run check` **35/35**, 90 archivos/15 HTML/171 referencias; sonda v4 con
+**once** combinaciones, incluida 320×568, geometría del H1/arte/header/CTAs, permanencia tras10px,
+campañas/fechas/destinos e idiomas, además de los recorridos previos de selector/fotos/entradas.
+Dos rondas pasan; capturas inspeccionadas y reporte final:
+`.artifacts/hero-calendar-qa-final/report.json`. El paquete de prueba es candidato dirty;
+el release limpio se prepara después del commit y debe cotejar sus hashes. No es Safari, dispositivo
+real ni QA/SEO integral. Sin producción, merge, DNS, credenciales ni cambios al donante.
 
 ### Paso 1 revisado: producción, selector y rótulo · 7-oct
 

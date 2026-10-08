@@ -45,7 +45,7 @@
         </div>
         <div>
           <strong>Sucursales abiertas</strong>
-          <a href="san-ignacio.html">San Ignacio · Av. San Ignacio 78, Zapopan, Jal.</a>
+          <a href="san-ignacio.html">Sin Yolanda Guadalajara · Av. San Ignacio 78, Zapopan, Jal.</a>
           <a href="san-antonio.html">San Antonio · 415 E Commerce St, TX</a>
           <a href="the-woodlands.html">The Woodlands · 1400 Research Forest Dr, Shenandoah, TX</a>
           <a href="houston.html">Houston · 4901 Washington Ave, TX</a>
@@ -67,7 +67,7 @@
   function locationCard(branch) {
     const isSoon = branch.status === "coming-soon";
     return `
-      <article class="location-card" data-region="${branch.region}">
+      <article class="location-card" data-region="${branch.region}" data-status="${branch.status}">
         <div class="location-card-media">
           <img src="${branch.image}" alt="${branch.name}" />
           ${statusBadge(branch.statusLabel, isSoon ? "warning" : "success")}
@@ -78,9 +78,9 @@
           <span>${branch.concept}</span>
           <div class="card-actions">
             ${isSoon
-              ? `${branch.socialUrl
+              ? `${branch.page !== "#" ? `<a class="button button-primary" href="${branch.page}">Ver sucursal</a>` : ""}${branch.socialUrl
                   ? `<a class="button button-primary" href="${branch.socialUrl}" target="_blank" rel="noopener">Seguir la apertura</a>`
-                  : ""}<button class="button ${branch.socialUrl ? "button-ghost" : "button-primary"}" type="button" data-open-modal="news">Recibir novedades</button>`
+                  : ""}`
               : `<a class="button button-primary" href="${branch.reserveChannel === "opentable" ? branch.reserveUrl : `https://wa.me/${branch.whatsapp}`}" target="_blank" rel="noopener">Reservar</a>
                  <a class="button button-ghost" href="${branch.page}">Ver sucursal</a>
                  <a class="text-button" href="${branch.mapsUrl}" target="_blank" rel="noopener">Cómo llegar</a>`}
@@ -89,15 +89,66 @@
       </article>`;
   }
 
+  function venueShowcase() {
+    const branches = data.branches.filter((branch) => ["active", "coming-soon"].includes(branch.status));
+    return `
+        <section class="section venue-showcase" id="ubicaciones" tabindex="-1" aria-labelledby="venue-heading">
+          <div class="section-heading"><div><h2 id="venue-heading">Cuál te queda</h2></div><p>México y Estados Unidos</p></div>
+          <div class="filter-chips" role="group" aria-label="Filtrar ubicaciones" data-venue-filters>
+            <button class="filter active" type="button" data-venue-filter="all" aria-pressed="true">Todas</button>
+            <button class="filter" type="button" data-venue-filter="mx" aria-pressed="false">México</button>
+            <button class="filter" type="button" data-venue-filter="us" aria-pressed="false">Estados Unidos</button>
+            <button class="filter" type="button" data-venue-filter="soon" aria-pressed="false">Próximamente</button>
+          </div>
+          <ul class="venue-gallery" data-venue-gallery>
+            ${branches.map((branch, index) => {
+              const hasPage = branch.page !== "#";
+              const tag = hasPage ? "a" : "div";
+              const name = branch.shortName;
+              const hasOpeningDate = branch.status === "coming-soon" && branch.openingDate === "2026-10-09";
+              const opening = hasOpeningDate ? "Abre el 9 de octubre" : "Próximamente";
+              return `<li class="venue-item${index === 0 ? " is-open" : ""}" data-venue-item data-region="${branch.region}" data-status="${branch.status}">
+              <${tag} class="venue-card${index === 0 ? " is-open" : ""}${branch.status === "coming-soon" ? " venue-card--soon" : ""}${branch.venuePhoto ? "" : " venue-card--announcement"}"${hasPage ? ` href="${branch.page}"` : ""} data-venue data-branch-id="${branch.id}">
+                <span class="venue-frame" aria-hidden="true">${branch.venuePhoto ? `<img src="${branch.venuePhoto}" alt="" width="1400" height="1000" loading="lazy" decoding="async" style="object-position:${branch.venuePosition || "50% 50%"}" />` : `<span class="venue-announcement">Sin Yolanda<span>Próximamente</span></span>`}<span class="venue-shade"></span></span>
+                <span class="venue-location" aria-hidden="true">${branch.country === "México" ? "Jalisco, México" : branch.city}</span>
+                <span class="venue-collapsed" aria-hidden="true">${name}</span>
+                ${hasOpeningDate ? `<span class="venue-opening-date" aria-hidden="true"><span>Abre</span>9 OCT</span>` : ""}
+                <span class="venue-label">
+                  ${branch.status === "coming-soon" ? `<span class="venue-badge${hasOpeningDate ? " venue-badge--opening" : ""}">${opening}</span>` : ""}
+                  <strong>${name}</strong>
+                  <span class="venue-city">${branch.venueCity || branch.city}</span>
+                  ${hasPage ? `<span class="venue-invitation" aria-hidden="true">Ver sucursal <svg viewBox="0 0 20 20" fill="none"><path d="M4 10h12m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.5"></path></svg></span>` : ""}
+                </span>
+              </${tag}>
+              </li>`;
+            }).join("")}
+          </ul>
+          <p class="venue-sr" data-venue-status aria-live="polite" aria-atomic="true"></p>
+        </section>`;
+  }
+
+  function openingAnnouncement() {
+    const branch = data.branches.find((item) => item.id === "el-paso");
+    if (!branch || branch.status !== "coming-soon" || branch.openingDate !== "2026-10-09") return "";
+    return `<aside class="opening-announcement" aria-label="Próxima apertura">
+      <div class="opening-announcement-inner">
+        <p class="opening-announcement-details"><span>Próxima apertura</span>
+          <strong><a href="${branch.page}">El Paso</a></strong>
+          <time datetime="${branch.openingDate}">9 de octubre</time></p>
+        <a class="opening-announcement-link" href="${branch.page}">Conoce la sucursal
+          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h12m-5-5 5 5-5 5"/></svg></a>
+      </div>
+    </aside>`;
+  }
+
   function homePage() {
-    const waGdl = `https://wa.me/523310186159?text=${encodeURIComponent("Hola, quiero reservar una mesa en Sin Yolanda San Ignacio.")}`;
     const plan = [
-      ["Comida", "assets/media/dining.webp", "Para el centro de la mesa. Se comparte o no se pide."],
+      ["Comida", "images/houston-entry-study/table-1600.webp", "Para el centro de la mesa. Se comparte o no se pide."],
       ["Tragos", "assets/media/cocktail.webp", "Coquetos. Sin lista de precios: pregunta y te contamos."],
-      ["Música", "assets/media/karaoke.webp", "Canciones que te sabes completas."],
-      ["Micrófono", "assets/media/celebration.webp", "Pasa por las mesas. Nadie se lo niega a nadie."],
+      ["Música", "assets/media/hero-night.webp", "Canciones que te sabes completas.", "50% 22%"],
+      ["Micrófono", "assets/media/karaoke.webp", "Pasa por las mesas. Nadie se lo niega a nadie.", "50% 42%"],
       ["La banda", "assets/media/interior.webp", "Trae a los cuatro. Aquí caben todos."],
-      ["Celebraciones", "assets/media/hospitality.webp", "Cumpleaños, renuncias, quincenas. Cualquier pretexto."],
+      ["Celebraciones", "assets/media/hospitality.webp", "Cumpleaños, renuncias, quincenas. Cualquier pretexto.", "50% 12%"],
     ];
     const pretextos = [
       ["Cumpleaños", "Aquí se entera todo el lugar."],
@@ -107,8 +158,6 @@
       ["Viernes", "¿Neta necesitas más pretexto?"],
       ["Porque sí", "El mejor de todos."],
     ];
-    const abiertas = data.branches.filter((b) => b.status === "active");
-    const proximas = data.branches.filter((b) => b.status === "coming-soon");
     return `
       ${publicHeader()}
       <main>
@@ -121,46 +170,47 @@
               loop
               playsinline
               preload="metadata"
-              poster="assets/media/hero-celebration-poster.webp"
+              poster="assets/media/hero-fiesta-real-poster.webp"
               data-hero-video>
-              <source src="assets/media/hero-celebration.mp4" type="video/mp4" />
+              <source src="assets/media/hero-fiesta-real.mp4" type="video/mp4" />
             </video>
           </div>
           <div class="hero-overlay hero-overlay-cinema"></div>
           <div class="hero-copy hero-copy-cinema">
-            <p class="eyebrow hero-eyebrow">Cantina contemporánea</p>
-            <h1 class="hero-title">El plan ya está armado.</h1>
+            <h1 class="hero-rotulo">
+              <span class="rotulo-sr">No hay tiempo para llorar</span>
+              <svg class="rotulo-art" viewBox="0 0 600 540" aria-hidden="true" focusable="false"><defs><path id="rotulo-arch" d="M85 109 Q300 42 515 109"></path><path id="rotulo-time-arch" d="M20 255 Q300 177 580 255"></path><path id="rotulo-last-arch" d="M25 427 Q300 507 575 427"></path><g id="rotulo-no-hay"><text class="rotulo-overture"><textPath href="#rotulo-arch" startOffset="50%" text-anchor="middle">NO HAY</textPath></text></g><g id="rotulo-tiempo"><text textLength="534" lengthAdjust="spacingAndGlyphs" class="rotulo-main-word"><textPath href="#rotulo-time-arch" startOffset="50%" text-anchor="middle">TIEMPO</textPath></text></g><g id="rotulo-llorar"><text textLength="534" lengthAdjust="spacingAndGlyphs" class="rotulo-last-word"><textPath href="#rotulo-last-arch" startOffset="50%" text-anchor="middle">LLORAR</textPath></text></g></defs><g class="rotulo-top"><use href="#rotulo-no-hay" class="rotulo-edge" transform="translate(3 4)"></use><use href="#rotulo-no-hay" class="rotulo-face"></use></g><g class="rotulo-center"><use href="#rotulo-tiempo" class="rotulo-depth" transform="translate(7 9.1)"></use><use href="#rotulo-tiempo" class="rotulo-depth" transform="translate(6 7.8)"></use><use href="#rotulo-tiempo" class="rotulo-depth" transform="translate(5 6.5)"></use><use href="#rotulo-tiempo" class="rotulo-depth" transform="translate(4 5.2)"></use><use href="#rotulo-tiempo" class="rotulo-depth" transform="translate(3 3.9)"></use><use href="#rotulo-tiempo" class="rotulo-depth" transform="translate(2 2.6)"></use><use href="#rotulo-tiempo" class="rotulo-depth" transform="translate(1 1.3)"></use><use href="#rotulo-tiempo" class="rotulo-outline"></use><use href="#rotulo-tiempo" class="rotulo-face"></use></g><g class="rotulo-bridge" fill="currentColor"><path d="M95 295 Q155 279 220 295 Q155 285 95 300Z"></path><text x="300" y="307" text-anchor="middle">para</text><path d="M505 295 Q445 279 380 295 Q445 285 505 300Z"></path></g><g class="rotulo-finale"><use href="#rotulo-llorar" class="rotulo-depth" transform="translate(7 9.1)"></use><use href="#rotulo-llorar" class="rotulo-depth" transform="translate(6 7.8)"></use><use href="#rotulo-llorar" class="rotulo-depth" transform="translate(5 6.5)"></use><use href="#rotulo-llorar" class="rotulo-depth" transform="translate(4 5.2)"></use><use href="#rotulo-llorar" class="rotulo-depth" transform="translate(3 3.9)"></use><use href="#rotulo-llorar" class="rotulo-depth" transform="translate(2 2.6)"></use><use href="#rotulo-llorar" class="rotulo-depth" transform="translate(1 1.3)"></use><use href="#rotulo-llorar" class="rotulo-outline"></use><use href="#rotulo-llorar" class="rotulo-face"></use><path class="rotulo-underline" d="M100 485 Q300 528 500 485 Q300 543 100 485Z"></path></g></svg>
+            </h1>
             <p class="hero-sub">Comida que sí llena, tragos coquetos y canciones que se gritan completas.</p>
             <div class="hero-actions">
-              <a class="button button-primary" href="#ubicaciones">Reserva tu mesa</a>
-              <a class="button button-ghost-light" href="#ubicaciones">Encuentra tu Sin Yolanda</a>
+              <a class="button button-primary" href="#ubicaciones" data-select-location>Reserva tu mesa</a>
+              <a class="button button-ghost-light" href="#ubicaciones" data-select-location>Encuentra tu Sin Yolanda</a>
             </div>
             <p class="hero-micro">México · Texas</p>
           </div>
         </section>
 
+        ${openingAnnouncement()}
+
+
         <section class="section section-after-hero" id="plan">
           <div class="section-heading"><div><p class="eyebrow">El plan</p><h2 class="reveal">El plan ya está armado.</h2></div><p>Tú solo trae el pretexto.</p></div>
           <div class="event-grid">
-            ${plan.map(([titulo, img, texto], i) => `<article class="reveal-scale" style="animation-delay:${0.08 * i}s"><img src="${img}" alt="${titulo}" loading="lazy" width="640" height="420" /><h3>${titulo}</h3><p>${texto}</p></article>`).join("")}
+            ${plan.map(([titulo, img, texto, position = "50% 50%"], i) => `<article class="reveal-scale" style="animation-delay:${0.08 * i}s"><img src="${img}" alt="${titulo}" loading="lazy" width="640" height="420" style="object-position:${position}" /><h3>${titulo}</h3><p>${texto}</p></article>`).join("")}
           </div>
         </section>
 
         <section class="section pretextos-section">
           <div class="section-heading"><div><p class="eyebrow">Los pretextos</p><h2 class="reveal">Se aceptan pretextos chiquitos.</h2></div></div>
           <div class="pretextos-grid">
-            ${pretextos.map(([nombre, remate], i) => `<button class="pretexto-card reveal-scale" type="button" style="animation-delay:${0.08 * i}s" data-open-modal="news"><span>0${i + 1}</span><strong>${nombre}</strong><em>“${remate}”</em><small>Cuéntanos y apartamos mesa</small></button>`).join("")}
+            ${pretextos.map(([nombre, remate], i) => `<a class="pretexto-card reveal-scale" href="#ubicaciones" data-select-location style="animation-delay:${0.08 * i}s"><strong>${nombre}</strong><em>“${remate}”</em><small>Elegir sucursal</small></a>`).join("")}
           </div>
         </section>
 
-        <section class="section cartelera-section" id="cartelera">
-          <div class="section-heading"><div><p class="eyebrow">Cartelera</p><h2 class="reveal">Esta semana se puso bueno.</h2></div><p>Los eventos de cada casa, aquí apenas se están armando.</p></div>
-          <div class="event-grid">${data.events.map((event) => `<article><span>${event.date}</span><h3>${event.title}</h3><p>${event.description}</p><a class="text-button" href="#ubicaciones">Reservar evento</a></article>`).join("")}</div>
-          <p class="data-caveat">TODO: CONFIRMAR CON OPERACIÓN — cartelera con eventos reales por sucursal.</p>
-        </section>
+        ${homeAgenda()}
 
         <section class="experience-section" id="experiencia">
-          <div class="experience-media"><img src="assets/media/celebration.webp" alt="Amigos cantando en Sin Yolanda" loading="lazy" width="640" height="420" /></div>
+          <div class="experience-media"><img src="assets/media/celebration.webp" alt="Ruleta de shots y bebidas sobre una mesa de Sin Yolanda" loading="lazy" width="1600" height="2000" /></div>
           <div class="experience-copy">
             <p class="eyebrow">La casa por dentro</p>
             <h2 class="reveal">Trae a los cuatro.</h2>
@@ -181,33 +231,99 @@
 
         <section class="section cumple-section" id="cumple">
           <div class="section-heading"><div><p class="eyebrow">Celebraciones</p><h2 class="reveal">¿Cumpleaños?</h2></div></div>
-          <p class="cumple-copy">Aquí se entera todo el lugar. Avísanos y ya sabemos qué hacer: mesa larga, pastel y una canción que nadie te va a dejar cantar solo.</p>
+          <p class="cumple-copy">Tu gente, una mesa y un buen pretexto. Elige tu sucursal y consulta disponibilidad para celebrar.</p>
           <div class="hero-actions">
-            <a class="button button-primary" href="${waGdl}" target="_blank" rel="noopener">Armar mi cumpleaños</a>
-            <a class="button button-ghost" href="locations.html">Ver sucursales</a>
+            <a class="button button-primary" href="#ubicaciones" data-select-location>Elegir sucursal</a>
           </div>
         </section>
 
-        <section class="section location-showcase" id="ubicaciones">
-          <div class="section-heading"><div><p class="eyebrow">Ubicaciones</p><h2 class="reveal">¿Cuál te queda?</h2></div></div>
-          <div class="filter-chips" role="group" aria-label="Filtrar ubicaciones">
-            <button class="filter active" type="button" data-filter="all">Todas</button>
-            <button class="filter" type="button" data-filter="mx">México</button>
-            <button class="filter" type="button" data-filter="us">Estados Unidos</button>
-            <button class="filter" type="button" data-filter="soon">Próximamente</button>
-          </div>
-          <div class="location-grid">${data.branches.map(locationCard).join("")}</div>
-        </section>
+        ${venueShowcase()}
 
         <section class="reserve-cta" id="reserve">
           <div><p class="eyebrow">¿Sin Yolanda? Si sabes, sabes.</p><h2 class="reveal">Ya quedó.</h2></div>
           <div><a class="button button-light" href="#ubicaciones">Reservar mesa</a></div>
         </section>
       </main>
-      ${publicFooter()}
-      ${modalMarkup()}`;
+      ${publicFooter()}`;
   }
 
+  function hasAgendaProfile(branch) {
+    // Reuse the registered location's own public profile, never a guessed account.
+    return branch.status === "active" && /^https:\/\/www\.instagram\.com\/[a-z0-9._]+\/$/i.test(branch.socialUrl || "");
+  }
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, char => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[char]));
+  }
+
+  function validCalendarDate(value) {
+    return typeof value === "string" && /^\d{4}-\d{2}-\d{2}$/.test(value) &&
+      Number.isFinite(Date.parse(value)) && new Date(value).toISOString().slice(0, 10) === value;
+  }
+
+  function calendarDay(timeZone, now = new Date()) {
+    try {
+      const parts = new Intl.DateTimeFormat("en", { timeZone, year: "numeric", month: "2-digit", day: "2-digit" }).formatToParts(now);
+      const part = type => parts.find(value => value.type === type).value;
+      return `${part("year")}-${part("month")}-${part("day")}`;
+    } catch (_) { return ""; }
+  }
+
+  function calendarLabel(date) {
+    const months = ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"];
+    return `<time datetime="${date}">${Number(date.slice(8))} <span>${months[Number(date.slice(5, 7)) - 1]}</span></time>`;
+  }
+
+  function homeCampaigns(now = new Date()) {
+    const today = calendarDay("America/Chicago", now);
+    if (!today) return [];
+    return (data.events || []).filter(event => event.placement === "home" && event.status === "scheduled" &&
+      validCalendarDate(event.visibleFrom) && event.visibleFrom <= today && Array.isArray(event.occurrences))
+      .map(event => {
+        const locations = event.occurrences.map(occurrence => ({ ...occurrence,
+          branch: data.branches.find(branch => branch.id === occurrence.branchId) }))
+          .filter(occurrence => validCalendarDate(occurrence.date) && occurrence.timeZone &&
+            calendarDay(occurrence.timeZone, now) && occurrence.branch?.status === "active" &&
+            /^[a-z0-9-]+\.html$/.test(occurrence.branch.page));
+        // Home campaigns span locations; local-only promotions stay on their fichas.
+        if (new Set(locations.map(occurrence => occurrence.branchId)).size < 2) return null;
+        const occurrences = locations.filter(occurrence => occurrence.date >= calendarDay(occurrence.timeZone, now))
+          .sort((a, b) => a.date.localeCompare(b.date) || a.branchId.localeCompare(b.branchId));
+        return occurrences.length ? { ...event, occurrences } : null;
+      }).filter(Boolean).sort((a, b) => a.occurrences[0].date.localeCompare(b.occurrences[0].date));
+  }
+
+  function homeAgenda(now = new Date()) {
+    const campaigns = homeCampaigns(now);
+    if (!campaigns.length) return "";
+    return `<section class="section cartelera-section home-agenda" id="cartelera" aria-labelledby="agenda-heading">
+      <div class="home-agenda-intro">
+        <h2 id="agenda-heading">Lo que viene.</h2>
+        <p>Hay fechas que se celebran en más de una cantina. Encuentra la tuya.</p>
+      </div>
+      <div class="home-campaigns">
+        ${campaigns.map(event => {
+          const first = event.occurrences[0].date, last = event.occurrences[event.occurrences.length - 1].date;
+          return `<article class="home-campaign" data-campaign="${escapeHtml(event.id)}">
+            <div class="campaign-dates">${calendarLabel(first)}${first === last ? "" : `<span aria-hidden="true">—</span>${calendarLabel(last)}`}</div>
+            <div class="campaign-copy"><h3>${escapeHtml(event.title)}</h3><p>${escapeHtml(event.description)}</p></div>
+            <ul class="campaign-locations" aria-label="Sucursales y fechas">
+              ${event.occurrences.map(occurrence => `<li><a href="${occurrence.branch.page}" data-agenda-branch="${escapeHtml(occurrence.branchId)}"><span>${escapeHtml(occurrence.branch.shortName)}</span>${calendarLabel(occurrence.date)}<svg viewBox="0 0 20 20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 10h12M10 4l6 6-6 6"/></svg></a></li>`).join("")}
+            </ul>
+          </article>`;
+        }).join("")}
+      </div>
+    </section>`;
+  }
+
+  function branchAgenda(branch) {
+    if (!hasAgendaProfile(branch)) return "";
+    return `<section class="section" id="cartelera">
+      <div class="section-heading"><div><h2>Eventos y promociones</h2></div></div>
+      <p>Consulta la programación de esta sucursal en su Instagram.</p>
+      <a class="text-button" href="${branch.socialUrl}" target="_blank" rel="noopener noreferrer">Ver agenda en Instagram</a>
+    </section>`;
+  }
 
   function locationsPage() {
     return `
@@ -318,10 +434,7 @@
           <div><p class="eyebrow">Menú de muestra</p><h2 class="reveal">Se botanea en serio.</h2><p>Una selección breve para demostrar cómo el menú puede adaptarse por ciudad, idioma y disponibilidad.</p><div class="mini-menu"><span>Coctelería de autor</span><span>Entradas para compartir</span><span>Cocina mexicana</span><span>Brunch seleccionado</span></div><a class="button button-primary" href="${branch.menuUrl}" target="_blank" rel="noopener">Ver menú</a></div>
         </section>
 
-        <section class="section">
-          <div class="section-heading"><div><p class="eyebrow">Eventos</p><h2 class="reveal">Una agenda propia.</h2></div><p>Programación de ejemplo para mostrar el flujo de comunicación y reservación.</p></div>
-          <div class="event-grid">${data.events.map((event) => `<article><span>${event.date}</span><h3>${event.title}</h3><p>${event.description}</p><a class="text-button" href="${branch.reserveChannel === "opentable" ? branch.reserveUrl : `https://wa.me/${branch.whatsapp}`}" target="_blank" rel="noopener">Reservar</a></article>`).join("")}</div>
-        </section>
+        ${branchAgenda(branch)}
 
         <section class="gallery-section"><div class="section-heading"><div><p class="eyebrow">Galería</p><h2 class="reveal">La atmósfera habla primero.</h2></div></div><div class="gallery-grid">${branch.gallery.map((image, index) => `<img src="${image}" alt="${branch.shortName}, fotografía de ambiente ${index + 1}" />`).join("")}</div></section>
 
@@ -370,6 +483,17 @@
       button.addEventListener("click", () => document.getElementById(button.dataset.scrollTo)?.scrollIntoView({ behavior: "smooth" }));
     });
 
+    // A booking entry should not strand the visitor in the coming-soon filter.
+    // Preserve native navigation and existing country choices; only clear "soon".
+    document.querySelectorAll("[data-select-location]").forEach((link) => {
+      link.addEventListener("click", (event) => {
+        if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        if (document.querySelector('[data-venue-filter="soon"][aria-pressed="true"]')) {
+          document.querySelector('[data-venue-filter="all"]')?.click();
+        }
+      });
+    });
+
   }
 
   function bindLocationFilters() {
@@ -379,7 +503,8 @@
       filter.addEventListener("click", () => {
         filters.forEach((item) => item.classList.toggle("active", item === filter));
         cards.forEach((card) => {
-          card.hidden = filter.dataset.filter !== "all" && card.dataset.region !== filter.dataset.filter;
+          card.hidden = filter.dataset.filter === "soon" ? card.dataset.status !== "coming-soon"
+            : filter.dataset.filter !== "all" && card.dataset.region !== filter.dataset.filter;
         });
       });
     });
@@ -663,7 +788,6 @@
     const hero = document.querySelector(".home-hero-cinema");
     if (!hero) return;
     const video = hero.querySelector("[data-hero-video]");
-    const copy = hero.querySelector(".hero-copy-cinema");
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const fine = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
@@ -674,12 +798,10 @@
       ticking = false;
       const rect = hero.getBoundingClientRect();
       const vh = window.innerHeight || 1;
-      const p = Math.min(Math.max(-rect.top / (rect.height - vh || 1), 0), 1);
+      // Move the background gently, never fade the title/actions after a pixel
+      // of scrolling or use a negative divisor on a short viewport.
+      const p = Math.min(Math.max(-rect.top / Math.max(rect.height, vh, 1), 0), 1);
       video.style.transform = `translateY(${-3 * p}%) scale(${1 + 0.05 * p})`;
-      if (copy) {
-        copy.style.opacity = String(1 - p);
-        copy.style.transform = `translateY(${50 * p}px)`;
-      }
     };
     const onScroll = () => {
       if (!ticking) { ticking = true; requestAnimationFrame(update); }

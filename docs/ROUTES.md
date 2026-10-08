@@ -4,6 +4,15 @@
 **Estado:** inventario de fuentes versionadas y destinos propuestos; no es un crawl HTTP completo.
 No aplicar redirects ni crear páginas solo por figurar en esta tabla.
 
+**Candidata local posterior 7-oct:** franja a `el-paso.html` debajo del hero; selector con enlaces
+nativos a la ficha propia. Moreno Valley/San Diego sin href hasta tener página real. Houston
+ES/EN/carta 30-sep recuperados en paquete, no producción. Guadalajara mantiene `/san-ignacio`;
+sin nueva ruta `/guadalajara`, redirects ni duplicados. Detalle y QA: `WORKFLOW.md` §7.
+**Recorrido home posterior, solo local:** pretextos/cumpleaños enlazan `/#ubicaciones` mediante
+anclas nativas; `/#cartelera` presenta campañas compartidas con fechas por sede y enlaces a las fichas.
+No es una nueva página ni autoriza publicación. `#rotulo` se retira por D09: su arte vive en el H1
+del hero `#inicio`, no en dos bloques. Sin rutas/redirects nuevos; no cambia el sitemap.
+
 **Revalidación HTTP posterior 7-oct:** `/houston` sirve la ficha genérica nueva; `.html` y slash
 final resuelven al canonical sin slash. Carta y EN responden 200 antiguo en URL habitual pero 404
 con query fresca y en deployment `766a7c6c`; no considerarlas presentes en ese release. Maricarmen
@@ -12,7 +21,7 @@ y ruta inexistente dan 404 real. Panel demo/archivos de desarrollo siguen públi
 
 | Ruta | Fuente actual en repo | Tratamiento acordado/propuesto |
 |---|---|---|
-| `/` | `index.html` + `assets/js/site.js` | Conservar base/hero; integrar selector aprobado bajo `#ubicaciones` |
+| `/` | `index.html` + `assets/js/site.js` | Conservar base/video; D09 autoriza rótulo dentro del hero; selector aprobado bajo `#ubicaciones` |
 | `/locations` | `locations.html` | Directorio del mismo registro; no mantener sucursales en dos listas editables |
 | `/houston` | `houston.html` | Ficha donante importada; actualizar por fuente aprobada, no retoques del HTML generado |
 | `/en/houston/` | `en/houston/index.html` | Traducción correspondiente; navegación conserva sede |

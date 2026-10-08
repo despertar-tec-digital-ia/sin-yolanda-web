@@ -9,6 +9,7 @@
     "check": "node scripts/check-public.mjs && npm test",
     "build": "node scripts/package-public.mjs .artifacts/public",
     "audit:live": "node scripts/audit-live.mjs",
+    "qa:selector": "node scripts/qa-selector.mjs",
     "import:branch": "node scripts/import-branches.mjs"
   }
 }

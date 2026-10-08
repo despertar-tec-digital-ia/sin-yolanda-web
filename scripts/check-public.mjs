@@ -7,6 +7,7 @@ import { inspectPublic, projectRoot, forbiddenRoute } from './package-public.mjs
 
 export function checkPublic(root = projectRoot) {
   const { manifest, files } = inspectPublic(root);
+  assert.match(manifest.assetVersion, /^\d{8}-[a-z0-9-]+$/, 'Explicit shared asset version required');
   const fileSet = new Set(files);
   const read = path => readFileSync(resolve(root, path), 'utf8');
   const routes = new Set(manifest.pages.map(path => path === 'index.html' ? '/' : '/' + path.replace(/index\.html$/, '').replace(/\.html$/, '')));
@@ -16,6 +17,11 @@ export function checkPublic(root = projectRoot) {
   let references = 0;
   for (const path of files.filter(f => /\.(html|css|js)$/.test(f))) {
     const source = read(path);
+    if (path.endsWith('.html')) {
+      for (const [,href] of source.matchAll(/(?:href|src)="((?:styles\.css|assets\/(?:js|css)\/(?:public-data|site|i18n|venue-selector|home-actions)\.(?:js|css))[^\"]*)"/g)) {
+        assert.ok(href.endsWith('?v=' + manifest.assetVersion), 'Stale shared asset version: ' + path);
+      }
+    }
     for (const [, href] of source.matchAll(/(?:href|src|poster)=["']([^"'<>]+)["']/g)) {
       if (/^([a-z]+:|\/\/|#)|\$\{/.test(href)) continue;
       const local = decodeURIComponent(href.split(/[?#]/)[0]);
@@ -34,6 +40,8 @@ export function checkPublic(root = projectRoot) {
     for (const key of ['listings','alerts','pendingReviews','newReviews']) assert.ok(!(key in branch), 'Internal branch field');
     if (branch.page === '#') assert.equal(branch.status, 'coming-soon', 'Open branch needs a real page');
     else assert.ok(fileSet.has(branch.page), 'Branch page is not public: ' + branch.id);
+    assert.match(branch.phoneIntl || '', /^(?:\+\d{8,15})?$/, 'Invalid branch phone: ' + branch.id);
+    if (branch.venuePhoto) assert.ok(fileSet.has(branch.venuePhoto), 'Selector image missing from artifact: ' + branch.id);
   }
   const facts = JSON.parse(read('scripts/branch-import-manifest.json')).houston.facts;
   assert.equal(context.window.SY_DATA.branches.find(b => b.id === 'houston').phoneIntl, facts.phone.e164);

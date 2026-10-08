@@ -26,8 +26,20 @@ Baseline Pages comprobado: `766a7c6c-f168-49d2-8d53-bbde1e492235`, fuentes públ
 sin cambios frente a la captura previa. Su `/dashboard` todavía responde 200: NO es un rollback
 seguro automático porque reintroduciría el panel demo. Recuperación preferente: volver a publicar
 el paquete limitado verificado; cualquier retorno histórico requiere revisar sus exclusiones.
-No se cambia DNS, correo, panel operativo, facturación ni credenciales. Resultado del upload y
-smoke remoto se añaden únicamente después de observarlos.
+No se cambia DNS, correo, panel operativo, facturación ni credenciales.
+
+**Publicado y comprobado:** PR #9 integrado en `main` (`aeb66b1`); fuente del paquete `befc2a4`,
+limpia, 184 archivos. CI remoto de PR `37825092644` y de main `37826866281` pasan. Upload directo
+Pages producción: `d149688f-e3c9-46f0-a55f-f290b9f2dd7b`, URL inmutable
+`https://d149688f.sin-yolanda-web.pages.dev`; dominio `https://sin-yolanda.com`.
+GET-only: 183 archivos servidos, 45 aliases y 10 exclusiones; panel demo, mocks, scripts y
+Maricarmen responden 404. Todos los archivos coinciden en la URL inmutable. En el dominio,
+182 coinciden directamente; únicamente privacidad recibe la protección automática de email de
+Cloudflare. Se restaura localmente esa transformación exacta en sus tres aliases y el hash vuelve
+a coincidir, sin modificar sitio/settings ni eximir otras diferencias. La URL inmutable añade
+noindex propio de Cloudflare; el home del dominio oficial NO lo recibe. Las 16 páginas pendientes
+conservan su meta noindex. Recibos completos ignorados en `.artifacts/limited-production-20261008-befc2a4/`.
+No es certificación comercial, carga, Safari ni CI/CD completo; pendientes conservados.
 
 ## 1. Una casa por tipo de información
 

@@ -4,6 +4,21 @@
 **Estado:** inventario de fuentes versionadas y destinos propuestos; no es un crawl HTTP completo.
 No aplicar redirects ni crear páginas solo por figurar en esta tabla.
 
+## QR de carta Guadalajara · encargo autorizado8-oct
+
+Luis autoriza implementar/publicar `/q/gdl-menu` y `/q/gdl-menu/` como302 directo a
+`https://sinyolandagdl.com/menu/?utm_source=qr&utm_medium=offline&utm_campaign=menu_guadalajara`.
+Fuente ejecutable única: `_redirects`, validada por `scripts/qr-redirects.mjs` y permitida
+explícitamente en el paquete. No hay landing intermedia, registro obligatorio, destino elegido
+por query ni cambio al menú WordPress. Los aliases no entran al sitemap y el control no se sirve
+como archivo. Estado de publicación y evidencia → WORKFLOW, «QR de carta Guadalajara».
+
+El QR imprimible codifica solo `https://sin-yolanda.com/q/gdl-menu`; cambiar más adelante el
+destino no cambia la imagen. Esa sustitución requiere aprobación operativa de Guadalajara
+(Humberto) y su propio release. UTM queda preparado, **sin activar ni acreditar Analytics**.
+No modificar redirects WordPress pausados, GA4, fichas ni rutas Guadalajara en este lote.
+Los assets de impresión están en `print/qr-guadalajara-menu`, fuera de la allowlist pública.
+
 **Lote técnico posterior autorizado el 8-oct:** 12 destinos de fichas/cartas se preparan para
 indexación antes de 16 reglas301 exactas WordPress; cuatro páginas El Paso/Catering conservan
 noindex. Mapa ejecutable, excepciones y estado → [MIGRATION-AND-MEASUREMENT.md](MIGRATION-AND-MEASUREMENT.md).

@@ -6,6 +6,24 @@ verificado, publicación Pages manual y smoke remoto comprobado. CD automático,
 secretos no están activados por este lote. Preparación, resultado y límites se registran abajo.
 La aprobación de este release no equivale a autorizar otros releases.
 
+### QR de carta Guadalajara · autorizado8-oct, candidato en verificación
+
+Luis autoriza la ruta corta `/q/gdl-menu` hacia la carta WordPress original, sin editar su
+contenido/orden/diseño ni activar medición. Contrato de rutas → ROUTES. Única diferencia pública
+frente al paquete servido `d6734c2` / Pages `7b5a7d5b`: `_redirects`, con dos variantes exactas302;
+los185archivos previos permanecen byte a byte idénticos. Instrumentación/GHL/GA4 y CD quedan fuera.
+El parámetro público de origen está preparado; no afirmar que ya se contabilizan visitas QR.
+
+Se añade validación de reglas al empaquetado, emulación local GET/HEAD y omisión de controles
+Pages en verificación HTTP, manteniendo exclusiones/404/noindex/gates. QA local168/168 pruebas;
+PNG y captura renderizada del SVG decodificados a la URL exacta con Vision; ambos revisados.
+`scripts/generate-menu-qr.swift` es helper macOS opcional, sin dependencia del build/CI web;
+assets en `print/qr-guadalajara-menu`, no se despliega esa carpeta.
+
+Preparar release limpio aprobado por digest y comparar baseline Pages justo antes del upload.
+Rollback: paquete original verificado `7b5a7d5b` / `d6734c2`, conservado localmente; nunca volver
+al deployment histórico que reintroduce demos. Este párrafo no acredita publicación todavía.
+
 ### Lote de migración y medición autorizado · 8-oct
 
 Luis autoriza un segundo lote técnico: cobertura Umami, indexación de destinos existentes y

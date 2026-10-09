@@ -5,6 +5,7 @@ import { createServer } from 'node:http';
 import { createReadStream, closeSync, constants, fstatSync, lstatSync, openSync, readFileSync, realpathSync } from 'node:fs';
 import { dirname, extname, relative, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { parseQrRedirects } from './qr-redirects.mjs';
 
 const projectRoot = fileURLToPath(new URL('../', import.meta.url));
 const contentTypes = {
@@ -61,9 +62,12 @@ export function createReviewServer({ root, files } = {}) {
   assert.ok(root && lstatSync(root).isDirectory() && !lstatSync(root).isSymbolicLink(), 'Explicit regular package root required');
   assert.ok(Array.isArray(files) && files.length > 0 && files.every(validFile), 'Explicit safe file allowlist required');
   assert.equal(new Set(files).size, files.length, 'Duplicate review files');
-  const allowed = new Set(files.filter(path => path !== '_headers'));
+  const allowed = new Set(files.filter(path => !['_headers', '_redirects'].includes(path)));
   assert.ok(allowed.has('404.html'), 'Required true 404 fallback');
   for (const file of allowed) regularPath(root, file);
+  const redirects = new Map(files.includes('_redirects')
+    ? parseQrRedirects(readFileSync(regularPath(root, '_redirects'), 'utf8')).map(rule => [rule.source, rule])
+    : []);
   const plain = (res, status, message, head = false) => {
     res.writeHead(status, { 'Content-Type': 'text/plain; charset=utf-8', 'Cache-Control': 'no-store',
       'X-Content-Type-Options': 'nosniff', 'X-Robots-Tag': 'noindex, nofollow' });
@@ -84,6 +88,13 @@ export function createReviewServer({ root, files } = {}) {
       assert.ok(!/[\\\0]/.test(path) && !path.split('/').some(part => part === '.' || part === '..') && !/\/\//.test(path));
     } catch {
       plain(res, 400, 'Invalid review path', head);
+      return;
+    }
+    const redirect = redirects.get(path);
+    if (redirect) {
+      res.writeHead(redirect.status, { 'Location': redirect.destination, 'Content-Length': 0, 'Cache-Control': 'no-store',
+        'X-Content-Type-Options': 'nosniff', 'X-Robots-Tag': 'noindex, nofollow' });
+      res.end();
       return;
     }
     const requestPath = path.replace(/^\//, '').replace(/\/$/, '');

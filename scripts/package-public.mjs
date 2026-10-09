@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import assert from 'node:assert/strict';
+import { parseQrRedirects } from './qr-redirects.mjs';
 
 export const projectRoot = fileURLToPath(new URL('../', import.meta.url));
 export const forbiddenRoute = /(?:^|\/)(?:dashboard|listings|reputation|requests|reports|review-detail|maricarmen)(?:\.html|\/|$)/i;
@@ -20,7 +21,7 @@ export function inspectPublic(root = projectRoot) {
   for (const path of files) {
     assert.ok(/^[a-zA-Z0-9_.%/-]+$/.test(path) && !path.startsWith('/') && !path.split('/').some(p => !p || p === '..' || p.startsWith('.')), 'Unsafe public path');
     assert.ok(!forbiddenRoute.test(path) && !forbiddenFile.test(path), 'Forbidden public file: ' + path);
-    assert.ok(allowedExtension.test(path) || path === '_headers', 'Unsupported file: ' + path);
+    assert.ok(allowedExtension.test(path) || ['_headers', '_redirects'].includes(path), 'Unsupported file: ' + path);
     let part = root;
     for (const segment of path.split('/')) {
       part = resolve(part, segment);
@@ -33,6 +34,7 @@ export function inspectPublic(root = projectRoot) {
       assert.ok(!/BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY|(?:ghp|github_pat)_[A-Za-z0-9_]{20,}/.test(source), 'Credential-like content; inspect locally without logging values');
     }
   }
+  if (files.includes('_redirects')) parseQrRedirects(readFileSync(resolve(root, '_redirects'), 'utf8'));
   assert.ok(manifest.pages.every(p => p.endsWith('.html')), 'Pages must be HTML');
   const reviewPages = manifest.reviewPages ?? [];
   assert.ok(Array.isArray(reviewPages) && new Set(reviewPages).size === reviewPages.length

@@ -28,6 +28,7 @@
   "assets": [
     "styles.css",
     "_headers",
+    "_redirects",
     "robots.txt",
     "sitemap.xml",
     "assets/js/public-data.js",

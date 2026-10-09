@@ -102,6 +102,12 @@ continuación canónica en el plan operativo del vault, no en este artefacto.
 - Guadalajara: WhatsApp (San Ignacio +52 33 1018 6159)
 
 ## Pendientes externos
+
+QR dinámico de carta Guadalajara: contrato y estado en `docs/ROUTES.md` y
+`docs/WORKFLOW.md` (QR de carta Guadalajara). Imprimibles SVG/PNG en
+`print/qr-guadalajara-menu`; helper macOS `scripts/generate-menu-qr.swift` opcional,
+fuera del build web. QR de carta separado de registro/GHL; el menú WordPress sigue operativo.
+
 1. Integrar CI a main e instalar controles remotos; configurar después CD aprobado (sin desplegar por este lote)
 2. Alta en Google Search Console
 3. Campo "web" en los 6 perfiles GBP apuntando a sin-yolanda.com

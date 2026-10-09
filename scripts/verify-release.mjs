@@ -6,6 +6,7 @@ import { dirname, relative, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const repositoryRoot = fileURLToPath(new URL('../', import.meta.url));
+const cloudflareControlFiles = new Set(['_headers', '_redirects']);
 const excludedPaths = ['/dashboard', '/dashboard.html', '/assets/js/mock-data.js',
   '/deploy_pages.py', '/docs/WORKFLOW.md', '/archive', '/archive/',
   '/maricarmen', '/maricarmen.html', '/__sy_release_missing__'];
@@ -61,7 +62,8 @@ function validate(origin, metadata) {
 export async function verifyRelease({ origin, metadata, fetchImpl = globalThis.fetch } = {}) {
   const { url: base, files, reviewPages } = validate(origin, metadata);
   const run = randomUUID(), startedAt = new Date().toISOString();
-  const tasks = files.filter(file => file !== '_headers').flatMap(file => aliases(file).map((path, index) => ({ file, path, kind: index === 0 ? 'file' : 'alias' })));
+  const servedFiles = files.filter(file => !cloudflareControlFiles.has(file));
+  const tasks = servedFiles.flatMap(file => aliases(file).map((path, index) => ({ file, path, kind: index === 0 ? 'file' : 'alias' })));
   tasks.push(...excludedPaths.map(path => ({ path, kind: 'excluded' })));
   let cursor = 0;
   const observations = new Array(tasks.length);
@@ -135,9 +137,10 @@ export async function verifyRelease({ origin, metadata, fetchImpl = globalThis.f
   return { version: 1, startedAt, completedAt: new Date().toISOString(), origin: base.origin,
     commit: metadata.commit, audience: metadata.audience, publicDigest: metadata.publicDigest ?? null,
     releaseMetadataDigest: sha256(JSON.stringify(metadata)), getOnly: true, concurrency: 5,
-    skippedFiles: [{ file: '_headers', reason: 'Cloudflare control file, not a served asset' }],
+    skippedFiles: files.filter(file => cloudflareControlFiles.has(file))
+      .map(file => ({ file, reason: 'Cloudflare control file, not a served asset' })),
     passed: failed.length === 0,
-    summary: { files: files.length - 1, aliases: observations.filter(item => item.kind === 'alias').length,
+    summary: { files: servedFiles.length, aliases: observations.filter(item => item.kind === 'alias').length,
       excludedRoutes: excludedPaths.length, exactFiles: observations.filter(item => item.kind === 'file' && item.exactHash).length,
       hashMismatches: observations.filter(item => item.exactHash === false).length, failedChecks: failed.length },
     observations };

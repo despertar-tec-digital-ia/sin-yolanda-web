@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "targetOrigin": "https://sin-yolanda.com",
+  "authorizer": "Luis",
+  "sourceCommit": "8b2976ee2e9350c91b753a5f3854c184873bf653",
+  "publicDigest": "83c60d93706069e1989c11dd541269a556be5a953b495ddeacc411fbee48b85b",
+  "authorization": "Luis respondió «Vá, dale» el8-oct a la solicitud de implementar y publicar primero /q/gdl-menu hacia el WordPress actual. Se conservan los185archivos públicos del baseline y únicamente se añade _redirects con ambos aliases exactos302 y origen UTM fijo. No modificar carta, WordPress, pausas, fichas, GA4, Umami, GHL, DNS ni CD; generar y comprobar SVG/PNG de impresión.",
+  "baselineDeployment": "7b5a7d5b-44fa-4d6a-8dc5-222acc134c4d"
+}

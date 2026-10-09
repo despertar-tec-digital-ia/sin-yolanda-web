@@ -18,9 +18,9 @@ var modules = [UInt8](repeating: 255, count: side * side)
 CIContext().render(image, toBitmap: &modules, rowBytes: side, bounds: image.extent,
                    format: .L8, colorSpace: colorSpace)
 var path = ""
-// Core Image uses a bottom-left origin; SVG/image rows use top-left.
+// The rendered bitmap is top-first, matching the PNG. Do not reflect its rows.
 for y in 0..<side {
-    for x in 0..<side where modules[(side - 1 - y) * side + x] < 128 {
+    for x in 0..<side where modules[y * side + x] < 128 {
         path += "M\(x + border) \(y + border)h1v1h-1z"
     }
 }

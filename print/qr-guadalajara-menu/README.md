@@ -8,8 +8,9 @@ Contenido fijo de ambos archivos: `https://sin-yolanda.com/q/gdl-menu`.
 - Fuente: `scripts/generate-menu-qr.swift` (helper macOS opcional). Regenerar únicamente en una
   carpeta nueva. No es una dependencia del sitio ni de CI.
 
-PNG y SVG rasterizado se decodificaron con Vision al enlace exacto. Esta validación no sustituye
-escanear una prueba física al tamaño/material de impresión antes de repartirla en mesas.
+PNG y SVG rasterizado se decodificaron con Vision al enlace exacto. Comparación de módulos:
+misma orientación y contenido, sin reflexión. Esta validación no sustituye escanear una prueba
+física al tamaño/material de impresión antes de repartirla en mesas.
 Comprobar que la ruta esté publicada antes de imprimir; estado y recibo en `docs/WORKFLOW.md`.
 
 El destino actual es la carta original WordPress. Un cambio de destino requiere aprobación

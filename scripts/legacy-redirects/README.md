@@ -3,6 +3,11 @@
 v1.0.0 instalado y activo en GDL/TX/USA el 8-oct-2026 por autorización de Luis; pruebas
 anónimas posteriores: 69/69. Recibos, límites y reversión →
 [`docs/MIGRATION-AND-MEASUREMENT.md`](../../docs/MIGRATION-AND-MEASUREMENT.md).
+**Estado posterior8-oct:** Guadalajara conserva el plugin inactivo. TX/USA conservan el plugin
+original activo y una extensión aditiva pausa únicamente ocho redirects de cartas; siguen
+vigentes cinco redirects de raíces/fichas. Los menús originales no se modificaron. No reactivar
+cartas sin aprobación operativa individual, edición completa y paridad de orden/contenido.
+Operación y pruebas → [`sin-yolanda-menu-redirect-pause/README.md`](sin-yolanda-menu-redirect-pause/README.md).
 El mapa ejecutable único vive en
 `sin-yolanda-legacy-redirects/redirects.json`; contiene 16 rutas: GDL 3, TX 4 y USA 9.
 El plugin no entra en `scripts/public-manifest.json` ni en el sitio de Pages.
@@ -64,6 +69,13 @@ WordPress: ensayar primero en copia local y conservar el destino disponible dura
 Eliminar luego el plugin desde el administrador es opcional; conservar ZIP, recibo y respaldo.
 
 ## Operador HTTP preparado
+
+Para la pausa urgente de cartas, `deploy-menu-pause.mjs --site tx|usa` solo inspecciona;
+`--install-activate` instala el ZIP exacto nuevo y activa únicamente la extensión después de
+guardar snapshot/recibo y verificar versión/inventario. No reemplaza el plugin anterior, no
+modifica páginas y no acepta activar una instalación previa inactiva sin procedencia. Su ZIP
+vive separado bajo `.artifacts/legacy-redirects/`; no entra al sitio público. La reversión de esta
+pausa volvería a migrar las cartas: requiere aprobación por sede, no autorización técnica genérica.
 
 `deploy-wordpress.mjs --site gdl|tx|usa` inspecciona por defecto. `--inspect`, `--install`,
 `--activate` y `--deactivate` son acciones excluyentes; instalar deja el plugin **inactivo**.

@@ -1,8 +1,9 @@
 # Pausa selectiva de redirecciones de cartas
 
 Extensión aditiva v1.0.0 para el incidente del 8-oct-2026. No modifica las páginas,
-el plugin anterior, sus opciones ni el mapa histórico. **Creada/probada localmente;
-la instalación y activación remotas requieren autorización y comprobación propias.**
+el plugin anterior, sus opciones ni el mapa histórico. **Instalada y activada en TX/USA por
+autorización urgente de Luis.** Operaciones, snapshot previo y smoke están registrados en
+`docs/MIGRATION-AND-MEASUREMENT.md`; las pruebas locales no sustituyen esos recibos.
 
 Cancela exclusivamente ocho redirecciones301 anónimas GET/HEAD de cartas:
 TX `/menu/`, `/english/`, `/cocktails/`; USA `/houston/menu/`,

@@ -6,7 +6,7 @@ verificado, publicación Pages manual y smoke remoto comprobado. CD automático,
 secretos no están activados por este lote. Preparación, resultado y límites se registran abajo.
 La aprobación de este release no equivale a autorizar otros releases.
 
-### QR de carta Guadalajara · autorizado8-oct, candidato en verificación
+### QR de carta Guadalajara · publicado y comprobado8-oct
 
 Luis autoriza la ruta corta `/q/gdl-menu` hacia la carta WordPress original, sin editar su
 contenido/orden/diseño ni activar medición. Contrato de rutas → ROUTES. Única diferencia pública
@@ -20,9 +20,27 @@ PNG y captura renderizada del SVG decodificados a la URL exacta con Vision; ambo
 `scripts/generate-menu-qr.swift` es helper macOS opcional, sin dependencia del build/CI web;
 assets en `print/qr-guadalajara-menu`, no se despliega esa carpeta.
 
-Preparar release limpio aprobado por digest y comparar baseline Pages justo antes del upload.
-Rollback: paquete original verificado `7b5a7d5b` / `d6734c2`, conservado localmente; nunca volver
-al deployment histórico que reintroduce demos. Este párrafo no acredita publicación todavía.
+**Publicado:** PR #14 integrado, fuente limpia `b23e3135268e08f0e4cedbdb3247f3f0202296d7`;
+CI PR `37882179079` y main `37882297526` pasan. Paquete limitado186archivos, digest
+`83c60d93706069e1989c11dd541269a556be5a953b495ddeacc411fbee48b85b`; aprobación específica
+en `releases/2026-10-08-gdl-menu-qr.json`. Baseline Pages comprobado justo antes del upload.
+Publicación directa Pages `32633a4f-b3ff-4d9c-9e78-8471d7773a66`, URL inmutable
+`https://32633a4f.sin-yolanda-web.pages.dev`; ruta viva `https://sin-yolanda.com/q/gdl-menu`.
+
+QA remota del QR11/11: GET/HEAD, slash y query ajena conservan302 y destino fijo; WordPress
+original y destino etiquetado200, mismas láminas; home idéntico, controles/print/ruta desconocida404.
+El302 servido no trae `Cache-Control`: no afirmar `no-store` productivo por la emulación local.
+Verificador completo:184archivos servidos,45aliases y diez exclusiones. Los184 coinciden en
+la URL inmutable; en producción183 directamente y privacidad tras restaurar exclusivamente
+la transformación de email de Cloudflare, con hash exacto en sus tres aliases. Pages inmutable
+añade noindex al home; dominio oficial no. Informes crudos conservados, sin relajar sus checks
+ni cambiar settings. Recibos → `.artifacts/qr-menu-production-20261008/`, incluido
+`edge-transform-verification.json`. No instrumentación QR acreditada ni prueba física iOS/Android:
+hacer un escaneo del impreso antes de producir el lote; medición requiere su encargo separado.
+
+Rollback: paquete original verificado `7b5a7d5b-44fa-4d6a-8dc5-222acc134c4d` / `d6734c2`,
+conservado en `.artifacts/migration-production-20261008/`; nunca volver al deployment histórico
+que reintroduce demos. Este cierre documental no exige otro upload ni cambia la fuente publicada.
 
 ### Lote de migración y medición autorizado · 8-oct
 

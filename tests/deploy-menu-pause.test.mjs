@@ -73,6 +73,19 @@ test('exact pause row keeps original inventory, ignores core update notices and 
   for (const html of [inventory(false).replace(link().replaceAll('&', '&amp;'), link(originalFile).replaceAll('&', '&amp;')), inventory(false) + row(pluginFile, false), inventory(false).replace('data-plugin="' + pluginFile + '"', 'data-plugin="' + pluginFile + '" data-plugin="other/a.php"')]) assert.throws(() => parsePausePlugins(html, origin));
 });
 
+test('unrelated admin/template rows may repeat attributes without weakening the exact plugin row', () => {
+  const unrelated = `<tr class="widefat" class="template-row"><td>Admin template</td></tr>
+    <tr data-plugin="cache/cache.php" style="color:red" style="display:none"><td>Inline template</td></tr>`;
+  // An unrelated duplicate plugin inventory row is still ambiguous; keep the
+  // unrelated template free of data-plugin when checking HTML-only tolerance.
+  const html = unrelated.replace('data-plugin="cache/cache.php"', 'data-template="cache"');
+  assert.equal(parsePausePlugins(html + inventory(false), origin).find(p => p.file === pluginFile).actions.activate, link());
+  assert.equal(parsePausePlugins(html + inventory(), origin).length, 2);
+  assert.throws(() => parsePausePlugins(html + inventory(false).replace('data-plugin="' + pluginFile + '"',
+    'data-plugin="' + pluginFile + '" data-plugin="other/a.php"'), origin), /Ambiguous WordPress HTML attributes/);
+  assert.throws(() => parsePausePlugins(html + inventory(false) + row(pluginFile, false), origin), /Ambiguous plugin inventory/);
+});
+
 test('upload outcome rejects errors, FTP, auth, replace and unrelated or duplicate activation links', () => {
   assert.equal(verifyUploadOutcome({ status: 200, text: uploaded }, origin), link());
   for (const text of [uploaded + '<input name="ftp_password">', uploaded + '<input name="overwrite">', uploaded + '<div class="notice-error">Error</div>', uploaded + '<form id="loginform"></form>', uploaded + '<div id="two_factor"></div>', uploaded.replace(pluginFile.replace('/', '%2F'), encodeURIComponent(originalFile)), uploaded + uploaded, uploaded.replace(origin, 'https://evil.test')]) assert.throws(() => verifyUploadOutcome({ status: 200, text }, origin));

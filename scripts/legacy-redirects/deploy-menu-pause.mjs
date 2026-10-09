@@ -38,11 +38,16 @@ export function actionLink(value, origin, action = 'activate') {
 }
 
 export function parsePausePlugins(html, origin) {
-  const allRows = [...html.matchAll(/<tr\b([^>]*)>([\s\S]*?)<\/tr\s*>/gi)].map(match => ({ match, attrs: attributes(match[1]) }));
+  // The admin UI can include unrelated template/inline-script rows with repeated
+  // attributes. Strict attribute parsing belongs only to our exact plugin row.
+  const escapedFile = pluginFile.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const targetAttribute = new RegExp(`(?:^|\\s)data-plugin\\s*=\\s*(?:"${escapedFile}"|'${escapedFile}'|${escapedFile}(?=\\s|$))`, 'i');
+  const targetRows = [...html.matchAll(/<tr\b([^>]*)>([\s\S]*?)<\/tr\s*>/gi)]
+    .filter(match => targetAttribute.test(match[1])).map(match => ({ match, attrs: attributes(match[1]) }));
   const inventory = parsePlugins(html, origin);
   const target = inventory.find(item => item.file === pluginFile);
   if (!target) return inventory;
-  const rows = allRows.filter(({ attrs }) => {
+  const rows = targetRows.filter(({ attrs }) => {
     return attrs['data-plugin'] === pluginFile && !(attrs.class ?? '').split(/\s+/).includes('plugin-update-tr');
   }).map(({ match }) => match);
   if (rows.length !== 1) fail('Ambiguous exact menu-pause plugin row');

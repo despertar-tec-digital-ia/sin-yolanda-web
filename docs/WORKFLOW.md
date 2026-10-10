@@ -89,8 +89,9 @@ sin export público ni sobrescritura. Drill contenedor sintético comprobó arra
 rechazado, UID10001, endpoints privados, cifrado, persistencia tras reinicio y recuperación.
 UI integra contrato Turnstile real probado solo con mocks; QA local no carga proveedor.
 Pruebas127Python (+43subcasos),197Node; diseño móvil/escritorio ES/EN conservado.
-Contratos/procedimiento/gates → README del servicio y del prototipo. Las etapas Docker/drill se
-añaden a CI sin secretos ni deploy; su estado remoto se registra tras ejecutarse, no por existir.
+Contratos/procedimiento/gates → README del servicio y del prototipo. Fuente `feb1c841045b53aede35018ca05b667ca6bd4d16`,
+PR#16 sin merge. CI remoto [`38021007420`](https://github.com/despertar-tec-digital-ia/sin-yolanda-web/actions/runs/38021007420)
+comprobado verde en ambos jobs, incluidos build Docker y drill sintético sin secretos ni deploy.
 VPS/configs inspeccionados read-only: servicio/config dedicada aún no existe. Falta ingress seguro
 mismo-origen, widget real, secretos/custodia/backup externo, aviso/foto aprobados y release exacto.
 No merge, alta remota de recursos, publicación ni sustitución del QR por esta preparación.

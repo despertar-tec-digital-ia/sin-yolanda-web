@@ -58,10 +58,14 @@ relay y límites → WORKFLOW y README del servicio. No añadir estas rutas al s
 `/q/el-paso-registro` hasta verificar y aprobar el release completo. QR conserva alias impreso.
 
 El helper posterior `prepare-own-registration-release.mjs` construye una candidata completa
-contra el baseline publicado 9-oct, no un upload: 193 archivos, 184 intactos, controles scoped y
-adiciones explícitas. Propone 302 en los dos aliases al destino propio con atribución fija v2;
-no acepta destinos por query y no cambia las reglas Guadalajara. Función/route control aislados,
-sin sitemap nuevo. Siempre `deployable:false`; aprobación/ingress/captura/bundle siguen pendientes.
+contra el baseline publicado9-oct, no un upload. Por defecto `form-only`:193archivos,185intactos,
+solo `_headers` ampliado y siete adiciones; `_redirects` permanece byte a byte, incluido el destino
+temporal del QR. `--stage qr-cutover` prepara explícitamente la propuesta anterior:184intactos,
+headers y los dos aliases al destino propio con atribución fija v2. No acepta destinos por query
+ni cambia las reglas Guadalajara. Función/route control aislados, sin sitemap nuevo. Siempre
+`deployable:false`; aprobación, binding productivo y captura real siguen pendientes. La segunda
+etapa deberá reconciliar el nuevo baseline después de publicar la pantalla; no reutilizar a ciegas
+la propuesta construida contra9-oct ni omitir su Function/binding en un redeploy.
 
 **Lote técnico posterior autorizado el 8-oct:** 12 destinos de fichas/cartas se preparan para
 indexación antes de 16 reglas301 exactas WordPress; cuatro páginas El Paso/Catering conservan

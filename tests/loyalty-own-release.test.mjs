@@ -28,11 +28,12 @@ function fixture(t) {
   return { root, baseline, destination: resolve(root, '.artifacts/candidate') };
 }
 
-test('complete own-form candidate retains every existing page and menu; only fixed headers/QR controls change', t => {
-  const options = fixture(t), result = prepareOwnRegistrationRelease({ ...options, siteKey });
+test('explicit QR cutover candidate retains every existing page and menu; only fixed headers/QR controls change', t => {
+  const options = fixture(t), result = prepareOwnRegistrationRelease({ ...options, siteKey, stage: 'qr-cutover' });
   assert.equal(result.deployable, false); assert.equal(result.releaseApproved, false); assert.equal(result.deployed, false);
   assert.equal(result.realCaptureVerified, false); assert.equal(result.productionIngressVerified, false); assert.equal(result.ghlEnabled, false);
   assert.equal(result.preservedFileCount, 184); assert.equal(result.fileCount, 193);
+  assert.equal(result.stage, 'qr-cutover'); assert.equal(result.qrDestinationPreserved, false); assert.equal(result.qrCutoverProposedOnly, true);
   assert.deepEqual(result.changedFiles, ['_headers', '_redirects']);
   assert.deepEqual(Object.keys(result.functionHashes), ['functions/api/loyalty/el-paso/registrations.js']);
   assert.equal(readFileSync(resolve(options.destination, 'public/_headers'), 'utf8'), readFileSync(resolve(options.baseline, 'public/_headers'), 'utf8') + registrationHeaderAddition);
@@ -42,6 +43,28 @@ test('complete own-form candidate retains every existing page and menu; only fix
     if (!result.changedFiles.includes(name)) assert.equal(hash(readFileSync(resolve(options.destination, 'public', name))), expected);
   }
   assert.ok(!existsSync(resolve(options.destination, 'public/candidate.json')));
+});
+
+test('default form-only candidate preserves all QR and menu destinations byte for byte', t => {
+  const options = fixture(t), result = prepareOwnRegistrationRelease({ ...options, siteKey });
+  assert.equal(result.stage, 'form-only'); assert.equal(result.qrDestinationPreserved, true); assert.equal(result.qrCutoverProposedOnly, false);
+  assert.equal(result.deployable, false); assert.equal(result.releaseApproved, false); assert.equal(result.deployed, false);
+  assert.equal(result.realCaptureVerified, false); assert.equal(result.productionIngressVerified, false);
+  assert.equal(result.fileCount, 193); assert.equal(result.preservedFileCount, 185);
+  assert.deepEqual(result.changedFiles, ['_headers']);
+  assert.deepEqual(readFileSync(resolve(options.destination, 'public/_redirects')), readFileSync(resolve(options.baseline, 'public/_redirects')));
+  assert.ok(!readFileSync(resolve(options.destination, 'public/_redirects'), 'utf8').includes(ownRegistrationDestination));
+  for (const [name, expected] of Object.entries(JSON.parse(readFileSync(resolve(options.baseline, 'release.json'))).hashes)) {
+    if (!result.changedFiles.includes(name)) assert.equal(hash(readFileSync(resolve(options.destination, 'public', name))), expected);
+  }
+});
+
+test('unknown activation stages are rejected before creating candidate files', t => {
+  const options = fixture(t);
+  for (const stage of ['production', 'form-only ', null, true, {}, '']) {
+    assert.throws(() => prepareOwnRegistrationRelease({ ...options, siteKey, stage }));
+    assert.equal(existsSync(options.destination), false);
+  }
 });
 
 test('unknown baseline, altered bytes, extra files, unrelated source edits and invalid sitekeys stop before output', t => {

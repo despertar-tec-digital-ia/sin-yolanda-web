@@ -99,6 +99,11 @@ try {
       assert.match(privacy, /sinyolandaelpaso/); assert.doesNotMatch(privacy, /Borrador|Draft|GoHighLevel|fictici|preview|preparaci|preparation/i);
       await page.screenshot({ path: resolve(out, `${language}-${width}-privacy.png`), fullPage: true, animations: 'disabled' });
       await page.locator('.privacy-disclosure summary').click();
+      // Clicking the disclosure can scroll a narrow viewport. Keep the screenshot neutral,
+      // not a fixed skip-link focus artifact at the previous scroll offset.
+      await page.locator('#language-toggle').focus();
+      await page.evaluate(() => window.scrollTo(0, 0));
+      await page.waitForFunction(() => document.querySelector('.skip-link').getBoundingClientRect().bottom <= 0);
       await page.screenshot({ path: resolve(out, `${language}-${width}.png`), fullPage: true, animations: 'disabled' });
       report.cases.push({ width, language, state: 'provider-unavailable', passed: true, geometry });
     }

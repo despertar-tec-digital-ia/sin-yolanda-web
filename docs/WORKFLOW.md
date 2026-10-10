@@ -289,6 +289,40 @@ release completo con sitekey real y binding solo servidor, probar captura fictic
 finales y obtener aprobación exacta antes de cambiar el destino del mismo QR. No publicar solo
 el overlay ni mezclar otros cambios del PR; GHL/campañas mantienen su puerta separada.
 
+### Registro propio · cierre técnico en dos etapas10-oct, sin publicación
+
+Continuación autorizada para preparar/verificar la pantalla propia ES/EN, no para sustituir el
+destino del QR ni instalar el binding productivo sin release específico. El helper completo usa
+`form-only` por defecto:193archivos,185del baseline9-oct conservados, solo `_headers` ampliado y
+siete adiciones. `_redirects` idéntico; todos los QR y cartas mantienen sus destinos actuales.
+`--stage qr-cutover` es propuesta explícita separada, siempre no aprobada/no desplegable. Después
+de publicar la pantalla, el siguiente cutover exige reconciliar el nuevo baseline193archivos,
+Function/binding y rollback completo; el helper fijado al9-oct no resuelve aún ese segundo release.
+
+QA local:224Node y revisión Chromium de18casos ES/EN a320/390/768/1024/1502/1920px. Sin overflow,
+imágenes decodificadas, navegación de teclado, valores conservados al cambiar idioma, privacidad,
+errores/reintentos y confirmación simulada. Se corrigió únicamente el foco residual de la captura
+automatizada: el enlace accesible seguía visible tras la prueba de teclado, no era un defecto de la
+composición móvil. Evidencia ignorada `.artifacts/intake-public-visual-20261010-form-stage-r2/`.
+Proveedor bloqueado/simulado; estos tests no guardan contactos reales ni prueban un challenge válido.
+
+Revalidación read-only por CLI: Pages sigue en `8d176362-71a8-4267-b881-6b0d76da0377`, fuente
+`3846955`, mismo digest; no hay binding `SY_INTAKE_PROXY_AUTH` instalado en Pages. Sitekey pública
+real disponible desde custodia, sin copiar el secreto de verificación a la web. Crawl GET-only:
+184archivos servidos,45aliases y diez exclusiones;183archivos exactos, las únicas tres diferencias
+son los aliases del aviso de privacidad. Revirtiendo exclusivamente un anchor y un script conocidos
+de protección de email de Cloudflare, las tres respuestas recuperan el hash íntegro exacto del
+baseline. Se conserva recibo bruto fallido por transformación y comprobación estricta separada:
+`.artifacts/intake-form-only-baseline-20261010/`. No ignorar diferencias genéricas de HTML.
+
+Servicio protegido/timers siguen sanos y base/cola con cero altas. No hubo deploy, cambio QR,
+binding, contacto GHL, campaña ni modificación del home/menús/WordPress. Pendiente confirmar
+responsable legal y quién atenderá consulta/corrección/baja en el canal provisional aprobado,
+definir retención y operación de borrado, protección externa continua y prueba real del formulario
+en origen/action finales. No presentar este paquete como captura pública completa ni como
+certificación legal. Aprobación exacta de pantalla+Function+binding sin QR primero; prueba ficticia
+autorizada después; cutover con baseline nuevo y aprobación independiente al final.
+
 ### QR de carta Guadalajara · publicado y comprobado8-oct
 
 Luis autoriza la ruta corta `/q/gdl-menu` hacia la carta WordPress original, sin editar su

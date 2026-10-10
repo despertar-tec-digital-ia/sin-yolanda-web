@@ -45,8 +45,9 @@ export function proposeOwnRegistrationRedirects(source) {
   return next;
 }
 
-export function prepareOwnRegistrationRelease({ root = projectRoot, baseline, destination, siteKey } = {}) {
+export function prepareOwnRegistrationRelease({ root = projectRoot, baseline, destination, siteKey, stage = 'form-only' } = {}) {
   assert.ok(baseline && destination, 'Provide the complete published baseline and fresh candidate directory');
+  assert.ok(['form-only', 'qr-cutover'].includes(stage), 'Use an explicit supported activation stage');
   root = resolve(root); baseline = resolve(baseline); const out = resolve(destination);
   for (const path of [root, baseline, out]) assertNoLinkAncestors(path);
   assert.ok(out.startsWith(resolve(root, '.artifacts') + sep) && !statIfPresent(out), 'Use a fresh ignored output directory');
@@ -65,7 +66,10 @@ export function prepareOwnRegistrationRelease({ root = projectRoot, baseline, de
   assert.equal(publicSourceDigest(baselineHashes), ownRegistrationBaseline.digest);
   // A different main/hero/menu edit cannot enter the release by coincidence.
   for (const name of files) assert.equal(sha256(readSource(root, name)), baselineHashes[name], 'Unrelated public source changed: ' + name);
-  const redirects = proposeOwnRegistrationRedirects(baselineFiles.get('_redirects').toString('utf8'));
+  // Validate both aliases even when preserving them; merely building the form must not move QR traffic.
+  const currentRedirects = baselineFiles.get('_redirects').toString('utf8');
+  const proposedRedirects = proposeOwnRegistrationRedirects(currentRedirects);
+  const redirects = stage === 'qr-cutover' ? proposedRedirects : currentRedirects;
   const headers = baselineFiles.get('_headers').toString('utf8');
   assert.ok(!headers.includes('/el-paso/registro/'), 'Registration headers already exist; reconcile baseline explicitly');
   const overlay = packageIntakePublic({ root, destination: resolve(out, 'overlay'), siteKey });
@@ -83,7 +87,7 @@ export function prepareOwnRegistrationRelease({ root = projectRoot, baseline, de
   const additions = [...combined.keys()].filter(name => !baselineFiles.has(name)).sort();
   assert.deepEqual(additions, ['_routes.json', ...['index.html', 'intake-config.json', 'intake.js', 'styles.css', 'media/singer-600.webp', 'media/singer-1200.webp'].map(name => `${publicPath}/${name}`)].sort());
   const changed = files.filter(name => sha256(combined.get(name)) !== baselineHashes[name]);
-  assert.deepEqual(changed, ['_headers', '_redirects']);
+  assert.deepEqual(changed, stage === 'qr-cutover' ? ['_headers', '_redirects'] : ['_headers']);
   const publicHashes = Object.fromEntries([...combined].sort(([a], [b]) => a.localeCompare(b, 'en')).map(([name, body]) => [name, sha256(body)]));
   const functionHashes = Object.fromEntries([...functions].map(([name, body]) => [name, sha256(body)]));
   let commit = null, dirty = true;
@@ -91,11 +95,11 @@ export function prepareOwnRegistrationRelease({ root = projectRoot, baseline, de
     commit = execFileSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }).trim();
     dirty = Boolean(execFileSync('git', ['status', '--porcelain'], { cwd: root, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }).trim());
   } catch {}
-  const report = { version: 1, kind: 'complete-own-registration-candidate', deployable: false, releaseApproved: false,
+  const report = { version: 1, kind: 'complete-own-registration-candidate', stage, deployable: false, releaseApproved: false,
     deployed: false, targetOrigin: 'https://sin-yolanda.com', commit, dirty, baseline: ownRegistrationBaseline,
     fileCount: combined.size, preservedFileCount: files.length - changed.length, changedFiles: changed,
     addedFiles: additions, publicHashes, publicDigest: publicSourceDigest(publicHashes), functionHashes,
-    bundleApprovalRequired: true, qrCutoverProposedOnly: true, remoteBaselineRevalidationRequired: true,
+    bundleApprovalRequired: true, qrCutoverProposedOnly: stage === 'qr-cutover', qrDestinationPreserved: stage === 'form-only', remoteBaselineRevalidationRequired: true,
     productionIngressVerified: false, realCaptureVerified: false, ghlEnabled: false };
   for (const [name, bytes] of [...combined].map(([name, bytes]) => [`public/${name}`, bytes]).concat([...functions])) {
     const path = resolve(out, name); mkdirSync(dirname(path), { recursive: true }); assertNoLinkAncestors(dirname(path));
@@ -108,7 +112,10 @@ export function prepareOwnRegistrationRelease({ root = projectRoot, baseline, de
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  assert.equal(process.argv.length, 4, 'Use prepare-own-registration-release.mjs BASELINE_RELEASE FRESH_CANDIDATE');
-  const result = prepareOwnRegistrationRelease({ baseline: process.argv[2], destination: process.argv[3], siteKey: process.env.SY_INTAKE_TURNSTILE_SITE_KEY });
-  console.log(JSON.stringify({ kind: result.kind, deployable: false, changedFiles: result.changedFiles, addedFiles: result.addedFiles, preservedFileCount: result.preservedFileCount, publicDigest: result.publicDigest }));
+  assert.ok(process.argv.length === 4 || (process.argv.length === 6 && process.argv[4] === '--stage'),
+    'Use prepare-own-registration-release.mjs BASELINE_RELEASE FRESH_CANDIDATE [--stage form-only|qr-cutover]');
+  const result = prepareOwnRegistrationRelease({ baseline: process.argv[2], destination: process.argv[3], siteKey: process.env.SY_INTAKE_TURNSTILE_SITE_KEY,
+    stage: process.argv.length === 6 ? process.argv[5] : 'form-only' });
+  console.log(JSON.stringify({ kind: result.kind, stage: result.stage, deployable: false, qrDestinationPreserved: result.qrDestinationPreserved,
+    changedFiles: result.changedFiles, addedFiles: result.addedFiles, preservedFileCount: result.preservedFileCount, publicDigest: result.publicDigest }));
 }

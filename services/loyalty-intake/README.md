@@ -8,6 +8,14 @@ privado del vault; pruebas y siguiente puerta → WORKFLOW, «servicio protegido
 No frontend ni contactos consultables en ese ingreso. Captura pública positiva/release completo
 y sustitución del destino temporal siguen pendientes; GHL/campañas apagados en este backend.
 
+**Preparación siguiente, sin publicación:** el helper de release completo usa `form-only` por
+defecto. Añade la pantalla y Function, conservando `_redirects` byte a byte: no mueve clientes
+del formulario temporal solo por preparar/probar la pantalla propia. `qr-cutover` es una propuesta
+explícita separada, no una activación automática. Ambos modos son `deployable:false` y exigen
+release exacto aprobado. Después de publicar la pantalla, un cutover posterior deberá reconciliar
+el nuevo baseline completo; el helper fijado al baseline9-oct no acredita esa segunda publicación.
+No introducir el overlay en el build ordinario. Estado de QA y puertas → WORKFLOW.
+
 `compose.production.yml` añade solo dos servicios sin puertos publicados: backend en red propia
 y gateway API-only, autenticación en todas las rutas y origen exacto del relay oficial. Imagen
 del gateway no contiene frontend, llaves ni DB. Mismo smoke Docker con `--api-only` comprueba

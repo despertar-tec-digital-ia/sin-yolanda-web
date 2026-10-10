@@ -11,7 +11,7 @@ import { packageIntakePreview, previewHostname, previewOrigin, projectRoot } fro
 const pythonBase = 'python:3.12-slim@sha256:a6e34c598f2467ed0e9a8d349809fcd8b5c603269512df273a0bb1784edc11b1';
 const defaultBackendImage = 'sinyolanda-intake-preview-qa:20261009';
 const syntheticSiteKey = '0xNativeSmokeFixture123456789012';
-const mockSource = String.raw`import base64, json
+const mockSource = String.raw`import base64, json, sys, time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 class Handler(BaseHTTPRequestHandler):
@@ -46,6 +46,8 @@ class Handler(BaseHTTPRequestHandler):
         except (BrokenPipeError, ConnectionResetError, ValueError):
             self.close_connection = True
 
+# An optional, bounded delay exercises startup readiness with fictional fixtures only.
+time.sleep(int(sys.argv[1]) / 1000)
 ThreadingHTTPServer(('0.0.0.0', 8000), Handler).serve_forever()
 `;
 
@@ -126,6 +128,24 @@ function securityHeaders(response) {
   assert.doesNotMatch(response.headers['content-security-policy'] || '', /unsafe-inline|unsafe-eval/);
 }
 
+function safeResponseSummary(response) {
+  return {
+    status: response.status,
+    responseBodyBytes: response.body.length,
+    responseHeaderNames: Object.keys(response.headers).sort(),
+    elapsedMs: response.elapsedMs,
+    securityHeaders: {
+      noStore: response.headers['cache-control'] === 'no-store',
+      noIndex: /noindex, nofollow/.test(response.headers['x-robots-tag'] || ''),
+      noSniff: response.headers['x-content-type-options'] === 'nosniff',
+      noReferrer: response.headers['referrer-policy'] === 'no-referrer',
+      frameAncestorsNone: /frame-ancestors 'none'/.test(response.headers['content-security-policy'] || ''),
+      formActionNone: /form-action 'none'/.test(response.headers['content-security-policy'] || ''),
+      noUnsafeScript: !/unsafe-inline|unsafe-eval/.test(response.headers['content-security-policy'] || ''),
+    },
+  };
+}
+
 function redactedLogSummary(logs) {
   const text = logs.stdout + logs.stderr;
   const classes = [];
@@ -140,8 +160,9 @@ function redactedLogSummary(logs) {
   return { stdoutBytes: Buffer.byteLength(logs.stdout), stderrBytes: Buffer.byteLength(logs.stderr), classes };
 }
 
-export async function runPreviewSmoke({ keepRunning = false, backendImage = defaultBackendImage } = {}) {
+export async function runPreviewSmoke({ keepRunning = false, backendImage = defaultBackendImage, mockStartupDelayMs = 0 } = {}) {
   assert.match(backendImage, /^sinyolanda-(?:loyalty-intake|intake-preview-qa|intake-ci):[A-Za-z0-9][A-Za-z0-9_.-]{0,127}$/, 'explicit_local_backend_image_required');
+  assert.ok(Number.isInteger(mockStartupDelayMs) && mockStartupDelayMs >= 0 && mockStartupDelayMs <= 5000, 'bounded_mock_startup_delay');
   const suffix = randomBytes(6).toString('hex');
   const prefix = `sy-intake-smoke-${suffix}`;
   const artifactRoot = resolve(projectRoot, '.artifacts');
@@ -199,11 +220,37 @@ export async function runPreviewSmoke({ keepRunning = false, backendImage = defa
       '--user', '101:101', '--read-only', '--cap-drop', 'ALL', '--security-opt', 'no-new-privileges:true',
       '--pids-limit', '64', '--memory', '64m', '--cpus', '0.5',
       '--mount', `type=bind,source=${resolve(runtime, 'mock.py')},target=/mock.py,readonly`,
-      '--entrypoint', 'python', pythonBase, '/mock.py']);
+      '--entrypoint', 'python', pythonBase, '/mock.py', String(mockStartupDelayMs)]);
     ownContainers.push(mock);
     const port = await startGateway(gateway, network);
     evidence.runtime = { port, network, ingress, mock, gateway, image, packagePath: candidate, authFilePath: authPath, browserAuthFilePath: browserAuthPath };
     process.stdout.write(JSON.stringify({ status: 'local-gateway-ready', port, gateway, image, packagePath: candidate, authFilePath: authPath, browserAuthFilePath: browserAuthPath }) + '\n');
+
+    // Nginx's 401 proves only that the gateway is up, not that Python has bound its
+    // upstream port. Retry only this dedicated {} readiness probe, never core tests.
+    activeCheck = 'mock_upstream_readiness';
+    const readiness = evidence.mockReadiness = { startupDelayMs: mockStartupDelayMs, attempts: [], result: 'incomplete' };
+    const readinessStarted = performance.now();
+    for (let attempt = 0; attempt < 60; attempt++) {
+      const response = await call(port, { path: '/api/registrations', method: 'POST', headers: apiHeaders, body: '{}' });
+      readiness.attempts.push({ status: response.status, responseBodyBytes: response.body.length, elapsedMs: response.elapsedMs });
+      readiness.lastResponse = safeResponseSummary(response);
+      securityHeaders(response);
+      if (response.status === 200) {
+        activeCheck = 'mock_upstream_readiness_exact_body';
+        const result = JSON.parse(response.body);
+        assert.deepEqual(Buffer.from(result.bodyBase64, 'base64'), Buffer.from('{}'), 'mock_readiness_body_exact');
+        assert.equal(result.headers.origin, previewOrigin, 'mock_readiness_origin');
+        assert.equal(result.headers['content-type'], 'application/json', 'mock_readiness_json');
+        readiness.bodyExact = true;
+        readiness.result = 'passed'; readiness.elapsedMs = Math.round(performance.now() - readinessStarted);
+        break;
+      }
+      assert.equal(response.status, 503, 'mock_starting_response');
+      assert.deepEqual(JSON.parse(response.body), { code: 'unavailable' }, 'mock_starting_response_redacted');
+      assert.ok(performance.now() - readinessStarted < 10000 && attempt < 59, 'mock_upstream_readiness_timeout');
+      await sleep(150);
+    }
 
     const paths = ['/', '/index.html', '/styles.css', '/intake.js', '/intake-config.json', '/assets/media/brand-logo.png', '/fonts/bebas-neue-400.woff2', '/fonts/roboto-slab-400.woff2', '/fonts/roboto-slab-700.woff2', '/api/registrations', '/health', '/unknown', '/api/registrations?bypass=true'];
     await check('all_paths_methods_require_basic_auth', async () => {
@@ -263,16 +310,24 @@ export async function runPreviewSmoke({ keepRunning = false, backendImage = defa
       const exact = Buffer.from(JSON.stringify({ smoke: 'a'.repeat(8192 - Buffer.byteLength(base)) }));
       const extraHeaders = { ...apiHeaders, Cookie: 'fictional_cookie=fixture', Forwarded: 'for=203.0.113.9', 'X-Forwarded-For': '203.0.113.9', 'X-Forwarded-Host': 'invalid.example', 'X-Forwarded-Proto': 'https', 'X-Custom-Fixture': 'omit-fixture' };
       for (const chunked of [false, true]) {
-        activeCheck = chunked ? 'chunked_body_boundary' : 'fixed_body_boundary';
-        const response = await call(port, { path: '/api/registrations', method: 'POST', headers: { ...extraHeaders, ...(chunked ? { 'Transfer-Encoding': 'chunked' } : { 'Content-Length': String(exact.length) }) }, ...(chunked ? { chunks: [exact.subarray(0, 3000), exact.subarray(3000)] } : { body: exact }) });
+        const mode = chunked ? 'chunked' : 'fixed';
+        activeCheck = `${mode}_body_request_8192`;
         evidence.bodyLimits ??= [];
-        evidence.bodyLimits.push({ chunked, bytes: exact.length, status: response.status });
-        assert.equal(response.status, 200, 'exact_body_limit'); securityHeaders(response);
+        const accepted = { subcase: `${mode}_8192`, chunked, bytes: exact.length, transport: 'pending' };
+        evidence.bodyLimits.push(accepted);
+        const response = await call(port, { path: '/api/registrations', method: 'POST', headers: { ...extraHeaders, ...(chunked ? { 'Transfer-Encoding': 'chunked' } : { 'Content-Length': String(exact.length) }) }, ...(chunked ? { chunks: [exact.subarray(0, 3000), exact.subarray(3000)] } : { body: exact }) });
+        Object.assign(accepted, { transport: 'response', ...safeResponseSummary(response) });
+        activeCheck = `${mode}_body_status_8192`;
+        assert.equal(response.status, 200, 'exact_body_limit');
+        activeCheck = `${mode}_body_security_headers_8192`; securityHeaders(response);
+        activeCheck = `${mode}_body_json_8192`;
         const result = JSON.parse(response.body);
-        activeCheck = chunked ? 'chunked_body_integrity' : 'fixed_body_integrity';
+        activeCheck = `${mode}_body_integrity_8192`;
+        accepted.upstreamBodyBytes = Buffer.from(result.bodyBase64, 'base64').length;
+        accepted.bodyExact = Buffer.from(result.bodyBase64, 'base64').equals(exact);
         assert.deepEqual(Buffer.from(result.bodyBase64, 'base64'), exact);
-        activeCheck = chunked ? 'chunked_header_forwarding' : 'fixed_header_forwarding';
-        evidence.bodyLimits.at(-1).upstreamHeaderNames = Object.keys(result.headers).sort();
+        activeCheck = `${mode}_header_forwarding_8192`;
+        accepted.upstreamHeaderNames = Object.keys(result.headers).sort();
         assert.equal(result.headers.origin, previewOrigin);
         assert.equal(result.headers['content-type'], 'application/json');
         assert.equal(result.headers['idempotency-key'], apiHeaders['Idempotency-Key']);
@@ -284,10 +339,14 @@ export async function runPreviewSmoke({ keepRunning = false, backendImage = defa
         assert.deepEqual(Object.keys(result.headers).sort(), [...['host', 'content-type', 'origin', 'idempotency-key'], ...framing].sort());
         for (const header of ['authorization', 'cookie', 'forwarded', 'x-forwarded-for', 'x-forwarded-host', 'x-forwarded-proto', 'x-custom-fixture']) assert.equal(result.headers[header], undefined, 'untrusted_header_omitted');
         const over = Buffer.concat([exact, Buffer.from(' ')]);
-        activeCheck = chunked ? 'chunked_body_rejects_8193' : 'fixed_body_rejects_8193';
+        activeCheck = `${mode}_body_request_8193`;
+        const denied = { subcase: `${mode}_8193`, chunked, bytes: over.length, transport: 'pending' };
+        evidence.bodyLimits.push(denied);
         const rejected = await call(port, { path: '/api/registrations', method: 'POST', headers: { ...apiHeaders, ...(chunked ? { 'Transfer-Encoding': 'chunked' } : { 'Content-Length': String(over.length) }) }, ...(chunked ? { chunks: [over.subarray(0, 3000), over.subarray(3000)] } : { body: over }) });
-        evidence.bodyLimits.push({ chunked, bytes: over.length, status: rejected.status });
-        assert.equal(rejected.status, 413, 'oversized_body'); securityHeaders(rejected);
+        Object.assign(denied, { transport: 'response', ...safeResponseSummary(rejected) });
+        activeCheck = `${mode}_body_status_8193`;
+        assert.equal(rejected.status, 413, 'oversized_body');
+        activeCheck = `${mode}_body_security_headers_8193`; securityHeaders(rejected);
       }
     });
     await check('upstream_failure_is_redacted_503', async () => {
@@ -393,8 +452,17 @@ export async function runPreviewSmoke({ keepRunning = false, backendImage = defa
     writeFileSync(resolve(directory, 'evidence.json'), JSON.stringify(evidence, null, 2) + '\n', { mode: 0o600, flag: 'wx' });
   } catch {
     evidence.result = 'failed'; evidence.failedCheck = activeCheck;
+    // Capture only lengths and fixed classes even when failure occurs before the
+    // silent-log assertions. Never print Docker logs, payloads or header values.
+    evidence.failureLogs = {};
+    for (const [role, name] of [['gateway', gateway], ['mock', mock]]) if (ownContainers.includes(name)) {
+      try {
+        const logs = await docker(['logs', name], { allowFailure: true, timeout: 5000 });
+        evidence.failureLogs[role] = { readable: logs.code === 0, ...redactedLogSummary(logs) };
+      } catch { evidence.failureLogs[role] = { readable: false }; }
+    }
     writeFileSync(resolve(directory, 'evidence.json'), JSON.stringify(evidence, null, 2) + '\n', { mode: 0o600, flag: 'wx' });
-    process.stdout.write(JSON.stringify({ status: 'local-smoke-failed', failedCheck: activeCheck, safeChecks: evidence.runtimeSecurity, evidencePath: resolve(directory, 'evidence.json') }) + '\n');
+    process.stdout.write(JSON.stringify({ status: 'local-smoke-failed', failedCheck: activeCheck, safeBodyChecks: evidence.bodyLimits, safeMockReadiness: evidence.mockReadiness, safeLogs: evidence.failureLogs, safeChecks: evidence.runtimeSecurity, evidencePath: resolve(directory, 'evidence.json') }) + '\n');
     throw new Error('isolated_preview_smoke_failed');
   } finally {
     if (!keep) {

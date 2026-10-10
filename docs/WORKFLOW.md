@@ -6,7 +6,7 @@ verificado, publicación Pages manual y smoke remoto comprobado. CD automático,
 secretos no están activados por este lote. Preparación, resultado y límites se registran abajo.
 La aprobación de este release no equivale a autorizar otros releases.
 
-### Registro El Paso v1 · candidata local9-oct
+### Registro El Paso v1 · publicado9-oct; pantalla propia siguiente
 
 Luis autoriza preparar/publicar el QR de registro con destino nativo GHL confirmado por Share:
 formulario `nN59k3I7TT6TOxDl4XET`, alias permanente `/q/el-paso-registro` y variante slash302.
@@ -25,7 +25,8 @@ la ubicación correcta, con origen del formulario, consentimiento principal regi
 vacío. Se confirma atribución `loyalty_el_paso` / `qr` / `offline` / `registro_v1` y el ID del formulario.
 Revisión móvil390×844 sin desbordamiento; recargar vuelve a dejar campos vacíos y casillas sin marcar.
 No incluir identificadores del contacto ni su email de prueba en estos documentos públicos.
-Es QA del formulario nativo, **no** prueba del alias público, todavía sin publicación.
+La captura se comprobó antes del release; después se abrió el mismo formulario desde el alias
+permanente publicado. No se ha probado una segunda alta/duplicado ni impresión física.
 
 Paquete local aislado186archivos:185preservados byte a byte, solo `_redirects` añade los dos aliases;
 home, hero, horarios, footer, headers y QR Guadalajara intactos. Baseline esperado Pages
@@ -36,10 +37,25 @@ Recibos locales ignorados en `.artifacts/registration-preflight-20261009/`.
 
 `prepare-registration-release.mjs` no publica ni aprueba: prepara candidata local y, con aprobación
 humana específica, reutiliza el gate de HEAD limpio/commit/digest. No heredar la autorización8-oct.
-Falta cerrar commit/aprobación exactos, revalidar baseline justo antes, publicar el artefacto completo
-y comprobar GET/HEAD302/destino fijo y web/404 preservados. Los QR negro/naranja PNG/SVG entregados
-para preparación codifican únicamente el alias permanente; no usar con clientes antes de activación.
+Release limitado autorizado: HEAD `3846955c325880077149f88edc0b52f6ff513b0a`, source
+`cad36e4e21ac2bb88c0ecce5b45c5895b7f0a654`; aprobación exacta en
+`releases/2026-10-09-el-paso-registration-qr.json`. Baseline revalidado inmediatamente antes
+del upload. Producción Pages `8d176362-71a8-4267-b881-6b0d76da0377`, digest
+`d65b31f112d82c4521605a0993136b3861326d24c102bce431ca64ae5fff9c16`.
+GET/HEAD302 exactos en los cuatro aliases (registro y carta Guadalajara); form visible desde el QR.
+Postflight185archivos conservados,184HTTP coincidentes,45aliases y diez exclusiones404/origen;
+recibo ignorado `.artifacts/registration-production-20261009/postflight-site.json`.
+Rollback: redeploy completo `.artifacts/qr-menu-production-20261008/public` con autorización
+operativa; no subir un parche de un archivo. PNG/SVG negro/naranja codifican el alias permanente
+y permanecen válidos. Downloads actualizado con activación; prueba impresa previa al lote pendiente.
 No afirmar prueba física de impresión/iOS/Android ni medición de visitas por estos checks.
+
+**Nuevo requisito posterior de Luis:** página/formulario propios Sin Yolanda dentro del dominio,
+español por defecto y botón English/Español que cambie todo el formulario y mensajes. Backend
+protegido con almacenamiento durable antes de sincronizar GHL; la integración no debe exponer
+credenciales ni depender de un redirect a LeadConnector como UX definitiva. Preparación local
+excluida de la allowlist; no declarar integración/backend publicado por existir un prototipo.
+Conservar la captura temporal funcional hasta verificar y autorizar su sustitución; mismo QR.
 
 ### QR de carta Guadalajara · publicado y comprobado8-oct
 

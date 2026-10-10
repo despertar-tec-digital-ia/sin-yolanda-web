@@ -31,6 +31,20 @@ test('reject stale home action stylesheet before release', t => {
   writeFileSync(file,source.replace(/(assets\/css\/home-actions\.css\?v=)[^"']+/, '$1stale'));
   assert.throws(()=>checkPublic(root), /Stale shared asset version/);
 });
+test('individual asset versions reject stale consumers without changing the tracker generation', t => {
+  const root = fixture(t), file = join(root, 'locations.html');
+  const manifest = JSON.parse(readFileSync(join(root, 'scripts/public-manifest.json'), 'utf8'));
+  assert.notEqual(manifest.assetVersions['assets/js/site.js'], manifest.assetVersion);
+  writeFileSync(file, readFileSync(file, 'utf8').replace(
+    'assets/js/site.js?v=' + manifest.assetVersions['assets/js/site.js'],
+    'assets/js/site.js?v=' + manifest.assetVersion));
+  assert.throws(() => checkPublic(root), /Stale shared asset version/);
+});
+test('individual asset versions cannot name a file outside the public manifest', t => {
+  const root = fixture(t);
+  amend(root, manifest => manifest.assetVersions['assets/js/private.js'] = '20261010-visual-locations');
+  assert.throws(() => checkPublic(root), /allowed public stylesheet or script/);
+});
 test('public package is deterministic, excludes incidental files and cannot overwrite', t => {
   const root=fixture(t);
   writeFileSync(join(root,'accidental.html'),'never publish');

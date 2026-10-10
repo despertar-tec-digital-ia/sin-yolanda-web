@@ -27,7 +27,15 @@ test('Houston points to its official page while other branches keep their existi
   for (const branch of branches.filter(({ id }) => id !== 'houston')) {
     assert.notEqual(branch.page, previewUrl, `${branch.id} must keep its own destination`);
   }
-  assert.match(siteSource, /<a href="houston\.html">Houston/);
+  const start = siteSource.indexOf('  function publicFooter()');
+  const end = siteSource.indexOf('\n  function ', start + 1);
+  const footer = vm.runInNewContext(siteSource.slice(start, end) + '\npublicFooter()',
+    { data: context.window.SY_DATA, page: 'home' });
+  assert.match(footer, /<a href="houston\.html">Houston/);
+  for (const branch of branches.filter(branch => branch.status === 'active')) {
+    assert.ok(footer.includes(`href="${branch.page}">${branch.shortName}`),
+      `${branch.id} footer link must be rendered from its registered destination`);
+  }
   assert.doesNotMatch(siteSource, /demo-sin-yolanda\.despertartdigital\.cloud\/houston/);
 });
 

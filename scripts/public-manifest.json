@@ -91,6 +91,7 @@
     "images/sin-yolanda-logo.png",
     "assets/css/venue-selector.css",
     "assets/css/home-actions.css",
+    "assets/css/visual-pilot.css",
     "assets/js/venue-selector.js",
     "licenses/react-bits.txt",
     "assets/media/hero-fiesta-real.mp4",
@@ -196,5 +197,10 @@
     "en/el-paso/index.html",
     "catering.html",
     "en/catering/index.html"
-  ]
+  ],
+  "assetVersions": {
+    "assets/js/site.js": "20261010-visual-locations",
+    "assets/js/i18n.js": "20261010-visual-locations",
+    "assets/css/visual-pilot.css": "20261010-visual-pilot"
+  }
 }

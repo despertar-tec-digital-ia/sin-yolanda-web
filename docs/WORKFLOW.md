@@ -1,10 +1,58 @@
 # Forma de trabajar y publicar
 
-**Última actualización:** 2026-10-09 · **Responsables:** Luis, técnica; Karina, negocio/contenido y hero.
+**Última actualización:** 2026-10-10 · **Responsables:** Luis, técnica; Karina, negocio/contenido y hero.
 **Estado:** candidato integrado en `main` y release limitado publicado el 8-oct; CI de PR y main
 verificado, publicación Pages manual y smoke remoto comprobado. CD automático, protecciones y
 secretos no están activados por este lote. Preparación, resultado y límites se registran abajo.
 La aprobación de este release no equivale a autorizar otros releases.
+
+### Ubicaciones y piloto visual · revisión local10-oct
+
+Rama aislada `fix/visual-locations-20261010`, checkout `sites/sinyolanda-visual-review`, sobre
+la fuente publicada `3846955c325880077149f88edc0b52f6ff513b0a`. Antes de editar se comprobaron
+contra el dominio servido home, renderer, registro público, CSS global y CSS del hero: paridad
+byte a byte. Se conserva el release con los aliases QR ya activos; no basar un futuro paquete en
+un `main` anterior que los retire. No mezclar la rama de registro propio ni el donante de cartas.
+
+`locationsPage()` reutiliza `venueShowcase()`; se eliminan renderer/filtros de tarjetas anteriores.
+Header/footer del shell y CTA de carta del home llevan al selector aprobado. Las fichas/cartas
+importadas siguen llegando al selector del home. El footer deriva sedes del mismo `SY_DATA`:
+no mantiene otra lista editable. Nombre visible Guadalajara, detalle Zona Chapalita, Zapopan;
+ID `san-ignacio`, dirección, rutas y estados del registro conservados. El Paso no se abre por
+inferencia de fecha. País, próximas aperturas, ES/EN y navegación nativa siguen disponibles.
+
+| Bloque revisado | Candidata / siguiente decisión |
+|---|---|
+| Directorio y accesos | Componente aprobado único, mismo registro y filtros; entradas comprobadas |
+| Home editorial | Piloto Roboto Slab700 existente para títulos, Inter para lectura; tinta/crema/naranja, proporción de fotos y textos; sin modificar hero |
+| Header home/directorio | Targets44px, foco visible, menú cierra tras navegar o Escape y devuelve foco; ubicación/logo estables |
+| Transiciones | Se retiran entradas repetitivas de texto en los bloques del piloto; galería y hero conservados, reduced-motion comprobado |
+| Fotos | Archivos originales intactos, encuadre de experiencia y proporción de tarjetas ajustados. La banda usa interior vacío: elegir foto humana antes de cerrar ese bloque |
+| Páginas secundarias | Revisión responsive de15páginas, sin réplica de la tipografía del piloto. La Cantina/Eventos/Tienda y fichas/Catering conservan familias distintas; revisar esa armonización después del juicio del piloto |
+
+`visual-pilot.css` solo carga en home/directorio. La versión global de assets se conserva;
+`assetVersions` del manifiesto permite invalidar exclusivamente renderer/i18n/CSS del piloto.
+El validador exige overrides JS/CSS del allowlist y versiones correctas en sus consumidores;
+tests negativos rechazan caché antigua y overrides de archivos ajenos. No regenerar cartas o
+instrumentación por una modificación visual.
+
+**Verificación:** `npm run check`,179/179;24casos home/directorio ES/EN a320/390/768/1024/1440/1920,
+45casos secundarios móvil/tablet/desktop y60accesos en22páginas. Sin overflow ni errores JS en
+esas sondas; fotos cargadas, nombres/filtros/teclado/cierre/foco comprobados. DOM, geometría y
+estilos computados del hero idénticos al baseline en los seis anchos. HTML de cartas, medios,
+CSS del hero, datos públicos, `_redirects` y registro de lealtad sin cambios de este lote.
+Solo Chromium emulado, GET/HEAD y telemetría bloqueada; no Safari ni dispositivos físicos.
+
+Paquete de revisión187archivos, noindex, servido únicamente en `http://127.0.0.1:8811`.
+Recibos ignorados: `.artifacts/visual-qa-final/report.json`, `qr-preservation.json`, capturas
+`review-*`; revisión secundaria en `.artifacts/visual-qa/blocks-report.json`. Tras rebase al release
+publicado, el único delta entre paquetes ensayados es `_redirects` ya publicado, comprobado remoto;
+los recursos de render coinciden. `npm run build` productivo continúa rechazando las cuatro
+páginas protegidas El Paso/Catering ES/EN. El paquete explícito de revisión pasa; no relajar gates.
+
+Siguiente: Luis revisa selector y dirección del piloto; después armonizar secundarios y seleccionar
+fotografía por bloque con su procedencia. Sin push, preview público ni publicación por este lote.
+Publicar requiere aprobación/release propios y revalidación del baseline vigente.
 
 ### Registro El Paso v1 · candidata local9-oct
 
@@ -275,7 +323,7 @@ automatizar vigencia con aprobar contenido nuevo leído de Instagram. Sin agenda
 | D09 · 7-oct | Encargada por Luis; candidata local | Rótulo existente como H1 sobre el video de Karina; quitar copy antiguo y bloque/fotos duplicados | Conservar SVG/fuente y hashes de video/póster; geometría móvil/desktop y texto visible al scroll. Sin publicación |
 | D10 · 7-oct | Corrección solicitada por Luis; candidata local | Cartelera de campañas comunes desde calendarios vivos, crema/tinta/naranja; no Instagram ni granate | Halloween31-oct y Catrinas con fecha propia por sede. No extrapolar promos/horarios/beneficios ni considerar el PDF tentativo agenda confirmada |
 | D11 · 8-oct | Solicitada Luis; solo candidato local | Preservar información de fichas vivas de Karina antes de sustituirlas por nuestras fichas/cartas | Snapshot público inmutable y conciliación por sede en BRANCH-CONTENT; lo observado no reemplaza datos ya confirmados |
-| D12 · 8-oct | Planificada; no implementada | Revisar identidad tipográfica, color por función/sede, header y transiciones después de la integración | Diagnóstico/propuesta/piloto/QA antes de réplica; plan operativo privado como dueño, sin rediseño inmediato |
+| D12 · 8-oct; piloto10-oct | Piloto local, pendiente de juicio visual | Revisar identidad tipográfica, color por función/sede, header y transiciones después de la integración | Home/directorio preparados y QA local; revisión de Luis antes de réplica; fuente de resultado en bloque visual de este documento |
 
 Agregar una fila solo si cambia el contrato. Cambios de implementación → PR/commit; cambios de
 ruta → ROUTES; no duplicar reseñas largas de sesión. Un release registra commit, sourceRef/hash,

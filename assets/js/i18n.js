@@ -115,6 +115,7 @@
 
     /* ---------- LOCATIONS ---------- */
     "Encuentra tu Sin Yolanda.": "Find your Sin Yolanda.",
+    "Elige tu sucursal para consultar cómo llegar, la carta y las reservaciones.": "Choose your location for directions, menus and reservations.",
     "México y Estados Unidos conectados bajo una estructura clara, local y escalable.": "Mexico and the U.S. connected under one clear, local, scalable setup.",
     "Abiertas": "Open",
     "Con catering": "With catering",

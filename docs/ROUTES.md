@@ -79,7 +79,7 @@ y ruta inexistente dan 404 real. Panel demo/archivos de desarrollo siguen públi
 | Ruta | Fuente actual en repo | Tratamiento acordado/propuesto |
 |---|---|---|
 | `/` | `index.html` + `assets/js/site.js` | Conservar base/video; D09 autoriza rótulo dentro del hero; selector aprobado bajo `#ubicaciones` |
-| `/locations` | `locations.html` | Directorio del mismo registro; no mantener sucursales en dos listas editables |
+| `/locations` | `locations.html` | Reutiliza `venueShowcase()` del home y `SY_DATA`; entrada `#ubicaciones`, sin selector antiguo ni lista editable propia |
 | `/houston` | `houston.html` | Ficha donante importada; actualizar por fuente aprobada, no retoques del HTML generado |
 | `/en/houston/` | `en/houston/index.html` | Traducción correspondiente; navegación conserva sede |
 | `/houston/menu/` | `houston/menu/index.html` | Carta propia EN autorizada; fallback explícito desde ES |

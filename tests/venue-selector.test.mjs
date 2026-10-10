@@ -23,6 +23,22 @@ test('selector has seven real records, native links and non-linked future announ
   assert.ok(data.branches.filter(b => b.status === 'coming-soon').every(b => b.region === 'us'));
 });
 
+test('directory and footer follow the same registry when a location is added or renamed', () => {
+  const facts = structuredClone(data);
+  facts.branches[0].shortName = 'Guadalajara de prueba';
+  facts.branches.push({ id: 'fixture-location', page: 'fixture.html', shortName: 'Fixture',
+    city: 'Test city', region: 'us', status: 'active', country: 'Estados Unidos' });
+  const html = vm.runInNewContext(['publicHeader', 'publicFooter', 'venueShowcase', 'locationsPage']
+    .map(renderer).join('\n') + '\nlocationsPage()', { data: facts, page: 'locations' });
+  assert.equal((html.match(/data-venue-gallery/g) || []).length, 1);
+  assert.equal((html.match(/data-venue-item /g) || []).length, facts.branches.length);
+  assert.match(html, /data-branch-id="fixture-location"/);
+  assert.match(html, /href="fixture.html">Fixture/);
+  assert.match(html, /Guadalajara de prueba/);
+  assert.doesNotMatch(html, /location-card|data-filter=|location-grid|data-caveat/);
+  assert.equal((html.match(/href="#ubicaciones" data-select-location/g) || []).length, 3);
+});
+
 test('opening strip has a real date/destination between the hero and plan', () => {
   const html = render('openingAnnouncement');
   assert.match(html, /datetime="2026-10-09"/);

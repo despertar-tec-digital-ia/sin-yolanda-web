@@ -11,6 +11,7 @@
   const statusBadge = (label, tone = "neutral") => `<span class="status status-${tone}">${label}</span>`;
 
   function publicHeader() {
+    const locationsHref = ["home", "locations"].includes(page) ? "#ubicaciones" : "locations.html#ubicaciones";
     return `
       <div class="demo-bar">SIN YOLANDA® · Cantina contemporánea · Guadalajara y Texas</div>
       <header class="public-header">
@@ -19,16 +20,17 @@
         </a>
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="public-nav">Menú</button>
         <nav id="public-nav" class="public-nav" aria-label="Navegación principal">
-          <a href="locations.html">Ubicaciones</a>
+          <a href="${locationsHref}" data-select-location>Ubicaciones</a>
           <a href="eventos.html">Eventos</a>
           <a href="la-cantina.html">La Cantina</a>
           <a href="index.html#cumple">Cumpleaños</a>
-          <a class="nav-cta" href="locations.html">Reservar mesa</a>
+          <a class="nav-cta" href="${locationsHref}" data-select-location>Reservar mesa</a>
         </nav>
       </header>`;
   }
 
   function publicFooter() {
+    const locationsHref = ["home", "locations"].includes(page) ? "#ubicaciones" : "locations.html#ubicaciones";
     return `
       <footer class="public-footer">
         <div>
@@ -40,21 +42,18 @@
           <a href="la-cantina.html">La Cantina</a>
           <a href="catering.html">Catering</a>
           <a href="eventos.html">Eventos</a>
-          <a href="locations.html">Ubicaciones</a>
+          <a href="${locationsHref}" data-select-location>Ubicaciones</a>
           <a href="el-paso.html">El Paso</a>
         </div>
         <div>
           <strong>Sucursales abiertas</strong>
-          <a href="san-ignacio.html">Sin Yolanda Guadalajara · Av. San Ignacio 78, Zapopan, Jal.</a>
-          <a href="san-antonio.html">San Antonio · 415 E Commerce St, TX</a>
-          <a href="the-woodlands.html">The Woodlands · 1400 Research Forest Dr, Shenandoah, TX</a>
-          <a href="houston.html">Houston · 4901 Washington Ave, TX</a>
+          ${data.branches.filter(branch => branch.status === "active").map(branch =>
+            `<a href="${branch.page}">${branch.shortName} · ${branch.venueCity || branch.city}</a>`).join("")}
         </div>
         <div>
           <strong>Próximamente</strong>
-          <span>El Paso · 340 Vin Rambla Dr, TX</span>
-          <span>Moreno Valley, CA</span>
-          <span>San Diego, CA</span>
+          ${data.branches.filter(branch => branch.status === "coming-soon").map(branch =>
+            `<span>${branch.shortName} · ${branch.city}</span>`).join("")}
         </div>
         <div>
           <strong>Reservaciones</strong>
@@ -62,31 +61,6 @@
           <a class="footer-hub" href="aviso-de-privacidad.html">Aviso de privacidad</a>
         </div>
       </footer>`;
-  }
-
-  function locationCard(branch) {
-    const isSoon = branch.status === "coming-soon";
-    return `
-      <article class="location-card" data-region="${branch.region}" data-status="${branch.status}">
-        <div class="location-card-media">
-          <img src="${branch.image}" alt="${branch.name}" />
-          ${statusBadge(branch.statusLabel, isSoon ? "warning" : "success")}
-        </div>
-        <div class="location-card-body">
-          <p>${branch.city} · ${branch.country}</p>
-          <h3>${branch.name}</h3>
-          <span>${branch.concept}</span>
-          <div class="card-actions">
-            ${isSoon
-              ? `${branch.page !== "#" ? `<a class="button button-primary" href="${branch.page}">Ver sucursal</a>` : ""}${branch.socialUrl
-                  ? `<a class="button button-primary" href="${branch.socialUrl}" target="_blank" rel="noopener">Seguir la apertura</a>`
-                  : ""}`
-              : `<a class="button button-primary" href="${branch.reserveChannel === "opentable" ? branch.reserveUrl : `https://wa.me/${branch.whatsapp}`}" target="_blank" rel="noopener">Reservar</a>
-                 <a class="button button-ghost" href="${branch.page}">Ver sucursal</a>
-                 <a class="text-button" href="${branch.mapsUrl}" target="_blank" rel="noopener">Cómo llegar</a>`}
-          </div>
-        </div>
-      </article>`;
   }
 
   function venueShowcase() {
@@ -226,7 +200,7 @@
             <article><h3>Para echarse una</h3><p>Paloma de la casa, carajillo y más de 30 marcas de agave. Pregunta: aquí te contamos.</p></article>
             <article><h3>Para cantar</h3><p>El micrófono pasa por las mesas. La canción la eliges tú y el coro lo pone el lugar.</p></article>
           </div>
-          <a class="button button-primary" href="la-cantina.html">Ver la carta</a>
+          <a class="button button-primary" href="#ubicaciones" data-select-location>Ver la carta</a>
         </section>
 
         <section class="section cumple-section" id="cumple">
@@ -328,25 +302,14 @@
   function locationsPage() {
     return `
       ${publicHeader()}
-      <main>
-        <section class="page-hero compact-hero">
-          <img src="assets/media/dining.webp" alt="Interior de Sin Yolanda" />
-          <div class="hero-overlay"></div>
-          <div><p class="eyebrow">Presencia multisucursal</p><h1>Encuentra tu Sin Yolanda.</h1><p>México y Estados Unidos conectados bajo una estructura clara, local y escalable.</p></div>
-        </section>
-        <section class="section">
-          <div class="filter-row" aria-label="Filtrar ubicaciones">
-            <button class="filter active" type="button" data-filter="all">Todas</button>
-            <button class="filter" type="button" data-filter="mx">México</button>
-            <button class="filter" type="button" data-filter="us">Estados Unidos</button>
-            <button class="filter" type="button" data-filter="soon">Próximamente</button>
-          </div>
-          <div class="location-grid detailed">${data.branches.map(locationCard).join("")}</div>
-          <p class="data-caveat">Direcciones, teléfonos y horarios verificados contra Google Business Profile el 24 de septiembre de 2026.</p>
-        </section>
+      <main class="locations-directory">
+        <div class="section locations-intro">
+          <h1>Encuentra tu Sin Yolanda.</h1>
+          <p>Elige tu sucursal para consultar cómo llegar, la carta y las reservaciones.</p>
+        </div>
+        ${venueShowcase()}
       </main>
-      ${publicFooter()}
-      ${modalMarkup()}`;
+      ${publicFooter()}`;
   }
 
   function reservationModule(branch) {
@@ -468,10 +431,21 @@
     const menuToggle = document.querySelector(".menu-toggle");
     const publicNav = document.querySelector(".public-nav");
     if (menuToggle && publicNav) {
+      const closeNav = (restoreFocus = false) => {
+        menuToggle.setAttribute("aria-expanded", "false");
+        publicNav.classList.remove("open");
+        if (restoreFocus) menuToggle.focus();
+      };
       menuToggle.addEventListener("click", () => {
         const expanded = menuToggle.getAttribute("aria-expanded") === "true";
         menuToggle.setAttribute("aria-expanded", String(!expanded));
         publicNav.classList.toggle("open", !expanded);
+      });
+      publicNav.querySelectorAll("a").forEach(link => link.addEventListener("click", event => {
+        if (event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) closeNav();
+      }));
+      document.addEventListener("keydown", event => {
+        if (event.key === "Escape" && publicNav.classList.contains("open")) closeNav(true);
       });
     }
 
@@ -494,20 +468,6 @@
       });
     });
 
-  }
-
-  function bindLocationFilters() {
-    const filters = document.querySelectorAll("[data-filter]");
-    const cards = document.querySelectorAll(".location-card");
-    filters.forEach((filter) => {
-      filter.addEventListener("click", () => {
-        filters.forEach((item) => item.classList.toggle("active", item === filter));
-        cards.forEach((card) => {
-          card.hidden = filter.dataset.filter === "soon" ? card.dataset.status !== "coming-soon"
-            : filter.dataset.filter !== "all" && card.dataset.region !== filter.dataset.filter;
-        });
-      });
-    });
   }
 
   function bindModal() {
@@ -825,7 +785,6 @@
   root.innerHTML = `${(renderers[page] || homePage)()}${toastMarkup()}`;
   bindCommon();
   initHeroCinema();
-  bindLocationFilters();
   bindModal();
   bindReservationModules();
   scrollToReveal();

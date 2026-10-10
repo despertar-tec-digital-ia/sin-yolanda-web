@@ -119,9 +119,9 @@
     const plan = [
       ["Comida", "images/houston-entry-study/table-1600.webp", "Para el centro de la mesa. Se comparte o no se pide."],
       ["Tragos", "assets/media/cocktail.webp", "Coquetos. Sin lista de precios: pregunta y te contamos."],
-      ["Música", "assets/media/hero-night.webp", "Canciones que te sabes completas.", "50% 22%"],
+      ["Música", "assets/media/venues/the-woodlands.webp", "Canciones que te sabes completas.", "50% 56%"],
       ["Micrófono", "assets/media/karaoke.webp", "Pasa por las mesas. Nadie se lo niega a nadie.", "50% 42%"],
-      ["La banda", "assets/media/interior.webp", "Trae a los cuatro. Aquí caben todos."],
+      ["La banda", "assets/media/hero-night.webp", "Trae a los cuatro. Aquí caben todos.", "50% 22%"],
       ["Celebraciones", "assets/media/hospitality.webp", "Cumpleaños, renuncias, quincenas. Cualquier pretexto.", "50% 12%"],
     ];
     const pretextos = [
@@ -304,7 +304,7 @@
       ${publicHeader()}
       <main class="locations-directory">
         <div class="section locations-intro">
-          <h1>Encuentra tu Sin Yolanda.</h1>
+          <h1><span>Encuentra tu</span> <span>Sin Yolanda.</span></h1>
           <p>Elige tu sucursal para consultar cómo llegar, la carta y las reservaciones.</p>
         </div>
         ${venueShowcase()}

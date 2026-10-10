@@ -21,13 +21,20 @@ no mantiene otra lista editable. Nombre visible Guadalajara, detalle Zona Chapal
 ID `san-ignacio`, dirección, rutas y estados del registro conservados. El Paso no se abre por
 inferencia de fecha. País, próximas aperturas, ES/EN y navegación nativa siguen disponibles.
 
+**Dirección de arte posterior:** Luis rechaza el piloto inicial de coherencia (`19dd624`),
+señalando color/header/tipografía sin encaje. Se comparan clara A y oscura B con el mismo
+contenido; Luis elige **B · Oscura** para continuar. Es elección de dirección, no aprobación de
+todos los bloques ni permiso de publicación. Se retira Roboto Slab del piloto: Bebas Neue ya
+presente en el selector para títulos, Inter existente para lectura. Base `#20241f`, texto
+`#fffaf0`, secundario `#bdc0b7`, superficies interiores `#2b3029`, acento `#ef8d64`.
+
 | Bloque revisado | Candidata / siguiente decisión |
 |---|---|
 | Directorio y accesos | Componente aprobado único, mismo registro y filtros; entradas comprobadas |
-| Home editorial | Piloto Roboto Slab700 existente para títulos, Inter para lectura; tinta/crema/naranja, proporción de fotos y textos; sin modificar hero |
-| Header home/directorio | Targets44px, foco visible, menú cierra tras navegar o Escape y devuelve foco; ubicación/logo estables |
+| Home editorial | Dirección B; títulos condensados y fotografías con captions abiertos/anchos desiguales, sin cajas. Pretextos/botaneo/cumpleaños continúan esa gramática; sin cambiar ofertas/copy/hero |
+| Header home/directorio | Una sola cabecera80px desktop/76px móvil, sin franja superior ni glow. Logo original, enlaces/CTA/idioma con foco y targets44px; cierre/teclado conservados |
 | Transiciones | Se retiran entradas repetitivas de texto en los bloques del piloto; galería y hero conservados, reduced-motion comprobado |
-| Fotos | Archivos originales intactos, encuadre de experiencia y proporción de tarjetas ajustados. La banda usa interior vacío: elegir foto humana antes de cerrar ese bloque |
+| Fotos | Archivos intactos. Música usa la foto de canto ya servida en el selector; La banda reutiliza la foto humana antes usada en Música. En home son escenas generales de marca, sin atribuirlas a una sede diferente |
 | Páginas secundarias | Revisión responsive de15páginas, sin réplica de la tipografía del piloto. La Cantina/Eventos/Tienda y fichas/Catering conservan familias distintas; revisar esa armonización después del juicio del piloto |
 
 `visual-pilot.css` solo carga en home/directorio. La versión global de assets se conserva;
@@ -36,12 +43,20 @@ El validador exige overrides JS/CSS del allowlist y versiones correctas en sus c
 tests negativos rechazan caché antigua y overrides de archivos ajenos. No regenerar cartas o
 instrumentación por una modificación visual.
 
-**Verificación:** `npm run check`,179/179;24casos home/directorio ES/EN a320/390/768/1024/1440/1920,
+**Verificación inicial (`19dd624`):** `npm run check`,179/179;24casos home/directorio ES/EN a320/390/768/1024/1440/1920,
 45casos secundarios móvil/tablet/desktop y60accesos en22páginas. Sin overflow ni errores JS en
 esas sondas; fotos cargadas, nombres/filtros/teclado/cierre/foco comprobados. DOM, geometría y
 estilos computados del hero idénticos al baseline en los seis anchos. HTML de cartas, medios,
 CSS del hero, datos públicos, `_redirects` y registro de lealtad sin cambios de este lote.
 Solo Chromium emulado, GET/HEAD y telemetría bloqueada; no Safari ni dispositivos físicos.
+
+**Verificación dirección B:**179/179 y nueva sonda24casos ES/EN,60accesos/22páginas, sin fallos.
+Hero comparado con `19dd624`: mismo DOM, estilos y geometría **interna** en los seis anchos;
+su posición absoluta sube al retirar la franja del header, cambio intencional de navegación.
+Video/póster/rótulo, CSS global/hero/selector y registro sin modificaciones. Contrastes calculados
+de los nuevos pares de lectura:15.14:1 principal,8.54:1 secundario,7.31:1 sobre superficie interior,
+6.50:1 acento y4.89:1 etiqueta de reserva. No certificación integral WCAG. Capturas reales B a
+390/768/1440 inspeccionadas; comparación y QA → `.artifacts/visual-direction-dark-qa/`.
 
 Paquete de revisión187archivos, noindex, servido únicamente en `http://127.0.0.1:8811`.
 Recibos ignorados: `.artifacts/visual-qa-final/report.json`, `qr-preservation.json`, capturas
@@ -50,8 +65,9 @@ publicado, el único delta entre paquetes ensayados es `_redirects` ya publicado
 los recursos de render coinciden. `npm run build` productivo continúa rechazando las cuatro
 páginas protegidas El Paso/Catering ES/EN. El paquete explícito de revisión pasa; no relajar gates.
 
-Siguiente: Luis revisa selector y dirección del piloto; después armonizar secundarios y seleccionar
-fotografía por bloque con su procedencia. Sin push, preview público ni publicación por este lote.
+Siguiente: revisar el resultado B en contexto y armonizar por bloques La Cantina/Eventos/Tienda;
+fichas/Catering requieren su flujo donante/importación, sin alterar cartas. Sin push, preview
+público ni publicación por este lote.
 Publicar requiere aprobación/release propios y revalidación del baseline vigente.
 
 ### Registro El Paso v1 · candidata local9-oct

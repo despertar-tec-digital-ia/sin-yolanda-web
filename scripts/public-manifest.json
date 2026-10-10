@@ -199,8 +199,8 @@
     "en/catering/index.html"
   ],
   "assetVersions": {
-    "assets/js/site.js": "20261010-visual-locations",
-    "assets/js/i18n.js": "20261010-visual-locations",
-    "assets/css/visual-pilot.css": "20261010-visual-pilot"
+    "assets/js/site.js": "20261010-visual-direction",
+    "assets/js/i18n.js": "20261010-visual-direction",
+    "assets/css/visual-pilot.css": "20261010-visual-direction"
   }
 }

@@ -49,6 +49,7 @@
     "Abre": "Opens",
     "Ruleta de shots y bebidas sobre una mesa de Sin Yolanda": "A shot roulette and drinks on a Sin Yolanda table",
     "Elige tu sucursal": "Choose your location",
+    "Encuentra tu": "Find your",
 
     /* ---------- TARJETAS / CTAS ---------- */
     "Ver sucursal": "View location",

@@ -189,7 +189,13 @@
     "images/catering-review/table-scene-desktop-800.webp",
     "images/catering-review/table-scene-mobile-480.webp",
     "images/catering-review/table-scene-mobile-800.webp",
-    "assets/js/site-analytics.js"
+    "assets/js/site-analytics.js",
+    "assets/media/cantina-duo-640.webp",
+    "assets/media/cantina-duo-1280.webp",
+    "assets/media/cantina-selfie-640.webp",
+    "assets/media/cantina-selfie-1280.webp",
+    "assets/media/cantina-canto-640.webp",
+    "assets/media/cantina-canto-1280.webp"
   ],
   "assetVersion": "20261008-migration-measurement",
   "reviewPages": [
@@ -199,8 +205,8 @@
     "en/catering/index.html"
   ],
   "assetVersions": {
-    "assets/js/site.js": "20261010-visual-direction",
-    "assets/js/i18n.js": "20261010-visual-direction",
-    "assets/css/visual-pilot.css": "20261010-visual-direction"
+    "assets/js/site.js": "20261010-hero-review",
+    "assets/js/i18n.js": "20261010-hero-review",
+    "assets/css/visual-pilot.css": "20261010-hero-review"
   }
 }

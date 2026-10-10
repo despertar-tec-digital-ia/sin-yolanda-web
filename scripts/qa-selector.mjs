@@ -11,13 +11,15 @@ assert.ok(['localhost', '127.0.0.1'].includes(origin.hostname), 'Candidate QA ac
 assert.ok(!origin.username && !origin.password && !origin.search && !origin.hash);
 assert.ok(process.env.SY_QA_PACKAGE_ROOT, 'Provide the installed Playwright package directory');
 const output = resolve(root, process.argv[2] || '.artifacts/selector-qa-' + Date.now());
+const scope = process.env.SY_QA_SCOPE || 'all';
+assert.ok(['all', 'home'].includes(scope), 'QA scope must be all or home');
 assert.ok(output.startsWith(resolve(root, '.artifacts') + '/') && !existsSync(output), 'Use a fresh ignored evidence directory');
 mkdirSync(output, { recursive: true });
 const require = createRequire(resolve(process.env.SY_QA_PACKAGE_ROOT, '../package.json'));
 const { chromium } = require('playwright');
 const browser = await chromium.launch({ headless: true });
 const report = { version: 5, origin: origin.origin, capturedAt: new Date().toISOString(),
-  scope: 'Local home corrections and retained navigation, not whole-site launch approval',
+  scope, scopeDescription: 'Local home corrections and retained navigation, not whole-site launch approval',
   viewports: [], interactions: {}, remainingFindings: [] };
 const blockShot = (name) => ({ path: resolve(output, name), animations: 'disabled',
   style: '.public-header { visibility: hidden !important; }' });
@@ -119,9 +121,11 @@ try {
     assert.ok(record.hero.title.bottom <= record.hero.subtitle.top + 1 && record.hero.subtitle.bottom <= record.hero.actions.top + 1,
       'Headline, supporting copy and booking actions must have separate space');
     assert.ok(record.hero.buttons.length >= 1 && record.hero.buttons.every(a =>
-      a.height >= 44 && a.fontSize >= 14 && !a.clipped && a.opacity >= .99 && a.href === '#ubicaciones' &&
+      a.height >= 44 && a.fontSize >= 14 && !a.clipped && a.opacity >= .99 && ['#ubicaciones', '#plan'].includes(a.href) &&
       a.left >= 0 && a.right <= width + 1 && a.top >= record.hero.title.bottom && a.bottom <= record.hero.hero.bottom + 1),
       'Booking actions must be legible, contained and native');
+    assert.equal(record.hero.buttons.filter(a => a.href === '#ubicaciones').length, 1);
+    assert.equal(record.hero.buttons.filter(a => a.href === '#plan').length, 1);
     await page.evaluate(() => window.scrollTo({ top: 10, behavior: 'instant' }));
     await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
     record.heroAfterScroll = await heroState(page);
@@ -132,11 +136,11 @@ try {
     await page.locator('.opening-announcement').scrollIntoViewIfNeeded();
     record.banner = await page.locator('.opening-announcement').evaluate(el => ({ width: el.getBoundingClientRect().width,
       height: el.getBoundingClientRect().height, previousHero: el.previousElementSibling.id === 'inicio',
-      nextPlan: el.nextElementSibling.id === 'plan',
+      nextSelector: el.nextElementSibling.id === 'ubicaciones',
       text: el.innerText, links: [...el.querySelectorAll('a')].map(a => a.getAttribute('href')) }));
     assert.equal(record.banner.width, width);
     assert.equal(record.banner.previousHero, true);
-    assert.equal(record.banner.nextPlan, true);
+    assert.equal(record.banner.nextSelector, true);
     assert.deepEqual(record.banner.links, ['el-paso.html', 'el-paso.html']);
     await page.screenshot({ path: resolve(output, `banner-${width}-${touch ? 'touch' : 'mouse'}.png`), animations: 'disabled' });
     await page.locator('.venue-showcase').scrollIntoViewIfNeeded();
@@ -295,16 +299,22 @@ try {
     const { page, context } = await pageFor();
     await page.locator('[data-lang-btn="en"]').click();
     assert.equal(await page.locator('html').getAttribute('lang'), 'en');
+    assert.equal(await page.locator('.rotulo-sr').textContent(), 'No time for tears');
+    assert.deepEqual(await page.locator('.rotulo-art [data-i18n-es]').allTextContents(), ['NO', 'TIME', 'TEARS', 'for']);
+    assert.match(await page.locator('.hero-sub').innerText(), /^Food that fills you up,/);
+    assert.equal(await page.locator('.hero-micro').innerText(), 'Mexico · United States');
+    assert.match(await page.locator('#inicio .hero-actions [data-select-location]').innerText(), /Choose your location/);
+    assert.equal(await page.locator('.hero-plan-link').innerText(), 'See the plan');
     assert.equal(await page.locator('.opening-announcement time').innerText(), 'October 9');
     assert.equal((await page.locator('.opening-announcement-link').innerText()).trim(), 'View location');
-    assert.equal(await page.locator('#venue-heading').innerText(), 'Find your cantina');
+    assert.equal((await page.locator('#venue-heading').textContent()).trim(), 'Find your cantina');
     assert.equal(await page.locator('[data-branch-id="el-paso"] .venue-badge').innerText(), 'Opens October 9');
     assert.equal((await page.locator('[data-branch-id="el-paso"] .venue-opening-date > span').textContent()).trim(), 'Opens');
     assert.equal(await page.locator('#experiencia img').getAttribute('alt'), 'A shot roulette and drinks on a Sin Yolanda table');
-    assert.equal(await page.locator('#agenda-heading').innerText(), "What's coming up.");
+    assert.equal((await page.locator('#agenda-heading').textContent()).trim(), "What's coming up.");
     for (const date of await page.locator('#cartelera time[datetime]').all()) assert.match(await date.innerText(), /\d+\s+(Oct|Nov)\b/);
     assert.equal(await page.locator('.pretexto-card small').first().innerText(), 'Choose a location');
-    assert.equal(await page.locator('.pretexto-card strong').nth(1).innerText(), 'Payday');
+    assert.equal((await page.locator('.pretexto-card strong').nth(1).textContent()).trim(), 'Payday');
     await page.locator('[data-venue-filter="soon"]').click();
     assert.equal(await page.locator('[data-venue-status]').innerText(), '3 locations');
     report.interactions.english = { banner: await page.locator('.opening-announcement').innerText(), selector: await page.locator('#venue-heading').innerText() };
@@ -317,7 +327,7 @@ try {
     await page.locator('[data-lang-btn="es"]').click();
     assert.equal(await page.locator('#experiencia img').getAttribute('alt'), 'Ruleta de shots y bebidas sobre una mesa de Sin Yolanda');
     assert.equal(await page.locator('[data-branch-id="el-paso"] .venue-badge').innerText(), 'Abre el 9 de octubre');
-    assert.equal(await page.locator('#agenda-heading').innerText(), 'Lo que viene.');
+    assert.equal((await page.locator('#agenda-heading').textContent()).trim(), 'Lo que viene.');
     for (const date of await page.locator('#cartelera time[datetime]').all()) assert.match(await date.innerText(), /\d+\s+(oct|nov)\b/);
     assert.equal(await page.locator('.pretexto-card small').first().innerText(), 'Elegir sucursal');
     await page.locator('.lang-toggle').evaluate(el => el.remove());
@@ -346,7 +356,12 @@ try {
     await context.close();
   }
   report.branchAgendas = [];
-  for (const [branch, profile] of [['san-ignacio', 'sinyolandagdl'], ['san-antonio', 'sinyolanda.sa'], ['the-woodlands', 'sinyolanda.tw']]) {
+  // The complete legacy agenda contract remains enforced in the default scope.
+  // Imported fichas currently omit that legacy section; home-only review must
+  // report that boundary explicitly, not silently certify those fichas.
+  if (scope === 'home') report.remainingFindings.push({ id: 'branch-agendas-outside-scope',
+    message: 'Imported fichas have no legacy #cartelera. Default full QA still fails there; this home review does not certify branch agendas.' });
+  for (const [branch, profile] of scope === 'all' ? [['san-ignacio', 'sinyolandagdl'], ['san-antonio', 'sinyolanda.sa'], ['the-woodlands', 'sinyolanda.tw']] : []) {
     for (const width of [390, 1440]) {
       const { page, context, errors } = await pageFor(width, width === 390 ? 844 : 900, width === 390);
       await page.goto(new URL(branch + '.html', origin).href, { waitUntil: 'domcontentloaded' });

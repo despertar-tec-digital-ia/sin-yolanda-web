@@ -39,12 +39,12 @@ test('directory and footer follow the same registry when a location is added or 
   assert.equal((html.match(/href="#ubicaciones" data-select-location/g) || []).length, 3);
 });
 
-test('opening strip has a real date/destination between the hero and plan', () => {
+test('opening strip has a real date/destination between the hero and early location selector', () => {
   const html = render('openingAnnouncement');
   assert.match(html, /datetime="2026-10-09"/);
   assert.match(html, /Conoce la sucursal/);
   assert.equal((html.match(/href="el-paso.html"/g) || []).length, 2);
-  assert.match(source, /<\/section>\s*\$\{openingAnnouncement\(\)\}\s*<section class="section section-after-hero" id="plan"/);
+  assert.match(source, /<\/section>\s*\$\{openingAnnouncement\(\)\}\s*\$\{venueShowcase\(\)\}\s*<section class="section section-after-hero" id="plan"/);
   const withoutDate = structuredClone(data);
   withoutDate.branches.find(b => b.id === 'el-paso').openingDate = '';
   assert.equal(render('openingAnnouncement', withoutDate), '');
@@ -71,7 +71,7 @@ test('future photos are illustrative brand media, without invented dates or dest
   assert.doesNotMatch(render('venueShowcase', opened), /venue-badge--opening|venue-opening-date/);
 });
 
-test('authorized hero uses the original rotulo as its H1 and preserves the audited video and poster', () => {
+test('hero refinement keeps one accessible rotulo H1 and replaces the still-image video with responsive source photos', () => {
   const hash = s => createHash('sha256').update(s).digest('hex');
   const hero = source.match(/<section class="home-hero home-hero-cinema"[\s\S]*?<\/section>/)[0];
   const title = hero.match(/<h1\b[^>]*class="[^"]*\bhero-rotulo\b[^"]*"[^>]*>[\s\S]*?<\/h1>/)?.[0];
@@ -84,9 +84,15 @@ test('authorized hero uses the original rotulo as its H1 and preserves the audit
   }
   assert.doesNotMatch(hero, /Cantina contemporánea|El plan ya está armado/);
   assert.doesNotMatch(source, /<section\b[^>]*id="rotulo"|class="rotulo-photos"/);
-  assert.match(hero, /poster="assets\/media\/hero-fiesta-real-poster\.webp"/);
-  assert.match(hero, /<source src="assets\/media\/hero-fiesta-real\.mp4" type="video\/mp4"/);
-  for (const attribute of ['autoplay', 'muted', 'loop', 'playsinline']) assert.match(hero, new RegExp('\\b' + attribute + '\\b'));
+  assert.doesNotMatch(hero, /<video|hero-fiesta-real/);
+  assert.equal((hero.match(/data-hero-slide/g) || []).length, 3);
+  assert.equal((hero.match(/ data-src=/g) || []).length, 2, 'Load later scenes only when needed');
+  assert.match(hero, /fetchpriority="high"/);
+  assert.match(hero, /data-hero-motion/);
+  for (const word of ['NO', 'TIME', 'TEARS', 'for']) assert.ok(hero.includes(`data-i18n-en="${word}"`));
+  assert.match(hero, /México · Estados Unidos/);
+  assert.equal((hero.match(/href="#ubicaciones"/g) || []).length, 1, 'One main location action');
+  assert.match(hero, /href="#plan"/);
   const media = readFileSync(new URL('../assets/media/hero-fiesta-real.mp4', import.meta.url));
   assert.equal(hash(media), 'e03997b6c3842b466bfb04b45906aa7655c9770c16636f70133e251e39d3b0ce');
   const poster = readFileSync(new URL('../assets/media/hero-fiesta-real-poster.webp', import.meta.url));

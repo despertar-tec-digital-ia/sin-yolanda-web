@@ -13,7 +13,7 @@
   function publicHeader() {
     const locationsHref = ["home", "locations"].includes(page) ? "#ubicaciones" : "locations.html#ubicaciones";
     return `
-      <div class="demo-bar">SIN YOLANDA® · Cantina contemporánea · Guadalajara y Texas</div>
+      <div class="demo-bar">SIN YOLANDA® · Cantina contemporánea · México y Estados Unidos</div>
       <header class="public-header">
         <a class="brand" href="index.html" aria-label="Sin Yolanda, inicio">
           <img src="assets/media/brand-logo-gdl.png" alt="Sin Yolanda" />
@@ -35,7 +35,7 @@
       <footer class="public-footer">
         <div>
           <img src="assets/media/brand-logo-gdl.png" alt="Sin Yolanda" />
-          <p>Una marca que vive en cada ciudad: Guadalajara y Texas.</p>
+          <p>Una marca que vive en cada ciudad: México y Estados Unidos.</p>
         </div>
         <div>
           <strong>Explora</strong>
@@ -48,7 +48,7 @@
         <div>
           <strong>Sucursales abiertas</strong>
           ${data.branches.filter(branch => branch.status === "active").map(branch =>
-            `<a href="${branch.page}">${branch.shortName} · ${branch.venueCity || branch.city}</a>`).join("")}
+            `<a href="${branch.page}">${branch.shortName} · <span>${branch.venueCity || branch.city}</span></a>`).join("")}
         </div>
         <div>
           <strong>Próximamente</strong>
@@ -136,36 +136,37 @@
       ${publicHeader()}
       <main>
         <section class="home-hero home-hero-cinema" id="inicio">
-          <div class="hero-video-wrap" aria-hidden="true">
-            <video
-              class="hero-video"
-              autoplay
-              muted
-              loop
-              playsinline
-              preload="metadata"
-              poster="assets/media/hero-fiesta-real-poster.webp"
-              data-hero-video>
-              <source src="assets/media/hero-fiesta-real.mp4" type="video/mp4" />
-            </video>
+          <div class="hero-media" aria-hidden="true">
+            <img class="hero-photo is-active" data-hero-slide src="assets/media/cantina-duo-1280.webp"
+              srcset="assets/media/cantina-duo-640.webp 640w, assets/media/cantina-duo-1280.webp 1280w"
+              sizes="(max-width: 900px) 100vw, 56vw" width="1280" height="1707" alt="" fetchpriority="high" />
+            <img class="hero-photo" data-hero-slide data-src="assets/media/cantina-selfie-1280.webp"
+              data-srcset="assets/media/cantina-selfie-640.webp 640w, assets/media/cantina-selfie-1280.webp 1280w"
+              sizes="(max-width: 900px) 100vw, 56vw" width="1280" height="1445" alt="" decoding="async" />
+            <img class="hero-photo" data-hero-slide data-src="assets/media/cantina-canto-1280.webp"
+              data-srcset="assets/media/cantina-canto-640.webp 640w, assets/media/cantina-canto-1280.webp 1280w"
+              sizes="(max-width: 900px) 100vw, 56vw" width="1280" height="1700" alt="" decoding="async" />
           </div>
-          <div class="hero-overlay hero-overlay-cinema"></div>
+          <button class="hero-motion" type="button" data-hero-motion data-paused="false">
+            <span class="hero-motion-icon" aria-hidden="true"></span>
+            <span data-i18n-es="Pausar fotos" data-i18n-en="Pause photos">Pausar fotos</span>
+          </button>
           <div class="hero-copy hero-copy-cinema">
+            <p class="hero-micro">México · Estados Unidos</p>
             <h1 class="hero-rotulo">
               <span class="rotulo-sr">No hay tiempo para llorar</span>
-              <svg class="rotulo-art" viewBox="0 0 600 540" aria-hidden="true" focusable="false"><defs><path id="rotulo-arch" d="M85 109 Q300 42 515 109"></path><path id="rotulo-time-arch" d="M20 255 Q300 177 580 255"></path><path id="rotulo-last-arch" d="M25 427 Q300 507 575 427"></path><g id="rotulo-no-hay"><text class="rotulo-overture"><textPath href="#rotulo-arch" startOffset="50%" text-anchor="middle">NO HAY</textPath></text></g><g id="rotulo-tiempo"><text textLength="534" lengthAdjust="spacingAndGlyphs" class="rotulo-main-word"><textPath href="#rotulo-time-arch" startOffset="50%" text-anchor="middle">TIEMPO</textPath></text></g><g id="rotulo-llorar"><text textLength="534" lengthAdjust="spacingAndGlyphs" class="rotulo-last-word"><textPath href="#rotulo-last-arch" startOffset="50%" text-anchor="middle">LLORAR</textPath></text></g></defs><g class="rotulo-top"><use href="#rotulo-no-hay" class="rotulo-edge" transform="translate(3 4)"></use><use href="#rotulo-no-hay" class="rotulo-face"></use></g><g class="rotulo-center"><use href="#rotulo-tiempo" class="rotulo-depth" transform="translate(7 9.1)"></use><use href="#rotulo-tiempo" class="rotulo-depth" transform="translate(6 7.8)"></use><use href="#rotulo-tiempo" class="rotulo-depth" transform="translate(5 6.5)"></use><use href="#rotulo-tiempo" class="rotulo-depth" transform="translate(4 5.2)"></use><use href="#rotulo-tiempo" class="rotulo-depth" transform="translate(3 3.9)"></use><use href="#rotulo-tiempo" class="rotulo-depth" transform="translate(2 2.6)"></use><use href="#rotulo-tiempo" class="rotulo-depth" transform="translate(1 1.3)"></use><use href="#rotulo-tiempo" class="rotulo-outline"></use><use href="#rotulo-tiempo" class="rotulo-face"></use></g><g class="rotulo-bridge" fill="currentColor"><path d="M95 295 Q155 279 220 295 Q155 285 95 300Z"></path><text x="300" y="307" text-anchor="middle">para</text><path d="M505 295 Q445 279 380 295 Q445 285 505 300Z"></path></g><g class="rotulo-finale"><use href="#rotulo-llorar" class="rotulo-depth" transform="translate(7 9.1)"></use><use href="#rotulo-llorar" class="rotulo-depth" transform="translate(6 7.8)"></use><use href="#rotulo-llorar" class="rotulo-depth" transform="translate(5 6.5)"></use><use href="#rotulo-llorar" class="rotulo-depth" transform="translate(4 5.2)"></use><use href="#rotulo-llorar" class="rotulo-depth" transform="translate(3 3.9)"></use><use href="#rotulo-llorar" class="rotulo-depth" transform="translate(2 2.6)"></use><use href="#rotulo-llorar" class="rotulo-depth" transform="translate(1 1.3)"></use><use href="#rotulo-llorar" class="rotulo-outline"></use><use href="#rotulo-llorar" class="rotulo-face"></use><path class="rotulo-underline" d="M100 485 Q300 528 500 485 Q300 543 100 485Z"></path></g></svg>
+              <svg class="rotulo-art" viewBox="0 0 600 540" aria-hidden="true" focusable="false"><defs><path id="rotulo-arch" d="M85 109 Q300 42 515 109"></path><path id="rotulo-time-arch" d="M20 255 Q300 177 580 255"></path><path id="rotulo-last-arch" d="M25 427 Q300 507 575 427"></path><g id="rotulo-no-hay"><text class="rotulo-overture"><textPath href="#rotulo-arch" startOffset="50%" text-anchor="middle" data-i18n-es="NO HAY" data-i18n-en="NO">NO HAY</textPath></text></g><g id="rotulo-tiempo"><text textLength="534" lengthAdjust="spacingAndGlyphs" class="rotulo-main-word"><textPath href="#rotulo-time-arch" startOffset="50%" text-anchor="middle" data-i18n-es="TIEMPO" data-i18n-en="TIME">TIEMPO</textPath></text></g><g id="rotulo-llorar"><text textLength="534" lengthAdjust="spacingAndGlyphs" class="rotulo-last-word"><textPath href="#rotulo-last-arch" startOffset="50%" text-anchor="middle" data-i18n-es="LLORAR" data-i18n-en="TEARS">LLORAR</textPath></text></g></defs><g class="rotulo-top"><use href="#rotulo-no-hay" class="rotulo-edge" transform="translate(3 4)"></use><use href="#rotulo-no-hay" class="rotulo-face"></use></g><g class="rotulo-center"><use href="#rotulo-tiempo" class="rotulo-depth" transform="translate(7 9.1)"></use><use href="#rotulo-tiempo" class="rotulo-depth" transform="translate(6 7.8)"></use><use href="#rotulo-tiempo" class="rotulo-depth" transform="translate(5 6.5)"></use><use href="#rotulo-tiempo" class="rotulo-depth" transform="translate(4 5.2)"></use><use href="#rotulo-tiempo" class="rotulo-depth" transform="translate(3 3.9)"></use><use href="#rotulo-tiempo" class="rotulo-depth" transform="translate(2 2.6)"></use><use href="#rotulo-tiempo" class="rotulo-depth" transform="translate(1 1.3)"></use><use href="#rotulo-tiempo" class="rotulo-outline"></use><use href="#rotulo-tiempo" class="rotulo-face"></use></g><g class="rotulo-bridge" fill="currentColor"><path d="M95 295 Q155 279 220 295 Q155 285 95 300Z"></path><text x="300" y="307" text-anchor="middle" data-i18n-es="para" data-i18n-en="for">para</text><path d="M505 295 Q445 279 380 295 Q445 285 505 300Z"></path></g><g class="rotulo-finale"><use href="#rotulo-llorar" class="rotulo-depth" transform="translate(7 9.1)"></use><use href="#rotulo-llorar" class="rotulo-depth" transform="translate(6 7.8)"></use><use href="#rotulo-llorar" class="rotulo-depth" transform="translate(5 6.5)"></use><use href="#rotulo-llorar" class="rotulo-depth" transform="translate(4 5.2)"></use><use href="#rotulo-llorar" class="rotulo-depth" transform="translate(3 3.9)"></use><use href="#rotulo-llorar" class="rotulo-depth" transform="translate(2 2.6)"></use><use href="#rotulo-llorar" class="rotulo-depth" transform="translate(1 1.3)"></use><use href="#rotulo-llorar" class="rotulo-outline"></use><use href="#rotulo-llorar" class="rotulo-face"></use><path class="rotulo-underline" d="M100 485 Q300 528 500 485 Q300 543 100 485Z"></path></g></svg>
             </h1>
             <p class="hero-sub">Comida que sí llena, tragos coquetos y canciones que se gritan completas.</p>
             <div class="hero-actions">
-              <a class="button button-primary" href="#ubicaciones" data-select-location>Reserva tu mesa</a>
-              <a class="button button-ghost-light" href="#ubicaciones" data-select-location>Encuentra tu Sin Yolanda</a>
+              <a class="button button-primary" href="#ubicaciones" data-select-location><span>Elige tu sucursal</span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h12m-5-5 5 5-5 5"/></svg></a>
+              <a class="hero-plan-link" href="#plan">Ver el plan</a>
             </div>
-            <p class="hero-micro">México · Texas</p>
           </div>
         </section>
 
         ${openingAnnouncement()}
-
+        ${venueShowcase()}
 
         <section class="section section-after-hero" id="plan">
           <div class="section-heading"><div><p class="eyebrow">El plan</p><h2 class="reveal">El plan ya está armado.</h2></div><p>Tú solo trae el pretexto.</p></div>
@@ -188,7 +189,7 @@
           <div class="experience-copy">
             <p class="eyebrow">La casa por dentro</p>
             <h2 class="reveal">Trae a los cuatro.</h2>
-            <p>Mesas largas, brinde completo y el micrófono que no se le niega a nadie. Aquí no hay mesa reservada para influencers: la mejor foto la hace tu gente.</p>
+            <p>Mesas largas, brindis completo y el micrófono que no se le niega a nadie. Aquí no hay mesa reservada para influencers: la mejor foto la hace tu gente.</p>
             <div class="mini-menu"><span>Gastronomía mexicana contemporánea</span><span>Música y participación social</span><span>Celebraciones con intención</span><span>Hospitalidad local, visión corporativa</span></div>
           </div>
         </section>
@@ -210,8 +211,6 @@
             <a class="button button-primary" href="#ubicaciones" data-select-location>Elegir sucursal</a>
           </div>
         </section>
-
-        ${venueShowcase()}
 
         <section class="reserve-cta" id="reserve">
           <div><p class="eyebrow">¿Sin Yolanda? Si sabes, sabes.</p><h2 class="reveal">Ya quedó.</h2></div>
@@ -747,27 +746,89 @@
   function initHeroCinema() {
     const hero = document.querySelector(".home-hero-cinema");
     if (!hero) return;
-    const video = hero.querySelector("[data-hero-video]");
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const fine = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    const slides = [...hero.querySelectorAll("[data-hero-slide]")];
+    const control = hero.querySelector("[data-hero-motion]");
+    if (slides.length < 2 || !control) return;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let paused = reduced.matches || Boolean(navigator.connection?.saveData);
+    let visible = true;
+    let index = 0;
+    let timer;
+    let advancing = false;
+    const canPlay = () => !paused && visible && !document.hidden;
+    const schedule = () => {
+      clearTimeout(timer);
+      if (canPlay()) timer = setTimeout(advance, 6500);
+    };
+    const advance = async () => {
+      if (!canPlay() || advancing) return;
+      advancing = true;
+      const nextIndex = (index + 1) % slides.length;
+      const next = slides[nextIndex];
+      if (next.dataset.src) {
+        next.srcset = next.dataset.srcset;
+        next.src = next.dataset.src;
+        delete next.dataset.src;
+        delete next.dataset.srcset;
+      }
+      try {
+        await next.decode();
+        if (canPlay()) {
+          slides[index].classList.remove("is-active");
+          next.classList.add("is-active");
+          index = nextIndex;
+        }
+      } catch (_) { /* Keep the current photograph if the next file cannot load. */ }
+      advancing = false;
+      schedule();
+    };
+    const syncControl = () => {
+      control.setAttribute("data-paused", String(paused));
+      const label = control.querySelector("[data-i18n-es]");
+      label.setAttribute("data-i18n-es", paused ? "Reproducir fotos" : "Pausar fotos");
+      label.setAttribute("data-i18n-en", paused ? "Play photos" : "Pause photos");
+      label.textContent = label.getAttribute(window.SY_I18N?.lang === "en" ? "data-i18n-en" : "data-i18n-es");
+      schedule();
+    };
+    control.addEventListener("click", () => { paused = !paused; syncControl(); });
+    reduced.addEventListener("change", event => {
+      // Reducing motion stops playback; switching it off never overrides a user pause.
+      if (event.matches) { paused = true; syncControl(); }
+    });
+    document.addEventListener("visibilitychange", schedule);
+    new IntersectionObserver(entries => {
+      visible = entries[0].isIntersecting;
+      schedule();
+    }).observe(hero);
+    syncControl();
+  }
 
-    if (reduced || !fine || !video) return;
-
+  function initScrollHeader() {
+    if (!["home", "locations"].includes(page)) return;
+    const header = document.querySelector(".public-header");
+    if (!header) return;
+    let previousY = window.scrollY;
     let ticking = false;
     const update = () => {
       ticking = false;
-      const rect = hero.getBoundingClientRect();
-      const vh = window.innerHeight || 1;
-      // Move the background gently, never fade the title/actions after a pixel
-      // of scrolling or use a negative divisor on a short viewport.
-      const p = Math.min(Math.max(-rect.top / Math.max(rect.height, vh, 1), 0), 1);
-      video.style.transform = `translateY(${-3 * p}%) scale(${1 + 0.05 * p})`;
+      const y = Math.max(0, window.scrollY);
+      const protectedFocus = header.querySelector(":focus-visible") || header.querySelector(".public-nav.open");
+      if (y < 80 || protectedFocus) {
+        header.classList.remove("is-scrolling-down");
+        previousY = y;
+      } else if (Math.abs(y - previousY) >= 8) {
+        header.classList.toggle("is-scrolling-down", y > previousY);
+        previousY = y;
+      }
     };
     const onScroll = () => {
       if (!ticking) { ticking = true; requestAnimationFrame(update); }
     };
     window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
+    header.addEventListener("focusin", () => header.classList.remove("is-scrolling-down"));
+    document.addEventListener("keydown", event => {
+      if (event.key === "Tab") header.classList.remove("is-scrolling-down");
+    });
     update();
   }
 
@@ -785,6 +846,7 @@
   root.innerHTML = `${(renderers[page] || homePage)()}${toastMarkup()}`;
   bindCommon();
   initHeroCinema();
+  initScrollHeader();
   bindModal();
   bindReservationModules();
   scrollToReveal();

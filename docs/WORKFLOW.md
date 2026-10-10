@@ -65,10 +65,78 @@ publicado, el único delta entre paquetes ensayados es `_redirects` ya publicado
 los recursos de render coinciden. `npm run build` productivo continúa rechazando las cuatro
 páginas protegidas El Paso/Catering ES/EN. El paquete explícito de revisión pasa; no relajar gates.
 
-Siguiente: revisar el resultado B en contexto y armonizar por bloques La Cantina/Eventos/Tienda;
-fichas/Catering requieren su flujo donante/importación, sin alterar cartas. Sin push, preview
-público ni publicación por este lote.
+Continuación encargada después por Luis: hero/header/prioridad de Ubicaciones, en el bloque
+siguiente. Fichas/Catering conservan su flujo donante/importación, sin alterar cartas. Sin push,
+preview público ni publicación por este lote.
 Publicar requiere aprobación/release propios y revalidación del baseline vigente.
+
+### Hero, blanco y prioridad de Ubicaciones · candidata local posterior10-oct
+
+Luis encarga explícitamente revisar el hero, comparar video/fotos, arreglar todo su ES/EN,
+mejorar la cabecera al scroll y subir el selector. Este encargo permite modificar ese bloque
+reservado; no convierte D09 en autorización general de publicación. Conserva la dirección B,
+pide recuperar blanco y botones sencillos, y acepta utilizar las fotos del banco local.
+
+**Diagnóstico y propuesta aplicada:** el MP4 original contiene tres fotografías en10,4segundos,
+1280×720, H.264 sin audio,1.552.011bytes. La candidata usa esas mismas escenas como imágenes
+responsive y un fundido CSS de700ms cada6,5segundos, sin nueva dependencia ni parallax.
+Primera foto prioritaria; las siguientes se solicitan cuando les toca. Pausa/reproducción con
+etiqueta ES/EN, suspensión fuera del hero/con pestaña oculta; movimiento reducido o ahorro de
+datos arrancan en pausa. Si falla la siguiente foto, se conserva la actual. Video/póster originales
+intactos como referencia y rollback; no se descargan en el hero nuevo.
+
+| Medio exportado | Fuente local cotejada / límite |
+|---|---|
+| `cantina-duo-{640,1280}.webp` | Banco Karina AMBIENTE#5, `1bUchRFVCko-BJuCvZ7zqo10MqEa5S_Fd.heic`; orientación EXIF corregida en derivado, original intacto |
+| `cantina-selfie-{640,1280}.webp` | AMBIENTE#13, `1pOVmRJO2BUJiVl1IT2uPUurywd8-30Ob.jpg`; recorte inferior retira el control de audio de la captura |
+| `cantina-canto-{640,1280}.webp` | Woodlands#137, `1YK5OHxYpMG8RALSEWYvVaJdPyxGJcvcx.png`; captura, sin ampliación ni inventar sede |
+
+Fuente/procedencia general: banco editorial y `FOTOS-BANCO`; recibo de originales/hashes/
+dimensiones/exportaciones en `.artifacts/hero-refinement/media-provenance.json`. Las tres escenas
+representan experiencia general de marca. El nombre de una carpeta no acredita sede ni derechos
+de publicación. No se reemplazaron originales. Primera variante99.666/310.834bytes según tamaño;
+las tres variantes1280 suman712.884bytes. Es comparación de archivos, no una promesa de LCP ni
+una medición de campo. Investigación N0 acotada a medios responsive/video/movimiento reducido:
+[web.dev](https://web.dev/learn/performance/video-performance),
+[MDN picture](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/picture),
+[MDN reduced motion](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-reduced-motion).
+
+**Composición y navegación:** rótulo blanco y fotografía separados en desktop; hasta900px,
+foto arriba y texto/acciones debajo para conservar rostros. Un H1 accesible, misma geometría SVG
+y fuente del rótulo. Una acción principal blanca «Elige tu sucursal», secundaria textual «Ver el
+plan», destinos distintos. Selector aprobado único inmediatamente después del hero/anuncio,
+antes del plan. Registro, filtros, tarjetas y enlaces nativos conservados; no segunda lista.
+Cabecera se esconde al bajar después de80px, vuelve al subir/al usar Tab y permanece disponible
+con menú abierto/foco de teclado. Sin animación de cabecera/fotos en movimiento reducido.
+
+Base oscura neutralizada a`#1d1d1b`, texto/blancos`#fff`; Experiencia y Cumpleaños recuperan
+superficie blanca con texto oscuro. Botones planos, radio2px y sin glow/sombra en el piloto.
+No se replica la dirección a fichas/cartas importadas.
+
+**Idioma:** «México · Estados Unidos» / «Mexico · United States». El H1 accesible y las cuatro
+partes del SVG cambian a «No time for tears» sin sustituir paths/capas. Frase de apoyo, CTA,
+enlace secundario y pausa también cambian. Auditoría de texto visible descubre/corrige el título
+de Botaneo, la franja de marca, detalle GDL del footer y descripciones generales de Tienda.
+Nombres propios, títulos de productos/platos protegidos y `Halloween Night` no son huecos de
+traducción. Corregido «brinde»→«brindis» en Experiencia, sin nuevas ofertas/datos comerciales.
+
+**Verificación:**180/180 en `npm run check`. QA local24casos home/directorio ES/EN a
+320/390/768/1024/1440/1920 y59accesos en22páginas; pruebas de pausa/reproducción real de las
+tres escenas, reduced-motion, cabecera abajo/arriba/Tab/menú abierto, retorno ES/EN, filtros y
+encuadres. Once combinaciones adicionales del QA del selector (incluidas320×568 y touch desktop).
+Recibos/capturas → `.artifacts/hero-refinement/`. QA del selector usa alcance explícito
+`SY_QA_SCOPE=home`: el modo completo conserva su fallo en las fichas importadas que ya carecen
+del `#cartelera` legado. No certificar agendas locales ni reconstruir fichas por esta corrección.
+La ausencia es previa al lote (HTML de esas fichas idéntico al baseline), registrada para el
+frente de secundarios. Solo Chromium emulado, GET/HEAD y telemetría bloqueada; Safari/dispositivos físicos
+pendientes. Corrección nueva de idioma tiene regresión ejecutable de texto/SVG/control reversible,
+además de comprobar `document.lang`.
+
+Paquete explícito de revisión193archivos/noindex. Build productivo conserva el rechazo de las
+cuatro páginas protegidas El Paso/Catering; no relajar ese gate para publicar una corrección visual.
+Siguiente: Luis revisa esta candidata; después armonizar secundarios por bloques. Menús,
+WordPress, QR, registro, horarios y producción no modificados. La aprobación de dirección B o
+el uso del banco local no equivale a aprobar publicación.
 
 ### Registro El Paso v1 · candidata local9-oct
 
@@ -340,6 +408,7 @@ automatizar vigencia con aprobar contenido nuevo leído de Instagram. Sin agenda
 | D10 · 7-oct | Corrección solicitada por Luis; candidata local | Cartelera de campañas comunes desde calendarios vivos, crema/tinta/naranja; no Instagram ni granate | Halloween31-oct y Catrinas con fecha propia por sede. No extrapolar promos/horarios/beneficios ni considerar el PDF tentativo agenda confirmada |
 | D11 · 8-oct | Solicitada Luis; solo candidato local | Preservar información de fichas vivas de Karina antes de sustituirlas por nuestras fichas/cartas | Snapshot público inmutable y conciliación por sede en BRANCH-CONTENT; lo observado no reemplaza datos ya confirmados |
 | D12 · 8-oct; piloto10-oct | Piloto local, pendiente de juicio visual | Revisar identidad tipográfica, color por función/sede, header y transiciones después de la integración | Home/directorio preparados y QA local; revisión de Luis antes de réplica; fuente de resultado en bloque visual de este documento |
+| D13 · 10-oct | Encargo explícito Luis; candidata local | Revisar hero/ES-EN, fotos frente a video, header al scroll, blanco y prioridad del selector | Fuente/resultado en «Hero, blanco y prioridad»; permite modificar hero en esta rama, no publicar ni tocar cartas/WordPress/QR/registro |
 
 Agregar una fila solo si cambia el contrato. Cambios de implementación → PR/commit; cambios de
 ruta → ROUTES; no duplicar reseñas largas de sesión. Un release registra commit, sourceRef/hash,

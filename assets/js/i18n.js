@@ -18,9 +18,10 @@
     "Eventos": "Private Events",
     "Panel": "Hub",
     "Sin Yolanda, inicio": "Sin Yolanda, home",
+    "SIN YOLANDA® · Cantina contemporánea · México y Estados Unidos": "SIN YOLANDA® · Contemporary cantina · Mexico and the United States",
 
     /* ---------- FOOTER ---------- */
-    "Una marca que vive en cada ciudad: Guadalajara y Texas.": "One brand that lives in every city: Guadalajara and Texas.",
+    "Una marca que vive en cada ciudad: México y Estados Unidos.": "One brand, across cities in Mexico and the United States.",
     "Sucursales abiertas": "Open locations",
     "Próximamente": "Coming soon",
     "Reservaciones": "Reservations",
@@ -29,6 +30,8 @@
     "Explora": "Explore",
 
     /* ---------- HERO HOME ---------- */
+    "No hay tiempo para llorar": "No time for tears",
+    "Comida que sí llena, tragos coquetos y canciones que se gritan completas.": "Food that fills you up, playful drinks and songs you sing at the top of your lungs.",
     "Aquí se canta.": "This is where you sing.",
     "Ocho destinos.": "Eight destinations.",
     "Explorar ubicaciones": "See locations",
@@ -72,6 +75,8 @@
     "Cocina de cantina contemporánea, bar de agave y el micrófono abierto. Todo en la misma mesa.": "Contemporary cantina kitchen, an agave bar, and the open mic. All at the same table.",
     "Menú de muestra": "Menu preview",
     "Se botanea en serio.": "We snack the serious way.",
+    "Aquí se botanea en serio.": "We take our food seriously.",
+    "Noches de Catrinas": "Catrina Nights",
     "Reseñas destacadas": "Top reviews",
     "Reseñas reales de la banda.": "Real reviews from the crew.",
     "Elige ubicación. Nosotros hacemos el resto.": "Pick a location. We handle the rest.",
@@ -383,7 +388,7 @@
     "Esta semana se puso bueno.": "This week just got good.",
     "Los eventos de cada casa, aquí apenas se están armando.": "Each location's events are being lined up right here.",
     "Trae a los cuatro.": "Bring the four.",
-    "Mesas largas, brinde completo y el micrófono que no se le niega a nadie. Aquí no hay mesa reservada para influencers: la mejor foto la hace tu gente.": "Long tables, full toasts, and a mic nobody is denied. No influencer-reserved tables here: your people take the best photos.",
+    "Mesas largas, brindis completo y el micrófono que no se le niega a nadie. Aquí no hay mesa reservada para influencers: la mejor foto la hace tu gente.": "Long tables, full toasts, and a mic nobody is denied. No influencer-reserved tables here: your people take the best photos.",
     "Comida + tragos": "Food + drinks",
     "Tragos coquetos y comida que sí llena.": "Pretty drinks and food that actually fills you up.",
     "Para botanear": "For snacking",
@@ -416,7 +421,15 @@
     "Pasa por las mesas. Nadie se lo niega a nadie.": "It makes the rounds. Nobody gets denied.",
     "Trae a los cuatro. Aquí caben todos.": "Bring the four. Everyone fits here.",
     "Cumpleaños, renuncias, quincenas. Cualquier pretexto.": "Birthdays, quitting, payday. Any excuse.",
-    "La casa por dentro": "Inside the house"
+    "La casa por dentro": "Inside the house",
+    "Sombrero de la casa": "The house hat",
+    "Fieltro negro con cinta bordada a mano.": "Black felt with a hand-embroidered band.",
+    "Playera «Aquí no se llora»": "«Aquí no se llora» T-shirt",
+    "Algodón pesado, tipografía en amarillo.": "Heavyweight cotton with yellow lettering.",
+    "Tarro de cerámica": "Ceramic mug",
+    "Barro vidriado de Tonalá. Cada uno distinto.": "Glazed clay from Tonalá. Each one is different.",
+    "Micrófono de recuerdo": "Keepsake microphone",
+    "Réplica miniatura del micrófono de la casa.": "A miniature replica of the cantina's microphone."
   };
 
   const WORD_SWAP = [
@@ -501,6 +514,12 @@
     });
 
     syncToggleState();
+    // SVG artwork and stateful controls explicitly own both language variants.
+    // Never replace the SVG tree: its paths/use layers must remain intact.
+    document.querySelectorAll("[data-i18n-es][data-i18n-en]").forEach(node => {
+      const value = node.getAttribute(lang === "en" ? "data-i18n-en" : "data-i18n-es");
+      if (node.textContent !== value) node.textContent = value;
+    });
   }
 
   function buildToggle() {

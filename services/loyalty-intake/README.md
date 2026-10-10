@@ -206,7 +206,8 @@ del sitio ordinario. `scripts/package-intake-public.mjs` marca el overlay `deplo
 no es el release completo. No subirlo solo ni apuntar el QR antes de probar el stack dedicado.
 Binding previsto `SY_INTAKE_PROXY_AUTH` únicamente servidor; ninguna credencial GHL/frontend.
 Destino propuesto fijo `sy-intake-api.despertartdigital.cloud` todavía no existe por este lote;
-DNS, ingress autenticado, config productiva, runtime Function y captura pública siguen pendientes.
+DNS, ingress autenticado, config productiva y captura pública siguen pendientes. La Function
+compilada ya tiene prueba de runtime local en el bloque posterior; no es captura publicada.
 No promover DB/llave de staging ni mezclar este release con home/cartas/Analytics.
 
 Operación one-shot nueva, explícita y privada:
@@ -230,7 +231,33 @@ confiable. Revisar aforo y controles edge antes del release. El staging anterior
 se recreó aquí. Foto/canal provisional autorizados10-oct; evaluación legal definitiva, retención,
 procedimiento de bajas y release exacto no se certifican por esos permisos.
 
-1. Aprobar foto para uso público y cerrar responsable/canal/aviso de privacidad y retención.
+### QA final y paquete completo · 10-oct, todavía sin producción
+
+`scripts/qa-intake-public.mjs` revisa Chromium a 320/390/768/1024/1502/1920px, ES/EN,
+teclado, privacidad, imágenes, fallo de proveedor, validación, reintento y éxito simulado.
+18 casos pasan; capturas revisadas en `.artifacts/intake-public-visual-20261010-final2/`.
+Proveedor bloqueado/simulado: ningún POST llega a un servidor. La confirmación oculta las
+instrucciones de campos obligatorios; se recuperan al iniciar otro registro. No acredita
+dispositivos físicos ni widget/captura productivos.
+
+Wrangler 4.149.0 compila y 15 sondas en workerd local detectan/corrigen incompatibilidad concreta:
+`redirect:error` funciona en Node, pero workerd la rechaza antes de enviar. Ahora `manual`
+rechaza todos los 3xx sin reenviar credenciales ni esperar su cuerpo. Se prueban plazos reales
+8s/12s, límites,
+origen y errores/recibos sanitizados; ASSETS/upstream sintéticos, sin captura remota. Tooling
+congelado en `qa/intake-runtime/package-lock.json`, excluido del sitio. CI reproduce la
+compilación/sondas sin secretos ni publicación; su resultado remoto debe verificarse aparte.
+
+`scripts/prepare-own-registration-release.mjs` genera 193 archivos públicos completos frente
+al baseline 9-oct fijado por commit/digest: 184 intactos, solo headers/redirects propuestos y
+siete adiciones. Function fuera de `public`; rechaza baseline alterado/incompleto, assets
+compartidos distintos y ediciones ajenas. Siempre `deployable:false`: no aprueba ni publica.
+El ensayo usa sitekey sintética. QR propuesto hacia `/el-paso/registro/`, atribución fija v2;
+alias/imagen sin cambios. Falta ingreso productivo protegido, widget/origen/action reales,
+custodia/respaldos/bajas, bundle final y aprobación exacta. Revalidar baseline remoto antes del
+upload. No subir el overlay solo ni promover DB/llave de staging.
+
+1. Foto pública y canal provisional aprobados; cerrar responsable/aviso legal y retención.
 2. El ingreso HTTPS privado ya está verificado. Cerrar la operación productiva:
    volumen durable, secreto en Doppler
    (`SY_INTAKE_ENCRYPTION_KEY`, `SY_INTAKE_TURNSTILE_SECRET`, nunca valores en repo), backup/restore

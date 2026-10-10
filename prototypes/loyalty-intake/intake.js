@@ -193,6 +193,7 @@
 
   function renderState() {
     const real = production();
+    document.getElementById('form-heading').hidden = !success.hidden;
     button.disabled = !captureEnabled || pending || (real && !verificationToken);
     button.textContent = copy[language][pending ? real ? 'productionPending' : 'pendingButton' : real ? 'productionButton' : captureEnabled ? 'qaButton' : 'button'];
     if (publicAudience && !captureEnabled) button.textContent = copy[language].publicUnavailableButton;

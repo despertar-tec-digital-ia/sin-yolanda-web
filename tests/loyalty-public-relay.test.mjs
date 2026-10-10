@@ -19,7 +19,7 @@ test('only fixed same-origin POSTs reach the authenticated backend; no caller he
   const response = await relay(request(), env, async (url, options) => {
     calls++;
     assert.equal(url, upstreamUrl);
-    assert.equal(options.redirect, 'error');
+    assert.equal(options.redirect, 'manual');
     assert.deepEqual(Object.keys(options.headers).sort(), ['Authorization', 'Content-Type', 'Idempotency-Key', 'Origin']);
     assert.equal(options.headers.Authorization, env.SY_INTAKE_PROXY_AUTH);
     assert.equal(options.headers.Origin, publicOrigin);
@@ -76,5 +76,21 @@ test('only allowlisted backend failures pass through, without details or provide
     const response = await relay(request(), env, async () => Response.json({ code, detail: 'provider-secret' }, { status, headers: { 'Set-Cookie': 'never-copy' } }));
     assert.equal(response.status, status); assert.deepEqual(await response.json(), { code });
     assert.equal(response.headers.get('Set-Cookie'), null);
+  }
+});
+
+test('all upstream redirects are canceled before reading even a stalled JSON body', async () => {
+  for (const status of [300, 301, 302, 303, 307, 308, 399]) {
+    let canceled = false;
+    const body = new ReadableStream({
+      start(controller) { controller.enqueue(new TextEncoder().encode('{')); },
+      cancel() { canceled = true; },
+    });
+    const response = await relay(request(), env, async () => new Response(body, {
+      status, headers: { 'Content-Type': 'application/json', Location: 'https://example.invalid/' },
+    }));
+    assert.equal(response.status, 503);
+    assert.deepEqual(await response.json(), { code: 'unavailable' });
+    assert.equal(canceled, true, `Redirect ${status} must not wait for its body`);
   }
 });

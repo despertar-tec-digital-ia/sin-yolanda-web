@@ -166,17 +166,40 @@ La fuente publicable general y su digest no se modifican por preparar este overl
 
 Validación local del corte10-oct:215 tests Node,146 Python (+43subcasos) y build de revisión186
 archivos pasan. Digest público preservado `d65b31f112d82c4521605a0993136b3861326d24c102bce431ca64ae5fff9c16`.
-Eso acredita contratos/cifrado/artefacto, no QA visual final ni la Function en runtime Cloudflare.
+Eso acredita contratos/cifrado/artefacto, no QA visual final ni la Function en runtime Cloudflare
+en aquel corte. CI remoto
+[`38076716098`](https://github.com/despertar-tec-digital-ia/sin-yolanda-web/actions/runs/38076716098)
+comprobado verde sobre `c8b9328`, incluidos build/drills; no publicación.
 
 `sy_intake.maintenance` prepara backup cifrado verificado y comprobación privada de DB, edad de
 copia y espacio disponible; no borra registros, instala horarios ni envía alertas al importarse.
 Todavía **no** hay respaldo programado externo, monitor activo ni política de retención instalada.
 La tasa candidata600/15min sigue agrupada por peer de gateway, no acredita control por visitante.
 
+**Verificación posterior 10-oct:** 18 casos Chromium del overlay ES/EN a 320/390/768/1024/1502/1920px;
+proveedor bloqueado/simulado, teclado, privacidad, validación, reintento y éxito sin POST real.
+Capturas revisadas en `.artifacts/intake-public-visual-20261010-final2/`; misma foto/composición
+aprobadas. Confirmación sin instrucciones residuales de campos obligatorios. Wrangler 4.149.0
+compila; 15 sondas en workerd local prueban límites/deadlines reales 8s/12s, redirects, origen y
+errores/recibos sanitizados con upstream/ASSETS ficticios. `redirect:error` pasa en Node pero
+workerd lo rechaza antes de enviar; ahora `manual` rechaza todos los 3xx sin leer siquiera su cuerpo.
+Regresión adicional para redirects con JSON detenido. Tooling con lockfile
+propio, prueba cableada en CI sin credenciales. Resultado remoto nuevo pendiente de comprobar
+tras push; no inferirlo de los checks locales.
+
+`prepare-own-registration-release.mjs` prepara 193 archivos completos: 184 del baseline intactos,
+solo headers/redirects propuestos y siete adiciones; Function fuera del webroot. Rechaza
+baseline/bytes distintos, omisiones, medios compartidos alterados y cambios ajenos. Siempre
+`deployable:false`, sin aprobar ni publicar; ensayo con sitekey sintética. QR propuesto hacia
+pantalla propia con atribución v2, pero `_redirects` del repo/dominio NO cambian. 219 Node/146 Python
+(+43 subcasos) pasan. Operación/ingress, widget productivo, bundle final, prueba real y aprobación
+siguen pendientes; no equivale a formulario público listo.
+
 El staging privado conserva la versión anterior desplegada; no servirle frontend v3 sin recrear
-exclusivamente ese backend con versión coincidente y aprobación. Próximo lote: QA visual final del
-overlay, compilar Function en runtime Cloudflare, ingress productivo dedicado, custodia/respaldos/
-bajas y release completo que conserve el baseline byte a byte, excepto adiciones explícitas y
+exclusivamente ese backend con versión coincidente y aprobación. Próximo lote: autorización
+concreta del servicio productivo dedicado (sin cutover), ingress protegido y custodia/respaldos/
+bajas. Después, widget y prueba real del release completo que conserve el baseline byte a byte,
+excepto adiciones explícitas y
 redirect QR autorizado. Después, prueba sintética real del release y sustitución aprobada del QR.
 GHL sigue desactivado en el backend propio; captura temporal vigente, home/menús/WordPress intactos.
 Guía técnica N0 puntual: [rutas Pages Functions](https://developers.cloudflare.com/pages/functions/routing/)

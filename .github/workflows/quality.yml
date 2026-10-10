@@ -46,6 +46,20 @@ jobs:
         env:
           SY_INTAKE_SMOKE_BACKEND_IMAGE: sinyolanda-intake-ci:${{ github.sha }}
         run: node scripts/smoke-intake-preview.mjs
+      # Lockfile-pinned local Cloudflare engine. This job never authenticates or publishes.
+      - name: Install the isolated Pages runtime checker
+        working-directory: qa/intake-runtime
+        run: npm ci --ignore-scripts
+      - name: Check the compiled public relay in local workerd
+        working-directory: .
+        env:
+          SY_INTAKE_TURNSTILE_SITE_KEY: 0x4AAAAAAASyntheticRuntimeOnlyKey
+          SY_QA_RUNTIME_ROOT: qa/intake-runtime/node_modules
+          WRANGLER_SEND_METRICS: "false"
+        run: |
+          node scripts/package-intake-public.mjs .artifacts/intake-runtime-candidate
+          qa/intake-runtime/node_modules/.bin/wrangler pages functions build .artifacts/intake-runtime-candidate/functions --outdir .artifacts/intake-runtime-build --project-directory .artifacts/intake-runtime-candidate --build-output-directory .artifacts/intake-runtime-candidate/public --compatibility-date 2026-10-10
+          node scripts/smoke-intake-pages-runtime.mjs .artifacts/intake-runtime-build/index.js .artifacts/intake-runtime-build/report.json .artifacts/intake-runtime-candidate/public/_routes.json
   quality:
     name: Public artifact checks
     runs-on: ubuntu-24.04

@@ -57,6 +57,12 @@ no se puede desplegar como release completo. Consentimiento v3, foto públicamen
 relay y límites → WORKFLOW y README del servicio. No añadir estas rutas al sitemap ni cambiar
 `/q/el-paso-registro` hasta verificar y aprobar el release completo. QR conserva alias impreso.
 
+El helper posterior `prepare-own-registration-release.mjs` construye una candidata completa
+contra el baseline publicado 9-oct, no un upload: 193 archivos, 184 intactos, controles scoped y
+adiciones explícitas. Propone 302 en los dos aliases al destino propio con atribución fija v2;
+no acepta destinos por query y no cambia las reglas Guadalajara. Función/route control aislados,
+sin sitemap nuevo. Siempre `deployable:false`; aprobación/ingress/captura/bundle siguen pendientes.
+
 **Lote técnico posterior autorizado el 8-oct:** 12 destinos de fichas/cartas se preparan para
 indexación antes de 16 reglas301 exactas WordPress; cuatro páginas El Paso/Catering conservan
 noindex. Mapa ejecutable, excepciones y estado → [MIGRATION-AND-MEASUREMENT.md](MIGRATION-AND-MEASUREMENT.md).

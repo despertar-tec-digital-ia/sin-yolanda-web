@@ -123,11 +123,14 @@ test('public capture uses its one same-origin relay and confirms saved state wit
   assert.equal(view.posts().length, 1);
   assert.equal(view.posts()[0].url, '/api/loyalty/el-paso/registrations');
   assert.equal(view.byId('registration-success').hidden, false);
+  assert.equal(view.byId('form-heading').hidden, true);
   assert.equal(view.byId('success-title').textContent, 'Tu registro quedó guardado');
   assert.equal(JSON.parse(view.posts()[0].options.body).email_marketing_consent, false);
   await view.byId('language-toggle').emit('click');
   assert.equal(view.byId('success-title').textContent, 'Your registration was saved');
   assert.equal(view.byId('email').value, '');
+  await view.byId('new-registration').emit('click');
+  assert.equal(view.byId('form-heading').hidden, false);
 });
 
 test('default preview and unavailable config cannot capture; only Turnstile script/frame are externally permitted', async () => {

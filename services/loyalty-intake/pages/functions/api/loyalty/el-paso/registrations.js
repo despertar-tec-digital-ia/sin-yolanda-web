@@ -75,10 +75,15 @@ export async function relay(request, env, fetcher = fetch) {
   const outgoingTimer = setTimeout(() => outgoing.abort(), 12000);
   try {
     const response = await fetcher(upstreamUrl, {
-      method: 'POST', body: bytes, redirect: 'error', signal: outgoing.signal,
+      // workerd accepts manual/follow, not Node's error mode. Never follow a redirect
+      // with this server credential; reject all 3xx before inspecting the body.
+      method: 'POST', body: bytes, redirect: 'manual', signal: outgoing.signal,
       headers: { 'Content-Type': 'application/json', Origin: publicOrigin, 'Idempotency-Key': key, Authorization: credential },
     });
-    if (!/^application\/json(?:\s*;.*)?$/i.test(response.headers.get('Content-Type') || '')) return reply(503, { code: 'unavailable' });
+    if ((response.status >= 300 && response.status < 400) || !/^application\/json(?:\s*;.*)?$/i.test(response.headers.get('Content-Type') || '')) {
+      void response.body?.cancel().catch(() => {});
+      return reply(503, { code: 'unavailable' });
+    }
     const result = JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(await readBounded(response.body, 2048, outgoing.signal)));
     if ([200, 201].includes(response.status) && result?.status === 'received' && uuidV4.test(result.receipt_id || '') && result.sync_status === 'pending') {
       return reply(response.status, { status: 'received', receipt_id: result.receipt_id, sync_status: 'pending' });

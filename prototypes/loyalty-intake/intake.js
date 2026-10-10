@@ -7,7 +7,8 @@
       title: 'Tu registro · Sin Yolanda El Paso',
       skip: 'Ir al registro', homeLabel: 'Sin Yolanda, inicio', navigation: 'Navegación',
       branch: 'El Paso', location: 'Sin Yolanda El Paso', welcome: 'Qué gusto tenerte aquí.',
-      intro: 'Déjanos tus datos para registrarte en Sin Yolanda El Paso.',
+      intro: 'Regístrate en el programa de lealtad de Sin Yolanda El Paso. Tú eliges si recibes novedades por correo.',
+      photoAlt: 'Persona con sombrero y micrófono en una terraza.',
       formTitle: 'Tu registro', requiredHint: 'Nombre y correo son los datos obligatorios.',
       name: 'Nombre completo', email: 'Correo electrónico', phone: 'Teléfono', optional: 'Opcional',
       phoneHint: 'Incluye el código de país.', birthday: 'Cumpleaños', birthdayHint: 'Día y mes, sin año.',
@@ -33,7 +34,8 @@
       title: 'Your registration · Sin Yolanda El Paso',
       skip: 'Skip to registration', homeLabel: 'Sin Yolanda, home', navigation: 'Navigation',
       branch: 'El Paso', location: 'Sin Yolanda El Paso', welcome: 'Glad to have you here.',
-      intro: 'Leave your details to register with Sin Yolanda El Paso.',
+      intro: 'Join the Sin Yolanda El Paso loyalty program. You choose whether to receive news by email.',
+      photoAlt: 'Person wearing a hat and holding a microphone on a terrace.',
       formTitle: 'Your registration', requiredHint: 'Name and email are the required details.',
       name: 'Full name', email: 'Email address', phone: 'Phone number', optional: 'Optional',
       phoneHint: 'Include your country code.', birthday: 'Birthday', birthdayHint: 'Day and month, no year.',
@@ -105,7 +107,9 @@
     document.documentElement.lang = next;
     document.title = copy[next].title;
     document.querySelectorAll('[data-copy]').forEach(node => { node.textContent = copy[next][node.dataset.copy]; });
-    document.querySelectorAll('[data-label]').forEach(node => { node.setAttribute('aria-label', copy[next][node.dataset.label]); });
+    document.querySelectorAll('[data-label]').forEach(node => {
+      node.setAttribute(node.tagName === 'IMG' ? 'alt' : 'aria-label', copy[next][node.dataset.label]);
+    });
     languageToggle.textContent = copy[next].languageButton;
     languageToggle.lang = next === 'es' ? 'en' : 'es';
     languageToggle.setAttribute('aria-label', copy[next].languageLabel);

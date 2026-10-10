@@ -60,6 +60,13 @@ Propuesta local en `prototypes/loyalty-intake/`, fuera del manifiesto público. 
 CSP sin transporte/envíos, servidor loopback con allowlist; no es un formulario de captura.
 Revisión del operador390px/escritorio, cambio completo ES/EN conserva datos y recarga limpia;
 evidencia ignorada `.artifacts/registration-form-20261009/own-es-*`. Backend propio no implementado.
+Refinamiento visual posterior: foto inédita del banco El Paso, selección30, encuadres distintos
+desktop/móvil y fundido corto al pie, sin texto sobre el rostro. Propósito explícito: programa de
+lealtad, no solo cumpleaños. Fuente, tamaños WebP y QA de diez combinaciones ES/EN → README
+del prototipo. Medios y capturas ignorados: derechos de revisión no equivalen a autorización
+comercial. Operador revisó escritorio1502×772 y móvil390×844; sin desbordamiento, alt traducido,
+nombre conservado al cambiar idioma y recarga limpia. `npm run check`:176/176; allowlist pública
+intacta. No modificar el QR ni publicar esta propuesta sin conectar y validar la captura propia.
 
 ### QR de carta Guadalajara · publicado y comprobado8-oct
 

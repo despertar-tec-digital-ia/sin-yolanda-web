@@ -9,6 +9,8 @@ const files = new Map([
   ['/index.html', ['index.html', 'text/html; charset=utf-8']],
   ['/styles.css', ['styles.css', 'text/css; charset=utf-8']],
   ['/intake.js', ['intake.js', 'text/javascript; charset=utf-8']],
+  ['/media/singer-600.webp', ['media/singer-600.webp', 'image/webp']],
+  ['/media/singer-1200.webp', ['media/singer-1200.webp', 'image/webp']],
   ['/assets/media/brand-logo.png', ['../../assets/media/brand-logo.png', 'image/png']],
   ['/fonts/bebas-neue-400.woff2', ['../../fonts/bebas-neue-400.woff2', 'font/woff2']],
   ['/fonts/roboto-slab-400.woff2', ['../../fonts/roboto-slab-400.woff2', 'font/woff2']],

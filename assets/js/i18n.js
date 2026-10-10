@@ -63,6 +63,7 @@
     "Llevamos la cantina a tu fiesta.": "We bring the cantina to your party.",
     "Comida mexicana, un brindis y una canción para compartir. Catering para tu celebración en Houston.": "Mexican food, a toast and a song to share. Catering for your celebration in Houston.",
     "Explora Catering": "Explore Catering",
+    "Bebidas preparadas sobre un sarape de colores": "Prepared drinks on a colorful sarape",
     "Una persona sirve acompañamientos de un buffet en un evento al aire libre": "A person serves buffet accompaniments at an outdoor event",
     "Nueva apertura": "New opening",
     "Nuevas y próximas": "New & upcoming",

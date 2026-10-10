@@ -203,6 +203,53 @@ con audiencia `review`, sin relajar el gate. `_redirects`, cartas, HTML importad
 registro no cambiaron; la versión global de assets se conserva y se invalidan solo consumidores
 públicos de JS/CSS modificados. Sin push/merge/preview público/deploy.
 
+### Detalles de Catering, selector y fotografía · candidata local10-oct
+
+D17, ajuste posterior de Luis sobre D16. Home hero, oferta/contacto, rutas y listas de sucursales
+conservados. La prioridad de Catering permanece; cambia su presentación y cabecera nativa.
+
+- Home: franja blanca más compacta, fotografía de bebidas sobre sarape a la izquierda,
+  marca original del servicio y texto a la derecha; en móvil se apilan. Un enlace editorial
+  lleva a la edición ES/EN correspondiente. Reutiliza fotos de Catering ya trazadas/importadas,
+  sin nuevos derivados, retoque ni afirmaciones comerciales.
+- «México y Estados Unidos» queda debajo de «Cuál te queda», con el mismo eje y junto a los
+  filtros. Renderer/registro únicos y Guadalajara / Zona Chapalita, Zapopan intactos.
+- «Trae a los cuatro» recupera `assets/media/celebration.webp` original, completa en proporción
+  4:5, junto al texto sobre fondo oscuro; en móvil foto antes de texto. Agenda blanca anterior
+  y experiencia oscura siguen un grupo con información independiente. Se retira una regla
+  blanca heredada que dejaba invisible el H2 oscuro: detectado en capturas, corregido y repetido.
+- Catering nativo ES/EN: cabecera blanca con el conjunto original `images/catering-review/logo.webp`.
+  «Catering» es parte de ese arte, sin simular otra fuente. Oculta al bajar, revela al subir/Tab,
+  permanece visible durante navegación por teclado y recupera scroll por rueda/tacto/puntero.
+  Sin JavaScript permanece en la entrada; reduced-motion elimina la transición.
+- Fuente aislada `sites/sinyolanda-catering-visuals`, branch `fix/catering-visual-details-20261010`,
+  commit `76ecb028a7b6feeeab13a24a2e01e18509658922` desde `cbffdc4`. Build/check sin errores,
+  22/22 pruebas de Catering/navegación. Primera suite general:252/255; dos fixtures del logo
+  actualizados, fallo ajeno de mapa por configuración Google Maps ausente en el worktree.
+  No reparar/importar ese mapa ni integrar las cartas posteriores del donante principal.
+  Importación selectiva de solo dos páginas, sin conflictos de assets; loader Analytics
+  reconciliado con helper existente, versión global conservada. Main nativo idéntico a D16.
+
+**Verificación final:** `npm run check`,184/184.36casos home/directorio/Catering ES/EN
+×320/390/768/1024/1440/1920; fotos cargadas, proporción original, H2 legible, ubicación del
+país, filtros, idiomas/enlaces y cuatro menús nativos abren/cierran.12casos de header comprueban
+ocultar/revelar, Tab, scroll inducido por foco, rueda y reduced-motion. Dos recorridos móviles
+adicionales verifican transición normal180ms, header fuera del viewport al ocultarse, tacto,
+targets visibles≥44px y entrada sin JavaScript. Flujo móvil Home EN→
+Catering EN→ES pasa.135respuestas GET/HEAD/canonical/404 y220enlaces internos en23páginas
+sin fallos/anclas ausentes. Cero overflow, errores JS o recursos locales observados.
+Capturas390/768/1440 ES/EN y captura estándar `preview.py` inspeccionadas; se repitió QA tras
+la corrección de contraste. Hero fuente y186archivos protegidos idénticos a D16, main Catering
+ES/EN idéntico. Cartas, fichas, datos, QR y registro intactos. Recibos `.artifacts/visual-details/`.
+
+Paquete200archivos/review/noindex, digest
+`4e2cd207de5c1542ecdea5e5234f742143f61666195a52943b67edfcc569af29`.
+Build productivo sigue rechazando las cuatro páginas de revisión; no relajar ese gate.
+Rollback local: checkpoint `47a1aaf` anterior. Sin push/merge, preview público ni deploy.
+QA Chromium emulado: no certifica Safari/dispositivos físicos, contenido comercial ni todo
+el sitio. Pendientes: criterio visual de Luis, pulido por bloques de fichas y validación física;
+negocio/medios/importados conservan sus gates separados.
+
 ### Catering prioritario y continuidad de bloques · candidata local10-oct
 
 D16, encargo posterior de Luis: dar prioridad a Catering, conservar la información existente,
@@ -529,6 +576,7 @@ automatizar vigencia con aprobar contenido nuevo leído de Instagram. Sin agenda
 | D14 · 10-oct | Corrección explícita Luis; candidata local | Rechaza foto/texto separados; recuperar rótulo y acciones sobre la foto | Fondo fotográfico completo con sombreado continuo y encuadres responsive; conserva secuencia, idiomas y alcance D13, sin aprobación de publicación |
 | D15 · 10-oct | Pulido posterior solicitado por Luis; candidata local | Icono de pausa, Nueva apertura El Paso, foto/cartelera y menos CTA repetidos; armonizar secundarios existentes | Resultado y QA en «Pulido editorial y secundarios»; no habilita operación de El Paso ni publicación |
 | D16 · 10-oct | Solicitada por Luis; candidata local | Catering arriba, continuidad agenda/experiencia y revisión de URLs/slashes | Bloque «Catering prioritario y continuidad de bloques»; cobertura/contacto existentes, hero y archivos importados intactos, sin publicación |
+| D17 · 10-oct | Solicitada por Luis; candidata local | Franja Catering, país junto al selector, fotografía original de experiencia y cabecera Catering con scroll/marca original | Bloque «Detalles de Catering, selector y fotografía»; QA responsive/idiomas/teclado, contenido nativo/hero/QR protegidos, sin publicación |
 
 Agregar una fila solo si cambia el contrato. Cambios de implementación → PR/commit; cambios de
 ruta → ROUTES; no duplicar reseñas largas de sesión. Un release registra commit, sourceRef/hash,

@@ -171,7 +171,6 @@
     "images/branch-review/el-paso-hero-2000.webp",
     "images/branch-review/el-paso-hero-480.webp",
     "images/branch-review/el-paso-hero-800.webp",
-    "_astro/CateringPage.ChFeKhdP.css",
     "images/catering-review/bar-1440.webp",
     "images/catering-review/bar-480.webp",
     "images/catering-review/bar-960.webp",
@@ -199,7 +198,11 @@
     "assets/media/agenda-canto-640.webp",
     "assets/media/agenda-canto-1280.webp",
     "assets/media/catering-servicio-640.webp",
-    "assets/media/catering-servicio-1280.webp"
+    "assets/media/catering-servicio-1280.webp",
+    "_astro/CateringPage.KWrirYqn.css",
+    "_astro/CateringPage.astro_astro_type_script_index_0_lang.ZQG6QDdt.js",
+    "_astro/houston-scroll-header.BxWPzCxQ.js",
+    "images/catering-review/logo.webp"
   ],
   "assetVersion": "20261008-migration-measurement",
   "reviewPages": [
@@ -209,9 +212,9 @@
     "en/catering/index.html"
   ],
   "assetVersions": {
-    "assets/js/site.js": "20261010-catering-flow",
-    "assets/js/i18n.js": "20261010-catering-flow",
-    "assets/css/visual-pilot.css": "20261010-catering-flow",
+    "assets/js/site.js": "20261010-visual-details",
+    "assets/js/i18n.js": "20261010-visual-details",
+    "assets/css/visual-pilot.css": "20261010-visual-details",
     "assets/js/public-data.js": "20261010-opening-copy"
   }
 }

@@ -67,7 +67,7 @@
     const branches = data.branches.filter((branch) => ["active", "coming-soon"].includes(branch.status));
     return `
         <section class="section venue-showcase" id="ubicaciones" tabindex="-1" aria-labelledby="venue-heading">
-          <div class="section-heading"><div><h2 id="venue-heading">Cuál te queda</h2></div><p>México y Estados Unidos</p></div>
+          <div class="section-heading"><div><h2 id="venue-heading">Cuál te queda</h2><p class="venue-geography">México y Estados Unidos</p></div></div>
           <div class="filter-chips" role="group" aria-label="Filtrar ubicaciones" data-venue-filters>
             <button class="filter active" type="button" data-venue-filter="all" aria-pressed="true">Todas</button>
             <button class="filter" type="button" data-venue-filter="mx" aria-pressed="false">México</button>
@@ -215,30 +215,31 @@
   }
 
   function homeCatering() {
-    // Teaser reuses the current Catering page's Houston scope, not a new service territory.
+    // Use the existing service identity and Houston copy in a compact photographic band.
     return `<section class="section catering-feature" id="catering" aria-labelledby="home-catering-heading">
       <div class="catering-feature-copy">
-        <p class="catering-feature-name">Sin Yolanda Catering</p>
+        <img class="catering-feature-brand" src="images/catering-review/logo.webp" width="750" height="210" alt="Sin Yolanda Catering" loading="lazy" />
         <h2 id="home-catering-heading">Llevamos la cantina a tu fiesta.</h2>
         <p>Comida mexicana, un brindis y una canción para compartir. Catering para tu celebración en Houston.</p>
-        <a class="button button-primary" href="/catering" data-i18n-href-es="/catering" data-i18n-href-en="/en/catering/">Explora Catering</a>
+        <a class="editorial-link" href="/catering" data-i18n-href-es="/catering" data-i18n-href-en="/en/catering/">Explora Catering <span aria-hidden="true">↗</span></a>
       </div>
-      <div class="catering-feature-media"><img src="assets/media/catering-servicio-1280.webp"
-        srcset="assets/media/catering-servicio-640.webp 640w, assets/media/catering-servicio-1280.webp 1280w"
-        sizes="(max-width: 900px) 100vw, 45vw" width="1280" height="2275" loading="lazy" decoding="async"
-        alt="Una persona sirve acompañamientos de un buffet en un evento al aire libre" /></div>
+      <div class="catering-feature-media"><img src="images/catering-review/table-scene-desktop-1280.webp"
+        srcset="images/catering-review/table-scene-desktop-800.webp 800w, images/catering-review/table-scene-desktop-1280.webp 1280w, images/catering-review/table-scene-desktop-1600.webp 1600w"
+        sizes="(max-width: 760px) 100vw, 45vw" width="1280" height="1115" loading="lazy" decoding="async"
+        alt="Bebidas preparadas sobre un sarape de colores" /></div>
     </section>`;
   }
 
   function homeExperience() {
-    // Evergreen: keep it visible when all dated campaigns have expired.
+    // Evergreen: the original photograph belongs to the invitation, independent of dated campaigns.
     return `<section class="experience-section experience-bridge" id="experiencia">
-          <div class="experience-intro"><p class="eyebrow">La casa por dentro</p><h2 class="reveal">Trae a los cuatro.</h2></div>
           <div class="experience-copy">
+            <h2>Trae a los cuatro.</h2>
             <p>Mesas largas, brindis completo y el micrófono que no se le niega a nadie. Aquí no hay mesa reservada para influencers: la mejor foto la hace tu gente.</p>
             <div class="mini-menu"><span>Gastronomía mexicana contemporánea</span><span>Música y participación social</span><span>Celebraciones con intención</span><span>Hospitalidad local, visión corporativa</span></div>
             <a class="editorial-link" href="la-cantina.html">Conoce La Cantina <span aria-hidden="true">↗</span></a>
           </div>
+          <figure class="experience-bridge-media"><img src="assets/media/celebration.webp" alt="Ruleta de shots y bebidas sobre una mesa de Sin Yolanda" loading="lazy" width="1600" height="2000" /></figure>
         </section>`;
   }
 

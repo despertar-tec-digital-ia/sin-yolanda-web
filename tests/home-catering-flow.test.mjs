@@ -9,7 +9,7 @@ test('Catering priority preserves location and birthday information and routes t
  assert.match(teaser,/href="\/catering"/);assert.match(source,/id="cumple"/);
 });
 test('dated programming and evergreen experience remain separate in data but one shared visual flow',()=>{
- const experience=invoke('homeExperience');assert.match(experience,/id="experiencia"/);assert.match(experience,/Trae a los cuatro\./);assert.doesNotMatch(experience,/<img|<video/);
+ const experience=invoke('homeExperience');assert.match(experience,/id="experiencia"/);assert.match(experience,/Trae a los cuatro\./);assert.match(experience,/assets\/media\/celebration\.webp/);assert.doesNotMatch(experience,/<video/);
  assert.match(source,/<div class="home-gathering">\s*\$\{homeAgenda\(\)\}\s*\$\{homeExperience\(\)\}/);
  assert.match(source,/\$\{venueShowcase\(\)\}\s*\$\{homeCatering\(\)\}/);
 });

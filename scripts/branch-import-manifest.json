@@ -97,7 +97,7 @@
   },
   "catering": {
     "kind": "catering",
-    "sourceRef": "cbffdc4abd7b274d9de16f5059d079bb70e9877b",
+    "sourceRef": "76ecb028a7b6feeeab13a24a2e01e18509658922",
     "publicationApproved": false,
     "routes": [
       {"from":"catering/index.html","to":"catering.html","lang":"es","canonical":"https://sin-yolanda.com/catering"},

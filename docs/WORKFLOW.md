@@ -125,6 +125,25 @@ QR302 temporal revalidado intacto. Sin merge, Pages, DNS/Traefik, challenge vál
 la siguiente prueba HTTPS privada requiere aprobación. Privacidad/operación/foto y GHL mantienen
 gates propios; este lote no los resuelve ni modifica home, menús, Analytics o WordPress.
 
+**Ingreso HTTPS privado activado y probado posteriormente9-oct (10-oct UTC):** autorización
+específica de Luis para `registro-sy-prueba.despertartdigital.cloud`, autenticación y datos ficticios;
+no sustituir el QR ni conectar GHL. Fuente desplegada `e54c3e8`; CI remoto
+[`38024972898`](https://github.com/despertar-tec-digital-ia/sin-yolanda-web/actions/runs/38024972898)
+verde en ambos jobs. Paquete aislado digest
+`ce4f93d2969801bd52deb9a7ab3f0fc402a7fb6c1300a9004edc389637f51d44`, sin fotografía review-only.
+DNS nuevo único; los19registros anteriores intactos. TLS válido, widget Managed y origen exactos.
+Navegador autenticado ES/EN conserva campos al cambiar idioma, verificación automática real y
+alta ficticia exitosa con marketing desmarcado. No CAPTCHA interactivo ni token simulado.
+Dos registros/envíos/pendientes cifrados (fixture anterior + alta HTTPS), cero sincronizados/revisión;
+backup/verify/restore a copia nueva y persistencia tras reiniciar solo los dos contenedores dedicados.
+Copia externa manual cifrada verificada; no equivale a respaldo programado/retención/alertas.
+Once sondas HTTPS comprueban auth, método/origen/JSON/query/allowlist/tamaño y rechazo de token real
+inválido, sin nuevas altas; noindex/no-store/CSP. Los37servicios ajenos mantienen ID/arranque/image.
+Recibos/captura privados ignorados `intake-private-https-*`, auditoría independiente
+`sy-intake-https-postflight-*`; recursos/acceso/rollback solo en DEPLOY del vault.
+PR#16 sin merge, release Pages vigente y QR temporal302 intactos. Próximo gate: operación y aviso,
+derechos públicos de foto, frontend final y release aprobado; GHL conserva gate separado.
+
 ### QR de carta Guadalajara · publicado y comprobado8-oct
 
 Luis autoriza la ruta corta `/q/gdl-menu` hacia la carta WordPress original, sin editar su

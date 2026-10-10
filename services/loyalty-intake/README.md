@@ -134,17 +134,18 @@ Copia cifrada externa manual verificada; no equivale a backup programado, alerta
 Sin ingress público, DNS, Traefik, publicación Pages, merge ni cambios al QR. Operación y rollback
 privados tienen dueño en el runbook DEPLOY del vault; no copiar credenciales ni datos a este repo.
 
-## Ingreso de revisión candidato ·9-oct, todavía local
+## Ingreso de revisión privado ·9-oct
 
 `preview-gateway/` prepara un Nginx dedicado, imagen por digest y UID101, raíz read-only,
 capacidades eliminadas y autenticación obligatoria en **todas** las rutas. El fichero de hashes
 de acceso se monta solo en runtime; no se copia a la imagen, entorno, repo ni paquete público.
-Solo el gateway uniría red staging y proxy; el backend sigue aislado. Compose exige nombres
+Solo el gateway une red staging y proxy; el backend sigue aislado. Compose exige nombres
 explícitos de red/resolver y un fichero existente, no publica puertos del backend ni monta Docker.
 
-Destino **propuesto**, no creado: `https://registro-sy-prueba.despertartdigital.cloud`.
-Activarlo exige autorización de la prueba privada, DNS/TLS y ajustar conjuntamente hostname
-del widget, origen del backend y configuración staging, respaldando/recreando solo este servicio.
+Destino **activado y verificado, exclusivamente para datos ficticios**:
+`https://registro-sy-prueba.despertartdigital.cloud/`. Luis autorizó el ingreso privado; DNS/TLS,
+hostname del widget y origen del backend coinciden. Se respaldó/recreó solo staging y se agregó
+el gateway dedicado; los servicios ajenos permanecieron intactos.
 No reutilizar el QR público ni promover llave/DB de QA o staging. GHL real permanece apagado.
 
 `scripts/package-intake-preview.mjs` crea un destino nuevo, sin sobrescrituras/enlaces, con
@@ -180,18 +181,33 @@ devuelven401 incluso sobre métodos/origen/rutas/cuerpos inválidos.8192bytes co
 con bytes cada1800ms. UI8casos ES/EN/320–1502px, proveedor externo deliberadamente bloqueado:
 conserva identidad, no overflow, no alta/POST, cookies o storage, no éxito ficticio.133Python
 (+43subcasos) y207Node pasan. Recibos y límites del corte → WORKFLOW, «Ingreso privado preparado».
-Estas pruebas **no** acreditan HTTPS, sitekey/widget real válido ni una captura productiva positiva.
+Estas pruebas aisladas **por sí solas no** acreditan HTTPS, widget real ni captura pública.
+
+**Prueba HTTPS real completada posteriormente9-oct (10-oct UTC):** fuente `e54c3e8`, CI remoto
+`38024972898` verde; backend y gateway privados construidos desde esa fuente/paquete exactos.
+Navegador autenticado: Managed verificó automáticamente; cambio EN→ES conservó los campos y
+un registro ficticio guardó con marketing desmarcado. No se resolvió un CAPTCHA interactivo,
+no se usó un token simulado ni se creó un contacto GHL. La UI solo declaró éxito tras respuesta
+válida del API. Conteos cifrados: dos registros/envíos/pendientes (fixture previa + alta HTTPS),
+cero sincronizados/revisión. Backup, verificación, restauración a copia nueva y persistencia
+tras reiniciar exclusivamente backend/gateway comprobados; copia externa manual cifrada validada.
+Once sondas del HTTPS verificaron acceso401, formulario/script200, origen403, método405,
+query/archivo privado404, límite8193→413 y payload/token real inválidos400 sin altas.
+Noindex/no-store/CSP presentes; credenciales/headers no reenviados y gateway sin logs de solicitudes.
+Runbook, imágenes, custodia de acceso y rollback → DEPLOY del vault; no guardar claves en Git.
+PR#16 sigue sin merge. Pages y QR302 temporal conservados: **no es el formulario público final**.
 
 ## Gate de publicación y siguiente lote
 
 1. Aprobar foto para uso público y cerrar responsable/canal/aviso de privacidad y retención.
-2. Conectar ingreso HTTPS/mismo-origen al servicio dedicado y cerrar operación productiva:
+2. El ingreso HTTPS privado ya está verificado. Cerrar la operación productiva:
    volumen durable, secreto en Doppler
    (`SY_INTAKE_ENCRYPTION_KEY`, `SY_INTAKE_TURNSTILE_SECRET`, nunca valores en repo), backup/restore
    protegido, monitoreo sin PII y procedimientos privados de consulta/baja/exportación.
-3. Integrar el widget real al frontend final, comprobar hostname/origen/action y quitar copy/token
-   exclusivos QA; probar challenge válido y captura API autorizada. La fixture de Store no sustituye
-   esta prueba. No promover la DB/llave de staging ni cambiar ruta del QR aún.
+3. Integrar el widget real al frontend final y repetir la captura autorizada en el release productivo
+   y su hostname/origen/action exactos; quitar copy exclusivo de revisión. La prueba privada ya
+   acreditó el transporte real, pero no autoriza personas reales. No promover la DB/llave de staging
+   ni cambiar la ruta del QR aún.
 4. Para GHL: verificar scopes/version/auth del lookup y creación/campos, representación real de
    checkbox, duplicados y garantías tras timeout. Snapshot desconocido/conflicto va a revisión;
    no upsert ciego ni overwrite de cumpleaños/consentimientos, DND, source o tags.

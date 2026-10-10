@@ -83,6 +83,18 @@ ejecución remota `38019422260` comprobada con ambos jobs verdes sobre fuente `7
 No merge/CD/deploy por este lote. Público/QR/WordPress sin cambios; HEAD302 del QR temporal
 revalidado después del push, mismo destino nativo autorizado y sus UTMs.
 
+**Preparación operativa posterior9-oct, solo local:** runner productivo estricto, Docker base por
+digest y Compose candidato loopback sin Traefik/DNS; status/backup/verify/restore privados,
+sin export público ni sobrescritura. Drill contenedor sintético comprobó arranque sin secretos
+rechazado, UID10001, endpoints privados, cifrado, persistencia tras reinicio y recuperación.
+UI integra contrato Turnstile real probado solo con mocks; QA local no carga proveedor.
+Pruebas127Python (+43subcasos),197Node; diseño móvil/escritorio ES/EN conservado.
+Contratos/procedimiento/gates → README del servicio y del prototipo. Las etapas Docker/drill se
+añaden a CI sin secretos ni deploy; su estado remoto se registra tras ejecutarse, no por existir.
+VPS/configs inspeccionados read-only: servicio/config dedicada aún no existe. Falta ingress seguro
+mismo-origen, widget real, secretos/custodia/backup externo, aviso/foto aprobados y release exacto.
+No merge, alta remota de recursos, publicación ni sustitución del QR por esta preparación.
+
 ### QR de carta Guadalajara · publicado y comprobado8-oct
 
 Luis autoriza la ruta corta `/q/gdl-menu` hacia la carta WordPress original, sin editar su

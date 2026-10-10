@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex, nofollow" />
     <meta name="referrer" content="no-referrer" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self'; form-action 'none'; base-uri 'none'; object-src 'none'" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self'; form-action 'none'; base-uri 'none'; object-src 'none'" />
     <title>Tu registro · Sin Yolanda El Paso</title>
     <link rel="stylesheet" href="./styles.css" />
     <script defer src="./intake.js"></script>
@@ -80,7 +80,7 @@
               <p data-copy="privacyBody">Sin Yolanda El Paso usa tu nombre y correo para gestionar tu registro. El teléfono y el cumpleaños (solo día y mes) son opcionales. Los correos promocionales requieren tu autorización por separado; no autorizas mensajes SMS ni WhatsApp.</p>
               <p data-copy="privacyStorage">El registro propio está en preparación. Esta vista previa no envía ni almacena datos.</p>
               <p data-copy="privacyContact">Para consultas, puedes contactar a @sinyolandaelpaso en Instagram. El correo de privacidad y el responsable están pendientes de confirmación.</p>
-              <p class="privacy-draft" data-copy="privacyDraft">Borrador de prueba local del 9 de octubre de 2026. Antes de publicar, se deben verificar el responsable, el contacto de privacidad y la custodia de los datos; no es el aviso legal definitivo.</p>
+              <p class="privacy-draft" data-copy="privacyDraft">Borrador del 9 de octubre de 2026. Antes de publicar, se deben verificar el responsable, el contacto de privacidad y la custodia de los datos; no es el aviso legal definitivo.</p>
               <a href="https://www.instagram.com/sinyolandaelpaso/" target="_blank" rel="noopener noreferrer" data-copy="privacyLink">Contactar a Sin Yolanda El Paso ↗</a>
             </div>
           </details>
@@ -98,6 +98,12 @@
             </label>
           </fieldset>
 
+          <section class="verification" id="verification" aria-labelledby="verification-label" tabindex="-1" hidden>
+            <p class="verification-label" id="verification-label" data-copy="verificationLabel">Verificación de seguridad</p>
+            <div class="verification-widget" id="turnstile-widget"></div>
+            <p class="verification-status" id="verification-status" role="status" aria-live="polite"></p>
+            <button class="verification-retry" id="verification-retry" type="button" data-copy="verificationRetry" hidden>Reintentar verificación</button>
+          </section>
           <p class="server-error" id="server-error" role="alert" hidden></p>
           <button class="register-button" id="register-button" type="submit" disabled data-copy="button">Registro en preparación</button>
           <p class="preview-note" id="preview-note" role="status" data-copy="previewNote">Vista previa local. No envía ni guarda tus datos.</p>

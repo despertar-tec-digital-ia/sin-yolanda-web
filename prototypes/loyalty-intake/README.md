@@ -35,10 +35,24 @@ reload limpia datos/opt-ins. Tests nativos del frontend/proxy:11 casos sin naveg
 API/almacenamiento/worker simulado/backup tienen su suite independiente en el servicio.
 Estas pruebas no crean contactos reales, envían mensajes ni sustituyen el formulario QR vigente.
 
-La configuración local es explícita `captureEnabled`+`qaOnly`+versión de consentimiento exacta.
+La configuración local es explícita `captureEnabled`+`qaOnly`+`mode`+versión de consentimiento exacta.
 POST limitado a8192bytes, origen loopback y proxy fijo; no cookies/auth/URLs arbitrarias. CSP
 `connect-src 'self'`, `form-action 'none'`. Por defecto no hay POST ni captura; la versión de QA
-no se puede publicar como formulario real. No incluye widget Turnstile productivo todavía.
+no se puede publicar como formulario real.
+
+**Candidata Turnstile posterior9-oct:** `mode:'production'` exige captura habilitada, `qaOnly:false`
+y sitekey pública `0x…` válida; otra combinación deshabilita y no carga Cloudflare. Script oficial
+directo en modo explícito, action `loyalty_register`, tema claro/flexible (compact si columna<300px).
+Token fresco requerido; expiración295s, error/timeout/unsupported cierran el envío. Cambio ES/EN o
+tamaño invalida callbacks antiguos y reconstruye el widget sin perder datos. Fallo HTTP/red reinicia
+verificación conservando contenido/clave; token se excluye de la firma de idempotencia. Éxito limpia
+datos y retira widget. No enviar PII en cData/URLs ni usar storage browser/tracker.
+19pruebas nativas pasan con proveedor simulado; no acreditan widget/CSP/antibot reales. Node solo
+sirve `disabled` o `local-qa`, jamás configuración productiva. Sin widget real creado ni QR cambiado.
+Guía primaria N0: [renderizado Cloudflare](https://developers.cloudflare.com/turnstile/get-started/client-side-rendering/).
+Revisión visual posterior móvil390/ES/EN y escritorio1502 conserva foto/composición; no overflow.
+La captura fullPage de escritorio omitió la foto pese a estar decodificada; screenshot viewport
+confirmó imagen visible. No cambiar imagen/CSS por ese artefacto del capturador.
 
 ## Fotografía local de revisión ·9-oct
 

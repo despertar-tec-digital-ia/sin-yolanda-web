@@ -103,6 +103,11 @@ input:focus-visible { outline: 3px solid var(--orange-deep); outline-offset: 3px
 .check-row small { display: block; color: var(--muted); margin-top: 5px; font-size: .75rem; }
 .marketing-row { margin-top: 20px; }
 .consent-error { padding-left: 32px; }
+.verification { min-width: 0; margin: -2px 0 23px; }
+.verification-label { font-size: .75rem; color: var(--muted); margin-bottom: 9px; }
+.verification-widget { max-width: 100%; min-width: 0; }
+.verification-status { margin-top: 8px; font-size: .73rem; color: var(--muted); line-height: 1.5; }
+.verification-retry { min-height: 44px; padding: 6px 0; margin-top: 3px; border: 0; background: transparent; color: var(--brand); font-size: .75rem; text-decoration: underline; text-underline-offset: 4px; }
 .register-button { display: block; width: 100%; min-height: 54px; border: 0; border-radius: 3px; background: var(--brand); color: #fff; font-weight: 700; font-size: .87rem; line-height: 1.4; padding: 12px 20px; }
 .register-button:disabled { background: #ded5c8; color: #5c4f43; cursor: not-allowed; }
 .preview-note { font-size: .75rem; color: var(--muted); text-align: center; line-height: 1.6; margin-top: 11px; }

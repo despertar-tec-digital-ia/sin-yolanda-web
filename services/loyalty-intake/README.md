@@ -1,4 +1,4 @@
-# Registro propio Sin Yolanda · servicio local
+# Registro propio Sin Yolanda · candidata privada
 
 **Estado9-oct2026:** API, almacenamiento cifrado y frontend de QA integrados localmente.
 Sin deploy, contacto real, credenciales GHL, transporte GHL real ni campañas. El QR público sigue
@@ -39,7 +39,8 @@ server-side. IP solo del peer; headers reenviados no se confían. Runner local d
 `proxy_headers` y rechaza symlinks/hardlinks de la llave antes de leer/cambiar permisos.
 QA explícita solo `http://127.0.0.1:8798`+peer loopback+token local. Producción no se activa al faltar
 un secreto ni admite esa configuración. Verificación Turnstile exige éxito, hostname/action
-`loyalty_register`, timeout y error fail-closed. Frontend actual no incluye widget productivo.
+`loyalty_register`, timeout y error fail-closed. El frontend incluye contrato de widget explícito
+productivo, probado con mocks; todavía no existe widget/configuración real para este servicio.
 
 Tasa por IP inicial configurable en código: revisar para WiFi compartido/aforo antes de publicar.
 Ingress productivo debe imponer tamaño/tiempos, TLS y origen; definir confianza de proxy exacta
@@ -69,13 +70,59 @@ copia cifrada con la llave correcta se prueba en la suite; llave incorrecta se r
 sin llave no es recuperable. Custodia de llave separada del backup, retención/borrado, restauración,
 acceso del operador y alertas/revisión manual deben quedar operativos antes de capturar en servidor.
 
+## Runtime candidato y recuperación privada ·9-oct
+
+`run_production.py` valida configuración y almacenamiento **antes de escuchar**, exige contenedor
+y producción, rechaza modo/tokens de QA y secretos de prueba. No genera llave ni arranca worker.
+Uvicorn sin access logs, cabeceras de proxy, reload ni varios procesos; códigos de log fijos,
+concurrencia64, cuerpo con plazo10s, keepalive5s y apagado ordenado15s. `/health` acredita arranque/
+liveness, **no** salud continua de disco, backup vigente ni conexión GHL.
+
+Dockerfile fija el digest multi-arquitectura de Python3.12 y `uv.lock`; UID/GID10001, directorios
+privados y copia exclusiva de runtime, sin QA, fotos, DB o secretos. `compose.candidate.yml`
+añade filesystem read-only, límites de recursos, capacidades eliminadas y volúmenes externos
+dedicados. Puerto **solo127.0.0.1:8841**: no Traefik, DNS ni publicación. No usarlo como ingress
+definitivo: falta revisar proxy/IP confiable y transporte mismo-origen desde Pages.
+
+La config propuesta `ddtia/prd_sinyolanda-intake` **todavía no existe**. El inventario read-only9-oct
+confirmó Docker/Compose/red del VPS y capacidad disponible, pero ningún servicio de captura propio.
+No reutilizar `prd_mcp-server`, llaves de QA ni volúmenes de otros clientes. Además de los secretos
+anteriores, el contrato de Compose pide `SY_INTAKE_IMAGE_TAG`, `SY_INTAKE_ORIGINS`,
+`SY_INTAKE_TURNSTILE_HOSTNAME`, `SY_INTAKE_DATA_VOLUME` y `SY_INTAKE_BACKUP_VOLUME` explícitos.
+Nunca imprimir `compose config`, `docker inspect` de entorno o descarga Doppler con valores.
+
+Herramienta privada, con Settings explícitos y llave correcta:
+
+```sh
+python -m sy_intake.operations status
+python -m sy_intake.operations backup --destination-dir /backups/lote-nuevo
+python -m sy_intake.operations verify --snapshot /backups/lote-nuevo/intake.sqlite3
+python -m sy_intake.operations restore --snapshot /backups/lote-nuevo/intake.sqlite3 --destination-dir /backups/restauracion-nueva
+```
+
+Salida solo conteos, sin contactos/IDs/PII. Verificación de schema, integridad, relaciones,
+autenticación del cifrado y correspondencia de payloads/índices. Padres deben existir; destino
+totalmente nuevo700, archivo600; enlaces y sobrescrituras rechazados. Restore nunca cambia la DB
+activa: para promover una copia, detener exclusivamente este servicio, verificar copia/llave,
+respaldar el estado vigente, cambiar ruta bajo aprobación operativa y volver a verificar.
+Fallo de I/O puede dejar copia privada incompleta; no usarla sin verify exitoso ni reusar su carpeta.
+Volumen backup en el mismo host **no** protege de pérdida del VPS: copia externa/custodia separada
+y política de retención todavía pendientes. No borrar por antigüedad sin decisión explícita.
+
+Drill reproducible local/CI: construir imagen candidata y ejecutar `uv run --frozen python
+container_smoke.py --image sinyolanda-loyalty-intake:<tag-explicito>`. Crea y limpia exclusivamente
+contenedor/volumen UUID de pruebas ficticias: arranque sin secretos rechazado, API privada,
+UID10001, escritura cifrada, backup, reinicio, status y restore. No valida Turnstile real ni hace
+POST de alta pública/GHL; fixture se escribe directamente en Store para probar persistencia.
+Primer drill local pasó; las nuevas etapas CI no se declaran remotas verificadas hasta su ejecución.
+
 ## Gate de publicación y siguiente lote
 
 1. Aprobar foto para uso público y cerrar responsable/canal/aviso de privacidad y retención.
 2. Preparar servicio dedicado del cliente en VPS/ingress con volumen durable, secreto en Doppler
    (`SY_INTAKE_ENCRYPTION_KEY`, `SY_INTAKE_TURNSTILE_SECRET`, nunca valores en repo), backup/restore
    protegido, monitoreo sin PII y procedimientos privados de consulta/baja/exportación.
-3. Integrar widget Turnstile real, hostname/origen/ruta final y quitar copy/token exclusivos QA;
+3. Configurar widget Turnstile real, hostname/origen/ruta final y quitar copy/token exclusivos QA;
    probar caída, reinicio y captura autorizada en candidato. No cambiar ruta del QR aún.
 4. Para GHL: verificar scopes/version/auth del lookup y creación/campos, representación real de
    checkbox, duplicados y garantías tras timeout. Snapshot desconocido/conflicto va a revisión;

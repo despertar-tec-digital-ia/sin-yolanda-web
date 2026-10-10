@@ -32,6 +32,10 @@ jobs:
       - run: uv sync --frozen --group dev
       # Synthetic temporary DBs and injected providers only; no deployment or GHL secrets.
       - run: uv run --frozen pytest -q
+      # Build only: the API image excludes QA files and never starts a public listener in CI.
+      - run: docker build --tag sinyolanda-intake-ci:${{ github.sha }} .
+      # Disposable loopback container, synthetic key/data only; no provider verification or messages.
+      - run: uv run --frozen python container_smoke.py --image sinyolanda-intake-ci:${{ github.sha }}
   quality:
     name: Public artifact checks
     runs-on: ubuntu-24.04

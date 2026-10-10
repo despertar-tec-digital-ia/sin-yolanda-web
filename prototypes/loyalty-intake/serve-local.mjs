@@ -54,7 +54,7 @@ function readBody(request) {
 export function createLocalServer({ captureEnabled = false, proxyFetch = fetch } = {}) {
   const server = createServer(async (request, response) => {
     if (request.url === '/intake-config.json' && ['GET', 'HEAD'].includes(request.method)) {
-      json(response, 200, { captureEnabled: Boolean(captureEnabled), qaOnly: true, consentVersion }, request.method === 'HEAD');
+      json(response, 200, { captureEnabled: Boolean(captureEnabled), qaOnly: true, mode: captureEnabled ? 'local-qa' : 'disabled', consentVersion }, request.method === 'HEAD');
       return;
     }
     if (request.url === '/api/registrations') {

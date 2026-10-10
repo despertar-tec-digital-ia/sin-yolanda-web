@@ -60,7 +60,9 @@ Sin flag es solo vista visual deshabilitada. La llave aleatoria de QA se genera 
 `var/local-qa/encryption.key`; DB y snapshot locales ignorados. Conservar llave+DB para reinicios;
 no usar datos personales reales ni compartir ese directorio. No usar túneles públicos.
 No copiar una llave de QA al futuro entorno productivo. CI ejecuta pruebas sintéticas separadas,
-sin secretos/artefactos de DB ni publicación; ejecución remota todavía por verificar.
+sin secretos/artefactos de DB ni publicación. Primera ejecución remota comprobada para fuente
+`7e5ea24`: [run38019422260](https://github.com/despertar-tec-digital-ia/sin-yolanda-web/actions/runs/38019422260),
+job de captura y job del artefacto público pasan. No autoriza deploy ni habilita CD.
 
 `Store.backup(destination)` usa snapshot SQLite consistente y exige un destino nuevo. Restaurar
 copia cifrada con la llave correcta se prueba en la suite; llave incorrecta se rechaza. Un backup

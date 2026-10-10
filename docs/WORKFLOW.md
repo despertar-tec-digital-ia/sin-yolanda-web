@@ -79,7 +79,9 @@ de origen/bots, tamaño de cuerpo y backup/restore. Revisión independiente corr
 runner antes de leer/cambiar permisos y límite de buffer antes de ampliar memoria; regresiones
 añadidas. Evidencia ignorada `own-capture-*` en el mismo directorio de revisión.
 Job CI separado, dependencias congeladas, sin secretos/artefactos privados ni publicación;
-comprobar ejecución remota antes de afirmar ese CI verificado. Público/QR/WordPress sin cambios.
+ejecución remota `38019422260` comprobada con ambos jobs verdes sobre fuente `7e5ea24`.
+No merge/CD/deploy por este lote. Público/QR/WordPress sin cambios; HEAD302 del QR temporal
+revalidado después del push, mismo destino nativo autorizado y sus UTMs.
 
 ### QR de carta Guadalajara · publicado y comprobado8-oct
 

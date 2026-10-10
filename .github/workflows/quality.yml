@@ -46,6 +46,11 @@ jobs:
         env:
           SY_INTAKE_SMOKE_BACKEND_IMAGE: sinyolanda-intake-ci:${{ github.sha }}
         run: node scripts/smoke-intake-preview.mjs
+      - name: Check the API-only production ingress without publication
+        working-directory: .
+        env:
+          SY_INTAKE_SMOKE_BACKEND_IMAGE: sinyolanda-intake-ci:${{ github.sha }}
+        run: node scripts/smoke-intake-preview.mjs --api-only
       # Lockfile-pinned local Cloudflare engine. This job never authenticates or publishes.
       - name: Install the isolated Pages runtime checker
         working-directory: qa/intake-runtime

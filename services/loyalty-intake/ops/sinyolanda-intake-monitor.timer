@@ -1,0 +1,8 @@
+[Unit]
+Description=Sin Yolanda storage and backup check every five minutes
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=5min
+Unit=sinyolanda-intake-monitor.service
+[Install]
+WantedBy=timers.target

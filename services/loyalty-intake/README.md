@@ -1,5 +1,22 @@
 # Registro propio Sin Yolanda · candidata privada
 
+**Paso autorizado10-oct, en preparación:** activar únicamente el servicio productivo aislado,
+base/llave nuevas, ingress autenticado y respaldo/recuperación. No publicar el frontend, cambiar
+QR ni conectar GHL/campañas. Widget Managed nuevo para `sin-yolanda.com` creado por autorización
+específica; no pre-clearance ni reutilización de staging. El proyecto Doppler `ddtia` rechazó la
+config productiva por límite del entorno; no hubo ampliación de plan ni mezcla de secretos.
+La activación permanece pendiente de custodia dedicada y de la comprobación remota. DNS A único
+del API ya creado con TTL300 y20registros anteriores intactos; todavía no sirve el backend.
+Se solicitó aprobar un proyecto de secretos independiente sin contratar plan; no hay respuesta.
+
+`compose.production.yml` añade solo dos servicios sin puertos publicados: backend en red propia
+y gateway API-only, autenticación en todas las rutas y origen exacto del relay oficial. Imagen
+del gateway no contiene frontend, llaves ni DB. Mismo smoke Docker con `--api-only` comprueba
+auth/rutas/JSON/cuerpo/headers/logs y plazo absoluto del backend, sin proveedor ni DNS.
+`ops/` prepara timers root-only: backup cifrado verificado4h, monitor5min (edad máxima8h/disco256MiB),
+estado agregado privado y salida fija sin datos personales. No borra registros ni envía avisos;
+no afirmar que los timers están instalados o que existe copia externa automática por estos archivos.
+
 **Estado9-oct2026:** API, almacenamiento cifrado y frontend de QA integrados localmente;
 backend candidato desplegado exclusivamente en staging privado. Sin contacto real, credenciales
 GHL, transporte GHL real ni campañas. El QR público sigue

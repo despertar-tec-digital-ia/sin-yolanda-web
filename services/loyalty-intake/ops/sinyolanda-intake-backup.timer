@@ -1,0 +1,9 @@
+[Unit]
+Description=Sin Yolanda encrypted backups every four hours
+[Timer]
+OnCalendar=*-*-* 00,04,08,12,16,20:10:00 UTC
+Persistent=true
+RandomizedDelaySec=60
+Unit=sinyolanda-intake-backup.service
+[Install]
+WantedBy=timers.target

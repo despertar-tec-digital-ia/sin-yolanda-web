@@ -10,6 +10,7 @@ import { packageIntakePreview, previewHostname, previewOrigin, projectRoot } fro
 
 const pythonBase = 'python:3.12-slim@sha256:a6e34c598f2467ed0e9a8d349809fcd8b5c603269512df273a0bb1784edc11b1';
 const defaultBackendImage = 'sinyolanda-intake-preview-qa:20261009';
+const defaultPreviewOrigin = previewOrigin;
 const syntheticSiteKey = '0xNativeSmokeFixture123456789012';
 const mockSource = String.raw`import base64, json, sys, time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
@@ -163,7 +164,11 @@ function redactedLogSummary(logs) {
   return { stdoutBytes: Buffer.byteLength(logs.stdout), stderrBytes: Buffer.byteLength(logs.stderr), classes };
 }
 
-export async function runPreviewSmoke({ keepRunning = false, backendImage = defaultBackendImage, mockStartupDelayMs = 0 } = {}) {
+export async function runPreviewSmoke({ keepRunning = false, backendImage = defaultBackendImage, mockStartupDelayMs = 0, apiOnly = false } = {}) {
+  const previewOrigin = apiOnly ? 'https://sin-yolanda.com' : defaultPreviewOrigin;
+  const previewHostname = new URL(previewOrigin).hostname;
+  assert.equal(typeof apiOnly, 'boolean');
+  assert.ok(!apiOnly || !keepRunning, 'API smoke must always clean up');
   assert.match(backendImage, /^sinyolanda-(?:loyalty-intake|intake-preview-qa|intake-ci):[A-Za-z0-9][A-Za-z0-9_.-]{0,127}$/, 'explicit_local_backend_image_required');
   assert.ok(Number.isInteger(mockStartupDelayMs) && mockStartupDelayMs >= 0 && mockStartupDelayMs <= 5000, 'bounded_mock_startup_delay');
   const suffix = randomBytes(6).toString('hex');
@@ -174,6 +179,10 @@ export async function runPreviewSmoke({ keepRunning = false, backendImage = defa
   chmodSync(directory, 0o700);
   const candidate = resolve(directory, 'candidate'), runtime = resolve(directory, '.runtime');
   const manifest = packageIntakePreview({ destination: candidate, siteKey: syntheticSiteKey });
+  if (apiOnly) {
+    for (const name of ['Dockerfile', 'nginx.conf']) writeFileSync(resolve(candidate, name),
+      readFileSync(resolve(projectRoot, 'services/loyalty-intake/api-gateway', name)));
+  }
   mkdirSync(runtime, { mode: 0o700 });
   const authPath = resolve(runtime, 'preview_auth'), browserAuthPath = resolve(runtime, 'browser-auth.json');
   const username = 'local-review', password = randomBytes(24).toString('hex');
@@ -182,12 +191,12 @@ export async function runPreviewSmoke({ keepRunning = false, backendImage = defa
   writeFileSync(authPath, `${username}:{SHA}${createHash('sha1').update(password).digest('base64')}\n`, { mode: 0o444, flag: 'wx' });
   writeFileSync(browserAuthPath, JSON.stringify({ username, password }) + '\n', { mode: 0o600, flag: 'wx' });
   writeFileSync(resolve(runtime, 'mock.py'), mockSource, { mode: 0o644, flag: 'wx' });
-  const image = `sinyolanda-intake-preview:smoke-${suffix}`;
+  const image = `${apiOnly ? 'sinyolanda-intake-api' : 'sinyolanda-intake-preview'}:smoke-${suffix}`;
   const network = `${prefix}-network`, ingress = `${prefix}-loopback`, mock = `${prefix}-mock`, gateway = `${prefix}-gateway`;
   const ownNetworks = [], ownContainers = [];
   let ownImage = false, keep = false, activeCheck = 'setup';
   const checks = [];
-  const evidence = { version: 1, kind: 'isolated-local-preview-smoke', transport: 'loopback-http', providerTested: false, tlsTested: false, origin: previewOrigin, candidateDigest: manifest.digest, checks, result: 'incomplete' };
+  const evidence = { version: 1, kind: apiOnly ? 'isolated-local-api-ingress-smoke' : 'isolated-local-preview-smoke', transport: 'loopback-http', providerTested: false, tlsTested: false, origin: previewOrigin, candidateDigest: apiOnly ? createHash('sha256').update(readFileSync(resolve(candidate, 'nginx.conf'))).digest('hex') : manifest.digest, checks, result: 'incomplete' };
   async function check(name, action) {
     activeCheck = name;
     await action();
@@ -199,7 +208,7 @@ export async function runPreviewSmoke({ keepRunning = false, backendImage = defa
       '--user', '101:101', '--read-only', '--cap-drop', 'ALL', '--security-opt', 'no-new-privileges:true',
       '--pids-limit', '64', '--memory', '64m', '--cpus', '0.5',
       '--tmpfs', '/tmp:rw,noexec,nosuid,size=1048576,mode=1777',
-      '--mount', `type=bind,source=${authPath},target=/run/secrets/preview_auth,readonly`,
+      '--mount', `type=bind,source=${authPath},target=/run/secrets/${apiOnly ? 'intake_proxy_auth' : 'preview_auth'},readonly`,
       '--publish', '127.0.0.1::8080', image]);
     ownContainers.push(name);
     await docker(['network', 'connect', targetNetwork, name]);
@@ -274,10 +283,11 @@ export async function runPreviewSmoke({ keepRunning = false, backendImage = defa
         assert.equal(chunked.status, 401, 'unauthenticated_large_chunked_body'); securityHeaders(chunked);
       }
     });
-    await check('authenticated_static_allowlist_and_security_headers', async () => {
+    await check(apiOnly ? 'authenticated_api_ingress_excludes_all_frontend_assets' : 'authenticated_static_allowlist_and_security_headers', async () => {
       for (const path of paths.slice(0, 9)) {
         const response = await call(port, { path, headers: { Authorization: authorization } });
-        assert.equal(response.status, 200, 'allowed_static_resource'); securityHeaders(response);
+        assert.equal(response.status, apiOnly ? 404 : 200, 'static_resource_contract'); securityHeaders(response);
+        if (apiOnly) { assert.deepEqual(JSON.parse(response.body), { code: 'unavailable' }); continue; }
         const file = path === '/' ? 'index.html' : path.slice(1);
         assert.deepEqual(response.body, readFileSync(resolve(candidate, 'public', file)));
       }
@@ -289,7 +299,8 @@ export async function runPreviewSmoke({ keepRunning = false, backendImage = defa
       }
       for (const method of ['POST', 'OPTIONS']) {
         const response = await call(port, { method, headers: { Authorization: authorization } });
-        assert.equal(response.status, 405, 'static_method'); assert.equal(response.headers.allow, 'GET, HEAD'); securityHeaders(response);
+        assert.equal(response.status, apiOnly ? 404 : 405, 'static_method');
+        assert.equal(response.headers.allow, apiOnly ? undefined : 'GET, HEAD'); securityHeaders(response);
       }
       for (const method of ['GET', 'HEAD', 'OPTIONS']) {
         const response = await call(port, { path: '/api/registrations', method, headers: apiHeaders });
@@ -297,7 +308,7 @@ export async function runPreviewSmoke({ keepRunning = false, backendImage = defa
       }
     });
     await check('exact_origin_json_uri_and_query_enforcement', async () => {
-      for (const Origin of [undefined, 'http://' + previewHostname, previewOrigin + '/', 'https://sin-yolanda.com', previewOrigin + ':443', 'null']) {
+      for (const Origin of [undefined, 'http://' + previewHostname, previewOrigin + '/', apiOnly ? defaultPreviewOrigin : 'https://sin-yolanda.com', previewOrigin + ':443', 'null']) {
         const headers = { ...apiHeaders }; if (Origin === undefined) delete headers.Origin; else headers.Origin = Origin;
         assert.equal((await call(port, { path: '/api/registrations', method: 'POST', headers, body: '{}' })).status, 403, 'strict_origin');
       }
@@ -488,7 +499,7 @@ export async function runPreviewSmoke({ keepRunning = false, backendImage = defa
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  assert.ok(process.argv.slice(2).every(value => value === '--keep-running') && process.argv.length <= 3, 'Use smoke-intake-preview.mjs [--keep-running]');
-  try { await runPreviewSmoke({ keepRunning: process.argv.includes('--keep-running'), backendImage: process.env.SY_INTAKE_SMOKE_BACKEND_IMAGE || defaultBackendImage }); }
+  assert.ok(process.argv.slice(2).every(value => ['--keep-running', '--api-only'].includes(value)) && process.argv.length <= 4, 'Use smoke-intake-preview.mjs [--keep-running | --api-only]');
+  try { await runPreviewSmoke({ keepRunning: process.argv.includes('--keep-running'), apiOnly: process.argv.includes('--api-only'), backendImage: process.env.SY_INTAKE_SMOKE_BACKEND_IMAGE || defaultBackendImage }); }
   catch { process.exitCode = 1; }
 }

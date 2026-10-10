@@ -207,6 +207,46 @@ Guía técnica N0 puntual: [rutas Pages Functions](https://developers.cloudflare
 y [bindings](https://developers.cloudflare.com/pages/functions/bindings/); capacidades documentadas,
 no equivalencia a una publicación ni a permisos/configuración productiva ya instalada.
 
+### Registro propio · ingreso productivo preparado10-oct, activación retenida
+
+Luis autoriza activar únicamente backend productivo, base/llave nuevas y respaldos; QR/frontend/
+GHL/campañas quedan fuera. En confirmación específica posterior autoriza widget anti-bots nuevo
+para `sin-yolanda.com` y subdominio API protegido `sy-intake-api.despertartdigital.cloud`.
+Cloudflare: widget «Sin Yolanda · El Paso · Registro propio · Producción», Managed, único hostname
+oficial, sin pre-clearance; independiente de la prueba privada existente. No se completó CAPTCHA.
+Hostinger: un A nuevo→187.77.220.209, TTL300; comparación de inventario antes/después preserva
+los20registros anteriores y acredita21totales. Evidencia privada ignorada
+`.artifacts/intake-production-20261010/dns-before.json`, `dns-after.json`, `dns-created.png`.
+No modificación del dominio oficial, correo, WordPress ni DNS de otras páginas.
+
+**Bloqueo concreto:** Doppler rechaza crear `ddtia/prd_sinyolanda-intake` porque el entorno
+productivo alcanzó10configs. No contratar plan, eliminar/repurponer configs ni mezclar con staging.
+Se solicitó autorización para proyecto exclusivo `ddtia-sinyolanda-intake`, sin ampliación de pago;
+sin respuesta todavía. No activar con secreto sintético ni sin custodia dedicada. El widget conserva
+sus claves en Cloudflare; ningún valor en Git/chat/artefactos de QA. No afirmar que el servicio está
+activo por existir DNS/widget. No hubo nuevo contenedor/DB/config productiva ni timers instalados.
+
+Implementación: `services/loyalty-intake/compose.production.yml`, dos servicios dedicados sin puertos
+publicados, UID10001/101, rootfs read-only, límites y red backend propia. Gateway en `api-gateway/`
+solo admite endpoint exacto, autenticación obligatoria, origen fijo del relay, JSON/cuerpo8192 y
+deadline del backend; no frontend/DB/llaves en imagen, logs desactivados y headers sensibles omitidos.
+`ops/` prepara timers4h/5min, snapshots nuevos cifrados verificados y monitor DB/edad≤8h/disco≥256MiB;
+estado root-only y códigos fijos. Sin borrado, alertas externas ni copia externa automática.
+
+QA local:159Python (+43subcasos),222Node, Compose validado con variables exclusivamente sintéticas;
+drill Docker de backend/reinicio/restore y smoke8/8 tanto privado como API-only pasan. Smoke API-only
+→ `.artifacts/sy-intake-smoke-1a2ac542d1be-6ZlxF7/evidence.json`; no proveedor/TLS/captura real.
+Regresión privada → `.artifacts/sy-intake-smoke-d0f97d717d3d-phrkdv/evidence.json`.
+CI añade el mismo smoke API-only; verificar resultado remoto después del push. Primera prueba
+detectó y corrigió directorios temporales de Nginx incompatibles con raíz read-only, antes de deploy.
+
+Próximo: resolver custodia, fuente pusheada/CI verde, baseline de contenedores y release backend exacto;
+crear volúmenes/llave productivos nuevos, ingress TLS/auth, instalar/verificar timers y restore/copia
+cifrada externa. Para retirar el ingreso, detener únicamente su gateway; conservar volúmenes/claves/
+copias y no usar `down -v`. Aún no hay imagen/servicio productivos que revertir. Publicar frontend y
+sustituir destino del QR requieren prueba real y aprobación separada; su captura temporal no depende
+de este servicio. El PR#16 sigue sin merge, Pages/carta/Analytics y captura temporal conservados.
+
 ### QR de carta Guadalajara · publicado y comprobado8-oct
 
 Luis autoriza la ruta corta `/q/gdl-menu` hacia la carta WordPress original, sin editar su

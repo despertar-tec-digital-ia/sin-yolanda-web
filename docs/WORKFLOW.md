@@ -1,10 +1,45 @@
 # Forma de trabajar y publicar
 
-**Última actualización:** 2026-10-08 · **Responsables:** Luis, técnica; Karina, negocio/contenido y hero.
+**Última actualización:** 2026-10-09 · **Responsables:** Luis, técnica; Karina, negocio/contenido y hero.
 **Estado:** candidato integrado en `main` y release limitado publicado el 8-oct; CI de PR y main
 verificado, publicación Pages manual y smoke remoto comprobado. CD automático, protecciones y
 secretos no están activados por este lote. Preparación, resultado y límites se registran abajo.
 La aprobación de este release no equivale a autorizar otros releases.
+
+### Registro El Paso v1 · candidata local9-oct
+
+Luis autoriza preparar/publicar el QR de registro con destino nativo GHL confirmado por Share:
+formulario `nN59k3I7TT6TOxDl4XET`, alias permanente `/q/el-paso-registro` y variante slash302.
+Destino exacto y atribución fija → ROUTES y `_redirects`. Sin nuevo backend, SQL, campañas ni
+automatizaciones. Los beneficios del programa siguen pendientes; no se prometen recompensas.
+
+Nombre/email obligatorios; teléfono opcional; cumpleaños opcional guardado como texto día/mes.
+Ese dato requiere normalización/validación antes de futuros workflows de cumpleaños. Consentimiento
+principal obligatorio y email promocional opcional sin premarcar. El contacto de privacidad es
+provisional, con Instagram como alternativa; su cierre operativo sigue pendiente. Esta v1 no
+certifica cumplimiento legal ni autoriza activar campañas. Workflows nativos cero; notificaciones,
+envíos automáticos y sticky contact desactivados según la revisión del operador.
+
+**Captura controlada autorizada y comprobada por el operador:** un único contacto ficticio llega a
+la ubicación correcta, con origen del formulario, consentimiento principal registrado y marketing
+vacío. Se confirma atribución `loyalty_el_paso` / `qr` / `offline` / `registro_v1` y el ID del formulario.
+Revisión móvil390×844 sin desbordamiento; recargar vuelve a dejar campos vacíos y casillas sin marcar.
+No incluir identificadores del contacto ni su email de prueba en estos documentos públicos.
+Es QA del formulario nativo, **no** prueba del alias público, todavía sin publicación.
+
+Paquete local aislado186archivos:185preservados byte a byte, solo `_redirects` añade los dos aliases;
+home, hero, horarios, footer, headers y QR Guadalajara intactos. Baseline esperado Pages
+`32633a4f-b3ff-4d9c-9e78-8471d7773a66`; hashes revalidados contra su URL inmutable y dominio actual.
+Solo las transformaciones Cloudflare ya declaradas: privacidad recupera el hash exacto tras retirar
+exclusivamente obfuscación de email; noindex propio del home inmutable no afecta al dominio.
+Recibos locales ignorados en `.artifacts/registration-preflight-20261009/`.
+
+`prepare-registration-release.mjs` no publica ni aprueba: prepara candidata local y, con aprobación
+humana específica, reutiliza el gate de HEAD limpio/commit/digest. No heredar la autorización8-oct.
+Falta cerrar commit/aprobación exactos, revalidar baseline justo antes, publicar el artefacto completo
+y comprobar GET/HEAD302/destino fijo y web/404 preservados. Los QR negro/naranja PNG/SVG entregados
+para preparación codifican únicamente el alias permanente; no usar con clientes antes de activación.
+No afirmar prueba física de impresión/iOS/Android ni medición de visitas por estos checks.
 
 ### QR de carta Guadalajara · publicado y comprobado8-oct
 

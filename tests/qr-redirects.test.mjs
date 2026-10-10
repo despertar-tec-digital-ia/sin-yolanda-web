@@ -17,7 +17,8 @@ test('the print alias points to the original menu with fixed public attribution'
   assert.deepEqual(parseQrRedirects(rules.replaceAll('\n', '\r\n')), parseQrRedirects(rules));
   const { files } = inspectPublic();
   assert.ok(files.includes('_redirects'));
-  assert.deepEqual(parseQrRedirects(readFileSync(join(projectRoot, '_redirects'), 'utf8')), parseQrRedirects(rules));
+  const sourceRules = parseQrRedirects(readFileSync(join(projectRoot, '_redirects'), 'utf8'));
+  assert.deepEqual(sourceRules.filter(rule => rule.source === '/q/gdl-menu' || rule.source === '/q/gdl-menu/'), parseQrRedirects(rules));
 });
 
 test('unapproved rules, permanent redirects and arbitrary destinations fail closed', () => {

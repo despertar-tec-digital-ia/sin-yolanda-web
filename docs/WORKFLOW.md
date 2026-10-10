@@ -220,7 +220,7 @@ los20registros anteriores y acredita21totales. Evidencia privada ignorada
 No modificación del dominio oficial, correo, WordPress ni DNS de otras páginas.
 
 **Bloqueo concreto:** Doppler rechaza crear `ddtia/prd_sinyolanda-intake` porque el entorno
-productivo alcanzó10configs. No contratar plan, eliminar/repurponer configs ni mezclar con staging.
+productivo alcanzó10configs. No contratar plan, eliminar/reutilizar configs ni mezclar con staging.
 Se solicitó autorización para proyecto exclusivo `ddtia-sinyolanda-intake`, sin ampliación de pago;
 sin respuesta todavía. No activar con secreto sintético ni sin custodia dedicada. El widget conserva
 sus claves en Cloudflare; ningún valor en Git/chat/artefactos de QA. No afirmar que el servicio está
@@ -237,8 +237,12 @@ QA local:159Python (+43subcasos),222Node, Compose validado con variables exclusi
 drill Docker de backend/reinicio/restore y smoke8/8 tanto privado como API-only pasan. Smoke API-only
 → `.artifacts/sy-intake-smoke-1a2ac542d1be-6ZlxF7/evidence.json`; no proveedor/TLS/captura real.
 Regresión privada → `.artifacts/sy-intake-smoke-d0f97d717d3d-phrkdv/evidence.json`.
-CI añade el mismo smoke API-only; verificar resultado remoto después del push. Primera prueba
-detectó y corrigió directorios temporales de Nginx incompatibles con raíz read-only, antes de deploy.
+Fuente guardada/pusheada en `34371bbebaee4313ce7311c6052311d546b6d75c`; autor/mensaje verificados.
+[CI remoto38081715749](https://github.com/despertar-tec-digital-ia/sin-yolanda-web/actions/runs/38081715749)
+pasó ambos jobs, incluido smoke API-only, drill Docker y motor Cloudflare local. No es un deploy.
+Primera prueba detectó y corrigió directorios temporales de Nginx incompatibles con raíz read-only,
+antes de deploy. Paquete ordinario:186archivos, digest del sitio vigente intacto. QR revalidado302
+al formulario temporal el10-oct19:56UTC; no cambió destino/atribución.
 
 Próximo: resolver custodia, fuente pusheada/CI verde, baseline de contenedores y release backend exacto;
 crear volúmenes/llave productivos nuevos, ingress TLS/auth, instalar/verificar timers y restore/copia

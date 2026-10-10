@@ -199,6 +199,37 @@ PR#16 sigue sin merge. Pages y QR302 temporal conservados: **no es el formulario
 
 ## Gate de publicación y siguiente lote
 
+**Candidata10-oct, no desplegada:** consentimiento `sy-el-paso-registration-v3-2026-10-10`;
+audiencia pública solo acepta modo productivo. Se prepara overlay de recursos exactos con foto
+autorizada y relay de Pages en `pages/functions/`, deliberadamente fuera del directorio Functions
+del sitio ordinario. `scripts/package-intake-public.mjs` marca el overlay `deployable:false`:
+no es el release completo. No subirlo solo ni apuntar el QR antes de probar el stack dedicado.
+Binding previsto `SY_INTAKE_PROXY_AUTH` únicamente servidor; ninguna credencial GHL/frontend.
+Destino propuesto fijo `sy-intake-api.despertartdigital.cloud` todavía no existe por este lote;
+DNS, ingress autenticado, config productiva, runtime Function y captura pública siguen pendientes.
+No promover DB/llave de staging ni mezclar este release con home/cartas/Analytics.
+
+Operación one-shot nueva, explícita y privada:
+
+```sh
+python -m sy_intake.maintenance backup --root /backups/scheduled
+python -m sy_intake.maintenance monitor --root /backups/scheduled
+```
+
+El directorio dedicado debe existir con permisos700; fichero snapshot/manifest600. Cada backup
+crea carpeta nueva, sincroniza disco y verifica hash, cifrado y conteos. Monitor comprueba DB
+activa, espacio≥256MiB y última copia válida≤8h; una copia nueva dañada/incompleta no se oculta
+usando una antigua. Resultados privados con códigos/conteos, sin PII. Lock evita solapamiento;
+los jobs deben manejar fallo/reintento sin confundirlo con éxito. No hay cron/timer, alertas,
+copia externa automática ni borrado/retención instalado. Propuesta de operación: snapshot4h,
+monitor5min y destino externo protegido; confirmar custodia/retención y comprobar restore antes
+de habilitar registros reales. El volumen local no protege de pérdida del VPS.
+
+La tasa candidata600/15min es agregada por peer real; no se usa IP reenviada sin contrato
+confiable. Revisar aforo y controles edge antes del release. El staging anterior sigue v2 y no
+se recreó aquí. Foto/canal provisional autorizados10-oct; evaluación legal definitiva, retención,
+procedimiento de bajas y release exacto no se certifican por esos permisos.
+
 1. Aprobar foto para uso público y cerrar responsable/canal/aviso de privacidad y retención.
 2. El ingreso HTTPS privado ya está verificado. Cerrar la operación productiva:
    volumen durable, secreto en Doppler

@@ -74,11 +74,18 @@ derivado existente `selected-30-1440.webp` (1440×2160). Referencia original Dri
 `1F909QMEVjK49Ea9IRcOCuR4VoAPoM1vR`. Esa procedencia no acredita ubicación física, identidad
 de la persona ni autorización comercial. Alt literal: persona con sombrero y micrófono en una terraza.
 
-Derechos **review-only**: los dos derivados WebP de1200/600px y las capturas que los contienen
+**Estado histórico9-oct, antes del permiso siguiente:** derechos review-only; los dos derivados WebP de1200/600px y las capturas que los contienen
 viven en `media/` y `qa-photo/`, ambas ignoradas por `.gitignore` local del prototipo. No subir
 ningún binario ni captura a GitHub, ni incorporar a un paquete publicable. No hay ampliación de
 resolución, medios remotos ni copia de la fotografía a las carpetas públicas del sitio.
 Un clon no tendrá la imagen: la falta intencional de binarios conserva este gate de derechos.
+
+**Permiso público posterior10-oct:** Luis autoriza usar esta fotografía en el formulario público
+propio de El Paso. Los dos WebP aprobados se conservan ahora en
+`assets/media/loyalty-el-paso/`, con hashes/alcance en `services/loyalty-intake/public-media.json`.
+Las capturas de QA y copias locales siguen ignoradas. Este permiso no autoriza otros usos ni
+un deploy. El empaquetado público separado conserva composición y usa copy público sin textos
+de prueba; no habilita el prototipo local para datos reales. Estado/gates → WORKFLOW10-oct.
 
 ## Verificación visual previa a conectar captura ·9-oct
 

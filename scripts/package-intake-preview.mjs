@@ -8,7 +8,7 @@ import { fileURLToPath } from 'node:url';
 export const projectRoot = fileURLToPath(new URL('../', import.meta.url));
 export const previewHostname = 'registro-sy-prueba.despertartdigital.cloud';
 export const previewOrigin = `https://${previewHostname}`;
-export const consentVersion = 'sy-el-paso-registration-v2-2026-10-09';
+export const consentVersion = 'sy-el-paso-registration-v3-2026-10-10';
 export const sourceAllowlist = Object.freeze([
   ['prototypes/loyalty-intake/index.html', 'public/index.html'],
   ['prototypes/loyalty-intake/styles.css', 'public/styles.css'],
@@ -35,11 +35,11 @@ export function createPreviewConfig(siteKey) {
   };
 }
 
-function statIfPresent(path) {
+export function statIfPresent(path) {
   try { return lstatSync(path); } catch (error) { if (error.code === 'ENOENT') return null; throw error; }
 }
 
-function assertNoLinkAncestors(path) {
+export function assertNoLinkAncestors(path) {
   let current = resolve(path);
   while (true) {
     const info = statIfPresent(current);
@@ -50,7 +50,7 @@ function assertNoLinkAncestors(path) {
   }
 }
 
-function readSource(root, name) {
+export function readSource(root, name) {
   const path = resolve(root, name);
   assertNoLinkAncestors(path);
   const descriptor = openSync(path, constants.O_RDONLY | constants.O_NOFOLLOW);

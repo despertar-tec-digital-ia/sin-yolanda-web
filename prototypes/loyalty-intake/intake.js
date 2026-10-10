@@ -18,7 +18,9 @@
       privacyStorageQA: 'La prueba local guarda los registros cifrados en almacenamiento propio. La sincronización con GoHighLevel está desactivada.',
       privacyStorageProduction: 'Tus datos se guardan cifrados en almacenamiento propio para gestionar tu registro.',
       privacyContact: 'Para consultas, puedes contactar a @sinyolandaelpaso en Instagram. El correo de privacidad y el responsable están pendientes de confirmación.',
+      privacyContactPublic: 'Sin Yolanda El Paso gestiona este registro, con almacenamiento protegido operado por Despertar TEC Digital IA. Para consultar, corregir o solicitar la baja de tus datos, contacta a @sinyolandaelpaso en Instagram.',
       privacyDraft: 'Borrador del 9 de octubre de 2026. Antes de publicar, se deben verificar el responsable, el contacto de privacidad y la custodia de los datos; no es el aviso legal definitivo.',
+      privacyPublic: 'Registrarte no activa mensajes, reservas, puntos ni regalos. Si más adelante se habilitan correos promocionales, respetaremos tu autorización y podrás retirarla. No uses este formulario para solicitudes de catering; contacta directamente a la sucursal.',
       privacyLink: 'Contactar a Sin Yolanda El Paso ↗', consentLegend: 'Autorizaciones',
       consent: 'He leído el aviso de privacidad y autorizo el uso de mis datos para gestionar mi registro.',
       marketing: 'Quiero recibir novedades y promociones de Sin Yolanda por correo.',
@@ -32,6 +34,8 @@
       qaFootnote: 'Solo se guarda en el almacenamiento local de prueba.',
       qaVerificationFailed: 'No pudimos verificar la prueba local. Recarga la página e intenta de nuevo.',
       configUnavailable: 'Conexión local no disponible. Esta vista previa no guarda datos.',
+      configUnavailablePublic: 'El registro no está disponible en este momento. Reintenta más tarde o contacta a la sucursal.',
+      publicUnavailableButton: 'Registro no disponible',
       verificationLabel: 'Verificación de seguridad', verificationRetry: 'Reintentar verificación',
       verificationLoading: 'Cargando verificación…', verificationWaiting: 'Completa la verificación para registrarte.',
       verificationReady: 'Verificación completada.', verificationExpired: 'La verificación caducó. Complétala de nuevo.',
@@ -75,7 +79,9 @@
       privacyStorageQA: 'The local test stores registrations encrypted in our own storage. Synchronization with GoHighLevel is disabled.',
       privacyStorageProduction: 'Your details are saved encrypted in our own storage to manage your registration.',
       privacyContact: 'For questions, contact @sinyolandaelpaso on Instagram. The privacy email and responsible party are awaiting confirmation.',
+      privacyContactPublic: 'Sin Yolanda El Paso manages this registration, with protected storage operated by Despertar TEC Digital IA. To access, correct or request removal of your details, contact @sinyolandaelpaso on Instagram.',
       privacyDraft: 'Draft dated October 9, 2026. Before publication, the responsible party, privacy contact and data custody must be verified; this is not the final legal notice.',
+      privacyPublic: 'Registering does not activate messages, reservations, points or gifts. If promotional emails are enabled later, we will respect your permission and you can withdraw it. This form is not for catering requests; contact the location directly.',
       privacyLink: 'Contact Sin Yolanda El Paso ↗', consentLegend: 'Permissions',
       consent: 'I have read the privacy notice and authorize the use of my details to manage my registration.',
       marketing: 'I would like to receive Sin Yolanda news and promotions by email.',
@@ -89,6 +95,8 @@
       qaFootnote: 'Saved only in local test storage.',
       qaVerificationFailed: 'We could not verify the local test. Reload the page and try again.',
       configUnavailable: 'Local connection unavailable. This preview does not save details.',
+      configUnavailablePublic: 'Registration is unavailable right now. Try again later or contact the location.',
+      publicUnavailableButton: 'Registration unavailable',
       verificationLabel: 'Security verification', verificationRetry: 'Retry verification',
       verificationLoading: 'Loading verification…', verificationWaiting: 'Complete verification to register.',
       verificationReady: 'Verification complete.', verificationExpired: 'Verification expired. Complete it again.',
@@ -121,6 +129,7 @@
 
   let language = 'es';
   const form = document.getElementById('intake-form');
+  const publicAudience = form.dataset.audience === 'public';
   const fields = {
     name: document.getElementById('full-name'),
     email: document.getElementById('email'),
@@ -141,7 +150,7 @@
   const widgetContainer = document.getElementById('turnstile-widget');
   const verificationStatus = document.getElementById('verification-status');
   const verificationRetry = document.getElementById('verification-retry');
-  const consentVersion = 'sy-el-paso-registration-v2-2026-10-09';
+  const consentVersion = 'sy-el-paso-registration-v3-2026-10-10';
   const turnstileScript = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
   const receiptPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
   let captureEnabled = false;
@@ -186,12 +195,19 @@
     const real = production();
     button.disabled = !captureEnabled || pending || (real && !verificationToken);
     button.textContent = copy[language][pending ? real ? 'productionPending' : 'pendingButton' : real ? 'productionButton' : captureEnabled ? 'qaButton' : 'button'];
+    if (publicAudience && !captureEnabled) button.textContent = copy[language].publicUnavailableButton;
     captureNote.hidden = (!captureEnabled || real) && !configFailed;
-    captureNote.textContent = copy[language][configFailed ? 'configUnavailable' : 'qaNote'];
+    captureNote.textContent = copy[language][configFailed ? publicAudience ? 'configUnavailablePublic' : 'configUnavailable' : 'qaNote'];
     document.getElementById('preview-note').textContent = copy[language][real ? 'productionFootnote' : captureEnabled ? 'qaFootnote' : 'previewNote'];
     document.querySelectorAll('[data-copy="privacyStorage"]').forEach(node => {
       node.textContent = copy[language][real ? 'privacyStorageProduction' : captureEnabled ? 'privacyStorageQA' : 'privacyStorage'];
     });
+    if (publicAudience) {
+      document.querySelectorAll('[data-copy="privacyContact"]').forEach(node => { node.textContent = copy[language].privacyContactPublic; });
+      document.querySelectorAll('[data-copy="privacyDraft"]').forEach(node => { node.textContent = copy[language].privacyPublic; });
+      document.getElementById('preview-note').textContent = copy[language].productionFootnote;
+      document.querySelectorAll('[data-copy="privacyStorage"]').forEach(node => { node.textContent = copy[language].privacyStorageProduction; });
+    }
     document.getElementById('success-title').textContent = copy[language][real ? 'productionSuccessTitle' : 'successTitle'];
     document.querySelectorAll('[data-copy="successBody"]').forEach(node => {
       node.textContent = copy[language][real ? 'productionSuccessBody' : 'successBody'];
@@ -210,6 +226,7 @@
   function validConfig(config) {
     if (!config || Array.isArray(config) || config.consentVersion !== consentVersion || typeof config.captureEnabled !== 'boolean' || typeof config.qaOnly !== 'boolean') return false;
     if (!config.captureEnabled) return config.mode === 'disabled' && config.qaOnly === true;
+    if (publicAudience && (config.mode !== 'production' || config.qaOnly !== false)) return false;
     if (typeof crypto?.randomUUID !== 'function') return false;
     if (config.mode === 'local-qa') return config.qaOnly === true && config.turnstileSiteKey === undefined;
     // Public sitekey syntax only; the server must still validate the token, hostname and action.
@@ -411,7 +428,7 @@
     failureCode = '';
     renderState();
     try {
-      const response = await fetch('/api/registrations', {
+      const response = await fetch(publicAudience ? '/api/loyalty/el-paso/registrations' : '/api/registrations', {
         method: 'POST', credentials: 'same-origin', cache: 'no-store', redirect: 'error',
         headers: { 'Content-Type': 'application/json', 'Idempotency-Key': attempt.key },
         body, signal: AbortSignal.timeout(10000),

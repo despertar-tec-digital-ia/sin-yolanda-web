@@ -7,7 +7,7 @@ from urllib.parse import urlsplit
 
 from cryptography.fernet import Fernet
 
-CONSENT_VERSION = "sy-el-paso-registration-v2-2026-10-09"
+CONSENT_VERSION = "sy-el-paso-registration-v3-2026-10-10"
 
 
 @dataclass(frozen=True)
@@ -19,7 +19,8 @@ class Settings:
     turnstile_secret: str = field(default="", repr=False)
     turnstile_hostname: str = "sin-yolanda.com"
     turnstile_action: str = "loyalty_register"
-    rate_limit: int = 120
+    # A dedicated gateway groups requests by its real peer. Do not claim per-guest IP tracking.
+    rate_limit: int = 600
     rate_window: int = 900
     max_body_bytes: int = 8192
 

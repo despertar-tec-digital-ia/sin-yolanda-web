@@ -1,6 +1,6 @@
 # Registro de rutas y cambios
 
-**Última actualización:** 2026-10-09 · **Dueño:** Luis, con aprobación de producto/contenido de Karina.
+**Última actualización:** 2026-10-10 · **Dueño:** Luis, con aprobación de producto/contenido de Karina.
 **Estado:** inventario de fuentes versionadas y destinos propuestos; no es un crawl HTTP completo.
 No aplicar redirects ni crear páginas solo por figurar en esta tabla.
 
@@ -49,6 +49,13 @@ Release9-oct: `8d176362-71a8-4267-b881-6b0d76da0377`, HEAD `3846955`, aprobació
 184servidos coincidentes y diez exclusiones404 por origen. Guadalajara permanece idéntico.
 El helper por sí solo no acredita publicación; esta comprobación remota sí verifica los aliases.
 Prueba física de una impresión pendiente antes del lote grande.
+
+**Candidata propia10-oct, no publicada:** `/el-paso/registro/` es pantalla dedicada ES/EN;
+`/api/loyalty/el-paso/registrations` es únicamente POST mismo-origen para guardar datos, sin GET
+de contactos. El overlay aislado de `package-intake-public.mjs` no contiene el resto del sitio y
+no se puede desplegar como release completo. Consentimiento v3, foto públicamente autorizada,
+relay y límites → WORKFLOW y README del servicio. No añadir estas rutas al sitemap ni cambiar
+`/q/el-paso-registro` hasta verificar y aprobar el release completo. QR conserva alias impreso.
 
 **Lote técnico posterior autorizado el 8-oct:** 12 destinos de fichas/cartas se preparan para
 indexación antes de 16 reglas301 exactas WordPress; cuatro páginas El Paso/Catering conservan

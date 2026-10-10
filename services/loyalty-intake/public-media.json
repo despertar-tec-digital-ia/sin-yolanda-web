@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "authorization": "user-approved-public-el-paso-registration",
+  "date": "2026-10-10",
+  "scope": "Fotografía del prototipo aprobada expresamente por Luis para el formulario público de registro de El Paso. No aprueba otros usos ni un despliegue.",
+  "description": "Persona con sombrero rosa y micrófono en una terraza. No atribuir identidad ni ubicación no corroboradas.",
+  "sourceDriveFileId": "1F909QMEVjK49Ea9IRcOCuR4VoAPoM1vR",
+  "hashes": {
+    "singer-600.webp": "aa77ff4c1fd6357fcc74de10f6cc3a8b25ad21d4a1beddc46c29ef354c6b184a",
+    "singer-1200.webp": "d069a5fad535834a1fbd977035b941047f45e5365aad662cd349a0f68c9d293a"
+  }
+}

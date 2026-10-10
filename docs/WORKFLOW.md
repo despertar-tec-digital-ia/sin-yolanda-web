@@ -1,6 +1,6 @@
 # Forma de trabajar y publicar
 
-**Última actualización:** 2026-10-09 · **Responsables:** Luis, técnica; Karina, negocio/contenido y hero.
+**Última actualización:** 2026-10-10 · **Responsables:** Luis, técnica; Karina, negocio/contenido y hero.
 **Estado:** candidato integrado en `main` y release limitado publicado el 8-oct; CI de PR y main
 verificado, publicación Pages manual y smoke remoto comprobado. CD automático, protecciones y
 secretos no están activados por este lote. Preparación, resultado y límites se registran abajo.
@@ -143,6 +143,45 @@ Recibos/captura privados ignorados `intake-private-https-*`, auditoría independ
 `sy-intake-https-postflight-*`; recursos/acceso/rollback solo en DEPLOY del vault.
 PR#16 sin merge, release Pages vigente y QR temporal302 intactos. Próximo gate: operación y aviso,
 derechos públicos de foto, frontend final y release aprobado; GHL conserva gate separado.
+
+### Registro propio · candidata pública preparada10-oct, sin publicación
+
+Auditoría read-only del formulario temporal: dos envíos persistidos, ambos internos según
+confirmación de Luis; **cero registros de clientes confirmados**. No conservar nombres, datos ni
+IDs de contactos en Git/vault ni inferir conversiones desde pruebas.
+Luis autoriza expresamente la fotografía del prototipo para el formulario público de El Paso y
+`@sinyolandaelpaso` como canal provisional para privacidad/bajas. No autoriza campañas, beneficios
+ni cambios productivos distintos de un release específico. Permiso/hashes →
+`services/loyalty-intake/public-media.json`; captura/procedencia histórica → README del prototipo.
+
+`package-intake-public.mjs` prepara solo un overlay aislado, marcado `deployable:false`: pantalla
+propia `/el-paso/registro/`, ES/EN, fotografía WebP aprobada, recursos explícitos, consentimiento
+v3 y relay server-side exclusivo `/api/loyalty/el-paso/registrations`. Copy público sin avisos QA;
+modo público no acepta captura local ficticia. Sin scripts de analítica ni PII en URL/storage/logs.
+El relay tiene origen/target fijos, credencial dedicada solo servidor, límites de cuerpo/plazos,
+errores sanitizados y recibo validado; sus pruebas usan un proveedor simulado, no captura real.
+`_routes.json` limita la Function a ese endpoint; el home/cartas no invocan esa función.
+No poner esta Function en el build ordinario ni subir el overlay solo: Pages reemplazaría el sitio.
+La fuente publicable general y su digest no se modifican por preparar este overlay.
+
+Validación local del corte10-oct:215 tests Node,146 Python (+43subcasos) y build de revisión186
+archivos pasan. Digest público preservado `d65b31f112d82c4521605a0993136b3861326d24c102bce431ca64ae5fff9c16`.
+Eso acredita contratos/cifrado/artefacto, no QA visual final ni la Function en runtime Cloudflare.
+
+`sy_intake.maintenance` prepara backup cifrado verificado y comprobación privada de DB, edad de
+copia y espacio disponible; no borra registros, instala horarios ni envía alertas al importarse.
+Todavía **no** hay respaldo programado externo, monitor activo ni política de retención instalada.
+La tasa candidata600/15min sigue agrupada por peer de gateway, no acredita control por visitante.
+
+El staging privado conserva la versión anterior desplegada; no servirle frontend v3 sin recrear
+exclusivamente ese backend con versión coincidente y aprobación. Próximo lote: QA visual final del
+overlay, compilar Function en runtime Cloudflare, ingress productivo dedicado, custodia/respaldos/
+bajas y release completo que conserve el baseline byte a byte, excepto adiciones explícitas y
+redirect QR autorizado. Después, prueba sintética real del release y sustitución aprobada del QR.
+GHL sigue desactivado en el backend propio; captura temporal vigente, home/menús/WordPress intactos.
+Guía técnica N0 puntual: [rutas Pages Functions](https://developers.cloudflare.com/pages/functions/routing/)
+y [bindings](https://developers.cloudflare.com/pages/functions/bindings/); capacidades documentadas,
+no equivalencia a una publicación ni a permisos/configuración productiva ya instalada.
 
 ### QR de carta Guadalajara · publicado y comprobado8-oct
 

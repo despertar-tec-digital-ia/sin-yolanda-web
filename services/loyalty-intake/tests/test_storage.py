@@ -17,7 +17,7 @@ def payload():
     return {"full_name": "Synthetic Guest Alpha", "email": "alpha@example.test",
             "phone": "+12025550123", "birthday_day_month": "09/10", "locale": "es",
             "branch": "el-paso", "registration_consent": True, "email_marketing_consent": False,
-            "consent_version": "sy-el-paso-registration-v2-2026-10-09",
+            "consent_version": "sy-el-paso-registration-v3-2026-10-10",
             "source": {"utm_source": "qr", "utm_medium": "offline", "utm_campaign": "loyalty_el_paso", "utm_content": "registro_v2"}}
 
 

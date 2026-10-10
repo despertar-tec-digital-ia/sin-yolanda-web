@@ -5,6 +5,7 @@ import { request as httpRequest } from 'node:http';
 import test from 'node:test';
 import vm from 'node:vm';
 import { consentVersion, createLocalServer } from '../prototypes/loyalty-intake/serve-local.mjs';
+import { transformPublicHtml } from '../scripts/package-intake-public.mjs';
 
 const html = readFileSync(new URL('../prototypes/loyalty-intake/index.html', import.meta.url), 'utf8');
 const script = readFileSync(new URL('../prototypes/loyalty-intake/intake.js', import.meta.url), 'utf8');
@@ -44,9 +45,9 @@ class Element {
   }
 }
 
-async function ui({ enabled = false, configError = false, configStatus = 200, config, replies = [], width = 350, scriptError = false, scriptManual = false } = {}) {
+async function ui({ enabled = false, configError = false, configStatus = 200, config, replies = [], width = 350, scriptError = false, scriptManual = false, publicPage = false } = {}) {
   const state = { elements: [], calls: [], focused: undefined, uuid: 0, width, scripts: [], removedScripts: [], widgets: [], removedWidgets: [], resets: [], timers: new Map(), timerId: 0 };
-  for (const match of html.matchAll(/<([a-z][\w-]*)\b([^>]*)>/gi)) {
+  for (const match of (publicPage ? transformPublicHtml(html, script) : html).matchAll(/<([a-z][\w-]*)\b([^>]*)>/gi)) {
     const attributes = {};
     for (const attribute of match[2].matchAll(/([\w-]+)(?:="([^"]*)")?/g)) attributes[attribute[1]] = attribute[2] || '';
     state.elements.push(new Element(match[1], attributes, state));
@@ -96,10 +97,38 @@ async function ui({ enabled = false, configError = false, configStatus = 200, co
     widget: () => state.widgets.at(-1),
     runTimer(delay) { for (const [id, timer] of state.timers) if (timer.delay === delay) { state.timers.delete(id); timer.callback(); } },
     async scriptLoaded() { window.turnstile = turnstile; await state.scripts.at(-1).emit('load'); await tick(); },
-    posts: () => state.calls.filter(call => call.url === '/api/registrations'),
+    posts: () => state.calls.filter(call => call.url.endsWith('/registrations')),
     fill() { byId('full-name').value = 'Registro QA'; byId('email').value = 'qa@example.invalid'; byId('consent').checked = true; },
   };
 }
+
+test('the public page never admits QA capture and uses only customer-facing ES/EN fallback copy', async () => {
+  for (const options of [{ enabled: true }, { configError: true }, { config: { ...productionConfig, qaOnly: true } }]) {
+    const view = await ui({ ...options, publicPage: true });
+    view.fill(); await view.byId('intake-form').emit('submit');
+    assert.equal(view.posts().length, 0); assert.equal(view.byId('register-button').disabled, true);
+    assert.equal(view.byId('register-button').textContent, 'Registro no disponible');
+    assert.doesNotMatch(view.byId('capture-note').textContent, /local|ficticios|GHL/);
+    assert.match(view.elements.find(node => node.dataset.copy === 'privacyContact').textContent, /sinyolandaelpaso/);
+    await view.byId('language-toggle').emit('click');
+    assert.equal(view.byId('register-button').textContent, 'Registration unavailable');
+    assert.doesNotMatch(view.elements.find(node => node.dataset.copy === 'privacyDraft').textContent, /Draft|preview/);
+  }
+});
+
+test('public capture uses its one same-origin relay and confirms saved state without promising benefits', async () => {
+  const view = await ui({ config: productionConfig, publicPage: true });
+  view.fill(); view.widget().options.callback('synthetic-turnstile-token');
+  await view.byId('intake-form').emit('submit');
+  assert.equal(view.posts().length, 1);
+  assert.equal(view.posts()[0].url, '/api/loyalty/el-paso/registrations');
+  assert.equal(view.byId('registration-success').hidden, false);
+  assert.equal(view.byId('success-title').textContent, 'Tu registro quedó guardado');
+  assert.equal(JSON.parse(view.posts()[0].options.body).email_marketing_consent, false);
+  await view.byId('language-toggle').emit('click');
+  assert.equal(view.byId('success-title').textContent, 'Your registration was saved');
+  assert.equal(view.byId('email').value, '');
+});
 
 test('default preview and unavailable config cannot capture; only Turnstile script/frame are externally permitted', async () => {
   assert.match(html, /connect-src 'self'; form-action 'none'/);

@@ -17,7 +17,7 @@ const files = new Map([
   ['/fonts/roboto-slab-700.woff2', ['../../fonts/roboto-slab-700.woff2', 'font/woff2']],
 ]);
 
-export const consentVersion = 'sy-el-paso-registration-v2-2026-10-09';
+export const consentVersion = 'sy-el-paso-registration-v3-2026-10-10';
 const backendUrl = 'http://127.0.0.1:8801/api/registrations';
 const maxBodyBytes = 8192;
 const receiptPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;

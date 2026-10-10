@@ -19,6 +19,8 @@ class Handler(BaseHTTPRequestHandler):
     def log_message(self, *args):
         pass
     def do_POST(self):
+        # This fixture serves one POST per connection; it has no upstream pool.
+        self.close_connection = True
         try:
             if self.headers.get('Transfer-Encoding', '').lower() == 'chunked':
                 pieces = []
@@ -41,6 +43,7 @@ class Handler(BaseHTTPRequestHandler):
             self.send_response(502 if failure else 200)
             self.send_header('Content-Type', 'application/json')
             self.send_header('Content-Length', str(len(response)))
+            self.send_header('Connection', 'close')
             self.end_headers()
             self.wfile.write(response)
         except (BrokenPipeError, ConnectionResetError, ValueError):

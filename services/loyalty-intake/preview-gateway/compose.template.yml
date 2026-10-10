@@ -1,0 +1,46 @@
+# Local candidate: creating this file does not authorize publication or DNS changes.
+# Supply paths/names only. Authentication contents are a runtime bind, never build/env.
+name: sinyolanda-intake-preview
+services:
+  gateway:
+    image: sinyolanda-intake-preview:candidate-local
+    build:
+      context: .
+    restart: unless-stopped
+    user: "101:101"
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    pids_limit: 64
+    mem_limit: 64m
+    cpus: 0.5
+    stop_grace_period: 15s
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=1048576,mode=1777
+    volumes:
+      - type: bind
+        source: ${SY_INTAKE_PREVIEW_AUTH_FILE:?Dedicated existing authentication file required}
+        target: /run/secrets/preview_auth
+        read_only: true
+        bind:
+          create_host_path: false
+    networks: [staging, proxy]
+    labels:
+      traefik.enable: "true"
+      traefik.docker.network: ${SY_INTAKE_PREVIEW_PROXY_NETWORK:?Existing dedicated proxy network required}
+      traefik.http.routers.sy-intake-preview.rule: Host(`registro-sy-prueba.despertartdigital.cloud`)
+      traefik.http.routers.sy-intake-preview.entrypoints: websecure
+      traefik.http.routers.sy-intake-preview.tls: "true"
+      traefik.http.routers.sy-intake-preview.tls.certresolver: ${SY_INTAKE_PREVIEW_CERTRESOLVER:?Existing verified TLS resolver required}
+      traefik.http.routers.sy-intake-preview.service: sy-intake-preview
+      traefik.http.services.sy-intake-preview.loadbalancer.server.port: "8080"
+    logging:
+      driver: none
+
+networks:
+  staging:
+    external: true
+    name: sinyolanda-loyalty-intake-staging_default
+  proxy:
+    external: true
+    name: ${SY_INTAKE_PREVIEW_PROXY_NETWORK:?Existing dedicated proxy network required}

@@ -1,0 +1,8 @@
+*
+!Dockerfile
+!pyproject.toml
+!uv.lock
+!run_production.py
+!sy_intake/
+!sy_intake/*.py
+sy_intake/__pycache__/

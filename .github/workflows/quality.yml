@@ -14,6 +14,38 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  loyalty-intake:
+    name: Local intake contract checks
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: services/loyalty-intake
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.12'
+      - run: python -m pip install uv==0.11.7
+      - run: uv sync --frozen --group dev
+      # Synthetic temporary DBs and injected providers only; no deployment or GHL secrets.
+      - run: uv run --frozen pytest -q
+      # Build only: the API image excludes QA files and never starts a public listener in CI.
+      - run: docker build --tag sinyolanda-intake-ci:${{ github.sha }} .
+      # Disposable loopback container, synthetic key/data only; no provider verification or messages.
+      - run: uv run --frozen python container_smoke.py --image sinyolanda-intake-ci:${{ github.sha }}
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .node-version
+          package-manager-cache: false
+      # Disposable auth/proxy networks and synthetic config only; no DNS/TLS/provider or publication.
+      - name: Check the private preview gateway and body deadline
+        working-directory: .
+        env:
+          SY_INTAKE_SMOKE_BACKEND_IMAGE: sinyolanda-intake-ci:${{ github.sha }}
+        run: node scripts/smoke-intake-preview.mjs
   quality:
     name: Public artifact checks
     runs-on: ubuntu-24.04

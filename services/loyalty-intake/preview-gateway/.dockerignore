@@ -1,0 +1,15 @@
+*
+!Dockerfile
+!nginx.conf
+!public/
+!public/index.html
+!public/styles.css
+!public/intake.js
+!public/intake-config.json
+!public/assets/
+!public/assets/media/
+!public/assets/media/brand-logo.png
+!public/fonts/
+!public/fonts/bebas-neue-400.woff2
+!public/fonts/roboto-slab-400.woff2
+!public/fonts/roboto-slab-700.woff2

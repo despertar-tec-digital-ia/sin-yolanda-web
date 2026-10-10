@@ -1,6 +1,6 @@
 # Registro de rutas y cambios
 
-**Última actualización:** 2026-10-08 · **Dueño:** Luis, con aprobación de producto/contenido de Karina.
+**Última actualización:** 2026-10-09 · **Dueño:** Luis, con aprobación de producto/contenido de Karina.
 **Estado:** inventario de fuentes versionadas y destinos propuestos; no es un crawl HTTP completo.
 No aplicar redirects ni crear páginas solo por figurar en esta tabla.
 
@@ -18,6 +18,37 @@ destino no cambia la imagen. Esa sustitución requiere aprobación operativa de 
 (Humberto) y su propio release. UTM queda preparado, **sin activar ni acreditar Analytics**.
 No modificar redirects WordPress pausados, GA4, fichas ni rutas Guadalajara en este lote.
 Los assets de impresión están en `print/qr-guadalajara-menu`, fuera de la allowlist pública.
+
+## QR de registro El Paso · publicado9-oct
+
+Aliases activos: `/q/el-paso-registro` y `/q/el-paso-registro/`, ambos302 al mismo
+formulario nativo de El Paso. Form ID confirmado: `nN59k3I7TT6TOxDl4XET`.
+URL exacta copiada de Share de GHL y abierta/renderizada por el operador:
+`https://api.leadconnectorhq.com/widget/form/nN59k3I7TT6TOxDl4XET`.
+`_redirects` añade atribución fija `utm_source=qr`, `utm_medium=offline`,
+`utm_campaign=loyalty_el_paso`, `utm_content=registro_v1`; no acepta destino por parámetros.
+Publicado y abierto desde la URL permanente; GET/HEAD302 exactos en ambos aliases. QR separado de la carta,
+sin modificar `/q/gdl-menu` ni activar campañas. Nombre/email y consentimiento principal requeridos;
+teléfono/cumpleaños opcionales y casilla email opcional sin premarcar. Workflows nativos cero,
+notificaciones/envíos automáticos y sticky contact desactivados según la revisión del operador.
+La prueba ficticia autorizada de captura nativa GHL pasó y conserva consentimiento/atribución.
+Este destino es temporal: Luis pide una pantalla propia ES por defecto con botón English/Español
+y backend protegido antes de sincronizar GHL. No cambiar el alias ni el QR al sustituir el destino.
+
+El release debe conservar todos los archivos del baseline servido y cambiar exclusivamente
+`_redirects`, añadiendo las dos líneas después de las reglas existentes. Pages reemplaza el
+deployment completo: subir solo `_redirects` eliminaría el resto del sitio. Comparar hashes
+calculados de ambos artefactos con `assertRegistrationRedirectPatch`, fijar deployment baseline,
+commit/digest nuevos y aprobación exacta antes del upload; revalidar baseline justo antes.
+`scripts/prepare-registration-release.mjs` compara las fuentes/bytes copiados contra el paquete
+completo del8-oct y prepara una candidata local no aprobada; solo `--approval` explícito pasa
+por el gate existente de Git limpio/digest/autorización humana. No publica ni genera aprobaciones.
+Release9-oct: `8d176362-71a8-4267-b881-6b0d76da0377`, HEAD `3846955`, aprobación en
+`releases/2026-10-09-el-paso-registration-qr.json`. Recibo ignorado:
+`.artifacts/registration-production-20261009/postflight-site.json`; 185archivos conservados,
+184servidos coincidentes y diez exclusiones404 por origen. Guadalajara permanece idéntico.
+El helper por sí solo no acredita publicación; esta comprobación remota sí verifica los aliases.
+Prueba física de una impresión pendiente antes del lote grande.
 
 **Lote técnico posterior autorizado el 8-oct:** 12 destinos de fichas/cartas se preparan para
 indexación antes de 16 reglas301 exactas WordPress; cuatro páginas El Paso/Catering conservan

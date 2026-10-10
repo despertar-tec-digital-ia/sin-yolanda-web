@@ -251,6 +251,44 @@ copias y no usar `down -v`. Aún no hay imagen/servicio productivos que revertir
 sustituir destino del QR requieren prueba real y aprobación separada; su captura temporal no depende
 de este servicio. El PR#16 sigue sin merge, Pages/carta/Analytics y captura temporal conservados.
 
+### Registro propio · servicio protegido activado 10-oct, sin cutover público
+
+Luis aprueba el proyecto de secretos exclusivo, sin contratar ampliación, y pide preferir API/
+CLI/MCP frente a navegación manual. Alta/custodia/deploy/QA por CLI y SSH; las claves del widget
+ya leído se transfieren sin mostrarlas ni crear archivos intermedios. No se amplían permisos
+Cloudflare ni se crea una credencial global. El bloqueo anterior quedó resuelto sin reutilizar
+configs o promover staging; custodia y acceso productivos tienen dueño en el runbook privado.
+
+Fuente desplegada `34371bbebaee4313ce7311c6052311d546b6d75c`, solo `services/loyalty-intake`,
+archive de Git; CI 38081715749 y checkpoint documental 38082107371 verdes. Excepción acotada de
+activación del backend aprobado desde PR#16, sin merge global ni publicación Pages. Backend y
+gateway dedicados: UID 10001/101, raíz read-only, sin capacidades/puertos publicados ni GHL;
+la base productiva se inicializa vacía, con llave nueva, independiente de las dos pruebas staging.
+
+TLS confiable y autenticación comprobados en el ingreso API-only. Quince sondas pasan antes y
+después del reinicio: 401 sin credencial, ningún frontend/archivo/contacto/health/docs expuesto,
+método/origen/JSON/query estrictos, cuerpos fijos/chunked de 8193 bytes → 413, payload inválido 400
+y token anti-bots real inválido 400; no se insertan registros. Cloudflare reconoce el secreto nuevo y
+rechaza el token inválido; no es challenge válido ni captura pública positiva. Headers no-store/
+noindex/nosniff presentes. Gateway sin logs de solicitudes; credencial del relay no se reenvía.
+
+Backup cada 4 h y monitor cada 5 min instalados como timers privados, estados agregados root-only;
+snapshot/manifiesto cifrados verificados, restore a copia nueva, continuidad de cifrado/base
+tras reiniciar solo backend/gateway y copia externa manual protegida comprobados. Base y cola
+con cero registros/envíos/sync. Los 39 servicios ajenos conservan ID/arranque/image. No hay borrado,
+retención automática, alertas externas ni copia externa automática. QR 302 temporal/atribución,
+Pages/home/menús/WordPress/Analytics intactos; no integración ni escritura GHL desde este servicio.
+
+Recibos ignorados `.artifacts/intake-production-20261010/`: imágenes/baseline/postflightHTTPS/
+recuperación/copia externa/reinicio. Recursos exactos, token de acceso acotado, horarios y rollback
+→ DEPLOY del vault; no copiar credenciales/DB/PII a este repo. No usar la existencia del backend
+para anunciar que el formulario propio ya captura desde el QR.
+
+Siguiente: cerrar operación de privacidad/bajas/retención y protección externa continua; preparar
+release completo con sitekey real y binding solo servidor, probar captura ficticia en origen/action
+finales y obtener aprobación exacta antes de cambiar el destino del mismo QR. No publicar solo
+el overlay ni mezclar otros cambios del PR; GHL/campañas mantienen su puerta separada.
+
 ### QR de carta Guadalajara · publicado y comprobado8-oct
 
 Luis autoriza la ruta corta `/q/gdl-menu` hacia la carta WordPress original, sin editar su

@@ -1,7 +1,8 @@
 # Registro propio Sin Yolanda · candidata privada
 
-**Estado9-oct2026:** API, almacenamiento cifrado y frontend de QA integrados localmente.
-Sin deploy, contacto real, credenciales GHL, transporte GHL real ni campañas. El QR público sigue
+**Estado9-oct2026:** API, almacenamiento cifrado y frontend de QA integrados localmente;
+backend candidato desplegado exclusivamente en staging privado. Sin contacto real, credenciales
+GHL, transporte GHL real ni campañas. El QR público sigue
 capturando en el formulario temporal vigente; nada de esta carpeta forma parte del paquete Pages.
 
 ## Contrato y límites
@@ -40,7 +41,9 @@ server-side. IP solo del peer; headers reenviados no se confían. Runner local d
 QA explícita solo `http://127.0.0.1:8798`+peer loopback+token local. Producción no se activa al faltar
 un secreto ni admite esa configuración. Verificación Turnstile exige éxito, hostname/action
 `loyalty_register`, timeout y error fail-closed. El frontend incluye contrato de widget explícito
-productivo, probado con mocks; todavía no existe widget/configuración real para este servicio.
+productivo, probado con mocks. Ya existe widget Managed dedicado para `sin-yolanda.com`, sin
+pre-clearance; su secreto real es reconocido por Cloudflare y rechaza tokens inválidos. Todavía
+no se ha probado un challenge válido desde navegador ni una captura API con ese challenge.
 
 Tasa por IP inicial configurable en código: revisar para WiFi compartido/aforo antes de publicar.
 Ingress productivo debe imponer tamaño/tiempos, TLS y origen; definir confianza de proxy exacta
@@ -84,8 +87,9 @@ añade filesystem read-only, límites de recursos, capacidades eliminadas y vol�
 dedicados. Puerto **solo127.0.0.1:8841**: no Traefik, DNS ni publicación. No usarlo como ingress
 definitivo: falta revisar proxy/IP confiable y transporte mismo-origen desde Pages.
 
-La config propuesta `ddtia/prd_sinyolanda-intake` **todavía no existe**. El inventario read-only9-oct
-confirmó Docker/Compose/red del VPS y capacidad disponible, pero ningún servicio de captura propio.
+La config productiva propuesta `ddtia/prd_sinyolanda-intake` **todavía no existe**. La prueba privada
+autorizada9-oct usa exclusivamente `ddtia/stg_sinyolanda-intake`, llave nueva independiente de QA,
+volúmenes dedicados y token de servicio read-only acotado a esa config con duración7días.
 No reutilizar `prd_mcp-server`, llaves de QA ni volúmenes de otros clientes. Además de los secretos
 anteriores, el contrato de Compose pide `SY_INTAKE_IMAGE_TAG`, `SY_INTAKE_ORIGINS`,
 `SY_INTAKE_TURNSTILE_HOSTNAME`, `SY_INTAKE_DATA_VOLUME` y `SY_INTAKE_BACKUP_VOLUME` explícitos.
@@ -114,16 +118,29 @@ container_smoke.py --image sinyolanda-loyalty-intake:<tag-explicito>`. Crea y li
 contenedor/volumen UUID de pruebas ficticias: arranque sin secretos rechazado, API privada,
 UID10001, escritura cifrada, backup, reinicio, status y restore. No valida Turnstile real ni hace
 POST de alta pública/GHL; fixture se escribe directamente en Store para probar persistencia.
-Primer drill local pasó; las nuevas etapas CI no se declaran remotas verificadas hasta su ejecución.
+Drill local y CI remoto [`38021007420`](https://github.com/despertar-tec-digital-ia/sin-yolanda-web/actions/runs/38021007420)
+pasaron, incluyendo build y recuperación sintética. No son prueba de integración pública.
+
+**Staging privado comprobado9-oct:** snapshot Git pusheado `e16fdf51ede6f021d25c5c647e83ad88816e0c68`,
+imagen `staging-feb1c84-20261009`, proyecto Compose dedicado. `/health`200 y bind loopback8841,
+UID10001 y raíz read-only; los37servicios previos permanecieron sin recreación/reinicio.
+API con token inválido→400 `verification_failed`, sin insertar registros. Una única fixture
+ficticia escrita directamente en Store probó cifrado, persistencia tras reinicio, backup/verify,
+restore a copia nueva y rechazo de llave incorrecta; queda pendiente, no sincronizada.
+Copia cifrada externa manual verificada; no equivale a backup programado, alertas o retención.
+Sin ingress público, DNS, Traefik, publicación Pages, merge ni cambios al QR. Operación y rollback
+privados tienen dueño en el runbook DEPLOY del vault; no copiar credenciales ni datos a este repo.
 
 ## Gate de publicación y siguiente lote
 
 1. Aprobar foto para uso público y cerrar responsable/canal/aviso de privacidad y retención.
-2. Preparar servicio dedicado del cliente en VPS/ingress con volumen durable, secreto en Doppler
+2. Conectar ingreso HTTPS/mismo-origen al servicio dedicado y cerrar operación productiva:
+   volumen durable, secreto en Doppler
    (`SY_INTAKE_ENCRYPTION_KEY`, `SY_INTAKE_TURNSTILE_SECRET`, nunca valores en repo), backup/restore
    protegido, monitoreo sin PII y procedimientos privados de consulta/baja/exportación.
-3. Configurar widget Turnstile real, hostname/origen/ruta final y quitar copy/token exclusivos QA;
-   probar caída, reinicio y captura autorizada en candidato. No cambiar ruta del QR aún.
+3. Integrar el widget real al frontend final, comprobar hostname/origen/action y quitar copy/token
+   exclusivos QA; probar challenge válido y captura API autorizada. La fixture de Store no sustituye
+   esta prueba. No promover la DB/llave de staging ni cambiar ruta del QR aún.
 4. Para GHL: verificar scopes/version/auth del lookup y creación/campos, representación real de
    checkbox, duplicados y garantías tras timeout. Snapshot desconocido/conflicto va a revisión;
    no upsert ciego ni overwrite de cumpleaños/consentimientos, DND, source o tags.

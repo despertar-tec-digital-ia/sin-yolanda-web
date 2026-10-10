@@ -92,9 +92,20 @@ Pruebas127Python (+43subcasos),197Node; diseño móvil/escritorio ES/EN conserva
 Contratos/procedimiento/gates → README del servicio y del prototipo. Fuente `feb1c841045b53aede35018ca05b667ca6bd4d16`,
 PR#16 sin merge. CI remoto [`38021007420`](https://github.com/despertar-tec-digital-ia/sin-yolanda-web/actions/runs/38021007420)
 comprobado verde en ambos jobs, incluidos build Docker y drill sintético sin secretos ni deploy.
-VPS/configs inspeccionados read-only: servicio/config dedicada aún no existe. Falta ingress seguro
-mismo-origen, widget real, secretos/custodia/backup externo, aviso/foto aprobados y release exacto.
-No merge, alta remota de recursos, publicación ni sustitución del QR por esta preparación.
+En ese corte no había servicio/config dedicada; su alta privada posterior se distingue abajo.
+No merge, publicación ni sustitución del QR por esta preparación.
+
+**Staging privado autorizado y verificado posteriormente9-oct:** backend de la fuente pusheada
+`e16fdf51ede6f021d25c5c647e83ad88816e0c68`, imagen `staging-feb1c84-20261009`; config dedicada
+`ddtia/stg_sinyolanda-intake`, llave nueva y widget Managed real sin pre-clearance. Solo loopback8841,
+sin ingreso público/DNS/Traefik. Token Cloudflare inválido rechazado sin alta y secreto reconocido;
+no se ha probado un challenge válido en navegador ni captura API positiva real.
+Una sola fixture sintética directa en Store acredita cifrado, reinicio, backup/restore y rechazo
+de llave incorrecta; ninguna sincronización GHL. Copia cifrada externa manual verificada, todavía
+sin automatización/retención/alertas. Los37servicios previos conservaron ID e inicio sin cambios.
+Runbook privado → DEPLOY del vault. QR302 temporal y Pages vigentes intactos; PR#16 sin merge.
+Siguiente: ingreso HTTPS/mismo-origen + prueba real del formulario, operación de privacidad,
+permiso público de foto y release exacto antes de sustituir captura. GHL mantiene su gate separado.
 
 ### QR de carta Guadalajara · publicado y comprobado8-oct
 

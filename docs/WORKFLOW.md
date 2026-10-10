@@ -56,6 +56,10 @@ protegido con almacenamiento durable antes de sincronizar GHL; la integración n
 credenciales ni depender de un redirect a LeadConnector como UX definitiva. Preparación local
 excluida de la allowlist; no declarar integración/backend publicado por existir un prototipo.
 Conservar la captura temporal funcional hasta verificar y autorizar su sustitución; mismo QR.
+Propuesta local en `prototypes/loyalty-intake/`, fuera del manifiesto público. Botón deshabilitado,
+CSP sin transporte/envíos, servidor loopback con allowlist; no es un formulario de captura.
+Revisión del operador390px/escritorio, cambio completo ES/EN conserva datos y recarga limpia;
+evidencia ignorada `.artifacts/registration-form-20261009/own-es-*`. Backend propio no implementado.
 
 ### QR de carta Guadalajara · publicado y comprobado8-oct
 

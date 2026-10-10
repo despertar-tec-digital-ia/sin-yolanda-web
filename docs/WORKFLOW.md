@@ -37,7 +37,8 @@ presente en el selector para títulos, Inter existente para lectura. Base `#2024
 | Fotos | Archivos intactos. Música usa la foto de canto ya servida en el selector; La banda reutiliza la foto humana antes usada en Música. En home son escenas generales de marca, sin atribuirlas a una sede diferente |
 | Páginas secundarias | Revisión responsive de15páginas, sin réplica de la tipografía del piloto. La Cantina/Eventos/Tienda y fichas/Catering conservan familias distintas; revisar esa armonización después del juicio del piloto |
 
-`visual-pilot.css` solo carga en home/directorio. La versión global de assets se conserva;
+`visual-pilot.css` cargaba solo en home/directorio en ese primer piloto; D15 extiende la misma
+hoja a La Cantina/Eventos/Tienda (ver «Pulido editorial y secundarios»). La versión global de assets se conserva;
 `assetVersions` del manifiesto permite invalidar exclusivamente renderer/i18n/CSS del piloto.
 El validador exige overrides JS/CSS del allowlist y versiones correctas en sus consumidores;
 tests negativos rechazan caché antigua y overrides de archivos ajenos. No regenerar cartas o
@@ -153,6 +154,54 @@ cuatro páginas protegidas El Paso/Catering; no relajar ese gate para publicar u
 Siguiente: Luis revisa esta candidata; después armonizar secundarios por bloques. Menús,
 WordPress, QR, registro, horarios y producción no modificados. La aprobación de dirección B o
 el uso del banco local no equivale a aprobar publicación.
+
+### Pulido editorial y secundarios · candidata local10-oct
+
+D15, petición posterior de Luis: conserva el hero fotográfico superpuesto, retira la etiqueta
+visible «Pausar fotos», actualiza el anuncio de El Paso y evita repetir el selector como destino
+para cada pretexto. No implica publicación, menús, WordPress, QR ni registro/lealtad.
+
+- El control del hero es un icono de44px con nombre accesible ES/EN; permite pausar/reanudar,
+  teclado y reduced-motion. La secuencia/rótulo/composición D14 se conservan.
+- `SY_DATA` conserva estado `coming-soon`, fecha9-oct y canal de reserva `none` para El Paso;
+  solo `statusLabel` pasa a «Nueva apertura», reutilizado por anuncio y tarjeta. Filtro/footer
+  dicen «Nuevas y próximas» para evitar presentar esta novedad como una fecha futura. No se
+  certifican apertura operativa, horarios ni reservas; la ficha importada mantiene su gate.
+- «Se aceptan pretextos chiquitos» ya aparece en la fuente publicada anterior `3846955`;
+  Git registra su introducción en `1df5822` (26-sep). Esto acredita presencia previa, no autoría
+  individual de Karina. Se conservan los seis textos; pasan de enlaces repetidos a artículos,
+  más compactos en móvil. El cumpleaños/carta/hero siguen usando el único selector aprobado.
+- La experiencia enlaza La Cantina. El cierre conserva «Ya quedó» y enlaza Eventos/Catering:
+  destinos existentes con propósito propio, sin nuevas páginas ni reserva/compra simuladas.
+- «Lo que viene» integra una fotografía amplia junto a la cartelera blanca; una columna en
+  móvil/tablet. Fechas/sedes siguen derivadas de `SY_DATA` y vencimientos por zona, sin promos
+  inventadas ni atribuir la fotografía a esas noches. Fuente: banco Karina7-oct, Woodlands#147,
+  `1alcX17sxFx3mb8A4c_RVTQ8Vf78sUv5b.png`, SHA256
+  `78b3fba5e4f7d2b31de7af7e0e969b045c2cfa162c8754441a0c4570bb3772d4`.
+  Derivados `agenda-canto-{640,1280}.webp`, solo resize,59,578/139,796bytes, lazy y srcset;
+  recibo `.artifacts/visual-polish/media-provenance.json`. No acredita derechos para un release.
+- La Cantina/Eventos/Tienda ya existían. Comparten ahora masthead, Bebas/Inter, blancos,
+  contraste legible y acciones simples mediante el mismo `visual-pilot.css`. Contenido/listas
+  heredadas intactas; el pulido no certifica surtido/servicios/precios de esas páginas.
+  Fichas/Catering importados se corrigen por donante, no retocando HTML generado aquí.
+- Header al scroll en las cinco páginas: teclado mantiene visible la cabecera incluso cuando
+  el foco mueve la página; rueda/tacto/puntero restablecen el comportamiento de scroll.
+
+**Verificación del paquete local:**195archivos, digest
+`9aebc706730059d823685726904903f90ea2ac923b7e2d368b2aee826fe1ab9f`.
+`npm run check`:180/180;60casos ES/EN ×320/390/768/1024/1440/1920 en home/directorio/
+La Cantina/Eventos/Tienda, sin overflow/errores JS; geometría de títulos, foto/cartelera,
+idiomas nuevos, menú táctil/Escape y header/Tab comprobados.16destinos locales con200 y
+anclas existentes. Pausa con Space, reanudación, transición, reduced-motion y nombre accesible
+EN comprobados.10casos adicionales de teclado/puntero/rueda confirman que el header mantiene
+accesibilidad y recupera su scroll; delta del registro y20archivos protegidos comprobados byte
+a byte. Recibos/capturas/scripts `.artifacts/visual-polish/`. Rollback local al checkpoint
+`81caf8c` anterior; no ejecutar un rollback productivo por este encargo.
+Chromium emulado, sin certificación Safari/dispositivos físicos ni lanzamiento integral.
+`npm run build` sigue rechazando las cuatro páginas protegidas de revisión; se empaqueta
+con audiencia `review`, sin relajar el gate. `_redirects`, cartas, HTML importado y archivos de
+registro no cambiaron; la versión global de assets se conserva y se invalidan solo consumidores
+públicos de JS/CSS modificados. Sin push/merge/preview público/deploy.
 
 ### Registro El Paso v1 · candidata local9-oct
 
@@ -426,6 +475,7 @@ automatizar vigencia con aprobar contenido nuevo leído de Instagram. Sin agenda
 | D12 · 8-oct; piloto10-oct | Piloto local, pendiente de juicio visual | Revisar identidad tipográfica, color por función/sede, header y transiciones después de la integración | Home/directorio preparados y QA local; revisión de Luis antes de réplica; fuente de resultado en bloque visual de este documento |
 | D13 · 10-oct | Encargo explícito Luis; candidata local | Revisar hero/ES-EN, fotos frente a video, header al scroll, blanco y prioridad del selector | Fuente/resultado en «Hero, blanco y prioridad»; permite modificar hero en esta rama, no publicar ni tocar cartas/WordPress/QR/registro |
 | D14 · 10-oct | Corrección explícita Luis; candidata local | Rechaza foto/texto separados; recuperar rótulo y acciones sobre la foto | Fondo fotográfico completo con sombreado continuo y encuadres responsive; conserva secuencia, idiomas y alcance D13, sin aprobación de publicación |
+| D15 · 10-oct | Pulido posterior solicitado por Luis; candidata local | Icono de pausa, Nueva apertura El Paso, foto/cartelera y menos CTA repetidos; armonizar secundarios existentes | Resultado y QA en «Pulido editorial y secundarios»; no habilita operación de El Paso ni publicación |
 
 Agregar una fila solo si cambia el contrato. Cambios de implementación → PR/commit; cambios de
 ruta → ROUTES; no duplicar reseñas largas de sesión. Un release registra commit, sourceRef/hash,

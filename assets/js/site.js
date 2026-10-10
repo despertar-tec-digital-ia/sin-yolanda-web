@@ -51,7 +51,7 @@
             `<a href="${branch.page}">${branch.shortName} · <span>${branch.venueCity || branch.city}</span></a>`).join("")}
         </div>
         <div>
-          <strong>Próximamente</strong>
+          <strong>Nuevas y próximas</strong>
           ${data.branches.filter(branch => branch.status === "coming-soon").map(branch =>
             `<span>${branch.shortName} · ${branch.city}</span>`).join("")}
         </div>
@@ -72,7 +72,7 @@
             <button class="filter active" type="button" data-venue-filter="all" aria-pressed="true">Todas</button>
             <button class="filter" type="button" data-venue-filter="mx" aria-pressed="false">México</button>
             <button class="filter" type="button" data-venue-filter="us" aria-pressed="false">Estados Unidos</button>
-            <button class="filter" type="button" data-venue-filter="soon" aria-pressed="false">Próximamente</button>
+            <button class="filter" type="button" data-venue-filter="soon" aria-pressed="false">Nuevas y próximas</button>
           </div>
           <ul class="venue-gallery" data-venue-gallery>
             ${branches.map((branch, index) => {
@@ -80,13 +80,13 @@
               const tag = hasPage ? "a" : "div";
               const name = branch.shortName;
               const hasOpeningDate = branch.status === "coming-soon" && branch.openingDate === "2026-10-09";
-              const opening = hasOpeningDate ? "Abre el 9 de octubre" : "Próximamente";
+              const opening = hasOpeningDate ? branch.statusLabel : "Próximamente";
               return `<li class="venue-item${index === 0 ? " is-open" : ""}" data-venue-item data-region="${branch.region}" data-status="${branch.status}">
               <${tag} class="venue-card${index === 0 ? " is-open" : ""}${branch.status === "coming-soon" ? " venue-card--soon" : ""}${branch.venuePhoto ? "" : " venue-card--announcement"}"${hasPage ? ` href="${branch.page}"` : ""} data-venue data-branch-id="${branch.id}">
                 <span class="venue-frame" aria-hidden="true">${branch.venuePhoto ? `<img src="${branch.venuePhoto}" alt="" width="1400" height="1000" loading="lazy" decoding="async" style="object-position:${branch.venuePosition || "50% 50%"}" />` : `<span class="venue-announcement">Sin Yolanda<span>Próximamente</span></span>`}<span class="venue-shade"></span></span>
                 <span class="venue-location" aria-hidden="true">${branch.country === "México" ? "Jalisco, México" : branch.city}</span>
                 <span class="venue-collapsed" aria-hidden="true">${name}</span>
-                ${hasOpeningDate ? `<span class="venue-opening-date" aria-hidden="true"><span>Abre</span>9 OCT</span>` : ""}
+                ${hasOpeningDate ? `<span class="venue-opening-date" aria-hidden="true"><span>Apertura</span>9 OCT</span>` : ""}
                 <span class="venue-label">
                   ${branch.status === "coming-soon" ? `<span class="venue-badge${hasOpeningDate ? " venue-badge--opening" : ""}">${opening}</span>` : ""}
                   <strong>${name}</strong>
@@ -104,9 +104,9 @@
   function openingAnnouncement() {
     const branch = data.branches.find((item) => item.id === "el-paso");
     if (!branch || branch.status !== "coming-soon" || branch.openingDate !== "2026-10-09") return "";
-    return `<aside class="opening-announcement" aria-label="Próxima apertura">
+    return `<aside class="opening-announcement" aria-label="${escapeHtml(branch.statusLabel)}">
       <div class="opening-announcement-inner">
-        <p class="opening-announcement-details"><span>Próxima apertura</span>
+        <p class="opening-announcement-details"><span>${escapeHtml(branch.statusLabel)}</span>
           <strong><a href="${branch.page}">El Paso</a></strong>
           <time datetime="${branch.openingDate}">9 de octubre</time></p>
         <a class="opening-announcement-link" href="${branch.page}">Conoce la sucursal
@@ -149,7 +149,7 @@
           </div>
           <button class="hero-motion" type="button" data-hero-motion data-paused="false">
             <span class="hero-motion-icon" aria-hidden="true"></span>
-            <span data-i18n-es="Pausar fotos" data-i18n-en="Pause photos">Pausar fotos</span>
+            <span class="hero-motion-label" data-i18n-es="Pausar fotos" data-i18n-en="Pause photos">Pausar fotos</span>
           </button>
           <div class="hero-copy hero-copy-cinema">
             <p class="hero-micro">México · Estados Unidos</p>
@@ -178,7 +178,7 @@
         <section class="section pretextos-section">
           <div class="section-heading"><div><p class="eyebrow">Los pretextos</p><h2 class="reveal">Se aceptan pretextos chiquitos.</h2></div></div>
           <div class="pretextos-grid">
-            ${pretextos.map(([nombre, remate], i) => `<a class="pretexto-card reveal-scale" href="#ubicaciones" data-select-location style="animation-delay:${0.08 * i}s"><strong>${nombre}</strong><em>“${remate}”</em><small>Elegir sucursal</small></a>`).join("")}
+            ${pretextos.map(([nombre, remate], i) => `<article class="pretexto-card reveal-scale" style="animation-delay:${0.08 * i}s"><strong>${nombre}</strong><em>“${remate}”</em></article>`).join("")}
           </div>
         </section>
 
@@ -191,6 +191,7 @@
             <h2 class="reveal">Trae a los cuatro.</h2>
             <p>Mesas largas, brindis completo y el micrófono que no se le niega a nadie. Aquí no hay mesa reservada para influencers: la mejor foto la hace tu gente.</p>
             <div class="mini-menu"><span>Gastronomía mexicana contemporánea</span><span>Música y participación social</span><span>Celebraciones con intención</span><span>Hospitalidad local, visión corporativa</span></div>
+            <a class="editorial-link" href="la-cantina.html">Conoce La Cantina <span aria-hidden="true">↗</span></a>
           </div>
         </section>
 
@@ -214,7 +215,7 @@
 
         <section class="reserve-cta" id="reserve">
           <div><p class="eyebrow">¿Sin Yolanda? Si sabes, sabes.</p><h2 class="reveal">Ya quedó.</h2></div>
-          <div><a class="button button-light" href="#ubicaciones" data-select-location>Reservar mesa</a></div>
+          <div class="closing-plans"><a class="button button-light" href="eventos.html">Organiza tu evento</a><a class="editorial-link" href="catering.html">Conoce Catering <span aria-hidden="true">↗</span></a></div>
         </section>
       </main>
       ${publicFooter()}`;
@@ -270,7 +271,11 @@
     const campaigns = homeCampaigns(now);
     if (!campaigns.length) return "";
     return `<section class="section cartelera-section home-agenda" id="cartelera" aria-labelledby="agenda-heading">
-      <div class="home-agenda-intro">
+      <div class="home-agenda-media"><img src="assets/media/agenda-canto-1280.webp"
+        srcset="assets/media/agenda-canto-640.webp 640w, assets/media/agenda-canto-1280.webp 1280w"
+        sizes="(max-width: 900px) 100vw, 40vw" width="1280" height="1686" loading="lazy" decoding="async"
+        alt="Dos personas cantan abrazadas junto a la barra; una alza un vaso y la otra sostiene un micrófono" /></div>
+      <div class="home-agenda-board"><div class="home-agenda-intro">
         <h2 id="agenda-heading">Lo que viene.</h2>
         <p>Hay fechas que se celebran en más de una cantina. Encuentra la tuya.</p>
       </div>
@@ -285,7 +290,7 @@
             </ul>
           </article>`;
         }).join("")}
-      </div>
+      </div></div>
     </section>`;
   }
 
@@ -804,15 +809,16 @@
   }
 
   function initScrollHeader() {
-    if (!["home", "locations"].includes(page)) return;
+    if (!["home", "locations", "la-cantina", "eventos", "tienda"].includes(page)) return;
     const header = document.querySelector(".public-header");
     if (!header) return;
     let previousY = window.scrollY;
     let ticking = false;
+    let keyboardNavigation = false;
     const update = () => {
       ticking = false;
       const y = Math.max(0, window.scrollY);
-      const protectedFocus = header.querySelector(":focus-visible") || header.querySelector(".public-nav.open");
+      const protectedFocus = keyboardNavigation || header.querySelector(":focus-visible") || header.querySelector(".public-nav.open");
       if (y < 80 || protectedFocus) {
         header.classList.remove("is-scrolling-down");
         previousY = y;
@@ -825,9 +831,20 @@
       if (!ticking) { ticking = true; requestAnimationFrame(update); }
     };
     window.addEventListener("scroll", onScroll, { passive: true });
-    header.addEventListener("focusin", () => header.classList.remove("is-scrolling-down"));
+    // Focus can scroll the page after Tab; keep the masthead available until pointer scrolling resumes.
+    for (const event of ["wheel", "touchstart", "pointerdown"]) {
+      window.addEventListener(event, () => { keyboardNavigation = false; }, { passive: true });
+    }
+    header.addEventListener("focusin", () => {
+      previousY = Math.max(0, window.scrollY);
+      header.classList.remove("is-scrolling-down");
+    });
     document.addEventListener("keydown", event => {
-      if (event.key === "Tab") header.classList.remove("is-scrolling-down");
+      if (event.key === "Tab") {
+        keyboardNavigation = true;
+        previousY = Math.max(0, window.scrollY);
+        header.classList.remove("is-scrolling-down");
+      }
     });
     update();
   }

@@ -1,6 +1,6 @@
 # Registro de rutas y cambios
 
-**Última actualización:** 2026-10-09 · **Dueño:** Luis, con aprobación de producto/contenido de Karina.
+**Última actualización:** 2026-10-10 · **Dueño:** Luis, con aprobación de producto/contenido de Karina.
 **Estado:** inventario de fuentes versionadas y destinos propuestos; no es un crawl HTTP completo.
 No aplicar redirects ni crear páginas solo por figurar en esta tabla.
 
@@ -65,8 +65,9 @@ en producción por este inventario. Datos públicos anteriores preservados en BR
 nativos a la ficha propia. Moreno Valley/San Diego sin href hasta tener página real. Houston
 ES/EN/carta 30-sep recuperados en paquete, no producción. Guadalajara mantiene `/san-ignacio`;
 sin nueva ruta `/guadalajara`, redirects ni duplicados. Detalle y QA: `WORKFLOW.md` §7.
-**Recorrido home posterior, solo local:** pretextos/cumpleaños enlazan `/#ubicaciones` mediante
-anclas nativas; `/#cartelera` presenta campañas compartidas con fechas por sede y enlaces a las fichas.
+**Recorrido home posterior, solo local:** cumpleaños/carta/hero enlazan `/#ubicaciones` mediante
+anclas nativas; D15 vuelve editoriales los seis pretextos, experiencia lleva a `/la-cantina` y
+cierre a `/eventos` y `/catering`, páginas existentes; `/#cartelera` presenta campañas compartidas con fechas por sede y enlaces a las fichas.
 No es una nueva página ni autoriza publicación. `#rotulo` se retira por D09: su arte vive en el H1
 del hero `#inicio`, no en dos bloques. Sin rutas/redirects nuevos; no cambia el sitemap.
 
@@ -78,7 +79,7 @@ y ruta inexistente dan 404 real. Panel demo/archivos de desarrollo siguen públi
 
 | Ruta | Fuente actual en repo | Tratamiento acordado/propuesto |
 |---|---|---|
-| `/` | `index.html` + `assets/js/site.js` | Conservar base/video; D09 autoriza rótulo dentro del hero; selector aprobado bajo `#ubicaciones` |
+| `/` | `index.html` + `assets/js/site.js` | D13/D14 autorizan fotos nativas y rótulo superpuesto; selector aprobado bajo `#ubicaciones`; D15 usa secundarios existentes, sin rutas nuevas |
 | `/locations` | `locations.html` | Reutiliza `venueShowcase()` del home y `SY_DATA`; entrada `#ubicaciones`, sin selector antiguo ni lista editable propia |
 | `/houston` | `houston.html` | Ficha donante importada; actualizar por fuente aprobada, no retoques del HTML generado |
 | `/en/houston/` | `en/houston/index.html` | Traducción correspondiente; navegación conserva sede |

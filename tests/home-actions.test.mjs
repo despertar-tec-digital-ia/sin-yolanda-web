@@ -113,11 +113,11 @@ test('occurrence retirement follows its own time zone rather than the visitor or
   assert.ok(!afterMidnight.includes('datetime="2026-10-24"'), 'Date labels must also retire with their occurrence');
 });
 
-test('pretexts and birthday CTA use native location selection with no opening modal or default city', () => {
+test('pretexts stay editorial while birthday uses native location selection without a default city', () => {
   const html = home();
   const pretexts = html.match(/<section class="section pretextos-section">[\s\S]*?<\/section>/)[0];
-  assert.equal((pretexts.match(/href="#ubicaciones"/g) || []).length, 6);
-  assert.equal((pretexts.match(/<a class="pretexto-card /g) || []).length, 6);
+  assert.equal((pretexts.match(/<article class="pretexto-card /g) || []).length, 6);
+  assert.doesNotMatch(pretexts, /<a |href=|Elegir sucursal/);
   assert.doesNotMatch(pretexts, /<button|data-open-modal|apartamos mesa|<span>0\d<\/span>/);
   const birthday = html.match(/<section class="section cumple-section"[\s\S]*?<\/section>/)[0];
   assert.equal((birthday.match(/<a /g) || []).length, 1);

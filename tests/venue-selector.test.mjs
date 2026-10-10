@@ -10,7 +10,9 @@ const context = { window: {} };
 vm.runInNewContext(read('assets/js/public-data.js'), context);
 const data = context.window.SY_DATA;
 const renderer = name => source.slice(source.indexOf('  function ' + name + '()'), source.indexOf('\n  function ', source.indexOf('  function ' + name + '()') + 1));
-const render = (name, facts = data) => vm.runInNewContext(renderer(name) + '\n' + name + '()', { data: facts });
+const escapeStart = source.indexOf('  function escapeHtml(');
+const escapeSource = source.slice(escapeStart, source.indexOf('\n  function ', escapeStart + 1));
+const render = (name, facts = data) => vm.runInNewContext(escapeSource + renderer(name) + '\n' + name + '()', { data: facts });
 
 test('selector has seven real records, native links and non-linked future announcements', () => {
   const html = render('venueShowcase');
@@ -43,6 +45,11 @@ test('opening strip has a real date/destination between the hero and early locat
   const html = render('openingAnnouncement');
   assert.match(html, /datetime="2026-10-09"/);
   assert.match(html, /Conoce la sucursal/);
+  assert.match(html, /Nueva apertura/);
+  const renamed = structuredClone(data);
+  renamed.branches.find(b => b.id === 'el-paso').statusLabel = 'Editorial label';
+  assert.match(render('openingAnnouncement', renamed), /Editorial label/);
+  assert.match(render('venueShowcase', renamed), /Editorial label/);
   assert.equal((html.match(/href="el-paso.html"/g) || []).length, 2);
   assert.match(source, /<\/section>\s*\$\{openingAnnouncement\(\)\}\s*\$\{venueShowcase\(\)\}\s*<section class="section section-after-hero" id="plan"/);
   const withoutDate = structuredClone(data);
@@ -65,7 +72,10 @@ test('future photos are illustrative brand media, without invented dates or dest
   const html = render('venueShowcase');
   assert.equal((html.match(/<img /g) || []).length, 7);
   assert.equal((html.match(/venue-badge--opening/g) || []).length, 1);
-  assert.match(html, /Abre el 9 de octubre/);
+  assert.match(html, /Nueva apertura/);
+  assert.doesNotMatch(html, /Abre el 9 de octubre/);
+  assert.equal(data.branches.find(b => b.id === 'el-paso').status, 'coming-soon');
+  assert.equal(data.branches.find(b => b.id === 'el-paso').reserveChannel, 'none');
   const opened = structuredClone(data);
   opened.branches.find(b => b.id === 'el-paso').status = 'active';
   assert.doesNotMatch(render('venueShowcase', opened), /venue-badge--opening|venue-opening-date/);

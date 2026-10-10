@@ -195,7 +195,9 @@
     "assets/media/cantina-selfie-640.webp",
     "assets/media/cantina-selfie-1280.webp",
     "assets/media/cantina-canto-640.webp",
-    "assets/media/cantina-canto-1280.webp"
+    "assets/media/cantina-canto-1280.webp",
+    "assets/media/agenda-canto-640.webp",
+    "assets/media/agenda-canto-1280.webp"
   ],
   "assetVersion": "20261008-migration-measurement",
   "reviewPages": [
@@ -205,8 +207,9 @@
     "en/catering/index.html"
   ],
   "assetVersions": {
-    "assets/js/site.js": "20261010-hero-overlay",
-    "assets/js/i18n.js": "20261010-hero-review",
-    "assets/css/visual-pilot.css": "20261010-hero-overlay"
+    "assets/js/site.js": "20261010-visual-polish",
+    "assets/js/i18n.js": "20261010-visual-polish",
+    "assets/css/visual-pilot.css": "20261010-visual-polish",
+    "assets/js/public-data.js": "20261010-opening-copy"
   }
 }

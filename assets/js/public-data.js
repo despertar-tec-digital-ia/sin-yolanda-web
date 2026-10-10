@@ -190,7 +190,7 @@ window.SY_DATA = {
       "country": "Estados Unidos",
       "region": "us",
       "status": "coming-soon",
-      "statusLabel": "Próxima apertura",
+      "statusLabel": "Nueva apertura",
       "concept": "Mexican restaurant · En preparación",
       "address": "340 Vin Rambla Dr, El Paso, TX 79912",
       "hours": "Horario por confirmar en la apertura",

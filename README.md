@@ -16,6 +16,10 @@ el video original y retirada del bloque duplicado. Cartelera con campañas fecha
 vivos de Karina, sin directorio Instagram. QA: 35 tests y once combinaciones de navegador;
 pretextos/cumpleaños conectados al selector. Alcance/evidencia/límites en
 `docs/WORKFLOW.md` §7. Sin merge ni despliegue.
+**Pulido visual local10-oct:** hero superpuesto ES/EN, icono de pausa, selector único arriba,
+«Nueva apertura» El Paso (sin cambiar estado operativo), cartelera con foto del banco y blanco,
+pretextos editoriales y La Cantina/Eventos/Tienda armonizados. QA y gates vigentes →
+`docs/WORKFLOW.md`, «Pulido editorial y secundarios». Sin publicación.
 
 ## Stack
 - HTML/CSS/JS vanilla; validación/empaquetado determinista con Node, sin dependencias npm.

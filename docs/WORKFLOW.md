@@ -1,10 +1,342 @@
 # Forma de trabajar y publicar
 
-**Última actualización:** 2026-10-08 · **Responsables:** Luis, técnica; Karina, negocio/contenido y hero.
+**Última actualización:** 2026-10-10 · **Responsables:** Luis, técnica; Karina, negocio/contenido y hero.
 **Estado:** candidato integrado en `main` y release limitado publicado el 8-oct; CI de PR y main
 verificado, publicación Pages manual y smoke remoto comprobado. CD automático, protecciones y
 secretos no están activados por este lote. Preparación, resultado y límites se registran abajo.
 La aprobación de este release no equivale a autorizar otros releases.
+
+### Registro El Paso v1 · publicado9-oct; pantalla propia siguiente
+
+Luis autoriza preparar/publicar el QR de registro con destino nativo GHL confirmado por Share:
+formulario `nN59k3I7TT6TOxDl4XET`, alias permanente `/q/el-paso-registro` y variante slash302.
+Destino exacto y atribución fija → ROUTES y `_redirects`. Sin nuevo backend, SQL, campañas ni
+automatizaciones. Los beneficios del programa siguen pendientes; no se prometen recompensas.
+
+Nombre/email obligatorios; teléfono opcional; cumpleaños opcional guardado como texto día/mes.
+Ese dato requiere normalización/validación antes de futuros workflows de cumpleaños. Consentimiento
+principal obligatorio y email promocional opcional sin premarcar. El contacto de privacidad es
+provisional, con Instagram como alternativa; su cierre operativo sigue pendiente. Esta v1 no
+certifica cumplimiento legal ni autoriza activar campañas. Workflows nativos cero; notificaciones,
+envíos automáticos y sticky contact desactivados según la revisión del operador.
+
+**Captura controlada autorizada y comprobada por el operador:** un único contacto ficticio llega a
+la ubicación correcta, con origen del formulario, consentimiento principal registrado y marketing
+vacío. Se confirma atribución `loyalty_el_paso` / `qr` / `offline` / `registro_v1` y el ID del formulario.
+Revisión móvil390×844 sin desbordamiento; recargar vuelve a dejar campos vacíos y casillas sin marcar.
+No incluir identificadores del contacto ni su email de prueba en estos documentos públicos.
+La captura se comprobó antes del release; después se abrió el mismo formulario desde el alias
+permanente publicado. No se ha probado una segunda alta/duplicado ni impresión física.
+
+Paquete local aislado186archivos:185preservados byte a byte, solo `_redirects` añade los dos aliases;
+home, hero, horarios, footer, headers y QR Guadalajara intactos. Baseline esperado Pages
+`32633a4f-b3ff-4d9c-9e78-8471d7773a66`; hashes revalidados contra su URL inmutable y dominio actual.
+Solo las transformaciones Cloudflare ya declaradas: privacidad recupera el hash exacto tras retirar
+exclusivamente obfuscación de email; noindex propio del home inmutable no afecta al dominio.
+Recibos locales ignorados en `.artifacts/registration-preflight-20261009/`.
+
+`prepare-registration-release.mjs` no publica ni aprueba: prepara candidata local y, con aprobación
+humana específica, reutiliza el gate de HEAD limpio/commit/digest. No heredar la autorización8-oct.
+Release limitado autorizado: HEAD `3846955c325880077149f88edc0b52f6ff513b0a`, source
+`cad36e4e21ac2bb88c0ecce5b45c5895b7f0a654`; aprobación exacta en
+`releases/2026-10-09-el-paso-registration-qr.json`. Baseline revalidado inmediatamente antes
+del upload. Producción Pages `8d176362-71a8-4267-b881-6b0d76da0377`, digest
+`d65b31f112d82c4521605a0993136b3861326d24c102bce431ca64ae5fff9c16`.
+GET/HEAD302 exactos en los cuatro aliases (registro y carta Guadalajara); form visible desde el QR.
+Postflight185archivos conservados,184HTTP coincidentes,45aliases y diez exclusiones404/origen;
+recibo ignorado `.artifacts/registration-production-20261009/postflight-site.json`.
+Rollback: redeploy completo `.artifacts/qr-menu-production-20261008/public` con autorización
+operativa; no subir un parche de un archivo. PNG/SVG negro/naranja codifican el alias permanente
+y permanecen válidos. Downloads actualizado con activación; prueba impresa previa al lote pendiente.
+No afirmar prueba física de impresión/iOS/Android ni medición de visitas por estos checks.
+
+**Nuevo requisito posterior de Luis:** página/formulario propios Sin Yolanda dentro del dominio,
+español por defecto y botón English/Español que cambie todo el formulario y mensajes. Backend
+protegido con almacenamiento durable antes de sincronizar GHL; la integración no debe exponer
+credenciales ni depender de un redirect a LeadConnector como UX definitiva. Preparación local
+excluida de la allowlist; no declarar integración/backend publicado por existir un prototipo.
+Conservar la captura temporal funcional hasta verificar y autorizar su sustitución; mismo QR.
+Propuesta local en `prototypes/loyalty-intake/`, fuera del manifiesto público. Por defecto botón
+deshabilitado; flag explícito `--with-intake` habilita **solo QA ficticia** con aviso/CTA propios.
+API y almacenamiento en `services/loyalty-intake/`; contratos, configuración, seguridad y gates
+tienen dueño en su README. Datos cifrados, idempotencia, outbox y backup/restore comprobados
+localmente. Éxito requiere transacción confirmada; sin GHL/red/contactos reales desde el API.
+Sincronización real todavía pendiente: adapter/worker probados únicamente con transporte simulado,
+por defecto desactivado; no equiparar esas pruebas a integración GHL viva.
+Refinamiento visual posterior: foto inédita del banco El Paso, selección30, encuadres distintos
+desktop/móvil y fundido corto al pie, sin texto sobre el rostro. Propósito explícito: programa de
+lealtad, no solo cumpleaños. Fuente, tamaños WebP y QA de diez combinaciones ES/EN → README
+del prototipo. Medios y capturas ignorados: derechos de revisión no equivalen a autorización
+comercial. Operador revisó escritorio1502×772 y móvil390×844; sin desbordamiento, alt traducido,
+nombre conservado al cambiar idioma y recarga limpia. `npm run check`:176/176; allowlist pública
+intacta. No modificar el QR ni publicar esta propuesta sin validar el lote productivo y su gate explícito.
+
+**Captura local posterior comprobada9-oct:** altas ficticias ES, EN y móvil desde navegador;
+recibos cifrados/cola pendiente confirmados en disco. Reload limpia datos/consentimientos; UI sin
+desbordamiento a320/390/768/1502px. Pruebas Node187/187 y Python76/76 (+43subcasos), incluidos
+reinicio, rollback, concurrencia, caída del proveedor ficticio, leases/reintentos, protección
+de origen/bots, tamaño de cuerpo y backup/restore. Revisión independiente corrigió symlinks del
+runner antes de leer/cambiar permisos y límite de buffer antes de ampliar memoria; regresiones
+añadidas. Evidencia ignorada `own-capture-*` en el mismo directorio de revisión.
+Job CI separado, dependencias congeladas, sin secretos/artefactos privados ni publicación;
+ejecución remota `38019422260` comprobada con ambos jobs verdes sobre fuente `7e5ea24`.
+No merge/CD/deploy por este lote. Público/QR/WordPress sin cambios; HEAD302 del QR temporal
+revalidado después del push, mismo destino nativo autorizado y sus UTMs.
+
+**Preparación operativa posterior9-oct, solo local:** runner productivo estricto, Docker base por
+digest y Compose candidato loopback sin Traefik/DNS; status/backup/verify/restore privados,
+sin export público ni sobrescritura. Drill contenedor sintético comprobó arranque sin secretos
+rechazado, UID10001, endpoints privados, cifrado, persistencia tras reinicio y recuperación.
+UI integra contrato Turnstile real probado solo con mocks; QA local no carga proveedor.
+Pruebas127Python (+43subcasos),197Node; diseño móvil/escritorio ES/EN conservado.
+Contratos/procedimiento/gates → README del servicio y del prototipo. Fuente `feb1c841045b53aede35018ca05b667ca6bd4d16`,
+PR#16 sin merge. CI remoto [`38021007420`](https://github.com/despertar-tec-digital-ia/sin-yolanda-web/actions/runs/38021007420)
+comprobado verde en ambos jobs, incluidos build Docker y drill sintético sin secretos ni deploy.
+En ese corte no había servicio/config dedicada; su alta privada posterior se distingue abajo.
+No merge, publicación ni sustitución del QR por esta preparación.
+
+**Staging privado autorizado y verificado posteriormente9-oct:** backend de la fuente pusheada
+`e16fdf51ede6f021d25c5c647e83ad88816e0c68`, imagen `staging-feb1c84-20261009`; config dedicada
+`ddtia/stg_sinyolanda-intake`, llave nueva y widget Managed real sin pre-clearance. Solo loopback8841,
+sin ingreso público/DNS/Traefik. Token Cloudflare inválido rechazado sin alta y secreto reconocido;
+no se ha probado un challenge válido en navegador ni captura API positiva real.
+Una sola fixture sintética directa en Store acredita cifrado, reinicio, backup/restore y rechazo
+de llave incorrecta; ninguna sincronización GHL. Copia cifrada externa manual verificada, todavía
+sin automatización/retención/alertas. Los37servicios previos conservaron ID e inicio sin cambios.
+Runbook privado → DEPLOY del vault. QR302 temporal y Pages vigentes intactos; PR#16 sin merge.
+Siguiente: ingreso HTTPS/mismo-origen + prueba real del formulario, operación de privacidad,
+permiso público de foto y release exacto antes de sustituir captura. GHL mantiene su gate separado.
+
+**Ingreso privado preparado posteriormente9-oct, solo local:** paquete independiente sin foto
+review-only, con logo/fuentes/paleta conservados y aviso ES/EN de datos ficticios. Gateway autenticado
+en todas las rutas, backend aislado y headers de credenciales/proxy eliminados; contrato y operación
+candidata → README del servicio. Dominio propuesto de revisión todavía sin DNS/TLS ni cambio del
+widget/origen staging. No confundir preparación con ingreso publicado o autorización de clientes.
+
+QA133Python (+43subcasos),207Node; smoke Docker real8/8: auth401 en rutas/métodos y errores,
+allowlist, headers/origen/JSON/query,8192bytes fijo/chunked, silencio de logs y deadline408 a10036ms
+pese a recibir bytes cada1800ms. Evidencia ignorada `sy-intake-smoke-09a5d60f6106-bQHjLC/evidence.json`;
+datos/secretos exclusivamente sintéticos, loopback, sin proveedor externo. QA Chromium8casos
+ES/EN a320/390/768/1502px, sin overflow; pérdida de proveedor bloquea envío, no POST, cookies ni
+storage. Capturas en `.artifacts/intake-preview-visual-20261009-final/`, escritorio ES/móvil EN
+revisados por el operador. Helper rechaza enlaces y no imprime JSON de autenticación inválido.
+CI añade el mismo smoke tras build del backend; su resultado remoto se verifica aparte del test local.
+QR302 temporal revalidado intacto. Sin merge, Pages, DNS/Traefik, challenge válido ni alta API real;
+la siguiente prueba HTTPS privada requiere aprobación. Privacidad/operación/foto y GHL mantienen
+gates propios; este lote no los resuelve ni modifica home, menús, Analytics o WordPress.
+
+**Ingreso HTTPS privado activado y probado posteriormente9-oct (10-oct UTC):** autorización
+específica de Luis para `registro-sy-prueba.despertartdigital.cloud`, autenticación y datos ficticios;
+no sustituir el QR ni conectar GHL. Fuente desplegada `e54c3e8`; CI remoto
+[`38024972898`](https://github.com/despertar-tec-digital-ia/sin-yolanda-web/actions/runs/38024972898)
+verde en ambos jobs. Paquete aislado digest
+`ce4f93d2969801bd52deb9a7ab3f0fc402a7fb6c1300a9004edc389637f51d44`, sin fotografía review-only.
+DNS nuevo único; los19registros anteriores intactos. TLS válido, widget Managed y origen exactos.
+Navegador autenticado ES/EN conserva campos al cambiar idioma, verificación automática real y
+alta ficticia exitosa con marketing desmarcado. No CAPTCHA interactivo ni token simulado.
+Dos registros/envíos/pendientes cifrados (fixture anterior + alta HTTPS), cero sincronizados/revisión;
+backup/verify/restore a copia nueva y persistencia tras reiniciar solo los dos contenedores dedicados.
+Copia externa manual cifrada verificada; no equivale a respaldo programado/retención/alertas.
+Once sondas HTTPS comprueban auth, método/origen/JSON/query/allowlist/tamaño y rechazo de token real
+inválido, sin nuevas altas; noindex/no-store/CSP. Los37servicios ajenos mantienen ID/arranque/image.
+Recibos/captura privados ignorados `intake-private-https-*`, auditoría independiente
+`sy-intake-https-postflight-*`; recursos/acceso/rollback solo en DEPLOY del vault.
+PR#16 sin merge, release Pages vigente y QR temporal302 intactos. Próximo gate: operación y aviso,
+derechos públicos de foto, frontend final y release aprobado; GHL conserva gate separado.
+
+### Registro propio · candidata pública preparada10-oct, sin publicación
+
+Auditoría read-only del formulario temporal: dos envíos persistidos, ambos internos según
+confirmación de Luis; **cero registros de clientes confirmados**. No conservar nombres, datos ni
+IDs de contactos en Git/vault ni inferir conversiones desde pruebas.
+Luis autoriza expresamente la fotografía del prototipo para el formulario público de El Paso y
+`@sinyolandaelpaso` como canal provisional para privacidad/bajas. No autoriza campañas, beneficios
+ni cambios productivos distintos de un release específico. Permiso/hashes →
+`services/loyalty-intake/public-media.json`; captura/procedencia histórica → README del prototipo.
+
+`package-intake-public.mjs` prepara solo un overlay aislado, marcado `deployable:false`: pantalla
+propia `/el-paso/registro/`, ES/EN, fotografía WebP aprobada, recursos explícitos, consentimiento
+v3 y relay server-side exclusivo `/api/loyalty/el-paso/registrations`. Copy público sin avisos QA;
+modo público no acepta captura local ficticia. Sin scripts de analítica ni PII en URL/storage/logs.
+El relay tiene origen/target fijos, credencial dedicada solo servidor, límites de cuerpo/plazos,
+errores sanitizados y recibo validado; sus pruebas usan un proveedor simulado, no captura real.
+`_routes.json` limita la Function a ese endpoint; el home/cartas no invocan esa función.
+No poner esta Function en el build ordinario ni subir el overlay solo: Pages reemplazaría el sitio.
+La fuente publicable general y su digest no se modifican por preparar este overlay.
+
+Validación local del corte10-oct:215 tests Node,146 Python (+43subcasos) y build de revisión186
+archivos pasan. Digest público preservado `d65b31f112d82c4521605a0993136b3861326d24c102bce431ca64ae5fff9c16`.
+Eso acredita contratos/cifrado/artefacto, no QA visual final ni la Function en runtime Cloudflare
+en aquel corte. CI remoto
+[`38076716098`](https://github.com/despertar-tec-digital-ia/sin-yolanda-web/actions/runs/38076716098)
+comprobado verde sobre `c8b9328`, incluidos build/drills; no publicación.
+
+`sy_intake.maintenance` prepara backup cifrado verificado y comprobación privada de DB, edad de
+copia y espacio disponible; no borra registros, instala horarios ni envía alertas al importarse.
+Todavía **no** hay respaldo programado externo, monitor activo ni política de retención instalada.
+La tasa candidata600/15min sigue agrupada por peer de gateway, no acredita control por visitante.
+
+**Verificación posterior 10-oct:** 18 casos Chromium del overlay ES/EN a 320/390/768/1024/1502/1920px;
+proveedor bloqueado/simulado, teclado, privacidad, validación, reintento y éxito sin POST real.
+Capturas revisadas en `.artifacts/intake-public-visual-20261010-final2/`; misma foto/composición
+aprobadas. Confirmación sin instrucciones residuales de campos obligatorios. Wrangler 4.149.0
+compila; 15 sondas en workerd local prueban límites/deadlines reales 8s/12s, redirects, origen y
+errores/recibos sanitizados con upstream/ASSETS ficticios. `redirect:error` pasa en Node pero
+workerd lo rechaza antes de enviar; ahora `manual` rechaza todos los 3xx sin leer siquiera su cuerpo.
+Regresión adicional para redirects con JSON detenido. Tooling con lockfile
+propio, prueba cableada en CI sin credenciales. CI remoto
+[`38079837515`](https://github.com/despertar-tec-digital-ia/sin-yolanda-web/actions/runs/38079837515)
+comprobado verde sobre `98a735c`, ambos jobs incluidos compilación/sondas nativas. No publicación.
+
+`prepare-own-registration-release.mjs` prepara 193 archivos completos: 184 del baseline intactos,
+solo headers/redirects propuestos y siete adiciones; Function fuera del webroot. Rechaza
+baseline/bytes distintos, omisiones, medios compartidos alterados y cambios ajenos. Siempre
+`deployable:false`, sin aprobar ni publicar; ensayo con sitekey sintética. QR propuesto hacia
+pantalla propia con atribución v2, pero `_redirects` del repo/dominio NO cambian. 219 Node/146 Python
+(+43 subcasos) pasan. Operación/ingress, widget productivo, bundle final, prueba real y aprobación
+siguen pendientes; no equivale a formulario público listo.
+
+El staging privado conserva la versión anterior desplegada; no servirle frontend v3 sin recrear
+exclusivamente ese backend con versión coincidente y aprobación. Próximo lote: autorización
+concreta del servicio productivo dedicado (sin cutover), ingress protegido y custodia/respaldos/
+bajas. Después, widget y prueba real del release completo que conserve el baseline byte a byte,
+excepto adiciones explícitas y
+redirect QR autorizado. Después, prueba sintética real del release y sustitución aprobada del QR.
+GHL sigue desactivado en el backend propio; captura temporal vigente, home/menús/WordPress intactos.
+Guía técnica N0 puntual: [rutas Pages Functions](https://developers.cloudflare.com/pages/functions/routing/)
+y [bindings](https://developers.cloudflare.com/pages/functions/bindings/); capacidades documentadas,
+no equivalencia a una publicación ni a permisos/configuración productiva ya instalada.
+
+### Registro propio · ingreso productivo preparado10-oct, activación retenida
+
+Luis autoriza activar únicamente backend productivo, base/llave nuevas y respaldos; QR/frontend/
+GHL/campañas quedan fuera. En confirmación específica posterior autoriza widget anti-bots nuevo
+para `sin-yolanda.com` y subdominio API protegido `sy-intake-api.despertartdigital.cloud`.
+Cloudflare: widget «Sin Yolanda · El Paso · Registro propio · Producción», Managed, único hostname
+oficial, sin pre-clearance; independiente de la prueba privada existente. No se completó CAPTCHA.
+Hostinger: un A nuevo→187.77.220.209, TTL300; comparación de inventario antes/después preserva
+los20registros anteriores y acredita21totales. Evidencia privada ignorada
+`.artifacts/intake-production-20261010/dns-before.json`, `dns-after.json`, `dns-created.png`.
+No modificación del dominio oficial, correo, WordPress ni DNS de otras páginas.
+
+**Bloqueo concreto:** Doppler rechaza crear `ddtia/prd_sinyolanda-intake` porque el entorno
+productivo alcanzó10configs. No contratar plan, eliminar/reutilizar configs ni mezclar con staging.
+Se solicitó autorización para proyecto exclusivo `ddtia-sinyolanda-intake`, sin ampliación de pago;
+sin respuesta todavía. No activar con secreto sintético ni sin custodia dedicada. El widget conserva
+sus claves en Cloudflare; ningún valor en Git/chat/artefactos de QA. No afirmar que el servicio está
+activo por existir DNS/widget. No hubo nuevo contenedor/DB/config productiva ni timers instalados.
+
+Implementación: `services/loyalty-intake/compose.production.yml`, dos servicios dedicados sin puertos
+publicados, UID10001/101, rootfs read-only, límites y red backend propia. Gateway en `api-gateway/`
+solo admite endpoint exacto, autenticación obligatoria, origen fijo del relay, JSON/cuerpo8192 y
+deadline del backend; no frontend/DB/llaves en imagen, logs desactivados y headers sensibles omitidos.
+`ops/` prepara timers4h/5min, snapshots nuevos cifrados verificados y monitor DB/edad≤8h/disco≥256MiB;
+estado root-only y códigos fijos. Sin borrado, alertas externas ni copia externa automática.
+
+QA local:159Python (+43subcasos),222Node, Compose validado con variables exclusivamente sintéticas;
+drill Docker de backend/reinicio/restore y smoke8/8 tanto privado como API-only pasan. Smoke API-only
+→ `.artifacts/sy-intake-smoke-1a2ac542d1be-6ZlxF7/evidence.json`; no proveedor/TLS/captura real.
+Regresión privada → `.artifacts/sy-intake-smoke-d0f97d717d3d-phrkdv/evidence.json`.
+Fuente guardada/pusheada en `34371bbebaee4313ce7311c6052311d546b6d75c`; autor/mensaje verificados.
+[CI remoto38081715749](https://github.com/despertar-tec-digital-ia/sin-yolanda-web/actions/runs/38081715749)
+pasó ambos jobs, incluido smoke API-only, drill Docker y motor Cloudflare local. No es un deploy.
+Primera prueba detectó y corrigió directorios temporales de Nginx incompatibles con raíz read-only,
+antes de deploy. Paquete ordinario:186archivos, digest del sitio vigente intacto. QR revalidado302
+al formulario temporal el10-oct19:56UTC; no cambió destino/atribución.
+
+Próximo: resolver custodia, fuente pusheada/CI verde, baseline de contenedores y release backend exacto;
+crear volúmenes/llave productivos nuevos, ingress TLS/auth, instalar/verificar timers y restore/copia
+cifrada externa. Para retirar el ingreso, detener únicamente su gateway; conservar volúmenes/claves/
+copias y no usar `down -v`. Aún no hay imagen/servicio productivos que revertir. Publicar frontend y
+sustituir destino del QR requieren prueba real y aprobación separada; su captura temporal no depende
+de este servicio. El PR#16 sigue sin merge, Pages/carta/Analytics y captura temporal conservados.
+
+### Registro propio · servicio protegido activado 10-oct, sin cutover público
+
+Luis aprueba el proyecto de secretos exclusivo, sin contratar ampliación, y pide preferir API/
+CLI/MCP frente a navegación manual. Alta/custodia/deploy/QA por CLI y SSH; las claves del widget
+ya leído se transfieren sin mostrarlas ni crear archivos intermedios. No se amplían permisos
+Cloudflare ni se crea una credencial global. El bloqueo anterior quedó resuelto sin reutilizar
+configs o promover staging; custodia y acceso productivos tienen dueño en el runbook privado.
+
+Fuente desplegada `34371bbebaee4313ce7311c6052311d546b6d75c`, solo `services/loyalty-intake`,
+archive de Git; CI 38081715749 y checkpoint documental 38082107371 verdes. Excepción acotada de
+activación del backend aprobado desde PR#16, sin merge global ni publicación Pages. Backend y
+gateway dedicados: UID 10001/101, raíz read-only, sin capacidades/puertos publicados ni GHL;
+la base productiva se inicializa vacía, con llave nueva, independiente de las dos pruebas staging.
+
+TLS confiable y autenticación comprobados en el ingreso API-only. Quince sondas pasan antes y
+después del reinicio: 401 sin credencial, ningún frontend/archivo/contacto/health/docs expuesto,
+método/origen/JSON/query estrictos, cuerpos fijos/chunked de 8193 bytes → 413, payload inválido 400
+y token anti-bots real inválido 400; no se insertan registros. Cloudflare reconoce el secreto nuevo y
+rechaza el token inválido; no es challenge válido ni captura pública positiva. Headers no-store/
+noindex/nosniff presentes. Gateway sin logs de solicitudes; credencial del relay no se reenvía.
+
+Backup cada 4 h y monitor cada 5 min instalados como timers privados, estados agregados root-only;
+snapshot/manifiesto cifrados verificados, restore a copia nueva, continuidad de cifrado/base
+tras reiniciar solo backend/gateway y copia externa manual protegida comprobados. Base y cola
+con cero registros/envíos/sync. Los 39 servicios ajenos conservan ID/arranque/image. No hay borrado,
+retención automática, alertas externas ni copia externa automática. QR 302 temporal/atribución,
+Pages/home/menús/WordPress/Analytics intactos; no integración ni escritura GHL desde este servicio.
+
+Recibos ignorados `.artifacts/intake-production-20261010/`: imágenes/baseline/postflightHTTPS/
+recuperación/copia externa/reinicio. Recursos exactos, token de acceso acotado, horarios y rollback
+→ DEPLOY del vault; no copiar credenciales/DB/PII a este repo. No usar la existencia del backend
+para anunciar que el formulario propio ya captura desde el QR.
+
+Siguiente: cerrar operación de privacidad/bajas/retención y protección externa continua; preparar
+release completo con sitekey real y binding solo servidor, probar captura ficticia en origen/action
+finales y obtener aprobación exacta antes de cambiar el destino del mismo QR. No publicar solo
+el overlay ni mezclar otros cambios del PR; GHL/campañas mantienen su puerta separada.
+
+### Registro propio · cierre técnico en dos etapas10-oct, sin publicación
+
+Continuación autorizada para preparar/verificar la pantalla propia ES/EN, no para sustituir el
+destino del QR ni instalar el binding productivo sin release específico. El helper completo usa
+`form-only` por defecto:193archivos,185del baseline9-oct conservados, solo `_headers` ampliado y
+siete adiciones. `_redirects` idéntico; todos los QR y cartas mantienen sus destinos actuales.
+`--stage qr-cutover` es propuesta explícita separada, siempre no aprobada/no desplegable. Después
+de publicar la pantalla, el siguiente cutover exige reconciliar el nuevo baseline193archivos,
+Function/binding y rollback completo; el helper fijado al9-oct no resuelve aún ese segundo release.
+
+QA local:224Node y revisión Chromium de18casos ES/EN a320/390/768/1024/1502/1920px. Sin overflow,
+imágenes decodificadas, navegación de teclado, valores conservados al cambiar idioma, privacidad,
+errores/reintentos y confirmación simulada. Se corrigió únicamente el foco residual de la captura
+automatizada: el enlace accesible seguía visible tras la prueba de teclado, no era un defecto de la
+composición móvil. Evidencia ignorada `.artifacts/intake-public-visual-20261010-form-stage-r2/`.
+Proveedor bloqueado/simulado; estos tests no guardan contactos reales ni prueban un challenge válido.
+
+Revalidación read-only por CLI: Pages sigue en `8d176362-71a8-4267-b881-6b0d76da0377`, fuente
+`3846955`, mismo digest; no hay binding `SY_INTAKE_PROXY_AUTH` instalado en Pages. Sitekey pública
+real disponible desde custodia, sin copiar el secreto de verificación a la web. Crawl GET-only:
+184archivos servidos,45aliases y diez exclusiones;183archivos exactos, las únicas tres diferencias
+son los aliases del aviso de privacidad. Revirtiendo exclusivamente un anchor y un script conocidos
+de protección de email de Cloudflare, las tres respuestas recuperan el hash íntegro exacto del
+baseline. Se conserva recibo bruto fallido por transformación y comprobación estricta separada:
+`.artifacts/intake-form-only-baseline-20261010/`. No ignorar diferencias genéricas de HTML.
+
+Servicio protegido/timers siguen sanos y base/cola con cero altas. No hubo deploy, cambio QR,
+binding, contacto GHL, campaña ni modificación del home/menús/WordPress. Pendiente confirmar
+responsable legal y quién atenderá consulta/corrección/baja en el canal provisional aprobado,
+definir retención y operación de borrado, protección externa continua y prueba real del formulario
+en origen/action finales. No presentar este paquete como captura pública completa ni como
+certificación legal. Aprobación exacta de pantalla+Function+binding sin QR primero; prueba ficticia
+autorizada después; cutover con baseline nuevo y aprobación independiente al final.
+
+**Cierre comprobado de esta preparación:** fuente limpia/pusheada `0424bac87273cc9f97591e7fbd06e97f61f11468`,
+autor/mensaje verificados; [CI38085466038](https://github.com/despertar-tec-digital-ia/sin-yolanda-web/actions/runs/38085466038)
+verde en ambos jobs. 224Node y159Python (+43subcasos), compilación Wrangler y15sondas nativas
+locales pasan. Paquete final con sitekey pública real:
+`.artifacts/intake-form-only-20261010-final/`, digest
+`7173b516ccfc0a2db1eab2d77495d4b035671c3bcb35f192bf9ca80eb7511098`,193archivos/185preservados,
+sin credencial del relay en el webroot; no aprobado/no publicado. Una sonda negativa del relay
+compilado local llega al ingreso productivo fijo: token inválido→400 `verification_failed`,
+conteos antes/después en cero. El bridge de pruebas normaliza exclusivamente headers de transporte
+local incompatibles con fetch de Node; no cambió la Function ni relajó su contrato. Recibo:
+`.artifacts/intake-form-only-20261010-runtime-final/protected-ingress-r5.json`; intentos anteriores
+del harness fallidos se conservan. No prueba captura positiva, binding desplegado ni navegador
+en origen oficial. Preview loopback del paquete exacto sobrescribe solo config en memoria para
+deshabilitar envíos; POST405 y controles404 comprobados. Composición desktop/móvil revisada.
 
 ### QR de carta Guadalajara · publicado y comprobado8-oct
 

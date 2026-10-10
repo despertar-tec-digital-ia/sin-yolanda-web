@@ -1,0 +1,75 @@
+# Backend-only activation. No Pages release, QR cutover or GHL transport.
+name: sinyolanda-loyalty-intake-production
+services:
+  intake:
+    image: sinyolanda-loyalty-intake:${SY_INTAKE_IMAGE_TAG:?Reviewed production tag required}
+    restart: unless-stopped
+    user: "10001:10001"
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    pids_limit: 128
+    mem_limit: 256m
+    cpus: 1.0
+    stop_grace_period: 20s
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=16777216,mode=1777
+    environment:
+      SY_INTAKE_MODE: production
+      SY_INTAKE_DATABASE: /data/registrations.sqlite
+      SY_INTAKE_ENCRYPTION_KEY: ${SY_INTAKE_ENCRYPTION_KEY:?Dedicated production key required}
+      SY_INTAKE_TURNSTILE_SECRET: ${SY_INTAKE_TURNSTILE_SECRET:?Production widget secret required}
+      SY_INTAKE_ORIGINS: https://sin-yolanda.com
+      SY_INTAKE_TURNSTILE_HOSTNAME: sin-yolanda.com
+    volumes:
+      - intake-data:/data
+      - intake-backups:/backups
+    networks: [backend]
+    logging:
+      driver: json-file
+      options: {max-size: 1m, max-file: "2"}
+  gateway:
+    image: sinyolanda-intake-api:${SY_INTAKE_GATEWAY_IMAGE_TAG:?Reviewed API gateway tag required}
+    restart: unless-stopped
+    user: "101:101"
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    pids_limit: 64
+    mem_limit: 64m
+    cpus: 0.5
+    stop_grace_period: 15s
+    depends_on:
+      intake: {condition: service_healthy}
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=1048576,mode=1777
+    volumes:
+      - type: bind
+        source: ${SY_INTAKE_PROXY_AUTH_FILE:?Dedicated existing production hash file required}
+        target: /run/secrets/intake_proxy_auth
+        read_only: true
+        bind: {create_host_path: false}
+    networks: [backend, proxy]
+    labels:
+      traefik.enable: "true"
+      traefik.docker.network: ddtia-net
+      traefik.http.routers.sy-intake-api.rule: Host(`sy-intake-api.despertartdigital.cloud`)
+      traefik.http.routers.sy-intake-api.entrypoints: websecure
+      traefik.http.routers.sy-intake-api.tls: "true"
+      traefik.http.routers.sy-intake-api.tls.certresolver: letsencrypt
+      traefik.http.routers.sy-intake-api.service: sy-intake-api
+      traefik.http.services.sy-intake-api.loadbalancer.server.port: "8080"
+    logging: {driver: none}
+volumes:
+  intake-data:
+    external: true
+    name: sinyolanda-loyalty-intake-production-data
+  intake-backups:
+    external: true
+    name: sinyolanda-loyalty-intake-production-backups
+networks:
+  backend:
+    name: sinyolanda-loyalty-intake-production-backend
+  proxy:
+    external: true
+    name: ddtia-net

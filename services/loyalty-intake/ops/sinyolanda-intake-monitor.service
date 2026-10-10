@@ -1,0 +1,15 @@
+[Unit]
+Description=Sin Yolanda private storage and backup check
+After=docker.service
+Requires=docker.service
+[Service]
+Type=oneshot
+User=root
+UMask=0077
+ExecStart=/usr/bin/python3 /app/services/sinyolanda-loyalty-intake/production/current/ops/host_maintenance.py monitor
+TimeoutStartSec=150
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/var/lib/sinyolanda-loyalty-intake

@@ -205,8 +205,8 @@
     "en/catering/index.html"
   ],
   "assetVersions": {
-    "assets/js/site.js": "20261010-hero-review",
+    "assets/js/site.js": "20261010-hero-overlay",
     "assets/js/i18n.js": "20261010-hero-review",
-    "assets/css/visual-pilot.css": "20261010-hero-review"
+    "assets/css/visual-pilot.css": "20261010-hero-overlay"
   }
 }

@@ -139,13 +139,13 @@
           <div class="hero-media" aria-hidden="true">
             <img class="hero-photo is-active" data-hero-slide src="assets/media/cantina-duo-1280.webp"
               srcset="assets/media/cantina-duo-640.webp 640w, assets/media/cantina-duo-1280.webp 1280w"
-              sizes="(max-width: 900px) 100vw, 56vw" width="1280" height="1707" alt="" fetchpriority="high" />
+              sizes="100vw" width="1280" height="1707" alt="" fetchpriority="high" />
             <img class="hero-photo" data-hero-slide data-src="assets/media/cantina-selfie-1280.webp"
               data-srcset="assets/media/cantina-selfie-640.webp 640w, assets/media/cantina-selfie-1280.webp 1280w"
-              sizes="(max-width: 900px) 100vw, 56vw" width="1280" height="1445" alt="" decoding="async" />
+              sizes="100vw" width="1280" height="1445" alt="" decoding="async" />
             <img class="hero-photo" data-hero-slide data-src="assets/media/cantina-canto-1280.webp"
               data-srcset="assets/media/cantina-canto-640.webp 640w, assets/media/cantina-canto-1280.webp 1280w"
-              sizes="(max-width: 900px) 100vw, 56vw" width="1280" height="1700" alt="" decoding="async" />
+              sizes="100vw" width="1280" height="1700" alt="" decoding="async" />
           </div>
           <button class="hero-motion" type="button" data-hero-motion data-paused="false">
             <span class="hero-motion-icon" aria-hidden="true"></span>

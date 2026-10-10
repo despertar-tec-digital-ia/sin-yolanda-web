@@ -101,11 +101,16 @@ una medición de campo. Investigación N0 acotada a medios responsive/video/movi
 [MDN picture](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/picture),
 [MDN reduced motion](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-reduced-motion).
 
-**Composición y navegación:** rótulo blanco y fotografía separados en desktop; hasta900px,
-foto arriba y texto/acciones debajo para conservar rostros. Un H1 accesible, misma geometría SVG
-y fuente del rótulo. Una acción principal blanca «Elige tu sucursal», secundaria textual «Ver el
-plan», destinos distintos. Selector aprobado único inmediatamente después del hero/anuncio,
-antes del plan. Registro, filtros, tarjetas y enlaces nativos conservados; no segunda lista.
+**Composición y navegación, corrección posterior solicitada por Luis:** rechaza la separación
+foto/texto y pide recuperar el rótulo sobre la fotografía, como en el hero anterior. La candidata
+vigente vuelve a un fondo fotográfico de ancho/alto completos, con sombreado continuo y sin panel
+separado. Rótulo a la derecha en desktop; hasta1100px, centrado hacia la parte inferior sobre la
+misma foto. Se revisan las tres escenas: encuadre fijo de la segunda a1,35 en tablet/móvil para
+subir el rostro principal por encima de las letras, sin zoom animado. `sizes=100vw` corresponde
+al nuevo ancho real de las imágenes. Un H1 accesible, misma geometría SVG y fuente del rótulo.
+Una acción principal blanca «Elige tu sucursal», secundaria textual «Ver el plan», destinos
+distintos. Selector aprobado único inmediatamente después del hero/anuncio, antes del plan.
+Registro, filtros, tarjetas y enlaces nativos conservados; no segunda lista.
 Cabecera se esconde al bajar después de80px, vuelve al subir/al usar Tab y permanece disponible
 con menú abierto/foco de teclado. Sin animación de cabecera/fotos en movimiento reducido.
 
@@ -123,8 +128,19 @@ traducción. Corregido «brinde»→«brindis» en Experiencia, sin nuevas ofert
 **Verificación:**180/180 en `npm run check`. QA local24casos home/directorio ES/EN a
 320/390/768/1024/1440/1920 y59accesos en22páginas; pruebas de pausa/reproducción real de las
 tres escenas, reduced-motion, cabecera abajo/arriba/Tab/menú abierto, retorno ES/EN, filtros y
-encuadres. Once combinaciones adicionales del QA del selector (incluidas320×568 y touch desktop).
-Recibos/capturas → `.artifacts/hero-refinement/`. QA del selector usa alcance explícito
+encuadres. Once combinaciones adicionales del hero en ambos idiomas (22casos, incluidas320×568
+y touch desktop) comprueban geometría superpuesta, acciones contenidas y rótulo bajo la cabecera.
+La candidata superpuesta repite esos controles sobre el paquete final; recibos/capturas
+→ `.artifacts/hero-overlay/`. El control de contraste fotografía+sombreado añade36escenas/
+idiomas/viewports y108regiones del texto pequeño blanco (países, subtítulo y enlace secundario):
+mínimo5,314:1 en las áreas capturadas, calculado sin letras/sombra del texto y frente a4,5:1.
+El primer ensayo detectó contraste insuficiente en países; se corrigió antes de mostrar.
+Esto no certifica accesibilidad completa ni contraste de todos los píxeles del SVG.
+Las dos corridas generales del home se detuvieron: una al ajustar sombreado y otra por repetir
+bloques ajenos a este cambio. No usar esos recibos parciales como certificación. Usar
+`hero-viewports.json`, `audit-final.log` y `contrast-report.json`. El QA general de bloques del
+candidato anterior queda como antecedente, no como una nueva corrida completa de este lote.
+El QA anterior del selector usó alcance explícito
 `SY_QA_SCOPE=home`: el modo completo conserva su fallo en las fichas importadas que ya carecen
 del `#cartelera` legado. No certificar agendas locales ni reconstruir fichas por esta corrección.
 La ausencia es previa al lote (HTML de esas fichas idéntico al baseline), registrada para el
@@ -409,6 +425,7 @@ automatizar vigencia con aprobar contenido nuevo leído de Instagram. Sin agenda
 | D11 · 8-oct | Solicitada Luis; solo candidato local | Preservar información de fichas vivas de Karina antes de sustituirlas por nuestras fichas/cartas | Snapshot público inmutable y conciliación por sede en BRANCH-CONTENT; lo observado no reemplaza datos ya confirmados |
 | D12 · 8-oct; piloto10-oct | Piloto local, pendiente de juicio visual | Revisar identidad tipográfica, color por función/sede, header y transiciones después de la integración | Home/directorio preparados y QA local; revisión de Luis antes de réplica; fuente de resultado en bloque visual de este documento |
 | D13 · 10-oct | Encargo explícito Luis; candidata local | Revisar hero/ES-EN, fotos frente a video, header al scroll, blanco y prioridad del selector | Fuente/resultado en «Hero, blanco y prioridad»; permite modificar hero en esta rama, no publicar ni tocar cartas/WordPress/QR/registro |
+| D14 · 10-oct | Corrección explícita Luis; candidata local | Rechaza foto/texto separados; recuperar rótulo y acciones sobre la foto | Fondo fotográfico completo con sombreado continuo y encuadres responsive; conserva secuencia, idiomas y alcance D13, sin aprobación de publicación |
 
 Agregar una fila solo si cambia el contrato. Cambios de implementación → PR/commit; cambios de
 ruta → ROUTES; no duplicar reseñas largas de sesión. Un release registra commit, sourceRef/hash,

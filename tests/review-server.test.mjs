@@ -45,18 +45,22 @@ test('review packages require an ignored explicit root and matching release hash
   writeFileSync(join(f.root, 'houston.html'), '<h1>Changed after packaging</h1>');
   assert.throws(() => loadReviewPackage(f.root, f.repository), /release hash/);
 });
-test('clean branch paths prefer HTML over menu directories; nested indexes remain usable', async t => {
-  const f = fixture(t), origin = await serve(t, f);
-  for (const path of ['/houston', '/houston/', '/houston.html', '/houston/?v=test']) {
+test('HTML aliases redirect like Pages while pages and directory routes retain distinct canonicals', async t => {
+  const origin = await serve(t, fixture(t));
+  for (const [path, destination] of [['/houston/', '/houston'], ['/houston.html', '/houston'],
+    ['/houston/?v=test', '/houston?v=test'], ['/index.html?campaign=x', '/?campaign=x'],
+    ['/houston/menu', '/houston/menu/'], ['/houston/menu/index.html', '/houston/menu/'],
+    ['/en/houston', '/en/houston/'], ['/en/houston/index.html?x=1', '/en/houston/?x=1']]) {
     const res = await rawRequest(origin, path);
-    assert.equal(res.status, 200); assert.equal(res.body, '<h1>Houston location</h1>');
+    assert.equal(res.status, 308); assert.equal(res.headers.location, destination); assert.equal(res.body, '');
+  }
+  for (const [path, expected] of [['/houston', '<h1>Houston location</h1>'],
+    ['/houston/menu/', '<h1>Houston menu</h1>'], ['/en/houston/', '<h1>Houston EN</h1>'], ['/', '<h1>Home</h1>']]) {
+    const res = await rawRequest(origin, path); assert.equal(res.status, 200); assert.equal(res.body, expected);
     assert.match(res.headers['content-type'], /text\/html/);
   }
-  for (const path of ['/houston/menu', '/houston/menu/', '/houston/menu/index.html'])
-    assert.equal((await rawRequest(origin, path)).body, '<h1>Houston menu</h1>');
-  for (const path of ['/en/houston', '/en/houston/'])
-    assert.equal((await rawRequest(origin, path)).body, '<h1>Houston EN</h1>');
-  assert.equal((await rawRequest(origin, '/')).body, '<h1>Home</h1>');
+  const head = await rawRequest(origin, '/houston.html?x=1', 'HEAD');
+  assert.equal(head.status, 308); assert.equal(head.headers.location, '/houston?x=1'); assert.equal(head.body, '');
 });
 test('true 404, no directory listings and no unlisted incidental files', async t => {
   const f = fixture(t); writeFileSync(join(f.root, 'accidental.html'), 'private incidental');

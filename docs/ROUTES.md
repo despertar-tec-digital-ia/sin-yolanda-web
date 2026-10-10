@@ -106,6 +106,25 @@ y ruta inexistente dan 404 real. Panel demo/archivos de desarrollo siguen públi
 | `/dashboard`, `/listings`, `/reputation`, `/requests`, `/reports`, `/review-detail` y `.html` | Antecedentes demo todavía en raíz, fuera de allowlist | Exclusión/enlaces/datos corregidos en candidato; falta desplegar y verificar 404/410 HTTP real |
 | `/pruebas/*` | Solo donante | Nunca importar como páginas indexables del sitio oficial |
 
+## Canonical y aliases · revisión local10-oct D16
+
+Contrato observado mediante26GET en `sin-yolanda.com` y reproducido en el servidor local:
+HTML superior (`/locations`, `/catering`, `/houston`, etc.) usa ruta sin slash; sus aliases
+`.html` y slash final responden308 al canonical conservando query. Índices anidados
+(`/en/catering/`, `/houston/menu/`, etc.) usan slash final; ausencia de slash y `/index.html`
+responden308. `/index.html`→`/`; desconocidos404. El mapa local se deriva del manifiesto,
+sin una segunda allowlist ni reglas productivas nuevas. `_redirects` QR302 tiene prioridad.
+
+Enlaces legacy del shell se normalizan al canonical al renderizar, conservando query/ancla.
+Cuatro entradas Catering usan la edición ES/EN existente según idioma: `/catering` o
+`/en/catering/`. El bloque home usa `/#catering`; continúa existiendo `/#experiencia` aunque
+la agenda caduque. Importados intactos pueden conservar aliases válidos de un salto.
+
+Prueba del candidato:135respuestas GET/HEAD/canonical/404,220enlaces internos en23páginas,
+sin destinos/anclas ausentes ni bucles. Recibos `.artifacts/catering-flow/routes-report.json`;
+resultado y límites en WORKFLOW, «Catering prioritario y continuidad de bloques».
+No crear `/guadalajara` en este lote: sigue404; nombre público Guadalajara en `/san-ignacio`.
+
 ## Regla para cada cambio de URL
 
 Registrar en el PR: ruta origen/destino, motivo, estado HTTP esperado, canonical/hreflang/sitemap,

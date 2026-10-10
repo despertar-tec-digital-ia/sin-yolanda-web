@@ -19,7 +19,7 @@ const campaignSource = () => ['escapeHtml', 'validCalendarDate', 'calendarDay', 
 const agenda = (facts = data, now = testNow) => vm.runInNewContext(campaignSource() + '\nhomeAgenda(now)', {
   data: facts, now, Date, Intl, branchById: id => facts.branches.find(branch => branch.id === id),
 });
-const home = () => vm.runInNewContext(campaignSource() + block('homePage') + '\nhomePage()', {
+const home = () => vm.runInNewContext(campaignSource() + block('homeCatering') + block('homeExperience') + block('homePage') + '\nhomePage()', {
   data, Date: class extends Date { constructor(...args) { super(...(args.length ? args : [testNow])); } }, Intl,
   branchById: id => data.branches.find(branch => branch.id === id),
   publicHeader: () => '', publicFooter: () => '', openingAnnouncement: () => '', venueShowcase: () => '<section id="ubicaciones"></section>',

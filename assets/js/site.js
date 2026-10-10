@@ -21,9 +21,9 @@
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="public-nav">Menú</button>
         <nav id="public-nav" class="public-nav" aria-label="Navegación principal">
           <a href="${locationsHref}" data-select-location>Ubicaciones</a>
-          <a href="eventos.html">Eventos</a>
+          <a href="/catering" data-i18n-href-es="/catering" data-i18n-href-en="/en/catering/">Catering</a>
           <a href="la-cantina.html">La Cantina</a>
-          <a href="index.html#cumple">Cumpleaños</a>
+          <a href="eventos.html">Eventos</a>
           <a class="nav-cta" href="${locationsHref}" data-select-location>Reservar mesa</a>
         </nav>
       </header>`;
@@ -40,7 +40,7 @@
         <div>
           <strong>Explora</strong>
           <a href="la-cantina.html">La Cantina</a>
-          <a href="catering.html">Catering</a>
+          <a href="/catering" data-i18n-href-es="/catering" data-i18n-href-en="/en/catering/">Catering</a>
           <a href="eventos.html">Eventos</a>
           <a href="${locationsHref}" data-select-location>Ubicaciones</a>
           <a href="el-paso.html">El Paso</a>
@@ -167,6 +167,7 @@
 
         ${openingAnnouncement()}
         ${venueShowcase()}
+        ${homeCatering()}
 
         <section class="section section-after-hero" id="plan">
           <div class="section-heading"><div><p class="eyebrow">El plan</p><h2 class="reveal">El plan ya está armado.</h2></div><p>Tú solo trae el pretexto.</p></div>
@@ -182,18 +183,10 @@
           </div>
         </section>
 
-        ${homeAgenda()}
-
-        <section class="experience-section" id="experiencia">
-          <div class="experience-media"><img src="assets/media/celebration.webp" alt="Ruleta de shots y bebidas sobre una mesa de Sin Yolanda" loading="lazy" width="1600" height="2000" /></div>
-          <div class="experience-copy">
-            <p class="eyebrow">La casa por dentro</p>
-            <h2 class="reveal">Trae a los cuatro.</h2>
-            <p>Mesas largas, brindis completo y el micrófono que no se le niega a nadie. Aquí no hay mesa reservada para influencers: la mejor foto la hace tu gente.</p>
-            <div class="mini-menu"><span>Gastronomía mexicana contemporánea</span><span>Música y participación social</span><span>Celebraciones con intención</span><span>Hospitalidad local, visión corporativa</span></div>
-            <a class="editorial-link" href="la-cantina.html">Conoce La Cantina <span aria-hidden="true">↗</span></a>
-          </div>
-        </section>
+        <div class="home-gathering">
+          ${homeAgenda()}
+          ${homeExperience()}
+        </div>
 
         <section class="section botana-section" id="botaneo">
           <div class="section-heading"><div><p class="eyebrow">Comida + tragos</p><h2 class="reveal">Aquí se botanea en serio.</h2></div><p>Tragos coquetos y comida que sí llena.</p></div>
@@ -215,10 +208,38 @@
 
         <section class="reserve-cta" id="reserve">
           <div><p class="eyebrow">¿Sin Yolanda? Si sabes, sabes.</p><h2 class="reveal">Ya quedó.</h2></div>
-          <div class="closing-plans"><a class="button button-light" href="eventos.html">Organiza tu evento</a><a class="editorial-link" href="catering.html">Conoce Catering <span aria-hidden="true">↗</span></a></div>
+          <div class="closing-plans"><a class="button button-light" href="eventos.html">Organiza tu evento</a><a class="editorial-link" href="/catering" data-i18n-href-es="/catering" data-i18n-href-en="/en/catering/">Conoce Catering <span aria-hidden="true">↗</span></a></div>
         </section>
       </main>
       ${publicFooter()}`;
+  }
+
+  function homeCatering() {
+    // Teaser reuses the current Catering page's Houston scope, not a new service territory.
+    return `<section class="section catering-feature" id="catering" aria-labelledby="home-catering-heading">
+      <div class="catering-feature-copy">
+        <p class="catering-feature-name">Sin Yolanda Catering</p>
+        <h2 id="home-catering-heading">Llevamos la cantina a tu fiesta.</h2>
+        <p>Comida mexicana, un brindis y una canción para compartir. Catering para tu celebración en Houston.</p>
+        <a class="button button-primary" href="/catering" data-i18n-href-es="/catering" data-i18n-href-en="/en/catering/">Explora Catering</a>
+      </div>
+      <div class="catering-feature-media"><img src="assets/media/catering-servicio-1280.webp"
+        srcset="assets/media/catering-servicio-640.webp 640w, assets/media/catering-servicio-1280.webp 1280w"
+        sizes="(max-width: 900px) 100vw, 45vw" width="1280" height="2275" loading="lazy" decoding="async"
+        alt="Una persona sirve acompañamientos de un buffet en un evento al aire libre" /></div>
+    </section>`;
+  }
+
+  function homeExperience() {
+    // Evergreen: keep it visible when all dated campaigns have expired.
+    return `<section class="experience-section experience-bridge" id="experiencia">
+          <div class="experience-intro"><p class="eyebrow">La casa por dentro</p><h2 class="reveal">Trae a los cuatro.</h2></div>
+          <div class="experience-copy">
+            <p>Mesas largas, brindis completo y el micrófono que no se le niega a nadie. Aquí no hay mesa reservada para influencers: la mejor foto la hace tu gente.</p>
+            <div class="mini-menu"><span>Gastronomía mexicana contemporánea</span><span>Música y participación social</span><span>Celebraciones con intención</span><span>Hospitalidad local, visión corporativa</span></div>
+            <a class="editorial-link" href="la-cantina.html">Conoce La Cantina <span aria-hidden="true">↗</span></a>
+          </div>
+        </section>`;
   }
 
   function hasAgendaProfile(branch) {
@@ -431,7 +452,21 @@
     return `<div class="toast" id="demo-toast" role="status" aria-live="polite"></div>`;
   }
 
+  function canonicalPublicHref(href) {
+    const home = href.match(/^\/?index\.html([?#].*)?$/);
+    if (home) return "/" + (home[1] || "");
+    const page = href.match(/^\/?([a-z0-9-]+)\.html([?#].*)?$/);
+    if (page) return "/" + page[1] + (page[2] || "");
+    const directory = href.match(/^\/((?:[a-z0-9-]+\/)+)index\.html([?#].*)?$/);
+    return directory ? "/" + directory[1] + (directory[2] || "") : href;
+  }
+
   function bindCommon() {
+    document.querySelectorAll("a[href]").forEach(link => {
+      const href = link.getAttribute("href");
+      const canonical = canonicalPublicHref(href);
+      if (canonical !== href) link.setAttribute("href", canonical);
+    });
     const menuToggle = document.querySelector(".menu-toggle");
     const publicNav = document.querySelector(".public-nav");
     if (menuToggle && publicNav) {

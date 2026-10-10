@@ -63,6 +63,15 @@ export function createReviewServer({ root, files } = {}) {
   assert.ok(Array.isArray(files) && files.length > 0 && files.every(validFile), 'Explicit safe file allowlist required');
   assert.equal(new Set(files).size, files.length, 'Duplicate review files');
   const allowed = new Set(files.filter(path => !['_headers', '_redirects'].includes(path)));
+  // Match Cloudflare Pages' observed HTML canonicalization, only for packaged pages.
+  const htmlAliases = new Map();
+  for (const file of files.filter(path => path.endsWith('.html') && path !== '404.html')) {
+    const canonical = file === 'index.html' ? '/' : file.endsWith('/index.html')
+      ? '/' + file.slice(0, -'index.html'.length) : '/' + file.slice(0, -'.html'.length);
+    htmlAliases.set('/' + file, canonical);
+    if (canonical.endsWith('/') && canonical !== '/') htmlAliases.set(canonical.slice(0, -1), canonical);
+    else if (canonical !== '/') htmlAliases.set(canonical + '/', canonical);
+  }
   assert.ok(allowed.has('404.html'), 'Required true 404 fallback');
   for (const file of allowed) regularPath(root, file);
   const redirects = new Map(files.includes('_redirects')
@@ -93,6 +102,15 @@ export function createReviewServer({ root, files } = {}) {
     const redirect = redirects.get(path);
     if (redirect) {
       res.writeHead(redirect.status, { 'Location': redirect.destination, 'Content-Length': 0, 'Cache-Control': 'no-store',
+        'X-Content-Type-Options': 'nosniff', 'X-Robots-Tag': 'noindex, nofollow' });
+      res.end();
+      return;
+    }
+    const canonical = htmlAliases.get(path);
+    if (canonical && canonical !== path) {
+      const queryStart = (req.url ?? '').indexOf('?');
+      const query = queryStart >= 0 ? req.url.slice(queryStart).split('#')[0] : '';
+      res.writeHead(308, { Location: canonical + query, 'Content-Length': 0, 'Cache-Control': 'no-store',
         'X-Content-Type-Options': 'nosniff', 'X-Robots-Tag': 'noindex, nofollow' });
       res.end();
       return;

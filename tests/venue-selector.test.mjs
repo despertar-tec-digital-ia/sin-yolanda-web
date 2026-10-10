@@ -51,7 +51,7 @@ test('opening strip has a real date/destination between the hero and early locat
   assert.match(render('openingAnnouncement', renamed), /Editorial label/);
   assert.match(render('venueShowcase', renamed), /Editorial label/);
   assert.equal((html.match(/href="el-paso.html"/g) || []).length, 2);
-  assert.match(source, /<\/section>\s*\$\{openingAnnouncement\(\)\}\s*\$\{venueShowcase\(\)\}\s*<section class="section section-after-hero" id="plan"/);
+  assert.match(source, /<\/section>\s*\$\{openingAnnouncement\(\)\}\s*\$\{venueShowcase\(\)\}\s*\$\{homeCatering\(\)\}\s*<section class="section section-after-hero" id="plan"/);
   const withoutDate = structuredClone(data);
   withoutDate.branches.find(b => b.id === 'el-paso').openingDate = '';
   assert.equal(render('openingAnnouncement', withoutDate), '');

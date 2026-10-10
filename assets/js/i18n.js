@@ -60,6 +60,10 @@
     "Seguir la apertura": "Follow the opening",
     "Recibir novedades": "Get updates",
     "Próxima apertura": "Opening soon",
+    "Llevamos la cantina a tu fiesta.": "We bring the cantina to your party.",
+    "Comida mexicana, un brindis y una canción para compartir. Catering para tu celebración en Houston.": "Mexican food, a toast and a song to share. Catering for your celebration in Houston.",
+    "Explora Catering": "Explore Catering",
+    "Una persona sirve acompañamientos de un buffet en un evento al aire libre": "A person serves buffet accompaniments at an outdoor event",
     "Nueva apertura": "New opening",
     "Nuevas y próximas": "New & upcoming",
     "Apertura": "Opening",
@@ -520,6 +524,11 @@
       }
     });
 
+    // Route to the existing language edition, retaining native anchors and navigation.
+    document.querySelectorAll("[data-i18n-href-es][data-i18n-href-en]").forEach(link => {
+      const href = link.getAttribute(lang === "en" ? "data-i18n-href-en" : "data-i18n-href-es");
+      if (link.getAttribute("href") !== href) link.setAttribute("href", href);
+    });
     syncToggleState();
     // SVG artwork and stateful controls explicitly own both language variants.
     // Never replace the SVG tree: its paths/use layers must remain intact.

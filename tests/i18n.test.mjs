@@ -47,7 +47,7 @@ test('hero text, SVG lettering and playback labels switch completely and reversi
   const document = { readyState: 'complete', body: {}, documentElement: { lang: 'es' },
     querySelector: () => null,
     querySelectorAll: selector => selector === '[data-i18n-es][data-i18n-en]' ? [...words, playback]
-      : selector === '[aria-label], img[alt]' || selector === '[data-lang-btn]' ? [] : [headline, subtitle, action, geography] };
+      : selector === '[aria-label], img[alt]' || selector === '[data-lang-btn]' || selector === '[data-i18n-href-es][data-i18n-href-en]' ? [] : [headline, subtitle, action, geography] };
   const window = {};
   vm.runInNewContext(readFileSync(new URL('../assets/js/i18n.js', import.meta.url), 'utf8'), {
     document, window, localStorage: { getItem: () => null, setItem() {} },
@@ -73,4 +73,11 @@ test('hero text, SVG lettering and playback labels switch completely and reversi
     playback.attributes['data-i18n-es'] = 'Pausar fotos';
     playback.attributes['data-i18n-en'] = 'Pause photos';
   }
+});
+
+test('Catering links switch existing route editions reversibly without replacing their accessible text',()=>{
+ const link={attrs:{href:'/catering','data-i18n-href-es':'/catering','data-i18n-href-en':'/en/catering/'},getAttribute(k){return this.attrs[k]??null},setAttribute(k,v){this.attrs[k]=v}};
+ const document={readyState:'complete',body:{},documentElement:{lang:'es'},querySelector:()=>null,querySelectorAll:s=>s==='[data-i18n-href-es][data-i18n-href-en]'?[link]:[]};const window={};
+ vm.runInNewContext(readFileSync(new URL('../assets/js/i18n.js',import.meta.url),'utf8'),{document,window,localStorage:{getItem:()=>null,setItem(){}},MutationObserver:class{observe(){}},setTimeout(){}});
+ for(let i=0;i<2;i++){window.SY_I18N.apply('en');assert.equal(link.attrs.href,'/en/catering/');window.SY_I18N.apply('es');assert.equal(link.attrs.href,'/catering');}
 });

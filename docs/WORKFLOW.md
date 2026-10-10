@@ -203,6 +203,58 @@ con audiencia `review`, sin relajar el gate. `_redirects`, cartas, HTML importad
 registro no cambiaron; la versión global de assets se conserva y se invalidan solo consumidores
 públicos de JS/CSS modificados. Sin push/merge/preview público/deploy.
 
+### Catering prioritario y continuidad de bloques · candidata local10-oct
+
+D16, encargo posterior de Luis: dar prioridad a Catering, conservar la información existente,
+integrar «Lo que viene» con «Trae a los cuatro» y revisar URLs/slashes. Hero D15 intacto.
+
+- Catering pasa al segundo acceso del header, después de Ubicaciones; cumpleaños conserva su
+  sección/entrada en Eventos. Bloque propio inmediatamente después del selector aprobado y
+  antes del plan: misma frase/intro de la página existente, una foto de servicio y un CTA.
+  Header, bloque, cierre y footer enlazan `/catering` en ES y `/en/catering/` en EN.
+- Cobertura publicada en esa página: **Houston**. Contacto: Instagram `sinyolandacatering`.
+  No extender territorio, inventar teléfono/cotizador ni aprobar propuestas por darles prioridad.
+  Catering nativo ES/EN, sus cuatro propuestas y condiciones se conservan byte a byte.
+- Foto del bloque: banco Karina7-oct, Catering Brian#22,
+  `1UVibZ_kpHTTvMhV-9jsWsMreTAWlcSSv.jpg`, SHA256
+  `02b60c0c0080c3101a2255e4dc31d795735c390fd71d9ad50c403b14d78c8f7e`.
+  Derivados `catering-servicio-{640,1280}.webp`,105.830/299.998bytes, resize sin retoque,
+  srcset/lazy y encuadre CSS inspeccionado. Escena general de servicio, sin afirmar sede/plato.
+  Recibo de procedencia `.artifacts/catering-flow/media-provenance.json`.
+- Agenda y experiencia quedan en un grupo: una sola fotografía junto a la agenda blanca y
+  continuación oscura tipográfica. Se retira la segunda pared de foto/blanco; contenido de
+  experiencia conservado e independiente del vencimiento de campañas. Sin fechas vigentes,
+  desaparece la agenda y permanece la invitación. No duplicar calendarios ni cambiar sus datos.
+- Shell normaliza enlaces legacy `.html` a canonical, conservando query/ancla. El servidor
+  local ahora reproduce los308 observados en Pages: HTML superior sin slash final, índices
+  anidados con slash, `.html`→canonical. Solo aliases de páginas permitidas; desconocidos404.
+  GET/HEAD y query preservados, QR302 tiene prioridad intacta. No son redirects nuevos de
+  producción: el cambio está en enlaces del shell y herramienta local de revisión.
+
+**Verificación:** `npm run check`,184/184;60casos shell ES/EN ×320/390/768/1024/1440/1920,
+12casos Catering nativo ES/EN en los mismos anchos, fotos cargadas y cuatro menús nativos
+abren/cierran. Flujo móvil Home EN→Catering EN→ES comprobado; anchors mediante enlaces
+visibles (en móvil dos enlaces del header nativo se ocultan por su diseño y existen en footer).
+Sin overflow ni errores JS/recursos en estas sondas.27casos adicionales de portada de fichas
+ES/EN ×320/768/1440, sin overflow, títulos recortados ni errores observados; no QA completo
+por sección de esas fichas.135respuestas locales GET/HEAD/canonical/404 y220enlaces internos
+recorridos en23páginas: destinos y anclas resuelven, sin bucles.26GET al dominio real corroboran
+contrato de aliases, incluyendo query fresca. No pruebas de envío/contacto/reserva/pagos.
+Hero fuente y140archivos protegidos (importados, cartas, medios, fuentes, datos y `_redirects`)
+idénticos a D15. Capturas a390/768/1440 inspeccionadas. Recibos/scripts `.artifacts/catering-flow/`.
+
+Paquete197archivos/noindex, digest de fuentes
+`877c9b192d46f6d65a784b026b7951c32977a529d7a3d7ca17796cc488b1826d`.
+Build productivo sigue rechazando cuatro páginas protegidas; no relajar ese gate. Sin push,
+merge, preview público ni publicación. Rollback local: checkpoint `1e12cba` anterior.
+
+**Pendientes de este frente:** revisión visual de Luis; confirmar con negocio cobertura y canal
+final de Catering si se quiere ampliar Houston/Instagram; aprobación de medios/contenido de
+los importados según su manifiesto; revisión por bloques de fichas y Safari/dispositivos físicos.
+`/guadalajara` sigue404 y `/san-ignacio` es la ruta vigente: migración de nombre/URL pertenece
+a su lote separado. La sonda legada que exige `#cartelera` en cada ficha sigue fuera de contrato
+actual; este crawl no encontró enlaces hacia anclas ausentes. No confundir ambos resultados.
+
 ### Registro El Paso v1 · candidata local9-oct
 
 Luis autoriza preparar/publicar el QR de registro con destino nativo GHL confirmado por Share:
@@ -476,6 +528,7 @@ automatizar vigencia con aprobar contenido nuevo leído de Instagram. Sin agenda
 | D13 · 10-oct | Encargo explícito Luis; candidata local | Revisar hero/ES-EN, fotos frente a video, header al scroll, blanco y prioridad del selector | Fuente/resultado en «Hero, blanco y prioridad»; permite modificar hero en esta rama, no publicar ni tocar cartas/WordPress/QR/registro |
 | D14 · 10-oct | Corrección explícita Luis; candidata local | Rechaza foto/texto separados; recuperar rótulo y acciones sobre la foto | Fondo fotográfico completo con sombreado continuo y encuadres responsive; conserva secuencia, idiomas y alcance D13, sin aprobación de publicación |
 | D15 · 10-oct | Pulido posterior solicitado por Luis; candidata local | Icono de pausa, Nueva apertura El Paso, foto/cartelera y menos CTA repetidos; armonizar secundarios existentes | Resultado y QA en «Pulido editorial y secundarios»; no habilita operación de El Paso ni publicación |
+| D16 · 10-oct | Solicitada por Luis; candidata local | Catering arriba, continuidad agenda/experiencia y revisión de URLs/slashes | Bloque «Catering prioritario y continuidad de bloques»; cobertura/contacto existentes, hero y archivos importados intactos, sin publicación |
 
 Agregar una fila solo si cambia el contrato. Cambios de implementación → PR/commit; cambios de
 ruta → ROUTES; no duplicar reseñas largas de sesión. Un release registra commit, sourceRef/hash,

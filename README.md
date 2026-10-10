@@ -18,8 +18,9 @@ pretextos/cumpleaños conectados al selector. Alcance/evidencia/límites en
 `docs/WORKFLOW.md` §7. Sin merge ni despliegue.
 **Pulido visual local10-oct:** hero superpuesto ES/EN, icono de pausa, selector único arriba,
 «Nueva apertura» El Paso (sin cambiar estado operativo), cartelera con foto del banco y blanco,
-pretextos editoriales y La Cantina/Eventos/Tienda armonizados. QA y gates vigentes →
-`docs/WORKFLOW.md`, «Pulido editorial y secundarios». Sin publicación.
+pretextos editoriales y La Cantina/Eventos/Tienda armonizados. Catering prioritario en header/home,
+agenda y experiencia integradas y rutas canónicas revisadas. QA y gates vigentes →
+`docs/WORKFLOW.md`, «Catering prioritario y continuidad de bloques». Sin publicación.
 
 ## Stack
 - HTML/CSS/JS vanilla; validación/empaquetado determinista con Node, sin dependencias npm.

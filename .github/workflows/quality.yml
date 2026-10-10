@@ -36,6 +36,16 @@ jobs:
       - run: docker build --tag sinyolanda-intake-ci:${{ github.sha }} .
       # Disposable loopback container, synthetic key/data only; no provider verification or messages.
       - run: uv run --frozen python container_smoke.py --image sinyolanda-intake-ci:${{ github.sha }}
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .node-version
+          package-manager-cache: false
+      # Disposable auth/proxy networks and synthetic config only; no DNS/TLS/provider or publication.
+      - name: Check the private preview gateway and body deadline
+        working-directory: .
+        env:
+          SY_INTAKE_SMOKE_BACKEND_IMAGE: sinyolanda-intake-ci:${{ github.sha }}
+        run: node scripts/smoke-intake-preview.mjs
   quality:
     name: Public artifact checks
     runs-on: ubuntu-24.04

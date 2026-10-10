@@ -25,6 +25,7 @@
       marketingHint: 'Opcional. Puedes darte de baja cuando quieras.',
       button: 'Registro en preparación', previewNote: 'Vista previa local. No envía ni guarda tus datos.',
       qaNote: 'Prueba local: usa datos ficticios. No se envían a GHL.',
+      privateReviewNotice: 'Prueba privada: usa únicamente datos ficticios. No se envían a GHL ni se activan mensajes.',
       qaButton: 'Guardar registro de prueba', pendingButton: 'Guardando prueba…',
       productionButton: 'Registrarme', productionPending: 'Guardando registro…',
       productionFootnote: 'Recibir correos promocionales es opcional.',
@@ -81,6 +82,7 @@
       marketingHint: 'Optional. You can unsubscribe at any time.',
       button: 'Registration coming soon', previewNote: 'Local preview. Your details are not sent or saved.',
       qaNote: 'Local test: use fictional details. Nothing is sent to GHL.',
+      privateReviewNotice: 'Private test: use fictional details only. Nothing is sent to GHL and no messages are activated.',
       qaButton: 'Save test registration', pendingButton: 'Saving test…',
       productionButton: 'Register', productionPending: 'Saving registration…',
       productionFootnote: 'Receiving promotional emails is optional.',
@@ -302,7 +304,8 @@
 
   async function loadConfig() {
     try {
-      const response = await fetch('./intake-config.json', { method: 'GET', credentials: 'omit', cache: 'no-store', redirect: 'error' });
+      // Keep a private same-origin gate; never send authentication to other origins.
+      const response = await fetch('./intake-config.json', { method: 'GET', credentials: 'same-origin', cache: 'no-store', redirect: 'error' });
       const config = await response.json();
       if (response.status !== 200 || !validConfig(config)) throw new Error('Unavailable');
       captureEnabled = config.captureEnabled;
@@ -409,7 +412,7 @@
     renderState();
     try {
       const response = await fetch('/api/registrations', {
-        method: 'POST', credentials: 'omit', cache: 'no-store', redirect: 'error',
+        method: 'POST', credentials: 'same-origin', cache: 'no-store', redirect: 'error',
         headers: { 'Content-Type': 'application/json', 'Idempotency-Key': attempt.key },
         body, signal: AbortSignal.timeout(10000),
       });

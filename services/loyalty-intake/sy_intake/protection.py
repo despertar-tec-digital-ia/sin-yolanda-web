@@ -40,12 +40,20 @@ class TurnstileVerifier:
         self.transport = transport
 
     async def verify(self, token: str, *, ip: str, request_id: str) -> bool:
+        payload = {"secret": self.settings.turnstile_secret, "response": token,
+                   "idempotency_key": request_id}
+        # Behind a private proxy the peer is not the visitor. remoteip is optional:
+        # omit non-global addresses instead of trusting client-controlled headers.
+        try:
+            if ipaddress.ip_address(ip).is_global:
+                payload["remoteip"] = ip
+        except ValueError:
+            pass
         try:
             async with httpx.AsyncClient(transport=self.transport, timeout=5.0, follow_redirects=False) as client:
                 response = await client.post(
                     "https://challenges.cloudflare.com/turnstile/v0/siteverify",
-                    data={"secret": self.settings.turnstile_secret, "response": token,
-                          "remoteip": ip, "idempotency_key": request_id},
+                    data=payload,
                 )
                 if response.status_code != 200 or len(response.content) > 16384:
                     return False

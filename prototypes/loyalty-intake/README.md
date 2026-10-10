@@ -47,12 +47,20 @@ Token fresco requerido; expiración295s, error/timeout/unsupported cierran el en
 tamaño invalida callbacks antiguos y reconstruye el widget sin perder datos. Fallo HTTP/red reinicia
 verificación conservando contenido/clave; token se excluye de la firma de idempotencia. Éxito limpia
 datos y retira widget. No enviar PII en cData/URLs ni usar storage browser/tracker.
-19pruebas nativas pasan con proveedor simulado; no acreditan widget/CSP/antibot reales. Node solo
-sirve `disabled` o `local-qa`, jamás configuración productiva. Sin widget real creado ni QR cambiado.
+19pruebas nativas pasaron en ese corte con proveedor simulado; no acreditan widget/CSP/antibot reales.
+Node solo sirve `disabled` o `local-qa`, jamás configuración productiva. En esa ronda todavía no
+existía widget real; su alta privada posterior está documentada en el README del servicio.
 Guía primaria N0: [renderizado Cloudflare](https://developers.cloudflare.com/turnstile/get-started/client-side-rendering/).
 Revisión visual posterior móvil390/ES/EN y escritorio1502 conserva foto/composición; no overflow.
 La captura fullPage de escritorio omitió la foto pese a estar decodificada; screenshot viewport
 confirmó imagen visible. No cambiar imagen/CSS por ese artefacto del capturador.
+
+**Conexión privada candidata posterior9-oct:** config y POST relativos conservan autenticación
+solo mismo-origen. Respuestas401/403/redirección/HTML de login cierran captura sin perder datos
+ni mostrar éxito. Suite UI actual21casos; proveedor simulado, no challenge real. Paquete separado
+sin foto review-only y con aviso ES/EN de datos ficticios conserva identidad aprobada; no modifica
+esta composición original. Gateway, empaquetado y gates → README del servicio, «Ingreso de revisión
+candidato». QR y página pública siguen en la captura temporal; no publicar por pasar estos tests.
 
 ## Fotografía local de revisión ·9-oct
 

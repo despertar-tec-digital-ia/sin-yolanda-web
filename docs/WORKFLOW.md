@@ -107,6 +107,24 @@ Runbook privado → DEPLOY del vault. QR302 temporal y Pages vigentes intactos; 
 Siguiente: ingreso HTTPS/mismo-origen + prueba real del formulario, operación de privacidad,
 permiso público de foto y release exacto antes de sustituir captura. GHL mantiene su gate separado.
 
+**Ingreso privado preparado posteriormente9-oct, solo local:** paquete independiente sin foto
+review-only, con logo/fuentes/paleta conservados y aviso ES/EN de datos ficticios. Gateway autenticado
+en todas las rutas, backend aislado y headers de credenciales/proxy eliminados; contrato y operación
+candidata → README del servicio. Dominio propuesto de revisión todavía sin DNS/TLS ni cambio del
+widget/origen staging. No confundir preparación con ingreso publicado o autorización de clientes.
+
+QA133Python (+43subcasos),207Node; smoke Docker real8/8: auth401 en rutas/métodos y errores,
+allowlist, headers/origen/JSON/query,8192bytes fijo/chunked, silencio de logs y deadline408 a10036ms
+pese a recibir bytes cada1800ms. Evidencia ignorada `sy-intake-smoke-09a5d60f6106-bQHjLC/evidence.json`;
+datos/secretos exclusivamente sintéticos, loopback, sin proveedor externo. QA Chromium8casos
+ES/EN a320/390/768/1502px, sin overflow; pérdida de proveedor bloquea envío, no POST, cookies ni
+storage. Capturas en `.artifacts/intake-preview-visual-20261009-final/`, escritorio ES/móvil EN
+revisados por el operador. Helper rechaza enlaces y no imprime JSON de autenticación inválido.
+CI añade el mismo smoke tras build del backend; su resultado remoto se verifica aparte del test local.
+QR302 temporal revalidado intacto. Sin merge, Pages, DNS/Traefik, challenge válido ni alta API real;
+la siguiente prueba HTTPS privada requiere aprobación. Privacidad/operación/foto y GHL mantienen
+gates propios; este lote no los resuelve ni modifica home, menús, Analytics o WordPress.
+
 ### QR de carta Guadalajara · publicado y comprobado8-oct
 
 Luis autoriza la ruta corta `/q/gdl-menu` hacia la carta WordPress original, sin editar su

@@ -2,6 +2,7 @@ import asyncio
 from dataclasses import replace
 import json
 import uuid
+from urllib.parse import parse_qs
 
 from cryptography.fernet import Fernet
 from fastapi.testclient import TestClient
@@ -211,3 +212,25 @@ def test_turnstile_outage_fails_closed(settings):
         raise httpx.ConnectError("simulated")
     verifier = TurnstileVerifier(settings, transport=httpx.MockTransport(handler))
     assert asyncio.run(verifier.verify("synthetic", ip="203.0.113.1", request_id=str(uuid.uuid4()))) is False
+
+
+@pytest.mark.parametrize("peer,expected_remoteip", [
+    ("10.0.9.3", None), ("127.0.0.1", None), ("::1", None),
+    ("203.0.113.1", None), ("not-an-ip", None), ("1.1.1.1", "1.1.1.1"),
+])
+def test_turnstile_never_labels_private_proxy_peer_as_visitor(settings, peer, expected_remoteip):
+    seen = []
+    def handler(request):
+        seen.append(parse_qs(request.content.decode()))
+        return httpx.Response(200, json={"success": True, "hostname": "sin-yolanda.com", "action": "loyalty_register"})
+    production = replace(settings, mode="production", allowed_origins=("https://sin-yolanda.com",),
+                         turnstile_secret="synthetic-local-secret")
+    request_id = str(uuid.uuid4())
+    verifier = TurnstileVerifier(production, transport=httpx.MockTransport(handler))
+    assert asyncio.run(verifier.verify("synthetic", ip=peer, request_id=request_id)) is True
+    assert seen[0]["response"] == ["synthetic"]
+    assert seen[0]["idempotency_key"] == [request_id]
+    if expected_remoteip is None:
+        assert "remoteip" not in seen[0]
+    else:
+        assert seen[0]["remoteip"] == [expected_remoteip]

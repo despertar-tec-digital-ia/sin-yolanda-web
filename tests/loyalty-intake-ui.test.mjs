@@ -44,7 +44,7 @@ class Element {
   }
 }
 
-async function ui({ enabled = false, configError = false, config, replies = [], width = 350, scriptError = false, scriptManual = false } = {}) {
+async function ui({ enabled = false, configError = false, configStatus = 200, config, replies = [], width = 350, scriptError = false, scriptManual = false } = {}) {
   const state = { elements: [], calls: [], focused: undefined, uuid: 0, width, scripts: [], removedScripts: [], widgets: [], removedWidgets: [], resets: [], timers: new Map(), timerId: 0 };
   for (const match of html.matchAll(/<([a-z][\w-]*)\b([^>]*)>/gi)) {
     const attributes = {};
@@ -77,7 +77,7 @@ async function ui({ enabled = false, configError = false, config, replies = [], 
     state.calls.push({ url, options });
     if (url === './intake-config.json') {
       if (configError) throw new Error('Offline');
-      return response(200, config || { captureEnabled: enabled, qaOnly: true, mode: enabled ? 'local-qa' : 'disabled', consentVersion });
+      return response(configStatus, config || { captureEnabled: enabled, qaOnly: true, mode: enabled ? 'local-qa' : 'disabled', consentVersion });
     }
     const reply = replies.shift();
     if (typeof reply === 'function') return reply(url, options);
@@ -134,7 +134,7 @@ test('explicit QA mode sends the exact contract, confirms the receipt, clears PI
     locale: 'es', branch: 'el-paso', registration_consent: true, email_marketing_consent: false,
     consent_version: consentVersion, turnstile_token: 'local-qa-only', website: '',
   });
-  assert.equal(post.options.credentials, 'omit');
+  assert.equal(post.options.credentials, 'same-origin');
   assert.equal(post.options.redirect, 'error');
   assert.match(post.options.headers['Idempotency-Key'], /^[\da-f-]{36}$/);
   assert.equal(view.byId('registration-success').hidden, false);
@@ -303,6 +303,44 @@ test('production explicitly loads only the official script, renders the exact ac
   view.widget().options.callback('synthetic-token-2');
   await view.byId('intake-form').emit('submit');
   assert.notEqual(view.posts()[1].options.headers['Idempotency-Key'], view.posts()[0].options.headers['Idempotency-Key']);
+});
+
+test('private same-origin authentication stays scoped; a denied config never loads Turnstile', async () => {
+  for (const configStatus of [401, 403, 302]) {
+    const view = await ui({ config: productionConfig, configStatus });
+    assert.equal(view.calls[0].url, './intake-config.json');
+    assert.equal(view.calls[0].options.credentials, 'same-origin');
+    assert.equal(view.calls[0].options.redirect, 'error');
+    assert.equal(view.byId('register-button').disabled, true);
+    assert.equal(view.scripts.length, 0);
+    view.fill();
+    await view.byId('intake-form').emit('submit');
+    assert.equal(view.posts().length, 0);
+  }
+});
+
+test('expired private access cannot fabricate success and preserves a safe retry', async () => {
+  for (const denied of [response(401, received), response(403, received), response(302, received),
+    { status: 401, json: async () => { throw new SyntaxError('Login HTML'); } }]) {
+    const view = await ui({ config: productionConfig, replies: [denied, response(201, received)] });
+    view.fill();
+    view.widget().options.callback('synthetic-private-token-1');
+    await view.byId('intake-form').emit('submit');
+    assert.equal(view.byId('registration-success').hidden, true);
+    assert.equal(view.byId('full-name').value, 'Registro QA');
+    assert.equal(view.byId('consent').checked, true);
+    assert.equal(view.byId('email-marketing').checked, false);
+    assert.equal(view.byId('register-button').disabled, true);
+    assert.equal(view.byId('server-error').hidden, false);
+    const first = view.posts()[0];
+    assert.equal(first.url, '/api/registrations');
+    assert.equal(first.options.credentials, 'same-origin');
+    assert.equal(first.options.redirect, 'error');
+    view.widget().options.callback('synthetic-private-token-2');
+    await view.byId('intake-form').emit('submit');
+    assert.equal(view.posts()[1].options.headers['Idempotency-Key'], first.options.headers['Idempotency-Key']);
+    assert.equal(view.byId('registration-success').hidden, false);
+  }
 });
 
 test('expired, timed-out, unsupported or failed verification closes capture without losing data; ES/EN covers every state', async () => {

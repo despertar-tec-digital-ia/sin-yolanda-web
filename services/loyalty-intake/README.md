@@ -48,6 +48,9 @@ no se ha probado un challenge válido desde navegador ni una captura API con ese
 Tasa por IP inicial configurable en código: revisar para WiFi compartido/aforo antes de publicar.
 Ingress productivo debe imponer tamaño/tiempos, TLS y origen; definir confianza de proxy exacta
 antes de usar IP reenviada. No exponer8801/SQLite directamente a Internet.
+En verificación server-side, `remoteip` es opcional: se omite si el peer no es una IP global,
+incluido el proxy privado, sin confiar `Forwarded` ni `X-Forwarded-For`. La tasa sigue agrupada
+por el peer real; este ajuste no constituye un contrato de IP del visitante para producción.
 
 ## Desarrollo reproducible
 
@@ -130,6 +133,54 @@ restore a copia nueva y rechazo de llave incorrecta; queda pendiente, no sincron
 Copia cifrada externa manual verificada; no equivale a backup programado, alertas o retención.
 Sin ingress público, DNS, Traefik, publicación Pages, merge ni cambios al QR. Operación y rollback
 privados tienen dueño en el runbook DEPLOY del vault; no copiar credenciales ni datos a este repo.
+
+## Ingreso de revisión candidato ·9-oct, todavía local
+
+`preview-gateway/` prepara un Nginx dedicado, imagen por digest y UID101, raíz read-only,
+capacidades eliminadas y autenticación obligatoria en **todas** las rutas. El fichero de hashes
+de acceso se monta solo en runtime; no se copia a la imagen, entorno, repo ni paquete público.
+Solo el gateway uniría red staging y proxy; el backend sigue aislado. Compose exige nombres
+explícitos de red/resolver y un fichero existente, no publica puertos del backend ni monta Docker.
+
+Destino **propuesto**, no creado: `https://registro-sy-prueba.despertartdigital.cloud`.
+Activarlo exige autorización de la prueba privada, DNS/TLS y ajustar conjuntamente hostname
+del widget, origen del backend y configuración staging, respaldando/recreando solo este servicio.
+No reutilizar el QR público ni promover llave/DB de QA o staging. GHL real permanece apagado.
+
+`scripts/package-intake-preview.mjs` crea un destino nuevo, sin sobrescrituras/enlaces, con
+ocho recursos frontend exactos y cuatro archivos gateway; manifiesto/hashes fuera del web root.
+Excluye foto review-only, QA, documentos, secretos, DB, mapas de fuente y el resto del sitio.
+Requiere explícitamente la **sitekey pública** en `SY_INTAKE_TURNSTILE_SITE_KEY`; no obtiene secretos
+ni declara aprobación de publicación. Conserva logo/fuentes/paleta e incorpora aviso ES/EN
+de datos ficticios/sin GHL, únicamente en ese paquete aislado.
+
+El frontend usa credenciales `same-origin` para config/POST relativos: permite el acceso privado
+sin enviarlas a Cloudflare. El gateway no reenvía Authorization, Cookie ni headers de proxy.
+Tras autenticar, restringe método/origen/JSON/ruta sin query y8192bytes; transmite el cuerpo sin
+buffer previo para conservar el deadline del backend. Sin access/error logs de solicitudes,
+sin caché; noindex y CSP sin código inline ni scripts de analíticas.
+Fallos de acceso/proveedor no inventan éxito, conservan datos/clave y requieren verificación nueva.
+
+Pruebas fuente y mocks no acreditan HTTPS/challenge reales. QA de pantalla independiente:
+`scripts/qa-intake-preview.mjs`, solo gateway loopback y auth sintética en `.artifacts`; bloquea
+proveedores externos y todo POST. No usarlo para resolver un challenge ni registrar personas.
+El smoke Docker `scripts/smoke-intake-preview.mjs` requiere una imagen backend explícita en
+`SY_INTAKE_SMOKE_BACKEND_IMAGE` (o la candidata local nombrada en el script). No omite el deadline
+si falta esa imagen. Crea y limpia solo contenedores/redes UUID de pruebas; auth/config ficticias,
+backend sin red externa, transporte loopback y ningún challenge de proveedor. Valida autenticación,
+rutas/headers/tamaño fijo y chunked, silencio de logs y plazo absoluto del backend. CI ejecuta
+el mismo drill después de construir el backend; no sube credenciales/evidencias privadas al artifact.
+`--keep-running` se reserva para revisión local y exige limpiar después sus recursos exactos.
+Publicar y sustituir el QR conserva los gates siguientes. El servidor Node del prototipo nunca
+sirve configuración productiva ni se expone.
+
+**Comprobado localmente9-oct:** smoke8/8 con Nginx real y backend candidato; peticiones sin acceso
+devuelven401 incluso sobre métodos/origen/rutas/cuerpos inválidos.8192bytes conservados fijo/chunked,
+8193 rechazados, headers sensibles no reenviados, logs vacíos y deadline del backend408 a10036ms
+con bytes cada1800ms. UI8casos ES/EN/320–1502px, proveedor externo deliberadamente bloqueado:
+conserva identidad, no overflow, no alta/POST, cookies o storage, no éxito ficticio.133Python
+(+43subcasos) y207Node pasan. Recibos y límites del corte → WORKFLOW, «Ingreso privado preparado».
+Estas pruebas **no** acreditan HTTPS, sitekey/widget real válido ni una captura productiva positiva.
 
 ## Gate de publicación y siguiente lote
 

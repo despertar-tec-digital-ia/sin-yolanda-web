@@ -184,8 +184,9 @@ compila; 15 sondas en workerd local prueban límites/deadlines reales 8s/12s, re
 errores/recibos sanitizados con upstream/ASSETS ficticios. `redirect:error` pasa en Node pero
 workerd lo rechaza antes de enviar; ahora `manual` rechaza todos los 3xx sin leer siquiera su cuerpo.
 Regresión adicional para redirects con JSON detenido. Tooling con lockfile
-propio, prueba cableada en CI sin credenciales. Resultado remoto nuevo pendiente de comprobar
-tras push; no inferirlo de los checks locales.
+propio, prueba cableada en CI sin credenciales. CI remoto
+[`38079837515`](https://github.com/despertar-tec-digital-ia/sin-yolanda-web/actions/runs/38079837515)
+comprobado verde sobre `98a735c`, ambos jobs incluidos compilación/sondas nativas. No publicación.
 
 `prepare-own-registration-release.mjs` prepara 193 archivos completos: 184 del baseline intactos,
 solo headers/redirects propuestos y siete adiciones; Function fuera del webroot. Rechaza

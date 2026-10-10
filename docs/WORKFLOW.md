@@ -323,6 +323,21 @@ en origen/action finales. No presentar este paquete como captura pública comple
 certificación legal. Aprobación exacta de pantalla+Function+binding sin QR primero; prueba ficticia
 autorizada después; cutover con baseline nuevo y aprobación independiente al final.
 
+**Cierre comprobado de esta preparación:** fuente limpia/pusheada `0424bac87273cc9f97591e7fbd06e97f61f11468`,
+autor/mensaje verificados; [CI38085466038](https://github.com/despertar-tec-digital-ia/sin-yolanda-web/actions/runs/38085466038)
+verde en ambos jobs. 224Node y159Python (+43subcasos), compilación Wrangler y15sondas nativas
+locales pasan. Paquete final con sitekey pública real:
+`.artifacts/intake-form-only-20261010-final/`, digest
+`7173b516ccfc0a2db1eab2d77495d4b035671c3bcb35f192bf9ca80eb7511098`,193archivos/185preservados,
+sin credencial del relay en el webroot; no aprobado/no publicado. Una sonda negativa del relay
+compilado local llega al ingreso productivo fijo: token inválido→400 `verification_failed`,
+conteos antes/después en cero. El bridge de pruebas normaliza exclusivamente headers de transporte
+local incompatibles con fetch de Node; no cambió la Function ni relajó su contrato. Recibo:
+`.artifacts/intake-form-only-20261010-runtime-final/protected-ingress-r5.json`; intentos anteriores
+del harness fallidos se conservan. No prueba captura positiva, binding desplegado ni navegador
+en origen oficial. Preview loopback del paquete exacto sobrescribe solo config en memoria para
+deshabilitar envíos; POST405 y controles404 comprobados. Composición desktop/móvil revisada.
+
 ### QR de carta Guadalajara · publicado y comprobado8-oct
 
 Luis autoriza la ruta corta `/q/gdl-menu` hacia la carta WordPress original, sin editar su

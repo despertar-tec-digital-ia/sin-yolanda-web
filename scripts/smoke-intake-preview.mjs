@@ -126,6 +126,20 @@ function securityHeaders(response) {
   assert.doesNotMatch(response.headers['content-security-policy'] || '', /unsafe-inline|unsafe-eval/);
 }
 
+function redactedLogSummary(logs) {
+  const text = logs.stdout + logs.stderr;
+  const classes = [];
+  for (const [code, pattern] of [
+    ['python_traceback', /Traceback \(most recent call last\)/],
+    ['connection_reset', /ConnectionResetError/],
+    ['broken_pipe', /BrokenPipeError/],
+    ['fixed_server_event', /intake_server_event/],
+    ['nginx_startup_error', /nginx:|\[(?:emerg|alert)\]/],
+  ]) if (pattern.test(text)) classes.push(code);
+  if (text.trim() && !classes.length) classes.push('other_nonempty');
+  return { stdoutBytes: Buffer.byteLength(logs.stdout), stderrBytes: Buffer.byteLength(logs.stderr), classes };
+}
+
 export async function runPreviewSmoke({ keepRunning = false, backendImage = defaultBackendImage } = {}) {
   assert.match(backendImage, /^sinyolanda-(?:loyalty-intake|intake-preview-qa|intake-ci):[A-Za-z0-9][A-Za-z0-9_.-]{0,127}$/, 'explicit_local_backend_image_required');
   const suffix = randomBytes(6).toString('hex');
@@ -281,13 +295,50 @@ export async function runPreviewSmoke({ keepRunning = false, backendImage = defa
       assert.equal(response.status, 503); assert.deepEqual(JSON.parse(response.body), { code: 'unavailable' }); securityHeaders(response);
     });
     await check('gateway_non_root_read_only_capabilities_and_silent_logs', async () => {
+      activeCheck = 'gateway_security_inspect';
       const inspect = JSON.parse((await docker(['inspect', gateway])).stdout)[0];
-      assert.equal(inspect.Config.User, '101:101'); assert.equal(inspect.HostConfig.ReadonlyRootfs, true);
-      assert.deepEqual(inspect.HostConfig.CapDrop, ['ALL']);
-      assert.ok(inspect.HostConfig.SecurityOpt.includes('no-new-privileges:true'));
-      assert.deepEqual(Object.keys(inspect.NetworkSettings.Networks).sort(), [network, ingress].sort());
-      for (const name of [gateway, mock]) {
-        const logs = await docker(['logs', name]); assert.equal(logs.stdout.trim(), ''); assert.equal(logs.stderr.trim(), '');
+      const options = inspect.HostConfig.SecurityOpt || [];
+      // Docker may normalize this true-valued option to its bare flag spelling.
+      // Both representations must also be corroborated by NoNewPrivs in the running process.
+      const hasBareFlag = options.includes('no-new-privileges');
+      const hasTrueFlag = options.includes('no-new-privileges:true');
+      activeCheck = 'gateway_security_process_status';
+      const status = (await docker(['exec', gateway, 'cat', '/proc/1/status'])).stdout;
+      const uid = status.match(/^Uid:\s+([0-9]+)\s+([0-9]+)\s+([0-9]+)\s+([0-9]+)\s*$/m);
+      const gid = status.match(/^Gid:\s+([0-9]+)\s+([0-9]+)\s+([0-9]+)\s+([0-9]+)\s*$/m);
+      const noNewPrivs = status.match(/^NoNewPrivs:\s+([01])\s*$/m);
+      const capability = status.match(/^CapEff:\s+([0-9a-fA-F]+)\s*$/m);
+      const security = evidence.runtimeSecurity = {
+        configuredUser101: inspect.Config.User === '101:101',
+        configuredReadOnlyRootfs: inspect.HostConfig.ReadonlyRootfs === true,
+        configuredCapDropAll: Array.isArray(inspect.HostConfig.CapDrop) && inspect.HostConfig.CapDrop.length === 1 && inspect.HostConfig.CapDrop[0] === 'ALL',
+        configuredNoNewPrivileges: hasBareFlag || hasTrueFlag,
+        noNewPrivilegesRepresentation: hasBareFlag ? 'bare_flag' : hasTrueFlag ? 'explicit_true' : 'unrecognized',
+        isolatedNetworks: JSON.stringify(Object.keys(inspect.NetworkSettings.Networks).sort()) === JSON.stringify([network, ingress].sort()),
+        processUid101: Boolean(uid && uid.slice(1).every(value => value === '101')),
+        processGid101: Boolean(gid && gid.slice(1).every(value => value === '101')),
+        processNoNewPrivs: noNewPrivs ? Number(noNewPrivs[1]) : null,
+        processCapEffZero: Boolean(capability && /^0+$/.test(capability[1])),
+        logs: {},
+      };
+      for (const [label, field] of [
+        ['gateway_configured_user', 'configuredUser101'],
+        ['gateway_configured_read_only_rootfs', 'configuredReadOnlyRootfs'],
+        ['gateway_configured_cap_drop_all', 'configuredCapDropAll'],
+        ['gateway_configured_no_new_privileges', 'configuredNoNewPrivileges'],
+        ['gateway_isolated_networks', 'isolatedNetworks'],
+        ['gateway_effective_uid', 'processUid101'],
+        ['gateway_effective_gid', 'processGid101'],
+        ['gateway_effective_capabilities', 'processCapEffZero'],
+      ]) { activeCheck = label; assert.equal(security[field], true, label); }
+      activeCheck = 'gateway_effective_no_new_privileges';
+      assert.equal(security.processNoNewPrivs, 1, 'gateway_effective_no_new_privileges');
+      for (const [role, name] of [['gateway', gateway], ['mock', mock]]) {
+        activeCheck = `${role}_silent_logs`;
+        const logs = await docker(['logs', name]);
+        security.logs[role] = redactedLogSummary(logs);
+        assert.equal(logs.stdout.trim(), '', `${role}_stdout_silent`);
+        assert.equal(logs.stderr.trim(), '', `${role}_stderr_silent`);
       }
     });
 
@@ -340,21 +391,29 @@ export async function runPreviewSmoke({ keepRunning = false, backendImage = defa
     keep = keepRunning;
     evidence.runtime.keptRunning = keep;
     writeFileSync(resolve(directory, 'evidence.json'), JSON.stringify(evidence, null, 2) + '\n', { mode: 0o600, flag: 'wx' });
-    process.stdout.write(JSON.stringify({ status: 'local-smoke-passed', checks: checks.length, evidencePath: resolve(directory, 'evidence.json'), keptRunning: keep }) + '\n');
-    return evidence;
   } catch {
     evidence.result = 'failed'; evidence.failedCheck = activeCheck;
     writeFileSync(resolve(directory, 'evidence.json'), JSON.stringify(evidence, null, 2) + '\n', { mode: 0o600, flag: 'wx' });
-    process.stdout.write(JSON.stringify({ status: 'local-smoke-failed', failedCheck: activeCheck, evidencePath: resolve(directory, 'evidence.json') }) + '\n');
+    process.stdout.write(JSON.stringify({ status: 'local-smoke-failed', failedCheck: activeCheck, safeChecks: evidence.runtimeSecurity, evidencePath: resolve(directory, 'evidence.json') }) + '\n');
     throw new Error('isolated_preview_smoke_failed');
   } finally {
     if (!keep) {
-      for (const name of ownContainers.reverse()) await docker(['rm', '--force', name], { allowFailure: true });
-      for (const name of ownNetworks.reverse()) await docker(['network', 'rm', name], { allowFailure: true });
-      if (ownImage) await docker(['image', 'rm', image], { allowFailure: true });
+      let complete = true;
+      for (const name of ownContainers.reverse()) complete = (await docker(['rm', '--force', name], { allowFailure: true })).code === 0 && complete;
+      for (const name of ownNetworks.reverse()) complete = (await docker(['network', 'rm', name], { allowFailure: true })).code === 0 && complete;
+      if (ownImage) complete = (await docker(['image', 'rm', image], { allowFailure: true })).code === 0 && complete;
       rmSync(runtime, { recursive: true, force: true });
+      evidence.cleanup = { result: complete ? 'complete' : 'failed', containersRemoved: ownContainers.length, networksRemoved: ownNetworks.length, imageRemoved: ownImage && complete, runtimeFixturesRemoved: true };
+      if (!complete) { evidence.result = 'failed'; evidence.failedCheck = 'cleanup'; }
+      writeFileSync(resolve(directory, 'evidence.json'), JSON.stringify(evidence, null, 2) + '\n', { mode: 0o600 });
+      if (!complete) throw new Error('preview_cleanup_failed');
+    } else {
+      evidence.cleanup = { result: 'retained-for-authorized-local-visual-review' };
+      writeFileSync(resolve(directory, 'evidence.json'), JSON.stringify(evidence, null, 2) + '\n', { mode: 0o600 });
     }
   }
+  process.stdout.write(JSON.stringify({ status: 'local-smoke-passed', checks: checks.length, evidencePath: resolve(directory, 'evidence.json'), keptRunning: keep }) + '\n');
+  return evidence;
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {

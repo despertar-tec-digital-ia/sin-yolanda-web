@@ -1,6 +1,6 @@
-# Registro propio · propuesta visual local
+# Registro propio · captura local de prueba
 
-Propuesta de interfaz para Sin Yolanda El Paso. **No publicada, no funcional como alta.**
+Interfaz para Sin Yolanda El Paso. **Captura ficticia local comprobada; no publicada.**
 Queda fuera de `scripts/public-manifest.json`; no cambia el QR temporal activo ni su destino GHL.
 
 - Español predeterminado y botón único English/Español. Cambia texto, etiquetas, errores y título.
@@ -9,17 +9,36 @@ Queda fuera de `scripts/public-manifest.json`; no cambia el QR temporal activo n
 - Aviso desplegable: resumen provisional basado en el formulario temporal vigente, con contacto
   Instagram confirmado. No sustituye el aviso específico del futuro backend propio; el responsable,
   contacto de privacidad y custodia propia deben verificarse antes de publicar.
-- Botón deshabilitado; enviar/Enter bloqueados. No endpoint, GHL, cookies, almacenamiento ni tracker.
+- Por defecto, botón deshabilitado y enviar/Enter bloqueados. `--with-intake` habilita únicamente
+  la captura local cifrada; el aviso/CTA indican que se deben usar datos ficticios. Sin GHL ni tracker.
 - Logo actual, crema/blanco/tinta y naranja; Bebas Neue y Roboto Slab ya versionados, sin fuentes
   externas. Sin granate; naranja de acción `#B8440B` sobre blanco.
 
 Archivos: `index.html`, `styles.css`, `intake.js`. `serve-local.mjs` abre únicamente el prototipo
 y los recursos de identidad y dos fotografías explícitas, con allowlist y escucha en127.0.0.1.
-Para revisión local: `node prototypes/loyalty-intake/serve-local.mjs 8798` desde el repo.
+Para revisión visual: `node prototypes/loyalty-intake/serve-local.mjs 8798` desde el repo.
+Para probar captura: iniciar `services/loyalty-intake/run_local.py` con su entorno bloqueado
+en `uv.lock`, y ejecutar el servidor con `8798 --with-intake`. API en127.0.0.1:8801; ambos servidores
+son exclusivamente locales. Procedimiento, persistencia y gates → README del servicio.
 No usar el checkout completo ni exponer este servidor mediante túneles o interfaces públicas.
 
-La conexión posterior a un backend propio y la escritura en GHL son trabajo separado; este
-prototipo no define persistencia, consentimiento legal final ni beneficios del programa.
+Éxito solo después de respuesta confirmada del backend, con recibo opaco y datos limpiados.
+Fallos conservan el intento y sus datos; reintentar el mismo contenido usa la misma clave,
+cambiar contenido genera otra. Idioma, errores y confirmación ES/EN; sin persistencia en navegador.
+La escritura real en GHL, aviso legal final y beneficios del programa siguen pendientes.
+
+## Captura comprobada ·9-oct
+
+Operador comprobó una alta ficticia ES y otra EN desde la pantalla, y registros cifrados en disco,
+cola pendiente y snapshot consistente. CUA: móvil390/320/tablet768/escritorio1502, sin desbordamiento;
+reload limpia datos/opt-ins. Tests nativos del frontend/proxy:11 casos sin navegador adicional.
+API/almacenamiento/worker simulado/backup tienen su suite independiente en el servicio.
+Estas pruebas no crean contactos reales, envían mensajes ni sustituyen el formulario QR vigente.
+
+La configuración local es explícita `captureEnabled`+`qaOnly`+versión de consentimiento exacta.
+POST limitado a8192bytes, origen loopback y proxy fijo; no cookies/auth/URLs arbitrarias. CSP
+`connect-src 'self'`, `form-action 'none'`. Por defecto no hay POST ni captura; la versión de QA
+no se puede publicar como formulario real. No incluye widget Turnstile productivo todavía.
 
 ## Fotografía local de revisión ·9-oct
 
@@ -39,7 +58,7 @@ ningún binario ni captura a GitHub, ni incorporar a un paquete publicable. No h
 resolución, medios remotos ni copia de la fotografía a las carpetas públicas del sitio.
 Un clon no tendrá la imagen: la falta intencional de binarios conserva este gate de derechos.
 
-## Verificación con fotografía actual ·9-oct
+## Verificación visual previa a conectar captura ·9-oct
 
 Diez combinaciones locales ES/EN:320/390/768/1440px y1502×772. Sin desbordamiento; fotografía
 decodificada, alt traducido y bienvenida sin superponerse a la imagen. Sombrero, sonrisa y

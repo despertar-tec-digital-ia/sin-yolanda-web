@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex, nofollow" />
     <meta name="referrer" content="no-referrer" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self'; form-action 'none'; base-uri 'none'; object-src 'none'" />
     <title>Tu registro · Sin Yolanda El Paso</title>
     <link rel="stylesheet" href="./styles.css" />
     <script defer src="./intake.js"></script>
@@ -40,7 +40,10 @@
           <p data-copy="requiredHint">Nombre y correo son los datos obligatorios.</p>
         </div>
 
+        <p class="capture-note" id="capture-note" role="status" hidden></p>
+
         <form id="intake-form" novalidate autocomplete="off">
+          <div class="honeypot" aria-hidden="true"><label for="website">Website</label><input id="website" name="website" type="text" tabindex="-1" autocomplete="off" /></div>
           <div class="fields">
             <div class="field">
               <label for="full-name"><span data-copy="name">Nombre completo</span> <span class="required-mark" aria-hidden="true">*</span></label>
@@ -58,7 +61,7 @@
               <div class="field">
                 <label for="phone"><span data-copy="phone">Teléfono</span><span class="optional" data-copy="optional">Opcional</span></label>
                 <input id="phone" name="phone" type="tel" maxlength="25" inputmode="tel" autocomplete="off" aria-describedby="phone-hint phone-error" />
-                <p class="field-hint" id="phone-hint" data-copy="phoneHint">Incluye el código de país.</p>
+                <p class="field-hint" id="phone-hint" data-copy="phoneHint">Incluye + y el código de país.</p>
                 <p class="field-error" id="phone-error" aria-live="polite" hidden></p>
               </div>
 
@@ -75,9 +78,9 @@
             <summary><span data-copy="privacyTitle">Sobre tus datos y privacidad</span><span class="disclosure-icon" aria-hidden="true"></span></summary>
             <div class="privacy-copy">
               <p data-copy="privacyBody">Sin Yolanda El Paso usa tu nombre y correo para gestionar tu registro. El teléfono y el cumpleaños (solo día y mes) son opcionales. Los correos promocionales requieren tu autorización por separado; no autorizas mensajes SMS ni WhatsApp.</p>
-              <p data-copy="privacyStorage">El formulario temporal vigente conserva los contactos en GoHighLevel para su gestión.</p>
+              <p data-copy="privacyStorage">El registro propio está en preparación. Esta vista previa no envía ni almacena datos.</p>
               <p data-copy="privacyContact">Para consultas, puedes contactar a @sinyolandaelpaso en Instagram. El correo de privacidad y el responsable están pendientes de confirmación.</p>
-              <p class="privacy-draft" data-copy="privacyDraft">Borrador del 9 de octubre de 2026, basado en el registro temporal. El aviso del registro propio necesita revisión del responsable y del almacenamiento antes de publicarse.</p>
+              <p class="privacy-draft" data-copy="privacyDraft">Borrador de prueba local del 9 de octubre de 2026. Antes de publicar, se deben verificar el responsable, el contacto de privacidad y la custodia de los datos; no es el aviso legal definitivo.</p>
               <a href="https://www.instagram.com/sinyolandaelpaso/" target="_blank" rel="noopener noreferrer" data-copy="privacyLink">Contactar a Sin Yolanda El Paso ↗</a>
             </div>
           </details>
@@ -95,9 +98,15 @@
             </label>
           </fieldset>
 
-          <button class="register-button" type="submit" disabled data-copy="button">Registro en preparación</button>
+          <p class="server-error" id="server-error" role="alert" hidden></p>
+          <button class="register-button" id="register-button" type="submit" disabled data-copy="button">Registro en preparación</button>
           <p class="preview-note" id="preview-note" role="status" data-copy="previewNote">Vista previa local. No envía ni guarda tus datos.</p>
         </form>
+        <section class="success-state" id="registration-success" aria-labelledby="success-title" tabindex="-1" hidden>
+          <h3 id="success-title" data-copy="successTitle">Registro de prueba guardado</h3>
+          <p data-copy="successBody">La prueba quedó guardada en el almacenamiento local cifrado. No se envió a GoHighLevel.</p>
+          <button class="register-button" id="new-registration" type="button" data-copy="newRegistration">Hacer otra prueba</button>
+        </section>
       </section>
     </main>
 

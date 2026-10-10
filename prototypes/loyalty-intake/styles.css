@@ -72,6 +72,9 @@ input:focus-visible { outline: 3px solid var(--orange-deep); outline-offset: 3px
 .form-heading { margin-bottom: 26px; }
 .form-heading h2 { color: var(--ink); font: 400 44px/1 "SY Display", Impact, sans-serif; margin-bottom: 9px; }
 .form-heading p { font-size: .81rem; line-height: 1.6; color: var(--muted); }
+.capture-note { padding: 12px 14px; margin-bottom: 24px; border-left: 3px solid var(--orange); background: var(--cream); font-size: .8rem; line-height: 1.6; }
+.honeypot { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); }
+[hidden] { display: none !important; }
 .fields { display: grid; gap: 20px; }
 .field { min-width: 0; }
 .field label { display: flex; align-items: baseline; gap: 5px; font-size: .87rem; line-height: 1.4; margin-bottom: 8px; }
@@ -103,6 +106,11 @@ input:focus-visible { outline: 3px solid var(--orange-deep); outline-offset: 3px
 .register-button { display: block; width: 100%; min-height: 54px; border: 0; border-radius: 3px; background: var(--brand); color: #fff; font-weight: 700; font-size: .87rem; line-height: 1.4; padding: 12px 20px; }
 .register-button:disabled { background: #ded5c8; color: #5c4f43; cursor: not-allowed; }
 .preview-note { font-size: .75rem; color: var(--muted); text-align: center; line-height: 1.6; margin-top: 11px; }
+.server-error { margin-bottom: 15px; color: #8d2312; font-size: .84rem; line-height: 1.6; }
+.registration-sheet[aria-busy="true"] .field input { background: #f3ecdf; }
+.success-state h3 { margin: 0 0 16px; color: var(--brand); font: 400 40px/1.05 "SY Display", Impact, sans-serif; }
+.success-state p { margin-bottom: 28px; font-size: .95rem; line-height: 1.7; }
+.success-state:focus { outline: none; }
 .site-footer { width: min(1180px, calc(100% - 80px)); margin: 0 auto; padding: 0 0 32px; display: flex; justify-content: space-between; gap: 24px; font-size: .73rem; color: var(--muted); }
 .site-footer a { text-underline-offset: 4px; }
 

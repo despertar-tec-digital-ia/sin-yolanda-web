@@ -56,17 +56,30 @@ protegido con almacenamiento durable antes de sincronizar GHL; la integración n
 credenciales ni depender de un redirect a LeadConnector como UX definitiva. Preparación local
 excluida de la allowlist; no declarar integración/backend publicado por existir un prototipo.
 Conservar la captura temporal funcional hasta verificar y autorizar su sustitución; mismo QR.
-Propuesta local en `prototypes/loyalty-intake/`, fuera del manifiesto público. Botón deshabilitado,
-CSP sin transporte/envíos, servidor loopback con allowlist; no es un formulario de captura.
-Revisión del operador390px/escritorio, cambio completo ES/EN conserva datos y recarga limpia;
-evidencia ignorada `.artifacts/registration-form-20261009/own-es-*`. Backend propio no implementado.
+Propuesta local en `prototypes/loyalty-intake/`, fuera del manifiesto público. Por defecto botón
+deshabilitado; flag explícito `--with-intake` habilita **solo QA ficticia** con aviso/CTA propios.
+API y almacenamiento en `services/loyalty-intake/`; contratos, configuración, seguridad y gates
+tienen dueño en su README. Datos cifrados, idempotencia, outbox y backup/restore comprobados
+localmente. Éxito requiere transacción confirmada; sin GHL/red/contactos reales desde el API.
+Sincronización real todavía pendiente: adapter/worker probados únicamente con transporte simulado,
+por defecto desactivado; no equiparar esas pruebas a integración GHL viva.
 Refinamiento visual posterior: foto inédita del banco El Paso, selección30, encuadres distintos
 desktop/móvil y fundido corto al pie, sin texto sobre el rostro. Propósito explícito: programa de
 lealtad, no solo cumpleaños. Fuente, tamaños WebP y QA de diez combinaciones ES/EN → README
 del prototipo. Medios y capturas ignorados: derechos de revisión no equivalen a autorización
 comercial. Operador revisó escritorio1502×772 y móvil390×844; sin desbordamiento, alt traducido,
 nombre conservado al cambiar idioma y recarga limpia. `npm run check`:176/176; allowlist pública
-intacta. No modificar el QR ni publicar esta propuesta sin conectar y validar la captura propia.
+intacta. No modificar el QR ni publicar esta propuesta sin validar el lote productivo y su gate explícito.
+
+**Captura local posterior comprobada9-oct:** altas ficticias ES, EN y móvil desde navegador;
+recibos cifrados/cola pendiente confirmados en disco. Reload limpia datos/consentimientos; UI sin
+desbordamiento a320/390/768/1502px. Pruebas Node187/187 y Python76/76 (+43subcasos), incluidos
+reinicio, rollback, concurrencia, caída del proveedor ficticio, leases/reintentos, protección
+de origen/bots, tamaño de cuerpo y backup/restore. Revisión independiente corrigió symlinks del
+runner antes de leer/cambiar permisos y límite de buffer antes de ampliar memoria; regresiones
+añadidas. Evidencia ignorada `own-capture-*` en el mismo directorio de revisión.
+Job CI separado, dependencias congeladas, sin secretos/artefactos privados ni publicación;
+comprobar ejecución remota antes de afirmar ese CI verificado. Público/QR/WordPress sin cambios.
 
 ### QR de carta Guadalajara · publicado y comprobado8-oct
 

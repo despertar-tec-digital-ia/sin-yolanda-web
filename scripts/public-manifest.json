@@ -214,9 +214,9 @@
     "en/catering/index.html"
   ],
   "assetVersions": {
-    "assets/js/site.js": "20261010-visual-details",
+    "assets/js/site.js": "20261011-hero-autoplay",
     "assets/js/i18n.js": "20261010-visual-details",
-    "assets/css/visual-pilot.css": "20261010-visual-details",
+    "assets/css/visual-pilot.css": "20261011-hero-autoplay",
     "assets/js/public-data.js": "20261010-opening-copy"
   }
 }

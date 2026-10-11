@@ -23,7 +23,9 @@ agenda y experiencia integradas y rutas canónicas revisadas. Detalle posterior:
 Catering, país junto al selector, foto original de experiencia y cabecera Catering con scroll/
 marca original. Continuación: interiores Catering y Houston ES/EN con títulos, fotos, contacto
 y lectura unificados; contenido existente conservado. QA y gates vigentes → `docs/WORKFLOW.md`,
-«Interiores Catering y Houston». Sin publicación.
+«Interiores Catering y Houston». **Autorización posterior10-oct:** ese corte D18, sin reconstruir,
+es la versión elegida para la demo gris. Publicación/resultado en WORKFLOW, bloque
+«Demo gris autorizada»; no merge ni despliegue al sitio oficial.
 
 ## Stack
 - HTML/CSS/JS vanilla; validación/empaquetado determinista con Node, sin dependencias npm.

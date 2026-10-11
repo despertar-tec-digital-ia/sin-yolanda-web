@@ -6,6 +6,27 @@ verificado, publicación Pages manual y smoke remoto comprobado. CD automático,
 secretos no están activados por este lote. Preparación, resultado y límites se registran abajo.
 La aprobación de este release no equivale a autorizar otros releases.
 
+### Demo gris autorizada10-oct · corte D18, no producción
+
+Luis aclaró compartir **esta versión gris ya trabajada sobre Karina**, no el home H2 del
+donante publicado antes por una interpretación equivocada de «nuestra versión».
+Checkpoint `6f838a801264e5dd02e716a2157490216b4fb274`, paquete limpio
+`.artifacts/interior-polish/committed/public`, digest
+`e48e407d6e0fc061f0273c63020dfe34e71502adabf3a93a38bef8876e122988`.
+Se conserva el corte sin reconstruir ni mezclar cartas posteriores. Rama visual respaldada
+en GitHub, **sin merge al oficial ni despliegue a Pages**.
+
+Publicación aislada en `demo-sin-yolanda.despertartdigital.cloud`: receptor
+`sinyolanda-universal/visual-release/`, no su `dist` ni su home. Solo cambia `robots.txt` para
+bloquear indexación;201archivos originales intactos. Perfil, QA/resultado servido, PR y rollback
+tienen dueño único en `sites/sinyolanda-universal/DEPLOY-REVIEW.md` y manifiesto visual.
+El receptor no activa los redirects de WordPress/QR/GHL del archivo Cloudflare. Oficial,
+registro, Analytics y horarios futuros fuera del alcance. No sustituye gates comerciales de
+fichas/cartas. El diseño H2 con scroll queda como respaldo local del donante.
+
+Los bloques «revisión local» inferiores describen su desarrollo antes de esta autorización;
+no implican publicación en el sitio oficial. CD sigue manual.
+
 ### Ubicaciones y piloto visual · revisión local10-oct
 
 Rama aislada `fix/visual-locations-20261010`, checkout `sites/sinyolanda-visual-review`, sobre

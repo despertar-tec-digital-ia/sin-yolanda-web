@@ -199,10 +199,12 @@
     "assets/media/agenda-canto-1280.webp",
     "assets/media/catering-servicio-640.webp",
     "assets/media/catering-servicio-1280.webp",
-    "_astro/CateringPage.KWrirYqn.css",
     "_astro/CateringPage.astro_astro_type_script_index_0_lang.ZQG6QDdt.js",
     "_astro/houston-scroll-header.BxWPzCxQ.js",
-    "images/catering-review/logo.webp"
+    "images/catering-review/logo.webp",
+    "_astro/BranchLanding.astro_astro_type_script_index_0_lang.ZQG6QDdt.js",
+    "_astro/BranchLanding.DjLMrFlp.css",
+    "_astro/CateringPage.oLi_lI-G.css"
   ],
   "assetVersion": "20261008-migration-measurement",
   "reviewPages": [

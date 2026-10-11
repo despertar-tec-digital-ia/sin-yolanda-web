@@ -1,5 +1,6 @@
 {
   "houston": {
+    "presentationSourceRef": "8335c9cd6cb0991d314edded76f137cf4dea95e5",
     "sourceRef": "cbffdc4abd7b274d9de16f5059d079bb70e9877b",
     "publicationApproved": false,
     "blockingReasons": ["Latest donor includes review-only Catering media and programming; prior approval of hero/food/footer does not authorize those new subblocks.", "Event freshness needs an authorized release trigger; local import is not publication."],
@@ -97,7 +98,7 @@
   },
   "catering": {
     "kind": "catering",
-    "sourceRef": "76ecb028a7b6feeeab13a24a2e01e18509658922",
+    "sourceRef": "1e629895830d1ace93e7f32584d08efdce7f93b9",
     "publicationApproved": false,
     "routes": [
       {"from":"catering/index.html","to":"catering.html","lang":"es","canonical":"https://sin-yolanda.com/catering"},

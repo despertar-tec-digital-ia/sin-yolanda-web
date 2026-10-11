@@ -21,8 +21,9 @@ pretextos/cumpleaños conectados al selector. Alcance/evidencia/límites en
 pretextos editoriales y La Cantina/Eventos/Tienda armonizados. Catering prioritario en header/home,
 agenda y experiencia integradas y rutas canónicas revisadas. Detalle posterior: franja blanca de
 Catering, país junto al selector, foto original de experiencia y cabecera Catering con scroll/
-marca original. QA y gates vigentes → `docs/WORKFLOW.md`, «Detalles de Catering, selector y
-fotografía». Sin publicación.
+marca original. Continuación: interiores Catering y Houston ES/EN con títulos, fotos, contacto
+y lectura unificados; contenido existente conservado. QA y gates vigentes → `docs/WORKFLOW.md`,
+«Interiores Catering y Houston». Sin publicación.
 
 ## Stack
 - HTML/CSS/JS vanilla; validación/empaquetado determinista con Node, sin dependencias npm.

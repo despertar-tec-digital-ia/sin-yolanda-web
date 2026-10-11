@@ -203,6 +203,48 @@ con audiencia `review`, sin relajar el gate. `_redirects`, cartas, HTML importad
 registro no cambiaron; la versión global de assets se conserva y se invalidan solo consumidores
 públicos de JS/CSS modificados. Sin push/merge/preview público/deploy.
 
+### Interiores Catering y Houston · candidata local10-oct
+
+D18: Luis autoriza continuar primero Catering y después Houston. Pulido de presentación ES/EN,
+sin ampliar oferta, cambiar hechos comerciales ni rehacer el hero del home.
+
+- Catering: Bebas existente del hero se extiende a títulos interiores; negro/blanco para lectura
+  y naranja del arte original como acento. Introducción sin la miniatura duplicada del hero;
+  cuatro propuestas más compactas, arte/texto y apertura nativa conservados. Experiencia con
+  fotos rectangulares alineadas y separación uniforme, sin máscaras circulares/arcos. Contacto
+  agrupa emblema/título, incluidos tablet y EN; enlace Instagram y todos los textos intactos.
+- Houston: header blanco con logo original y controller compartido ocultar/revelar; vino de
+  identidad conservado. Lectura blanca en comida/visita, botón de indicaciones en vino/blanco,
+  Catering oscuro con fundido continuo y enlace editorial. Fotos, hero, agenda, mapa, horarios,
+  reservas y destinos existentes permanecen exactos. Otras sucursales fuera del lote.
+- Fuente aislada `sites/sinyolanda-catering-visuals`: Catering `1e629895830d1ace93e7f32584d08efdce7f93b9`,
+  presentación Houston `8335c9cd6cb0991d314edded76f137cf4dea95e5`; build105 rutas sin errores,
+  32/32 pruebas relevantes. No usar las cartas posteriores del donante principal.
+- Catering: importación selectiva habitual de dos rutas review. Houston: herramienta local
+  `scripts/refresh-houston-presentation.mjs` sustituye solo referencias CSS/módulos de dos
+  fichas después de exigir paridad del body y mismas identidades de recursos. Conserva head,
+  Analytics, datos y snapshot/instante de programación previos. Ignora el nuevo instante de
+  observación únicamente para comparar; no lo escribe. `presentationSourceRef` separado del
+  `sourceRef` de contenido `cbffdc4`; no cambia indexation-policy ni importa la carta Houston.
+  Requiere fuente explícita/HEAD limpio e informe local; `--dry-run` no escribe las páginas.
+
+**Verificado:** `npm run check`,188/188;24casos (cuatro rutas ×320/390/768/1024/1440/1920),
+ES/EN, fotos, tipografía, contacto, propuestas por clic/Space, idiomas y header por scroll/Tab/
+rueda/reduced-motion, sin overflow ni errores JS/recursos locales. Dos pruebas móviles normales
+con tacto, ocultación fuera de pantalla, targets≥44px y fallback sin JS pasan. Catering conserva
+hero, todos los textos/propuestas/enlaces ES/EN frente a D17.196archivos públicos protegidos y
+body/metadatos Houston exactos salvo referencias de presentación.135controles HTTP y220enlaces
+internos en23páginas sin fallos; URLs/slashes conservados. Capturas390/768/1440 ES/EN inspeccionadas;
+se repitió QA tras compactar contacto. Captura estándar `preview.py` raíz inspeccionada; la toma
+con hash se descartó por captura incompleta del scroll. Recibos `.artifacts/interior-polish/`.
+
+Paquete202archivos review/noindex, digest
+`e48e407d6e0fc061f0273c63020dfe34e71502adabf3a93a38bef8876e122988`.
+Gate productivo sigue rechazando cuatro páginas review. Rollback local D17 `3e75bac`.
+Sin push/merge, preview público ni deploy. Chromium emulado no certifica Safari/iPhone físico,
+proveedores externos ni negocio/medios. Siguiente: criterio visual de Luis, fichas restantes por
+bloques y QA físico; hero, cartas, WordPress/QR y registro/GHL quedan fuera de este frente.
+
 ### Detalles de Catering, selector y fotografía · candidata local10-oct
 
 D17, ajuste posterior de Luis sobre D16. Home hero, oferta/contacto, rutas y listas de sucursales
@@ -577,6 +619,7 @@ automatizar vigencia con aprobar contenido nuevo leído de Instagram. Sin agenda
 | D15 · 10-oct | Pulido posterior solicitado por Luis; candidata local | Icono de pausa, Nueva apertura El Paso, foto/cartelera y menos CTA repetidos; armonizar secundarios existentes | Resultado y QA en «Pulido editorial y secundarios»; no habilita operación de El Paso ni publicación |
 | D16 · 10-oct | Solicitada por Luis; candidata local | Catering arriba, continuidad agenda/experiencia y revisión de URLs/slashes | Bloque «Catering prioritario y continuidad de bloques»; cobertura/contacto existentes, hero y archivos importados intactos, sin publicación |
 | D17 · 10-oct | Solicitada por Luis; candidata local | Franja Catering, país junto al selector, fotografía original de experiencia y cabecera Catering con scroll/marca original | Bloque «Detalles de Catering, selector y fotografía»; QA responsive/idiomas/teclado, contenido nativo/hero/QR protegidos, sin publicación |
+| D18 · 10-oct | Continuación autorizada Luis; candidata local | Pulir interiores Catering y Houston ES/EN, preservando contenido y hero del home | Bloque «Interiores Catering y Houston»; presentación separada de contenido/indexación, QA responsive y publicación con gates propios |
 
 Agregar una fila solo si cambia el contrato. Cambios de implementación → PR/commit; cambios de
 ruta → ROUTES; no duplicar reseñas largas de sesión. Un release registra commit, sourceRef/hash,

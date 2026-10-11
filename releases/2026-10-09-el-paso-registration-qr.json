@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "targetOrigin": "https://sin-yolanda.com",
+  "authorizer": "Luis",
+  "sourceCommit": "cad36e4e21ac2bb88c0ecce5b45c5895b7f0a654",
+  "publicDigest": "d65b31f112d82c4521605a0993136b3861326d24c102bce431ca64ae5fff9c16",
+  "authorization": "Luis solicita activar hoy el QR público de registro para El Paso y responde «Si hazlo ok» a la prueba ficticia autorizada en GHL sin correo personal, mensajes ni campañas. Reitera que al abrir el QR debe mostrarse un formulario que guarde datos ya. Este release conecta únicamente /q/el-paso-registro y su variante slash mediante302 al formulario nativo de Sin Yolanda confirmado y probado. Se conservan185archivos del baseline y los redirects de carta Guadalajara; no cambiar home, menús, fichas, DNS, permisos, GA4 ni CD.",
+  "baselineDeployment": "32633a4f-b3ff-4d9c-9e78-8471d7773a66"
+}

@@ -24,7 +24,7 @@ const expectedIndexable = [
   'the-woodlands.html', 'en/the-woodlands/index.html', 'the-woodlands/menu/index.html',
   'san-ignacio.html', 'san-ignacio/menu/index.html',
 ];
-const protectedPages = ['catering.html', 'el-paso.html', 'en/catering/index.html', 'en/el-paso/index.html'];
+const protectedPages = ['catering.html', 'el-paso.html', 'el-paso/menu/index.html', 'en/catering/index.html', 'en/el-paso/index.html'];
 
 test('technical indexation is limited to the 12 pinned branch/menu pages and does not grant commercial approval', () => {
   assert.equal(policy.version, 1);
@@ -51,7 +51,7 @@ test('technical indexation is limited to the 12 pinned branch/menu pages and doe
   }
 });
 
-test('El Paso and Catering keep four review-only noindex pages outside the sitemap', () => {
+test('El Paso and Catering keep five review-only noindex pages outside the sitemap', () => {
   assert.deepEqual([...manifest.reviewPages].sort(), protectedPages);
   for (const page of protectedPages) {
     assert.ok(manifest.pages.includes(page));

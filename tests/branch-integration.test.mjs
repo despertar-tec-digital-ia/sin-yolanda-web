@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { test } from 'node:test';
 import vm from 'node:vm';
 
@@ -176,18 +177,30 @@ test('Houston ES and EN deliberately share the existing English menu, not a fabr
   assert.ok(!publicManifest.pages.includes('en/houston/menu/index.html'));
 });
 
-test('El Paso stays preopening without borrowed menu, hours, telephone or reservation', () => {
-  assert.equal(importManifest['el-paso'].routes.some(route => route.kind === 'menu'), false);
-  for (const route of importManifest['el-paso'].routes) {
+test('El Paso uses its own verified reservation, confirmed phone and original English menu without inferred hours', () => {
+  const menuRoutes = importManifest['el-paso'].routes.filter(route => route.kind === 'menu');
+  assert.equal(menuRoutes.length, 1);
+  assert.equal(menuRoutes[0].lang, 'en');
+  assert.equal(menuRoutes[0].to, 'el-paso/menu/index.html');
+  for (const route of importManifest['el-paso'].routes.filter(route => route.kind !== 'menu')) {
     const html = read(route.to), [schema] = schemas(html);
-    assert.match(html, /data-status="coming-soon"/);
-    assert.equal(schema.hasMenu, undefined);
-    assert.equal(schema.telephone, undefined);
+    assert.match(html, /data-status="open"/);
+    assert.equal(schema.hasMenu, 'https://sin-yolanda.com/el-paso/menu/');
+    assert.equal(schema.telephone, '+19152342908');
     assert.equal(schema.openingHoursSpecification, undefined);
-    assert.equal(schema.acceptsReservations, undefined);
-    assert.doesNotMatch(html, /href="(?:tel:|https:\/\/(?:www\.)?opentable\.com\/|https:\/\/wa\.me\/)/);
+    assert.equal(schema.acceptsReservations, 'https://www.opentable.com/restaurant/profile/1559290');
+    assert.match(html, /widget\/reservation\/loader\?rid=1559290&amp;/);
+    assert.ok(links(html).includes('tel:+19152342908'));
+    assert.doesNotMatch(html, /rid=(?:1503490|155[0-8]\d{3})|href="https:\/\/wa\.me\//);
     assert.ok(links(html).includes('https://www.instagram.com/sinyolandaelpaso/'));
   }
+  const menu = read(menuRoutes[0].to);
+  assert.match(menu, /<html lang="en"/);
+  assert.ok(links(menu).includes('/menus/el-paso-menu-en-v6.pdf'));
+  assert.match(menu, /images\/el-paso-menu-en-v6\.webp/);
+  assert.ok(!publicManifest.pages.includes('en/el-paso/menu/index.html'));
+  const pdf = readFileSync(new URL('menus/el-paso-menu-en-v6.pdf', root));
+  assert.equal(createHash('sha256').update(pdf).digest('hex'), 'a63cc8d8b31743d377de6e4bb9fa1dc9c19203fcf4d9c5439c085ac96854aa29');
 });
 
 test('future branches are announcements only, and Maricarmen does not return through imported navigation', () => {

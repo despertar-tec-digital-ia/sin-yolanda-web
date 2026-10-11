@@ -98,7 +98,7 @@ test('hero refinement keeps one accessible rotulo H1 and replaces the still-imag
   assert.equal((hero.match(/data-hero-slide/g) || []).length, 3);
   assert.equal((hero.match(/ data-src=/g) || []).length, 2, 'Load later scenes only when needed');
   assert.match(hero, /fetchpriority="high"/);
-  assert.match(hero, /data-hero-motion/);
+  assert.doesNotMatch(hero, /data-hero-motion|Pausar fotos|Pause photos/, 'The requested hero has no playback control');
   for (const word of ['NO', 'TIME', 'TEARS', 'for']) assert.ok(hero.includes(`data-i18n-en="${word}"`));
   assert.match(hero, /México · Estados Unidos/);
   assert.equal((hero.match(/href="#ubicaciones"/g) || []).length, 1, 'One main location action');

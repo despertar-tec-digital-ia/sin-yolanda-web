@@ -147,10 +147,6 @@
               data-srcset="assets/media/cantina-canto-640.webp 640w, assets/media/cantina-canto-1280.webp 1280w"
               sizes="100vw" width="1280" height="1700" alt="" decoding="async" />
           </div>
-          <button class="hero-motion" type="button" data-hero-motion data-paused="false">
-            <span class="hero-motion-icon" aria-hidden="true"></span>
-            <span class="hero-motion-label" data-i18n-es="Pausar fotos" data-i18n-en="Pause photos">Pausar fotos</span>
-          </button>
           <div class="hero-copy hero-copy-cinema">
             <p class="hero-micro">México · Estados Unidos</p>
             <h1 class="hero-rotulo">
@@ -788,15 +784,13 @@
     const hero = document.querySelector(".home-hero-cinema");
     if (!hero) return;
     const slides = [...hero.querySelectorAll("[data-hero-slide]")];
-    const control = hero.querySelector("[data-hero-motion]");
-    if (slides.length < 2 || !control) return;
+    if (slides.length < 2) return;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
-    let paused = reduced.matches || Boolean(navigator.connection?.saveData);
     let visible = true;
     let index = 0;
     let timer;
     let advancing = false;
-    const canPlay = () => !paused && visible && !document.hidden;
+    const canPlay = () => !reduced.matches && !navigator.connection?.saveData && visible && !document.hidden;
     const schedule = () => {
       clearTimeout(timer);
       if (canPlay()) timer = setTimeout(advance, 6500);
@@ -823,25 +817,14 @@
       advancing = false;
       schedule();
     };
-    const syncControl = () => {
-      control.setAttribute("data-paused", String(paused));
-      const label = control.querySelector("[data-i18n-es]");
-      label.setAttribute("data-i18n-es", paused ? "Reproducir fotos" : "Pausar fotos");
-      label.setAttribute("data-i18n-en", paused ? "Play photos" : "Pause photos");
-      label.textContent = label.getAttribute(window.SY_I18N?.lang === "en" ? "data-i18n-en" : "data-i18n-es");
-      schedule();
-    };
-    control.addEventListener("click", () => { paused = !paused; syncControl(); });
-    reduced.addEventListener("change", event => {
-      // Reducing motion stops playback; switching it off never overrides a user pause.
-      if (event.matches) { paused = true; syncControl(); }
-    });
+    reduced.addEventListener("change", schedule);
+    navigator.connection?.addEventListener?.("change", schedule);
     document.addEventListener("visibilitychange", schedule);
     new IntersectionObserver(entries => {
       visible = entries[0].isIntersecting;
       schedule();
     }).observe(hero);
-    syncControl();
+    schedule();
   }
 
   function initScrollHeader() {

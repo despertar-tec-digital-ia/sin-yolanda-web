@@ -6,6 +6,18 @@ verificado, publicación Pages manual y smoke remoto comprobado. CD automático,
 secretos no están activados por este lote. Preparación, resultado y límites se registran abajo.
 La aprobación de este release no equivale a autorizar otros releases.
 
+### Hero de demo sin control de pausa ·11-oct
+
+Luis solicita retirar el botón visible de pausa del hero de la demo gris. Cambio derivado del
+corte D18: mismas tres fotos, encuadres, copy, composición y cadencia de6,5segundos. Se elimina
+markup/CSS del control y se desacopla la animación de su existencia; suspensión al salir del
+viewport, pestaña oculta, movimiento reducido y ahorro de datos se conservan. Cambiar la
+preferencia del dispositivo vuelve a evaluar la reproducción. Invalidación de caché limitada
+a `site.js`/`visual-pilot.css` y sus cinco consumidores; cartas/datos/rutas/medios intactos.
+Pruebas nuevas cubren reproducción sin botón, carga diferida, preferencias, visibilidad y fallo
+de foto. Publicación/QA remoto tendrán dueño en `sinyolanda-universal/DEPLOY-REVIEW.md`;
+este encargo no autoriza publicar el candidato visual en el dominio oficial.
+
 ### Demo gris autorizada10-oct · corte D18, no producción
 
 Luis aclaró compartir **esta versión gris ya trabajada sobre Karina**, no el home H2 del

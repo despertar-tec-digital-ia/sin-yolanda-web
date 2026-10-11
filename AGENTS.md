@@ -27,6 +27,9 @@ carpetas privadas de una computadora. Última actualización: 2026-10-07.
   a este repo público, al JavaScript servido ni a los reportes de CI. Noindex no es autenticación.
 - Conservar IDs históricos; cambios de nombre no implican cambiar URL/GBP o destruir historial.
 - No publicar rutas de ensayo, panel demo o formularios que simulen capturar solicitudes.
+- Los headers persistentes del frente visual se ocultan al bajar y reaparecen al subir o navegar
+  por teclado. Conservarlos accesibles cerca del inicio y con menú móvil abierto; respetar
+  movimiento reducido. Requisito reiterado por Luis10-oct, incluido Catering y fichas ES/EN.
 - Preservar fotografía y detalle editorial aprobados; revisar móvil/tablet/desktop, accesibilidad,
   foco, movimiento reducido, contraste y encuadres al modificar UI.
 

@@ -205,6 +205,11 @@ públicos de JS/CSS modificados. Sin push/merge/preview público/deploy.
 
 ### Interiores Catering y Houston · candidata local10-oct
 
+Recordatorio posterior de Luis: los headers persistentes deben ocultarse al bajar y volver
+al subir. Regla guardada en AGENTS;16páginas ES/EN comprobadas en390/768/1440,48casos pasan.
+Incluye home, directorio, secundarios, Catering y fichas. No se alteró código ni la candidata
+por este recordatorio; recibo `.artifacts/header-consistency/report.json`. Cartas fuera del lote.
+
 D18: Luis autoriza continuar primero Catering y después Houston. Pulido de presentación ES/EN,
 sin ampliar oferta, cambiar hechos comerciales ni rehacer el hero del home.
 

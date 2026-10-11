@@ -608,3 +608,21 @@ verificación, no una certificación del sitio completo. El hero sigue reservado
 - [Cloudflare: Direct Upload con CI](https://developers.cloudflare.com/pages/how-to/use-direct-upload-with-continuous-integration/).
 - [GitHub: seguridad de Actions](https://docs.github.com/en/actions/reference/security/secure-use).
 - [GitHub: ambientes de despliegue](https://docs.github.com/en/actions/how-tos/deploy/configure-and-manage-deployments/manage-environments).
+# Candidata El Paso · 11-oct
+
+Karina solicita añadir reservas OpenTable y su carta inglesa V6 a El Paso. Fuente donante
+`c152f6c4a03dd332de0c285d96a660c1cc8f2978`; importación limitada a las fichas ES/EN y
+`/el-paso/menu/`. Restaurante 1559290 verificado en Google/OpenTable, teléfono confirmado
+por Karina `(915) 234-2908`; sin horarios inferidos. La carta conserva el PDF original y
+su orden/precios, con imagen completa para lectura. Las tres rutas siguen noindex.
+
+Base reconciliada con la producción Pages `8d176362-71a8-4267-b881-6b0d76da0377`, fuente
+`3846955c325880077149f88edc0b52f6ff513b0a`, para conservar el QR ya servido. No se incorpora
+el trabajo posterior de intake ni las candidatas de hero. La medición existente solo amplía
+su allowlist a la nueva carta; no se configura otro tracker.
+
+Validación local: 160 pruebas pasan; 10 fallan por symlinks restringidos, ausencia de `zip`
+y una expectativa de ruta POSIX en Windows. El empaquetado review pasa; el build de producción
+mantiene el gate de aprobación. El PR debe comprobar la suite completa en Linux. Este registro
+describe la candidata y no concede la aprobación exacta de producción.
+

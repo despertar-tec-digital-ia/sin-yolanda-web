@@ -44,7 +44,7 @@ const sourceFile = path => {
   if (!safe(path)) throw new Error('Unsafe source path');
   const file = resolve(source, path);
   if (!existsSync(file)) throw new Error('Missing source file: ' + path);
-  const canonical = relative(source, realpathSync(file));
+  const canonical = relative(source, realpathSync(file)).replaceAll('\\', '/');
   if (canonical === '..' || canonical.startsWith('../') || canonical.startsWith('/')) throw new Error('Escaping source file');
   return file;
 };
@@ -57,12 +57,12 @@ const targetFile = path => {
   return file;
 };
 const addAssets = (content, parent) => {
-  for (const [path] of content.matchAll(/\/(?:_astro|fonts|images|licenses)\/[A-Za-z0-9._~%/-]+/g)) assets.add(path.slice(1));
+  for (const [path] of content.matchAll(/\/(?:_astro|fonts|images|licenses|menus)\/[A-Za-z0-9._~%/-]+/g)) assets.add(path.slice(1));
   if (!parent) return;
   const imports = [...content.matchAll(/(?:\bfrom\s*|\bimport\s*(?:\(\s*)?)["'](\.[^"']+)["']/g)];
   const cssUrls = [...content.matchAll(/url\(["']?(\.[^)"']+)["']?\)/g)];
   for (const [, dependency] of [...imports, ...cssUrls]) {
-    const file = relative(source, resolve(source, dirname(parent), dependency));
+    const file = relative(source, resolve(source, dirname(parent), dependency)).replaceAll('\\', '/');
     if (!safe(file) || !/^(?:_astro|fonts|images|licenses)\//.test(file)) throw new Error('Unsafe relative dependency: ' + parent);
     assets.add(file);
   }
@@ -85,7 +85,7 @@ for (const route of routes) {
   if (!safe(route.from) || !safe(route.to) || !['es', 'en'].includes(route.lang)) throw new Error('Unsafe manifest route');
   const prefix = route.lang === 'en' ? 'en/' : '';
   const menu = route.kind === 'menu';
-  const allowedFrom = catering ? prefix + 'catering/index.html' : menu ? (branchId === 'houston' ? '' : prefix) + branch.slug + '/menu/index.html' : prefix + branch.slug + '/index.html';
+  const allowedFrom = catering ? prefix + 'catering/index.html' : menu ? (['houston', 'el-paso'].includes(branchId) ? '' : prefix) + branch.slug + '/menu/index.html' : prefix + branch.slug + '/index.html';
   const allowedTo = catering ? (route.lang === 'en' ? 'en/catering/index.html' : 'catering.html') : menu ? allowedFrom : route.lang === 'en' ? 'en/' + branch.slug + '/index.html' : branch.slug + '.html';
   const canonical = 'https://sin-yolanda.com/' + allowedTo.replace(/index\.html$/, '').replace(/\.html$/, '');
   if (route.from !== allowedFrom || route.to !== allowedTo || route.canonical !== canonical || output.has(route.to)) throw new Error('Manifest cannot replace unrelated or duplicate routes');

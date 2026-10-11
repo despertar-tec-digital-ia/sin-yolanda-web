@@ -10,7 +10,7 @@ import { parseQrRedirects } from './qr-redirects.mjs';
 export const projectRoot = fileURLToPath(new URL('../', import.meta.url));
 export const forbiddenRoute = /(?:^|\/)(?:dashboard|listings|reputation|requests|reports|review-detail|maricarmen)(?:\.html|\/|$)/i;
 const forbiddenFile = /(?:^|\/)(?:archive|pruebas|docs|tests|node_modules|\.git|\.env[^/]*|mock-data\.js|app\.js)(?:\/|$)/i;
-const allowedExtension = /\.(?:html|css|js|json|xml|txt|webp|png|jpg|jpeg|svg|mp4|woff2?|ttf)$/i;
+const allowedExtension = /\.(?:html|css|js|json|xml|txt|webp|png|jpg|jpeg|svg|mp4|woff2?|ttf|pdf)$/i;
 
 export function inspectPublic(root = projectRoot) {
   const manifest = JSON.parse(readFileSync(resolve(root, 'scripts/public-manifest.json'), 'utf8'));

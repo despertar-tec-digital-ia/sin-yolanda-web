@@ -23,7 +23,8 @@
     "the-woodlands/menu/index.html",
     "san-ignacio/menu/index.html",
     "en/el-paso/index.html",
-    "en/catering/index.html"
+    "en/catering/index.html",
+    "el-paso/menu/index.html"
   ],
   "assets": [
     "styles.css",
@@ -188,13 +189,17 @@
     "images/catering-review/table-scene-desktop-800.webp",
     "images/catering-review/table-scene-mobile-480.webp",
     "images/catering-review/table-scene-mobile-800.webp",
-    "assets/js/site-analytics.js"
+    "assets/js/site-analytics.js",
+    "_astro/BranchLanding.K3DaC-7P.css",
+    "images/el-paso-menu-en-v6.webp",
+    "menus/el-paso-menu-en-v6.pdf"
   ],
   "assetVersion": "20261008-migration-measurement",
   "reviewPages": [
     "el-paso.html",
     "en/el-paso/index.html",
     "catering.html",
-    "en/catering/index.html"
+    "en/catering/index.html",
+    "el-paso/menu/index.html"
   ]
 }

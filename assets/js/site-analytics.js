@@ -9,7 +9,7 @@
     "/el-paso", "/san-ignacio", "/san-antonio", "/the-woodlands", "/houston",
     "/aviso-de-privacidad", "/en/houston", "/houston/menu", "/en/san-antonio",
     "/san-antonio/menu", "/en/san-antonio/menu", "/en/the-woodlands",
-    "/the-woodlands/menu", "/san-ignacio/menu", "/en/el-paso", "/en/catering",
+    "/the-woodlands/menu", "/san-ignacio/menu", "/en/el-paso", "/el-paso/menu", "/en/catering",
   ]);
   const branches = new Set(["group", "catering", "san-ignacio", "san-antonio", "the-woodlands", "houston", "el-paso"]);
   const actions = new Set([

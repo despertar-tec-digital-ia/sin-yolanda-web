@@ -92,8 +92,9 @@ y ruta inexistente dan 404 real. Panel demo/archivos de desarrollo siguen públi
 | `/san-ignacio` | `san-ignacio.html` | Nombre público nuevo Guadalajara; orientación Zona Chapalita, Zapopan. Propuesta: conservar URL por ahora |
 | `/san-ignacio/menu/` | `san-ignacio/menu/index.html` | Carta ES propia, conserva conflictos pendientes y nombre Guadalajara |
 | `/guadalajara` | No existe fuente | Solo candidato a migración futura; no crear duplicado de `/san-ignacio` |
-| `/el-paso` | `el-paso.html` | Ficha de preapertura propia, 9-oct; estado abierto requiere confirmación operativa |
-| `/en/el-paso/` | `en/el-paso/index.html` | Misma preapertura en EN, sin carta/horarios/reserva fabricados |
+| `/el-paso` | `el-paso.html` | Candidata 11-oct: reservas OpenTable 1559290 y teléfono confirmado por Karina; horarios omitidos |
+| `/en/el-paso/` | `en/el-paso/index.html` | Misma reserva propia y enlace explícito a carta EN |
+| `/el-paso/menu/` | `el-paso/menu/index.html` | Carta inglesa V6 suministrada por Karina, imagen completa y PDF original; noindex hasta aprobación específica |
 | Moreno Valley / San Diego | Anuncios en datos del home, sin HTML propio | Próximamente USA, sin fechas. No inventar href hacia una ficha inexistente ni usar Houston |
 | `/catering` | `catering.html` | Integrar página aprobada con cobertura/contacto reales |
 | `/en/catering/` | `en/catering/index.html` | Composición Fiesta EN, misma cobertura y gates; candidata noindex |

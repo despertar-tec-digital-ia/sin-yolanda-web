@@ -1,5 +1,5 @@
 window.SY_DATA = {
-  "updatedAt": "2026-10-07",
+  "updatedAt": "2026-10-11",
   "branches": [
     {
       "id": "san-ignacio",
@@ -189,11 +189,11 @@ window.SY_DATA = {
       "city": "El Paso, Texas",
       "country": "Estados Unidos",
       "region": "us",
-      "status": "coming-soon",
-      "statusLabel": "Nueva apertura",
-      "concept": "Mexican restaurant · En preparación",
+      "status": "active",
+      "statusLabel": "Abierta",
+      "concept": "Mexican restaurant · Sin Yolanda",
       "address": "340 Vin Rambla Dr, El Paso, TX 79912",
-      "hours": "Horario por confirmar en la apertura",
+      "hours": "Horario por confirmar",
       "phone": "+1 726-239-6779",
       "phoneIntl": "+17262396779",
       "whatsapp": "",
@@ -206,7 +206,7 @@ window.SY_DATA = {
       "accessibility": "Información por confirmar",
       "image": "assets/media/celebration.webp",
       "gallery": [],
-      "summary": "El Chuco ya trae el plan. La cantina va en camino y el catering ya arma tu fiesta en casa.",
+      "summary": "Sin Yolanda en El Chuco. Conoce la ubicación y las novedades de la cantina.",
       "tagline": "El Chuco",
       "socialUrl": "https://www.instagram.com/sinyolandaelpaso/",
       "rating": null,
@@ -248,8 +248,11 @@ window.SY_DATA = {
       "rating": null,
       "reviewsTotal": 0,
       "quotes": [],
-      "venuePhoto": "assets/media/interior.webp",
-      "venuePosition": "42% 50%",
+      "venuePhoto": "assets/media/venues/future/future-crowd-960.webp",
+      "venuePhotoSet": "assets/media/venues/future/future-crowd-640.webp 640w, assets/media/venues/future/future-crowd-960.webp 960w",
+      "venuePhotoWidth": 960,
+      "venuePhotoHeight": 1237,
+      "venuePosition": "50% 48%",
       "venuePhotoKind": "brand-illustrative"
     },
     {
@@ -284,8 +287,11 @@ window.SY_DATA = {
       "rating": null,
       "reviewsTotal": 0,
       "quotes": [],
-      "venuePhoto": "assets/media/karaoke.webp",
-      "venuePosition": "48% 42%",
+      "venuePhoto": "assets/media/venues/future/future-singalong-960.webp",
+      "venuePhotoSet": "assets/media/venues/future/future-singalong-640.webp 640w, assets/media/venues/future/future-singalong-960.webp 960w",
+      "venuePhotoWidth": 960,
+      "venuePhotoHeight": 1305,
+      "venuePosition": "50% 38%",
       "venuePhotoKind": "brand-illustrative"
     }
   ],

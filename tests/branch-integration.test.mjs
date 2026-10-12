@@ -176,11 +176,12 @@ test('Houston ES and EN deliberately share the existing English menu, not a fabr
   assert.ok(!publicManifest.pages.includes('en/houston/menu/index.html'));
 });
 
-test('El Paso stays preopening without borrowed menu, hours, telephone or reservation', () => {
+test('El Paso is confirmed open without borrowing unconfirmed menu, hours, telephone or reservation', () => {
   assert.equal(importManifest['el-paso'].routes.some(route => route.kind === 'menu'), false);
   for (const route of importManifest['el-paso'].routes) {
     const html = read(route.to), [schema] = schemas(html);
-    assert.match(html, /data-status="coming-soon"/);
+    assert.match(html, /data-status="active"/);
+    assert.doesNotMatch(html, /Apertura 9 de octubre|Opening October 9|Novedades de apertura|Opening updates/);
     assert.equal(schema.hasMenu, undefined);
     assert.equal(schema.telephone, undefined);
     assert.equal(schema.openingHoursSpecification, undefined);

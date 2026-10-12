@@ -30,6 +30,7 @@
   }
 
   function publicFooter() {
+    if (page === "home") return groupFooter();
     const locationsHref = ["home", "locations"].includes(page) ? "#ubicaciones" : "locations.html#ubicaciones";
     return `
       <footer class="public-footer">
@@ -63,6 +64,31 @@
       </footer>`;
   }
 
+  function groupFooter() {
+    const opened = data.branches.filter(branch => branch.status === "active");
+    const upcoming = data.branches.filter(branch => branch.status === "coming-soon");
+    const locations = region => opened.filter(branch => branch.region === region).map(branch =>
+      `<li><a href="${branch.page}"><span>${branch.shortName}</span><small>${branch.venueCity || branch.city}</small></a></li>`).join("");
+    return `<footer class="public-footer group-footer" data-header-tone="dark">
+      <div class="group-footer-main">
+        <div class="group-footer-brand">
+          <a class="footer-brand-link" href="/" aria-label="Sin Yolanda, inicio"><img src="assets/media/brand-logo-gdl.png" alt="Sin Yolanda" width="1164" height="312" loading="lazy" /></a>
+          <p data-i18n-es="Una cantina, muchas ciudades. Encuentra la tuya." data-i18n-en="One cantina, many cities. Find yours.">Una cantina, muchas ciudades. Encuentra la tuya.</p>
+          <a class="footer-location-link" href="#ubicaciones" data-select-location data-i18n-es="Ver todas las sucursales" data-i18n-en="View all locations">Ver todas las sucursales</a>
+        </div>
+        <nav aria-labelledby="footer-mx-heading"><strong id="footer-mx-heading" data-i18n-es="México" data-i18n-en="Mexico">México</strong><ul>${locations("mx")}</ul></nav>
+        <nav aria-labelledby="footer-us-heading"><strong id="footer-us-heading" data-i18n-es="Estados Unidos" data-i18n-en="United States">Estados Unidos</strong><ul>${locations("us")}</ul></nav>
+        <nav aria-labelledby="footer-more-heading"><strong id="footer-more-heading" data-i18n-es="Más Sin Yolanda" data-i18n-en="More Sin Yolanda">Más Sin Yolanda</strong><ul>
+          <li><a href="/catering" data-i18n-href-es="/catering" data-i18n-href-en="/en/catering/">Catering</a></li>
+          <li><a href="la-cantina.html">La Cantina</a></li><li><a href="eventos.html">Eventos</a></li>
+          <li><a href="#ubicaciones" data-select-location data-i18n-es="Reservar mesa" data-i18n-en="Book a table">Reservar mesa</a></li>
+        </ul></nav>
+      </div>
+      ${upcoming.length ? `<div class="group-footer-upcoming"><strong data-i18n-es="Próximamente" data-i18n-en="Coming soon">Próximamente</strong><ul>${upcoming.map(branch => `<li>${branch.shortName}<span>${branch.city}</span></li>`).join("")}</ul></div>` : ""}
+      <div class="group-footer-bottom"><span>© ${new Date().getFullYear()} Sin Yolanda</span><a href="aviso-de-privacidad.html">Aviso de privacidad</a></div>
+    </footer>`;
+  }
+
   function venueShowcase() {
     const branches = data.branches.filter((branch) => ["active", "coming-soon"].includes(branch.status));
     return `
@@ -83,7 +109,7 @@
               const opening = hasOpeningDate ? branch.statusLabel : "Próximamente";
               return `<li class="venue-item${index === 0 ? " is-open" : ""}" data-venue-item data-region="${branch.region}" data-status="${branch.status}">
               <${tag} class="venue-card${index === 0 ? " is-open" : ""}${branch.status === "coming-soon" ? " venue-card--soon" : ""}${branch.venuePhoto ? "" : " venue-card--announcement"}"${hasPage ? ` href="${branch.page}"` : ""} data-venue data-branch-id="${branch.id}">
-                <span class="venue-frame" aria-hidden="true">${branch.venuePhoto ? `<img src="${branch.venuePhoto}" alt="" width="1400" height="1000" loading="lazy" decoding="async" style="object-position:${branch.venuePosition || "50% 50%"}" />` : `<span class="venue-announcement">Sin Yolanda<span>Próximamente</span></span>`}<span class="venue-shade"></span></span>
+                <span class="venue-frame" aria-hidden="true">${branch.venuePhoto ? `<img src="${branch.venuePhoto}"${branch.venuePhotoSet ? ` srcset="${branch.venuePhotoSet}" sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 60vw"` : ""} alt="" width="${branch.venuePhotoWidth || 1400}" height="${branch.venuePhotoHeight || 1000}" loading="lazy" decoding="async" style="object-position:${branch.venuePosition || "50% 50%"}" />` : `<span class="venue-announcement">Sin Yolanda<span>Próximamente</span></span>`}<span class="venue-shade"></span></span>
                 <span class="venue-location" aria-hidden="true">${branch.country === "México" ? "Jalisco, México" : branch.city}</span>
                 <span class="venue-collapsed" aria-hidden="true">${name}</span>
                 ${hasOpeningDate ? `<span class="venue-opening-date" aria-hidden="true"><span>Apertura</span>9 OCT</span>` : ""}
@@ -194,7 +220,7 @@
           <a class="button button-primary" href="#ubicaciones" data-select-location>Ver la carta</a>
         </section>
 
-        <section class="section cumple-section" id="cumple">
+        <section class="section cumple-section" id="cumple" data-header-tone="light">
           <div class="section-heading"><div><p class="eyebrow">Celebraciones</p><h2 class="reveal">¿Cumpleaños?</h2></div></div>
           <p class="cumple-copy">Tu gente, una mesa y un buen pretexto. Elige tu sucursal y consulta disponibilidad para celebrar.</p>
           <div class="hero-actions">
@@ -212,7 +238,7 @@
 
   function homeCatering() {
     // Use the existing service identity and Houston copy in a compact photographic band.
-    return `<section class="section catering-feature" id="catering" aria-labelledby="home-catering-heading">
+    return `<section class="section catering-feature" id="catering" aria-labelledby="home-catering-heading" data-header-tone="light">
       <div class="catering-feature-copy">
         <img class="catering-feature-brand" src="images/catering-review/logo.webp" width="750" height="210" alt="Sin Yolanda Catering" loading="lazy" />
         <h2 id="home-catering-heading">Llevamos la cantina a tu fiesta.</h2>
@@ -288,7 +314,7 @@
   function homeAgenda(now = new Date()) {
     const campaigns = homeCampaigns(now);
     if (!campaigns.length) return "";
-    return `<section class="section cartelera-section home-agenda" id="cartelera" aria-labelledby="agenda-heading">
+    return `<section class="section cartelera-section home-agenda" id="cartelera" aria-labelledby="agenda-heading" data-header-tone="light">
       <div class="home-agenda-media"><img src="assets/media/agenda-canto-1280.webp"
         srcset="assets/media/agenda-canto-640.webp 640w, assets/media/agenda-canto-1280.webp 1280w"
         sizes="(max-width: 900px) 100vw, 40vw" width="1280" height="1686" loading="lazy" decoding="async"
@@ -827,6 +853,43 @@
     schedule();
   }
 
+  function initAgendaImage() {
+    const image = document.querySelector(".home-agenda-media img");
+    if (!image) return;
+    const observer = new IntersectionObserver(entries => {
+      if (!entries.some(entry => entry.isIntersecting)) return;
+      image.loading = "eager";
+      observer.disconnect();
+    }, { rootMargin: "1600px 0px" });
+    observer.observe(image.parentElement);
+  }
+
+  function initHeaderThemes() {
+    if (page !== "home") return;
+    const header = document.querySelector(".public-header");
+    if (!header) return;
+    const sections = [...document.querySelectorAll("[data-header-tone]")];
+    let ticking = false;
+    const update = () => {
+      ticking = false;
+      if (header.querySelector(".public-nav.open")) return;
+      const probe = header.offsetHeight + 1;
+      const section = sections.find(element => {
+        const bounds = element.getBoundingClientRect();
+        return bounds.top <= probe && bounds.bottom > probe;
+      });
+      const tone = section?.dataset.headerTone === "light" ? "light" : "dark";
+      if (header.dataset.tone !== tone) header.dataset.tone = tone;
+    };
+    const schedule = () => {
+      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    };
+    for (const event of ["scroll", "resize"]) window.addEventListener(event, schedule, { passive: true });
+    header.addEventListener("click", schedule);
+    document.fonts?.ready.then(schedule);
+    update();
+  }
+
   function initScrollHeader() {
     if (!["home", "locations", "la-cantina", "eventos", "tienda"].includes(page)) return;
     const header = document.querySelector(".public-header");
@@ -882,6 +945,8 @@
   root.innerHTML = `${(renderers[page] || homePage)()}${toastMarkup()}`;
   bindCommon();
   initHeroCinema();
+  initAgendaImage();
+  initHeaderThemes();
   initScrollHeader();
   bindModal();
   bindReservationModules();

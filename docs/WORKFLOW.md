@@ -1,10 +1,37 @@
 # Forma de trabajar y publicar
 
-**Última actualización:** 2026-10-10 · **Responsables:** Luis, técnica; Karina, negocio/contenido y hero.
+**Última actualización:** 2026-10-11 · **Responsables:** Luis, técnica; Karina, negocio/contenido y hero.
 **Estado:** candidato integrado en `main` y release limitado publicado el 8-oct; CI de PR y main
 verificado, publicación Pages manual y smoke remoto comprobado. CD automático, protecciones y
 secretos no están activados por este lote. Preparación, resultado y límites se registran abajo.
 La aprobación de este release no equivale a autorizar otros releases.
+
+### Fotos, agenda, footer y navbar de demo ·11-oct
+
+Encargo posterior de Luis, exclusivamente `demo-sin-yolanda.despertartdigital.cloud` sobre el
+corte gris; no tocar el oficial. Moreno Valley usa Woodlands#191 del banco Karina7-oct,
+`17Tr6UIoqtmFz9Y_SoaI-icxQhcdZ8hTr`; San Diego usa Woodlands#47,
+`1I5KyJZ0_W_vc5ydIgrwitys9CE3gxaL3`. Originales inspeccionados/intactos, huellas cotejadas;
+variantes640/960 WebP sin ampliación. Son escenas generales de marca, no fotos de esos locales.
+Receta local `scripts/prepare-demo-photo-variety.cjs`; banco previo conserva la descripción.
+
+**Agenda:** se reprodujo espera de imagen lazy en390/1440 con dos segundos de latencia:
+marco/imagen ya tenían igual altura, pero dejaban blanco hasta recibir la foto. Se anticipa la
+carga a1600px y un derivado de la misma foto de738bytes ocupa el fondo durante la descarga;
+encuadre/layout/campañas intactos. No promete carga instantánea ni cambia programación.
+
+**Estado El Paso confirmado por Luis11-oct:** abierta en el registro, selector, footer y dos
+fichas ES/EN; se retira aviso futuro. Fecha de apertura histórica preservada. No inventar horarios,
+carta, teléfono ni reservas: siguen sin canales nuevos. Override explícito de copy/estado sobre
+HTML revisado, no nueva importación del donante; noindex/gates comerciales y rutas conservados.
+
+**Footer home:** logo original protagonista, directorio del mismo registro por país y futuras
+aperturas aparte, enlaces nativos de exploración/selector y privacidad. No listado editable paralelo
+ni Instagram genérico del grupo. **Navbar home:** tema claro sobre Catering/agenda/cumpleaños;
+oscuro sobre las demás secciones. Se conserva scroll/foco/menú y movimiento reducido; tema estable
+con menú móvil abierto. La cabecera de otras páginas no cambia. QA, release servido/rollback
+→ primer bloque `sinyolanda-universal/DEPLOY-REVIEW.md`. Apple es un frente DNS aparte: dominio
+confirmado `sin-yolanda.com`, TXT aún sin añadir; validar dominio no crea todas las fichas de Maps.
 
 ### Hero de demo sin control de pausa ·11-oct
 

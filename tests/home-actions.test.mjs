@@ -85,6 +85,7 @@ test('calendar days use the supplied time zone, including the November daylight-
 
 test('home campaigns omit unknown or inactive branches and never borrow a different destination', () => {
   const facts = structuredClone(data);
+  facts.branches.find(branch => branch.id === 'el-paso').status = 'coming-soon';
   facts.events = [{ ...facts.events[0], occurrences: [
     { branchId: 'unknown-location', date: '2026-10-31', timeZone: 'America/Chicago' },
     { branchId: 'el-paso', date: '2026-10-31', timeZone: 'America/Chicago' },

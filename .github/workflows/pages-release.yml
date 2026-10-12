@@ -125,6 +125,7 @@ jobs:
       - run: npm ci --ignore-scripts --prefix deploy
       - name: Publish the exact verified bundle, only if production has not changed
         env:
+          GH_TOKEN: ${{ github.token }}
           SY_CLOUDFLARE_PAGES_TOKEN: ${{ secrets.SY_CLOUDFLARE_PAGES_TOKEN }}
           SY_PRODUCTION_GATE: ci-verified
           SY_RELEASE_TRIGGER: ${{ github.event_name }}

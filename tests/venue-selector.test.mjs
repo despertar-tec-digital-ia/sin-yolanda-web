@@ -42,17 +42,21 @@ test('directory and footer follow the same registry when a location is added or 
 });
 
 test('opening strip has a real date/destination between the hero and early location selector', () => {
-  const html = render('openingAnnouncement');
+  assert.equal(render('openingAnnouncement'), '', 'Luis confirmed El Paso is already open');
+  const future = structuredClone(data);
+  future.branches.find(b => b.id === 'el-paso').status = 'coming-soon';
+  future.branches.find(b => b.id === 'el-paso').statusLabel = 'Nueva apertura';
+  const html = render('openingAnnouncement', future);
   assert.match(html, /datetime="2026-10-09"/);
   assert.match(html, /Conoce la sucursal/);
   assert.match(html, /Nueva apertura/);
-  const renamed = structuredClone(data);
+  const renamed = structuredClone(future);
   renamed.branches.find(b => b.id === 'el-paso').statusLabel = 'Editorial label';
   assert.match(render('openingAnnouncement', renamed), /Editorial label/);
   assert.match(render('venueShowcase', renamed), /Editorial label/);
   assert.equal((html.match(/href="el-paso.html"/g) || []).length, 2);
   assert.match(source, /<\/section>\s*\$\{openingAnnouncement\(\)\}\s*\$\{venueShowcase\(\)\}\s*\$\{homeCatering\(\)\}\s*<section class="section section-after-hero" id="plan"/);
-  const withoutDate = structuredClone(data);
+  const withoutDate = structuredClone(future);
   withoutDate.branches.find(b => b.id === 'el-paso').openingDate = '';
   assert.equal(render('openingAnnouncement', withoutDate), '');
   const opened = structuredClone(data);
@@ -71,10 +75,10 @@ test('future photos are illustrative brand media, without invented dates or dest
   }
   const html = render('venueShowcase');
   assert.equal((html.match(/<img /g) || []).length, 7);
-  assert.equal((html.match(/venue-badge--opening/g) || []).length, 1);
-  assert.match(html, /Nueva apertura/);
+  assert.equal((html.match(/venue-badge--opening/g) || []).length, 0);
+  assert.doesNotMatch(html, /Nueva apertura/);
   assert.doesNotMatch(html, /Abre el 9 de octubre/);
-  assert.equal(data.branches.find(b => b.id === 'el-paso').status, 'coming-soon');
+  assert.equal(data.branches.find(b => b.id === 'el-paso').status, 'active');
   assert.equal(data.branches.find(b => b.id === 'el-paso').reserveChannel, 'none');
   const opened = structuredClone(data);
   opened.branches.find(b => b.id === 'el-paso').status = 'active';
@@ -155,7 +159,7 @@ test('hover/focus preview persists, touch does not hover and native clicks remai
 test('country/status filters include future US locations, keep the last visible preview, and recover after filtering', () => {
   const { items, filters, status } = harness();
   items[3].fire('pointerenter', { pointerType: 'mouse' });
-  for (const [index, count] of [[2, 6], [3, 3], [1, 1], [0, 7]]) {
+  for (const [index, count] of [[2, 6], [3, 2], [1, 1], [0, 7]]) {
     filters[index].fire('click');
     assert.equal(items.filter(item => !item.hidden).length, count);
     assert.equal(items.filter(item => !item.hidden && item.classes.has('is-open')).length, 1);

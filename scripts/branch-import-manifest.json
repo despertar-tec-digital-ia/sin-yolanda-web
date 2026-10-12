@@ -93,7 +93,7 @@
       {"from":"en/el-paso/index.html","to":"en/el-paso/index.html","lang":"en","canonical":"https://sin-yolanda.com/en/el-paso/"}
     ],
     "facts":{"street":"340 Vin Rambla Dr","city":"El Paso","postalCode":"79912"},
-    "factsEvidence":"Donor preopening public snapshot; opening date October 9, 2026 is not confirmation that the venue is open.",
+    "factsEvidence":"Address from donor snapshot. Luis confirmed El Paso is open on October 11, 2026; explicit demo-only status/copy override. No confirmation of hours, menu or reservation channel.",
     "blockingReasons":["Campaign ambience is illustrative review material, not photographic evidence of this venue.","Hours, phone, own menu and reservations require operational confirmation; do not borrow another branch's offer.","Reconcile preserved current Karina branch content before official release."]
   },
   "catering": {

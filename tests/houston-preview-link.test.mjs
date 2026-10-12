@@ -29,11 +29,13 @@ test('Houston points to its official page while other branches keep their existi
   }
   const start = siteSource.indexOf('  function publicFooter()');
   const end = siteSource.indexOf('\n  function ', start + 1);
-  const footer = vm.runInNewContext(siteSource.slice(start, end) + '\npublicFooter()',
+  const groupStart = siteSource.indexOf('  function groupFooter()');
+  const groupEnd = siteSource.indexOf('\n  function ', groupStart + 1);
+  const footer = vm.runInNewContext(siteSource.slice(start, end) + siteSource.slice(groupStart, groupEnd) + '\npublicFooter()',
     { data: context.window.SY_DATA, page: 'home' });
-  assert.match(footer, /<a href="houston\.html">Houston/);
+  assert.match(footer, /<a href="houston\.html"><span>Houston/);
   for (const branch of branches.filter(branch => branch.status === 'active')) {
-    assert.ok(footer.includes(`href="${branch.page}">${branch.shortName}`),
+    assert.ok(footer.includes(`href="${branch.page}"><span>${branch.shortName}`),
       `${branch.id} footer link must be rendered from its registered destination`);
   }
   assert.doesNotMatch(siteSource, /demo-sin-yolanda\.despertartdigital\.cloud\/houston/);

@@ -22,12 +22,12 @@ test('retirement is not a destructive menu rewrite', () => {
   assert.match(readFileSync(new URL('houston.html', root), 'utf8'), /<iframe/);
 });
 test('every consumer requests the updated scripts rather than cached retired data', () => {
-  const { pages, assetVersion } = JSON.parse(readFileSync(new URL('scripts/public-manifest.json', root), 'utf8'));
-  assert.equal(assetVersion, '20261008-migration-measurement');
+  const { pages, assetVersion, assetVersions = {} } = JSON.parse(readFileSync(new URL('scripts/public-manifest.json', root), 'utf8'));
+  assert.match(assetVersion, /^\d{8}-[a-z0-9-]+$/);
   for (const name of pages) {
     const html = readFileSync(new URL(name, root), 'utf8');
     for (const [,source] of html.matchAll(/src="(assets\/js\/(?:public-data|site)\.js[^\"]*)"/g)) {
-      assert.ok(source.endsWith('?v=' + assetVersion), name);
+      assert.ok(source.endsWith('?v=' + (assetVersions[source.split('?')[0]] ?? assetVersion)), name);
     }
   }
 });

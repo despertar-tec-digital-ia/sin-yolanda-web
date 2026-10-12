@@ -10,7 +10,9 @@ const context = { window: {} };
 vm.runInNewContext(read('assets/js/public-data.js'), context);
 const data = context.window.SY_DATA;
 const renderer = name => source.slice(source.indexOf('  function ' + name + '()'), source.indexOf('\n  function ', source.indexOf('  function ' + name + '()') + 1));
-const render = (name, facts = data) => vm.runInNewContext(renderer(name) + '\n' + name + '()', { data: facts });
+const escapeStart = source.indexOf('  function escapeHtml(');
+const escapeSource = source.slice(escapeStart, source.indexOf('\n  function ', escapeStart + 1));
+const render = (name, facts = data) => vm.runInNewContext(escapeSource + renderer(name) + '\n' + name + '()', { data: facts });
 
 test('selector has seven real records, native links and non-linked future announcements', () => {
   const html = render('venueShowcase');
@@ -23,13 +25,38 @@ test('selector has seven real records, native links and non-linked future announ
   assert.ok(data.branches.filter(b => b.status === 'coming-soon').every(b => b.region === 'us'));
 });
 
-test('opening strip has a real date/destination between the hero and plan', () => {
-  const html = render('openingAnnouncement');
+test('directory and footer follow the same registry when a location is added or renamed', () => {
+  const facts = structuredClone(data);
+  facts.branches[0].shortName = 'Guadalajara de prueba';
+  facts.branches.push({ id: 'fixture-location', page: 'fixture.html', shortName: 'Fixture',
+    city: 'Test city', region: 'us', status: 'active', country: 'Estados Unidos' });
+  const html = vm.runInNewContext(['publicHeader', 'publicFooter', 'venueShowcase', 'locationsPage']
+    .map(renderer).join('\n') + '\nlocationsPage()', { data: facts, page: 'locations' });
+  assert.equal((html.match(/data-venue-gallery/g) || []).length, 1);
+  assert.equal((html.match(/data-venue-item /g) || []).length, facts.branches.length);
+  assert.match(html, /data-branch-id="fixture-location"/);
+  assert.match(html, /href="fixture.html">Fixture/);
+  assert.match(html, /Guadalajara de prueba/);
+  assert.doesNotMatch(html, /location-card|data-filter=|location-grid|data-caveat/);
+  assert.equal((html.match(/href="#ubicaciones" data-select-location/g) || []).length, 3);
+});
+
+test('opening strip has a real date/destination between the hero and early location selector', () => {
+  assert.equal(render('openingAnnouncement'), '', 'Luis confirmed El Paso is already open');
+  const future = structuredClone(data);
+  future.branches.find(b => b.id === 'el-paso').status = 'coming-soon';
+  future.branches.find(b => b.id === 'el-paso').statusLabel = 'Nueva apertura';
+  const html = render('openingAnnouncement', future);
   assert.match(html, /datetime="2026-10-09"/);
   assert.match(html, /Conoce la sucursal/);
+  assert.match(html, /Nueva apertura/);
+  const renamed = structuredClone(future);
+  renamed.branches.find(b => b.id === 'el-paso').statusLabel = 'Editorial label';
+  assert.match(render('openingAnnouncement', renamed), /Editorial label/);
+  assert.match(render('venueShowcase', renamed), /Editorial label/);
   assert.equal((html.match(/href="el-paso.html"/g) || []).length, 2);
-  assert.match(source, /<\/section>\s*\$\{openingAnnouncement\(\)\}\s*<section class="section section-after-hero" id="plan"/);
-  const withoutDate = structuredClone(data);
+  assert.match(source, /<\/section>\s*\$\{openingAnnouncement\(\)\}\s*\$\{venueShowcase\(\)\}\s*\$\{homeCatering\(\)\}\s*<section class="section section-after-hero" id="plan"/);
+  const withoutDate = structuredClone(future);
   withoutDate.branches.find(b => b.id === 'el-paso').openingDate = '';
   assert.equal(render('openingAnnouncement', withoutDate), '');
   const opened = structuredClone(data);
@@ -48,14 +75,17 @@ test('future photos are illustrative brand media, without invented dates or dest
   }
   const html = render('venueShowcase');
   assert.equal((html.match(/<img /g) || []).length, 7);
-  assert.equal((html.match(/venue-badge--opening/g) || []).length, 1);
-  assert.match(html, /Abre el 9 de octubre/);
+  assert.equal((html.match(/venue-badge--opening/g) || []).length, 0);
+  assert.doesNotMatch(html, /Nueva apertura/);
+  assert.doesNotMatch(html, /Abre el 9 de octubre/);
+  assert.equal(data.branches.find(b => b.id === 'el-paso').status, 'active');
+  assert.equal(data.branches.find(b => b.id === 'el-paso').reserveChannel, 'opentable');
   const opened = structuredClone(data);
   opened.branches.find(b => b.id === 'el-paso').status = 'active';
   assert.doesNotMatch(render('venueShowcase', opened), /venue-badge--opening|venue-opening-date/);
 });
 
-test('authorized hero uses the original rotulo as its H1 and preserves the audited video and poster', () => {
+test('hero refinement keeps one accessible rotulo H1 and replaces the still-image video with responsive source photos', () => {
   const hash = s => createHash('sha256').update(s).digest('hex');
   const hero = source.match(/<section class="home-hero home-hero-cinema"[\s\S]*?<\/section>/)[0];
   const title = hero.match(/<h1\b[^>]*class="[^"]*\bhero-rotulo\b[^"]*"[^>]*>[\s\S]*?<\/h1>/)?.[0];
@@ -68,9 +98,15 @@ test('authorized hero uses the original rotulo as its H1 and preserves the audit
   }
   assert.doesNotMatch(hero, /Cantina contemporánea|El plan ya está armado/);
   assert.doesNotMatch(source, /<section\b[^>]*id="rotulo"|class="rotulo-photos"/);
-  assert.match(hero, /poster="assets\/media\/hero-fiesta-real-poster\.webp"/);
-  assert.match(hero, /<source src="assets\/media\/hero-fiesta-real\.mp4" type="video\/mp4"/);
-  for (const attribute of ['autoplay', 'muted', 'loop', 'playsinline']) assert.match(hero, new RegExp('\\b' + attribute + '\\b'));
+  assert.doesNotMatch(hero, /<video|hero-fiesta-real/);
+  assert.equal((hero.match(/data-hero-slide/g) || []).length, 3);
+  assert.equal((hero.match(/ data-src=/g) || []).length, 2, 'Load later scenes only when needed');
+  assert.match(hero, /fetchpriority="high"/);
+  assert.doesNotMatch(hero, /data-hero-motion|Pausar fotos|Pause photos/, 'The requested hero has no playback control');
+  for (const word of ['NO', 'TIME', 'TEARS', 'for']) assert.ok(hero.includes(`data-i18n-en="${word}"`));
+  assert.match(hero, /México · Estados Unidos/);
+  assert.equal((hero.match(/href="#ubicaciones"/g) || []).length, 1, 'One main location action');
+  assert.match(hero, /href="#plan"/);
   const media = readFileSync(new URL('../assets/media/hero-fiesta-real.mp4', import.meta.url));
   assert.equal(hash(media), 'e03997b6c3842b466bfb04b45906aa7655c9770c16636f70133e251e39d3b0ce');
   const poster = readFileSync(new URL('../assets/media/hero-fiesta-real-poster.webp', import.meta.url));
@@ -123,7 +159,7 @@ test('hover/focus preview persists, touch does not hover and native clicks remai
 test('country/status filters include future US locations, keep the last visible preview, and recover after filtering', () => {
   const { items, filters, status } = harness();
   items[3].fire('pointerenter', { pointerType: 'mouse' });
-  for (const [index, count] of [[2, 6], [3, 3], [1, 1], [0, 7]]) {
+  for (const [index, count] of [[2, 6], [3, 2], [1, 1], [0, 7]]) {
     filters[index].fire('click');
     assert.equal(items.filter(item => !item.hidden).length, count);
     assert.equal(items.filter(item => !item.hidden && item.classes.has('is-open')).length, 1);

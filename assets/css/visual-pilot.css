@@ -1,0 +1,480 @@
+/* Local art-direction candidate. Approved venue cards retain their own styles. */
+@font-face {
+  font-family: "SY Display";
+  src: url("../../fonts/bebas-neue-400.woff2") format("woff2");
+  font-style: normal; font-weight: 400; font-display: swap;
+}
+body:is([data-page="home"], [data-page="locations"], [data-page="la-cantina"], [data-page="eventos"], [data-page="tienda"]) {
+  --visual-surface: #1d1d1b;
+  --visual-text: #ffffff;
+  --visual-muted: #c4c4bf;
+  --visual-line: #51514c;
+  --visual-accent: #ef8d64;
+  background: var(--visual-surface);
+}
+body:is([data-page="home"], [data-page="locations"], [data-page="la-cantina"], [data-page="eventos"], [data-page="tienda"])::before { display: none; }
+/* Single masthead; navigation and logo carry the identity. */
+body:is([data-page="home"], [data-page="locations"], [data-page="la-cantina"], [data-page="eventos"], [data-page="tienda"]) .demo-bar { display: none; }
+body:is([data-page="home"], [data-page="locations"], [data-page="la-cantina"], [data-page="eventos"], [data-page="tienda"]) .public-header {
+  min-height: 80px; grid-template-columns: 208px 1fr;
+  padding-inline: clamp(20px, 5vw, 72px);
+  background: var(--visual-surface); color: var(--visual-text);
+  border-color: var(--visual-line); backdrop-filter: none;
+}
+body:is([data-page="home"], [data-page="locations"], [data-page="la-cantina"], [data-page="eventos"], [data-page="tienda"]) .brand img {
+  width: 204px; height: 56px; filter: none; transform: none; transition: none;
+}
+body:is([data-page="home"], [data-page="locations"], [data-page="la-cantina"], [data-page="eventos"], [data-page="tienda"]) .public-nav {
+  gap: clamp(16px, 1.7vw, 26px); color: var(--visual-text); font-size: 14px; font-weight: 500;
+}
+body:is([data-page="home"], [data-page="locations"], [data-page="la-cantina"], [data-page="eventos"], [data-page="tienda"]) .public-nav a {
+  display: inline-flex; align-items: center; min-height: 44px; padding-block: 10px;
+}
+body:is([data-page="home"], [data-page="locations"], [data-page="la-cantina"], [data-page="eventos"], [data-page="tienda"]) .public-nav a:hover { color: var(--visual-accent); }
+body[data-page="locations"] .public-nav a:first-child {
+  text-decoration: underline; text-decoration-color: var(--visual-accent);
+  text-underline-offset: 9px; text-decoration-thickness: 2px;
+}
+body:is([data-page="home"], [data-page="locations"], [data-page="la-cantina"], [data-page="eventos"], [data-page="tienda"]) .public-nav .nav-cta {
+  border-radius: 4px; background: var(--visual-text); color: var(--visual-surface) !important;
+  padding-inline: 20px !important;
+}
+body:is([data-page="home"], [data-page="locations"], [data-page="la-cantina"], [data-page="eventos"], [data-page="tienda"]) .lang-toggle {
+  gap: 2px; margin: 0; padding: 0 0 0 12px; border: 0;
+  border-left: 1px solid var(--visual-line); border-radius: 0; background: none;
+}
+body:is([data-page="home"], [data-page="locations"], [data-page="la-cantina"], [data-page="eventos"], [data-page="tienda"]) .lang-toggle button {
+  min-width: 44px; min-height: 44px; padding: 10px; border-radius: 0; background: none;
+  color: var(--visual-muted); opacity: 1; letter-spacing: 0; font-size: 13px;
+}
+body:is([data-page="home"], [data-page="locations"], [data-page="la-cantina"], [data-page="eventos"], [data-page="tienda"]) .lang-toggle button.active {
+  color: var(--visual-text); text-decoration: underline;
+  text-underline-offset: 5px; text-decoration-thickness: 2px;
+}
+body:is([data-page="home"], [data-page="locations"], [data-page="la-cantina"], [data-page="eventos"], [data-page="tienda"]) :is(.public-nav a,.menu-toggle,.lang-toggle button):focus-visible {
+  outline: 2px solid var(--visual-accent); outline-offset: 4px;
+}
+/* One display family joins the selector; reading stays in the existing Inter. */
+body[data-page="home"] main > .section h2,
+body[data-page="home"] .home-agenda h2,
+body[data-page="home"] .experience-copy h2,
+body[data-page="home"] .reserve-cta h2,
+body[data-page="home"] #plan h3,
+body[data-page="home"] #botaneo h3,
+body[data-page="home"] .pretexto-card strong,
+body[data-page="home"] .home-campaign h3,
+body[data-page="locations"] .locations-intro h1,
+body[data-page="locations"] .venue-showcase h2 {
+  font-family: "SY Display", Impact, sans-serif; font-weight: 400;
+  line-height: .98; letter-spacing: 0; text-transform: uppercase;
+}
+body[data-page="home"] main > .section,
+body[data-page="home"] .experience-section { color: var(--visual-text); }
+body[data-page="home"] main > .section { background: var(--visual-surface); }
+body[data-page="home"] main > .section h2,
+body[data-page="home"] .experience-copy h2 { font-size: clamp(44px, 5.4vw, 80px); }
+body[data-page="home"] :is(#plan,#botaneo,.pretextos-section,#cumple) .eyebrow { display: none; }
+body[data-page="home"] .section-heading > p { color: var(--visual-muted); }
+body[data-page="home"] .section-heading { gap: 32px; margin-bottom: 40px; }
+/* Photo-led, open captions with unequal column widths. */
+body[data-page="home"] #plan .event-grid { grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 48px 28px; }
+body[data-page="home"] #plan .event-grid article {
+  grid-column: span 4; padding: 0; border: 0; border-radius: 0; background: none;
+}
+body[data-page="home"] #plan .event-grid article:first-child,
+body[data-page="home"] #plan .event-grid article:nth-child(5) { grid-column: span 5; }
+body[data-page="home"] #plan .event-grid article:nth-child(2),
+body[data-page="home"] #plan .event-grid article:nth-child(6) { grid-column: span 3; }
+body[data-page="home"] #plan .event-grid img {
+  width: 100%; height: clamp(220px, 25vw, 340px); border-radius: 4px; margin-bottom: 20px;
+}
+body[data-page="home"] #plan h3,
+body[data-page="home"] #botaneo h3 { font-size: 34px; margin-bottom: 10px; }
+body[data-page="home"] #plan .event-grid p,
+body[data-page="home"] #botaneo p,
+body[data-page="home"] .cumple-copy { color: var(--visual-muted); line-height: 1.65; }
+body[data-page="home"] #plan .event-grid p { max-width: 36ch; margin-bottom: 0; }
+body[data-page="home"] .pretexto-card {
+  padding: 24px 0; border-width: 1px 0 0; border-color: var(--visual-line);
+  border-radius: 0; background: none; color: var(--visual-text); transform: none;
+}
+body[data-page="home"] .pretexto-card:hover { border-color: var(--visual-accent); }
+body[data-page="home"] .pretexto-card strong { font-size: 34px; }
+body[data-page="home"] .pretexto-card :is(span,small) { color: var(--visual-accent); }
+body[data-page="home"] .pretexto-card em { color: var(--visual-muted); font-style: normal; }
+body[data-page="home"] .experience-section { background: #2b3029; }
+body[data-page="home"] .experience-copy { background: transparent; }
+body[data-page="home"] .experience-copy .eyebrow { color: var(--visual-accent); }
+body[data-page="home"] .experience-copy > p:not(.eyebrow) { color: var(--visual-muted); }
+body[data-page="home"] .experience-copy .mini-menu { color: var(--visual-text); }
+body[data-page="home"] .experience-media img { object-position: 50% 44%; }
+body[data-page="home"] #botaneo .event-grid article {
+  padding: 24px 0; border-width: 1px 0 0; border-color: var(--visual-line);
+  border-radius: 0; background: none;
+}
+body[data-page="home"] #botaneo > .button,
+body[data-page="home"] #cumple .button {
+  border-radius: 4px; background: var(--visual-text); color: var(--visual-surface);
+}
+body[data-page="home"] #cumple { background: #2b3029; border: 0; border-radius: 0; padding: 64px 24px; }
+body[data-page="home"] #reserve { background: #d65330; color: #fffaf0; }
+body[data-page="home"] #reserve h2 { font-size: clamp(64px, 8vw, 112px); color: inherit; }
+body[data-page="home"] #reserve .eyebrow { color: #0a0807; }
+body[data-page="home"] #reserve .button { border-radius: 4px; box-shadow: none; }
+/* One visual opening; the accessible gallery heading is retained. */
+body[data-page="locations"] .locations-directory { color: var(--visual-text); }
+.locations-directory .locations-intro {
+  display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(0, .55fr);
+  align-items: end; gap: 40px; padding-block: clamp(48px, 5vw, 80px) 40px;
+}
+.locations-intro h1 { font-size: clamp(56px, 7.5vw, 108px); max-width: 16ch; margin: 0; }
+.locations-intro h1 span { display: block; }
+.locations-intro p { max-width: 28ch; color: var(--visual-muted); margin: 0 0 6px; line-height: 1.65; }
+.locations-directory .venue-showcase { padding-top: 0; background: transparent; }
+.locations-directory .venue-showcase .section-heading {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+}
+body:is([data-page="home"], [data-page="locations"], [data-page="la-cantina"], [data-page="eventos"], [data-page="tienda"]) .venue-showcase .filter {
+  color: var(--visual-text); border-color: var(--visual-line); background: none;
+  min-height: 44px; font-weight: 500;
+}
+body:is([data-page="home"], [data-page="locations"], [data-page="la-cantina"], [data-page="eventos"], [data-page="tienda"]) .venue-showcase .filter.active {
+  background: var(--visual-text); border-color: var(--visual-text); color: var(--visual-surface);
+}
+body[data-page="home"] .venue-showcase .section-heading > p { color: var(--visual-muted); }
+.locations-directory .venue-showcase .filter-chips { margin: 0 0 32px; }
+body:is([data-page="home"], [data-page="locations"], [data-page="la-cantina"], [data-page="eventos"], [data-page="tienda"]) .public-footer { background: #141813; color: #c3c5bc; border: 0; }
+body:is([data-page="home"], [data-page="locations"], [data-page="la-cantina"], [data-page="eventos"], [data-page="tienda"]) .public-footer strong { color: #fff; }
+body:is([data-page="home"], [data-page="locations"], [data-page="la-cantina"], [data-page="eventos"], [data-page="tienda"]) .public-footer img { filter: none; }
+/* Reading never depends on entrance motion. Hero/gallery motion are untouched. */
+body[data-page="home"] main > .section .reveal,
+body[data-page="home"] main > .section .reveal-scale,
+body[data-page="home"] .experience-copy .reveal,
+body[data-page="home"] #reserve .reveal { opacity: 1; transform: none; animation: none; transition: none; }
+@media (max-width: 900px) {
+  body:is([data-page="home"], [data-page="locations"], [data-page="la-cantina"], [data-page="eventos"], [data-page="tienda"]) .public-header { grid-template-columns: 1fr auto; min-height: 76px; }
+  body:is([data-page="home"], [data-page="locations"], [data-page="la-cantina"], [data-page="eventos"], [data-page="tienda"]) .menu-toggle {
+    min-height: 44px; gap: 10px; border-radius: 4px; color: var(--visual-text); border-color: var(--visual-line);
+  }
+  body:is([data-page="home"], [data-page="locations"], [data-page="la-cantina"], [data-page="eventos"], [data-page="tienda"]) .menu-toggle::after { content: ""; width: 16px; height: 8px; border-block: 1px solid currentColor; }
+  body:is([data-page="home"], [data-page="locations"], [data-page="la-cantina"], [data-page="eventos"], [data-page="tienda"]) .public-nav {
+    top: 100%; max-height: calc(100svh - 76px); overflow-y: auto;
+    background: var(--visual-surface); border-color: var(--visual-line); padding: 20px;
+  }
+  body:is([data-page="home"], [data-page="locations"], [data-page="la-cantina"], [data-page="eventos"], [data-page="tienda"]) .lang-toggle { justify-self: start; padding: 0; border: 0; }
+  body[data-page="home"] #plan .event-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  body[data-page="home"] #plan .event-grid article:nth-child(n) { grid-column: auto; }
+  body[data-page="home"] #plan .event-grid img { height: 280px; }
+  .locations-directory .locations-intro { grid-template-columns: 1fr; gap: 20px; }
+  .locations-intro p { max-width: 42ch; }
+}
+@media (max-width: 560px) {
+  body:is([data-page="home"], [data-page="locations"], [data-page="la-cantina"], [data-page="eventos"], [data-page="tienda"]) .brand img { width: 164px; height: 50px; }
+  body[data-page="home"] .section-heading { gap: 20px; margin-bottom: 28px; }
+  body[data-page="home"] #plan .event-grid { grid-template-columns: 1fr; gap: 36px; }
+  body[data-page="home"] #plan .event-grid img { height: auto; aspect-ratio: 1.3; }
+  body[data-page="home"] #plan h3 { font-size: 32px; }
+  .locations-directory .locations-intro { padding-top: 36px; padding-bottom: 28px; }
+  .locations-directory .venue-showcase .filter-chips { margin-bottom: 24px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* One photographic stage: the rotulo and actions sit over the photos.
+ * A continuous shade protects reading without creating a separate panel.
+ */
+body[data-page="home"] .home-hero-cinema {
+  --hero-header-height: 80px;
+  display: block;
+  min-height: 0; height: clamp(640px, calc(100svh - var(--hero-header-height)), 850px);
+  padding: 0; background: #161715; isolation: isolate;
+}
+.home-hero-cinema .hero-media { position: absolute; inset: 0; width: 100%; height: 100%; overflow: hidden; }
+.home-hero-cinema .hero-media::after {
+  content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(0,0,0,.03) 20%, rgba(0,0,0,.12) 45%, rgba(0,0,0,.6) 76%, rgba(0,0,0,.78)),
+    linear-gradient(0deg, rgba(0,0,0,.48), transparent 60%);
+}
+.home-hero-cinema .hero-photo {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  object-position: 50% 40%; opacity: 0; transition: opacity 700ms ease;
+}
+.home-hero-cinema .hero-photo:first-child { object-position: 50% 42%; }
+.home-hero-cinema .hero-photo:last-child { object-position: 50% 34%; }
+.home-hero-cinema .hero-photo.is-active { opacity: 1; }
+body[data-page="home"] .hero-copy-cinema {
+  position: relative; width: min(460px, 42%); min-height: 0; height: 100%;
+  margin-left: auto; margin-right: clamp(24px, 4vw, 80px);
+  padding: 28px 0; align-items: center; justify-content: center; text-align: center;
+  background: transparent;
+}
+.hero-copy-cinema .hero-rotulo { width: min(100%, 390px, 47svh); animation: none; }
+.hero-copy-cinema .rotulo-art,
+.hero-copy-cinema .rotulo-face { color: #fff; fill: #fff; }
+body[data-page="home"] .hero-copy-cinema .hero-sub {
+  max-width: 35ch; color: #fff; font-size: 17px; line-height: 1.55; margin: 12px 0 0;
+  text-shadow: 0 1px 10px rgba(0,0,0,.8); animation: none;
+}
+body[data-page="home"] .hero-copy-cinema .hero-micro {
+  margin: 0 0 14px; color: #fff; font: 400 13px/1.5 Inter, sans-serif;
+  text-transform: none; letter-spacing: .035em; text-shadow: 0 1px 10px rgba(0,0,0,.8); animation: none;
+}
+.hero-copy-cinema .hero-actions {
+  width: 100%; max-width: none; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 6px; margin: 24px 0 0; animation: none;
+}
+.hero-copy-cinema .button-primary {
+  min-height: 50px; min-width: 250px; padding: 12px 20px;
+  border: 1px solid #fff; border-radius: 2px; background: #fff; color: #161715;
+  font: 600 15px/1.5 Inter, sans-serif; text-transform: none; letter-spacing: 0;
+  box-shadow: none; transform: none; display: inline-flex; justify-content: space-between; gap: 24px;
+}
+.hero-copy-cinema .button-primary:hover { background: #e8e8e5; border-color: #e8e8e5; transform: none; box-shadow: none; }
+.hero-copy-cinema .button-primary svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; }
+.hero-plan-link { color: #fff; font: 400 14px/1.5 Inter, sans-serif; padding: 12px; min-height: 44px;
+  text-shadow: 0 1px 10px rgba(0,0,0,.8);
+  text-decoration: underline; text-underline-offset: 4px; }
+.home-hero-cinema :is(.button-primary,.hero-plan-link):focus-visible { outline: 3px solid var(--visual-accent); outline-offset: 4px; }
+/* White pauses in the dark direction, with quiet, flat buttons. */
+body[data-page="home"] #cumple { background: #fff; color: #1d1d1b; }
+body[data-page="home"] #cumple .cumple-copy { color: #51514c; }
+body[data-page="home"] #cumple .button { border-radius: 2px; background: #1d1d1b; color: #fff; box-shadow: none; }
+body[data-page="home"] #botaneo > .button,
+body[data-page="home"] #reserve .button,
+body:is([data-page="home"], [data-page="locations"], [data-page="la-cantina"], [data-page="eventos"], [data-page="tienda"]) .nav-cta { border-radius: 2px; box-shadow: none; transform: none; }
+/* A sticky header keeps its space and reveals on upward scroll or keyboard focus. */
+body:is([data-page="home"], [data-page="locations"], [data-page="la-cantina"], [data-page="eventos"], [data-page="tienda"]) .public-header {
+  transition: transform 180ms ease; border-bottom-color: #51514c;
+}
+body:is([data-page="home"], [data-page="locations"], [data-page="la-cantina"], [data-page="eventos"], [data-page="tienda"]) .public-header.is-scrolling-down { transform: translateY(-105%); }
+@media (min-width: 1600px) {
+  .home-hero-cinema .hero-photo:first-child { object-position: 50% 30%; }
+}
+@media (max-width: 1100px) {
+  body[data-page="home"] .home-hero-cinema { height: clamp(680px, calc(100svh - var(--hero-header-height)), 900px); }
+  .home-hero-cinema .hero-media::after { background:
+    linear-gradient(0deg, rgba(0,0,0,.9), rgba(0,0,0,.7) 28%, rgba(0,0,0,.42) 57%, rgba(0,0,0,.04) 82%);
+  }
+  .home-hero-cinema .hero-photo { object-position: 50% 40%; }
+  .home-hero-cinema .hero-photo:first-child { object-position: 50% 50%; }
+  /* This portrait has extra space above the group; lift the faces above the rotulo. */
+  .home-hero-cinema .hero-photo:nth-child(2) { transform: scale(1.35); transform-origin: center bottom; }
+  .home-hero-cinema .hero-photo:last-child { object-position: 50% 32%; }
+  body[data-page="home"] .hero-copy-cinema { width: 100%; margin: 0; padding: 28px 26px 36px; justify-content: flex-end; }
+  .hero-copy-cinema .hero-rotulo { width: min(300px, 34svh); }
+  body[data-page="home"] .hero-copy-cinema .hero-sub { font-size: 17px; max-width: 38ch; }
+  body[data-page="home"] .hero-copy-cinema .hero-micro { margin-bottom: 10px; }
+  .hero-copy-cinema .hero-actions { margin-top: 18px; flex-direction: row; flex-wrap: nowrap; gap: 16px; }
+}
+@media (max-width: 900px) {
+  body[data-page="home"] .home-hero-cinema { --hero-header-height: 76px; }
+}
+@media (max-width: 560px) {
+  body[data-page="home"] .hero-copy-cinema { padding: 24px 20px 28px; }
+  .hero-copy-cinema .hero-rotulo { width: min(230px, 57vw); }
+  body[data-page="home"] .hero-copy-cinema .hero-sub { max-width: 33ch; font-size: 15px; margin-top: 10px; }
+  body[data-page="home"] .hero-copy-cinema .hero-micro { margin-bottom: 8px; font-size: 12px; }
+  .hero-copy-cinema .hero-actions { gap: 10px; }
+  .hero-copy-cinema .button-primary { min-height: 48px; min-width: 224px; padding-inline: 14px; gap: 12px; }
+}
+@media (max-width: 360px) {
+  body[data-page="home"] .home-hero-cinema { height: max(720px, calc(100svh - var(--hero-header-height))); }
+  .hero-copy-cinema .hero-actions { flex-direction: column; gap: 0; }
+  .hero-copy-cinema .button-primary { width: min(100%, 280px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-hero-cinema .hero-photo,
+  body:is([data-page="home"], [data-page="locations"], [data-page="la-cantina"], [data-page="eventos"], [data-page="tienda"]) .public-header { transition: none; }
+}
+
+/* Editorial pages share the masthead, readable type and plain actions. */
+body:is([data-page="la-cantina"], [data-page="eventos"], [data-page="tienda"]) main { background: #fff; color: #1d1d1b; }
+body:is([data-page="la-cantina"], [data-page="eventos"], [data-page="tienda"]) :is(h1,h2,h3) {
+  font-family: "SY Display", Impact, sans-serif; font-weight: 400; line-height: 1; letter-spacing: 0; text-transform: uppercase;
+}
+body:is([data-page="la-cantina"], [data-page="eventos"], [data-page="tienda"]) .compact-hero { min-height: 0; }
+body:is([data-page="la-cantina"], [data-page="eventos"], [data-page="tienda"]) .compact-hero > div:last-child {
+  max-width: 900px; padding: clamp(72px, 9vw, 140px) clamp(24px, 5vw, 72px) 64px; color: #fff;
+}
+body:is([data-page="la-cantina"], [data-page="eventos"], [data-page="tienda"]) .compact-hero > img { object-position: 50% 44%; }
+body:is([data-page="la-cantina"], [data-page="eventos"], [data-page="tienda"]) .compact-hero .hero-overlay {
+  background: linear-gradient(90deg,rgba(0,0,0,.82),rgba(0,0,0,.62) 62%,rgba(0,0,0,.18));
+}
+body:is([data-page="la-cantina"], [data-page="eventos"], [data-page="tienda"]) .compact-hero h1 { font-size: clamp(56px,7vw,100px); }
+body:is([data-page="la-cantina"], [data-page="eventos"], [data-page="tienda"]) .compact-hero p:not(.eyebrow) { color: #fff; line-height: 1.65; max-width: 46ch; }
+body:is([data-page="la-cantina"], [data-page="eventos"], [data-page="tienda"]) .eyebrow { color: #a23c21; }
+body:is([data-page="la-cantina"], [data-page="eventos"], [data-page="tienda"]) .compact-hero .eyebrow { color: #fff; }
+body:is([data-page="la-cantina"], [data-page="eventos"], [data-page="tienda"]) .section { background: #fff; padding-block: 64px; }
+body:is([data-page="la-cantina"], [data-page="eventos"], [data-page="tienda"]) .section h2 { font-size: clamp(40px,4.5vw,64px); }
+body:is([data-page="la-cantina"], [data-page="eventos"], [data-page="tienda"]) .event-grid article {
+  padding: 24px 0 0; border: 0; border-top: 1px solid #c8c8c3; border-radius: 0; background: transparent;
+}
+body:is([data-page="la-cantina"], [data-page="eventos"], [data-page="tienda"]) .event-grid h3 { font-size: 34px; }
+body:is([data-page="la-cantina"], [data-page="eventos"], [data-page="tienda"]) .event-grid p { color: #51514c; line-height: 1.65; }
+body:is([data-page="la-cantina"], [data-page="eventos"], [data-page="tienda"]) .reserve-cta { background: #1d1d1b; color: #fff; }
+body:is([data-page="la-cantina"], [data-page="eventos"], [data-page="tienda"]) .reserve-cta h2 { color: #fff; font-size: clamp(48px,5vw,76px); }
+body:is([data-page="la-cantina"], [data-page="eventos"], [data-page="tienda"]) .reserve-cta .eyebrow { color: #c4c4bf; }
+body:is([data-page="la-cantina"], [data-page="eventos"], [data-page="tienda"]) .reserve-cta .button {
+  border-radius: 2px; box-shadow: none; background: #fff; color: #1d1d1b; border-color: #fff;
+}
+body:is([data-page="la-cantina"], [data-page="eventos"], [data-page="tienda"]) .reserve-cta .button-ghost-light { background: transparent; color: #fff; }
+body:is([data-page="la-cantina"], [data-page="eventos"], [data-page="tienda"]) .data-caveat { color: #51514c; }
+body:is([data-page="la-cantina"], [data-page="eventos"], [data-page="tienda"]) .data-caveat a { color: #a23c21; text-decoration: underline; text-underline-offset: 4px; }
+body:is([data-page="la-cantina"], [data-page="eventos"], [data-page="tienda"]) :is(.reveal,.reveal-scale) { opacity: 1; transform: none; animation: none; }
+.editorial-link { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; padding-block: 10px; text-decoration: underline; text-underline-offset: 5px; }
+.editorial-link:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+.experience-copy > .editorial-link { margin-top: 24px; color: #1d1d1b; }
+#reserve .closing-plans { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px; }
+body[data-page="home"] .pretexto-card { cursor: auto; }
+body[data-page="home"] .pretexto-card:hover { border-color: var(--visual-line); }
+/* A photograph opens the calendar; the board stays readable and date-led. */
+body[data-page="home"] .home-gathering > .section.home-agenda {
+  display: grid; grid-template-columns: minmax(0,.8fr) minmax(0,1.2fr); gap: 0; padding: 0; align-items: stretch; background: #fff; color: #1d1d1b;
+}
+.home-agenda-media { min-width: 0; position: relative; overflow: hidden;
+  background: #302820 url("../media/agenda-canto-preview.webp") 50% 38% / cover no-repeat; }
+.home-agenda-media::before { content: ""; position: absolute; inset: -8px; background: inherit; filter: blur(8px); }
+.home-agenda-media img { position: absolute; z-index: 1; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 38%; }
+.home-agenda-board { min-width: 0; padding: clamp(32px,4.5vw,72px); }
+.home-agenda-intro { margin-bottom: 32px; }
+body[data-page="home"] .home-agenda-intro h2 { max-width: none; font-size: clamp(56px,5.4vw,80px); margin-bottom: 16px; }
+.home-agenda-intro p { max-width: 44ch; }
+.home-campaign { border-top: 1px solid #c8c8c3; padding: 24px 0; }
+body[data-page="home"] .home-campaign h3 { font-size: 38px; }
+.campaign-dates { color: #a23c21; }
+.campaign-copy p { color: #51514c; }
+.campaign-locations a { border-color: #deded9; color: #1d1d1b; }
+.campaign-locations a:hover { color: #a23c21; }
+@media (max-width:900px) {
+  body[data-page="home"] .home-gathering > .section.home-agenda { grid-template-columns: 1fr; }
+  .home-agenda-media { height: clamp(300px,65vw,540px); background-position: 50% 36%; }
+  .home-agenda-media img { object-position: 50% 36%; }
+  .home-agenda-board { padding: 36px 24px; }
+}
+@media (max-width:560px) {
+  body:is([data-page="la-cantina"], [data-page="eventos"], [data-page="tienda"]) .compact-hero > div:last-child { padding: 72px 24px 48px; }
+  body:is([data-page="la-cantina"], [data-page="eventos"], [data-page="tienda"]) .section { padding-block: 48px; }
+  .home-agenda-board { padding-inline: 20px; }
+  body[data-page="home"] .home-campaign h3 { font-size: 34px; }
+  #reserve .closing-plans { flex-direction: column; align-items: flex-start; gap: 8px; }
+}
+
+body[data-page="la-cantina"] .menu-list li { color: #51514c; border-color: #deded9; }
+
+body[data-page="home"] #reserve .button-light { background: #fff; color: #1d1d1b; }
+@media (max-width:560px) {
+  body[data-page="home"] .pretextos-grid { grid-template-columns: repeat(2,minmax(0,1fr)); column-gap: 20px; }
+  body[data-page="home"] .pretexto-card { min-height: 0; padding-block: 20px; }
+  body[data-page="home"] .pretexto-card strong { font-size: 28px; }
+  body[data-page="home"] .pretexto-card em { font-size: 15px; line-height: 1.6; }
+}
+
+@media (prefers-reduced-motion:reduce) { html { scroll-behavior: auto; } }
+
+/* Navigation follows the section beneath it, without altering its scroll/focus behavior. */
+body[data-page="home"] .public-header[data-tone="light"] {
+  --visual-surface: #fff; --visual-text: #1d1d1b; --visual-muted: #51514c;
+  --visual-line: #d6d6d0; --visual-accent: #a23c21;
+  background: var(--visual-surface); color: var(--visual-text);
+  border-bottom: 1px solid var(--visual-line);
+}
+body[data-page="home"] .public-header { transition: transform 220ms ease, background-color 180ms ease, color 180ms ease; }
+
+/* The group footer is a location directory, not a second sales hero. */
+body[data-page="home"] .group-footer {
+  display: block; padding: clamp(48px,6vw,88px) clamp(20px,5vw,72px) 24px;
+  background: #141813; color: #c4c4bf;
+}
+body[data-page="home"] .group-footer > .group-footer-main {
+  display: grid; grid-template-columns: minmax(260px,1.5fr) minmax(0,.8fr) minmax(0,1fr) minmax(0,.8fr);
+  align-items: start; gap: 36px;
+}
+.group-footer .group-footer-brand { display: block; }
+body[data-page="home"] .group-footer .footer-brand-link { display: block; margin: 0 0 24px; padding: 0; }
+body[data-page="home"] .group-footer .footer-brand-link img { width: min(340px,100%); height: auto; max-height: none; }
+.group-footer .group-footer-brand p { max-width: 30ch; margin: 0 0 16px; line-height: 1.65; font-size: 15px; }
+.group-footer .footer-location-link { text-decoration: underline; text-underline-offset: 5px; }
+.group-footer nav > strong { display: block; margin-bottom: 18px; font-size: 16px; font-weight: 600; }
+.group-footer ul { list-style: none; margin: 0; padding: 0; }
+.group-footer li { margin: 0; }
+body[data-page="home"] .group-footer a { display: block; min-height: 44px; padding-block: 10px; color: #fff; line-height: 1.5; }
+.group-footer nav a small { display: block; color: #c4c4bf; font-size: 12px; line-height: 1.5; }
+.group-footer a:hover { text-decoration: underline; text-underline-offset: 5px; }
+.group-footer a:focus-visible { outline: 2px solid #ef8d64; outline-offset: 5px; }
+body[data-page="home"] .group-footer > .group-footer-upcoming {
+  display: flex; flex-direction: row; align-items: baseline; gap: 32px; margin-top: 40px; padding-top: 24px;
+  border-top: 1px solid #51514c;
+}
+.group-footer-upcoming > strong { font-size: 14px; font-weight: 600; flex-shrink: 0; }
+.group-footer-upcoming ul { display: flex; gap: 24px 40px; flex-wrap: wrap; }
+.group-footer-upcoming li { font-size: 14px; color: #fff; }
+.group-footer-upcoming li span { display: block; color: #c4c4bf; font-size: 12px; margin-top: 3px; }
+body[data-page="home"] .group-footer > .group-footer-bottom {
+  display: flex; flex-direction: row; align-items: center; justify-content: space-between; gap: 16px;
+  border-top: 1px solid #51514c; margin-top: 28px; padding-top: 18px; font-size: 12px;
+}
+@media (max-width:1100px) {
+  body[data-page="home"] .group-footer > .group-footer-main { grid-template-columns: repeat(3,minmax(0,1fr)); gap: 32px; }
+  .group-footer .group-footer-brand { grid-column: 1 / -1; }
+}
+@media (max-width:560px) {
+  body[data-page="home"] .group-footer > .group-footer-main { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 28px 20px; }
+  .group-footer-main nav:last-child { grid-column: 1 / -1; }
+  .group-footer-main nav:last-child ul { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 0 20px; }
+  body[data-page="home"] .group-footer > .group-footer-upcoming { display: block; }
+  .group-footer-upcoming ul { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 20px; margin-top: 16px; }
+  body[data-page="home"] .group-footer > .group-footer-bottom { flex-wrap: wrap; }
+}
+@media (prefers-reduced-motion:reduce) { body[data-page="home"] .public-header { transition: none; } }
+
+/* Keep geography attached to the gallery's question, before the country controls. */
+body[data-page="home"] .venue-showcase .section-heading { display: block; }
+body[data-page="home"] .venue-showcase .venue-geography { color: var(--visual-muted); font-size: 15px; line-height: 1.5; margin: 12px 0 0; }
+/* The service's original identity and scene form one compact white band. */
+body[data-page="home"] main > .section.catering-feature {
+  display: grid; grid-template-columns: minmax(0,.45fr) minmax(0,.55fr); padding: 0;
+  max-width: none; gap: 0; background: #fff; color: #1d1d1b; align-items: stretch;
+}
+.catering-feature-copy { grid-column: 2; grid-row: 1; min-width: 0; padding: 40px clamp(32px,5vw,80px); align-self: center; }
+.catering-feature-brand { width: 230px; height: auto; margin-bottom: 24px; }
+body[data-page="home"] .catering-feature h2 { font-size: clamp(44px,4.2vw,62px); line-height: 1; margin: 0 0 20px; max-width: 18ch; text-wrap: balance; }
+.catering-feature-copy > p { color: #51514c; line-height: 1.65; max-width: 43ch; margin: 0; }
+.catering-feature-copy > .editorial-link { color: #1d1d1b; margin-top: 18px; }
+.catering-feature-media { grid-column: 1; grid-row: 1; position: relative; min-height: 420px; overflow: hidden; }
+.catering-feature-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 55%; }
+/* Alternate the original experience photograph to the right, on the dark continuation. */
+body[data-page="home"] .home-gathering { background: #fff; }
+body[data-page="home"] .home-gathering > #experiencia.experience-bridge {
+  display: grid; grid-template-columns: minmax(0,1.1fr) minmax(0,.9fr); align-items: center;
+  gap: clamp(32px,6vw,88px); padding: clamp(48px,5vw,72px) clamp(20px,5vw,80px);
+  background: #1d1d1b; color: #fff;
+}
+body[data-page="home"] .experience-bridge .experience-copy { padding: 0; background: transparent; color: #fff; }
+body[data-page="home"] .experience-bridge h2 { color: #fff; font-family: "SY Display",Impact,sans-serif; font-weight: 400; text-transform: uppercase; font-size: clamp(48px,5.2vw,76px); line-height: 1; max-width: 12ch; margin: 0 0 24px; }
+body[data-page="home"] .experience-bridge .experience-copy > p { color: #c4c4bf; max-width: 48ch; margin: 0; }
+body[data-page="home"] .experience-bridge .mini-menu { color: #c4c4bf; margin: 24px 0 16px; }
+body[data-page="home"] .experience-bridge :is(.mini-menu,.mini-menu span) { border-color: #51514c; }
+body[data-page="home"] .experience-bridge .editorial-link { color: #fff; margin-top: 0; }
+.experience-bridge-media { margin: 0; width: min(100%,448px); justify-self: end; }
+.experience-bridge-media img { display: block; width: 100%; height: auto; }
+@media (max-width: 1000px) {
+  .catering-feature-copy { padding: 32px; }
+  .catering-feature-media { min-height: 400px; }
+  body[data-page="home"] .home-gathering > #experiencia.experience-bridge { gap: 32px; }
+  body[data-page="home"] .experience-bridge h2 { font-size: 52px; }
+}
+@media (max-width: 760px) {
+  body[data-page="home"] main > .section.catering-feature { grid-template-columns: 1fr; }
+  .catering-feature-media { grid-column: 1; grid-row: 1; min-height: 0; height: clamp(230px,55vw,360px); }
+  .catering-feature-copy { grid-column: 1; grid-row: 2; padding: 32px 24px 36px; }
+  .catering-feature-brand { width: 210px; }
+  body[data-page="home"] .catering-feature h2 { font-size: 44px; max-width: 19ch; }
+  body[data-page="home"] .home-gathering > #experiencia.experience-bridge { grid-template-columns: 1fr; gap: 32px; padding: 40px 24px; }
+  .experience-bridge-media { grid-row: 1; width: min(100%,400px); justify-self: center; }
+  body[data-page="home"] .experience-bridge h2 { max-width: none; }
+}
+@media (max-width: 560px) {
+  .catering-feature-copy { padding-inline: 20px; }
+  body[data-page="home"] .home-gathering > #experiencia.experience-bridge { padding-inline: 20px; }
+}

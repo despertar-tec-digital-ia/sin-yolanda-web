@@ -18,9 +18,10 @@
     "Eventos": "Private Events",
     "Panel": "Hub",
     "Sin Yolanda, inicio": "Sin Yolanda, home",
+    "SIN YOLANDA® · Cantina contemporánea · México y Estados Unidos": "SIN YOLANDA® · Contemporary cantina · Mexico and the United States",
 
     /* ---------- FOOTER ---------- */
-    "Una marca que vive en cada ciudad: Guadalajara y Texas.": "One brand that lives in every city: Guadalajara and Texas.",
+    "Una marca que vive en cada ciudad: México y Estados Unidos.": "One brand, across cities in Mexico and the United States.",
     "Sucursales abiertas": "Open locations",
     "Próximamente": "Coming soon",
     "Reservaciones": "Reservations",
@@ -29,6 +30,8 @@
     "Explora": "Explore",
 
     /* ---------- HERO HOME ---------- */
+    "No hay tiempo para llorar": "No time for tears",
+    "Comida que sí llena, tragos coquetos y canciones que se gritan completas.": "Food that fills you up, playful drinks and songs you sing at the top of your lungs.",
     "Aquí se canta.": "This is where you sing.",
     "Ocho destinos.": "Eight destinations.",
     "Explorar ubicaciones": "See locations",
@@ -49,6 +52,7 @@
     "Abre": "Opens",
     "Ruleta de shots y bebidas sobre una mesa de Sin Yolanda": "A shot roulette and drinks on a Sin Yolanda table",
     "Elige tu sucursal": "Choose your location",
+    "Encuentra tu": "Find your",
 
     /* ---------- TARJETAS / CTAS ---------- */
     "Ver sucursal": "View location",
@@ -56,6 +60,18 @@
     "Seguir la apertura": "Follow the opening",
     "Recibir novedades": "Get updates",
     "Próxima apertura": "Opening soon",
+    "Llevamos la cantina a tu fiesta.": "We bring the cantina to your party.",
+    "Comida mexicana, un brindis y una canción para compartir. Catering para tu celebración en Houston.": "Mexican food, a toast and a song to share. Catering for your celebration in Houston.",
+    "Explora Catering": "Explore Catering",
+    "Bebidas preparadas sobre un sarape de colores": "Prepared drinks on a colorful sarape",
+    "Una persona sirve acompañamientos de un buffet en un evento al aire libre": "A person serves buffet accompaniments at an outdoor event",
+    "Nueva apertura": "New opening",
+    "Nuevas y próximas": "New & upcoming",
+    "Apertura": "Opening",
+    "Conoce La Cantina": "Discover La Cantina",
+    "Organiza tu evento": "Plan your event",
+    "Conoce Catering": "Discover Catering",
+    "Dos personas cantan abrazadas junto a la barra; una alza un vaso y la otra sostiene un micrófono": "Two people sing with their arms around each other by the bar; one raises a glass and the other holds a microphone",
     "9 de octubre": "October 9",
     "Conoce la sucursal": "View location",
     "Reservar evento": "Book an event",
@@ -71,6 +87,8 @@
     "Cocina de cantina contemporánea, bar de agave y el micrófono abierto. Todo en la misma mesa.": "Contemporary cantina kitchen, an agave bar, and the open mic. All at the same table.",
     "Menú de muestra": "Menu preview",
     "Se botanea en serio.": "We snack the serious way.",
+    "Aquí se botanea en serio.": "We take our food seriously.",
+    "Noches de Catrinas": "Catrina Nights",
     "Reseñas destacadas": "Top reviews",
     "Reseñas reales de la banda.": "Real reviews from the crew.",
     "Elige ubicación. Nosotros hacemos el resto.": "Pick a location. We handle the rest.",
@@ -115,6 +133,7 @@
 
     /* ---------- LOCATIONS ---------- */
     "Encuentra tu Sin Yolanda.": "Find your Sin Yolanda.",
+    "Elige tu sucursal para consultar cómo llegar, la carta y las reservaciones.": "Choose your location for directions, menus and reservations.",
     "México y Estados Unidos conectados bajo una estructura clara, local y escalable.": "Mexico and the U.S. connected under one clear, local, scalable setup.",
     "Abiertas": "Open",
     "Con catering": "With catering",
@@ -381,7 +400,7 @@
     "Esta semana se puso bueno.": "This week just got good.",
     "Los eventos de cada casa, aquí apenas se están armando.": "Each location's events are being lined up right here.",
     "Trae a los cuatro.": "Bring the four.",
-    "Mesas largas, brinde completo y el micrófono que no se le niega a nadie. Aquí no hay mesa reservada para influencers: la mejor foto la hace tu gente.": "Long tables, full toasts, and a mic nobody is denied. No influencer-reserved tables here: your people take the best photos.",
+    "Mesas largas, brindis completo y el micrófono que no se le niega a nadie. Aquí no hay mesa reservada para influencers: la mejor foto la hace tu gente.": "Long tables, full toasts, and a mic nobody is denied. No influencer-reserved tables here: your people take the best photos.",
     "Comida + tragos": "Food + drinks",
     "Tragos coquetos y comida que sí llena.": "Pretty drinks and food that actually fills you up.",
     "Para botanear": "For snacking",
@@ -414,7 +433,15 @@
     "Pasa por las mesas. Nadie se lo niega a nadie.": "It makes the rounds. Nobody gets denied.",
     "Trae a los cuatro. Aquí caben todos.": "Bring the four. Everyone fits here.",
     "Cumpleaños, renuncias, quincenas. Cualquier pretexto.": "Birthdays, quitting, payday. Any excuse.",
-    "La casa por dentro": "Inside the house"
+    "La casa por dentro": "Inside the house",
+    "Sombrero de la casa": "The house hat",
+    "Fieltro negro con cinta bordada a mano.": "Black felt with a hand-embroidered band.",
+    "Playera «Aquí no se llora»": "«Aquí no se llora» T-shirt",
+    "Algodón pesado, tipografía en amarillo.": "Heavyweight cotton with yellow lettering.",
+    "Tarro de cerámica": "Ceramic mug",
+    "Barro vidriado de Tonalá. Cada uno distinto.": "Glazed clay from Tonalá. Each one is different.",
+    "Micrófono de recuerdo": "Keepsake microphone",
+    "Réplica miniatura del micrófono de la casa.": "A miniature replica of the cantina's microphone."
   };
 
   const WORD_SWAP = [
@@ -498,7 +525,18 @@
       }
     });
 
+    // Route to the existing language edition, retaining native anchors and navigation.
+    document.querySelectorAll("[data-i18n-href-es][data-i18n-href-en]").forEach(link => {
+      const href = link.getAttribute(lang === "en" ? "data-i18n-href-en" : "data-i18n-href-es");
+      if (link.getAttribute("href") !== href) link.setAttribute("href", href);
+    });
     syncToggleState();
+    // SVG artwork and stateful controls explicitly own both language variants.
+    // Never replace the SVG tree: its paths/use layers must remain intact.
+    document.querySelectorAll("[data-i18n-es][data-i18n-en]").forEach(node => {
+      const value = node.getAttribute(lang === "en" ? "data-i18n-en" : "data-i18n-es");
+      if (node.textContent !== value) node.textContent = value;
+    });
   }
 
   function buildToggle() {

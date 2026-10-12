@@ -1,5 +1,11 @@
 {
   "version": 1,
+  "assetVersions": {
+    "assets/js/site.js": "20261011-demo-polish",
+    "assets/js/i18n.js": "20261010-visual-details",
+    "assets/css/visual-pilot.css": "20261011-demo-polish",
+    "assets/js/public-data.js": "20261011-demo-polish"
+  },
   "pages": [
     "index.html",
     "locations.html",
@@ -193,7 +199,29 @@
     "_astro/BranchLanding.K3DaC-7P.css",
     "images/el-paso-menu-en-v6.webp",
     "menus/el-paso-menu-en-v6.pdf",
-    "_astro/BranchLanding.D3-__LgN.css"
+    "_astro/BranchLanding.D3-__LgN.css",
+    "_astro/BranchLanding.DjLMrFlp.css",
+    "_astro/BranchLanding.astro_astro_type_script_index_0_lang.ZQG6QDdt.js",
+    "_astro/CateringPage.astro_astro_type_script_index_0_lang.ZQG6QDdt.js",
+    "_astro/CateringPage.oLi_lI-G.css",
+    "_astro/houston-scroll-header.BxWPzCxQ.js",
+    "assets/css/visual-pilot.css",
+    "assets/media/agenda-canto-1280.webp",
+    "assets/media/agenda-canto-640.webp",
+    "assets/media/agenda-canto-preview.webp",
+    "assets/media/cantina-canto-1280.webp",
+    "assets/media/cantina-canto-640.webp",
+    "assets/media/cantina-duo-1280.webp",
+    "assets/media/cantina-duo-640.webp",
+    "assets/media/cantina-selfie-1280.webp",
+    "assets/media/cantina-selfie-640.webp",
+    "assets/media/catering-servicio-1280.webp",
+    "assets/media/catering-servicio-640.webp",
+    "assets/media/venues/future/future-crowd-640.webp",
+    "assets/media/venues/future/future-crowd-960.webp",
+    "assets/media/venues/future/future-singalong-640.webp",
+    "assets/media/venues/future/future-singalong-960.webp",
+    "images/catering-review/logo.webp"
   ],
   "assetVersion": "20261008-migration-measurement",
   "reviewPages": [

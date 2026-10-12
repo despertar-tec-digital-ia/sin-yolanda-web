@@ -10,6 +10,10 @@ Las decisiones, responsabilidades, requisitos de CI/accesos y bloqueos están en
 [rutas y migraciones](docs/ROUTES.md) tiene su contrato propio. Usar la plantilla de PR del repo.
 **7-oct: CI de PR y paquete público verificados; sin nuevo despliegue ni CD activo.** El hero del home
 queda bajo responsabilidad de Karina. Las instrucciones no sustituyen protecciones de GitHub.
+**Automatización11-oct:** operador TXT aditivo y workflow manual `Approved Pages release` preparados;
+credenciales DNS/Pages separadas, custodia selectiva Doppler, entornos GitHub por `main` y producción
+con revisión humana. Estado remoto y pruebas vigentes → «Automatización Cloudflare11-oct» en
+`docs/WORKFLOW.md`. No confundir configuración con primera publicación oficial comprobada.
 **Candidata local posterior:** fuente reciente reconciliada dentro del primer lote, selector
 responsive, franja El Paso y Houston ES/EN/carta recuperados. Excepción D09: rótulo como H1 sobre
 el video original y retirada del bloque duplicado. Cartelera con campañas fechadas de los calendarios

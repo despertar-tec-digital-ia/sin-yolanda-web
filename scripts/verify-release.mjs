@@ -119,7 +119,9 @@ export async function verifyRelease({ origin, metadata, fetchImpl = globalThis.f
           observation.cloudflareEmailObfuscation = /data-cfemail\s*=|\/cdn-cgi\/scripts\/[^"'\s>]*email-decode\.min\.js/i.test(source);
           if (!/^text\/html(?:\s*;|$)/i.test(response.headers.get('content-type') ?? '')) observation.problems.push('html-content-type-mismatch');
           if (reviewPages.has(task.file) && (!observation.metaNoindex || !observation.metaNofollow)) observation.problems.push('review-robots-meta-missing');
-          if (task.file === 'index.html' && (noindex(observation.robotsHeader) || observation.metaNoindex)) observation.problems.push('home-is-noindex');
+          const preview = metadata.audience === 'review' && base.hostname.endsWith('.sin-yolanda-web.pages.dev');
+          if (preview && (!noindex(observation.robotsHeader) || !nofollow(observation.robotsHeader))) observation.problems.push('preview-robots-header-missing');
+          if (!preview && task.file === 'index.html' && (noindex(observation.robotsHeader) || observation.metaNoindex)) observation.problems.push('home-is-noindex');
         }
         return observation;
       }

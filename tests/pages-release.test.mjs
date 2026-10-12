@@ -73,6 +73,7 @@ test('automatic production follows successful main push CI, not PR artifacts, wi
   assert.match(workflow,/name: Publish the exact verified bundle/);
   assert.match(workflow,/needs\.preview\.outputs\.previous_production_id/);
   assert.match(workflow,/SY_PRODUCTION_GATE: ci-verified/);
+  assert.match(workflow,/name: Publish the exact verified bundle[^]*?GH_TOKEN: \$\{\{ github\.token \}\}/);
   assert.match(workflow,/cancel-in-progress: false/);assert.doesNotMatch(workflow,/on:\s*\n\s*push:/);
   for(const action of workflow.matchAll(/uses: (\S+)/g))assert.match(action[1],/@[a-f0-9]{40}$/);
 });

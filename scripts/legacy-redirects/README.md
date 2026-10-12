@@ -1,5 +1,16 @@
 # Redirecciones WordPress de Sin Yolanda
 
+**Corrección vigente12-oct:** las raíces de TX y USA deben mandar al selector central
+`https://sin-yolanda.com/locations` (con selector ES/EN), no a una sede. Implementación aditiva
+`sin-yolanda-root-directory`, versionada y desplegada por `deploy-root-directory.mjs` con
+`--site tx|usa --install-activate`. Solo cambia la raíz GET/HEAD anónima en apex/www, después de
+validarla con el resolver original; conserva únicamente atribución ya permitida. El mapa JSON
+inferior es histórico: este override sustituye únicamente sus dos raíces, no reactiva cartas.
+Plugin de pausa de menús permanece activo; Guadalajara/QR sin cambio. La operación verifica
+destino indexable, ZIP/hashes, inventario de plugins y huellas de todas las páginas antes/después.
+Rollback: desactivar SOLO `sin-yolanda-root-directory` por autorización específica; no desactivar
+la pausa de cartas ni el plugin original. Sin DNS/htaccess/páginas/menús/correo nuevos.
+
 v1.0.0 instalado y activo en GDL/TX/USA el 8-oct-2026 por autorización de Luis; pruebas
 anónimas posteriores: 69/69. Recibos, límites y reversión →
 [`docs/MIGRATION-AND-MEASUREMENT.md`](../../docs/MIGRATION-AND-MEASUREMENT.md).

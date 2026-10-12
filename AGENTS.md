@@ -23,6 +23,12 @@ carpetas privadas de una computadora. Última actualización: 2026-10-07.
 - Incorporar componentes aprobados no autoriza un rediseño completo ni sustituir otras páginas.
 - Cada sede tiene datos, menú, moneda, idioma, medios, reservas y ofertas propios. No rellenar
   faltantes con Houston. No inventar promociones, fechas, horarios, reseñas ni beneficios.
+- **Cartas/QR, decisión8-oct:** conservar el orden y la organización que utiliza el personal en
+  su carta WordPress, además de todo producto, precio, medida, opción, promo y condición. No
+  reagrupar por el patrón Houston. Publicar una ficha o autorizar SEO no aprueba la sustitución
+  del menú operativo. Reactivar redirects de cartas requiere cotejo completo y aprobación por
+  sucursal/idioma/edición y URL origen; Guadalajara requiere revisión de Humberto. Estado actual
+  y pausa reversible → `docs/MIGRATION-AND-MEASUREMENT.md`. No retirar la pausa por un merge.
 - Datos públicos y panel operativo están separados. No agregar datos privados ni credenciales
   a este repo público, al JavaScript servido ni a los reportes de CI. Noindex no es autenticación.
 - Conservar IDs históricos; cambios de nombre no implican cambiar URL/GBP o destruir historial.

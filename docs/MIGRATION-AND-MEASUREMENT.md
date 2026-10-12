@@ -1,5 +1,11 @@
 # Migración de WordPress y medición · 8-oct-2026
 
+**Estado posterior al lote:** Luis pidió revertir Guadalajara completo y después únicamente
+las cartas de Estados Unidos. GDL conserva WordPress original; TX/USA vuelven a sus ocho
+cartas originales y mantienen cinco redirects de raíces/fichas. Fuente central sin nuevo
+release. Reactivación condicionada a paridad y aprobación operativa por sede, no al lote
+técnico histórico siguiente. Ejecución/recibos en el último apartado de este documento.
+
 Luis autoriza el lote técnico: corregir medición/SEO de destinos públicos aprobados y después
 activar redirecciones exactas recuperables. No autoriza cambiar DNS/MX, borrar WordPress,
 publicar Maricarmen, crear GA4 en una cuenta no confirmada ni certificar datos comerciales.
@@ -112,3 +118,46 @@ DNS/correo, contenido, bases de datos, históricos Umami ni credenciales. La rev
 WordPress es desactivar el plugin en cada sitio; el central conserva el rollback señalado arriba.
 Pruebas del cierre de operador/verificador:153/153, sin fallos ni skips. Este cierre no añade un
 artefacto público ni requiere redeploy del central; su fuente publicada sigue siendo `d6734c2`.
+
+## Reversiones operativas posteriores · 8-oct
+
+**Guadalajara:** por discrepancias en la carta, Luis solicitó restaurar su WordPress. Se
+desactivó únicamente Sin Yolanda Legacy Redirects en GDL; inicio, `/menu/` y `/cocteles-shots/`
+responden200 con sus fuentes originales. Snapshot anterior privado:
+`.artifacts/legacy-redirects/wordpress-backups/gdl-DnxZLt/snapshot.json`; recibo posterior
+`rollback-operation.json` en el mismo directorio. No se borró el plugin ni se alteraron páginas.
+
+**Estados Unidos:** Luis solicitó volver a las cartas originales, manteniendo las fichas.
+Extensión aditiva **Sin Yolanda Menu Redirect Pause v1.0.0**, ZIP SHA-256
+`af880a0dcd116c570b2d8ab70c55b25b72aa4cc7eadc3e13e97d63bfa1653ce1`, cancela únicamente los ocho
+redirects exactos de menú mediante el resolver anterior. Fuentes/operador versionados en PR #13,
+sin traer el candidato GA4 local. No se sustituyó el plugin anterior ni una página.
+
+Instalación y activación separadas por sitio: recibos privados bajo
+`.artifacts/legacy-redirects/wordpress-backups/tx-w6iqUA/menu-pause-operation.json` y
+`usa-CiXYOx/menu-pause-operation.json`. Versión exacta activa y todo otro estado de plugins sin
+cambios, comprobados después de cada acción. Snapshot público de contenido/huellas previo a
+instalación, no respaldo completo de BD. Un primer intento TX se detuvo en el parser del admin
+**antes** de snapshot/upload; se corrigió su scope exacto con fixture, se versionó y después
+se ejecutó. No fue una instalación fallida ni un reemplazo.
+
+GET anónimos de las ocho rutas principales:200 WordPress, sin Location al central. Verificación
+adicional **116/116 PASS**, GET/HEAD apex/www/slash: TX24 casos de cartas200 y4 de raíz301;
+USA40 de cartas200 y28 de raíces/fichas301; GDL20 de WordPress200. Cada redirect conservado
+coincide con su destino exacto. Recibo privado0700/0600:
+`.artifacts/legacy-redirects/us-menu-rollback-20261008-live/report.json`, fuente `352b845`.
+No contiene cuerpos HTML, cookies ni consultas libres. La prueba local41/41 verifica otro scope,
+no sustituye estas peticiones anónimas. GDL permanece separado/inactivo.
+Sin cambio DNS/MX, fuentes, credenciales, analítica ni publicación Pages; central sigue `d6734c2`.
+
+**Contrato nuevo confirmado por Luis:** la carta debe conservar contenido comercial completo,
+orden de páginas/secciones/productos y ubicación reconocible para los meseros, incluido el
+inicio por botellas cuando así está en WordPress. Búsqueda/índice son complementos; no permiten
+alterar esa secuencia ni omitir promos, medidas u opciones. Primero se corrige y revisa por
+sucursal/idioma/edición; después se aprueba el cambio del QR/URL origen. Humberto revisa GDL;
+responsables USA se coordinan con Karina. Ninguna carta queda aprobada por un merge o HTTP200.
+
+Desactivar solamente la extensión de pausa volvería a habilitar los redirects de cartas; no
+hacerlo sin esas aprobaciones. No desactivar el plugin original en TX/USA por accidente: también
+retiraría las cinco reglas de raíces/fichas. Los301 ya guardados en navegadores pueden persistir;
+la reversión acredita nuevas peticiones, no borra caché de dispositivos. Conservar destinos.

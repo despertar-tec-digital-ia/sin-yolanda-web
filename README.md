@@ -8,9 +8,9 @@ Sitio estático multi-página de la cadena de cantinas con micrófono abierto
 Leer [AGENTS.md](AGENTS.md) y [el flujo compartido](docs/WORKFLOW.md) antes de modificar el sitio.
 Las decisiones, responsabilidades, requisitos de CI/accesos y bloqueos están en ese flujo;
 [rutas y migraciones](docs/ROUTES.md) tiene su contrato propio. Usar la plantilla de PR del repo.
-**7-oct: CI de PR y paquete público verificados; sin nuevo despliegue ni CD activo.** El hero del home
-queda bajo responsabilidad de Karina. Las instrucciones no sustituyen protecciones de GitHub.
-**Automatización11-oct:** operador TXT aditivo y workflow manual `Approved Pages release` preparados;
+**11-oct: CI de PR/main y publicación controlada en preview verificados.** El hero del home
+queda bajo responsabilidad de Karina. Protecciones remotas comprobadas; no publicar por cualquier push.
+**Automatización11-oct:** operador TXT aditivo y workflow manual `Approved Pages release` activos;
 credenciales DNS/Pages separadas, custodia selectiva Doppler, entornos GitHub por `main` y producción
 con revisión humana. Estado remoto y pruebas vigentes → «Automatización Cloudflare11-oct» en
 `docs/WORKFLOW.md`. No confundir configuración con primera publicación oficial comprobada.
@@ -42,7 +42,11 @@ pretextos/cumpleaños conectados al selector. Alcance/evidencia/límites en
   sitemap.xml (12 URLs), robots.txt, OG tags
 
 ## Deploy
-Pages no está conectado al release automático todavía. CI de calidad no equivale a CD. No desplegar el checkout completo ni cambios dirty:
+Publicación controlada por `Approved Pages release`: selecciona un run CI `main` exitoso,
+publica/verifica preview y, solo con aprobación humana del ambiente, puede publicar ese mismo
+artefacto en producción. No cambia la web con cada push ni concede aprobación comercial.
+Procedimiento vigente y límites → primer bloque `docs/WORKFLOW.md`. El operador anterior
+Wrangler queda como antecedente, no permiso para omitir el gate. No desplegar checkout ni cambios dirty:
 preparar un artefacto público desde el commit remoto aprobado, sin documentación/scripts/pruebas/
 secretos; desplegar ese directorio con Wrangler al proyecto `sin-yolanda-web`, rama `main`, indicando
 hash del commit. `node scripts/package-public.mjs <directorio-nuevo>` crea ese artefacto;

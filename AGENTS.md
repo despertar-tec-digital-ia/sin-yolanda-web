@@ -53,8 +53,9 @@ carpetas privadas de una computadora. Última actualización: 2026-10-07.
   limitados por entorno y accesibles solo en el job autorizado de publicación.
 - Nunca afirmar «CI/CD activo» por existir documentos/YAML: verificar una ejecución remota,
   controles de rama/entorno, resultado servido y rollback. CI de PR/main comprobado; evidencia en
-  `docs/WORKFLOW.md`. Release limitado8-oct publicado manualmente por autorización concreta;
-  CD/credenciales/protecciones pendientes. No reutilizar esa aprobación para nuevos archivos.
+  `docs/WORKFLOW.md`. Desde11-oct: CI/main protegido, tokens separados y preview Pages por
+  workflow verificados; primer release/rollback productivos nuevos aún no ensayados. No reutilizar
+  la autorización del release8-oct para otros archivos.
 - Automatización11-oct: `scripts/cloudflare-dns.mjs` y `scripts/pages-release.mjs` son los controles
   de operación. Consultar el bloque vigente en WORKFLOW antes de usar permisos. DNS y Pages tienen
   tokens separados; leer solo el secreto nombrado, nunca `doppler run` sobre la config compartida.

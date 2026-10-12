@@ -1,17 +1,18 @@
 # Forma de trabajar y publicar
 
-**Última actualización:** 2026-10-09 · **Responsables:** Luis, técnica; Karina, negocio/contenido y hero.
-**Estado:** candidato integrado en `main` y release limitado publicado el 8-oct; CI de PR y main
-verificado, publicación Pages manual y smoke remoto comprobado. CD automático, protecciones y
-secretos no están activados por este lote. Preparación, resultado y límites se registran abajo.
+**Última actualización:** 2026-10-11 · **Responsables:** Luis, técnica; Karina, negocio/contenido y hero.
+**Estado:** CI y publicación Pages controlada activos; preview remota y bloqueo de aprobación
+comprobados. No publicar por cualquier push: cada producción exige revisión del artefacto y
+aprobación humana. La web oficial sigue en el corte anterior; primer release productivo y rollback
+por el circuito nuevo aún no ejecutados. Resultado actual en el bloque siguiente; inferiores históricos.
 La aprobación de este release no equivale a autorizar otros releases.
 
-### Automatización Cloudflare11-oct · configuración en curso
+### Automatización Cloudflare11-oct · activada y verificada en preview
 
 Luis autoriza cerrar los accesos separados DNS/Pages y el flujo de publicación con aprobación
 antes de producción, sin sustituir la web oficial por esa autorización. Confirma emisión de ambos
-tokens de cuenta, alcances/caducidad y excepción temporal de custodia. Código nuevo en PR antes
-de activar; el estado de esta sección no certifica un release productivo.
+tokens de cuenta, alcances/caducidad y excepción temporal de custodia. PR#21 integrado bajo esa
+autorización técnica antes de instalar la protección; no acredita aprobación comercial ni release.
 
 **Accesos comprobados:** DNS Write solo en `sin-yolanda.com`; Pages Write solo en la cuenta
 Cloudflare del cliente. Cloudflare ofrece Pages a nivel de cuenta, no por proyecto: los controles
@@ -20,7 +21,8 @@ DNS→Pages403 y Pages→DNS403; cada API propia200. Tokens de servicio, caducid
 Custodia temporal autorizada: `ddtia/prd_dns-ops`, nombres `SY_CLOUDFLARE_DNS_TOKEN` y
 `SY_CLOUDFLARE_PAGES_TOKEN`; no cargar toda la config. Doppler impidió una config dedicada por
 límite del plan: migrar cuando exista capacidad, sin borrar configs ajenas ni ampliar pagos.
-Actions consumirá una réplica de Pages en sus ambientes; DNS no va a Actions.
+Actions consume una réplica de Pages en `preview` y `production`; DNS no va a Actions ni hay
+secretos de repositorio globales. Custodia selectiva y réplica real comprobadas sin imprimir valores.
 
 **Operador DNS:** `node scripts/cloudflare-dns.mjs inspect` es lectura. `plan <ruta-privada>
 <archivo-contenido>` respalda los registros y calcula el digest; `apply <plan> <digest-aprobado>`
@@ -50,8 +52,24 @@ manuales ajenos: coordinar la ventana. No agregar Functions/bindings/QR al artef
 **Controles remotos configurados:** ambientes `preview`/`production` restringidos a `main`;
 producción requiere `fcristerna` o `Yyveth-dot`, sin bypass administrativo. Auto-revisión de una
 persona permitida para que Luis pueda aprobar su ejecución; el asistente jamás pulsa ni llama
-la API de aprobación. Protección PR/CI/CODEOWNERS de `main` se instalará tras integrar este lote
-técnico autorizado. Publicación oficial nueva y rollback productivo todavía no ejecutados.
+la API de aprobación. Protección de `main` instalada: PR/revisión humana, CODEOWNERS para
+controles, último push aprobado por otra persona, conversaciones resueltas, CI estricto ligado
+a GitHub Actions, administradores incluidos y sin force-push/borrado. No autoaprobar ni desactivar
+para un hotfix. Publicación oficial nueva y rollback productivo todavía no ejecutados.
+
+**Pruebas reales:**217tests locales, CI de PR/main verde y artefacto verificado de `60456cd`.
+[Corrida solo preview38208406569](https://github.com/despertar-tec-digital-ia/sin-yolanda-web/actions/runs/38208406569)
+completa en verde:189archivos exactos,47aliases,10rutas excluidas, sin diferencias ni fallos;
+noindex global comprobado. Deployment preview `1818de8e-5585-451b-af01-c497bba3f1a5`.
+[Prueba de gate38208178144](https://github.com/despertar-tec-digital-ia/sin-yolanda-web/actions/runs/38208178144)
+publicó/verificó preview y quedó esperando revisión en producción, cero pasos ejecutados.
+Se canceló intencionalmente sin aprobar; su modo `gate-test` nunca publica aun si una persona
+aprobase. CLI local rechazó producción sin workflow. DNS real: inspect16registros y plan/apply
+del Apple existente→no-op, sin POST ni duplicado; zona conserva digest original. El deployment
+oficial siguió `c438ff4a-244d-40c0-9f67-1d6d66b8dc25` tras ambas previews.
+Recibos privados fuera de Git, bajo `.secrets/sinyolanda-automation-20261011/` y
+`.secrets/sinyolanda-dns/`. Esta verificación no equivale a primer release productivo exitoso.
+La actualización documental posterior a la protección requiere revisión por PR.
 
 **Recuperación:** conservar el ID productivo anterior, digest/SHA y recibos servidos; usar un
 artefacto CI anterior seguro y vigente mediante el mismo circuito preview→aprobación. Si su
@@ -279,15 +297,17 @@ Retirada pública solo quedará completa al desplegar y comprobar las rutas dire
 |---|---|
 | GitHub para trabajo humano/asistente | Acceso al repo con su cuenta/conector; no compartir login. Acceso actual de Luis ADMIN verificado. Confirmar flujo de Karina |
 | `GITHUB_TOKEN` en Actions | Lo emite GitHub por ejecución; lectura para checkout/QA. Permisos extra solo donde sean necesarios. No requiere PAT personal para CI de este repo |
-| `CLOUDFLARE_API_TOKEN` | Credencial de publicación Pages, cuenta específica, permiso Pages Edit; sin DNS/pagos/Global API Key. Confirmar alcance real del proveedor: no afirmar restricción a un solo proyecto si el permiso es de cuenta |
-| `CLOUDFLARE_ACCOUNT_ID` | Identificador de cuenta, no contraseña; variable de ambiente o secret según política |
+| `SY_CLOUDFLARE_PAGES_TOKEN` | Credencial Pages de cuenta; Actions recibe la réplica solo por ambiente. El subprocess Wrangler recibe `CLOUDFLARE_API_TOKEN`; no DNS/pagos ni Global API Key |
+| `SY_CLOUDFLARE_DNS_TOKEN` | Credencial DNS de zona exclusiva, operada con plan/respaldo/aprobación; jamás en Actions ni en la web |
+| `CLOUDFLARE_ACCOUNT_ID` | Identificador no secreto, fijado por `target` en el controlador y pasado únicamente a Wrangler |
 | Proyecto y rama de destino | Config versionada: `sin-yolanda-web`, producción `main`; revalidar contra Pages antes de activar |
 | Donante privado, si se mantiene externo | `GITHUB_TOKEN` de este repo no da acceso automático a otro. Preferir consolidación o GitHub App de lectura/repo acotado, solo si la arquitectura lo exige |
 | Gestor privado | Doppler es dueño de secretos DDTIA; config dedicada al servicio. Actions consume por mecanismo acordado (réplica administrada o identidad federada compatible), no exportación manual repetida |
 | SSH/VPS, Google, OpenAI | **No necesarios** para construir/publicar este sitio estático en Pages. Panel/mapas/ingesta son frentes aparte; no inyectar sus credenciales en el workflow web |
 
-No se creó ni rotó ninguna llave. No asumir que el OAuth usado en una publicación manual sirve
-como credencial durable de CI. Si falta autenticación, se solicita acceso una vez y se configura
+El mapeo inicial7-oct no creó llaves; emisión/custodia/verificación posteriores11-oct en el
+bloque vigente anterior. No asumir que el OAuth manual sirve como credencial durable de CI.
+Si falta autenticación, se solicita acceso una vez y se configura
 el mecanismo seguro; no pedir al usuario que vuelva a pegar tokens en cada conversación.
 
 Seguridad de workflows: actions fijadas a SHA revisado; runtime/dependencias fijados; permisos

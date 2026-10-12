@@ -11,12 +11,22 @@ function fixture(t) {
   const temporary = mkdtempSync(join(tmpdir(), 'sy-limited-release-'));
   t.after(() => rmSync(temporary, { recursive: true, force: true }));
   const root = join(temporary, 'source');
-  // Reuse real existing commits. No fixture commits, identity overrides, network
-  // access, changes to the source repo, or dependency on a donor checkout.
+  // Isolated fixture: no network, source-repo mutation or donor dependency.
+  // Keep one review-only page even after the actual site has been promoted.
   execFileSync('git', ['clone', '--quiet', '--shared', projectRoot, root], { stdio: 'pipe' });
-  // This fixture tests the earlier review-only authorization gate. Its verified
-  // historical commit remains independent of later explicit SEO promotions.
-  execFileSync('git', ['checkout', '--quiet', '--detach', 'ca25523c16708be6b7fa73fbd87e2442c662f41b'], { cwd: root, stdio: 'pipe' });
+  const manifestPath = join(root, 'scripts/public-manifest.json');
+  const manifest = JSON.parse(readFileSync(manifestPath, 'utf8'));
+  manifest.reviewPages = ['catering.html'];
+  writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + '\n');
+  const reviewPage = join(root, 'catering.html');
+  writeFileSync(reviewPage, readFileSync(reviewPage, 'utf8').replace(/<meta name="robots" content="[^"]+">/, '<meta name="robots" content="noindex,nofollow">'));
+  const sitemapPath = join(root, 'sitemap.xml');
+  writeFileSync(sitemapPath, readFileSync(sitemapPath, 'utf8').replace(/\s*<url><loc>https:\/\/sin-yolanda\.com\/catering<\/loc>[\s\S]*?<\/url>/, ''));
+  execFileSync('git', ['add', 'scripts/public-manifest.json', 'catering.html', 'sitemap.xml'], { cwd: root, stdio: 'pipe' });
+  // A synthetic author exists only in this disposable clone, never its config
+  // or the real repo. A clean commit is part of the gate being exercised.
+  execFileSync('git', ['-c', 'user.name=Release Fixture', '-c', 'user.email=release-fixture@example.invalid',
+    'commit', '--quiet', '-m', 'Create isolated review-only release fixture'], { cwd: root, stdio: 'pipe' });
   const sourceCommit = execFileSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim();
   assert.equal(execFileSync('git', ['status', '--porcelain'], { cwd: root, encoding: 'utf8' }).trim(), '');
   const hashes = Object.fromEntries(inspectPublic(root).files.map(path => [path,

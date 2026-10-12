@@ -1,11 +1,13 @@
 User-agent: *
 Allow: /
-Disallow: /dashboard.html
-Disallow: /listings.html
-Disallow: /reputation.html
-Disallow: /requests.html
-Disallow: /reports.html
-Disallow: /review-detail.html
+
+# Retired internal routes are absent from the public artifact (HTTP 404).
+Disallow: /dashboard
+Disallow: /listings
+Disallow: /reputation
+Disallow: /requests
+Disallow: /reports
+Disallow: /review-detail
 Disallow: /app.js
 
 Sitemap: https://sin-yolanda.com/sitemap.xml

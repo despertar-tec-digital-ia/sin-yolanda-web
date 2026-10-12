@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "authorizer": "Karina",
+  "authorizedOn": "2026-10-12",
+  "purpose": "User requests removal of the published noindex issue and implementation of SEO, WebMCP, schema and sitemaps for Google and bots. Technical discovery only; preserve approved visible design, menus, business facts and QR destinations.",
+  "baselineCommit": "ca25523",
+  "pages": ["catering.html", "en/catering/index.html", "el-paso.html", "en/el-paso/index.html", "el-paso/menu/index.html"]
+}

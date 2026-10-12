@@ -4,6 +4,13 @@
 **Estado:** inventario de fuentes versionadas y destinos propuestos; no es un crawl HTTP completo.
 No aplicar redirects ni crear páginas solo por figurar en esta tabla.
 
+**Encargo SEO12-oct de Karina:** las23URLs públicas del manifiesto son indexables, incluidas
+Catering ES/EN y El Paso ES/EN/carta. `seo-indexation-policy.json` sustituye únicamente sus
+gates de indexación anteriores. Sitemap enumera canonicals sin aliases/QR/404/panel ni demos.
+`/discovery.json` y `/llms.txt` publican fuentes auxiliares para agentes; `/assets/js/webmcp.js`
+registra tres consultas de solo lectura en navegadores compatibles. No se añade ruta MCP remota,
+servicio de reservas ni traducciones de cartas inexistentes. Los destinos QR siguen intactos.
+
 ## QR de carta Guadalajara · encargo autorizado8-oct
 
 Luis autoriza implementar/publicar `/q/gdl-menu` y `/q/gdl-menu/` como302 directo a

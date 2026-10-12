@@ -1,0 +1,26 @@
+# Sin Yolanda
+
+> Cantina y restaurante mexicano en Guadalajara y Texas. Consultar la ficha propia de cada sede para su dirección, carta y reservas.
+
+## Fuentes públicas
+
+- [Sucursales](https://sin-yolanda.com/locations): fichas de cada sede.
+- [Datos públicos](https://sin-yolanda.com/discovery.json): información estructurada publicada.
+- [Sitemap](https://sin-yolanda.com/sitemap.xml): URLs canónicas indexables.
+- [Sin Yolanda El Paso](https://sin-yolanda.com/el-paso)
+- [Carta de Sin Yolanda El Paso](https://sin-yolanda.com/el-paso/menu/)
+- [Sin Yolanda Guadalajara](https://sin-yolanda.com/san-ignacio)
+- [Carta de Sin Yolanda Guadalajara](https://sin-yolanda.com/san-ignacio/menu/)
+- [Sin Yolanda San Antonio](https://sin-yolanda.com/san-antonio)
+- [Carta de Sin Yolanda San Antonio](https://sin-yolanda.com/san-antonio/menu/)
+- [Sin Yolanda The Woodlands](https://sin-yolanda.com/the-woodlands)
+- [Carta de Sin Yolanda The Woodlands](https://sin-yolanda.com/the-woodlands/menu/)
+- [Sin Yolanda Houston](https://sin-yolanda.com/houston)
+- [Carta de Sin Yolanda Houston](https://sin-yolanda.com/houston/menu/)
+
+## Catering
+
+- [Catering en Houston](https://sin-yolanda.com/catering)
+- [Catering in English](https://sin-yolanda.com/en/catering/)
+
+La disponibilidad y el menú de cada evento se acuerdan con el equipo. No inferir precios, horarios, servicios ni cobertura adicionales.

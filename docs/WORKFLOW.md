@@ -6,6 +6,62 @@ verificado, publicación Pages manual y smoke remoto comprobado. CD automático,
 secretos no están activados por este lote. Preparación, resultado y límites se registran abajo.
 La aprobación de este release no equivale a autorizar otros releases.
 
+### Automatización Cloudflare11-oct · configuración en curso
+
+Luis autoriza cerrar los accesos separados DNS/Pages y el flujo de publicación con aprobación
+antes de producción, sin sustituir la web oficial por esa autorización. Confirma emisión de ambos
+tokens de cuenta, alcances/caducidad y excepción temporal de custodia. Código nuevo en PR antes
+de activar; el estado de esta sección no certifica un release productivo.
+
+**Accesos comprobados:** DNS Write solo en `sin-yolanda.com`; Pages Write solo en la cuenta
+Cloudflare del cliente. Cloudflare ofrece Pages a nivel de cuenta, no por proyecto: los controles
+fijan `sin-yolanda-web`/`main` y la credencial nunca autoriza DNS, correo ni pagos. Prueba real:
+DNS→Pages403 y Pages→DNS403; cada API propia200. Tokens de servicio, caducidad12-oct-2027.
+Custodia temporal autorizada: `ddtia/prd_dns-ops`, nombres `SY_CLOUDFLARE_DNS_TOKEN` y
+`SY_CLOUDFLARE_PAGES_TOKEN`; no cargar toda la config. Doppler impidió una config dedicada por
+límite del plan: migrar cuando exista capacidad, sin borrar configs ajenas ni ampliar pagos.
+Actions consumirá una réplica de Pages en sus ambientes; DNS no va a Actions.
+
+**Operador DNS:** `node scripts/cloudflare-dns.mjs inspect` es lectura. `plan <ruta-privada>
+<archivo-contenido>` respalda los registros y calcula el digest; `apply <plan> <digest-aprobado>`
+exige ese plan vigente (una hora), zona sin cambios y consentimiento del operador. Solo admite
+TXT Google/Apple aditivo e idempotente; no modifica MX/SPF/DMARC, otros registros o toda la zona.
+Planes/recibos exclusivamente en `Agent/.secrets/sinyolanda-dns/`, privados e ignorados. Un
+resultado incierto obliga releer, no reintentar POST a ciegas. Rollback: autorización separada
+para retirar únicamente el ID creado; nunca restaurar masivamente una zona que pudo cambiar.
+
+**Flujo Pages:** el workflow manual `Approved Pages release` toma `ci_run_id` de un push `main`
+exitoso de `Public site quality`, no artefactos de PR. Comprueba repo/evento/workflow/SHA y digest
+del ZIP; extracción segura, allowlist/hashes y rechazo de symlinks/archivos extra. No ejecuta
+código del paquete. Prepara preview y producción antes de la aprobación; única transformación
+productiva: retirar el sufijo global noindex que CI añadió. Los flags noindex propios de páginas
+siguen intactos. Wrangler4.149.0/lockfile y actions fijadas a SHA; secretos solo en la subida.
+
+Preview publica una rama `review-<sha>`, comprueba todos los archivos/aliases/noindex/404 y que
+producción conserve su deployment ID. El paquete comprobado queda como artefacto. Destino
+`gate-test` permite demostrar espera de aprobación sin poder publicar, aun si alguien aprobara:
+el paso de subida productiva exige destino `production`. No aprobar esa prueba como asistente.
+Destino
+`production` exige además el ID productivo esperado, ambiente aprobado por Luis o Karina y
+revalidación inmediatamente antes de subir. Si cambió producción, bloquea. No recompila ni
+publica cualquier push. Una cola única evita despliegues simultáneos, pero no bloquea uploads
+manuales ajenos: coordinar la ventana. No agregar Functions/bindings/QR al artefacto por inferencia.
+
+**Controles remotos configurados:** ambientes `preview`/`production` restringidos a `main`;
+producción requiere `fcristerna` o `Yyveth-dot`, sin bypass administrativo. Auto-revisión de una
+persona permitida para que Luis pueda aprobar su ejecución; el asistente jamás pulsa ni llama
+la API de aprobación. Protección PR/CI/CODEOWNERS de `main` se instalará tras integrar este lote
+técnico autorizado. Publicación oficial nueva y rollback productivo todavía no ejecutados.
+
+**Recuperación:** conservar el ID productivo anterior, digest/SHA y recibos servidos; usar un
+artefacto CI anterior seguro y vigente mediante el mismo circuito preview→aprobación. Si su
+artefacto expiró o cambió el contrato de captura/QR, preparar y revisar un nuevo corte compatible.
+No afirmar rollback ensayado en producción ni restaurar un deploy que reintroduzca panel/mocks.
+
+Fuentes N0: [tokens de cuenta](https://developers.cloudflare.com/fundamentals/api/get-started/account-owned-tokens/),
+[Pages desde CI](https://developers.cloudflare.com/pages/how-to/use-direct-upload-with-continuous-integration/),
+[aprobación por ambientes](https://docs.github.com/en/actions/how-tos/deploy/configure-and-manage-deployments/manage-environments).
+
 ### Registro El Paso v1 · candidata local9-oct
 
 Luis autoriza preparar/publicar el QR de registro con destino nativo GHL confirmado por Share:

@@ -1,0 +1,8 @@
+# Sensitive control-plane changes require a repository owner review.
+/.github/ @fcristerna @Yyveth-dot
+/deploy/ @fcristerna @Yyveth-dot
+/scripts/cloudflare-*.mjs @fcristerna @Yyveth-dot
+/scripts/pages-release.mjs @fcristerna @Yyveth-dot
+/scripts/extract-release.py @fcristerna @Yyveth-dot
+/scripts/package-public.mjs @fcristerna @Yyveth-dot
+/scripts/public-manifest.json @fcristerna @Yyveth-dot

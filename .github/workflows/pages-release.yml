@@ -1,0 +1,132 @@
+name: Approved Pages release
+
+on:
+  workflow_dispatch:
+    inputs:
+      ci_run_id:
+        description: Successful quality push run from main (not a PR run)
+        required: true
+        type: string
+      destination:
+        description: Preview only, or preview followed by human-approved production
+        required: true
+        default: preview
+        type: choice
+        options: [preview, production, gate-test]
+      expected_production_id:
+        description: Current Pages production deployment ID; required for production
+        type: string
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: sin-yolanda-pages-release
+  cancel-in-progress: false
+
+jobs:
+  prepare:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version-file: .node-version
+          package-manager-cache: false
+      - name: Retrieve and verify the successful main artifact without Cloudflare secrets
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CI_RUN_ID: ${{ inputs.ci_run_id }}
+        run: node scripts/pages-release.mjs prepare "$CI_RUN_ID" .artifacts/bundle
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: pages-bundle-${{ github.run_id }}
+          path: .artifacts/bundle
+          include-hidden-files: true
+          retention-days: 7
+          if-no-files-found: error
+  preview:
+    needs: prepare
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    environment:
+      name: preview
+      url: ${{ steps.publish.outputs.url }}
+    outputs:
+      url: ${{ steps.publish.outputs.url }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version-file: .node-version
+          package-manager-cache: false
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
+        with:
+          name: pages-bundle-${{ github.run_id }}
+          path: .artifacts/bundle
+      - run: npm ci --ignore-scripts --prefix deploy
+      - name: Publish only the validated review branch and verify served files
+        id: publish
+        env:
+          SY_CLOUDFLARE_PAGES_TOKEN: ${{ secrets.SY_CLOUDFLARE_PAGES_TOKEN }}
+        run: node scripts/pages-release.mjs preview .artifacts/bundle
+      - name: Write human review summary
+        env:
+          PREVIEW_URL: ${{ steps.publish.outputs.url }}
+          SOURCE_COMMIT: ${{ steps.publish.outputs.commit }}
+          SOURCE_DIGEST: ${{ steps.publish.outputs.publicDigest }}
+          PREVIOUS_PRODUCTION: ${{ steps.publish.outputs.previousProductionId }}
+        run: |
+          printf 'Preview: %s\n\nCommit: `%s`\n\nPublic digest: `%s`\n\nCurrent production: `%s`\n\nProduction requires a human environment approval; a preview does not approve business data.\n' "$PREVIEW_URL" "$SOURCE_COMMIT" "$SOURCE_DIGEST" "$PREVIOUS_PRODUCTION" >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: verified-pages-bundle-${{ github.run_id }}
+          path: .artifacts/bundle
+          include-hidden-files: true
+          retention-days: 7
+          if-no-files-found: error
+  production:
+    needs: preview
+    if: inputs.destination == 'production' || inputs.destination == 'gate-test'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    environment:
+      name: production
+      url: https://sin-yolanda.com
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version-file: .node-version
+          package-manager-cache: false
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
+        with:
+          name: verified-pages-bundle-${{ github.run_id }}
+          path: .artifacts/bundle
+      - run: npm ci --ignore-scripts --prefix deploy
+      - name: Publish the exact approved bundle, only if production has not changed
+        if: inputs.destination == 'production'
+        env:
+          SY_CLOUDFLARE_PAGES_TOKEN: ${{ secrets.SY_CLOUDFLARE_PAGES_TOKEN }}
+          SY_PRODUCTION_GATE: approved-environment
+          EXPECTED_PRODUCTION_ID: ${{ inputs.expected_production_id }}
+        run: node scripts/pages-release.mjs production .artifacts/bundle "$EXPECTED_PRODUCTION_ID"
+      - name: Gate test never publishes or reads a Cloudflare credential
+        if: inputs.destination == 'gate-test'
+        run: echo 'Human approval gate reached; no production publication in this test mode.'
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        if: always()
+        with:
+          name: production-receipt-${{ github.run_id }}
+          path: .artifacts/bundle/production-proof.json
+          if-no-files-found: ignore
+          retention-days: 30

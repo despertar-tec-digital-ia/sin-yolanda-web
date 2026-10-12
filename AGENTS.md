@@ -55,6 +55,11 @@ carpetas privadas de una computadora. Última actualización: 2026-10-07.
   controles de rama/entorno, resultado servido y rollback. CI de PR/main comprobado; evidencia en
   `docs/WORKFLOW.md`. Release limitado8-oct publicado manualmente por autorización concreta;
   CD/credenciales/protecciones pendientes. No reutilizar esa aprobación para nuevos archivos.
+- Automatización11-oct: `scripts/cloudflare-dns.mjs` y `scripts/pages-release.mjs` son los controles
+  de operación. Consultar el bloque vigente en WORKFLOW antes de usar permisos. DNS y Pages tienen
+  tokens separados; leer solo el secreto nombrado, nunca `doppler run` sobre la config compartida.
+  No aprobar un ambiente GitHub ni hacer bypass como asistente. La persona autoriza el release
+  exacto; la edición visual de demo y las cartas/QR siguen teniendo gates independientes.
 
 ## Code Review Rules
 

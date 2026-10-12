@@ -58,8 +58,11 @@ carpetas privadas de una computadora. Última actualización: 2026-10-07.
 - Automatización11-oct: `scripts/cloudflare-dns.mjs` y `scripts/pages-release.mjs` son los controles
   de operación. Consultar el bloque vigente en WORKFLOW antes de usar permisos. DNS y Pages tienen
   tokens separados; leer solo el secreto nombrado, nunca `doppler run` sobre la config compartida.
-  No aprobar un ambiente GitHub ni hacer bypass como asistente. La persona autoriza el release
-  exacto; la edición visual de demo y las cartas/QR siguen teniendo gates independientes.
+  **Política vigente12-oct, solicitada por Luis:** sin revisión humana obligatoria de PR ni
+  ambiente. Main conserva CI obligatorio/strict, protección administrativa y no force-push.
+  Un push main verde activa preview verificada y promoción automática del mismo artefacto.
+  Nunca publicar artefactos de PR, omitir pruebas ni saltar las comprobaciones de bytes/baseline.
+  El permiso para un cambio de producto/QR sigue siendo independiente de su publicación técnica.
 
 ## Code Review Rules
 

@@ -4,7 +4,7 @@ import { mkdtempSync,mkdirSync,writeFileSync,readFileSync,rmSync,symlinkSync } f
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { createHash } from 'node:crypto';
-import { validateArtifact,productionMetadata,validateCiRun,projectState } from '../scripts/pages-release.mjs';
+import { validateArtifact,productionMetadata,validateCiRun,projectState,validateAutomaticHead } from '../scripts/pages-release.mjs';
 import { publicSourceDigest } from '../scripts/package-public.mjs';
 import { target } from '../scripts/cloudflare-ops.mjs';
 import { verifyRelease } from '../scripts/verify-release.mjs';
@@ -61,12 +61,24 @@ test('preview verification requires noindex headers without weakening production
   const official=await verifyRelease({origin:'https://sin-yolanda.com',metadata:f.report,fetchImpl});
   assert.equal(official.passed,false);assert.ok(official.observations.some(x=>x.problems.includes('home-is-noindex')));
 });
-test('release workflow has manual trigger, separate environments, fixed actions and no DNS secrets',()=>{
+test('automatic production follows successful main push CI, not PR artifacts, with a manual recovery option',()=>{
   const workflow=readFileSync(new URL('../.github/workflows/pages-release.yml',import.meta.url),'utf8');
   assert.match(workflow,/workflow_dispatch/);assert.doesNotMatch(workflow,/pull_request_target|SY_CLOUDFLARE_DNS_TOKEN|doppler run/);
   assert.match(workflow,/name: production/);assert.match(workflow,/name: preview/);
-  assert.match(workflow,/options: \[preview, production, gate-test\]/);
-  assert.match(workflow,/name: Publish the exact approved bundle[^]*?if: inputs.destination == 'production'/);
+  assert.match(workflow,/workflow_run:[^]*workflows: \[Public site quality\]/);
+  assert.match(workflow,/workflow_run\.conclusion == 'success'/);
+  assert.match(workflow,/workflow_run\.event == 'push'/);
+  assert.match(workflow,/workflow_run\.head_branch == 'main'/);
+  assert.match(workflow,/options: \[preview, production\]/);
+  assert.match(workflow,/name: Publish the exact verified bundle/);
+  assert.match(workflow,/needs\.preview\.outputs\.previous_production_id/);
+  assert.match(workflow,/SY_PRODUCTION_GATE: ci-verified/);
   assert.match(workflow,/cancel-in-progress: false/);assert.doesNotMatch(workflow,/on:\s*\n\s*push:/);
   for(const action of workflow.matchAll(/uses: (\S+)/g))assert.match(action[1],/@[a-f0-9]{40}$/);
+});
+test('automatic release cannot promote an obsolete main artifact, while explicit recovery remains separate',()=>{
+ const a='a'.repeat(40),b='b'.repeat(40);
+ assert.doesNotThrow(()=>validateAutomaticHead('workflow_run',a,a));
+ assert.throws(()=>validateAutomaticHead('workflow_run',a,b),/stale/);
+ assert.doesNotThrow(()=>validateAutomaticHead('workflow_dispatch',a,b));
 });

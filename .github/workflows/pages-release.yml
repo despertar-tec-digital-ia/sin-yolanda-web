@@ -1,6 +1,10 @@
-name: Approved Pages release
+name: Verified Pages release
 
 on:
+  workflow_run:
+    workflows: [Public site quality]
+    types: [completed]
+    branches: [main]
   workflow_dispatch:
     inputs:
       ci_run_id:
@@ -8,13 +12,13 @@ on:
         required: true
         type: string
       destination:
-        description: Preview only, or preview followed by human-approved production
+        description: Preview only, or verified preview followed by production
         required: true
         default: preview
         type: choice
-        options: [preview, production, gate-test]
+        options: [preview, production]
       expected_production_id:
-        description: Current Pages production deployment ID; required for production
+        description: Optional fixed production baseline; otherwise use the verified preview baseline
         type: string
 
 permissions:
@@ -27,7 +31,12 @@ concurrency:
 
 jobs:
   prepare:
-    if: github.ref == 'refs/heads/main'
+    if: >-
+      github.ref == 'refs/heads/main' &&
+      (github.event_name == 'workflow_dispatch' ||
+       (github.event.workflow_run.conclusion == 'success' &&
+        github.event.workflow_run.event == 'push' &&
+        github.event.workflow_run.head_branch == 'main'))
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
@@ -41,7 +50,7 @@ jobs:
       - name: Retrieve and verify the successful main artifact without Cloudflare secrets
         env:
           GH_TOKEN: ${{ github.token }}
-          CI_RUN_ID: ${{ inputs.ci_run_id }}
+          CI_RUN_ID: ${{ inputs.ci_run_id || github.event.workflow_run.id }}
         run: node scripts/pages-release.mjs prepare "$CI_RUN_ID" .artifacts/bundle
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         with:
@@ -59,6 +68,7 @@ jobs:
       url: ${{ steps.publish.outputs.url }}
     outputs:
       url: ${{ steps.publish.outputs.url }}
+      previous_production_id: ${{ steps.publish.outputs.previousProductionId }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
@@ -77,14 +87,14 @@ jobs:
         env:
           SY_CLOUDFLARE_PAGES_TOKEN: ${{ secrets.SY_CLOUDFLARE_PAGES_TOKEN }}
         run: node scripts/pages-release.mjs preview .artifacts/bundle
-      - name: Write human review summary
+      - name: Write verified release summary
         env:
           PREVIEW_URL: ${{ steps.publish.outputs.url }}
           SOURCE_COMMIT: ${{ steps.publish.outputs.commit }}
           SOURCE_DIGEST: ${{ steps.publish.outputs.publicDigest }}
           PREVIOUS_PRODUCTION: ${{ steps.publish.outputs.previousProductionId }}
         run: |
-          printf 'Preview: %s\n\nCommit: `%s`\n\nPublic digest: `%s`\n\nCurrent production: `%s`\n\nProduction requires a human environment approval; a preview does not approve business data.\n' "$PREVIEW_URL" "$SOURCE_COMMIT" "$SOURCE_DIGEST" "$PREVIOUS_PRODUCTION" >> "$GITHUB_STEP_SUMMARY"
+          printf 'Preview: %s\n\nCommit: `%s`\n\nPublic digest: `%s`\n\nCurrent production: `%s`\n\nProduction follows successful main CI and verified preview automatically; this does not certify business data.\n' "$PREVIEW_URL" "$SOURCE_COMMIT" "$SOURCE_DIGEST" "$PREVIOUS_PRODUCTION" >> "$GITHUB_STEP_SUMMARY"
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         with:
           name: verified-pages-bundle-${{ github.run_id }}
@@ -94,7 +104,7 @@ jobs:
           if-no-files-found: error
   production:
     needs: preview
-    if: inputs.destination == 'production' || inputs.destination == 'gate-test'
+    if: github.event_name == 'workflow_run' || inputs.destination == 'production'
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     environment:
@@ -113,16 +123,13 @@ jobs:
           name: verified-pages-bundle-${{ github.run_id }}
           path: .artifacts/bundle
       - run: npm ci --ignore-scripts --prefix deploy
-      - name: Publish the exact approved bundle, only if production has not changed
-        if: inputs.destination == 'production'
+      - name: Publish the exact verified bundle, only if production has not changed
         env:
           SY_CLOUDFLARE_PAGES_TOKEN: ${{ secrets.SY_CLOUDFLARE_PAGES_TOKEN }}
-          SY_PRODUCTION_GATE: approved-environment
-          EXPECTED_PRODUCTION_ID: ${{ inputs.expected_production_id }}
+          SY_PRODUCTION_GATE: ci-verified
+          SY_RELEASE_TRIGGER: ${{ github.event_name }}
+          EXPECTED_PRODUCTION_ID: ${{ inputs.expected_production_id || needs.preview.outputs.previous_production_id }}
         run: node scripts/pages-release.mjs production .artifacts/bundle "$EXPECTED_PRODUCTION_ID"
-      - name: Gate test never publishes or reads a Cloudflare credential
-        if: inputs.destination == 'gate-test'
-        run: echo 'Human approval gate reached; no production publication in this test mode.'
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         if: always()
         with:

@@ -1,5 +1,27 @@
 # Migración de WordPress y medición · 8-oct-2026
 
+## Corrección publicada12-oct · raíces multisucursal
+
+Por encargo explícito de Luis, TX y USA raíz/apex/www →301 a
+`https://sin-yolanda.com/locations`, directorio existente con ES/EN. Ya no van a San Antonio ni
+The Woodlands. Solo estas raíces se corrigen, mediante plugin aditivo `sin-yolanda-root-directory`
+v1.0.0; pausa de cartas/original/DNS/WordPress/QR/Guadalajara/páginas sin cambios. ZIP SHA
+`1dbce205b7b084560a3186f530afc623ef87bd9e6a21a98de937457e743c9fea`.
+
+Operación HTTP autenticada, respaldo previo y comparación de estado; TX activa y conserva
+todas las huellas. USA se activó, pero la paridad de HTML renderizado detuvo el cierre por un
+captcha aritmético Divi variable. No se reintentó la instalación: inspección posterior confirmó
+plugin activo/estados ajenos intactos y14páginas sin cambios;13hashes exactos, la14 recupera
+paridad al normalizar únicamente la pregunta y sus dos atributos numéricos de captcha.
+Fechas `modified_gmt` iguales; otros cambios siguen fallando. Regresión añadida.
+
+Pruebas:250tests verdes;44sondas GET/HEAD en raíces/www/UTM, fichas USA, cartas TX/USA y GDL,
+cero fallos. El selector responde200/canonical correcto/indexable; no se crean aliases404 ni
+cartas EN ficticias. Recibos privados ignorados: `.artifacts/legacy-redirects/root-directory-smoke-20261012.json`,
+`wordpress-backups/tx-OJijWB/`, `usa-JtbQT9/` (detención original) y `usa-qkhHHC/` (inspección).
+Rollback exclusivo: desactivar ese plugin, no la pausa de cartas ni las reglas anteriores.
+El mapa JSON inferior y sus destinos de raíz son históricos, sustituidos por este override.
+
 Luis autoriza el lote técnico: corregir medición/SEO de destinos públicos aprobados y después
 activar redirecciones exactas recuperables. No autoriza cambiar DNS/MX, borrar WordPress,
 publicar Maricarmen, crear GA4 en una cuenta no confirmada ni certificar datos comerciales.

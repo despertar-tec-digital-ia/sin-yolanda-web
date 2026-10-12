@@ -115,6 +115,13 @@ y ruta inexistente dan 404 real. Panel demo/archivos de desarrollo siguen públi
 
 ## Regla para cada cambio de URL
 
+**Raíces multisucursal12-oct:** `sinyolandatx.com/` y `sinyolandausa.com/` (también www) →
+`https://sin-yolanda.com/locations`,301. Es el directorio existente con cambio ES/EN; no crear
+`/ubicaciones` ni `/en/locations/` inexistentes. Permanece cada antigua subruta específica de sede
+en su ficha propia y cada carta pausada en WordPress. No redirigir todo el dominio indiscriminadamente.
+Implementación/rollback en `scripts/legacy-redirects/README.md`; estas raíces ya no representan
+solo San Antonio/The Woodlands. Un301 erróneo no prueba por sí mismo una penalización de Google.
+
 Registrar en el PR: ruta origen/destino, motivo, estado HTTP esperado, canonical/hreflang/sitemap,
 enlaces/anclas afectados, analítica, rollback y comprobación de aliases `.html`, `/` final y host.
 No fijar redirects sin comprobar primero comportamiento de Pages. No enviar todas las rutas

@@ -1,10 +1,26 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
-import { verifyRelease } from '../scripts/verify-release.mjs';
+import { verifyRelease,restoreCloudflarePrivacyEmail } from '../scripts/verify-release.mjs';
 
 const sha256 = source => createHash('sha256').update(source).digest('hex');
 const origin = 'https://release.example';
+
+test('privacy verification reverses only the observed Cloudflare email envelope on the official domain',async()=>{
+ const original='<strong>privacy@example.org</strong></body>';
+ const bytes=Buffer.from('privacy@example.org'),key=7;
+ const hex=Buffer.from([key,...bytes.map(byte=>byte^key)]).toString('hex');
+ const served=`<strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="${hex}">[email&#160;protected]</a></strong><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>`;
+ assert.equal(restoreCloudflarePrivacyEmail(served,'aviso-de-privacidad.html','sin-yolanda.com'),original);
+ assert.equal(restoreCloudflarePrivacyEmail(served,'index.html','sin-yolanda.com'),null);
+ assert.equal(restoreCloudflarePrivacyEmail(served,'aviso-de-privacidad.html','preview.pages.dev'),null);
+ const aliases=['/aviso-de-privacidad.html','/aviso-de-privacidad','/aviso-de-privacidad/'];
+ const responses=value=>Object.fromEntries(aliases.map(route=>[route,()=>new Response(value,{headers:{'Content-Type':'text/html'}})]));
+ const f=fixture({'aviso-de-privacidad.html':original},responses(served));
+ const result=await verifyRelease({origin:'https://sin-yolanda.com',...f});assert.equal(result.passed,true);
+ const changed=fixture({'aviso-de-privacidad.html':original},responses('altered'+served));
+ assert.equal((await verifyRelease({origin:'https://sin-yolanda.com',...changed})).passed,false);
+});
 
 function fixture(extraSources = {}, responses = {}) {
   const sources = { 'index.html': '<h1>Home</h1>', '404.html': '<h1>Not found</h1>',

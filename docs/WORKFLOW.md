@@ -29,6 +29,13 @@ no autoriza inventar precios/horarios, sustituir QR/WordPress, activar registro 
 El PR23 visual se integró después de CI verde; primer release solicitado por Actions38295494906.
 Resultado servido de ese run y de la primera ejecución automática se anotarán al comprobarlos.
 
+Primer upload visual activo: Pages `e1286fb4`, anterior `c438ff4a`; run38295494906 subió el
+paquete correcto pero el smoke inmediato detectó propagación parcial y la obfuscación de correo
+Cloudflare en privacidad. Lectura posterior confirma assets/home exactos en dominio e inmutable.
+El smoke revierte SOLO el envoltorio observado de email de esa página en el host oficial; exige
+que el HTML completo restaurado tenga el SHA aprobado, sin normalizar otros cambios. El hash
+servido y el restaurado quedan separados en recibo; alteraciones adicionales siguen fallando.
+
 ### Promoción de la demo gris · 12-oct · candidata retomada
 
 Luis comunica aprobación de Karina para llevar la demo gris actual a `sin-yolanda.com`,

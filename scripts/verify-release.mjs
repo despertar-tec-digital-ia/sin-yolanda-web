@@ -20,6 +20,20 @@ const safeFile = value => {
 const sha256 = value => createHash('sha256').update(value).digest('hex');
 const noindex = value => /(?:^|[\s,:])noindex(?:$|[\s,;])/i.test(value ?? '');
 const nofollow = value => /(?:^|[\s,:])nofollow(?:$|[\s,;])/i.test(value ?? '');
+// Only reverse Cloudflare's observed email protection on the unchanged privacy page.
+// The reconstructed FULL page must still match its approved SHA; no general HTML cleanup.
+export function restoreCloudflarePrivacyEmail(html, file, hostname) {
+  if(file!=='aviso-de-privacidad.html'||!['sin-yolanda.com','www.sin-yolanda.com'].includes(hostname))return null;
+  const email=/<a href="\/cdn-cgi\/l\/email-protection" class="__cf_email__" data-cfemail="([a-f0-9]+)">\[email&#160;protected\]<\/a>/g;
+  const decoder=/<script data-cfasync="false" src="\/cdn-cgi\/scripts\/[a-f0-9]{8}\/cloudflare-static\/email-decode\.min\.js"><\/script>/g;
+  const matches=[...html.matchAll(email)];
+  if(matches.length!==1||[...html.matchAll(decoder)].length!==1)return null;
+  const hex=matches[0][1];if(hex.length<4||hex.length%2)return null;
+  const bytes=Buffer.from(hex,'hex'),key=bytes[0];
+  const value=Buffer.from([...bytes.slice(1)].map(byte=>byte^key)).toString('utf8');
+  if(!/^[A-Za-z0-9._+-]+@[A-Za-z0-9.-]+$/.test(value))return null;
+  return html.replace(email,value).replace(decoder,'');
+}
 const safeHeader = value => value?.replace(/[\r\n\x00-\x1f]/g, '').slice(0, 256) ?? null;
 
 function aliases(file) {
@@ -111,10 +125,16 @@ export async function verifyRelease({ origin, metadata, fetchImpl = globalThis.f
         }
         observation.observedHash = hash.digest('hex');
         observation.exactHash = observation.observedHash === expectedHash;
-        if (!observation.exactHash) observation.problems.push('hash-mismatch');
         if (isHtml) {
           if (observation.bytes > 8 * 1024 * 1024) observation.problems.push('html-too-large-to-inspect');
           const source = Buffer.concat(html).toString('utf8'), robots = robotsMeta(source);
+          if(!observation.exactHash){
+            const restored=restoreCloudflarePrivacyEmail(source,task.file,base.hostname);
+            if(restored!==null){
+              observation.restoredProviderHash=sha256(restored);
+              observation.verifiedProviderTransformation=observation.restoredProviderHash===expectedHash;
+            }
+          }
           observation.metaNoindex = noindex(robots); observation.metaNofollow = nofollow(robots);
           observation.cloudflareEmailObfuscation = /data-cfemail\s*=|\/cdn-cgi\/scripts\/[^"'\s>]*email-decode\.min\.js/i.test(source);
           if (!/^text\/html(?:\s*;|$)/i.test(response.headers.get('content-type') ?? '')) observation.problems.push('html-content-type-mismatch');
@@ -123,6 +143,7 @@ export async function verifyRelease({ origin, metadata, fetchImpl = globalThis.f
           if (preview && (!noindex(observation.robotsHeader) || !nofollow(observation.robotsHeader))) observation.problems.push('preview-robots-header-missing');
           if (!preview && task.file === 'index.html' && (noindex(observation.robotsHeader) || observation.metaNoindex)) observation.problems.push('home-is-noindex');
         }
+        if(!observation.exactHash&&!observation.verifiedProviderTransformation)observation.problems.push('hash-mismatch');
         return observation;
       }
     } catch (error) {
@@ -144,7 +165,7 @@ export async function verifyRelease({ origin, metadata, fetchImpl = globalThis.f
     passed: failed.length === 0,
     summary: { files: servedFiles.length, aliases: observations.filter(item => item.kind === 'alias').length,
       excludedRoutes: excludedPaths.length, exactFiles: observations.filter(item => item.kind === 'file' && item.exactHash).length,
-      hashMismatches: observations.filter(item => item.exactHash === false).length, failedChecks: failed.length },
+      hashMismatches: observations.filter(item => item.exactHash === false&&!item.verifiedProviderTransformation).length, failedChecks: failed.length },
     observations };
 }
 

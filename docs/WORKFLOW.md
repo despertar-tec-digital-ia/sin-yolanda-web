@@ -39,6 +39,9 @@ siguen intactos. Wrangler4.149.0/lockfile y actions fijadas a SHA; secretos solo
 
 Preview publica una rama `review-<sha>`, comprueba todos los archivos/aliases/noindex/404 y que
 producción conserve su deployment ID. El paquete comprobado queda como artefacto. Destino
+`gate-test` permite demostrar espera de aprobación sin poder publicar, aun si alguien aprobara:
+el paso de subida productiva exige destino `production`. No aprobar esa prueba como asistente.
+Destino
 `production` exige además el ID productivo esperado, ambiente aprobado por Luis o Karina y
 revalidación inmediatamente antes de subir. Si cambió producción, bloquea. No recompila ni
 publica cualquier push. Una cola única evita despliegues simultáneos, pero no bloquea uploads

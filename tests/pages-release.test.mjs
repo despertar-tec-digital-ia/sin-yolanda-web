@@ -65,6 +65,8 @@ test('release workflow has manual trigger, separate environments, fixed actions 
   const workflow=readFileSync(new URL('../.github/workflows/pages-release.yml',import.meta.url),'utf8');
   assert.match(workflow,/workflow_dispatch/);assert.doesNotMatch(workflow,/pull_request_target|SY_CLOUDFLARE_DNS_TOKEN|doppler run/);
   assert.match(workflow,/name: production/);assert.match(workflow,/name: preview/);
+  assert.match(workflow,/options: \[preview, production, gate-test\]/);
+  assert.match(workflow,/name: Publish the exact approved bundle[^]*?if: inputs.destination == 'production'/);
   assert.match(workflow,/cancel-in-progress: false/);assert.doesNotMatch(workflow,/on:\s*\n\s*push:/);
   for(const action of workflow.matchAll(/uses: (\S+)/g))assert.match(action[1],/@[a-f0-9]{40}$/);
 });

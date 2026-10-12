@@ -12,7 +12,7 @@ on:
         required: true
         default: preview
         type: choice
-        options: [preview, production]
+        options: [preview, production, gate-test]
       expected_production_id:
         description: Current Pages production deployment ID; required for production
         type: string
@@ -94,7 +94,7 @@ jobs:
           if-no-files-found: error
   production:
     needs: preview
-    if: inputs.destination == 'production'
+    if: inputs.destination == 'production' || inputs.destination == 'gate-test'
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     environment:
@@ -114,11 +114,15 @@ jobs:
           path: .artifacts/bundle
       - run: npm ci --ignore-scripts --prefix deploy
       - name: Publish the exact approved bundle, only if production has not changed
+        if: inputs.destination == 'production'
         env:
           SY_CLOUDFLARE_PAGES_TOKEN: ${{ secrets.SY_CLOUDFLARE_PAGES_TOKEN }}
           SY_PRODUCTION_GATE: approved-environment
           EXPECTED_PRODUCTION_ID: ${{ inputs.expected_production_id }}
         run: node scripts/pages-release.mjs production .artifacts/bundle "$EXPECTED_PRODUCTION_ID"
+      - name: Gate test never publishes or reads a Cloudflare credential
+        if: inputs.destination == 'gate-test'
+        run: echo 'Human approval gate reached; no production publication in this test mode.'
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         if: always()
         with:

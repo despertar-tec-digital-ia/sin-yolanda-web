@@ -83,7 +83,7 @@
     "blockingReasons":["Selected media is authorized only for review.","Mixed-source ES menu conflicts in Hija de la Guayaba measures and Torres 15 volume remain pending.","Reconcile preserved current Karina branch content before official release."]
   },
   "el-paso": {
-    "sourceRef": "c152f6c4a03dd332de0c285d96a660c1cc8f2978",
+    "sourceRef": "ba6c84a02d7d5395ad3cb73119b50f2befb026e7",
     "publicationApproved": false,
     "mapIdentity": "0x86e757bbd9089cdd:0xd0eb4f4f45aba5ee",
     "mapName": "Sin Yolanda El Paso",
@@ -92,8 +92,8 @@
       {"from":"en/el-paso/index.html","to":"en/el-paso/index.html","lang":"en","canonical":"https://sin-yolanda.com/en/el-paso/"},
       {"from":"el-paso/menu/index.html","to":"el-paso/menu/index.html","lang":"en","kind":"menu","canonical":"https://sin-yolanda.com/el-paso/menu/"}
     ],
-    "facts":{"street":"340 Vin Rambla Dr","city":"El Paso","postalCode":"79912","phone":{"e164":"+19152342908"},"reservation":{"url":"https://www.opentable.com/restaurant/profile/1559290"}},
-    "factsEvidence":"Karina confirms phone (915) 234-2908 and requests the OpenTable widget and the supplied SY EP English V6 PDF on 2026-10-11. Google/OpenTable restaurant 1559290 and available reservations were checked in the live customer flow. No operating hours are inferred.",
+    "facts":{"street":"340 Vin Rambla Dr","city":"El Paso","postalCode":"79912","phone":{"e164":"+19153636330"},"reservation":{"url":"https://www.opentable.com/restaurant/profile/1559290"}},
+    "factsEvidence":"Karina corrects the official phone to (915) 363-6330 and requests the OpenTable widget and the supplied SY EP English V6 PDF on 2026-10-11. Google/OpenTable restaurant 1559290 and available reservations were checked in the live customer flow. No operating hours are inferred.",
     "blockingReasons":["Existing campaign ambience remains illustrative, not photographic evidence of this venue.","Hours remain unconfirmed and are omitted.","The exact candidate must pass visual review and the official release approval gate."]
   },
   "catering": {

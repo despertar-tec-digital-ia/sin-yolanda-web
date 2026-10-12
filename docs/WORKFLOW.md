@@ -626,3 +626,15 @@ y una expectativa de ruta POSIX en Windows. El empaquetado review pasa; el build
 mantiene el gate de aprobación. El PR debe comprobar la suite completa en Linux. Este registro
 describe la candidata y no concede la aprobación exacta de producción.
 
+# Banner de apertura y teléfono El Paso · candidata 11-oct
+
+Karina solicita un banner «¡Ya abrimos!» para la ficha de El Paso y corrige su teléfono a
+`(915) 363-6330`. La cabecera ES/EN conserva la foto y su encuadre originales. «¡Ya abrimos!» queda como
+una etiqueta discreta junto a la ubicación, con naranja y Bebas existentes. No añade
+fecha, promoción ni horarios. Teléfono nuevo en visita, footer, carta y datos estructurados.
+
+Base oficial `975a8e5` / Pages `407a58b2`; donante `ba6c84a02d7d5395ad3cb73119b50f2befb026e7`.
+La importación se limita a El Paso; home, otras sedes, PDF y redirecciones se preservan.
+Las tres rutas retienen su política de indexación. Candidata de revisión; la aprobación
+del release anterior no se reutiliza para este banner.
+

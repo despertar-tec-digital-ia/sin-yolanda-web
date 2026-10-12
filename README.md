@@ -42,7 +42,14 @@ pretextos/cumpleaños conectados al selector. Alcance/evidencia/límites en
   sitemap.xml (12 URLs), robots.txt, OG tags
 
 ## Deploy
-Pages no está conectado al release automático todavía. CI de calidad no equivale a CD. No desplegar el checkout completo ni cambios dirty:
+**12-oct, política nueva solicitada por Luis:** se retiran aprobaciones humanas obligatorias;
+CI obligatorio de main → preview con comprobación de hashes/rutas → producción del mismo paquete.
+Workflow `Verified Pages release`, disparado por `workflow_run` de `Public site quality` exitoso
+en push main. No publica desde PRs ni desde CI fallido. Una cola única, baseline productivo,
+frescura de main y secretos por ambiente permanecen. Dispatch manual sirve para preview/recuperación.
+Estado comprobado y límites en WORKFLOW; no afirmar una ejecución automática hasta verificarla.
+
+Procedimiento histórico manual: no desplegar el checkout completo ni cambios dirty:
 preparar un artefacto público desde el commit remoto aprobado, sin documentación/scripts/pruebas/
 secretos; desplegar ese directorio con Wrangler al proyecto `sin-yolanda-web`, rama `main`, indicando
 hash del commit. `node scripts/package-public.mjs <directorio-nuevo>` crea ese artefacto;

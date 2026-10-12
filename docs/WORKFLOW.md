@@ -6,6 +6,29 @@ verificado, publicación Pages manual y smoke remoto comprobado. CD automático,
 secretos no están activados por este lote. Preparación, resultado y límites se registran abajo.
 La aprobación de este release no equivale a autorizar otros releases.
 
+### Publicación automática · política vigente12-oct
+
+Luis solicita explícitamente retirar la revisión obligatoria entre personas y la aprobación
+del ambiente, y publicar rápido al pasar pruebas. Esta decisión sustituye los gates humanos
+descritos en los bloques históricos inferiores; no es un bypass oculto ni aprobación simulada.
+Por API se retiró únicamente `required_pull_request_reviews` de main y `required_reviewers`
+de production. Se preservan CI `Public artifact checks` estricto, enforce-admins, no force-push,
+no delete y ambientes restringidos a main. Respaldo reversible de la política anterior en
+`.artifacts/approval-policy-20261012/before.json`, fuera del paquete. No se cambiaron tokens/DNS.
+
+`Verified Pages release`: al terminar con éxito el CI de un push main, valida el artefacto
+original por SHA/hashes, sube preview y comprueba sus archivos/aliases/404/noindex. Promueve
+exactamente ese paquete a production automáticamente, retirando solo el sufijo global noindex
+de preview. Flags propios de páginas permanecen. Fallos, CI de PR u otra rama y main obsoleto
+no publican. Cola única sin cancelar uploads; baseline observado durante preview se revalida
+antes de producción. Guardar artefacto/proof/deployment previo para recuperación.
+
+Dispatch manual mantiene preview o producción/rollback explícito de un CI main exitoso. No
+sondeo continuo ni gasto nuevo; los secretos siguen exclusivos del upload. Esta automatización
+no autoriza inventar precios/horarios, sustituir QR/WordPress, activar registro o campañas.
+El PR23 visual se integró después de CI verde; primer release solicitado por Actions38295494906.
+Resultado servido de ese run y de la primera ejecución automática se anotarán al comprobarlos.
+
 ### Promoción de la demo gris · 12-oct · candidata retomada
 
 Luis comunica aprobación de Karina para llevar la demo gris actual a `sin-yolanda.com`,

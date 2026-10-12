@@ -50,6 +50,10 @@ export function validateCiRun(run, artifact) {
   assert.equal(artifact.workflow_run?.id,run.id);assert.equal(artifact.workflow_run?.head_sha,run.head_sha);
   assert.match(artifact.digest,/^sha256:[a-f0-9]{64}$/);assert.ok(artifact.size_in_bytes<200*1024*1024);
 }
+export function validateAutomaticHead(trigger, controlCommit, currentMain) {
+  if(trigger==='workflow_run')assert.equal(controlCommit,currentMain,
+    'Automatic release is stale; a newer main commit must pass CI before publication');
+}
 function gh(path,binary=false){
   try{return execFileSync('gh',['api',`repos/${target.repository}/${path}`],
     {encoding:binary?undefined:'utf8',maxBuffer:210*1024*1024,stdio:['ignore','pipe','pipe']});}
@@ -108,10 +112,12 @@ async function deploy(directory,mode,expectedProductionId) {
   const before=await projectState(api);
   if(mode==='production'){
     assert.equal(process.env.GITHUB_ACTIONS,'true','Production only through the reviewed workflow');
-    assert.equal(process.env.SY_PRODUCTION_GATE,'approved-environment','Protected environment required');
-    assert.equal(before.productionId,expectedProductionId,'Production changed since approval; refuse publication');
+    assert.equal(process.env.SY_PRODUCTION_GATE,'ci-verified','Verified CI workflow required');
+    assert.equal(before.productionId,expectedProductionId,'Production changed since preview; refuse publication');
     const proof=JSON.parse(readFileSync(resolve(directory,'preview-proof.json'),'utf8'));
     assert.equal(proof.passed,true);assert.equal(proof.commit,control.commit);assert.equal(proof.publicDigest,control.publicDigest);
+    if(process.env.SY_RELEASE_TRIGGER==='workflow_run')validateAutomaticHead('workflow_run',control.commit,
+      JSON.parse(gh('branches/main')).commit.sha);
   }
   const branch=mode==='production'?'main':'review-'+control.commit.slice(0,12);
   try {execFileSync(resolve(root,'deploy/node_modules/.bin/wrangler'),['pages','deploy',resolve(directory,mode+'/public'),

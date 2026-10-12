@@ -32,3 +32,52 @@ test('image descriptions switch ES/EN reversibly without exposing decorative alt
     assert.equal(decorative.attributes.alt, '');
   }
 });
+
+test('hero text, SVG lettering and playback labels switch completely and reversibly', () => {
+  const text = value => ({ childNodes: [{ nodeType: 3, textContent: value }] });
+  const headline = text('No hay tiempo para llorar');
+  const subtitle = text('Comida que sí llena, tragos coquetos y canciones que se gritan completas.');
+  const action = text('Elige tu sucursal');
+  const geography = text('México · Estados Unidos');
+  const localized = (es, en) => ({ textContent: es, attributes: { 'data-i18n-es': es, 'data-i18n-en': en },
+    getAttribute(name) { return this.attributes[name]; } });
+  const words = [['NO HAY', 'NO'], ['TIEMPO', 'TIME'], ['para', 'for'], ['LLORAR', 'TEARS']]
+    .map(([es, en]) => localized(es, en));
+  const playback = localized('Pausar fotos', 'Pause photos');
+  const document = { readyState: 'complete', body: {}, documentElement: { lang: 'es' },
+    querySelector: () => null,
+    querySelectorAll: selector => selector === '[data-i18n-es][data-i18n-en]' ? [...words, playback]
+      : selector === '[aria-label], img[alt]' || selector === '[data-lang-btn]' || selector === '[data-i18n-href-es][data-i18n-href-en]' ? [] : [headline, subtitle, action, geography] };
+  const window = {};
+  vm.runInNewContext(readFileSync(new URL('../assets/js/i18n.js', import.meta.url), 'utf8'), {
+    document, window, localStorage: { getItem: () => null, setItem() {} },
+    MutationObserver: class { observe() {} }, setTimeout() {},
+  });
+  for (let i = 0; i < 2; i++) {
+    window.SY_I18N.apply('en');
+    window.SY_I18N.apply('en');
+    assert.equal(headline.childNodes[0].textContent, 'No time for tears');
+    assert.match(subtitle.childNodes[0].textContent, /^Food that fills you up,/);
+    assert.equal(action.childNodes[0].textContent, 'Choose your location');
+    assert.equal(geography.childNodes[0].textContent, 'Mexico · United States');
+    assert.equal(words.map(word => word.textContent).join(' '), 'NO TIME for TEARS');
+    assert.equal(playback.textContent, 'Pause photos');
+    playback.attributes['data-i18n-es'] = 'Reproducir fotos';
+    playback.attributes['data-i18n-en'] = 'Play photos';
+    window.SY_I18N.apply('en');
+    assert.equal(playback.textContent, 'Play photos');
+    window.SY_I18N.apply('es');
+    assert.equal(headline.childNodes[0].textContent, 'No hay tiempo para llorar');
+    assert.equal(words.map(word => word.textContent).join(' '), 'NO HAY TIEMPO para LLORAR');
+    assert.equal(playback.textContent, 'Reproducir fotos');
+    playback.attributes['data-i18n-es'] = 'Pausar fotos';
+    playback.attributes['data-i18n-en'] = 'Pause photos';
+  }
+});
+
+test('Catering links switch existing route editions reversibly without replacing their accessible text',()=>{
+ const link={attrs:{href:'/catering','data-i18n-href-es':'/catering','data-i18n-href-en':'/en/catering/'},getAttribute(k){return this.attrs[k]??null},setAttribute(k,v){this.attrs[k]=v}};
+ const document={readyState:'complete',body:{},documentElement:{lang:'es'},querySelector:()=>null,querySelectorAll:s=>s==='[data-i18n-href-es][data-i18n-href-en]'?[link]:[]};const window={};
+ vm.runInNewContext(readFileSync(new URL('../assets/js/i18n.js',import.meta.url),'utf8'),{document,window,localStorage:{getItem:()=>null,setItem(){}},MutationObserver:class{observe(){}},setTimeout(){}});
+ for(let i=0;i<2;i++){window.SY_I18N.apply('en');assert.equal(link.attrs.href,'/en/catering/');window.SY_I18N.apply('es');assert.equal(link.attrs.href,'/catering');}
+});

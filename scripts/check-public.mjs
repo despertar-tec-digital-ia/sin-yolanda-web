@@ -9,6 +9,11 @@ export function checkPublic(root = projectRoot) {
   const { manifest, files } = inspectPublic(root);
   assert.match(manifest.assetVersion, /^\d{8}-[a-z0-9-]+$/, 'Explicit shared asset version required');
   const fileSet = new Set(files);
+  for (const [path, version] of Object.entries(manifest.assetVersions ?? {})) {
+    assert.ok(manifest.assets.includes(path) && /^(?:styles\.css|assets\/(?:js|css)\/[a-z0-9-]+\.(?:js|css))$/.test(path),
+      'Asset version override must reference an allowed public stylesheet or script');
+    assert.match(version, /^\d{8}-[a-z0-9-]+$/, 'Invalid individual asset version');
+  }
   const read = path => readFileSync(resolve(root, path), 'utf8');
   const routes = new Set(manifest.pages.filter(path => !(manifest.reviewPages ?? []).includes(path))
     .map(path => path === 'index.html' ? '/' : '/' + path.replace(/index\.html$/, '').replace(/\.html$/, '')));
@@ -19,8 +24,9 @@ export function checkPublic(root = projectRoot) {
   for (const path of files.filter(f => /\.(html|css|js)$/.test(f))) {
     const source = read(path);
     if (path.endsWith('.html')) {
-      for (const [,href] of source.matchAll(/(?:href|src)="((?:styles\.css|assets\/(?:js|css)\/(?:public-data|site|i18n|venue-selector|home-actions)\.(?:js|css))[^\"]*)"/g)) {
-        assert.ok(href.endsWith('?v=' + manifest.assetVersion), 'Stale shared asset version: ' + path);
+      for (const [,href] of source.matchAll(/(?:href|src)="((?:styles\.css|assets\/(?:js|css)\/(?:public-data|site|i18n|venue-selector|home-actions|visual-pilot)\.(?:js|css))[^\"]*)"/g)) {
+        const asset = href.split('?')[0];
+        assert.ok(href.endsWith('?v=' + (manifest.assetVersions?.[asset] ?? manifest.assetVersion)), 'Stale shared asset version: ' + path);
       }
     }
     for (const [, href] of source.matchAll(/(?:href|src|poster)=["']([^"'<>]+)["']/g)) {

@@ -18,7 +18,7 @@ function siteFunction(name) {
 
 function renderHome() {
   const functions = ['escapeHtml', 'validCalendarDate', 'calendarDay', 'calendarLabel',
-    'homeCampaigns', 'homeAgenda', 'homePage'];
+    'homeCampaigns', 'homeAgenda', 'homeCatering', 'homeExperience', 'homePage'];
   const now = new Date('2026-10-07T18:00:00Z');
   return vm.runInNewContext(functions.map(siteFunction).join('\n') + '\nhomePage()', {
     data, Intl,
@@ -38,10 +38,15 @@ const selectorEntries = html => [...html.matchAll(/<a\b[^>]*\bhref=["']#ubicacio
     return { attributes, html: match[0] };
   });
 
-test('every direct home booking entry uses the location-selection contract, including the final CTA', () => {
+test('booking and menu entries use one selector while closing actions lead to existing event pages', () => {
   const entries = selectorEntries(renderHome());
-  assert.ok(entries.length >= 10, 'Keep hero, pretexts, birthday and final booking entrances');
-  assert.ok(entries.some(entry => />Reservar mesa<\/a>/.test(entry.html)), 'Exercise the final booking CTA');
+  for (const label of ['Elige tu sucursal', 'Ver la carta', 'Elegir sucursal']) {
+    assert.ok(entries.some(entry => entry.html.includes(label)), 'Keep the direct selector entrance: ' + label);
+  }
+  const closing = renderHome().match(/<section class="reserve-cta" id="reserve">[\s\S]*?<\/section>/)[0];
+  assert.match(closing, /href="eventos.html"/);
+  assert.match(closing, /href="\/catering"/);
+  assert.doesNotMatch(closing, /href="#ubicaciones"/);
   for (const entry of entries) {
     assert.ok(entry.attributes.has('data-select-location'),
       'A direct selector entrance must restore open locations when coming-soon is selected: ' + entry.html);

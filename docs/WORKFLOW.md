@@ -6,6 +6,39 @@ verificado, publicación Pages manual y smoke remoto comprobado. CD automático,
 secretos no están activados por este lote. Preparación, resultado y límites se registran abajo.
 La aprobación de este release no equivale a autorizar otros releases.
 
+### Promoción de la demo gris · 12-oct · candidata retomada
+
+Luis comunica aprobación de Karina para llevar la demo gris actual a `sin-yolanda.com`,
+integrando sus cambios de El Paso. El aviso «Production is waiting for your review» corresponde
+al gate-test38208178144 de `fcristerna`, cancelado; consulta posterior sin deployments pendientes.
+No se encontró una nueva ejecución de Karina. Sus cambios reales son PR18/19, ya en `main`.
+
+Candidata local en rama `feat/promote-approved-demo-20261012`, base `60456cd`, sobre la demo
+fijada `3a3ce44`. `scripts/demo-promotion.json` registra hashes: 13 archivos públicos modificados,
+22 añadidos y178 preservados. El Paso ES/EN y su menú V6/foto/aviso de apertura/teléfono/OpenTable
+se conservan byte a byte desde `main`; el registro del home se reconcilia con esos contactos.
+Cartas restantes, QR y destinos WordPress/GHL, privacidad, medición y controles remotos intactos.
+No se migraron las rutas históricas de Guadalajara; `/guadalajara` respondió404 en la lectura
+previa y sigue como pendiente separado. No inventar horarios ni sustituir el intake por PR16.
+
+Validación local: `npm ci --ignore-scripts`, check de allowlist/referencias y238tests pasan,
+incluidas regresiones de bytes de la demo y178 archivos preservados. QA home:10casos verdes,
+320/390/768/1440, ES/EN, espera de imagen, footer y navbar por sección. Revisión de capturas de
+El Paso/Houston/Catering confirma integración sin sustitución de medios; mapas y OpenTable
+excluidos de la QA de navegador para evitar acciones externas. Los destinos siguen comprobados
+estructuralmente y los QR302 originales se comprobaron por GET sin seguirlos.
+Paquete provisional de revisión213archivos en `.artifacts/promotion-review/`, generado dirty:
+sirve solo para QA local, nunca para un release certificado. Evidencia responsive ampliada →
+`.artifacts/promotion-qa/`; no afirmar Safari/iPhone físico ni funcionamiento externo por esta QA.
+Luis pausó y después retomó/ratificó publicación urgente. La candidata se entrega por PR, sin
+bypass de protección de main. No hay merge ni publicación productiva de este corte todavía.
+
+Reentrada: terminar QA responsive ES/EN y paridad con la demo, añadir regresiones de los hashes
+preservados y documentar el resultado; preparar PR y revisión humana. Solo tras merge/CI de main,
+promover el mismo artefacto por preview→aprobación humana de ambiente→producción, revalidando
+el baseline Pages (`c438ff4a-244d-40c0-9f67-1d6d66b8dc25` observado, no asumir que seguirá igual).
+No aprobar el ambiente ni eliminar protecciones como asistente. Oficial y demo sin cambios.
+
 ### Automatización Cloudflare11-oct · configuración en curso
 
 Luis autoriza cerrar los accesos separados DNS/Pages y el flujo de publicación con aprobación

@@ -1,0 +1,120 @@
+{
+  "version": 1,
+  "name": "Sin Yolanda",
+  "url": "https://sin-yolanda.com/",
+  "sitemap": "https://sin-yolanda.com/sitemap.xml",
+  "locations": [
+    {
+      "id": "el-paso",
+      "name": "Sin Yolanda El Paso",
+      "url": "https://sin-yolanda.com/el-paso",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "340 Vin Rambla Dr",
+        "addressLocality": "El Paso",
+        "addressRegion": "TX",
+        "postalCode": "79912",
+        "addressCountry": "US"
+      },
+      "telephone": "+19153636330",
+      "menu": "https://sin-yolanda.com/el-paso/menu/",
+      "reservation": "https://www.opentable.com/restaurant/profile/1559290",
+      "languages": [
+        "https://sin-yolanda.com/el-paso",
+        "https://sin-yolanda.com/en/el-paso/"
+      ]
+    },
+    {
+      "id": "san-ignacio",
+      "name": "Sin Yolanda Guadalajara",
+      "url": "https://sin-yolanda.com/san-ignacio",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Avenida San Ignacio 78",
+        "addressLocality": "Zapopan",
+        "addressRegion": "JAL",
+        "postalCode": "45040",
+        "addressCountry": "MX"
+      },
+      "telephone": "+523310186159",
+      "menu": "https://sin-yolanda.com/san-ignacio/menu/",
+      "reservation": "https://wa.me/5213310186159",
+      "languages": [
+        "https://sin-yolanda.com/san-ignacio"
+      ]
+    },
+    {
+      "id": "san-antonio",
+      "name": "Sin Yolanda San Antonio",
+      "url": "https://sin-yolanda.com/san-antonio",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "415 East Commerce Street",
+        "addressLocality": "San Antonio",
+        "addressRegion": "TX",
+        "postalCode": "78205",
+        "addressCountry": "US"
+      },
+      "telephone": "+12102720133",
+      "menu": "https://sin-yolanda.com/san-antonio/menu/",
+      "reservation": "https://www.opentable.com/r/sin-yolanda-san-antonio",
+      "languages": [
+        "https://sin-yolanda.com/san-antonio",
+        "https://sin-yolanda.com/en/san-antonio/"
+      ]
+    },
+    {
+      "id": "the-woodlands",
+      "name": "Sin Yolanda The Woodlands",
+      "url": "https://sin-yolanda.com/the-woodlands",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "1400 Research Forest Dr, Suite 180",
+        "addressLocality": "Shenandoah",
+        "addressRegion": "TX",
+        "postalCode": "77381",
+        "addressCountry": "US"
+      },
+      "telephone": "+13463823863",
+      "menu": "https://sin-yolanda.com/the-woodlands/menu/",
+      "reservation": "https://www.opentable.com/r/sin-yolanda-woodlands-shenandoah",
+      "languages": [
+        "https://sin-yolanda.com/the-woodlands",
+        "https://sin-yolanda.com/en/the-woodlands/"
+      ]
+    },
+    {
+      "id": "houston",
+      "name": "Sin Yolanda Houston",
+      "url": "https://sin-yolanda.com/houston",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "4901 Washington Ave",
+        "addressLocality": "Houston",
+        "addressRegion": "TX",
+        "postalCode": "77007-5305",
+        "addressCountry": "US"
+      },
+      "telephone": "+13468791675",
+      "menu": "https://sin-yolanda.com/houston/menu/",
+      "reservation": "https://www.opentable.com/r/sin-yolanda-houston",
+      "languages": [
+        "https://sin-yolanda.com/houston",
+        "https://sin-yolanda.com/en/houston/"
+      ]
+    }
+  ],
+  "catering": {
+    "url": "https://sin-yolanda.com/catering",
+    "englishUrl": "https://sin-yolanda.com/en/catering/",
+    "areaServed": "Houston",
+    "menus": [
+      "Buffet mexicano",
+      "Parrillada en vivo",
+      "Carne asada",
+      "Mar & fuego"
+    ],
+    "contact": "https://www.instagram.com/sinyolandacatering/",
+    "availability": "Menu and availability must be agreed for each event."
+  }
+}

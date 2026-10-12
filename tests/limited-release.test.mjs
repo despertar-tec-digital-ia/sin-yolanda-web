@@ -14,6 +14,9 @@ function fixture(t) {
   // Reuse real existing commits. No fixture commits, identity overrides, network
   // access, changes to the source repo, or dependency on a donor checkout.
   execFileSync('git', ['clone', '--quiet', '--shared', projectRoot, root], { stdio: 'pipe' });
+  // This fixture tests the earlier review-only authorization gate. Its verified
+  // historical commit remains independent of later explicit SEO promotions.
+  execFileSync('git', ['checkout', '--quiet', '--detach', 'ca25523c16708be6b7fa73fbd87e2442c662f41b'], { cwd: root, stdio: 'pipe' });
   const sourceCommit = execFileSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim();
   assert.equal(execFileSync('git', ['status', '--porcelain'], { cwd: root, encoding: 'utf8' }).trim(), '');
   const hashes = Object.fromEntries(inspectPublic(root).files.map(path => [path,

@@ -6,6 +6,35 @@ verificado, publicación Pages manual y smoke remoto comprobado. CD automático,
 secretos no están activados por este lote. Preparación, resultado y límites se registran abajo.
 La aprobación de este release no equivale a autorizar otros releases.
 
+### Descubrimiento SEO · encargo de Karina12-oct
+
+Karina solicita corregir el `noindex` observado por GSC en `/catering` e implementar SEO,
+WebMCP, schema y sitemaps para Google y bots. `scripts/seo-indexation-policy.json` registra
+la promoción técnica de Catering ES/EN y El Paso ES/EN/carta; sustituye su bloqueo de indexación,
+sin certificar precios, derechos o disponibilidad. El contrato histórico del8-oct se conserva.
+
+Las23URLs públicas incluyen canonical, metadatos sociales y WebPage; las ediciones reales
+ES/EN tienen hreflang recíproco y sitemap con alternates. Restaurant/Menu existentes mantienen
+datos propios; Catering usa Service con cobertura Houston, sin teléfono/precio inventado.
+El home añade WebSite/Organization. No se marca FAQ, reseñas ni calificaciones sin evidencia.
+
+Las cinco páginas del shell incluyen HTML inicial del mismo renderer para usuarios/bots sin
+JavaScript. Los scripts, fotos, CSS y bloques visuales se conservan. `seo-baseline.json` permite
+reconstruir exactamente los bytes previos para las pruebas de integridad del diseño aprobado.
+`node scripts/seo.mjs --apply` sincroniza el HTML y las fuentes públicas cuando cambian plantillas
+o datos; ejecutar antes de validar/empaquetar. Las campañas fechadas siguen caducando en navegador;
+la versión sin JS requiere un build actualizado. No se instala un scheduler adicional.
+
+WebMCP registra tres consultas públicas de solo lectura mediante detección de API
+`document.modelContext` (compatibilidad con `navigator.modelContext` inicial). Navegadores
+sin soporte conservan su funcionamiento. No captura datos, envía mensajes ni hace reservas.
+`discovery.json` y `llms.txt` exponen solo información publicada; llms.txt es auxiliar y no
+garantiza adopción ni indexación. Sitemap/robots/HTML son las señales para buscadores.
+
+Publicación por PR→CI obligatorio→preview verificada→producción, según la política vigente.
+Solicitar nuevo rastreo en GSC después de comprobar HTML/headers públicos; Google decide
+la indexación. No confundir 200, sitemap o pruebas de schema con URL ya indexada.
+
 ### Publicación automática · política vigente12-oct
 
 Luis solicita explícitamente retirar la revisión obligatoria entre personas y la aprobación

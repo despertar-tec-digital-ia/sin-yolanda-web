@@ -9,6 +9,7 @@ const read = path => readFileSync(new URL(path, root), 'utf8');
 const importManifest = JSON.parse(read('scripts/branch-import-manifest.json'));
 const publicManifest = JSON.parse(read('scripts/public-manifest.json'));
 const indexationPolicy = JSON.parse(read('scripts/indexation-policy.json'));
+const seoIndexationPolicy = JSON.parse(read('scripts/seo-indexation-policy.json'));
 const archiveRoot = 'archive/source-snapshots/karina-public-20261008-0924/';
 const archived = JSON.parse(read(archiveRoot + 'manifest.json'));
 const context = { window: {} };
@@ -56,7 +57,7 @@ for (const [id, selection] of Object.entries(importManifest)) {
     test(`local imported ${route.to} preserves exact route/language and review provenance`, () => {
       const html = read(route.to);
       assert.ok(publicManifest.pages.includes(route.to));
-      const indexable = indexationPolicy.pages.includes(route.to);
+      const indexable = [...indexationPolicy.pages, ...seoIndexationPolicy.pages].includes(route.to);
       assert.equal(publicManifest.reviewPages.includes(route.to), !indexable);
       assert.equal(selection.publicationApproved, false);
       assert.match(selection.sourceRef, /^[a-f0-9]{40}$/);
@@ -85,7 +86,7 @@ for (const id of branchIds) {
     test(`branch ${id} ${route.lang} keeps own Restaurant facts, Google map and connected menus`, () => {
       const html = read(route.to);
       const [schema] = schemas(html);
-      assert.equal(schemas(html).length, 1);
+      assert.equal(schemas(html).filter(item => item['@type'] === 'Restaurant').length, 1);
       assert.equal(schema['@type'], 'Restaurant');
       assert.equal(schema.url, route.canonical);
       assert.equal(schema['@id'], 'https://sin-yolanda.com/' + id + '#restaurant');

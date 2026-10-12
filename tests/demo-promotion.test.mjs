@@ -3,16 +3,17 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
 import {createHash} from 'node:crypto';
+import {restoreSeoBaseline} from '../scripts/seo.mjs';
 const root=new URL('../',import.meta.url);
 const read=file=>fs.readFileSync(new URL(file,root));
 const hash=value=>createHash('sha256').update(value).digest('hex');
 const contract=JSON.parse(read('scripts/demo-promotion.json'));
 test('promotion retains the approved demo bytes rather than introducing a new design',()=>{
  assert.equal(contract.sourceCommit,'3a3ce446a901ce3bb167bef0bc636c71b4ee8ff4');
- for(const [file,expected]of Object.entries(contract.exactDemo))assert.equal(hash(read(file)),expected,file);
+ for(const [file,expected]of Object.entries(contract.exactDemo))assert.equal(hash(file.endsWith('.html') ? restoreSeoBaseline(file,read(file).toString()) : read(file)),expected,file);
 });
 test('promotion preserves native menus, QR, privacy, analytics and El Paso PR18/19',()=>{
- for(const [file,expected]of Object.entries(contract.preserved))assert.equal(hash(read(file)),expected,file);
+ for(const [file,expected]of Object.entries(contract.preserved))assert.equal(hash(file.endsWith('.html') || ['robots.txt','sitemap.xml'].includes(file) ? restoreSeoBaseline(file,read(file).toString()) : read(file)),expected,file);
  for(const file of contract.protectedFiles)assert.ok(contract.preserved[file],file);
  assert.equal(contract.protectedFiles.filter(file=>file.includes('/menu/')).length,6);
 });

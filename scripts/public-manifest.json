@@ -221,14 +221,11 @@
     "assets/media/venues/future/future-crowd-960.webp",
     "assets/media/venues/future/future-singalong-640.webp",
     "assets/media/venues/future/future-singalong-960.webp",
-    "images/catering-review/logo.webp"
+    "images/catering-review/logo.webp",
+    "assets/js/webmcp.js",
+    "discovery.json",
+    "llms.txt"
   ],
   "assetVersion": "20261008-migration-measurement",
-  "reviewPages": [
-    "el-paso.html",
-    "en/el-paso/index.html",
-    "catering.html",
-    "en/catering/index.html",
-    "el-paso/menu/index.html"
-  ]
+  "reviewPages": []
 }

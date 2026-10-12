@@ -8,6 +8,7 @@ const read = path => readFileSync(new URL('../' + path, import.meta.url), 'utf8'
 const manifest = JSON.parse(read('scripts/public-manifest.json'));
 const imports = JSON.parse(read('scripts/branch-import-manifest.json'));
 const policy = JSON.parse(read('scripts/indexation-policy.json'));
+const seoPolicy = JSON.parse(read('scripts/seo-indexation-policy.json'));
 const redirects = JSON.parse(read('scripts/legacy-redirects/sin-yolanda-legacy-redirects/redirects.json'));
 const sitemap = [...read('sitemap.xml').matchAll(/<loc>([^<]+)<\/loc>/g)].map(([, href]) => href);
 const tags = (html, name) => [...html.matchAll(new RegExp('<' + name + '\\b[^>]*>', 'g'))].map(match => match[0]);
@@ -51,14 +52,17 @@ test('technical indexation is limited to the 12 pinned branch/menu pages and doe
   }
 });
 
-test('El Paso and Catering keep five review-only noindex pages outside the sitemap', () => {
-  assert.deepEqual([...manifest.reviewPages].sort(), protectedPages);
+test('the subsequent explicit SEO authorization promotes the five existing El Paso and Catering pages', () => {
+  assert.equal(seoPolicy.authorizer, 'Karina');
+  assert.equal(seoPolicy.authorizedOn, '2026-10-12');
+  assert.deepEqual([...seoPolicy.pages].sort(), protectedPages);
+  assert.deepEqual(manifest.reviewPages, []);
   for (const page of protectedPages) {
     assert.ok(manifest.pages.includes(page));
     assert.ok(!policy.pages.includes(page));
     const html = read(page);
-    assert.deepEqual(robots(html), ['noindex,nofollow'], page);
-    assert.equal(sitemap.includes(canonical(html)), false, page);
+    assert.deepEqual(robots(html), ['index,follow,max-image-preview:large'], page);
+    assert.equal(sitemap.filter(url => url === canonical(html)).length, 1, page);
   }
   for (const id of ['el-paso', 'catering']) {
     assert.equal(imports[id].publicationApproved, false);
@@ -138,6 +142,7 @@ function importerContext(branchId, dryRun = false) {
     process: { argv: ['node', '/official/scripts/import-branches.mjs', '--branch', branchId, '--audience', 'review', '--source-root', '/donor', '--source-ref', policy.sourceRef, ...(dryRun ? ['--dry-run'] : [])] },
     resolve, dirname, relative,
     readFileSync(path) {
+      path = path.replaceAll('\\', '/').replace(/^C:\//, '/');
       if (path === '/official/scripts/branch-import-manifest.json') return JSON.stringify({ [branchId]: selection });
       if (path === '/official/scripts/indexation-policy.json') return JSON.stringify(policy);
       if (path === '/donor/src/data/public-branches.json') return JSON.stringify([branch]);
@@ -171,7 +176,7 @@ test('reimport guards block resetting promoted routes before any writes, while d
   const reads = [], writes = [];
   assert.throws(() => vm.runInNewContext(vmScript('scripts/sync-review-imports.mjs'), {
     assert, resolve, process: { argv: [] },
-    readFileSync(path) { reads.push(path); assert.equal(path, '/official/scripts/indexation-policy.json'); return JSON.stringify(policy); },
+    readFileSync(path) { path = path.replaceAll('\\', '/').replace(/^C:\//, '/'); reads.push(path); assert.equal(path, '/official/scripts/indexation-policy.json'); return JSON.stringify(policy); },
     writeFileSync(...args) { writes.push(args); throw new Error('Unexpected sync mutation.'); },
   }), /Existing migration indexation requires a new explicit source\/indexation decision/);
   assert.equal(reads.length, 1);

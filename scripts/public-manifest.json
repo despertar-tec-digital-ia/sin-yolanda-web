@@ -5,7 +5,8 @@
     "assets/js/i18n.js": "20261010-visual-details",
     "assets/css/visual-pilot.css": "20261011-demo-polish",
     "assets/js/public-data.js": "20261012-root-routing",
-    "assets/js/site-analytics.js": "20261012-root-routing"
+    "assets/js/site-analytics.js": "20261012-root-routing",
+    "assets/css/houston-header.css": "20261012-overlay"
   },
   "pages": [
     "index.html",
@@ -35,6 +36,7 @@
   ],
   "assets": [
     "styles.css",
+    "assets/css/houston-header.css",
     "_headers",
     "_redirects",
     "robots.txt",

@@ -6,6 +6,23 @@ verificado, publicación Pages manual y smoke remoto comprobado. CD automático,
 secretos no están activados por este lote. Preparación, resultado y límites se registran abajo.
 La aprobación de este release no equivale a autorizar otros releases.
 
+### Header Houston · revisión por bloque12-oct · candidata local
+
+Luis pide que Houston deje ver el fondo del hero como Guadalajara/San Antonio. Corrección
+exclusiva ES/EN en `assets/css/houston-header.css`: overlay inicial con logo/navegación claros,
+fondo oscuro al reaparecer por scroll y foco visible. Conserva el módulo de scroll/teclado y
+los assets importados inmutables. La nueva hoja está versionada y en el baseline SEO, para
+que una regeneración no pierda el ajuste. No cambia hero/fotos, contenido, menús, QR ni otras sedes.
+
+QA local empaquetada: 17 escenarios Chromium (320/390/768/1024/1440/1920, ES/EN, comparación
+con Guadalajara/San Antonio, scroll, teclado y movimiento reducido) y256tests verdes.
+Capturas top desktop/tablet/móvil inspeccionadas. Repetible con `scripts/qa-houston-header.mjs`;
+recibos privados en `.artifacts/houston-header-20261012/`. No prueba Safari/iPad físico ni
+servicios externos, bloqueados en esta QA. Candidata en rama `fix/houston-overlay-header-20261012`;
+sin merge/despliegue solicitado. Publicar requiere OK del ajuste: main verde activa CD.
+Rollback visual: retirar solo la hoja de Houston y sus referencias ES/EN/baseline/manifiesto
+en un PR nuevo; nunca sustituir todo el sitio con un release antiguo ni tocar cartas/QR.
+
 ### Descubrimiento SEO · encargo de Karina12-oct
 
 Karina solicita corregir el `noindex` observado por GSC en `/catering` e implementar SEO,

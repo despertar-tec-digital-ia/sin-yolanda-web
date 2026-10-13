@@ -13,7 +13,7 @@
   },
   "sites": {
     "sinyolandagdl.com": {
-      "/": "/san-ignacio",
+      "/": "/guadalajara",
       "/menu/": "/san-ignacio/menu/",
       "/cocteles-shots/": "/san-ignacio/menu/#cocktails"
     },

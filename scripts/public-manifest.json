@@ -4,7 +4,8 @@
     "assets/js/site.js": "20261011-demo-polish",
     "assets/js/i18n.js": "20261010-visual-details",
     "assets/css/visual-pilot.css": "20261011-demo-polish",
-    "assets/js/public-data.js": "20261011-demo-polish"
+    "assets/js/public-data.js": "20261012-root-routing",
+    "assets/js/site-analytics.js": "20261012-root-routing"
   },
   "pages": [
     "index.html",
@@ -14,7 +15,7 @@
     "eventos.html",
     "tienda.html",
     "el-paso.html",
-    "san-ignacio.html",
+    "guadalajara.html",
     "san-antonio.html",
     "the-woodlands.html",
     "houston.html",

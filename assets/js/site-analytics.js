@@ -6,7 +6,7 @@
   const websiteId = "cbfa7fb3-230e-405c-a0b8-06c762d6216b";
   const publicRoutes = new Set([
     "/", "/locations", "/la-cantina", "/catering", "/eventos", "/tienda",
-    "/el-paso", "/san-ignacio", "/san-antonio", "/the-woodlands", "/houston",
+    "/el-paso", "/guadalajara", "/san-ignacio", "/san-antonio", "/the-woodlands", "/houston",
     "/aviso-de-privacidad", "/en/houston", "/houston/menu", "/en/san-antonio",
     "/san-antonio/menu", "/en/san-antonio/menu", "/en/the-woodlands",
     "/the-woodlands/menu", "/san-ignacio/menu", "/en/el-paso", "/el-paso/menu", "/en/catering",

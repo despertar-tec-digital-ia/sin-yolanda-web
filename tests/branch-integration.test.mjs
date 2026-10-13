@@ -19,7 +19,7 @@ const branchIds = ['houston', 'san-antonio', 'the-woodlands', 'san-ignacio', 'el
 const routePath = route => new URL(route.canonical).pathname;
 const decode = text => text.replaceAll('&amp;', '&').replaceAll('&quot;', '"').replaceAll('&#39;', "'");
 const normalized = href => new URL(decode(href), 'https://sin-yolanda.com/').pathname
-  .replace(/index\.html$/, '').replace(/\.html$/, '').replace(/\/$/, '') || '/';
+  .replace(/index\.html$/, '').replace(/\.html$/, '').replace(/\/$/, '').replace(/^\/san-ignacio$/, '/guadalajara') || '/';
 const links = html => [...html.matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>/g)].map(([, href]) => decode(href));
 const schemas = html => [...html.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)]
   .map(([, json]) => JSON.parse(json));
@@ -89,7 +89,7 @@ for (const id of branchIds) {
       assert.equal(schemas(html).filter(item => item['@type'] === 'Restaurant').length, 1);
       assert.equal(schema['@type'], 'Restaurant');
       assert.equal(schema.url, route.canonical);
-      assert.equal(schema['@id'], 'https://sin-yolanda.com/' + id + '#restaurant');
+      assert.equal(schema['@id'], 'https://sin-yolanda.com/' + (id === 'san-ignacio' ? 'guadalajara' : id) + '#restaurant');
       assert.equal(schema.address.streetAddress, selection.facts.street);
       assert.equal(schema.address.addressLocality, selection.facts.city);
       assert.equal(schema.address.postalCode, selection.facts.postalCode);
@@ -130,8 +130,8 @@ for (const id of branchIds) {
   }
 }
 
-test('Guadalajara display rename preserves Chapalita, original avenue, IDs, URL and media provenance', () => {
-  const html = read('san-ignacio.html');
+test('Guadalajara canonical rename preserves Chapalita, original avenue, IDs and media provenance', () => {
+  const html = read('guadalajara.html');
   const [schema] = schemas(html);
   assert.equal(heading(html), 'Sin Yolanda Guadalajara');
   assert.equal(schema.name, 'Sin Yolanda Guadalajara');
@@ -141,7 +141,8 @@ test('Guadalajara display rename preserves Chapalita, original avenue, IDs, URL 
   assert.match(html, /id="san-ignacio"/);
   assert.match(html, /id="visita-san-ignacio"/);
   assert.match(html, /images\/branch-review\/san-ignacio-hero-/);
-  assert.doesNotMatch(html, /Avenida Guadalajara|\/guadalajara(?:\/|"|#)/);
+  assert.doesNotMatch(html, /Avenida Guadalajara/);
+  assert.match(html, /rel="canonical" href="https:\/\/sin-yolanda.com\/guadalajara"/);
   assert.match(read('san-ignacio/menu/index.html'), /<p>Guadalajara<\/p>/);
   const oldSnapshot = JSON.parse(read(archiveRoot + 'san-ignacio.json'));
   assert.match(oldSnapshot.registry.address, /San Ignacio 78/);

@@ -23,7 +23,7 @@ const expectedIndexable = [
   'houston.html', 'en/houston/index.html', 'houston/menu/index.html',
   'san-antonio.html', 'en/san-antonio/index.html', 'san-antonio/menu/index.html', 'en/san-antonio/menu/index.html',
   'the-woodlands.html', 'en/the-woodlands/index.html', 'the-woodlands/menu/index.html',
-  'san-ignacio.html', 'san-ignacio/menu/index.html',
+  'guadalajara.html', 'san-ignacio/menu/index.html',
 ];
 const protectedPages = ['catering.html', 'el-paso.html', 'el-paso/menu/index.html', 'en/catering/index.html', 'en/el-paso/index.html'];
 

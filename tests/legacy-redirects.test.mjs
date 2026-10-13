@@ -23,7 +23,7 @@ function temporaryArtifact(prefix) {
   return mkdtempSync(join(artifacts, prefix));
 }
 const approved = [
-  ['sinyolandagdl.com', '/', '/san-ignacio'],
+  ['sinyolandagdl.com', '/', '/guadalajara'],
   ['sinyolandagdl.com', '/menu/', '/san-ignacio/menu/'],
   ['sinyolandagdl.com', '/cocteles-shots/', '/san-ignacio/menu/#cocktails'],
   ['sinyolandatx.com', '/', '/san-antonio'],
@@ -84,7 +84,7 @@ test('all approved GET and HEAD routes use one fixed canonical target on apex an
   const actual = resolveBatch(scenarios.map(v => v.server));
   assert.equal(scenarios.length, 116);
   actual.forEach((result, i) => assert.deepEqual(result, { status: 301, location: config.targetOrigin + scenarios[i].target }));
-  assert.deepEqual(resolveBatch([request('/', { HTTP_HOST: 'WWW.SINYOLANDAGDL.COM' })])[0], { status: 301, location: config.targetOrigin + '/san-ignacio' });
+  assert.deepEqual(resolveBatch([request('/', { HTTP_HOST: 'WWW.SINYOLANDAGDL.COM' })])[0], { status: 301, location: config.targetOrigin + '/guadalajara' });
 });
 
 test('unknown paths, ambiguous paths, unrelated hosts and non-GET methods remain in WordPress', phpOptions, () => {

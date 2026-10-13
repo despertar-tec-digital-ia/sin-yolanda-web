@@ -3,7 +3,7 @@ window.SY_DATA = {
   "branches": [
     {
       "id": "san-ignacio",
-      "page": "san-ignacio.html",
+      "page": "guadalajara.html",
       "name": "Sin Yolanda Guadalajara",
       "shortName": "Guadalajara",
       "city": "Zapopan, Jalisco",

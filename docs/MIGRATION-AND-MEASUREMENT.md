@@ -1,5 +1,37 @@
 # Migración de WordPress y medición · 8-oct-2026
 
+## Ampliación12-oct · cuatro raíces y canonical Guadalajara
+
+Luis ratifica destinos generales y añade Maricarmen/GDL: TX/USA/Maricarmen →
+`https://sin-yolanda.com/locations`; GDL → `https://sin-yolanda.com/guadalajara`.
+Consulta fresca inicial: TX/USA ya301 al selector, GDL/Maricarmen aún200 WordPress;
+`/guadalajara`404. No atribuir el resultado observado por Luis a caché sin comprobar su cliente.
+Los301 antiguos pueden persistir en navegadores y no se revocan cambiando el servidor.
+
+Plugin independiente `sin-yolanda-root-routing`1.0.0, prioridad anterior al legacy:
+solo raíz exacta GET/HEAD anónima y cuatro hosts/apex/www. Reutiliza el validador de atribución
+en namespace aislado, sin activar reglas de carta. `Cache-Control: no-store,max-age=0,must-revalidate`
+para nuevas respuestas. Admin/REST/POST/formularios/previews/queries desconocidas quedan intactos.
+El operador `deploy-root-routing.mjs` valida destinos, ZIP/hashes, respaldo y paridad de páginas/
+plugins. Secretos solo referencias `.secrets/sin-yolanda-wp.env`; login Maricarmen oculto verificado.
+
+TX/USA/Maricarmen instalados/activos y verificados, páginas/estados ajenos intactos. Recibos:
+`.artifacts/legacy-redirects/wordpress-backups/{tx-SvqdlQ,usa-DnaRgT,maricarmen-NQK1wd}/`.
+ZIP final SHA `3c1157a314ff9d702bbe091526706ecec58a42cce60cead44b5964ceba3b8634`.
+Guadalajara preparada con el mismo contenido, alias antiguos301, canonical/hreflang/schema/sitemap
+actualizados y ID `san-ignacio` conservado; no modificar el nombre postal de la avenida.
+La activación GDL exige primero200/canonical/indexación del nuevo destino tras el release central.
+
+254 pruebas locales verdes. Paridad de diseño por hashes completos tras revertir únicamente
+links aprobados y versiones de caché; cartas centrales sin cambios de contenido/navegación,
+solo el token de versión del tracker. Cartas WordPress/QR/correo/DNS/GHL sin cambios.
+Estado de release/sondas posteriores debe anotarse al verificarse, no inferirse del CI.
+Rollback: desactivar solo root-routing en GDL antes de volver a un release sin `/guadalajara`;
+en otros dominios, desactivar ese plugin recupera su estado previo. No desactivar pausas de cartas.
+
+Futuro solicitado por Luis: cada historia destacada de Instagram debe enlazar la carta propia
+solo después de aprobación operativa por sucursal; este lote no cambia esos enlaces ni cartas.
+
 ## Corrección publicada12-oct · raíces multisucursal
 
 Por encargo explícito de Luis, TX y USA raíz/apex/www →301 a

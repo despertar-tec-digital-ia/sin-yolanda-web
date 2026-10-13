@@ -27,7 +27,7 @@
     {
       "id": "san-ignacio",
       "name": "Sin Yolanda Guadalajara",
-      "url": "https://sin-yolanda.com/san-ignacio",
+      "url": "https://sin-yolanda.com/guadalajara",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Avenida San Ignacio 78",
@@ -40,7 +40,7 @@
       "menu": "https://sin-yolanda.com/san-ignacio/menu/",
       "reservation": "https://wa.me/5213310186159",
       "languages": [
-        "https://sin-yolanda.com/san-ignacio"
+        "https://sin-yolanda.com/guadalajara"
       ]
     },
     {

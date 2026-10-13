@@ -53,7 +53,7 @@ export function checkAnalyticsCoverage(root = fileURLToPath(new URL('..', import
       assert.match(html, /<meta name="sy-analytics" content="excluded:404">/, 'Document the 404 exclusion.');
     } else {
       assert.equal(analytics.length, 1, 'Exactly one shared analytics loader per public page: ' + page);
-      assert.equal(attr(analytics[0], 'src'), `/${analyticsAsset}?v=${manifest.assetVersion}`, 'Stale analytics cache version: ' + page);
+      assert.equal(attr(analytics[0], 'src'), `/${analyticsAsset}?v=${manifest.assetVersions?.[analyticsAsset] ?? manifest.assetVersion}`, 'Stale analytics cache version: ' + page);
       assert.match(analytics[0], /\bdefer\b/, 'Do not block first paint.');
       measured++;
     }

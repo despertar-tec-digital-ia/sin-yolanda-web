@@ -1,5 +1,12 @@
 # Redirecciones WordPress de Sin Yolanda
 
+**Contrato posterior12-oct:** `deploy-root-routing.mjs --site tx|usa|gdl|maricarmen`
+opera el plugin independiente de cuatro raíces. TX/USA/Maricarmen → `/locations`, GDL →
+`/guadalajara`; solo raíz, sin reglas de carta ni reactivación del plugin GDL legacy.
+Las respuestas nuevas añaden no-store; esto no elimina301 ya guardados por visitantes.
+No usar el mapa histórico para reactivar menús. Estado, respaldo y rollback en el primer bloque
+de MIGRATION-AND-MEASUREMENT. La corrección root-directory inferior queda como antecedente.
+
 **Corrección vigente12-oct:** las raíces de TX y USA deben mandar al selector central
 `https://sin-yolanda.com/locations` (con selector ES/EN), no a una sede. Implementación aditiva
 `sin-yolanda-root-directory`, versionada y desplegada por `deploy-root-directory.mjs` con

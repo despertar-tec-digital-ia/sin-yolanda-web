@@ -8,6 +8,7 @@ export const qrRegistrationFormId = 'nN59k3I7TT6TOxDl4XET';
 export const qrRegistrationDestination = 'https://api.leadconnectorhq.com/widget/form/nN59k3I7TT6TOxDl4XET?utm_source=qr&utm_medium=offline&utm_campaign=loyalty_el_paso&utm_content=registro_v1';
 const menuSources = ['/q/gdl-menu', '/q/gdl-menu/'];
 const registrationSources = ['/q/el-paso-registro', '/q/el-paso-registro/'];
+export const branchAliasSources = ['/san-ignacio', '/san-ignacio/', '/san-ignacio.html'];
 
 function validateRegistrationDestination(destination) {
   assert.ok(typeof destination === 'string' && destination, 'Registration destination has not been confirmed');
@@ -33,6 +34,12 @@ export function parseQrRedirects(source, { registrationDestination = qrRegistrat
     const fields = text.split(/\s+/);
     assert.equal(fields.length, 3, 'QR rule needs source, destination and explicit status');
     const [path, destination, code] = fields;
+    if (branchAliasSources.includes(path)) {
+      assert.ok(!seen.has(path), 'Duplicate branch alias');
+      assert.equal(destination, '/guadalajara', 'Branch alias must use the approved canonical');
+      assert.equal(code, '301', 'Branch canonical rename must be permanent');
+      seen.add(path); records.push({source:path,destination,status:301});continue;
+    }
     assert.ok(approvedSources.has(path), 'QR rule is outside the approved alias');
     assert.ok(!seen.has(path), 'Duplicate QR redirect source');
     assert.equal(destination, approvedSources.get(path), 'QR destination differs from the approved fixed destination');

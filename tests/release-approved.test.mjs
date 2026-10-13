@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { options, validatePull, validateRequiredChecks, validateProof, waitForRun, waitForPullChecks } from '../scripts/release-approved.mjs';
+import { options, validatePull, validateRequiredChecks, validateProof, waitForRun, waitForPullChecks, readGitHub } from '../scripts/release-approved.mjs';
 import { target } from '../scripts/cloudflare-ops.mjs';
 const head = 'a'.repeat(40), commit = 'b'.repeat(40);
 const pull = () => ({ head: { sha: head, repo: { full_name: target.repository } },
@@ -13,6 +13,22 @@ const proof = () => ({ version: 1, origin: 'https://' + target.domain, commit, p
   summary: { files: 215, aliases: 47, excludedRoutes: 10, failedChecks: 0, hashMismatches: 0 },
   observations: [{ problems: [] }], publicDigest: 'c'.repeat(64),
   deploymentId: '36ac4319-b165-4294-b808-7dd3efbcd784', previousProductionId: '3bbc0983-7c3f-42b7-8c6b-d569bee23767' });
+test('transient read-only GitHub failure has bounded retries, not another manual query', async () => {
+  let calls = 0; const pauses = [];
+  const result = await readGitHub({ load: async () => { if (++calls < 3) throw new Error('temporary network failure'); return '{"ok":true}'; },
+    delay: async ms => pauses.push(ms) });
+  assert.deepEqual(result, { ok: true }); assert.deepEqual(pauses, [500, 1500]);
+});
+for (const httpStatus of [401, 403, 404, 422]) test('authentication/permission/invalid metadata fails fast: ' + httpStatus, async () => {
+  await assert.rejects(readGitHub({ load: async () => { throw Object.assign(new Error('rejected'), { httpStatus }); },
+    delay: async () => assert.fail('Do not retry permission errors') }));
+});
+test('persistent network failure and malformed metadata remain failures', async () => {
+  let calls = 0;
+  await assert.rejects(readGitHub({ load: async () => { calls++; throw new Error('network'); }, delay: async () => {} }));
+  assert.equal(calls, 3);
+  await assert.rejects(readGitHub({ load: async () => 'not-json', delay: async () => assert.fail('Malformed response is not trusted') }));
+});
 test('default is inspect-only; mutation requires exact PR/head and explicit publish flag', () => {
   assert.equal(options(['--pr', '30', '--head', head]).publish, false);
   assert.equal(options(['--pr', '30', '--head', head, '--publish']).publish, true);

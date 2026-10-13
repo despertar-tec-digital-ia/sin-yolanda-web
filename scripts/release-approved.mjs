@@ -13,9 +13,23 @@ const exec = promisify(execFile);
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 async function gh(args) {
   try { return (await exec('gh', args, { cwd: root, timeout: 60000, maxBuffer: 5 * 1024 * 1024 })).stdout; }
-  catch { throw new Error('GitHub command failed; no credentials or provider output logged'); }
+  catch (error) {
+    const failure = new Error('GitHub command failed; no credentials or provider output logged');
+    failure.httpStatus = Number(error.stderr?.match(/HTTP (\d{3})/)?.[1]) || null;
+    throw failure;
+  }
 }
-const api = async path => JSON.parse(await gh(['api', `repos/${target.repository}/${path}`]));
+export async function readGitHub({ load, delay = sleep }) {
+  for (let attempt = 0; ; attempt++) {
+    try { return JSON.parse(await load()); }
+    catch (error) {
+      // Only GET metadata is repeated; an uncertain merge/write is never retried.
+      if (attempt >= 2 || error instanceof SyntaxError || [401, 403, 404, 422].includes(error.httpStatus)) throw error;
+      await delay([500, 1500][attempt]);
+    }
+  }
+}
+const api = path => readGitHub({ load: () => gh(['api', `repos/${target.repository}/${path}`]) });
 export function options(args) {
   const result = { publish: false, timeoutSeconds: 1200 };
   const seen = new Set();

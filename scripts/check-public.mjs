@@ -4,6 +4,7 @@ import vm from 'node:vm';
 import { execFileSync } from 'node:child_process';
 import assert from 'node:assert/strict';
 import { inspectPublic, projectRoot, forbiddenRoute } from './package-public.mjs';
+import { branchAliasSources } from './qr-redirects.mjs';
 
 export function checkPublic(root = projectRoot) {
   const { manifest, files } = inspectPublic(root);
@@ -35,7 +36,8 @@ export function checkPublic(root = projectRoot) {
       if (!local) continue;
       assert.ok(!forbiddenRoute.test(local), 'Retired route linked in ' + path);
       const name = (local.startsWith('/') ? local.slice(1) : posix.normalize(posix.join(path.endsWith('.html') ? posix.dirname(path) : '.', local))).replace(/\/$/, '');
-      assert.ok([name, name + '.html', posix.join(name, 'index.html')].some(p => fileSet.has(p)), 'Missing public reference: ' + path + ' -> ' + local);
+      const route = branchAliasSources.includes('/' + name) ? 'guadalajara' : name;
+      assert.ok([route, route + '.html', posix.join(route, 'index.html')].some(p => fileSet.has(p)), 'Missing public reference: ' + path + ' -> ' + local);
       references++;
     }
     if (path.endsWith('.js')) execFileSync(process.execPath, ['--check', resolve(root, path)], {stdio:'pipe'});

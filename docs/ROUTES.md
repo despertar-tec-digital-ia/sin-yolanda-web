@@ -115,6 +115,14 @@ y ruta inexistente dan 404 real. Panel demo/archivos de desarrollo siguen públi
 
 ## Regla para cada cambio de URL
 
+**Contrato actualizado por Luis12-oct:** TX, USA y Maricarmen raíz → `/locations`; GDL raíz →
+`/guadalajara`. La ficha de Guadalajara conserva datos/medios/IDs y cambia su canonical público;
+`/san-ignacio`, `/san-ignacio/` y `/san-ignacio.html` pasan a301 al nuevo canonical. La carta
+central `/san-ignacio/menu/`, las cartas WordPress, ambos QR y los enlaces externos permanecen.
+No se activa migración de menús. El directorio sigue siendo `/locations` con ES/EN, no una sede.
+El registro público y el sitemap enlazan el canonical nuevo; discovery conserva el ID histórico.
+Implementación y recibos remotos → primer bloque de MIGRATION-AND-MEASUREMENT.
+
 **Raíces multisucursal12-oct:** `sinyolandatx.com/` y `sinyolandausa.com/` (también www) →
 `https://sin-yolanda.com/locations`,301. Es el directorio existente con cambio ES/EN; no crear
 `/ubicaciones` ni `/en/locations/` inexistentes. Permanece cada antigua subruta específica de sede

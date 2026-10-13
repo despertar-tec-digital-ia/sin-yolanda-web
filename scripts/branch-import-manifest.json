@@ -76,7 +76,7 @@
     "mapIdentity": "0x8428af00227c9289:0xe463063e9a1dc24",
     "mapName": "Sin Yolanda",
     "routes": [
-      {"from":"san-ignacio/index.html","to":"san-ignacio.html","lang":"es","canonical":"https://sin-yolanda.com/san-ignacio"},
+      {"from":"san-ignacio/index.html","to":"guadalajara.html","lang":"es","canonical":"https://sin-yolanda.com/guadalajara"},
       {"from":"san-ignacio/menu/index.html","to":"san-ignacio/menu/index.html","lang":"es","kind":"menu","canonical":"https://sin-yolanda.com/san-ignacio/menu/"}
     ],
     "facts":{"street":"Avenida San Ignacio 78","city":"Zapopan","postalCode":"45040","phone":{"e164":"+523310186159"},"reservation":{"url":"https://wa.me/5213310186159"}},

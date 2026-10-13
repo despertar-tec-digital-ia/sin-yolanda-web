@@ -11,6 +11,7 @@ const sites = {
   gdl: { host: 'sinyolandagdl.com', loginKey: 'MATRIZ_WP_LOGIN_URL', userKey: 'MATRIZ_WP_USER', passKey: 'MATRIZ_WP_PASS' },
   tx: { host: 'sinyolandatx.com', urlKey: 'TX_SITE_URL', userKey: 'TX_WP_USER', passKey: 'TX_WP_PASS' },
   usa: { host: 'sinyolandausa.com', urlKey: 'USA_SITE_URL', userKey: 'USA_WP_USER', passKey: 'USA_WP_PASS' },
+  maricarmen: { host: 'maricarmengdl.com', loginKey: 'MARICARMEN_WP_LOGIN_URL', userKey: 'MARICARMEN_WP_USER', passKey: 'MARICARMEN_WP_PASS' },
 };
 const sha256 = bytes => createHash('sha256').update(bytes).digest('hex');
 const fail = message => { throw new Error(message); };

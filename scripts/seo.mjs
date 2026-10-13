@@ -47,7 +47,7 @@ export function applySeo() {
   const baseline = {};
   if (existsSync(resolve(root, 'scripts/seo-baseline.json'))) {
     const previous = JSON.parse(read('scripts/seo-baseline.json'));
-    for (const file of ['robots.txt', 'sitemap.xml']) if (previous[file]) baseline[file] = previous[file];
+    for (const file of ['robots.txt', 'sitemap.xml', 'san-ignacio.html']) if (previous[file]) baseline[file] = previous[file];
   }
   const pages = manifest.pages.filter(file => file !== '404.html');
   const urls = pages.map(file => canonical(read(file)));
@@ -91,7 +91,7 @@ export function applySeo() {
     if (restaurant) {
       page.mainEntity = { '@id': restaurant['@id'] };
       if (!file.startsWith('en/')) {
-        const id = file.replace('.html', '');
+        const id = file === 'guadalajara.html' ? 'san-ignacio' : file.replace('.html', '');
         locations.push({ id, name: restaurant.name, url, address: restaurant.address, telephone: restaurant.telephone, menu: restaurant.hasMenu, reservation: restaurant.acceptsReservations, languages: pairs.find(pair => pair[0] === file)?.map(name => canonical(read(name))) ?? [url] });
       }
     }

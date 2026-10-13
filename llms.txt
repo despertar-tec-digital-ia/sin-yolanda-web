@@ -9,7 +9,7 @@
 - [Sitemap](https://sin-yolanda.com/sitemap.xml): URLs canónicas indexables.
 - [Sin Yolanda El Paso](https://sin-yolanda.com/el-paso)
 - [Carta de Sin Yolanda El Paso](https://sin-yolanda.com/el-paso/menu/)
-- [Sin Yolanda Guadalajara](https://sin-yolanda.com/san-ignacio)
+- [Sin Yolanda Guadalajara](https://sin-yolanda.com/guadalajara)
 - [Carta de Sin Yolanda Guadalajara](https://sin-yolanda.com/san-ignacio/menu/)
 - [Sin Yolanda San Antonio](https://sin-yolanda.com/san-antonio)
 - [Carta de Sin Yolanda San Antonio](https://sin-yolanda.com/san-antonio/menu/)

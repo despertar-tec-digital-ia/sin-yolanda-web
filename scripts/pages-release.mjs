@@ -8,6 +8,7 @@ import { fileURLToPath } from 'node:url';
 import { target, credential, cloudflare } from './cloudflare-ops.mjs';
 import { publicSourceDigest } from './package-public.mjs';
 import { verifyRelease } from './verify-release.mjs';
+import { verifyWithPropagation } from './release-propagation.mjs';
 
 const root=fileURLToPath(new URL('../',import.meta.url));
 const hash=value=>createHash('sha256').update(value).digest('hex');
@@ -134,7 +135,12 @@ async function deploy(directory,mode,expectedProductionId) {
   const origin=mode==='preview'?deployment.url:'https://'+target.domain;
   assert.ok(mode!=='preview'||new URL(origin).hostname.endsWith('.'+target.project+'.pages.dev'),'Unexpected preview host');
   const metadata=JSON.parse(readFileSync(resolve(directory,mode+'/release.json'),'utf8'));
-  const smoke=await verifyRelease({origin,metadata});
+  const smoke=await verifyWithPropagation({
+    verify:()=>verifyRelease({origin,metadata}),
+    assertCurrent:async()=>assert.equal((await projectState(api)).productionId,
+      mode==='production'?deployment.id:before.productionId,'Production changed during release verification'),
+    onAttempt:attempt=>console.log(JSON.stringify({phase:'verify-'+mode,...attempt})),
+  });
   const proof={...smoke,deploymentId:deployment.id,previousProductionId:before.productionId};
   writeFileSync(resolve(directory,mode+'-proof.json'),JSON.stringify(proof,null,2));
   assert.equal(smoke.passed,true,'Served release failed verification; inspect receipt, do not auto-rollback');

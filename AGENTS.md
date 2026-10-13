@@ -63,6 +63,10 @@ carpetas privadas de una computadora. Última actualización: 2026-10-07.
   Un push main verde activa preview verificada y promoción automática del mismo artefacto.
   Nunca publicar artefactos de PR, omitir pruebas ni saltar las comprobaciones de bytes/baseline.
   El permiso para un cambio de producto/QR sigue siendo independiente de su publicación técnica.
+- Con publicación autorizada, usar `npm run release:approved -- --pr <N> --head <SHA-revisado> --publish`:
+  espera CI requerido, integra sin bypass y sigue/verifica el recibo de CD. Sin `--publish` solo
+  inspecciona. No repetir QA de un commit intacto ni reconstruir/subir por dashboard. Si cambia el
+  head/main o falla CI/CD, detener y revisar; nunca reupload/rollback automático por un timeout.
 
 ## Code Review Rules
 

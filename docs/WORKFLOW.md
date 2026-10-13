@@ -6,7 +6,33 @@ verificado, publicación Pages manual y smoke remoto comprobado. CD automático,
 secretos no están activados por este lote. Preparación, resultado y límites se registran abajo.
 La aprobación de este release no equivale a autorizar otros releases.
 
-### Header Houston · revisión por bloque12-oct · candidata local
+### Publicación rápida · simplificación12-oct
+
+Luis pide reducir el trámite repetido al publicar. Entrada única tras autorizar el alcance:
+`npm run release:approved -- --pr <N> --head <SHA-revisado> --publish`. Sin el flag solo inspecciona.
+Espera el check obligatorio del mismo head, retira draft si corresponde e integra con
+`--match-head-commit`, sin admin/force ni cambiar protecciones. Sigue CI main y CD de ese merge,
+descarga únicamente el recibo verificado y guarda resumen/rollback fuera del paquete público.
+Reanudar una PR ya integrada no vuelve a integrar ni subir: solo sigue su ejecución. No repite
+QA local de un commit intacto ni reconstruye el artefacto. Requiere GitHub CLI autenticado, no
+dashboard, token Cloudflare local ni otra aprobación técnica. La autorización del alcance sigue
+siendo explícita; no se añade revisión humana obligatoria a GitHub.
+
+Cloudflare: `release-propagation.mjs` repite exclusivamente la misma verificación GET estricta
+hasta cuatro veces (esperas5/10/20s), sin repetir uploads ni aceptar hashes distintos. Confirma
+que el deployment productivo no cambió entre comprobaciones. Fallos de rutas privadas, indexación,
+content-type o redirects fuera de contrato paran de inmediato; cambios de main/producción y
+CI/CD fallido no se convierten en éxito ni causan rollback automático. Polling del operador10s,
+timeout20min por defecto, configurable30–1800s; un timeout requiere inspección, no reupload ciego.
+
+Prueba real del operador: reanuda PR#30 ya integrada y obtiene CI38347074659/CD38347109212
+verdes, producción `36ac4319`,215archivos/47aliases/10excluidos sin fallos. La lógica de merge
+y reintento se prueba también con casos negativos. Activación del nuevo gate de propagación y
+primer recorrido de publicación completo con el operador se registrarán en la PR de este lote;
+esta prueba de reentrada no demuestra todavía esos dos pasos nuevos. Sin cambios de contenido
+público, secretos o DNS. Rollback técnico: revertir solo este lote en PR, conservar CD anterior.
+
+### Header Houston · revisión por bloque12-oct · publicado
 
 Luis pide que Houston deje ver el fondo del hero como Guadalajara/San Antonio. Corrección
 exclusiva ES/EN en `assets/css/houston-header.css`: overlay inicial con logo/navegación claros,
@@ -18,8 +44,11 @@ QA local empaquetada: 17 escenarios Chromium (320/390/768/1024/1440/1920, ES/EN,
 con Guadalajara/San Antonio, scroll, teclado y movimiento reducido) y256tests verdes.
 Capturas top desktop/tablet/móvil inspeccionadas. Repetible con `scripts/qa-houston-header.mjs`;
 recibos privados en `.artifacts/houston-header-20261012/`. No prueba Safari/iPad físico ni
-servicios externos, bloqueados en esta QA. Candidata en rama `fix/houston-overlay-header-20261012`;
-sin merge/despliegue solicitado. Publicar requiere OK del ajuste: main verde activa CD.
+servicios externos, bloqueados en esta QA. Luis autoriza publicar el ajuste; PR#30/`8a12d70`
+integrada por `94f2b4d`. CI38347074659 y CD38347109212 verdes. Pages `36ac4319-b165-4294-b808-7dd3efbcd784`,
+anterior `3bbc0983-7c3f-42b7-8c6b-d569bee23767`;215archivos/47aliases/10excluidos, cero fallos.
+Recibo privado del operador en `.artifacts/approved-release-30-1791866419064/`. No se cambiaron
+menús, QR, fotos, datos ni el resto de fichas.
 Rollback visual: retirar solo la hoja de Houston y sus referencias ES/EN/baseline/manifiesto
 en un PR nuevo; nunca sustituir todo el sitio con un release antiguo ni tocar cartas/QR.
 

@@ -42,6 +42,10 @@ pretextos/cumpleaños conectados al selector. Alcance/evidencia/límites en
   sitemap.xml (12 URLs), robots.txt, OG tags
 
 ## Deploy
+Con alcance autorizado: `npm run release:approved -- --pr <N> --head <SHA-revisado> --publish`.
+La entrada única sigue PR→CI→CD→recibo, sin dashboard ni reconstrucción local. Sin `--publish`
+es de solo lectura. Uso, pruebas, recuperación y límites en «Publicación rápida» de WORKFLOW.
+
 **12-oct, política nueva solicitada por Luis:** se retiran aprobaciones humanas obligatorias;
 CI obligatorio de main → preview con comprobación de hashes/rutas → producción del mismo paquete.
 Workflow `Verified Pages release`, disparado por `workflow_run` de `Public site quality` exitoso

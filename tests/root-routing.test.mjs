@@ -1,6 +1,7 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import {inspectPlugin} from '../scripts/legacy-redirects/sin-yolanda-root-routing/package.mjs';
@@ -42,7 +43,8 @@ test('old branch aliases redirect only the ficha, never its menu or the QR',()=>
  assert.equal(rules.filter(r=>branchAliasSources.includes(r.source)).length,3);
  assert.ok(rules.filter(r=>r.source.startsWith('/q/')).every(r=>r.status===302));
  assert.ok(!rules.some(r=>r.source==='/san-ignacio/menu/'));
- const before=execFileSync('git',['show','origin/main:san-ignacio/menu/index.html'],{cwd:root});
  const after=fs.readFileSync(path.join(root,'san-ignacio/menu/index.html'));
- assert.equal(after.toString().replaceAll('site-analytics.js?v=20261012-root-routing','site-analytics.js?v=20261008-migration-measurement'),before.toString(),'Only the shared tracker cache token may change; the complete menu must remain identical');
+ const restored=after.toString().replaceAll('site-analytics.js?v=20261012-root-routing','site-analytics.js?v=20261008-migration-measurement');
+ // Complete file SHA captured from main 496c040, before this route-only change.
+ assert.equal(createHash('sha256').update(restored).digest('hex'),'53f382bbccfd99df420b161cc3e7ffb5262f0271d7588b70018acaaf5851cc3d','Only the shared tracker cache token may change; the complete menu must remain identical');
 });

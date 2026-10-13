@@ -1,0 +1,44 @@
+/* Houston-only correction; keep the imported, content-addressed styles intact. */
+.branch-landing[data-branch="houston"] .hh-header {
+  color: var(--paper);
+  background: linear-gradient(#190c0bd1, #190c0b00);
+  border-bottom: 0;
+  padding-block: 24px 40px;
+}
+
+.branch-landing[data-branch="houston"] .hh-brand img {
+  filter: brightness(0) invert(1);
+}
+
+.branch-landing[data-branch="houston"] .hh-header nav .hh-language {
+  border-color: #fff4de8c;
+}
+
+.branch-landing[data-branch="houston"] .hh-header a:focus-visible {
+  outline-color: var(--paper);
+}
+
+.branch-landing[data-branch="houston"] .hh-header[data-smart-header][data-scrolled] {
+  background: color-mix(in srgb, var(--wine) 35%, #100a0b 65%);
+  border-bottom: 1px solid #fff4de3d;
+  padding-block: 12px;
+}
+
+@media (width <= 760px) {
+  .branch-landing[data-branch="houston"] .hh-header:not([data-scrolled]) {
+    background: linear-gradient(#160a0ac7, #160a0a00);
+    padding-block: 14px 24px;
+  }
+}
+
+@media (forced-colors: active) {
+  .branch-landing[data-branch="houston"] .hh-header,
+  .branch-landing[data-branch="houston"] .hh-header[data-smart-header][data-scrolled] {
+    color: CanvasText;
+    background: Canvas;
+    border-bottom: 1px solid CanvasText;
+  }
+  .branch-landing[data-branch="houston"] .hh-brand img { filter: none; }
+  .branch-landing[data-branch="houston"] .hh-header nav .hh-language { border-color: CanvasText; }
+  .branch-landing[data-branch="houston"] .hh-header a:focus-visible { outline-color: CanvasText; }
+}

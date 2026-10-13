@@ -12,6 +12,9 @@ const contract=JSON.parse(read('scripts/demo-promotion.json'));
 // Restoring them must recover the complete original hash, not just the visual body.
 const restoreRoutes=(file,value)=>{
  let source=restoreSeoBaseline(file,value.toString());
+ // Only the two Houston heads gain the approved overlay correction. Removing
+ // that exact link must recover every original byte, including hero and content.
+ if(['houston.html','en/houston/index.html'].includes(file))source=source.replace('<link rel="stylesheet" href="/assets/css/houston-header.css?v=20261012-overlay">','');
  source=source.replaceAll('guadalajara.html','san-ignacio.html')
   .replaceAll('assets/js/public-data.js?v=20261012-root-routing','assets/js/public-data.js?v=20261011-demo-polish');
  source=source.replaceAll('assets/js/site-analytics.js?v=20261012-root-routing','assets/js/site-analytics.js?v=20261008-migration-measurement');

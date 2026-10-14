@@ -1,5 +1,21 @@
 # Forma de trabajar y publicar
 
+### Medición de agenda y adquisición · candidata13-oct
+
+Solicitud posterior de Luis: continuar con B05–B07. Rama `feat/agenda-measurement-20261013`,
+base pública `08027d9`; fuente/contrato/recepción/QA y límites tienen dueño en
+[Medición B05–B07](MIGRATION-AND-MEASUREMENT.md#medición-b05b07--candidata13-oct).
+Clics actuales unificados, registros/destinos catalogados, ubicación del enlace y adquisición
+por pestaña; DNT/GPC y parámetros permitidos. Aviso: aclaración técnica solamente.
+236archivos por allowlist; cuatro assets nuevos y URLs anteriores preservadas por caché.
+No cargar tracker anterior y nuevo juntos; CI exige único dueño y catálogo reconciliado.
+313tests y20escenarios SDK real/interceptado verdes; no se enviaron eventos de prueba reales.
+Hero, contenido de fichas, fotos, horarios, precios, PDF, QR/WP, rutas y GA4 conservados.
+Publicación/campos v2 en backend pendientes de aprobación y recibo; pruebas no sustituyen OK.
+Rollback del futuro release: Pages `bef09260-67ec-4a32-aeb0-276a038fa422` asociado a `08027d9`.
+Los checkpoints previos conservan su propio alcance; no aplicar su aprobación a esta ampliación.
+
+
 ### Agenda USA · publicación autorizada13-oct
 
 Luis aprueba las fichas y autoriza continuar con publicación: «Ok, las apruebo. sigue, no sé

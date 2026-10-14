@@ -5,9 +5,93 @@ PUBLICADA por PR33/main `08027d9`, CI/CD/recibo verdes.
 Proyección14unidades en ocho fichas USA ES/EN reconciliada sobre main publicado `b3040ef`,
 con reloj editorial/caducidad y sin fotos A04. Doce unidades y dos botones Jorge retenidos.
 Contrato, evidencia y estado remoto tienen dueño en «Agenda USA · publicación autorizada13-oct»
-de [WORKFLOW](WORKFLOW.md). B05–B07 siguen pendientes; no dar por conectado Umami/GA4.
+de [WORKFLOW](WORKFLOW.md). B05–B07 ahora tienen candidata preparada/probada abajo;
+no dar por publicada esa medición ni por conectado GA4.
 Los bloques siguientes conservan la investigación y preparación previas, incluidas sus
 restricciones anteriores de publicación. La fuente editorial sin confirmar no se promociona.
+
+## Medición B05–B07 · candidata13-oct
+
+Solicitud de Luis después de publicar agenda: «ok con qué continuamos. dale». Rama propia
+`feat/agenda-measurement-20261013` sobre main `08027d9`. Implementación local con Umami
+existente; sin nuevo proveedor, GA4, campañas activadas, cambios de mapas/QR/WP o dashboard.
+Esta sección sustituye el estado de preparación del mapa anterior, sin certificar transporte
+real de la candidata ni autorizar su publicación.
+
+### Contrato y fuente única
+
+`scripts/measurement-contract.mjs` compila rutas/IDs públicos desde manifiesto/datos actuales,
+14registros aprobados y sus fuentes, etiquetas UTM del registro de redirects y hosts del resolver
+vigente. Solo dos destinos de boletos Pinta corroborados; retenidos/PII nunca entran al cliente.
+El catálogo compilado se valida en CI contra sus dueños. Códigos externos de campaña activos:
+ninguno comprobado, catálogo vacío; una campaña editorial no demuestra una campaña de tráfico.
+
+`site-measurement.js` es el único dueño de clics en páginas actuales. Los módulos de ficha
+conservan solo preferencia de idioma; URLs inmutables anteriores siguen disponibles para páginas
+ya abiertas. No se cargan ambos trackers en una página. La cola admite20clics/60s de espera;
+falla o carga tardía del SDK no impide navegar. Captura antes de cambios de UI; conserva idioma
+de origen y de destino en cambios de idioma, sin segundo evento de menú.
+
+| Qué se registra | Evento / dimensión | Qué permite afirmar |
+|---|---|---|
+| Vista pública | pageview, ruta canónica; `page_branch/page_language` | Vista de esa página; sin certificar cliente o sumar únicos de dominios |
+| Selector/filtro/ficha | `location_selector_open/location_select/location_filter_click/branch_click` | Intención de navegación; contexto y destino separados |
+| Menú/reserva/mapa/teléfono | nombres históricos de click + destino simbólico | Interés; no consumo, venta, llamada atendida ni reserva completada |
+| Agenda/publicación/boletos | `programming_action_click`; `event_id/event_kind`, o `series_id` en arte genérico Pinta | Interés en un registro o serie; boleto clicado no es boleto comprado |
+| Cartelera home | mismo evento con `campaign_id` editorial | Interés en esa campaña/sede; no origen de adquisición |
+| Catering/contacto | `catering_click/catering_contact_click` | Intención; WhatsApp de Catering, si está configurado, es contacto y no reserva |
+| Idioma | `language_switch_click`, origen/destino | Elección de idioma; no dos clics por propagación |
+
+Datos comunes: `schema_version=2`, branch destino/ID histórico, idioma, `page_branch`,
+`page_language`, `link_location` (header/hero/selector/agenda/footer/content), destino simbólico.
+Identificadores editoriales exactos, clases y valores permitidos; sin texto libre ni href completo.
+Guadalajara continúa como `san-ignacio` en series; ruta pública `/guadalajara`.
+
+### Adquisición y privacidad
+
+UTM source/medium solo si el valor está registrado; códigos de campaña solo desde catálogo y
+tupla coincidente. Duplicados, búsquedas, hashes, nombres, teléfonos, correos, URLs privadas,
+gclid/fbclid y demás parámetros no se transmiten. El hook restituye solo etiquetas autorizadas
+después de `data-exclude-search`; no modifica la dirección ni añade UTMs a enlaces internos.
+Source/medium son etiquetas declaradas, no verificación independiente de la plataforma.
+
+Entrada original por pestaña en sessionStorage, sin identificador de persona: solo ruta pública,
+etiquetas permitidas y timestamp local no transmitido; vence con30min de inactividad. Navegación
+interna conserva esa entrada; regreso externo empieza de nuevo. Nueva pestaña con noopener puede
+carecer de este contexto: el clic de salida conserva el origen, sin prometer atribución entre
+pestañas. Al revocar o vencer se descarta el origen previo, sin replay.
+Referrer externo solo para grupos públicos conocidos; resto se clasifica como `other_external`,
+sin registrar su URL. Vacío=`unknown`, no prometer diferenciar directo, mensajería o QR.
+`legacy_hop` solo cuando document.referrer permite observar un host legado conocido: salto TX
+no implica Instagram/QR y un301puede no conservar esa evidencia. Reglas legacy/QR intactas.
+
+Respeta DNT, GPC y `umami.disabled`; excluye local, preview,404/rutas desconocidas. El aviso
+recibe solo aclaración técnica de etiquetas y almacenamiento por pestaña. Responsable/canales
+legales, retención de servidor y consentimiento/GA4 conservan sus pendientes; no certificar
+cumplimiento por estas pruebas ni activar publicidad/Signals/identificación.
+
+### Verificación y límites
+
+313tests locales;20escenarios con el SDK real observado en producción, envíos interceptados:
+cuatro sedes ES/EN, desktop/móvil, imagen/teclado/modificadores/middle click, menú/reserva/mapa/
+teléfono, idioma/home/menú, fuente inicial,30min de inactividad, DNT/GPC, exclusiones, carga
+tardía y error de proveedor. Un clic→un evento; llamadas impedidas solo por el fixture de QA.
+Todos los POST se interceptan; cero envíos sintéticos al proveedor y ningún contacto/checkout.
+La primera sonda usó un header oculto por diseño y un WhatsApp inexistente en Catering;
+corregida para el recorrido real, sin force-click ni cambios de diseño para satisfacerla.
+El mapa de dependencias ahora sigue imports relativos/absolutos y exige dueño único.
+
+Evidencia ignorada: `.artifacts/measurement-v1/`, paquete `measurement-candidate-v4`,
+`.artifacts/measurement-browser-v4/`. Lectura autenticada de registro/stats/eventos de Umami
+actual200, sin escribir telemetría; puede incluir QA histórica. No prueba recepción/persistencia
+de estos campos nuevos. Publicar requiere OK del alcance y luego PR→CI→operador; comprobar
+recibo y transporte con exclusión de pruebas. No atribuir retrospectivamente dimensiones v2.
+
+Consulta N0: configuración/funciones [Umami](https://docs.umami.is/docs/tracker-configuration),
+[SDK](https://docs.umami.is/docs/tracker-functions), contrastadas con script servido SHA
+`be444c289ac019af8486b50fe2bbf2fdb2890812fb945dc78940b6781a68ac52`.
+Scheduler de agenda: workflow activo/default main, sin ejecución programada observada todavía;
+consulta read-only de frescura ya comprobada, sin convertir configuración en ejecución real.
 
 
 ## Frente B · preparación local13-oct · eventos y atribución

@@ -7,6 +7,7 @@ import path from 'node:path';
 import {inspectPlugin} from '../scripts/legacy-redirects/sin-yolanda-root-routing/package.mjs';
 import {parseArguments,rootCredentials} from '../scripts/legacy-redirects/deploy-root-routing.mjs';
 import {parseQrRedirects,branchAliasSources} from '../scripts/qr-redirects.mjs';
+import {restoreMeasurementSource} from '../scripts/measurement-source-contract.mjs';
 const root=path.resolve(import.meta.dirname,'..');
 const dir=path.join(root,'scripts/legacy-redirects/sin-yolanda-root-routing');
 const php=fs.existsSync('/Applications/XAMPP/xamppfiles/bin/php')?'/Applications/XAMPP/xamppfiles/bin/php':'php';
@@ -44,7 +45,7 @@ test('old branch aliases redirect only the ficha, never its menu or the QR',()=>
  assert.ok(rules.filter(r=>r.source.startsWith('/q/')).every(r=>r.status===302));
  assert.ok(!rules.some(r=>r.source==='/san-ignacio/menu/'));
  const after=fs.readFileSync(path.join(root,'san-ignacio/menu/index.html'));
- const restored=after.toString().replaceAll('site-analytics.js?v=20261012-root-routing','site-analytics.js?v=20261008-migration-measurement');
+ const restored=restoreMeasurementSource('san-ignacio/menu/index.html',after.toString()).replaceAll('site-analytics.js?v=20261012-root-routing','site-analytics.js?v=20261008-migration-measurement');
  // Complete file SHA captured from main 496c040, before this route-only change.
  assert.equal(createHash('sha256').update(restored).digest('hex'),'53f382bbccfd99df420b161cc3e7ffb5262f0271d7588b70018acaaf5851cc3d','Only the shared tracker cache token may change; the complete menu must remain identical');
 });

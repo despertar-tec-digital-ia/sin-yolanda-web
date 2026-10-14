@@ -14,11 +14,12 @@ const scriptContent = html => {
   const read = path => {
     if (seen.has(path)) return '';
     seen.add(path);
-    const url = new URL(path, new URL('../', import.meta.url));
+    const root = new URL('../', import.meta.url);
+    const url = new URL(path.startsWith('/') ? path.slice(1) : path, root);url.search='';
     const source = readFileSync(url, 'utf8');
-    return source + [...source.matchAll(/\bimport\s*["'](\.[^"']+)["']/g)].map(([,child]) => read(new URL(child, url).href)).join('\n');
+    return source + [...source.matchAll(/\bimport\s*["']([./][^"']+)["']/g)].map(([,child]) => read(child.startsWith('/') ? child : new URL(child, url).href)).join('\n');
   };
-  return [...html.matchAll(/<script\b[^>]*src="\/(_astro\/[^"]+)"/g)].map(([,path]) => read(path)).join('\n');
+  return [...html.matchAll(/<script\b[^>]*src="\/([^"\s]+\.js(?:\?[^"\s]*)?)"/g)].map(([,path]) => read(path)).join('\n');
 };
 
 test('Houston points to its official page while other branches keep their existing links', () => {

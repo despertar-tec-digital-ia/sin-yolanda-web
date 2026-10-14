@@ -4,6 +4,13 @@
 **Estado:** inventario de fuentes versionadas y destinos propuestos; no es un crawl HTTP completo.
 No aplicar redirects ni crear páginas solo por figurar en esta tabla.
 
+**Frente A13-oct, solo candidato local:** `/el-paso/menu/` conserva documento EN V6 y canonical;
+los enlaces de la ficha ES/EN abren esa misma ruta en nueva pestaña y el visor vuelve a la sede.
+El header nativo resuelve su ancla de visita con `<base href="/en/el-paso/">`; el skip de carta
+usa `/el-paso/menu/#menu`, sin escapar a la ficha. No nueva ruta, alias, QR o migración WP.
+Auditoría GET de raíces/fichas/cartas y límites
+de parámetros → WORKFLOW, «Frente A · intake13-oct»; mapa productivo permanece sin cambios.
+
 **Encargo SEO12-oct de Karina:** las23URLs públicas del manifiesto son indexables, incluidas
 Catering ES/EN y El Paso ES/EN/carta. `seo-indexation-policy.json` sustituye únicamente sus
 gates de indexación anteriores. Sitemap enumera canonicals sin aliases/QR/404/panel ni demos.

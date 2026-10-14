@@ -2,6 +2,7 @@ import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import vm from 'node:vm';
 import assert from 'node:assert/strict';
+import { hours as usaHours } from './usa-hours.mjs';
 
 export const origin = 'https://sin-yolanda.com';
 const root = resolve(import.meta.dirname, '..');
@@ -92,7 +93,8 @@ export function applySeo() {
       page.mainEntity = { '@id': restaurant['@id'] };
       if (!file.startsWith('en/')) {
         const id = file === 'guadalajara.html' ? 'san-ignacio' : file.replace('.html', '');
-        locations.push({ id, name: restaurant.name, url, address: restaurant.address, telephone: restaurant.telephone, menu: restaurant.hasMenu, reservation: restaurant.acceptsReservations, languages: pairs.find(pair => pair[0] === file)?.map(name => canonical(read(name))) ?? [url] });
+        locations.push({ id, name: restaurant.name, url, address: restaurant.address, telephone: restaurant.telephone, menu: restaurant.hasMenu, reservation: restaurant.acceptsReservations, languages: pairs.find(pair => pair[0] === file)?.map(name => canonical(read(name))) ?? [url],
+          ...(usaHours.zones[id] ? { openingHoursSpecification: restaurant.openingHoursSpecification, timeZone: usaHours.zones[id] } : {}) });
       }
     }
     const menu = oldSchemas.find(item => item['@type'] === 'Menu');

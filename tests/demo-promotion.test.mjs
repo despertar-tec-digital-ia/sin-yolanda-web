@@ -4,6 +4,8 @@ import fs from 'node:fs';
 import vm from 'node:vm';
 import {createHash} from 'node:crypto';
 import {restoreSeoBaseline} from '../scripts/seo.mjs';
+import {restoreSiteIntake} from '../scripts/site-intake-a-contract.mjs';
+import {summary} from '../scripts/usa-hours.mjs';
 const root=new URL('../',import.meta.url);
 const read=file=>fs.readFileSync(new URL(file,root));
 const hash=value=>createHash('sha256').update(value).digest('hex');
@@ -11,7 +13,7 @@ const contract=JSON.parse(read('scripts/demo-promotion.json'));
 // The separately authorized route migration changes only these bounded link/cache tokens.
 // Restoring them must recover the complete original hash, not just the visual body.
 const restoreRoutes=(file,value)=>{
- let source=restoreSeoBaseline(file,value.toString());
+ let source=restoreSiteIntake(file,restoreSeoBaseline(file,value.toString()));
  // Only the two Houston heads gain the approved overlay correction. Removing
  // that exact link must recover every original byte, including hero and content.
  if(['houston.html','en/houston/index.html'].includes(file))source=source.replace('<link rel="stylesheet" href="/assets/css/houston-header.css?v=20261012-overlay">','');
@@ -37,5 +39,5 @@ test('the public El Paso registry agrees with the newer native business facts',(
  const native=JSON.parse(read('scripts/branch-import-manifest.json'))['el-paso'];
  assert.equal(branch.status,'active');assert.equal(branch.phoneIntl,native.facts.phone.e164);
  assert.equal(branch.reserveUrl,native.facts.reservation.url);assert.equal(branch.reserveChannel,'opentable');
- assert.equal(branch.hours,'Horario por confirmar');
+ assert.equal(branch.hours,summary);
 });

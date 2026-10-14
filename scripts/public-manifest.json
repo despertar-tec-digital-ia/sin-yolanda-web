@@ -2,9 +2,9 @@
   "version": 1,
   "assetVersions": {
     "assets/js/site.js": "20261011-demo-polish",
-    "assets/js/i18n.js": "20261010-visual-details",
+    "assets/js/i18n.js": "20261013-site-intake-a",
     "assets/css/visual-pilot.css": "20261011-demo-polish",
-    "assets/js/public-data.js": "20261012-root-routing",
+    "assets/js/public-data.js": "20261013-site-intake-a",
     "assets/js/site-analytics.js": "20261012-root-routing",
     "assets/css/houston-header.css": "20261012-overlay"
   },
@@ -227,7 +227,12 @@
     "images/catering-review/logo.webp",
     "assets/js/webmcp.js",
     "discovery.json",
-    "llms.txt"
+    "llms.txt",
+    "assets/js/el-paso-menu.js",
+    "images/intake-a/el-paso-table-1404.webp",
+    "images/intake-a/el-paso-table-480.webp",
+    "images/intake-a/el-paso-table-800.webp",
+    "images/intake-a/el-paso-table-1200.webp"
   ],
   "assetVersion": "20261008-migration-measurement",
   "reviewPages": []

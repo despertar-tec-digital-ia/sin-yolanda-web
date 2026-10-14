@@ -52,7 +52,7 @@ window.SY_DATA = {
       "statusLabel": "Open",
       "concept": "Mexican restaurant · Cantina experience",
       "address": "415 E Commerce St, San Antonio, TX 78205",
-      "hours": "Mié y Dom · 12:00 pm–9:00 pm · Jue–Sáb · 12:00 pm–2:00 am",
+      "hours": "Lun–Mar cerrado · Mié 4–11 pm · Jue–Vie 4 pm–2 am · Sáb 10 am–2 am · Dom 10 am–11 pm",
       "phone": "+1 210-272-0133",
       "phoneIntl": "+12102720133",
       "socialUrl": "https://www.instagram.com/sinyolanda.sa/",
@@ -83,7 +83,8 @@ window.SY_DATA = {
         }
       ],
       "venuePhoto": "assets/media/venues/san-antonio.webp",
-      "venueCity": "San Antonio, Texas"
+      "venueCity": "San Antonio, Texas",
+      "hoursTimezone": "America/Chicago"
     },
     {
       "id": "the-woodlands",
@@ -97,7 +98,7 @@ window.SY_DATA = {
       "statusLabel": "Open",
       "concept": "Mexican dining · Groups and nightlife",
       "address": "1400 Research Forest Dr, Shenandoah, TX 77381",
-      "hours": "Mié · 4:00–9:00 pm · Jue–Vie · 4:00 pm–12:00 am · Sáb · 12:00 pm–12:00 am · Dom · 10:00 am–9:00 pm",
+      "hours": "Lun–Mar cerrado · Mié 4–11 pm · Jue–Vie 4 pm–2 am · Sáb 10 am–2 am · Dom 10 am–11 pm",
       "phone": "+1 346-382-3863",
       "phoneIntl": "+13463823863",
       "socialUrl": "https://www.instagram.com/sinyolanda.tw/",
@@ -129,7 +130,8 @@ window.SY_DATA = {
       ],
       "venuePhoto": "assets/media/venues/the-woodlands.webp",
       "venueCity": "Shenandoah, Texas",
-      "venuePosition": "50% 45%"
+      "venuePosition": "50% 45%",
+      "hoursTimezone": "America/Chicago"
     },
     {
       "id": "houston",
@@ -143,7 +145,7 @@ window.SY_DATA = {
       "statusLabel": "Open",
       "concept": "Elevated Mexican food · Cantina energy",
       "address": "4901 Washington Ave, Houston, TX 77007",
-      "hours": "Mié y Dom · 12:00 pm–9:00 pm · Jue–Sáb · 12:00 pm–2:00 am",
+      "hours": "Lun–Mar cerrado · Mié 4–11 pm · Jue–Vie 4 pm–2 am · Sáb 10 am–2 am · Dom 10 am–11 pm",
       "phone": "+1 346-879-1675",
       "phoneIntl": "+13468791675",
       "socialUrl": "https://www.instagram.com/sinyolandahouston/",
@@ -179,7 +181,8 @@ window.SY_DATA = {
         }
       ],
       "venuePhoto": "assets/media/venues/houston.webp",
-      "venueCity": "Houston, Texas"
+      "venueCity": "Houston, Texas",
+      "hoursTimezone": "America/Chicago"
     },
     {
       "id": "el-paso",
@@ -193,7 +196,7 @@ window.SY_DATA = {
       "statusLabel": "Abierta",
       "concept": "Mexican restaurant · Sin Yolanda",
       "address": "340 Vin Rambla Dr, El Paso, TX 79912",
-      "hours": "Horario por confirmar",
+      "hours": "Lun–Mar cerrado · Mié 4–11 pm · Jue–Vie 4 pm–2 am · Sáb 10 am–2 am · Dom 10 am–11 pm",
       "phone": "(915) 363-6330",
       "phoneIntl": "+19153636330",
       "whatsapp": "",
@@ -214,7 +217,8 @@ window.SY_DATA = {
       "quotes": [],
       "venuePhoto": "assets/media/venue-elpaso.webp",
       "venueCity": "El Paso, Texas",
-      "openingDate": "2026-10-09"
+      "openingDate": "2026-10-09",
+      "hoursTimezone": "America/Denver"
     },
     {
       "id": "moreno-valley",

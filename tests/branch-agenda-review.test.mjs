@@ -29,6 +29,22 @@ test('two Pinta functions share one artwork and keep their separate dates and ti
   assert.ok(html.includes('datetime="2026-10-14"') && html.includes('datetime="2026-10-28"'));
 });
 
+test('ticket actions require a verified exact destination, separately from an announced platform', () => {
+  const houston = render('houston'), sa = render('san-antonio');
+  for (const result of [houston, sa]) for (const held of result.heldActions) {
+    const ticket = registry.tickets.find(ticket => ticket.id === held.action);
+    assert.equal(ticket.linkVerification.platformAnnouncedByBranch, true);
+    assert.equal(ticket.linkVerification.exactDestinationConfirmed, false);
+    assert.ok(!result.html.includes(ticket.url));
+  }
+  assert.equal(houston.heldActions.length + sa.heldActions.length, 2);
+  const unconfirmed = structuredClone(registry);
+  for (const ticket of unconfirmed.tickets) ticket.linkVerification.exactDestinationConfirmed = false;
+  const blocked = renderBranchAgenda({ id: 'houston', branch: data.branches.houston, registry: unconfirmed, asOf: data.observedOn });
+  assert.equal((blocked.html.match(/class="sy-agenda-action"/g) || []).length, 0);
+  assert.equal(blocked.heldActions.length, 3);
+});
+
 test('external venue, invitation and unknown admission cannot become branch reservation actions', () => {
   const sa = render('san-antonio'), tw = render('the-woodlands'), ep = render('el-paso');
   assert.match(sa.html, /Fuera de la cantina[\s\S]*K\.O\.P\. Sports &amp; Entertainment Center/);

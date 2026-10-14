@@ -54,16 +54,24 @@ export function projectBranch(branch, asOf) {
 export function renderBranchAgenda({ id, branch, registry, language = 'es', asOf }) {
   const text = wording[language]; assert.ok(text);
   const sources = new Map([...registry.posts, ...registry.tickets].map(source => [source.id, source.url]));
-  const projection = projectBranch(branch, asOf), units = projection.visible;
+  const projection = projectBranch(branch, asOf), heldActions = [];
+  const units = projection.visible.map(unit => {
+    if (!unit.action) return unit;
+    const ticket = registry.tickets.find(ticket => ticket.id === unit.action); assert.ok(ticket);
+    if (ticket.linkVerification?.exactDestinationConfirmed === true) return unit;
+    const post = unit.sourceRefs.find(id => registry.posts.some(post => post.id === id)); assert.ok(post);
+    heldActions.push({ id: unit.id, action: unit.action, reason: 'exact-ticket-destination-unconfirmed' });
+    return { ...unit, action: null, imageSource: post };
+  });
   const detail = unit => copy[unit.id][language] ?? (language === 'es' ? unit.detail : assert.fail('Missing translation: ' + unit.id));
-  const link = (source, label, cls = '') => {
+  const link = (source, label, cls = '', accessibleLabel = '') => {
     const url = sources.get(source); assert.ok(url && /^https:\/\/(www\.)?(instagram|eventbrite)\.com\//.test(url), 'Verified destination required: ' + source);
-    return `<a class="${cls}" href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">${label}<span class="sy-agenda-sr"> · ${text.tab}</span></a>`;
+    return `<a class="${cls}" href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer"${accessibleLabel ? ' aria-label="' + escapeHtml(accessibleLabel) + '"' : ''}>${label}<span class="sy-agenda-sr"> · ${text.tab}</span></a>`;
   };
   const art = (unit, linked = false) => {
     if (!unit.artwork) return '';
     const image = `<img src="/assets/review-agenda/${escapeHtml(unit.artwork.file)}" width="${unit.artwork.width}" height="${unit.artwork.height}" alt="${escapeHtml(unit.title)}" loading="lazy" decoding="async">`;
-    return `<figure class="sy-agenda-art">${linked ? link(unit.imageSource, image + `<span class="sy-agenda-art-label">${text.post}</span>`) : image}</figure>`;
+    return `<figure class="sy-agenda-art">${linked ? link(unit.imageSource, image, '', text.post + ': ' + unit.title + ' · ' + text.tab) : image}</figure>`;
   };
   const date = unit => `<time datetime="${unit.date}">${dateLabel(unit.date, language)}</time>`;
   const ticketLabel = unit => text.tickets + `<span class="sy-agenda-sr"> · ${escapeHtml(unit.title)} · ${dateLabel(unit.date, language)}</span>`;
@@ -71,8 +79,9 @@ export function renderBranchAgenda({ id, branch, registry, language = 'es', asOf
   const description = unit => detail(unit) ? `<p>${escapeHtml(detail(unit))}</p>` : '';
   function event(unit, external = false) {
     const hasAction = Boolean(unit.action), linkedArt = Boolean(unit.artwork && !hasAction);
+    const title = !unit.artwork && !hasAction ? link(unit.sourceRefs[0], escapeHtml(unit.title), 'sy-agenda-title-link') : escapeHtml(unit.title);
     const venue = external ? `<p class="sy-agenda-venue">${escapeHtml(unit.venue.name === 'Instalación privada de aviación' && language === 'en' ? 'Private aviation facility' : unit.venue.name)}<br>${escapeHtml(unit.venue.city)}${unit.venue.address ? ' · ' + escapeHtml(unit.venue.address) : ''}</p>` : '';
-    return `<article class="sy-agenda-event ${unit.artwork ? '' : 'sy-agenda-text-event'}" data-record="${unit.id}">${art(unit, linkedArt)}<div class="sy-agenda-copy">${date(unit)}<h4>${escapeHtml(unit.title)}</h4>${hours(unit)}${description(unit)}${venue}${unit.admission === 'invitation-only' ? `<p class="sy-agenda-admission">${text.invitation}</p>` : ''}${hasAction ? link(unit.action, ticketLabel(unit), 'sy-agenda-action') : !linkedArt ? link(unit.sourceRefs[0], text.post, 'sy-agenda-source') : ''}</div></article>`;
+    return `<article class="sy-agenda-event ${unit.artwork ? '' : 'sy-agenda-text-event'}" data-record="${unit.id}">${art(unit, linkedArt)}<div class="sy-agenda-copy">${date(unit)}<h4>${title}</h4>${hours(unit)}${description(unit)}${venue}${unit.admission === 'invitation-only' ? `<p class="sy-agenda-admission">${text.invitation}</p>` : ''}${hasAction ? link(unit.action, ticketLabel(unit), 'sy-agenda-action') : ''}</div></article>`;
   }
   const dated = units.filter(unit => unit.temporalKind === 'dated' && !unit.venue).sort((a, b) => a.date.localeCompare(b.date));
   // One generic workshop artwork; two independently dated functions and ticket links.
@@ -80,7 +89,7 @@ export function renderBranchAgenda({ id, branch, registry, language = 'es', asOf
   let datedHtml = '';
   if (pinta.length) {
     assert.equal(new Set(pinta.map(unit => unit.artwork?.sha256)).size, 1, 'Grouping needs the same generic artwork');
-    datedHtml += `<article class="sy-agenda-event sy-agenda-series">${art(pinta[0])}<div class="sy-agenda-copy"><h4>Pinta y Canta</h4><div class="sy-agenda-functions">${pinta.map(unit => `<div data-record="${unit.id}">${date(unit)}${hours(unit)}${description(unit)}${link(unit.action, ticketLabel(unit), 'sy-agenda-action')}</div>`).join('')}</div></div></article>`;
+    datedHtml += `<article class="sy-agenda-event sy-agenda-series">${art(pinta[0], true)}<div class="sy-agenda-copy"><h4>Pinta y Canta</h4><div class="sy-agenda-functions">${pinta.map(unit => `<div data-record="${unit.id}">${date(unit)}${hours(unit)}${description(unit)}${unit.action ? link(unit.action, ticketLabel(unit), 'sy-agenda-action') : ''}</div>`).join('')}</div></div></article>`;
   }
   datedHtml += dated.filter(unit => !pinta.includes(unit)).map(unit => event(unit)).join('');
   const weekly = units.filter(unit => unit.temporalKind === 'weekly' && unit.semanticKind === 'recurring-night').sort((a, b) => a.weekday - b.weekday);
@@ -89,11 +98,11 @@ export function renderBranchAgenda({ id, branch, registry, language = 'es', asOf
   const heading = (key, label) => `<h3 id="agenda-${id}-${key}">${label}</h3>`;
   const html = `<section class="sy-agenda" id="programacion-${id}" aria-labelledby="programacion-${id}-title" tabindex="-1" data-agenda-review="${asOf}"><div class="sy-agenda-inner"><h2 id="programacion-${id}-title">${text.heading}</h2>
     ${datedHtml ? `<section class="sy-agenda-dates" aria-labelledby="agenda-${id}-dates">${heading('dates', text.dates)}<div class="sy-agenda-grid">${datedHtml}</div></section>` : ''}
-    ${weekly.length ? `<section class="sy-agenda-weekly" aria-labelledby="agenda-${id}-weekly">${heading('weekly', text.weekly)}<div class="sy-agenda-weekly-grid">${weekly.map(unit => `<article class="sy-agenda-night" data-record="${unit.id}"><div><p class="sy-agenda-weekday">${text.weekdays[unit.weekday]}</p><h4>${escapeHtml(unit.title)}</h4>${description(unit)}${!unit.artwork ? link(unit.sourceRefs[0], text.post, 'sy-agenda-source') : ''}</div>${art(unit, true)}</article>`).join('')}</div></section>` : ''}
+    ${weekly.length ? `<section class="sy-agenda-weekly" aria-labelledby="agenda-${id}-weekly">${heading('weekly', text.weekly)}<div class="sy-agenda-weekly-grid">${weekly.map(unit => `<article class="sy-agenda-night" data-record="${unit.id}"><div class="sy-agenda-night-copy"><p class="sy-agenda-weekday">${text.weekdays[unit.weekday]}</p><h4>${unit.artwork ? escapeHtml(unit.title) : link(unit.sourceRefs[0], escapeHtml(unit.title), 'sy-agenda-title-link')}</h4>${description(unit)}</div>${art(unit, true)}</article>`).join('')}</div></section>` : ''}
     ${offers.length ? `<section class="sy-agenda-offers" aria-labelledby="agenda-${id}-offers">${heading('offers', text.offers)}${offers.map(unit => `<article class="sy-agenda-offer" data-record="${unit.id}">${art(unit, true)}<div><p class="sy-agenda-weekday">${text.weekdays[unit.weekday]}${unit.start ? ' · ' + timing(unit, language) : ''}</p><h4>${escapeHtml(unit.title)}</h4>${description(unit)}${unit.conditions ? `<p>${escapeHtml(language === 'en' ? copy[unit.id].conditionsEn : unit.conditions)}</p>` : ''}</div></article>`).join('')}</section>` : ''}
     ${external.length ? `<section class="sy-agenda-outside" aria-labelledby="agenda-${id}-outside">${heading('outside', text.outside)}${external.map(unit => event(unit, true)).join('')}</section>` : ''}
     </div></section>`;
-  return { html, ...projection };
+  return { html, ...projection, heldActions };
 }
 export function integrateAgenda(html, id, rendered, language) {
   let cleaned = html;

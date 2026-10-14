@@ -35,6 +35,16 @@ async function scenario(branch, language, width, javascript = true) {
     assert.deepEqual(visibleIds.sort(), expected);
     const ids = await page.locator('[id]').evaluateAll(elements => elements.map(element => element.id)); assert.equal(new Set(ids).size, ids.length, 'Unique page anchors');
     for (const img of await agenda.locator('img').all()) { await img.scrollIntoViewIfNeeded(); await img.evaluate(img => img.decode()); assert.ok(await img.evaluate(img => img.naturalWidth > 0 && getComputedStyle(img).objectFit === 'contain')); }
+    assert.equal(await agenda.locator('.sy-agenda-art-label').count(), 0, 'No visible publication label on photos');
+    for (const img of await agenda.locator('.sy-agenda-night img').all()) {
+      const geometry = await img.evaluate(img => {
+        const art = img.getBoundingClientRect(), card = img.closest('.sy-agenda-night').getBoundingClientRect();
+        return { top: art.top-card.top, bottom: art.bottom-card.bottom, right: art.right-card.right, width: art.width, height: art.height, naturalRatio: img.naturalWidth/img.naturalHeight, linked: img.parentElement.tagName === 'A' && img.parentElement.getAttribute('aria-label') };
+      });
+      assert.ok(Math.abs(geometry.top)<1 && Math.abs(geometry.bottom)<1 && Math.abs(geometry.right)<1, 'Poster meets card edges: '+JSON.stringify(geometry));
+      assert.ok(Math.abs(geometry.width/geometry.height-geometry.naturalRatio)<.01, 'Complete poster fills its frame: '+JSON.stringify(geometry));
+      assert.ok(geometry.linked, 'Photo is a named accessible link');
+    }
     for (const cls of ['.hh-header', '.sy-agenda', '.ve-hours', '.branch-footer']) {
       assert.equal(await page.locator(cls).evaluate(element => element.getBoundingClientRect().right <= innerWidth + 1 && element.getBoundingClientRect().left >= -1), true, cls + ' fits viewport');
     }
@@ -50,6 +60,7 @@ async function scenario(branch, language, width, javascript = true) {
     await page.evaluate(() => scrollTo(0, document.querySelector('.sy-agenda').offsetTop - 170));
     if (language === 'es' && [390, 1440].includes(width) && javascript) {
       await page.screenshot({ path: resolve(output, branch + '-' + width + '.png'), fullPage: true });
+      if (branch === 'houston') await page.locator('.sy-agenda-weekly').screenshot({ path: resolve(output, 'houston-weekly-' + width + '.png') });
       if (width === 1440) { await page.setViewportSize({ width, height: 1800 }); await page.evaluate(() => scrollTo(0, document.querySelector('.sy-agenda').offsetTop - 170)); await page.screenshot({ path: resolve(output, branch + '-context.png') }); }
     }
     assert.deepEqual(errors, []); assert.deepEqual(missing, []); record.passed = true;

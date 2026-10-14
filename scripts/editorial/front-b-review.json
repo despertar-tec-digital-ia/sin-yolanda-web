@@ -30,7 +30,8 @@
           "temporalKind": "dated",
           "sourceRefs": [
             "Deavvksx1jo",
-            "tickets-pinta-14"
+            "tickets-pinta-14",
+            "DdpUHLrH4mo"
           ],
           "editorialStatus": "review",
           "operationalApproval": null,
@@ -48,7 +49,7 @@
             "sha256": "48122aad25f280b32479d611a7ada7b2af0b0d212be40ef274abb1c0356070ca",
             "rights": "review-only"
           },
-          "imageSource": "tickets-pinta-14",
+          "imageSource": "DdpUHLrH4mo",
           "action": "tickets-pinta-14"
         },
         {
@@ -57,7 +58,8 @@
           "semanticKind": "workshop",
           "temporalKind": "dated",
           "sourceRefs": [
-            "tickets-pinta-28"
+            "tickets-pinta-28",
+            "DdpUHLrH4mo"
           ],
           "editorialStatus": "review",
           "operationalApproval": null,
@@ -75,7 +77,7 @@
             "sha256": "48122aad25f280b32479d611a7ada7b2af0b0d212be40ef274abb1c0356070ca",
             "rights": "review-only"
           },
-          "imageSource": "tickets-pinta-28",
+          "imageSource": "DdpUHLrH4mo",
           "action": "tickets-pinta-28",
           "artworkRole": "provider-generic-same-art-both-functions"
         },

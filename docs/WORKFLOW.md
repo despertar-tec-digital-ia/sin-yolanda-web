@@ -2,6 +2,22 @@
 
 ### Frente B13-oct · intake editorial y contrato analítico locales
 
+**Ajuste posterior de portadas y procedencia de boletos:** Luis pide más presencia, foto de
+noches a toda altura/pegada al borde derecho y clic sin rótulo «Ver publicación».
+Portadas completas, sin recorte; mayores artes de ofertas/externos, labels visibles retirados
+y enlace accesible en imagen. Cuando no hay arte, el título enlaza el post; no repetir CTA.
+296tests y46escenarios pasan, incluyendo bordes/ratio nativo de portadas en320–1440 y ES/EN.
+
+Duda de Luis resuelta con N0: el post colaborativo Houston/GLOSSY anuncia Eventbrite;
+la bioGLOSSY→pintaycanta.eventbrite.com resuelve ahora exactamente a14oct y el mismo organizador
+publica28oct. Esos dos CTA quedan corroborados. Posts propios de Jorge anuncian la plataforma,
+pero no enlazan las URLs exactas encontradas en el perfilOrigin Entertainment: dos botones
+retenidos en revisión, imagen/título llevan al post de sede. El registro separa promoción del
+canal y confirmación del destino; no llamar «oficial» a una ficha solo por serHTTP200.
+Detalle/fuentes → «Portadas y comprobación de boletos» del documento técnico.
+Preview8820 actualizado; artefacto definitivo `.artifacts/branch-event-photo-review-final/public`,
+QA en `.artifacts/branch-event-photo-qa-v1/`. Sin publicación ni reloj/medición nuevos.
+
 **Integración en contexto solicitada por Luis:** A `5b96451` integrado localmente por merge
 `db24149`, conservando sus horarios/fotos/El Paso. `build-branch-event-review.mjs` compone ocho
 fichas USA ES/EN en un artefacto nuevo, sin editar los232archivos fuente publicables.
@@ -23,7 +39,7 @@ productivo/reloj y contrato analítico; el artefacto está congelado al corte13-
 
 **Revisión posterior de fuentes USA:** Luis entrega 14 enlaces y captura, y pide cotejo/diseño
 cuidadosos y boletos Jorge. Investigación N1 acotada cerrada, con 16 posts observados y cuatro
-funciones Eventbrite verificadas. Registro de fuentes/proyección y hallazgos → sección nueva de
+fichas Eventbrite observadas. Registro de fuentes/proyección y hallazgos → sección nueva de
 `MIGRATION-AND-MEASUREMENT.md`. Prototipo ES aislado de las fichas públicas, cuatro sedes,
 loopback8819, arte completo y destinos por intención. Caducidad, ES/EN, aprobación editorial
 y conexión Umami/GA4 no se activan con esta propuesta.

@@ -2,6 +2,48 @@
 
 ## Frente B · preparación local13-oct · eventos y atribución
 
+### Portadas y comprobación de boletos
+
+Encargo posterior13-oct: fotos más presentes, Ladies/Don’tCry a toda altura y alineadas al
+borde derecho del frame; quitar «Ver publicación» visible y dejar el clic en la foto.
+Las dos portadas Houston pasan125px→36% del bloque en desktop,40% en móvil, sin padding
+del lado fotográfico. Proporción9:16 íntegra con `contain`; el texto conserva su espacio.
+Ofertas/participaciones externas pasan250→320px y ocupan el ancho disponible en móvil.
+Imagen enlazada con nombre accesible/foco/otra pestaña, sin pie/botón duplicado. Registros
+sin arte enlazan su título al post: no inventar ni copiar portadas entre sucursales.
+
+Luis pregunta de dónde vienen los enlaces Eventbrite y si son oficiales. Revisión N0 de
+fuentes primarias en navegador, sin checkout ni contacto:
+
+- **Pinta:** publicación colaborativa `DdpUHLrH4mo` con GLOSSY CO. y `sinyolandahouston`,
+  fechas14/28oct y leyenda «Tickets via pintaycanta.eventbrite.com». Bio de `glossyco.tx`
+  enlaza ese alias; navegación13-oct lleva a ID2002912451058 (14oct), misma URL del candidato.
+  El organizador enlazado `/o/78057432803` publica también ID2002912558379 (28oct).
+  Cadena directa de promoción oficial→organizador→funciones: ambos botones corroborados.
+  El dato2-oct del alias que llevaba a septiembre queda histórico, superado por esta relectura.
+- **Jorge:** posts propios `DeaxjMhxieb` (Houston) y `DeaxTe3hV7k` (SA) anuncian venta en
+  Eventbrite. Eso confirma la plataforma anunciada. Las URLs exactas del registro se
+  encontraron en Eventbrite/Origin Entertainment Group; las bios de sede observadas enlazan
+  OpenTable, sin enlace a esas funciones. Coincidencia de título/fecha/recinto no acredita
+  por sí sola autoridad de la URL. Sus dos CTA de boletos quedan retenidos en el renderer;
+  Houston enlaza la imagen a su post y SA el título al suyo. No afirmar que son falsos.
+
+Fuentes y cadena en `front-b-sources.json/tickets[].linkVerification`, separando
+`platformAnnouncedByBranch` de `exactDestinationConfirmed`; métodoHTTP corregido a «provider».
+El renderer exige confirmación del destino exacto para emitir CTA de boletos y registra
+`heldActions` fuera del paquete público. No cambia el candidato fuente ni certifica derechos,
+compra/checkout, inventario disponible u operación. Ladies/Don’tCry no reciben CTA de boletos.
+
+**Verificado:**296tests (nuevo caso negativo para URL no confirmada) y46escenarios locales
+Chromium, mismos idiomas/sedes/anchos/noJS. Bounds de portadas coinciden con arriba/abajo/derecha
+del frame y su ratio nativo; no recorte/letterbox, overflow, rótulos visibles ni recursos fallidos.
+Capturas1440/390 inspeccionadas; el capturador global volvió a dar fondo vacío por fragmento,
+descartado como prueba, recurrencia deduplicada en el ledgerDDTIA. QA válida en navegador y
+`.artifacts/branch-event-photo-qa-v1/`. Fuente232archivos sigue igual aA;14unidades visibles,
+12ambiguas y2acciones de boletos retenidas. Preview8820 sirve
+`.artifacts/branch-event-photo-review-final/public`, con release/reconciliation/verification.
+No publicación/push/PR, renderer productivo/reloj ni conexión analítica nueva.
+
 ### Integración local en las fichas USA
 
 Luis solicita integrar la propuesta para verla dentro de cada ficha, revisar concordancia y
@@ -70,7 +112,7 @@ y pase separado del contrato analítico; no promover directamente este artefacto
 Luis aporta 14 URLs y una captura de Houston. Pide comparar los documentos, distinguir los
 tipos de actividad y comprobar boletos de Jorge Guevara antes de diseñar. Se revisaron las
 fuentes con investigación N1 acotada: 16 posts visibles (14 recibidos y dos propios de Houston
-descubiertos), cuatro funciones oficiales en Eventbrite y contraste editorial. No hubo mensajes,
+descubiertos), cuatro fichas de proveedor en Eventbrite y contraste editorial. No hubo mensajes,
 checkout, compras ni cambios remotos.
 
 Fuentes y discrepancias observadas: `scripts/editorial/front-b-sources.json`. La proyección

@@ -164,6 +164,16 @@
       "method": "visible-caption-and-poster-in-Brave",
       "findings": "Fuente específica descubierta perfilHouston; portadaEveryThursday, LiveDJ, hitsEnglish/Español y drinkspecials sin precio. Imagen de publicación recuperada720x1280.",
       "approval": null
+    },
+    {
+      "id": "DdpUHLrH4mo",
+      "branchId": "houston",
+      "url": "https://www.instagram.com/glossyco.tx/p/DdpUHLrH4mo/",
+      "classification": "workshop-series",
+      "observedOn": "2026-10-13",
+      "method": "visible-official-coauthors-poster-and-organizer-bio-to-event-navigation",
+      "findings": "GLOSSY CO. y sinyolandahouston coautores; cartel14/28oct19–22 anuncia tickets vía pintaycanta.eventbrite.com. BiografíaGLOSSY enlaza alias, hoy resuelve al ID2002912451058; ese organizador publica también ID2002912558379.",
+      "approval": null
     }
   ],
   "tickets": [
@@ -183,9 +193,21 @@
       ],
       "finalCheckoutTotal": null,
       "observedOn": "2026-10-13",
-      "method": "official-HTTP200-HTML-and-JSONLD-read-only; no checkout",
+      "method": "provider-HTTP200-HTML-and-JSONLD-read-only; no checkout",
       "timeZone": "America/Chicago",
-      "approval": null
+      "approval": null,
+      "organizer": "GLOSSY CO.",
+      "linkVerification": {
+        "checkedOn": "2026-10-13",
+        "platformAnnouncedByBranch": true,
+        "exactDestinationConfirmed": true,
+        "promotionSourceRef": "DdpUHLrH4mo",
+        "organizerChannel": "https://www.instagram.com/glossyco.tx/",
+        "announcedAlias": "https://pintaycanta.eventbrite.com/",
+        "organizerUrl": "https://www.eventbrite.com/o/78057432803",
+        "basis": "Houston coauthors collaboration; organizer bio links alias resolving to14oct; same organizer Upcoming lists14/28 exact IDs",
+        "purchaseVerified": false
+      }
     },
     {
       "id": "tickets-pinta-28",
@@ -203,9 +225,21 @@
       ],
       "finalCheckoutTotal": null,
       "observedOn": "2026-10-13",
-      "method": "official-HTTP200-HTML-and-JSONLD-read-only; no checkout",
+      "method": "provider-HTTP200-HTML-and-JSONLD-read-only; no checkout",
       "timeZone": "America/Chicago",
-      "approval": null
+      "approval": null,
+      "organizer": "GLOSSY CO.",
+      "linkVerification": {
+        "checkedOn": "2026-10-13",
+        "platformAnnouncedByBranch": true,
+        "exactDestinationConfirmed": true,
+        "promotionSourceRef": "DdpUHLrH4mo",
+        "organizerChannel": "https://www.instagram.com/glossyco.tx/",
+        "announcedAlias": "https://pintaycanta.eventbrite.com/",
+        "organizerUrl": "https://www.eventbrite.com/o/78057432803",
+        "basis": "Houston coauthors collaboration; organizer bio links alias resolving to14oct; same organizer Upcoming lists14/28 exact IDs",
+        "purchaseVerified": false
+      }
     },
     {
       "id": "tickets-jorge-houston",
@@ -222,9 +256,19 @@
       ],
       "finalCheckoutTotal": null,
       "observedOn": "2026-10-13",
-      "method": "official-HTTP200-HTML-and-JSONLD-read-only; no checkout",
+      "method": "provider-HTTP200-HTML-and-JSONLD-read-only; no checkout",
       "timeZone": "America/Chicago",
-      "approval": null
+      "approval": null,
+      "organizer": "Origin Entertainment Group",
+      "linkVerification": {
+        "checkedOn": "2026-10-13",
+        "platformAnnouncedByBranch": true,
+        "exactDestinationConfirmed": false,
+        "promotionSourceRef": "DeaxjMhxieb",
+        "organizerUrl": "https://www.eventbrite.com/o/origin-entertainment-group-121711802194",
+        "basis": "Branch post explicitly announces Eventbrite; matching provider listing, but no exact event URL linked in branch post/bio inspected",
+        "purchaseVerified": false
+      }
     },
     {
       "id": "tickets-jorge-sa",
@@ -241,9 +285,19 @@
       ],
       "finalCheckoutTotal": null,
       "observedOn": "2026-10-13",
-      "method": "official-HTTP200-HTML-and-JSONLD-read-only; no checkout",
+      "method": "provider-HTTP200-HTML-and-JSONLD-read-only; no checkout",
       "timeZone": "America/Chicago",
-      "approval": null
+      "approval": null,
+      "organizer": "Origin Entertainment Group",
+      "linkVerification": {
+        "checkedOn": "2026-10-13",
+        "platformAnnouncedByBranch": true,
+        "exactDestinationConfirmed": false,
+        "promotionSourceRef": "DeaxTe3hV7k",
+        "organizerUrl": "https://www.eventbrite.com/o/origin-entertainment-group-121711802194",
+        "basis": "Branch post explicitly announces Eventbrite; matching provider listing, but no exact event URL linked in branch post/bio inspected",
+        "purchaseVerified": false
+      }
     }
   ],
   "ticketLimits": {

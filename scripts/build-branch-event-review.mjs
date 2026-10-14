@@ -23,7 +23,7 @@ copyFileSync(resolve(root, 'scripts/editorial/branch-agenda.css'), resolve(outpu
 const reconciliation = { version: 1, asOf: data.observedOn, baseCommit: report.commit, sourceDigest: report.publicDigest, publicationEnabled: false, schedulerEnabled: false, branches: {}, changedBaseFiles: [] };
 for (const [id, branch] of Object.entries(data.branches)) {
   const projection = renderBranchAgenda({ id, branch, registry, language: 'es', asOf: data.observedOn });
-  reconciliation.branches[id] = { shown: projection.visible.map(unit => unit.id), held: projection.held, withheldArt: projection.withheldArt };
+  reconciliation.branches[id] = { shown: projection.visible.map(unit => unit.id), held: projection.held, withheldArt: projection.withheldArt, heldActions: projection.heldActions };
   for (const unit of projection.visible) {
     if (!unit.artwork) continue;
     const artwork = unit.artwork, source = resolve(assetRoot, artwork.file), destination = 'assets/review-agenda/' + artwork.file;

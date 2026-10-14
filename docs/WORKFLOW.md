@@ -6,6 +6,92 @@ verificado, publicación Pages manual y smoke remoto comprobado. CD automático,
 secretos no están activados por este lote. Preparación, resultado y límites se registran abajo.
 La aprobación de este release no equivale a autorizar otros releases.
 
+### Horarios USA y El Paso · publicación autorizada13-oct
+
+Luis autoriza publicar horarios USA y ajustes de El Paso, conservando las fotos vigentes del
+hero. Rama aislada `release/usa-hours-el-paso-20261013`, base oficial `f9c13a0`; incorporación
+selectiva del resultado local `5b96451`, sin incorporar su historia/fotos candidatas al release.
+Este bloque sustituye únicamente el estado de publicación de A01–A03; A04 sigue pendiente.
+
+- Ocho fichas USA ES/EN y JSON-LD: horario confirmado13-oct, lunes/martes cerrado y cierre02
+  siguiente día. America/Denver en El Paso; America/Chicago en las otras tres. Registro/HTML
+  inicial/discovery coherentes. No actualización de Google/panel/reportes.
+- El Paso: solo sección adicional de reservas retirada, foto lateral del banco general,
+  carta original EN V6 sin introducción, header nativo, lectura móvil/paneo/zoom y nueva pestaña.
+  OpenTable habitual, teléfono, PDF/lámina/precios y destino de ruta conservados.
+- Home: renderer, CSS, composición/animación/copy y seis archivos de las tres fotos **idénticos**
+  al oficial. Sin medios nuevos del hero ni eventos/analytics de B. Guadalajara, otras cartas,
+  QR y reglas WordPress/Pages intactos.
+
+La allowlist añade exclusivamente el JS del visor y cuatro derivados de la foto lateral;222
+archivos. Prueba de alcance y paquete → `.artifacts/authorized-hours-el-paso/`. QA de origen
+284tests y55escenarios/5pares de headers; repetir sobre el artefacto acotado antes del merge.
+Publicación por PR→CI obligatorio→operador autorizado→recibo; resultado se registra después
+sin confundir el push/merge con respuesta pública verificada. No nueva aprobación requerida.
+Rollback: deployment productivo anterior registrado por el recibo o revertir solo este lote
+con el mismo flujo, según el incidente; nunca restaurar WordPress/QR ni liberar fotos pendientes.
+
+### Frente A · intake13-oct · candidata local
+
+Base oficial `f9c13a0`, worktree propio `sites/sinyolanda-site-intake`, rama
+`feat/site-intake-a-20261013`. Encargo rector: plan operativo del cliente, «Seguimiento
+prioritario de hoy», A01–A05. Sin push/PR, merge ni publicación; no usar el donante congelado.
+
+- **A01:** fuente ejecutable `scripts/usa-operating-hours.json`, confirmada por Luis13-oct.
+  `node scripts/usa-hours.mjs` sincroniza las ocho fichas ES/EN, sus baselines SEO y el registro
+  público. `node scripts/seo.mjs --apply` regenera HTML inicial/discovery desde esas fuentes.
+  Lunes/martes cerrado, miércoles16–23, jueves/viernes16–02, sábado10–02, domingo10–23.
+  El Paso usa America/Denver; las otras tres, America/Chicago. Cierre02 al día siguiente,
+  visible y estructurado. Guadalajara/futuras, panel, GBP y reportes no se modifican.
+- **A02:** El Paso ES/EN pierde solo la sección extra/widget de reservas; conserva OpenTable
+  en hero/footer, contacto y ubicación. Foto lateral del banco general
+  `drive:1j2chhj5g6ZTVvPAwHsdLUeUIXLYbPLyB`, original1404×1768. Alt literal; no atribución
+  de la fotografía ni receta a El Paso. Derivados480–1404 sin ampliación artificial.
+- **A03:** `/el-paso/menu/` conserva lámina EN V6 y PDF exactos. Introducción/descargas
+  redundantes retiradas; header literal de la ficha EN, mismo CSS/módulo de scroll, sin
+  adaptaciones de color/medidas. Footer/regreso a El Paso ES/EN, zoom progresivo y foco.
+  Móvil abre a1800px de ancho (50% del original), con desplazamiento lateral y opción
+  «View whole menu»; escritorio conserva ajuste de lámina completa. Imagen nativa sin JS; PDF de respaldo ante
+  falla o sin JS. Los cuatro enlaces de ficha abren otra pestaña, con rel seguro/aviso accesible.
+- **A04, segunda selección pendiente de aceptación visual:** Luis rechaza las dos fotos de
+  `4c7a200` y elige personas cantando/festejando. Nuevos originales
+  `drive:1cxxFBWSS_aZMOTu0_OLq4DmMowT1yYQt` y `drive:1cN3DC8t78mrdhO1aHgn4dI67eEmdesxD`
+  reemplazan fotos1/3 solo en la candidata. Los diez derivados rechazados salen de la allowlist;
+  siguen recuperables en Git, no deben volver a promoverse como aceptados. Se revisó orientación EXIF y resolución4000×6000;
+  exportaciones640–4000. Foto2, CSS, rótulo, copy y animación permanecen intactos.
+  Procedencia/huellas en `site-intake-a-media.json`; comparación antes/después empaquetada
+  desde la base oficial, no desde otra demo. Derechos/publicación conservan sus gates.
+- **A05:**29GET reales con cadenas guardadas en `.artifacts/site-intake-a-links/live-chains.json`:
+  raíces HTTP/HTTPS/apex/www y UTM registrados de cuatro dominios, tres fichas internas y seis
+  cartas WP. Todos terminan donde corresponde. TX→selector en las cuatro variantes;
+  reporte San Antonio no reproducido por GET actual. Lectura indexada devolvió el destino
+  anterior; no prueba el caché del dispositivo de Luis. No cambios de reglas/WP/QR.
+  La allowlist actual conserva source/medium registrados y elimina campaign no registrado;
+  no afirmar preservación arbitraria de campañas. Ese registro/cableado corresponde al frente B.
+
+QA:284tests locales verdes; navegador Chromium55escenarios más paridad del header en5tamaños,320/390/768/1024/1440 y hero1920/DPR2,
+ES/EN, nueva pestaña real, zoom/reset, teclado, sin JS y falla de imagen. Servicios externos
+bloqueados; no certifica Safari/iPhone físico, disponibilidad OpenTable o ventas. Recibos y
+capturas iniciales → `.artifacts/site-intake-a-qa/`; ronda posterior → `.artifacts/photo-round2/`.
+Paridad de12archivos protegidos, incluidos GDL,
+cartas/precios, PDF/lámina EP, analytics y redirects → `site-intake-a-protected-files.json`.
+Regeneración horarios+SEO idempotente sobre232archivos públicos. JS modificado lleva versión
+de caché propia13-oct; analytics/CSS anterior conservados. Las pruebas históricas restituyen
+solo los parches exactos del lote antes de exigir sus hashes completos; cambios desconocidos
+siguen fallando. No se eliminaron pruebas para acomodar esta candidata.
+
+Preview loopback8815 actualizado con el paquete limpio `.artifacts/public`; no servir el checkout.
+Digest/commit de esta ronda → `.artifacts/release.json` y recibos privados de QA. El paquete
+`intake-a-final`/digest02a4950 corresponde al primer corte rechazado en fotos; no publicarlo.
+Los cinco pares de headers coinciden en estilo inicial/scrolled, ocultación/reaparición y foco.
+El `<base>` de la carta resuelve únicamente el ancla de horarios hacia su ficha; skip propio
+con URL absoluta, probado. Header JS se carga solo, sin introducir otro emisor analítico.
+Publicar requiere OK explícito del alcance y luego PR→CI→operador autorizado; no activar main
+por este encargo. Rollback del lote: revertir solo sus cambios en PR, conservando releases y
+trabajo B posterior. Integración futura con B debe unir únicamente horarios del registro y medios
+del renderer; no sustituir sus eventos ni analytics. Houston Catrinas1-nov se integra en el pase B,
+no se generaliza desde los horarios ni se corrige con datos provisionales aquí.
+
 ### Publicación rápida · simplificación12-oct
 
 Luis pide reducir el trámite repetido al publicar. Entrada única tras autorizar el alcance:

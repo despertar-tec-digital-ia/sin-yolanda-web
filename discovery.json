@@ -22,7 +22,52 @@
       "languages": [
         "https://sin-yolanda.com/el-paso",
         "https://sin-yolanda.com/en/el-paso/"
-      ]
+      ],
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "https://schema.org/Monday",
+            "https://schema.org/Tuesday"
+          ],
+          "opens": "00:00",
+          "closes": "00:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "https://schema.org/Wednesday"
+          ],
+          "opens": "16:00",
+          "closes": "23:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "https://schema.org/Thursday",
+            "https://schema.org/Friday"
+          ],
+          "opens": "16:00",
+          "closes": "02:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "https://schema.org/Saturday"
+          ],
+          "opens": "10:00",
+          "closes": "02:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "https://schema.org/Sunday"
+          ],
+          "opens": "10:00",
+          "closes": "23:00"
+        }
+      ],
+      "timeZone": "America/Denver"
     },
     {
       "id": "san-ignacio",
@@ -61,7 +106,52 @@
       "languages": [
         "https://sin-yolanda.com/san-antonio",
         "https://sin-yolanda.com/en/san-antonio/"
-      ]
+      ],
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "https://schema.org/Monday",
+            "https://schema.org/Tuesday"
+          ],
+          "opens": "00:00",
+          "closes": "00:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "https://schema.org/Wednesday"
+          ],
+          "opens": "16:00",
+          "closes": "23:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "https://schema.org/Thursday",
+            "https://schema.org/Friday"
+          ],
+          "opens": "16:00",
+          "closes": "02:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "https://schema.org/Saturday"
+          ],
+          "opens": "10:00",
+          "closes": "02:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "https://schema.org/Sunday"
+          ],
+          "opens": "10:00",
+          "closes": "23:00"
+        }
+      ],
+      "timeZone": "America/Chicago"
     },
     {
       "id": "the-woodlands",
@@ -81,7 +171,52 @@
       "languages": [
         "https://sin-yolanda.com/the-woodlands",
         "https://sin-yolanda.com/en/the-woodlands/"
-      ]
+      ],
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "https://schema.org/Monday",
+            "https://schema.org/Tuesday"
+          ],
+          "opens": "00:00",
+          "closes": "00:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "https://schema.org/Wednesday"
+          ],
+          "opens": "16:00",
+          "closes": "23:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "https://schema.org/Thursday",
+            "https://schema.org/Friday"
+          ],
+          "opens": "16:00",
+          "closes": "02:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "https://schema.org/Saturday"
+          ],
+          "opens": "10:00",
+          "closes": "02:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "https://schema.org/Sunday"
+          ],
+          "opens": "10:00",
+          "closes": "23:00"
+        }
+      ],
+      "timeZone": "America/Chicago"
     },
     {
       "id": "houston",
@@ -101,7 +236,52 @@
       "languages": [
         "https://sin-yolanda.com/houston",
         "https://sin-yolanda.com/en/houston/"
-      ]
+      ],
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "https://schema.org/Monday",
+            "https://schema.org/Tuesday"
+          ],
+          "opens": "00:00",
+          "closes": "00:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "https://schema.org/Wednesday"
+          ],
+          "opens": "16:00",
+          "closes": "23:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "https://schema.org/Thursday",
+            "https://schema.org/Friday"
+          ],
+          "opens": "16:00",
+          "closes": "02:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "https://schema.org/Saturday"
+          ],
+          "opens": "10:00",
+          "closes": "02:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "https://schema.org/Sunday"
+          ],
+          "opens": "10:00",
+          "closes": "23:00"
+        }
+      ],
+      "timeZone": "America/Chicago"
     }
   ],
   "catering": {

@@ -3,7 +3,7 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-export const analyticsAsset = 'assets/js/site-analytics.js';
+export const analyticsAsset = 'assets/js/site-measurement.js';
 export const analyticsExclusions = Object.freeze({ '404.html': 'Unknown request paths are deliberately not measured.' });
 const collector = 'https://analytics.despertartdigital.cloud/script.js';
 const websiteId = 'cbfa7fb3-230e-405c-a0b8-06c762d6216b';
@@ -25,7 +25,7 @@ export function syncSiteAnalyticsHtml(html, page, version) {
   const cleaned = html.replace(scriptTags, tag => {
     const source = attr(tag, 'src');
     if (!source) return tag;
-    if (source.split('?')[0].replace(/^\//, '') === analyticsAsset) { retainHook(tag); return ''; }
+    if ([analyticsAsset,'assets/js/site-analytics.js'].includes(source.split('?')[0].replace(/^\//, ''))) { retainHook(tag); return ''; }
     if (source === collector) {
       assert.equal(attr(tag, 'data-website-id'), websiteId, 'Review a different website tracker before replacing it: ' + page);
       retainHook(tag);
@@ -47,6 +47,7 @@ export function checkAnalyticsCoverage(root = fileURLToPath(new URL('..', import
     const html = readFileSync(resolve(root, page), 'utf8');
     const tags = [...html.matchAll(scriptTags)].map(match => match[0]);
     const analytics = tags.filter(tag => attr(tag, 'src')?.split('?')[0] === '/' + analyticsAsset);
+    assert.ok(!tags.some(tag => attr(tag,'src')?.split('?')[0] === '/assets/js/site-analytics.js'), 'Legacy shared tracker remains: ' + page);
     assert.ok(!tags.some(tag => attr(tag, 'src') === collector), 'Inline Umami tracker remains: ' + page);
     if (Object.hasOwn(analyticsExclusions, page)) {
       assert.equal(analytics.length, 0, 'Explicit excluded page must not load measurement: ' + page);

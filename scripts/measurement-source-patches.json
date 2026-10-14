@@ -1,0 +1,234 @@
+{
+  "version": 1,
+  "baseCommit": "08027d92bd5ff9965d82a8a6792f94ea4237495d",
+  "files": {
+    "index.html": {
+      "patches": [
+        {
+          "before": "assets/js/site-analytics.js?v=20261012-root-routing",
+          "after": "assets/js/site-measurement.js?v=20261013-measurement-v2"
+        }
+      ]
+    },
+    "locations.html": {
+      "patches": [
+        {
+          "before": "assets/js/site-analytics.js?v=20261012-root-routing",
+          "after": "assets/js/site-measurement.js?v=20261013-measurement-v2"
+        }
+      ]
+    },
+    "la-cantina.html": {
+      "patches": [
+        {
+          "before": "assets/js/site-analytics.js?v=20261012-root-routing",
+          "after": "assets/js/site-measurement.js?v=20261013-measurement-v2"
+        }
+      ]
+    },
+    "catering.html": {
+      "patches": [
+        {
+          "before": "assets/js/site-analytics.js?v=20261012-root-routing",
+          "after": "assets/js/site-measurement.js?v=20261013-measurement-v2"
+        }
+      ]
+    },
+    "eventos.html": {
+      "patches": [
+        {
+          "before": "assets/js/site-analytics.js?v=20261012-root-routing",
+          "after": "assets/js/site-measurement.js?v=20261013-measurement-v2"
+        }
+      ]
+    },
+    "tienda.html": {
+      "patches": [
+        {
+          "before": "assets/js/site-analytics.js?v=20261012-root-routing",
+          "after": "assets/js/site-measurement.js?v=20261013-measurement-v2"
+        }
+      ]
+    },
+    "el-paso.html": {
+      "patches": [
+        {
+          "before": "assets/js/site-analytics.js?v=20261012-root-routing",
+          "after": "assets/js/site-measurement.js?v=20261013-measurement-v2"
+        },
+        {
+          "before": "/_astro/BranchLanding.astro_astro_type_script_index_1_lang.BlqKqRiJ.js",
+          "after": "/_astro/BranchLanding.astro_astro_type_script_index_1_lang.fe95c5e955.js"
+        }
+      ]
+    },
+    "guadalajara.html": {
+      "patches": [
+        {
+          "before": "assets/js/site-analytics.js?v=20261012-root-routing",
+          "after": "assets/js/site-measurement.js?v=20261013-measurement-v2"
+        },
+        {
+          "before": "/_astro/BranchLanding.astro_astro_type_script_index_1_lang.BlqKqRiJ.js",
+          "after": "/_astro/BranchLanding.astro_astro_type_script_index_1_lang.fe95c5e955.js"
+        }
+      ]
+    },
+    "san-antonio.html": {
+      "patches": [
+        {
+          "before": "assets/js/site-analytics.js?v=20261012-root-routing",
+          "after": "assets/js/site-measurement.js?v=20261013-measurement-v2"
+        },
+        {
+          "before": "/_astro/BranchLanding.astro_astro_type_script_index_1_lang.BlqKqRiJ.js",
+          "after": "/_astro/BranchLanding.astro_astro_type_script_index_1_lang.fe95c5e955.js"
+        }
+      ]
+    },
+    "the-woodlands.html": {
+      "patches": [
+        {
+          "before": "assets/js/site-analytics.js?v=20261012-root-routing",
+          "after": "assets/js/site-measurement.js?v=20261013-measurement-v2"
+        },
+        {
+          "before": "/_astro/BranchLanding.astro_astro_type_script_index_1_lang.BlqKqRiJ.js",
+          "after": "/_astro/BranchLanding.astro_astro_type_script_index_1_lang.fe95c5e955.js"
+        }
+      ]
+    },
+    "houston.html": {
+      "patches": [
+        {
+          "before": "assets/js/site-analytics.js?v=20261012-root-routing",
+          "after": "assets/js/site-measurement.js?v=20261013-measurement-v2"
+        },
+        {
+          "before": "/_astro/BranchLanding.astro_astro_type_script_index_1_lang.BlqKqRiJ.js",
+          "after": "/_astro/BranchLanding.astro_astro_type_script_index_1_lang.fe95c5e955.js"
+        }
+      ]
+    },
+    "aviso-de-privacidad.html": {
+      "patches": [
+        {
+          "before": "assets/js/site-analytics.js?v=20261012-root-routing",
+          "after": "assets/js/site-measurement.js?v=20261013-measurement-v2"
+        },
+        {
+          "before": "Esta medición no utiliza cookies de seguimiento ni envía nombres, teléfonos, correos, mensajes, búsquedas del menú o parámetros de las direcciones web. Respeta la señal «No rastrear» del navegador.",
+          "after": "Esta medición no utiliza cookies de seguimiento ni envía nombres, teléfonos, correos, mensajes, búsquedas del menú ni parámetros libres de las direcciones web. Solo admite etiquetas de procedencia registradas y códigos de campaña autorizados. Conserva temporalmente, en esta pestaña, la página de entrada y esas etiquetas para relacionar los clics; se descartan al cerrar la pestaña o después de 30 minutos de inactividad. Respeta las señales «No rastrear» y Global Privacy Control del navegador."
+        }
+      ]
+    },
+    "en/houston/index.html": {
+      "patches": [
+        {
+          "before": "assets/js/site-analytics.js?v=20261012-root-routing",
+          "after": "assets/js/site-measurement.js?v=20261013-measurement-v2"
+        },
+        {
+          "before": "/_astro/BranchLanding.astro_astro_type_script_index_1_lang.BlqKqRiJ.js",
+          "after": "/_astro/BranchLanding.astro_astro_type_script_index_1_lang.fe95c5e955.js"
+        }
+      ]
+    },
+    "houston/menu/index.html": {
+      "patches": [
+        {
+          "before": "assets/js/site-analytics.js?v=20261012-root-routing",
+          "after": "assets/js/site-measurement.js?v=20261013-measurement-v2"
+        },
+        {
+          "before": "/_astro/BranchLayout.astro_astro_type_script_index_1_lang.BlqKqRiJ.js",
+          "after": "/_astro/BranchLayout.astro_astro_type_script_index_1_lang.fe95c5e955.js"
+        }
+      ]
+    },
+    "en/san-antonio/index.html": {
+      "patches": [
+        {
+          "before": "assets/js/site-analytics.js?v=20261012-root-routing",
+          "after": "assets/js/site-measurement.js?v=20261013-measurement-v2"
+        },
+        {
+          "before": "/_astro/BranchLanding.astro_astro_type_script_index_1_lang.BlqKqRiJ.js",
+          "after": "/_astro/BranchLanding.astro_astro_type_script_index_1_lang.fe95c5e955.js"
+        }
+      ]
+    },
+    "san-antonio/menu/index.html": {
+      "patches": [
+        {
+          "before": "assets/js/site-analytics.js?v=20261012-root-routing",
+          "after": "assets/js/site-measurement.js?v=20261013-measurement-v2"
+        }
+      ]
+    },
+    "en/san-antonio/menu/index.html": {
+      "patches": [
+        {
+          "before": "assets/js/site-analytics.js?v=20261012-root-routing",
+          "after": "assets/js/site-measurement.js?v=20261013-measurement-v2"
+        }
+      ]
+    },
+    "en/the-woodlands/index.html": {
+      "patches": [
+        {
+          "before": "assets/js/site-analytics.js?v=20261012-root-routing",
+          "after": "assets/js/site-measurement.js?v=20261013-measurement-v2"
+        },
+        {
+          "before": "/_astro/BranchLanding.astro_astro_type_script_index_1_lang.BlqKqRiJ.js",
+          "after": "/_astro/BranchLanding.astro_astro_type_script_index_1_lang.fe95c5e955.js"
+        }
+      ]
+    },
+    "the-woodlands/menu/index.html": {
+      "patches": [
+        {
+          "before": "assets/js/site-analytics.js?v=20261012-root-routing",
+          "after": "assets/js/site-measurement.js?v=20261013-measurement-v2"
+        }
+      ]
+    },
+    "san-ignacio/menu/index.html": {
+      "patches": [
+        {
+          "before": "assets/js/site-analytics.js?v=20261012-root-routing",
+          "after": "assets/js/site-measurement.js?v=20261013-measurement-v2"
+        }
+      ]
+    },
+    "en/el-paso/index.html": {
+      "patches": [
+        {
+          "before": "assets/js/site-analytics.js?v=20261012-root-routing",
+          "after": "assets/js/site-measurement.js?v=20261013-measurement-v2"
+        },
+        {
+          "before": "/_astro/BranchLanding.astro_astro_type_script_index_1_lang.BlqKqRiJ.js",
+          "after": "/_astro/BranchLanding.astro_astro_type_script_index_1_lang.fe95c5e955.js"
+        }
+      ]
+    },
+    "en/catering/index.html": {
+      "patches": [
+        {
+          "before": "assets/js/site-analytics.js?v=20261012-root-routing",
+          "after": "assets/js/site-measurement.js?v=20261013-measurement-v2"
+        }
+      ]
+    },
+    "el-paso/menu/index.html": {
+      "patches": [
+        {
+          "before": "assets/js/site-analytics.js?v=20261012-root-routing",
+          "after": "assets/js/site-measurement.js?v=20261013-measurement-v2"
+        }
+      ]
+    }
+  }
+}

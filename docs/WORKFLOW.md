@@ -39,6 +39,13 @@ esta agenda capture nuevos eventos Umami/GA4. El constructor histórico de revis
 en el checkpoint `5ce8558`; para publicación y siguientes previews usar el empaquetador actual.
 Rollback por operador controlado al release productivo anterior, nunca reconstrucción manual.
 
+**Fallo de CI previo al merge, corregido:** run38501068437 rechazó dos fixtures históricos
+que aprobaban bytes estáticos, mientras la agenda ahora produce HTML a la hora del build y
+liga su marcador al HEAD. Los fixtures clonan solo commits; la pasada local previa al commit
+todavía clonaba el catálogo anterior. Se fija la misma hora/HEAD y se verifica el digest de la
+proyección exacta, conservando todos los rechazos por digest distinto, suciedad y noindex.
+Validación final también sobre commit limpio; no hubo merge ni publicación desde CI fallido.
+
 
 ### Frente B13-oct · intake editorial y contrato analítico locales
 

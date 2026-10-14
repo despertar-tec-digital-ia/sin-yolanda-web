@@ -6,6 +6,7 @@ import { existsSync, mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { inspectPublic, packagePublic, projectRoot, publicSourceDigest } from '../scripts/package-public.mjs';
+import { projectPublicAgenda } from '../scripts/editorial/public-agenda.mjs';
 
 function fixture(t) {
   const temporary = mkdtempSync(join(tmpdir(), 'sy-limited-release-'));
@@ -29,8 +30,12 @@ function fixture(t) {
     'commit', '--quiet', '-m', 'Create isolated review-only release fixture'], { cwd: root, stdio: 'pipe' });
   const sourceCommit = execFileSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim();
   assert.equal(execFileSync('git', ['status', '--porcelain'], { cwd: root, encoding: 'utf8' }).trim(), '');
+  // Pin one build instant and the disposable clone's HEAD. The approved agenda
+  // generates current HTML; the digest must bind those exact pre-preview bytes.
+  const now = '2026-10-14T02:00:00Z';
+  const projection = projectPublicAgenda(root, { now, commit: sourceCommit });
   const hashes = Object.fromEntries(inspectPublic(root).files.map(path => [path,
-    createHash('sha256').update(readFileSync(join(root, path))).digest('hex')]));
+    createHash('sha256').update(projection.files.get(path) ?? readFileSync(join(root, path))).digest('hex')]));
   const publicDigest = createHash('sha256').update(JSON.stringify(hashes)).digest('hex');
   const record = { version: 1, targetOrigin: 'https://sin-yolanda.com', authorizer: 'Luis', sourceCommit,
     publicDigest, authorization: 'Publish this exact candidate with its pending review flags retained.' };
@@ -39,7 +44,7 @@ function fixture(t) {
     mkdirSync(dirname(path), { recursive: true }); writeFileSync(path, JSON.stringify({ ...record, ...change }));
     return path;
   }
-  return { root, hashes, publicDigest, record, approval, destination: label => join(root, '.artifacts', label, 'public') };
+  return { root, now, hashes, publicDigest, record, approval, destination: label => join(root, '.artifacts', label, 'public') };
 }
 
 test('public digest is deterministic and includes unmodified source headers', () => {
@@ -55,11 +60,11 @@ test('limited release requires approval and default production remains fail-clos
   assert.ok(inspectPublic(f.root).manifest.reviewPages.length > 0);
   for (const options of [{}, { audience: 'limited-production' }]) {
     const destination = f.destination(options.audience ?? 'default');
-    assert.throws(() => packagePublic({ root: f.root, destination, ...options }), /Review-only pages|explicit approval/);
+    assert.throws(() => packagePublic({ root: f.root, now: f.now, destination, ...options }), /Review-only pages|explicit approval/);
     assert.ok(!existsSync(destination));
   }
   const approval = f.approval();
-  assert.throws(() => packagePublic({ root: f.root, destination: f.destination('wrong-audience'), approval }), /explicit limited-production audience/);
+  assert.throws(() => packagePublic({ root: f.root, now: f.now, destination: f.destination('wrong-audience'), approval }), /explicit limited-production audience/);
   assert.ok(!existsSync(f.destination('wrong-audience')));
 });
 
@@ -78,7 +83,7 @@ test('limited approval schema, target, authorizer and source digest are strict b
   ];
   invalid.forEach(([change, pattern], index) => {
     const destination = f.destination('invalid-' + index);
-    assert.throws(() => packagePublic({ root: f.root, destination, audience: 'limited-production',
+    assert.throws(() => packagePublic({ root: f.root, now: f.now, destination, audience: 'limited-production',
       approval: f.approval(change, 'invalid-' + index) }), pattern);
     assert.ok(!existsSync(destination));
   });
@@ -88,7 +93,7 @@ test('limited release requires a real clean HEAD and cannot package a dirty sour
   const f = fixture(t), approval = f.approval();
   writeFileSync(join(f.root, 'index.html'), readFileSync(join(f.root, 'index.html'), 'utf8') + '\n<!-- dirty -->\n');
   const destination = f.destination('dirty');
-  assert.throws(() => packagePublic({ root: f.root, destination, audience: 'limited-production', approval }), /actual clean Git HEAD/);
+  assert.throws(() => packagePublic({ root: f.root, now: f.now, destination, audience: 'limited-production', approval }), /actual clean Git HEAD/);
   assert.ok(!existsSync(destination));
 });
 
@@ -97,7 +102,7 @@ test('limited release preserves page noindex, headers and approval flags; receip
   const destination = f.destination('limited'), metadata = join(dirname(destination), 'release.json');
   const sourceHeaders = readFileSync(join(f.root, '_headers'), 'utf8');
   const sourceManifest = readFileSync(join(f.root, 'scripts/branch-import-manifest.json'), 'utf8');
-  const report = packagePublic({ root: f.root, destination, metadata, audience: 'limited-production', approval });
+  const report = packagePublic({ root: f.root, now: f.now, destination, metadata, audience: 'limited-production', approval });
   assert.equal(report.dirty, false); assert.equal(report.audience, 'limited-production');
   assert.equal(report.publicDigest, f.publicDigest); assert.deepEqual(report.hashes, f.hashes);
   assert.deepEqual(report.approval, f.record);
@@ -110,9 +115,9 @@ test('limited release preserves page noindex, headers and approval flags; receip
   for (const path of ['release.json', 'approval.json', 'scripts', 'archive']) assert.ok(!existsSync(join(destination, path)));
 });
 
-test('review audience stays noindex globally but its publicDigest uses source bytes', t => {
+test('review audience stays noindex globally but its publicDigest uses the exact current pre-preview projection', t => {
   const f = fixture(t), destination = f.destination('review');
-  const report = packagePublic({ root: f.root, destination, audience: 'review' });
+  const report = packagePublic({ root: f.root, now: f.now, destination, audience: 'review' });
   assert.equal(report.publicDigest, f.publicDigest); assert.equal(report.approval, undefined);
   assert.match(readFileSync(join(destination, '_headers'), 'utf8'), /X-Robots-Tag: noindex, nofollow/);
   assert.notEqual(publicSourceDigest(report.hashes), report.publicDigest);
@@ -122,6 +127,6 @@ test('limited release still requires review pages to retain noindex before autho
   const f = fixture(t), page = inspectPublic(f.root).manifest.reviewPages[0];
   writeFileSync(join(f.root, page), readFileSync(join(f.root, page), 'utf8').replace('<meta name="robots" content="noindex,nofollow">', ''));
   const destination = f.destination('missing-page-gate');
-  assert.throws(() => packagePublic({ root: f.root, destination, audience: 'limited-production', approval: f.approval() }), /Review page must remain noindex/);
+  assert.throws(() => packagePublic({ root: f.root, now: f.now, destination, audience: 'limited-production', approval: f.approval() }), /Review page must remain noindex/);
   assert.ok(!existsSync(destination));
 });

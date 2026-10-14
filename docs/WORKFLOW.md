@@ -5,7 +5,7 @@
 Luis aprueba las fichas y autoriza continuar con publicación: «Ok, las apruebo. sigue, no sé
 si toca publicarlos, si toca eso pues hazlo.». Release selectivo sobre main `b3040ef`, rama
 `release/approved-branch-agenda-20261013`; excluye las fotos candidatas A04. Los checkpoints
-locales que siguen son históricos. Preparación y QA terminadas; recibo remoto pendiente.
+locales que siguen son históricos. PUBLICADO por PR33/main `08027d9`; CI/CD y recibo verdes.
 
 - Ocho fichas ES/EN con14unidades aprobadas: acontecimientos fechados, noches recurrentes,
   oferta Woodlands y participación externa Jets & Cars. Doce unidades ambiguas retenidas,
@@ -29,7 +29,8 @@ locales que siguen son históricos. Preparación y QA terminadas; recibo remoto 
   cadencia más CI/propagación; no prometer retiro remoto al segundo ni ejecución puntual de cron.
 - La comprobación programada no puede publicar un main nuevo que todavía no esté en vivo.
   Su concurrencia separada no cancela CI de un push. No incluye permisos de escritura nuevos.
-  Ejecución remota del scheduler y primer retiro real pendientes de observar después del release.
+  Consulta real del gate con el main servido confirmó `unchanged-approved-agenda`, sin build.
+  Ejecución remota programada y primer retiro real pendientes de observar después del release.
 
 QA local:303tests y46escenarios responsive/noJS, imágenes/foco/enlaces/horarios y fechas de
 caducidad/DST. Evidencia ignorada en `.artifacts/approved-agenda-candidate-v1/` y
@@ -38,6 +39,23 @@ Medición B05–B07, campañas/consentimiento y destinos Jorge siguen pendientes
 esta agenda capture nuevos eventos Umami/GA4. El constructor histórico de revisión permanece
 en el checkpoint `5ce8558`; para publicación y siguientes previews usar el empaquetador actual.
 Rollback por operador controlado al release productivo anterior, nunca reconstrucción manual.
+
+**Recibo publicado:** head revisado `9d4e6f77ad763f93d15915922a6a6c62dc9758dc`, merge
+`08027d92bd5ff9965d82a8a6792f94ea4237495d`; CI PR38501328087/main38501386869 y
+CD38501430799 exitosos. Pages `bef09260-67ec-4a32-aeb0-276a038fa422`, baseline/rollback
+`5338637b-02c4-4eb1-a222-5ba6bf28d69f`. Digest productivo
+`ff763521cec51273eab1a4629d7e80385577c1f474f8e0ad4bb1aebb7f14266d`.
+Verificación del operador:230archivos servidos,47aliases,10rutas excluidas; cero fallos/diferencias.
+Dos archivos de control Pages no se sirven como assets;404 conserva comprobación semántica.
+Recibo/proof en `.artifacts/approved-release-33-1791945009544/`.
+GET posterior cotejó bytes de ocho fichas y home,14unidades/ESEN, ausencia de botones Jorge,
+indexación y header de carta El Paso; gate de frescura real pasó. Evidencia en
+`.artifacts/approved-agenda-candidate-v1/live-semantic-proof.json`. Navegador real comprobó las
+portadas completas publicadas; capturas públicas desktop/móvil y terceros bloqueados en
+`.artifacts/approved-agenda-live-visual/`. No convertir visitas internas de QA en resultados
+de adquisición ni afirmar reservas/ventas desde un enlace. Cierre documental local en rama
+`docs/approved-agenda-release-20261013`; no exige otra publicación del sitio.
+
 
 **Fallo de CI previo al merge, corregido:** run38501068437 rechazó dos fixtures históricos
 que aprobaban bytes estáticos, mientras la agenda ahora produce HTML a la hora del build y

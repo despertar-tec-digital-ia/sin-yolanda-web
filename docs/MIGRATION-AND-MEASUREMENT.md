@@ -1,7 +1,8 @@
 # Migración de WordPress y medición · 8-oct-2026
 
-**Estado vigente13-oct:** Luis aprueba la composición final y autoriza su publicación.
-Proyección14unidades en ocho fichas USA ES/EN preparada sobre main publicado `b3040ef`,
+**Estado vigente13-oct:** Luis aprueba la composición final y autoriza su publicación;
+PUBLICADA por PR33/main `08027d9`, CI/CD/recibo verdes.
+Proyección14unidades en ocho fichas USA ES/EN reconciliada sobre main publicado `b3040ef`,
 con reloj editorial/caducidad y sin fotos A04. Doce unidades y dos botones Jorge retenidos.
 Contrato, evidencia y estado remoto tienen dueño en «Agenda USA · publicación autorizada13-oct»
 de [WORKFLOW](WORKFLOW.md). B05–B07 siguen pendientes; no dar por conectado Umami/GA4.

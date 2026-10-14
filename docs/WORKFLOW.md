@@ -1,18 +1,28 @@
 # Forma de trabajar y publicar
 
-### Medición de agenda y adquisición · candidata13-oct
+### Medición de agenda y adquisición · publicada13-oct
 
 Solicitud posterior de Luis: continuar con B05–B07. Rama `feat/agenda-measurement-20261013`,
 base pública `08027d9`; fuente/contrato/recepción/QA y límites tienen dueño en
-[Medición B05–B07](MIGRATION-AND-MEASUREMENT.md#medición-b05b07--candidata13-oct).
+[Medición B05–B07](MIGRATION-AND-MEASUREMENT.md#medición-b05b07--publicada13-oct).
 Clics actuales unificados, registros/destinos catalogados, ubicación del enlace y adquisición
 por pestaña; DNT/GPC y parámetros permitidos. Aviso: aclaración técnica solamente.
 236archivos por allowlist; cuatro assets nuevos y URLs anteriores preservadas por caché.
 No cargar tracker anterior y nuevo juntos; CI exige único dueño y catálogo reconciliado.
-313tests y20escenarios SDK real/interceptado verdes; no se enviaron eventos de prueba reales.
+313tests y20escenarios SDK real/interceptado verdes. Verificación posterior en producción
+con visita/clic internos; no presentarlos como actividad de clientes.
 Hero, contenido de fichas, fotos, horarios, precios, PDF, QR/WP, rutas y GA4 conservados.
-Publicación/campos v2 en backend pendientes de aprobación y recibo; pruebas no sustituyen OK.
-Rollback del futuro release: Pages `bef09260-67ec-4a32-aeb0-276a038fa422` asociado a `08027d9`.
+Luis autorizó expresamente: «Publicar la medición y la aclaración del aviso».
+Operador único `release:approved -- --pr 34 --head 007108ac3f517db6cd4e4a9bbe97de163f42692f --publish`
+completado sin bypass: main `43c2c33d8a7e1968bf18f81c81941170ea04576b`, calidad
+`38513716690` y CD `38513757939` verdes. Pages `8216c6d0-442c-4fbb-b93c-f75dede4dd5f`;
+digest público `801aa6995e1c96164b0abe60e2859848d497426b6d672df84cef44b7b143815c`.
+234archivos servidos,47aliases,10rutas excluidas;233hashes exactos y aviso normalizado por
+ofuscación Cloudflare, cero diferencias/fallos. Recibo ignorado:
+`.artifacts/approved-release-34-1791953585179/receipt.json`; comprobación posterior9páginas
+y párrafo/normalización del aviso en `.artifacts/measurement-live/semantic-proof.json`.
+Recepción v2/evento/ubicación acreditada por API agregada tras clic interno Don’t Cry.
+Rollback disponible: Pages `bef09260-67ec-4a32-aeb0-276a038fa422` asociado a `08027d9`.
 Los checkpoints previos conservan su propio alcance; no aplicar su aprobación a esta ampliación.
 
 

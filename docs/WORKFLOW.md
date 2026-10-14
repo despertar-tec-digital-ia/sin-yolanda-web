@@ -2,6 +2,22 @@
 
 ### Frente B13-oct · intake editorial y contrato analítico locales
 
+**Revisión posterior de fuentes USA:** Luis entrega 14 enlaces y captura, y pide cotejo/diseño
+cuidadosos y boletos Jorge. Investigación N1 acotada cerrada, con 16 posts observados y cuatro
+funciones Eventbrite verificadas. Registro de fuentes/proyección y hallazgos → sección nueva de
+`MIGRATION-AND-MEASUREMENT.md`. Prototipo ES aislado de las fichas públicas, cuatro sedes,
+loopback8819, arte completo y destinos por intención. Caducidad, ES/EN, aprobación editorial
+y conexión Umami/GA4 no se activan con esta propuesta.
+
+Checks finales286/286 y contrato dirigido6/6; paquete público217 archivos conserva digest/bytes.
+QA visual1440/390/320 e interacción de las cuatro sedes pasan, sin erroresJS ni destinos vacíos;
+se corrigieron espacios de1registro, ausencia de arte, fila impar y actividad externa.
+Fuentes de arte privadas con hash/resolución; no originalesHD ni permisos comerciales inferidos.
+Recibos en `.artifacts/front-b-source-review-20261013/`, prototipo final en
+`.artifacts/event-design-review-final/public`. Sin push/PR, instalación ni publicación.
+Siguiente: revisar la composición dentro de una ficha y resolver vigencias/derechos/condiciones,
+después adaptar reloj/registro/medición en pase acotado. Mantener un único release junto con A.
+
 Rama `feat/events-measurement-b-20261013`, base oficial `f9c13a0`, worktree propio.
 Registro/preflight y contrato → primer bloque de `MIGRATION-AND-MEASUREMENT.md`.
 21candidatos borrador; fuentes vivas reconciliadas y dos carteles GDL recuperados.

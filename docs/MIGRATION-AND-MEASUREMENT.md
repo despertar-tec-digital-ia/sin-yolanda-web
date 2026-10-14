@@ -2,6 +2,72 @@
 
 ## Frente B · preparación local13-oct · eventos y atribución
 
+### Revisión posterior de publicaciones USA y propuesta de agenda
+
+Luis aporta 14 URLs y una captura de Houston. Pide comparar los documentos, distinguir los
+tipos de actividad y comprobar boletos de Jorge Guevara antes de diseñar. Se revisaron las
+fuentes con investigación N1 acotada: 16 posts visibles (14 recibidos y dos propios de Houston
+descubiertos), cuatro funciones oficiales en Eventbrite y contraste editorial. No hubo mensajes,
+checkout, compras ni cambios remotos.
+
+Fuentes y discrepancias observadas: `scripts/editorial/front-b-sources.json`. La proyección
+para revisar el diseño vive en `front-b-review.json`: 26 unidades, incluidos slots y brunch;
+no son 26 conciertos ni otro catálogo aprobado. El intake anterior conserva sus 21 borradores.
+El preflight enlaza esta revisión y ya no repite la solicitud obsoleta de seis enlaces.
+`ingesta.json` corrige el bloqueo horario de Pinta superado por la apertura confirmada de
+miércoles, 16:00–23:00. Eso no aprueba oferta, derechos ni operación.
+
+| Fuente / tipo | Cotejo y consecuencia editorial |
+|---|---|
+| Cuatro carteleras | Son compilaciones por días. No agregan un evento redundante ni prueban que toda actividad se repita indefinidamente. Mes Hispano, Pelucas y Jorge El Paso conservan sus fechas propias. Los slots sin fecha no reciben fechas inventadas. |
+| Pinta Houston | Funciones del 14 y 28 de octubre, 19:00–22:00, check-in 18:30 y boletos específicos. No todos los miércoles. Ambos Eventbrite usan el mismo arte genérico, sin fecha ni precio; no es un cartel exclusivo de Halloween. El alias antiguo no sustituye estos enlaces. |
+| Ladies y Don’t Cry | La portada Houston confirma miércoles, 2×1 en cócteles, open mic y ronda de shots para ellas; no trasladar beneficios a otras sedes. Don’t Cry Houston confirma jueves, DJ e inglés/español. Los captions de SA y Woodlands nombran Houston: discrepancia conservada, sin aprobarla desde la cuenta que publicó. La franja de noviembre en Woodlands no se transfiere a octubre. |
+| Happy Hour Woodlands | Oferta de jueves, 16:00–21:00: Pepito + una bebida por USD 27. Bebida elegible: tequila, whisky, ron o brandy. No todos los cócteles ni oferta de otras sedes. Vigencia y términos adicionales pendientes. La franja Houston 14:00–19:00 de la hoja choca con apertura a las 16:00 y se omite. |
+| Recovery Brunch El Paso | Fuente propia: domingos desde las 10:00, fin desconocido. La cartelera también menciona sábado; no extenderle el horario del domingo. Brunch y NFL no certifica rivales, partidos, derechos de transmisión o descuentos. |
+| Jets & Cars | Colaboración del 14 de noviembre, 11:00–13:00, en una instalación privada de aviación en Conroe; solo por invitación. Sin Yolanda participa como patrocinador. Va en actividad externa, sin reservar mesa ni inventar boletos. El NAP del pie del cartel no determina el recinto ni sustituye la ficha. |
+| Jorge Houston | 13 de noviembre, 20:00–23:00, en la cantina de 4901 Washington Ave; invitada Mariana Ochoa. Eventbrite declara venta disponible, sin comprobar cantidades ni checkout. Se usa arte del proveedor sin precio para revisar el concierto. La preventa de USD 25 del post vence el 15 de octubre a las 20:00 y debe tener caducidad separada. |
+| Jorge San Antonio | 14 de noviembre, 20:00–23:30, en K.O.P./King of Padel, 314 Nolan Street; no en la cantina. Post y boletos coinciden. Recinto externo y boleto propio. Arte de preventa hasta el 15 de octubre sin hora exacta: `artworkSafeBefore` es un corte conservador de revisión, no un término comercial confirmado. |
+| Jorge El Paso / Woodlands | El Paso anuncia palomazo del 16 de octubre en 340 Vin Rambla, sin horario, precio o enlace de compra comprobado. Ver post; no afirmar entrada gratis ni usar boleto Houston. No se verificó una fecha propia para Woodlands en esta búsqueda; no trasladar el concierto vecino. |
+
+**Arte:** 14 JPEG publicados guardados en `marketing-2026/`, con hashes, dimensiones y
+procedencia en `usa-post-artwork-2026-10-13.json`: cuatro carteleras de 2000×2500, publicaciones
+particulares y dos imágenes de Eventbrite. Portadas de Ladies y Don’t Cry Houston recuperadas
+a 720×1280 e inspeccionadas; no se afirman originales HD ni se amplían artificialmente.
+La captura de Luis se conserva como respaldo. El registro no guarda URLs CDN firmadas ni
+comentarios personales. Los permisos siguen en `review-only`.
+
+**Diseño para revisión:** se conserva la identidad existente y se propone una agenda dentro
+de cada ficha: próximas fechas iguales y cronológicas, noches de la semana, comida/ofertas y
+participaciones externas. Se comparó un tratamiento único de cartel/datos con una agenda por
+intención; se elige esta última para que una promoción tenga su propio nivel de lectura.
+Se respeta el brief §21: ningún protagonista arbitrario con fechas secundarias. Cero registros
+omite sección; uno no deja una columna vacía; varios forman filas adaptables. La cartelera
+compilada aparece como fuente desplegable. Arte con `contain`, datos legibles en HTML y CTA
+según intención: publicación, función exacta, recinto externo o acceso por invitación.
+`/eventos` sigue siendo contratación privada. No cambia HTML/CSS, home, hero ni medios de A.
+
+**Prototipo aislado:** `build-event-review.mjs --asset-root <directorio-explícito>` genera un
+paquete con allowlist y hashes, 18 archivos, en `.artifacts/event-design-review-final/public`.
+Servidor existente limitado a `127.0.0.1`, puerto 8819, con cuatro selectores de sede. Sin
+tracker, almacenamiento, embed Instagram, escritura de producción ni scheduler. Es una
+propuesta ES del corte 13 de octubre; no una agenda comercial aprobada ni un publicador temporal.
+Recurrencias, ventanas, derechos y caducidad del arte deben adaptarse al modelo/hash existente.
+No se certifican todavía ES/EN completo, reloj, retiro noJS ni scheduler.
+
+**QA:** seis pruebas del contrato semántico verifican recinto externo y boletos por sede,
+productos/franjas, fuentes, recurrencias no inventadas y restricciones de arte. La primera
+corrida seleccionaba el primer brunch (sábado Houston) para comprobar el domingo de El Paso;
+se corrigió el selector por ID, sin modificar el dato ni omitir la prueba. La corrida final
+pasó 286/286. Los 217 archivos públicos mantienen sus bytes y el digest productivo
+`78146976243c1a6359a40d912180010cb09642fed3643a3857b70db1f43dc36f`.
+
+Capturas desktop 1440 y móvil 390/320 generadas con `preview.py` e inspeccionadas. Se ajustaron
+el registro único, arte ausente, última fila impar, orden sábado/domingo y disposición de
+actividad externa. En navegador: una sede visible, enlaces sin destinos vacíos, sin overflow
+ni errores JS; imágenes dentro del viewport cargadas con `contain`. Las imágenes lazy fuera
+de pantalla no se consideran fallidas por no cargar. Recibos en
+`.artifacts/front-b-source-review-20261013/`. No se confirma transporte Umami/GA4 por este QA.
+
 Encargo vigente: bloque B01–B07 del plan operativo del vault. Rama propia
 `feat/events-measurement-b-20261013`, base `origin/main` `f9c13a0`. Este corte prepara datos,
 contrato y diagnóstico; no modifica HTML/CSS, `public-data.js`, tracker, rutas, WP, QR,

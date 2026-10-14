@@ -6,6 +6,8 @@ import { checkAnalyticsCoverage } from './sync-site-analytics.mjs';
 
 const read = path => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
 const data = JSON.parse(read('scripts/editorial/front-b-events.json'));
+const sourceReview = JSON.parse(read('scripts/editorial/front-b-sources.json'));
+const designReview = JSON.parse(read('scripts/editorial/front-b-review.json'));
 const manifest = JSON.parse(read('scripts/public-manifest.json'));
 assert.equal(data.mode, 'editorial-preparation-only');
 assert.equal(data.publicationEnabled, false);
@@ -63,14 +65,11 @@ for (const record of data.records) {
 const publicFiles = [...manifest.pages, ...manifest.assets];
 assert.ok(publicFiles.every(path => !path.startsWith('scripts/') && !path.startsWith('docs/') && !path.includes('front-b-events')));
 const productionHashes = publicFiles.map(path => [path, createHash('sha256').update(readFileSync(new URL('../' + path, import.meta.url))).digest('hex')]);
-const next = {};
-for (const branch of ['houston', 'san-antonio', 'the-woodlands']) {
-  next[branch] = data.records.filter(record => record.branchId === branch && record.date >= data.observedOn && !record.postUrl)
-    .sort((a, b) => a.date.localeCompare(b.date) || a.id.localeCompare(b.id)).slice(0, 2)
-    .map(({ id, title, date, sourceRange }) => ({ id, title: title.es, date, sourceRange, missing: ['specific-post', 'artwork'] }));
-}
 console.log(JSON.stringify({ mode: 'dry-run', observedOn: data.observedOn, recordCount: ids.size,
   eligibleIds: [], pending: data.records.map(({ id, blockers }) => ({ id, blockers })),
-  nextPostRequests: next, analytics: checkAnalyticsCoverage(),
+  sourceReview: { observedPostCount: sourceReview.posts.length, verifiedTicketSources: sourceReview.tickets.length,
+    designUnitCount: Object.values(designReview.branches).reduce((count, branch) => count + branch.units.length, 0),
+    // This is a semantic projection, not another 26 approved events or a live schedule.
+    openIssues: sourceReview.openIssues }, analytics: checkAnalyticsCoverage(),
   publicManifestSha256: createHash('sha256').update(JSON.stringify(productionHashes)).digest('hex'),
   schedulerInstalledByThisChange: false, realTransportVerifiedByThisChange: false }, null, 2));

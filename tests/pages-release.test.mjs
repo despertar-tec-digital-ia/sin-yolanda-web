@@ -37,7 +37,7 @@ function runFixture(){const run={id:42,repository:{full_name:target.repository},
   conclusion:'success',status:'completed',path:'.github/workflows/quality.yml',head_sha:commit};
   const artifact={name:'public-site-'+commit,expired:false,workflow_run:{id:42,head_sha:commit},digest:'sha256:'+'c'.repeat(64),size_in_bytes:100};
   return {run,artifact};}
-test('only successful main quality push artifacts are accepted',()=>{const f=runFixture();validateCiRun(f.run,f.artifact);});
+test('successful main quality push or scheduled transition artifacts are accepted',()=>{const f=runFixture();validateCiRun(f.run,f.artifact);f.run.event='schedule';validateCiRun(f.run,f.artifact);});
 for(const key of ['repository','head_branch','event','conclusion','status','path','head_sha','artifact-name','expired','artifact-run','archive-digest'])
   test('reject untrusted CI source '+key,()=>{const f=runFixture();
     if(key==='artifact-name')f.artifact.name='arbitrary';

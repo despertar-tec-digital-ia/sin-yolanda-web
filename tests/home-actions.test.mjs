@@ -34,7 +34,7 @@ test('home agenda contains only the two scheduled campaigns with their own branc
   assert.equal(data.events.length, 2);
   const expectedDates = {
     'halloween-2026': { houston: '2026-10-31', 'the-woodlands': '2026-10-31', 'san-antonio': '2026-10-31' },
-    'catrinas-2026': { houston: '2026-10-24', 'the-woodlands': '2026-10-30', 'san-antonio': '2026-11-01' },
+    'catrinas-2026': { houston: '2026-11-01', 'the-woodlands': '2026-10-30', 'san-antonio': '2026-11-01' },
   };
   for (const campaign of data.events) {
     assert.equal(campaign.status, 'scheduled');
@@ -63,11 +63,11 @@ test('campaign visibility includes its first day and retires each occurrence aft
   assert.equal(agenda(facts, new Date('2026-10-07T04:59:59Z')), '');
   assert.deepEqual(campaignIds(agenda(facts, new Date('2026-10-07T05:00:00Z'))).sort(), ['catrinas-2026', 'halloween-2026']);
   const october24 = campaignHtml(agenda(facts, new Date('2026-10-25T04:59:59Z')), 'catrinas-2026');
-  assert.ok(branchIds(october24).includes('houston'), 'Houston remains visible throughout October 24 in Chicago');
+  assert.ok(branchIds(october24).includes('houston'), 'Houston November 1 remains a future date');
   const october25 = campaignHtml(agenda(facts, new Date('2026-10-25T05:00:00Z')), 'catrinas-2026');
-  assert.deepEqual(branchIds(october25).sort(), ['san-antonio', 'the-woodlands']);
+  assert.deepEqual(branchIds(october25).sort(), ['houston', 'san-antonio', 'the-woodlands']);
   const october31 = campaignHtml(agenda(facts, new Date('2026-10-31T05:00:00Z')), 'catrinas-2026');
-  assert.deepEqual(branchIds(october31), ['san-antonio'], 'Do not keep expired Houston or Woodlands dates');
+  assert.deepEqual(branchIds(october31).sort(), ['houston','san-antonio'], 'Woodlands retires while both November 1 dates remain');
   assert.ok(campaignIds(agenda(facts, new Date('2026-11-01T04:59:59Z'))).includes('halloween-2026'));
   assert.deepEqual(campaignIds(agenda(facts, new Date('2026-11-01T05:00:00Z'))), ['catrinas-2026']);
   assert.deepEqual(campaignIds(agenda(facts, new Date('2026-11-02T05:59:59Z'))), ['catrinas-2026']);
@@ -107,11 +107,11 @@ test('occurrence retirement follows its own time zone rather than the visitor or
   const occurrence = facts.events.find(campaign => campaign.id === 'catrinas-2026').occurrences
     .find(item => item.branchId === 'houston');
   occurrence.timeZone = 'America/Los_Angeles';
-  const beforeMidnight = campaignHtml(agenda(facts, new Date('2026-10-25T05:30:00Z')), 'catrinas-2026');
-  assert.ok(branchIds(beforeMidnight).includes('houston'), 'October 24 continues in the occurrence zone after Chicago midnight');
-  const afterMidnight = campaignHtml(agenda(facts, new Date('2026-10-25T07:00:00Z')), 'catrinas-2026');
+  const beforeMidnight = campaignHtml(agenda(facts, new Date('2026-11-02T06:30:00Z')), 'catrinas-2026');
+  assert.ok(branchIds(beforeMidnight).includes('houston'), 'November 1 continues in the occurrence zone after Chicago midnight');
+  const afterMidnight = campaignHtml(agenda(facts, new Date('2026-11-02T08:00:00Z')), 'catrinas-2026');
   assert.ok(!branchIds(afterMidnight).includes('houston'));
-  assert.ok(!afterMidnight.includes('datetime="2026-10-24"'), 'Date labels must also retire with their occurrence');
+  assert.ok(!afterMidnight.includes('datetime="2026-11-01"'), 'Date labels must also retire with their occurrence');
 });
 
 test('pretexts stay editorial while birthday uses native location selection without a default city', () => {

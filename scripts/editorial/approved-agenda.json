@@ -1,0 +1,94 @@
+{
+  "version": 1,
+  "approvedBy": "Luis",
+  "approvedAt": "2026-10-14T01:54:28.000Z",
+  "publicationEnabled": true,
+  "authorization": "Ok, las apruebo. sigue, no sé si toca publicarlos, si toca eso pues hazlo.",
+  "sourceDigest": "b428211836adc437b3b90f767beefc1cd1d68686052e1283282fe3ff9a7c76cd",
+  "records": [
+    {
+      "id": "houston-pinta-canta-20261014",
+      "publishFrom": "2026-10-14T01:54:28.000Z",
+      "expiresAt": "2026-10-15T03:00:00.000Z",
+      "expiryBasis": "announced-end"
+    },
+    {
+      "id": "houston-pinta-20261028",
+      "publishFrom": "2026-10-14T01:54:28.000Z",
+      "expiresAt": "2026-10-29T03:00:00.000Z",
+      "expiryBasis": "announced-end"
+    },
+    {
+      "id": "houston-jorge-mariana-20261113",
+      "publishFrom": "2026-10-14T01:54:28.000Z",
+      "expiresAt": "2026-11-14T05:00:00.000Z",
+      "expiryBasis": "announced-end"
+    },
+    {
+      "id": "houston-ladies-weekly",
+      "publishFrom": "2026-10-14T01:54:28.000Z",
+      "expiresAt": null,
+      "expiryBasis": "ongoing-announcement-until-editorial-change"
+    },
+    {
+      "id": "houston-dontcry-weekly",
+      "publishFrom": "2026-10-14T01:54:28.000Z",
+      "expiresAt": null,
+      "expiryBasis": "ongoing-announcement-until-editorial-change"
+    },
+    {
+      "id": "the-woodlands-mes-hispano-20261015",
+      "publishFrom": "2026-10-14T01:54:28.000Z",
+      "expiresAt": "2026-10-16T05:00:00.000Z",
+      "expiryBasis": "editorial-next-local-midnight"
+    },
+    {
+      "id": "the-woodlands-ladies-weekly",
+      "publishFrom": "2026-10-14T01:54:28.000Z",
+      "expiresAt": null,
+      "expiryBasis": "ongoing-announcement-until-editorial-change"
+    },
+    {
+      "id": "the-woodlands-thursday-offer",
+      "publishFrom": "2026-10-14T01:54:28.000Z",
+      "expiresAt": null,
+      "expiryBasis": "ongoing-announcement-until-editorial-change"
+    },
+    {
+      "id": "the-woodlands-jets-cars-20261114",
+      "publishFrom": "2026-10-14T01:54:28.000Z",
+      "expiresAt": "2026-11-14T19:00:00.000Z",
+      "expiryBasis": "announced-end"
+    },
+    {
+      "id": "san-antonio-pelucas-20261017",
+      "publishFrom": "2026-10-14T01:54:28.000Z",
+      "expiresAt": "2026-10-18T05:00:00.000Z",
+      "expiryBasis": "editorial-next-local-midnight"
+    },
+    {
+      "id": "san-antonio-ladies-weekly",
+      "publishFrom": "2026-10-14T01:54:28.000Z",
+      "expiresAt": null,
+      "expiryBasis": "ongoing-announcement-until-editorial-change"
+    },
+    {
+      "id": "san-antonio-jorge-20261114",
+      "publishFrom": "2026-10-14T01:54:28.000Z",
+      "expiresAt": "2026-11-15T05:30:00.000Z",
+      "expiryBasis": "announced-end"
+    },
+    {
+      "id": "el-paso-jorge-20261016",
+      "publishFrom": "2026-10-14T01:54:28.000Z",
+      "expiresAt": "2026-10-17T06:00:00.000Z",
+      "expiryBasis": "editorial-next-local-midnight"
+    },
+    {
+      "id": "el-paso-recovery-brunch",
+      "publishFrom": "2026-10-14T01:54:28.000Z",
+      "expiresAt": null,
+      "expiryBasis": "ongoing-announcement-until-editorial-change"
+    }
+  ]
+}

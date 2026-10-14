@@ -1,5 +1,114 @@
 # Forma de trabajar y publicar
 
+### Agenda USA · publicación autorizada13-oct
+
+Luis aprueba las fichas y autoriza continuar con publicación: «Ok, las apruebo. sigue, no sé
+si toca publicarlos, si toca eso pues hazlo.». Release selectivo sobre main `b3040ef`, rama
+`release/approved-branch-agenda-20261013`; excluye las fotos candidatas A04. Los checkpoints
+locales que siguen son históricos. Preparación y QA terminadas; recibo remoto pendiente.
+
+- Ocho fichas ES/EN con14unidades aprobadas: acontecimientos fechados, noches recurrentes,
+  oferta Woodlands y participación externa Jets & Cars. Doce unidades ambiguas retenidas,
+  Guadalajara fuera de este release. Pinta comparte portada y separa funciones. Solo sus dos
+  destinos Eventbrite están corroborados; botones Jorge Houston/SA retenidos. No inferir precios,
+  inventario de entradas ni admisión gratuita donde no se conoce.
+- Fotos completas, mayores y clicables; Ladies/Don’t Cry a toda altura y borde derecho. Sin
+  botón «Ver publicación», controles de revisión ni duplicación del antiguo bloque Houston.
+  Home y SY_DATA corrigen Catrinas Houston a1nov. El menú El Paso conserva documento/zoom y
+  comparte el header actualizado de la ficha. Horarios, hero, menús/QR/WordPress conservados.
+- `approved-agenda.json` autoriza una proyección concreta de las fuentes existentes, ligada
+  a sus hashes. No es otro catálogo. Reloj compartido con zonas IANA; ventanas semiabiertas.
+  Inicio editorial desde esta aprobación, sin regla global de anticipación. Fin anunciado
+  retira el evento al cierre; con hora desconocida se retira al siguiente cambio de fecha
+  local, como corte editorial, sin inventar horario. Anuncios semanales siguen hasta revisión.
+- El empaquetado produce HTML inicial actualizado también sin JS, con la misma hora para
+  ambos idiomas. El navegador retira fechas vencidas con temporizador/retorno a la pestaña.
+  GitHub Actions comprueba cambios cada15minutos; si no cambiaron las páginas, hace solo una
+  consulta y omite build/publicación. Al vencer, CI→preview→producción conserva controles,
+  bytes/baseline y autorización del commit ya publicado. El HTML servido puede tardar la
+  cadencia más CI/propagación; no prometer retiro remoto al segundo ni ejecución puntual de cron.
+- La comprobación programada no puede publicar un main nuevo que todavía no esté en vivo.
+  Su concurrencia separada no cancela CI de un push. No incluye permisos de escritura nuevos.
+  Ejecución remota del scheduler y primer retiro real pendientes de observar después del release.
+
+QA local:303tests y46escenarios responsive/noJS, imágenes/foco/enlaces/horarios y fechas de
+caducidad/DST. Evidencia ignorada en `.artifacts/approved-agenda-candidate-v1/` y
+`.artifacts/approved-agenda-responsive-v1/`. Artefacto232archivos,23páginas indexables.
+Medición B05–B07, campañas/consentimiento y destinos Jorge siguen pendientes: no afirmar que
+esta agenda capture nuevos eventos Umami/GA4. El constructor histórico de revisión permanece
+en el checkpoint `5ce8558`; para publicación y siguientes previews usar el empaquetador actual.
+Rollback por operador controlado al release productivo anterior, nunca reconstrucción manual.
+
+**Fallo de CI previo al merge, corregido:** run38501068437 rechazó dos fixtures históricos
+que aprobaban bytes estáticos, mientras la agenda ahora produce HTML a la hora del build y
+liga su marcador al HEAD. Los fixtures clonan solo commits; la pasada local previa al commit
+todavía clonaba el catálogo anterior. Se fija la misma hora/HEAD y se verifica el digest de la
+proyección exacta, conservando todos los rechazos por digest distinto, suciedad y noindex.
+Validación final también sobre commit limpio; no hubo merge ni publicación desde CI fallido.
+
+
+### Frente B13-oct · intake editorial y contrato analítico locales
+
+**Ajuste posterior de portadas y procedencia de boletos:** Luis pide más presencia, foto de
+noches a toda altura/pegada al borde derecho y clic sin rótulo «Ver publicación».
+Portadas completas, sin recorte; mayores artes de ofertas/externos, labels visibles retirados
+y enlace accesible en imagen. Cuando no hay arte, el título enlaza el post; no repetir CTA.
+296tests y46escenarios pasan, incluyendo bordes/ratio nativo de portadas en320–1440 y ES/EN.
+
+Duda de Luis resuelta con N0: el post colaborativo Houston/GLOSSY anuncia Eventbrite;
+la bioGLOSSY→pintaycanta.eventbrite.com resuelve ahora exactamente a14oct y el mismo organizador
+publica28oct. Esos dos CTA quedan corroborados. Posts propios de Jorge anuncian la plataforma,
+pero no enlazan las URLs exactas encontradas en el perfilOrigin Entertainment: dos botones
+retenidos en revisión, imagen/título llevan al post de sede. El registro separa promoción del
+canal y confirmación del destino; no llamar «oficial» a una ficha solo por serHTTP200.
+Detalle/fuentes → «Portadas y comprobación de boletos» del documento técnico.
+Preview8820 actualizado; artefacto definitivo `.artifacts/branch-event-photo-review-final/public`,
+QA en `.artifacts/branch-event-photo-qa-v1/`. Sin publicación ni reloj/medición nuevos.
+
+**Integración en contexto solicitada por Luis:** A `5b96451` integrado localmente por merge
+`db24149`, conservando sus horarios/fotos/El Paso. `build-branch-event-review.mjs` compone ocho
+fichas USA ES/EN en un artefacto nuevo, sin editar los232archivos fuente publicables.
+Preview vigente loopback8820;14unidades observadas visibles y12ambiguas retenidas fuera de UI.
+Pinta comparte un solo arte con dos funciones/boletos; Houston reemplaza el bloque anterior,
+su snapshot, enlace genérico de promociones y emisor inline. Noches/ofertas/recintos externos
+conservan tipos y accesos propios; preventaSA omitida y horas/admisión desconocidas sin completar.
+Home local corrige Catrinas desde la fuente viva tanto en HTML como SY_DATA, para que no vuelva
+24-oct al regenerar; nuevo CSS corrige contraste del header Houston al hacer scroll.
+
+Checks295/295 y QA46escenarios verdes: cuatro sedes, ES/EN, cinco anchos320–1440, noJS,
+fuentes/destinos/anchors/imágenes/horarios y home con/sinJS. Capturas inspeccionadas.
+Artefacto241archivos en `.artifacts/branch-event-context-final/public`; evidencia y límites en
+`MIGRATION-AND-MEASUREMENT.md` §«Integración local en las fichas USA».
+La producción y el manifiesto conservan los bytes de A; este pase no activa derechos/ofertas,
+clock/scheduler, GA4 ni medición de la agenda. Sin push, PR ni publicación.
+Siguiente: aceptación visual y resolver vigencias/condiciones/permisos antes del renderer
+productivo/reloj y contrato analítico; el artefacto está congelado al corte13-oct.
+
+**Revisión posterior de fuentes USA:** Luis entrega 14 enlaces y captura, y pide cotejo/diseño
+cuidadosos y boletos Jorge. Investigación N1 acotada cerrada, con 16 posts observados y cuatro
+fichas Eventbrite observadas. Registro de fuentes/proyección y hallazgos → sección nueva de
+`MIGRATION-AND-MEASUREMENT.md`. Prototipo ES aislado de las fichas públicas, cuatro sedes,
+loopback8819, arte completo y destinos por intención. Caducidad, ES/EN, aprobación editorial
+y conexión Umami/GA4 no se activan con esta propuesta.
+
+Checks finales286/286 y contrato dirigido6/6; paquete público217 archivos conserva digest/bytes.
+QA visual1440/390/320 e interacción de las cuatro sedes pasan, sin erroresJS ni destinos vacíos;
+se corrigieron espacios de1registro, ausencia de arte, fila impar y actividad externa.
+Fuentes de arte privadas con hash/resolución; no originalesHD ni permisos comerciales inferidos.
+Recibos en `.artifacts/front-b-source-review-20261013/`, prototipo final en
+`.artifacts/event-design-review-final/public`. Sin push/PR, instalación ni publicación.
+Siguiente de ese checkpoint, atendido arriba: revisar la composición dentro de las fichas.
+Mantener un único release junto con A cuando el alcance y su publicación estén aprobados.
+
+Rama `feat/events-measurement-b-20261013`, base oficial `f9c13a0`, worktree propio.
+Registro/preflight y contrato → primer bloque de `MIGRATION-AND-MEASUREMENT.md`.
+21candidatos borrador; fuentes vivas reconciliadas y dos carteles GDL recuperados.
+Horario GDL fallback encargado por Luis; ventanas/recurrencia y aprobación de oferta pendientes.
+Sin cambios públicos ni conexión analítica/scheduler; archivos editoriales fuera del manifiesto.
+No inferir GA4 implementado: candidato histórico `b86f6cf` localizado, ausente en esta base.
+Siguiente: completar primera tanda de posts USA y ventanas, después adaptar registro/modelo
+existente y revisar los campos analíticos antes de cablear. Publicación conserva gate explícito.
+
 **Última actualización:** 2026-10-09 · **Responsables:** Luis, técnica; Karina, negocio/contenido y hero.
 **Estado:** candidato integrado en `main` y release limitado publicado el 8-oct; CI de PR y main
 verificado, publicación Pages manual y smoke remoto comprobado. CD automático, protecciones y

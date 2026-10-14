@@ -1,5 +1,314 @@
 # Migración de WordPress y medición · 8-oct-2026
 
+**Estado vigente13-oct:** Luis aprueba la composición final y autoriza su publicación.
+Proyección14unidades en ocho fichas USA ES/EN preparada sobre main publicado `b3040ef`,
+con reloj editorial/caducidad y sin fotos A04. Doce unidades y dos botones Jorge retenidos.
+Contrato, evidencia y estado remoto tienen dueño en «Agenda USA · publicación autorizada13-oct»
+de [WORKFLOW](WORKFLOW.md). B05–B07 siguen pendientes; no dar por conectado Umami/GA4.
+Los bloques siguientes conservan la investigación y preparación previas, incluidas sus
+restricciones anteriores de publicación. La fuente editorial sin confirmar no se promociona.
+
+
+## Frente B · preparación local13-oct · eventos y atribución
+
+### Portadas y comprobación de boletos
+
+Encargo posterior13-oct: fotos más presentes, Ladies/Don’tCry a toda altura y alineadas al
+borde derecho del frame; quitar «Ver publicación» visible y dejar el clic en la foto.
+Las dos portadas Houston pasan125px→36% del bloque en desktop,40% en móvil, sin padding
+del lado fotográfico. Proporción9:16 íntegra con `contain`; el texto conserva su espacio.
+Ofertas/participaciones externas pasan250→320px y ocupan el ancho disponible en móvil.
+Imagen enlazada con nombre accesible/foco/otra pestaña, sin pie/botón duplicado. Registros
+sin arte enlazan su título al post: no inventar ni copiar portadas entre sucursales.
+
+Luis pregunta de dónde vienen los enlaces Eventbrite y si son oficiales. Revisión N0 de
+fuentes primarias en navegador, sin checkout ni contacto:
+
+- **Pinta:** publicación colaborativa `DdpUHLrH4mo` con GLOSSY CO. y `sinyolandahouston`,
+  fechas14/28oct y leyenda «Tickets via pintaycanta.eventbrite.com». Bio de `glossyco.tx`
+  enlaza ese alias; navegación13-oct lleva a ID2002912451058 (14oct), misma URL del candidato.
+  El organizador enlazado `/o/78057432803` publica también ID2002912558379 (28oct).
+  Cadena directa de promoción oficial→organizador→funciones: ambos botones corroborados.
+  El dato2-oct del alias que llevaba a septiembre queda histórico, superado por esta relectura.
+- **Jorge:** posts propios `DeaxjMhxieb` (Houston) y `DeaxTe3hV7k` (SA) anuncian venta en
+  Eventbrite. Eso confirma la plataforma anunciada. Las URLs exactas del registro se
+  encontraron en Eventbrite/Origin Entertainment Group; las bios de sede observadas enlazan
+  OpenTable, sin enlace a esas funciones. Coincidencia de título/fecha/recinto no acredita
+  por sí sola autoridad de la URL. Sus dos CTA de boletos quedan retenidos en el renderer;
+  Houston enlaza la imagen a su post y SA el título al suyo. No afirmar que son falsos.
+
+Fuentes y cadena en `front-b-sources.json/tickets[].linkVerification`, separando
+`platformAnnouncedByBranch` de `exactDestinationConfirmed`; métodoHTTP corregido a «provider».
+El renderer exige confirmación del destino exacto para emitir CTA de boletos y registra
+`heldActions` fuera del paquete público. No cambia el candidato fuente ni certifica derechos,
+compra/checkout, inventario disponible u operación. Ladies/Don’tCry no reciben CTA de boletos.
+
+**Verificado:**296tests (nuevo caso negativo para URL no confirmada) y46escenarios locales
+Chromium, mismos idiomas/sedes/anchos/noJS. Bounds de portadas coinciden con arriba/abajo/derecha
+del frame y su ratio nativo; no recorte/letterbox, overflow, rótulos visibles ni recursos fallidos.
+Capturas1440/390 inspeccionadas; el capturador global volvió a dar fondo vacío por fragmento,
+descartado como prueba, recurrencia deduplicada en el ledgerDDTIA. QA válida en navegador y
+`.artifacts/branch-event-photo-qa-v1/`. Fuente232archivos sigue igual aA;14unidades visibles,
+12ambiguas y2acciones de boletos retenidas. Preview8820 sirve
+`.artifacts/branch-event-photo-review-final/public`, con release/reconciliation/verification.
+No publicación/push/PR, renderer productivo/reloj ni conexión analítica nueva.
+
+### Integración local en las fichas USA
+
+Luis solicita integrar la propuesta para verla dentro de cada ficha, revisar concordancia y
+evitar repeticiones; mantener ambiguos en revisión y no publicar. Se integra el corte A
+`5b96451` por merge local `db24149`, sin editar su worktree ni incorporar cartas de otros frentes.
+El builder de revisión usa el manifiesto aprobado y compone ocho fichas ES/EN dentro de una
+salida nueva en `.artifacts`; el repositorio conserva los232archivos publicables de A idénticos.
+
+`scripts/editorial/branch-agenda.mjs` proyecta el mismo registro de26unidades:14visibles,
+12retenidas por caption conflictivo o vigencia/recurrencia sin confirmar. No duplica el intake
+de21borradores ni convierte el calendario completo en oferta aprobada. Todos conservan
+`publicationEnabled:false` y sus aprobaciones nulas. GDL/Solteras continúa en el intake, fuera
+del alcance de este pase USA. La proyección está congelada a `observedOn`,13-oct; filtra fechas
+anteriores a ese corte en el builder, sin reloj dinámico ni renovación operativa automática.
+
+- **Una agenda por ficha:** queda después de comida/bebidas y antes de Catering Houston o
+  ubicación en las otras tres. Header añade un acceso Agenda/Events al mismo anchor. No crea
+  otro H1 ni repite reservas, carta, dirección o horarios dentro de los registros.
+- **Pinta:** un arte genérico, un título y dos funciones con fecha, detalles, check-in y enlace
+  propios;14y28oct no se confunden con una recurrencia. No duplica imagen/publicación/boletos.
+- **Houston:** sustituye toda la antigua envolturaBPD, incluyendo cartelJorge, snapshot8-oct,
+  enlace genérico de promociones y listener inline. Queda una aparición del concierto y un
+  enlace a sus boletos. Los helpers analíticos comunes quedan intactos; el nuevo bloque no
+  emite eventos de medición todavía.
+- **Clasificación:** noches semanales corroboradas tienen su bloque; HappyHourWoodlands es
+  combo anunciado con bebida elegible y franja16–21; RecoveryEP conserva domingo desde10,
+  sin duplicar esa hora en descripción ni asignar fin/sábado/NFLespecífico.
+- **Externos:** JorgeSA muestra K.O.P./314NolanStreet y su Eventbrite. Se omite el cartel de
+  preventa que vence antes del concierto, conservándolo en el registro para revisión.
+  Jets&Cars muestra Conroe, patrocinio y solo invitación, sin compra/reserva inventada.
+- **Datos no resueltos:** Don’tCrySA/TW y slots de cartelera no se presentan como agenda
+  permanente. JorgeEP mantiene fecha/post propio sin afirmar hora, gratuidad ni boletos.
+  Pelucas conserva17oct, sin beneficio de shot no conciliado. Oferta/derechos/ventanas de
+  todas las propuestas siguen pendientes antes de su activación comercial.
+- **Concordancia al navegar:** el teaser existente del home local usa Houston1nov,
+  Woodlands30oct y SA1nov, rango30oct–1nov. La corrección se aplica también a SY_DATA,
+  conservando horarios/medios/heroes y otras campañas; no revive24oct al regenerar con JS.
+  La navegación Houston al hacer scroll conserva color claro sobre fondo oscuro mediante
+  una regla específica de esta revisión, tras detectar que un override anterior oscurecía el texto.
+
+`node scripts/build-branch-event-review.mjs --asset-root <marketing-2026-explícito> <salida-nueva>`
+genera241archivos permitidos/hash, ochoJPEG verificadas y CSS acotado; fuentes editoriales,
+notas privadas y reconciliación quedan fuera del directorio servido. `serve-review.mjs` conserva
+loopback127.0.0.1 y allowlist explícita. Preview vigente `http://127.0.0.1:8820/houston#programacion-houston`.
+El manifiesto productivo no se amplía y el build normal no incluye estos carteles ni la agenda.
+
+**Verificado:** npmci/check295/295, contrato de integración5/5;46escenarios Chromium
+(cuatro sedes×dos idiomas×cinco anchos320/390/768/1024/1440; cuatro noJS; home con/sinJS).
+Sin overflow, erroresJS ni recursos locales fallidos. Cada ID/agenda único; enlaces propios
+de sede con nueva pestaña/foco, boletos distinguidos también en su nombre accesible; imágenes
+cargadas y enteras. Horarios del corteA y menú/reservas/contacto/Catering/footer preservados.
+Capturas desktop/móvil de las cuatro sedes inspeccionadas; comparación por secciones comprueba
+el resto de las fichas. Fuente publicable232/232 igual a A; el artefacto cambia solo ocho fichas,
+teaserHTML y datos de esa campaña, además de los nueve assets nuevos de revisión.
+
+Artefacto definitivo: `.artifacts/branch-event-context-final/public`.
+Recibos: `.artifacts/branch-event-context-v3/` (check/parity), release/reconciliation del definitivo y
+`.artifacts/branch-event-context-final-qa/` (report/capturas). No certifica Safari/iPhone físico,
+checkout externo, nuevos eventos Umami/GA4 ni scheduler. Servicios externos bloqueados en QA.
+Sin publicación/push/PR ni cambios en WP, QR, DNS, CRM o cuenta analítica. Antes de producir:
+aceptación visual, permisos/vigencias/condiciones pendientes, integración del reloj/hash existente
+y pase separado del contrato analítico; no promover directamente este artefacto congelado.
+
+### Revisión posterior de publicaciones USA y propuesta de agenda
+
+Luis aporta 14 URLs y una captura de Houston. Pide comparar los documentos, distinguir los
+tipos de actividad y comprobar boletos de Jorge Guevara antes de diseñar. Se revisaron las
+fuentes con investigación N1 acotada: 16 posts visibles (14 recibidos y dos propios de Houston
+descubiertos), cuatro fichas de proveedor en Eventbrite y contraste editorial. No hubo mensajes,
+checkout, compras ni cambios remotos.
+
+Fuentes y discrepancias observadas: `scripts/editorial/front-b-sources.json`. La proyección
+para revisar el diseño vive en `front-b-review.json`: 26 unidades, incluidos slots y brunch;
+no son 26 conciertos ni otro catálogo aprobado. El intake anterior conserva sus 21 borradores.
+El preflight enlaza esta revisión y ya no repite la solicitud obsoleta de seis enlaces.
+`ingesta.json` corrige el bloqueo horario de Pinta superado por la apertura confirmada de
+miércoles, 16:00–23:00. Eso no aprueba oferta, derechos ni operación.
+
+| Fuente / tipo | Cotejo y consecuencia editorial |
+|---|---|
+| Cuatro carteleras | Son compilaciones por días. No agregan un evento redundante ni prueban que toda actividad se repita indefinidamente. Mes Hispano, Pelucas y Jorge El Paso conservan sus fechas propias. Los slots sin fecha no reciben fechas inventadas. |
+| Pinta Houston | Funciones del 14 y 28 de octubre, 19:00–22:00, check-in 18:30 y boletos específicos. No todos los miércoles. Ambos Eventbrite usan el mismo arte genérico, sin fecha ni precio; no es un cartel exclusivo de Halloween. El alias antiguo no sustituye estos enlaces. |
+| Ladies y Don’t Cry | La portada Houston confirma miércoles, 2×1 en cócteles, open mic y ronda de shots para ellas; no trasladar beneficios a otras sedes. Don’t Cry Houston confirma jueves, DJ e inglés/español. Los captions de SA y Woodlands nombran Houston: discrepancia conservada, sin aprobarla desde la cuenta que publicó. La franja de noviembre en Woodlands no se transfiere a octubre. |
+| Happy Hour Woodlands | Oferta de jueves, 16:00–21:00: Pepito + una bebida por USD 27. Bebida elegible: tequila, whisky, ron o brandy. No todos los cócteles ni oferta de otras sedes. Vigencia y términos adicionales pendientes. La franja Houston 14:00–19:00 de la hoja choca con apertura a las 16:00 y se omite. |
+| Recovery Brunch El Paso | Fuente propia: domingos desde las 10:00, fin desconocido. La cartelera también menciona sábado; no extenderle el horario del domingo. Brunch y NFL no certifica rivales, partidos, derechos de transmisión o descuentos. |
+| Jets & Cars | Colaboración del 14 de noviembre, 11:00–13:00, en una instalación privada de aviación en Conroe; solo por invitación. Sin Yolanda participa como patrocinador. Va en actividad externa, sin reservar mesa ni inventar boletos. El NAP del pie del cartel no determina el recinto ni sustituye la ficha. |
+| Jorge Houston | 13 de noviembre, 20:00–23:00, en la cantina de 4901 Washington Ave; invitada Mariana Ochoa. Eventbrite declara venta disponible, sin comprobar cantidades ni checkout. Se usa arte del proveedor sin precio para revisar el concierto. La preventa de USD 25 del post vence el 15 de octubre a las 20:00 y debe tener caducidad separada. |
+| Jorge San Antonio | 14 de noviembre, 20:00–23:30, en K.O.P./King of Padel, 314 Nolan Street; no en la cantina. Post y boletos coinciden. Recinto externo y boleto propio. Arte de preventa hasta el 15 de octubre sin hora exacta: `artworkSafeBefore` es un corte conservador de revisión, no un término comercial confirmado. |
+| Jorge El Paso / Woodlands | El Paso anuncia palomazo del 16 de octubre en 340 Vin Rambla, sin horario, precio o enlace de compra comprobado. Ver post; no afirmar entrada gratis ni usar boleto Houston. No se verificó una fecha propia para Woodlands en esta búsqueda; no trasladar el concierto vecino. |
+
+**Arte:** 14 JPEG publicados guardados en `marketing-2026/`, con hashes, dimensiones y
+procedencia en `usa-post-artwork-2026-10-13.json`: cuatro carteleras de 2000×2500, publicaciones
+particulares y dos imágenes de Eventbrite. Portadas de Ladies y Don’t Cry Houston recuperadas
+a 720×1280 e inspeccionadas; no se afirman originales HD ni se amplían artificialmente.
+La captura de Luis se conserva como respaldo. El registro no guarda URLs CDN firmadas ni
+comentarios personales. Los permisos siguen en `review-only`.
+
+**Diseño para revisión:** se conserva la identidad existente y se propone una agenda dentro
+de cada ficha: próximas fechas iguales y cronológicas, noches de la semana, comida/ofertas y
+participaciones externas. Se comparó un tratamiento único de cartel/datos con una agenda por
+intención; se elige esta última para que una promoción tenga su propio nivel de lectura.
+Se respeta el brief §21: ningún protagonista arbitrario con fechas secundarias. Cero registros
+omite sección; uno no deja una columna vacía; varios forman filas adaptables. La cartelera
+compilada aparece como fuente desplegable. Arte con `contain`, datos legibles en HTML y CTA
+según intención: publicación, función exacta, recinto externo o acceso por invitación.
+`/eventos` sigue siendo contratación privada. No cambia HTML/CSS, home, hero ni medios de A.
+
+**Prototipo aislado:** `build-event-review.mjs --asset-root <directorio-explícito>` genera un
+paquete con allowlist y hashes, 18 archivos, en `.artifacts/event-design-review-final/public`.
+Servidor existente limitado a `127.0.0.1`, puerto 8819, con cuatro selectores de sede. Sin
+tracker, almacenamiento, embed Instagram, escritura de producción ni scheduler. Es una
+propuesta ES del corte 13 de octubre; no una agenda comercial aprobada ni un publicador temporal.
+Recurrencias, ventanas, derechos y caducidad del arte deben adaptarse al modelo/hash existente.
+No se certifican todavía ES/EN completo, reloj, retiro noJS ni scheduler.
+
+**QA:** seis pruebas del contrato semántico verifican recinto externo y boletos por sede,
+productos/franjas, fuentes, recurrencias no inventadas y restricciones de arte. La primera
+corrida seleccionaba el primer brunch (sábado Houston) para comprobar el domingo de El Paso;
+se corrigió el selector por ID, sin modificar el dato ni omitir la prueba. La corrida final
+pasó 286/286. Los 217 archivos públicos mantienen sus bytes y el digest productivo
+`78146976243c1a6359a40d912180010cb09642fed3643a3857b70db1f43dc36f`.
+
+Capturas desktop 1440 y móvil 390/320 generadas con `preview.py` e inspeccionadas. Se ajustaron
+el registro único, arte ausente, última fila impar, orden sábado/domingo y disposición de
+actividad externa. En navegador: una sede visible, enlaces sin destinos vacíos, sin overflow
+ni errores JS; imágenes dentro del viewport cargadas con `contain`. Las imágenes lazy fuera
+de pantalla no se consideran fallidas por no cargar. Recibos en
+`.artifacts/front-b-source-review-20261013/`. No se confirma transporte Umami/GA4 por este QA.
+
+Encargo vigente: bloque B01–B07 del plan operativo del vault. Rama propia
+`feat/events-measurement-b-20261013`, base `origin/main` `f9c13a0`. Este corte prepara datos,
+contrato y diagnóstico; no modifica HTML/CSS, `public-data.js`, tracker, rutas, WP, QR,
+campañas, propiedad GA4 ni workflows. Integración con A será una sola revisión posterior.
+
+### Registro y fuentes
+
+`scripts/editorial/front-b-events.json` conserva21candidatos: Houston10, SA6, Woodlands3,
+Guadalajara2. Todos borradores, con bloqueos explícitos y sin autorización de publicación.
+Es un intake incompleto para adaptar al modelo existente `BranchEvent`/`branch-programming.ts`,
+no otro motor de reloj ni un catálogo servido al navegador. Los datos desconocidos quedan `null`.
+El preflight `node scripts/audit-front-b.mjs` solo valida procedencia/aislamiento y enumera
+pendientes/lista corta; no resuelve ventanas, convierte datos a aprobados ni llama APIs.
+
+Originales del Doc OPEN TABLE/EVENTOS releídos13-oct: Houston/Woodlands `Sheet1!A1:E65`,
+SA lectura completa legible del XLSX, sin conversión ni descarga binaria en esta sesión.
+Snapshot completo/reconciliación privados en `clientes-assets/sin-yolanda/marketing-2026/`.
+Cotejo de columnas nombre/fecha, no paridad comercial/binaria. Woodlands coincide en ese cotejo.
+Houston: Catrinas desaparece de fila20/24-oct y pasa a fila29/1-nov. SA conserva Terror9-oct,
+Celebridad24-oct y Catrinas1-nov frente a la copia2-oct; hay desplazamientos de filas posteriores.
+El home actual todavía declara Houston Catrinas24-oct: corrección pendiente de integración,
+sin alterar por este corte el archivo de datos compartido con A.
+
+Post Guadalajara `DeIbppdgMu3`: Noche de Brujas31-oct, sede/dirección y cartel coinciden.
+Post `Dd7fzQkg_wG`: Jueves de Solteras, sede/dirección confirmadas; sin horario/periodo.
+JPEG publicados1440×1920 descargados y revisados, hash/procedencia en
+`gdl-post-artwork-2026-10-13.json`. No se conservan URLs CDN efímeras ni comentarios personales.
+Arte `review-only`; link de cada imagen será el post específico con nombre accesible.
+Luis13-oct pide usar horario de la sucursal: GDL19:00–03:00 del día siguiente, cotejado
+visible/JSON-LD. Brujas: ventana de referencia31-oct19:00→1-nov03:00 `America/Mexico_City`.
+Rotular **horario de la sucursal**, no horario confirmado del evento. Solteras: jueves,
+mismo horario de referencia, inicio/fin de recurrencia pendientes. No inventar una vigencia.
+
+Primera solicitud acotada de post/arte: Houston Pinta y Canta14-oct y Lotería/Karaoke15-oct;
+SA Pelucas17-oct y Don Omar22-oct; Woodlands Mes Hispano15-oct y Catrinas30-oct.
+El calendario no aprueba condiciones, entradas, premios ni la realización de un afterparty.
+NFL/partidos, patrocinio externo, miércoles sin fechas y Thanksgiving por confirmar permanecen
+separados; El Paso no tiene calendario. Fuentes secundarias Houston/Eventbrite del intake anterior
+siguen en `ingesta.json`; sus links no sustituyen los posts ni autorizan condiciones comerciales.
+
+### Contrato editorial propuesto, todavía sin scheduler
+
+Usar el evaluador existente del programa: IDs estables por sede/ocurrencia, revisión/digest,
+fuente/celda, título localizado, tipo, inicio/fin con offset e IANA, recurrencia/excepciones,
+ventana de publicación/retiro, arte/hash/alt/derechos, post/acción y aprobación de revisión exacta.
+Estados editoriales: borrador→confirmado→listo; estado de entrega separado publicado/vencido.
+Mapear confirmado/listo al `status:approved` existente únicamente con aprobación/hash íntegros;
+una publicación Instagram acredita fuente, no aprobación universal. Si faltan arte/post,
+conservar revisión según B03; no rellenar con imagen/perfil ajenos. Horas fallback rotuladas.
+
+Luis no elige anticipación global y considera corta una semana. Propuesta: mostrar desde revisión
+completa hasta cierre, con ventana editable por evento; `publishFrom/expiresAt` siguen pendientes
+en el intake. No fabricar medianoche de apertura ni días de anticipación. Cierre03:00 pertenece
+al día siguiente. Caducidad cliente y HTML inicial deben coincidir; JS solo no retira HTML noJS.
+Antes de activar: probar límites exactos antes/al aparecer/al vencer, medianoche/DST por zona,
+recurrencias,0/1/2/4/5eventos, ausencia de arte y móvil/desktop. Esas pruebas de integración y
+visuales **no se ejecutaron por este corte sin UI**. Scheduler: derivar próxima transición del
+modelo existente, comparar digest y construir/publicar solo con cambio; alertar fallos/atrasos.
+Intervalo, responsable y activación pendientes; no nuevo cron ni automatización remota.
+
+### Auditoría analítica real y mapa para cablear después
+
+Fuente auditada `assets/js/site-analytics.js`:23páginas cargan loader único y404se excluye.
+HTTPS/hosts/rutas permitidos, DNT/desactivación, cola acotada y navegación no bloqueada existen.
+La sanitización deja únicamente `action/branch/language`; borra queries y `event/kind` editorial.
+Sin dimensiones de ubicación/destino ni catálogo de campañas. `branchFromPath` omite
+`/guadalajara`: contexto sin atributo puede caer en `group`, pendiente de mapear a `san-ignacio`.
+El GET público del tracker coincide con la fuente auditada; home/aviso no cargan GA4. Son GET sin
+ejecutar JS ni emitir eventos, **no verificación de transporte**. Recibos en `.artifacts/front-b-20261013/`.
+
+| Intención | Emisor actual | Nombre y extensión propuesta |
+|---|---|---|
+| Llegada/página/entrada | auto pageview Umami + hook común | URL pública canónica + UTM permitida; referrer reducido; landing separado de adquisición |
+| Abrir selector/elegir sede/filtro | click delegado común | `location_selector_open`, `location_select`, `location_filter_click` |
+| Ir a ficha o carta | común; carta también emisor de ficha importada | `branch_click`, `menu_click`; `branch` destino y `page_branch` contexto separados |
+| OpenTable/WhatsApp/teléfono/mapa | emisor propio de ficha; común donde falta | `reservation_click`, `phone_click`, `directions_click`; WhatsApp Catering se clasificará contacto Catering, no reserva por arrastre |
+| Catering/contacto | común para enlaces/clases actuales | `catering_click`, `catering_contact_click`; no lead confirmado |
+| Campaña en cartelera/evento/post | home hoy enlaza ficha; agenda importada emite directo | preservar evento único, añadir `event_id` allowlist y destino simbólico; link imagen+texto no duplica al propagar click |
+| Idioma | común + control propio según página | `language_switch_click`; excluir `menu_click` accidental de controles de idioma |
+
+El común omite elementos cuyo emisor importado ya cuenta. Agenda dispatcha `sy:branch-action`
+y llama Umami: no añadir un segundo listener Umami al custom event. Si se incorpora GA4,
+crear un único adaptador al mismo evento normalizado. Los emisores importados no comparten todos
+los filtros `isTrusted`/cola del común: verificar teclado/new-tab y carga tardía en navegador.
+No certificar unicidad solo contando funciones en el grafo.
+
+Dimensiones propuestas, pendientes de implementación: `schema_version`, `branch` (destino),
+`page_branch`, `language`, `action`, `link_location` (header/hero/selector/content/agenda/footer),
+`destination` (branch/menu/reservation/maps/phone/catering/instagram_post), `event_id` del registro,
+`landing_path` allowlist y `legacy_hop` verificado. GDL usa siempre ID histórico `san-ignacio`
+con ruta pública `/guadalajara`. Sin texto libre, href completo, título personal, búsquedas,
+formularios, nombre/email/teléfono, URL privada, `gclid/fbclid` ni IDs de contacto.
+
+UTM solo en entrada externa controlada, nunca en enlaces internos. Catálogo versionado por
+campaña con source/medium/campaign permitidos: instagram/organic_social para posts,
+qr/offline para QR creado para esa campaña, google/cpc solo campaña Ads comprobada.
+No aceptar solo un regex: códigos deben existir en el catálogo; sin coincidencia, descartar.
+No generar enlaces externos nuevos por este corte. Referrer disponible es evidencia limitada:
+vacío=desconocido/directo no distinguibles; saltoTX/USA no demuestra Instagram ni QR.
+Separar `legacy_hop` de source; capturar solo si referrer/marcador controlado lo acredita.
+Preservar UTMs permitidas en redirects; no migrar QR antiguos para inventar atribución.
+Propuesta de URL Umami: ruta permitida + solo UTM catalogada después del hook; comprobar
+recepción real y reporte de campaña porque hoy `data-exclude-search` elimina toda la query.
+Session attribution primero por sesión/pestaña si se decide persistir, sin IDs de persona,
+sin sustituir la fuente por navegación interna ni reproducir visitas anteriores al consentimiento.
+
+### GA4, privacidad y aceptación pendiente
+
+El alta8-oct no debe repetirse. Preparación recuperable en Git `b86f6cf` sobre `6b5d339`,
+rama `feat/ga4-basic-consent`: config `enabled:false`, consentimiento/QA y borrador del aviso.
+La base oficial actual no contiene esos assets ni la UI; no cherry-pick completo sobre páginas
+de A, ni declarar consentimiento implementado por una memoria histórica. Recuperar/adaptar
+selectivamente cuando corresponda, conservando ID público y decisiones de cuenta pendientes.
+Modo básico: no carga/envía GA4 antes de aceptar; rechazar/revocar con facilidad equivalente,
+cero replay previo, DNT/GPC/exclusiones, errores no bloqueantes, Signals/ads denegados.
+Aviso actual describe Umami/mapas; responsable/canal y retención/personalización pendientes.
+Rechazo GA4 no equivale hoy a apagar Umami; explicarlo y decidir política antes de cablear.
+
+QA requerida B07: un click→un evento por proveedor; teclado/ctrl/nueva pestaña, UTMs/referrer y
+series GDL; aceptar/rechazar/revocar/expirar y almacenamiento fallido; ausencia PII; excluir
+local/demo/pruebas; fallo proveedor permite navegar. Transporte real Umami/GA4 requiere pase
+autorizado por dominio/consentimiento y recibo, distinto de VM o presencia de script.
+KPIs: visitas/fichas, menú/reserva/contacto/eventos/campañas por sede/idioma/entrada. Clic≠reserva,
+consumo, venta o lead recibido; no sumar visitantes únicos de dominios ni prometer retrospectiva.
+Base técnica consultada N0: [Umami](https://docs.umami.is/docs/tracker-configuration) y
+[Google consent](https://developers.google.com/tag-platform/security/guides/consent).
+
 ## Ampliación12-oct · cuatro raíces y canonical Guadalajara
 
 Luis ratifica destinos generales y añade Maricarmen/GDL: TX/USA/Maricarmen →

@@ -1,0 +1,661 @@
+{
+  "version": 1,
+  "mode": "local-design-review-only",
+  "observedOn": "2026-10-13",
+  "publicationEnabled": false,
+  "schedulerEnabled": false,
+  "sourceRegistry": "front-b-sources.json",
+  "branches": {
+    "houston": {
+      "name": "Houston",
+      "theme": "houston",
+      "calendarSource": "Deavvksx1jo",
+      "calendarArt": {
+        "file": "hu-cartelera-Deavvksx1jo.jpg",
+        "width": 2000,
+        "height": 2500,
+        "sha256": "52d8917671e232281ec4f73d4c887a1fe230012b1aed804dea71743e9f3f1201",
+        "rights": "review-only"
+      },
+      "notes": [
+        "Pinta tiene funciones propias, no todos los miércoles.",
+        "Happy Hour14–19 de la hoja choca con apertura16h; no se incorpora.",
+        "Ladies: vigencia, condiciones2x1 y ronda de shots pendientes antes de activar."
+      ],
+      "units": [
+        {
+          "id": "houston-pinta-canta-20261014",
+          "title": "Pinta y Canta",
+          "semanticKind": "workshop",
+          "temporalKind": "dated",
+          "sourceRefs": [
+            "Deavvksx1jo",
+            "tickets-pinta-14",
+            "DdpUHLrH4mo"
+          ],
+          "editorialStatus": "review",
+          "operationalApproval": null,
+          "rightsApproval": null,
+          "publicationEnabled": false,
+          "date": "2026-10-14",
+          "start": "19:00",
+          "end": "22:00",
+          "timeZone": "America/Chicago",
+          "detail": "Despechados Ladies Night. Check-in desde las 18:30.",
+          "artwork": {
+            "file": "hu-pinta-provider-2002912451058.jpg",
+            "width": 940,
+            "height": 529,
+            "sha256": "48122aad25f280b32479d611a7ada7b2af0b0d212be40ef274abb1c0356070ca",
+            "rights": "review-only"
+          },
+          "imageSource": "DdpUHLrH4mo",
+          "action": "tickets-pinta-14"
+        },
+        {
+          "id": "houston-pinta-20261028",
+          "title": "Pinta y Canta",
+          "semanticKind": "workshop",
+          "temporalKind": "dated",
+          "sourceRefs": [
+            "tickets-pinta-28",
+            "DdpUHLrH4mo"
+          ],
+          "editorialStatus": "review",
+          "operationalApproval": null,
+          "rightsApproval": null,
+          "publicationEnabled": false,
+          "date": "2026-10-28",
+          "start": "19:00",
+          "end": "22:00",
+          "timeZone": "America/Chicago",
+          "detail": "Peluca Halloween. Check-in desde las 18:30.",
+          "artwork": {
+            "file": "hu-pinta-provider-2002912451058.jpg",
+            "width": 940,
+            "height": 529,
+            "sha256": "48122aad25f280b32479d611a7ada7b2af0b0d212be40ef274abb1c0356070ca",
+            "rights": "review-only"
+          },
+          "imageSource": "DdpUHLrH4mo",
+          "action": "tickets-pinta-28",
+          "artworkRole": "provider-generic-same-art-both-functions"
+        },
+        {
+          "id": "houston-jorge-mariana-20261113",
+          "title": "Jorge Guevara",
+          "semanticKind": "performance",
+          "temporalKind": "dated",
+          "sourceRefs": [
+            "DeaxjMhxieb",
+            "tickets-jorge-houston"
+          ],
+          "editorialStatus": "review",
+          "operationalApproval": null,
+          "rightsApproval": null,
+          "publicationEnabled": false,
+          "date": "2026-11-13",
+          "start": "20:00",
+          "end": "23:00",
+          "timeZone": "America/Chicago",
+          "detail": "Con Mariana Ochoa como invitada especial.",
+          "artwork": {
+            "file": "hu-jorge-provider-2000487416715.jpg",
+            "width": 940,
+            "height": 470,
+            "sha256": "13482d7e84dcff40d66821ce0a2a43559d11f33e1b81879f79a2ce0e0f1ce9e7",
+            "rights": "review-only"
+          },
+          "imageSource": "tickets-jorge-houston",
+          "action": "tickets-jorge-houston"
+        },
+        {
+          "id": "houston-ladies-weekly",
+          "title": "Ladies Night",
+          "semanticKind": "recurring-night",
+          "temporalKind": "weekly",
+          "sourceRefs": [
+            "DeL7Ly_vyo2"
+          ],
+          "editorialStatus": "review",
+          "operationalApproval": null,
+          "rightsApproval": null,
+          "publicationEnabled": false,
+          "weekday": 3,
+          "detail": "2×1 en cócteles. Open mic.",
+          "artwork": {
+            "file": "hu-ladies-DeL7Ly_vyo2.jpg",
+            "width": 720,
+            "height": 1280,
+            "sha256": "0d218381d3bd7e8727a105ddebafc6fa05a0991c949f4a9a7961bc4220ba4c78",
+            "rights": "review-only"
+          },
+          "imageSource": "DeL7Ly_vyo2",
+          "startsOn": null,
+          "endsOn": null,
+          "timeZone": "America/Chicago"
+        },
+        {
+          "id": "houston-dontcry-weekly",
+          "title": "Don’t Cry",
+          "semanticKind": "recurring-night",
+          "temporalKind": "weekly",
+          "sourceRefs": [
+            "Dd9juidPsf6"
+          ],
+          "editorialStatus": "review",
+          "operationalApproval": null,
+          "rightsApproval": null,
+          "publicationEnabled": false,
+          "weekday": 4,
+          "detail": "Hits en inglés y español. DJ en vivo.",
+          "artwork": {
+            "file": "hu-dontcry-Dd9juidPsf6.jpg",
+            "width": 720,
+            "height": 1280,
+            "sha256": "35dc9f47dd3a2719ac7d0f1cf183b535fb4a832dda883743eeda6d49bfc4cd99",
+            "rights": "review-only"
+          },
+          "imageSource": "Dd9juidPsf6",
+          "startsOn": null,
+          "endsOn": null,
+          "timeZone": "America/Chicago"
+        },
+        {
+          "id": "houston-cartelera-slot-5",
+          "title": "Ahogo y desahogo",
+          "semanticKind": "theme-night",
+          "temporalKind": "weekday-slot",
+          "weekday": 5,
+          "timeZone": "America/Chicago",
+          "sourceRefs": [
+            "Deavvksx1jo"
+          ],
+          "editorialStatus": "review",
+          "operationalApproval": null,
+          "rightsApproval": null,
+          "publicationEnabled": false,
+          "detail": "Viernes de Sin Yolanda.",
+          "validityUnknown": true
+        },
+        {
+          "id": "houston-cartelera-slot-6",
+          "title": "Recovery Brunch / Ahogo y desahogo",
+          "semanticKind": "brunch",
+          "temporalKind": "weekday-slot",
+          "weekday": 6,
+          "timeZone": "America/Chicago",
+          "sourceRefs": [
+            "Deavvksx1jo"
+          ],
+          "editorialStatus": "review",
+          "operationalApproval": null,
+          "rightsApproval": null,
+          "publicationEnabled": false,
+          "detail": "Dos planes anunciados para el sábado, sin horario propio confirmado.",
+          "validityUnknown": true
+        },
+        {
+          "id": "houston-cartelera-slot-0",
+          "title": "Brunch y NFL",
+          "semanticKind": "brunch",
+          "temporalKind": "weekday-slot",
+          "weekday": 0,
+          "timeZone": "America/Chicago",
+          "sourceRefs": [
+            "Deavvksx1jo"
+          ],
+          "editorialStatus": "review",
+          "operationalApproval": null,
+          "rightsApproval": null,
+          "publicationEnabled": false,
+          "detail": "La cartelera de esta sede anuncia brunch y NFL.",
+          "validityUnknown": true
+        }
+      ]
+    },
+    "the-woodlands": {
+      "name": "The Woodlands",
+      "theme": "woodlands",
+      "calendarSource": "Deavhittoz1",
+      "calendarArt": {
+        "file": "tw-cartelera-Deavhittoz1.jpg",
+        "width": 2000,
+        "height": 2500,
+        "sha256": "2805f98a2b8e2675340a1953fb60f9decbc72bccbca8f1dd3aa1235bd17cf4bc",
+        "rights": "review-only"
+      },
+      "notes": [
+        "Mes Hispano corresponde15oct; no repetir todos los jueves.",
+        "Don’tCry: el reel local nombra Houston, requiere conciliación antes de anunciarlo aquí.",
+        "El pie del cartelJets muestra otro NAP; no cambia ficha ni recintoConroe.",
+        "Vigencia/condiciones de las ofertas semanales pendientes."
+      ],
+      "units": [
+        {
+          "id": "the-woodlands-mes-hispano-20261015",
+          "title": "Mes Hispano",
+          "semanticKind": "theme-night",
+          "temporalKind": "dated",
+          "sourceRefs": [
+            "Deavhittoz1",
+            "calendar-the-woodlands-live-20261013"
+          ],
+          "editorialStatus": "review",
+          "operationalApproval": null,
+          "rightsApproval": null,
+          "publicationEnabled": false,
+          "date": "2026-10-15",
+          "timeZone": "America/Chicago",
+          "detail": "Cierre del Mes Hispano."
+        },
+        {
+          "id": "the-woodlands-ladies-weekly",
+          "title": "Ladies Night",
+          "semanticKind": "recurring-night",
+          "temporalKind": "weekly",
+          "sourceRefs": [
+            "DeL7RNGubUK",
+            "Deavhittoz1"
+          ],
+          "editorialStatus": "review",
+          "operationalApproval": null,
+          "rightsApproval": null,
+          "publicationEnabled": false,
+          "weekday": 3,
+          "detail": "2×1 en cócteles.",
+          "startsOn": null,
+          "endsOn": null,
+          "timeZone": "America/Chicago"
+        },
+        {
+          "id": "the-woodlands-thursday-offer",
+          "title": "Thursday Happy Hour",
+          "semanticKind": "offer",
+          "temporalKind": "weekly",
+          "sourceRefs": [
+            "Dd9hkdrJRo3"
+          ],
+          "editorialStatus": "review",
+          "operationalApproval": null,
+          "rightsApproval": null,
+          "publicationEnabled": false,
+          "weekday": 4,
+          "start": "16:00",
+          "end": "21:00",
+          "detail": "Pepito + una bebida por USD 27.",
+          "conditions": "Bebida a elegir: tequila, whisky, ron o brandy.",
+          "price": {
+            "amount": 27,
+            "currency": "USD",
+            "kind": "bundle",
+            "totalUnknown": true
+          },
+          "artwork": {
+            "file": "tw-happy-Dd9hkdrJRo3.jpg",
+            "width": 1350,
+            "height": 1688,
+            "sha256": "d02db0a2b174cb139a6f488c063ba5b0365cef37ccc77153d18ea974553e1fbb",
+            "rights": "review-only"
+          },
+          "imageSource": "Dd9hkdrJRo3",
+          "startsOn": null,
+          "endsOn": null,
+          "timeZone": "America/Chicago"
+        },
+        {
+          "id": "the-woodlands-jets-cars-20261114",
+          "title": "Jets & Cars",
+          "semanticKind": "external-sponsorship",
+          "temporalKind": "dated",
+          "sourceRefs": [
+            "DeKHqcjy606"
+          ],
+          "editorialStatus": "review",
+          "operationalApproval": null,
+          "rightsApproval": null,
+          "publicationEnabled": false,
+          "date": "2026-11-14",
+          "start": "11:00",
+          "end": "13:00",
+          "timeZone": "America/Chicago",
+          "detail": "Sin Yolanda participa como patrocinador.",
+          "venue": {
+            "kind": "external",
+            "name": "Instalación privada de aviación",
+            "city": "Conroe",
+            "address": null
+          },
+          "admission": "invitation-only",
+          "artwork": {
+            "file": "tw-jets-DeKHqcjy606.jpg",
+            "width": 1350,
+            "height": 1688,
+            "sha256": "a372d9d8f4af5d61f7dd188eb4e5c79f7bc67a527e4fcfbb125027a9035b80cb",
+            "rights": "review-only"
+          },
+          "imageSource": "DeKHqcjy606"
+        },
+        {
+          "id": "the-woodlands-cartelera-slot-5",
+          "title": "Ahogo y desahogo",
+          "semanticKind": "theme-night",
+          "temporalKind": "weekday-slot",
+          "weekday": 5,
+          "timeZone": "America/Chicago",
+          "sourceRefs": [
+            "Deavhittoz1"
+          ],
+          "editorialStatus": "review",
+          "operationalApproval": null,
+          "rightsApproval": null,
+          "publicationEnabled": false,
+          "detail": "Viernes de Sin Yolanda.",
+          "validityUnknown": true
+        },
+        {
+          "id": "the-woodlands-cartelera-slot-6",
+          "title": "Recovery Brunch / Ahogo y desahogo",
+          "semanticKind": "brunch",
+          "temporalKind": "weekday-slot",
+          "weekday": 6,
+          "timeZone": "America/Chicago",
+          "sourceRefs": [
+            "Deavhittoz1"
+          ],
+          "editorialStatus": "review",
+          "operationalApproval": null,
+          "rightsApproval": null,
+          "publicationEnabled": false,
+          "detail": "Dos planes anunciados para el sábado, sin horario propio confirmado.",
+          "validityUnknown": true
+        },
+        {
+          "id": "the-woodlands-cartelera-slot-0",
+          "title": "Brunch y NFL",
+          "semanticKind": "brunch",
+          "temporalKind": "weekday-slot",
+          "weekday": 0,
+          "timeZone": "America/Chicago",
+          "sourceRefs": [
+            "Deavhittoz1"
+          ],
+          "editorialStatus": "review",
+          "operationalApproval": null,
+          "rightsApproval": null,
+          "publicationEnabled": false,
+          "detail": "La cartelera de esta sede anuncia brunch y NFL.",
+          "validityUnknown": true
+        }
+      ]
+    },
+    "san-antonio": {
+      "name": "San Antonio",
+      "theme": "brand",
+      "calendarSource": "DeavaGDhror",
+      "calendarArt": {
+        "file": "sa-cartelera-DeavaGDhror.jpg",
+        "width": 2000,
+        "height": 2500,
+        "sha256": "458cf158b05e265e3a9432241be9e7f0e74bbd31de9feef5f9c51e5ff7ece449",
+        "rights": "review-only"
+      },
+      "notes": [
+        "Noche de Pelucas corresponde17oct; no convertirla en todos los sábados.",
+        "Don’tCry: carteleraSA anuncia jueves, reel mencionaHouston; revisar antes de publicación.",
+        "Jorge14nov es enK.O.P., no en la cantina.",
+        "Arte de preventaJorge caduca por separado; hora de fin15oct desconocida."
+      ],
+      "units": [
+        {
+          "id": "san-antonio-pelucas-20261017",
+          "title": "Noche de Pelucas",
+          "semanticKind": "theme-night",
+          "temporalKind": "dated",
+          "sourceRefs": [
+            "DeavaGDhror",
+            "calendar-san-antonio-live-20261013"
+          ],
+          "editorialStatus": "review",
+          "operationalApproval": null,
+          "rightsApproval": null,
+          "publicationEnabled": false,
+          "date": "2026-10-17",
+          "timeZone": "America/Chicago",
+          "detail": "Condiciones del shot de bienvenida en revisión."
+        },
+        {
+          "id": "san-antonio-ladies-weekly",
+          "title": "Ladies Night",
+          "semanticKind": "recurring-night",
+          "temporalKind": "weekly",
+          "sourceRefs": [
+            "DeL7NjSxiSY",
+            "DeavaGDhror"
+          ],
+          "editorialStatus": "review",
+          "operationalApproval": null,
+          "rightsApproval": null,
+          "publicationEnabled": false,
+          "weekday": 3,
+          "detail": "2×1 en cócteles.",
+          "startsOn": null,
+          "endsOn": null,
+          "timeZone": "America/Chicago"
+        },
+        {
+          "id": "san-antonio-dontcry-20261015",
+          "title": "Don’t Cry",
+          "semanticKind": "theme-night",
+          "temporalKind": "weekday-slot",
+          "sourceRefs": [
+            "DeavaGDhror",
+            "DeL2KKox_AL"
+          ],
+          "editorialStatus": "review",
+          "operationalApproval": null,
+          "rightsApproval": null,
+          "publicationEnabled": false,
+          "timeZone": "America/Chicago",
+          "detail": "Hits en inglés y español.",
+          "sourceConflict": true,
+          "weekday": 4
+        },
+        {
+          "id": "san-antonio-jorge-20261114",
+          "title": "Jorge Guevara",
+          "semanticKind": "external-performance",
+          "temporalKind": "dated",
+          "sourceRefs": [
+            "DeaxTe3hV7k",
+            "tickets-jorge-sa"
+          ],
+          "editorialStatus": "review",
+          "operationalApproval": null,
+          "rightsApproval": null,
+          "publicationEnabled": false,
+          "date": "2026-11-14",
+          "start": "20:00",
+          "end": "23:30",
+          "timeZone": "America/Chicago",
+          "detail": "Con Mariana Ochoa. Evento anunciado por Sin Yolanda San Antonio.",
+          "venue": {
+            "kind": "external",
+            "name": "K.O.P. Sports & Entertainment Center",
+            "city": "San Antonio",
+            "address": "314 Nolan Street"
+          },
+          "admission": "ticketed",
+          "artwork": {
+            "file": "sa-jorge-DeaxTe3hV7k.jpg",
+            "width": 1440,
+            "height": 1920,
+            "sha256": "5b5837b8b0e119638586be6a9c0e2e5f93fcf6deba35d12020439f2e7be0d9da",
+            "rights": "review-only"
+          },
+          "imageSource": "DeaxTe3hV7k",
+          "action": "tickets-jorge-sa",
+          "artworkSafeBefore": "2026-10-15",
+          "artworkExpiryBasis": "Conservative review cutoff; source has date but no hour"
+        },
+        {
+          "id": "san-antonio-cartelera-slot-5",
+          "title": "Ahogo y desahogo",
+          "semanticKind": "theme-night",
+          "temporalKind": "weekday-slot",
+          "weekday": 5,
+          "timeZone": "America/Chicago",
+          "sourceRefs": [
+            "DeavaGDhror"
+          ],
+          "editorialStatus": "review",
+          "operationalApproval": null,
+          "rightsApproval": null,
+          "publicationEnabled": false,
+          "detail": "Viernes de Sin Yolanda.",
+          "validityUnknown": true
+        },
+        {
+          "id": "san-antonio-cartelera-slot-0",
+          "title": "Brunch y NFL",
+          "semanticKind": "brunch",
+          "temporalKind": "weekday-slot",
+          "weekday": 0,
+          "timeZone": "America/Chicago",
+          "sourceRefs": [
+            "DeavaGDhror"
+          ],
+          "editorialStatus": "review",
+          "operationalApproval": null,
+          "rightsApproval": null,
+          "publicationEnabled": false,
+          "detail": "La cartelera de esta sede anuncia brunch y NFL.",
+          "validityUnknown": true
+        }
+      ]
+    },
+    "el-paso": {
+      "name": "El Paso",
+      "theme": "brand",
+      "calendarSource": "DeavRIxtdbl",
+      "calendarArt": {
+        "file": "ep-cartelera-DeavRIxtdbl.jpg",
+        "width": 2000,
+        "height": 2500,
+        "sha256": "86d05e7cdf9cd8941d4e9c88469b3f05671f7f6e2499869cca645e089f1b0a74",
+        "rights": "review-only"
+      },
+      "notes": [
+        "No hay enlace de boletos comprobado para el palomazo: no afirmar gratis ni usar boletoHouston.",
+        "RecoveryBrunch confirma domingo desde10h; no demuestra fin ni horario del sábado.",
+        "Ladies/Don’tCry en cartelera de esta semana; validar vigencia recurrente."
+      ],
+      "units": [
+        {
+          "id": "el-paso-jorge-20261016",
+          "title": "Jorge Guevara",
+          "semanticKind": "performance",
+          "temporalKind": "dated",
+          "sourceRefs": [
+            "DeZ3riUJ5Bu",
+            "DeavRIxtdbl"
+          ],
+          "editorialStatus": "review",
+          "operationalApproval": null,
+          "rightsApproval": null,
+          "publicationEnabled": false,
+          "date": "2026-10-16",
+          "timeZone": "America/Denver",
+          "detail": "Palomazo especial en Sin Yolanda El Paso.",
+          "artwork": {
+            "file": "ep-jorge-DeZ3riUJ5Bu.jpg",
+            "width": 1440,
+            "height": 1920,
+            "sha256": "7bf7f826dfdcb3c98ef564d87625587111c43ab875b797e97075fcfaa94e29d3",
+            "rights": "review-only"
+          },
+          "imageSource": "DeZ3riUJ5Bu",
+          "admission": "unknown"
+        },
+        {
+          "id": "el-paso-ladies-20261014",
+          "title": "Ladies Night",
+          "semanticKind": "theme-night",
+          "temporalKind": "weekday-slot",
+          "sourceRefs": [
+            "DeavRIxtdbl"
+          ],
+          "editorialStatus": "review",
+          "operationalApproval": null,
+          "rightsApproval": null,
+          "publicationEnabled": false,
+          "timeZone": "America/Denver",
+          "detail": "2×1 en cócteles; vigencia recurrente en revisión.",
+          "weekday": 3
+        },
+        {
+          "id": "el-paso-dontcry-20261015",
+          "title": "Don’t Cry",
+          "semanticKind": "theme-night",
+          "temporalKind": "weekday-slot",
+          "sourceRefs": [
+            "DeavRIxtdbl"
+          ],
+          "editorialStatus": "review",
+          "operationalApproval": null,
+          "rightsApproval": null,
+          "publicationEnabled": false,
+          "timeZone": "America/Denver",
+          "detail": "Hits en inglés y español; vigencia recurrente en revisión.",
+          "weekday": 4
+        },
+        {
+          "id": "el-paso-recovery-brunch",
+          "title": "Recovery Brunch",
+          "semanticKind": "brunch",
+          "temporalKind": "weekly",
+          "sourceRefs": [
+            "DeV29DjNFhF",
+            "DeavRIxtdbl"
+          ],
+          "editorialStatus": "review",
+          "operationalApproval": null,
+          "rightsApproval": null,
+          "publicationEnabled": false,
+          "weekday": 0,
+          "start": "10:00",
+          "end": null,
+          "detail": "Domingos desde las 10:00. La cartelera también anuncia Brunch y NFL; partido específico sin confirmar.",
+          "artwork": {
+            "file": "ep-brunch-DeV29DjNFhF.jpg",
+            "width": 1423,
+            "height": 1831,
+            "sha256": "a4e46a28ae69d87f1995f3899f3e94398d9d3aafac8010c28d1d8cf0a0fa1a4e",
+            "rights": "review-only"
+          },
+          "imageSource": "DeV29DjNFhF",
+          "startsOn": null,
+          "endsOn": null,
+          "timeZone": "America/Denver"
+        },
+        {
+          "id": "el-paso-cartelera-slot-6",
+          "title": "Recovery Brunch / Ahogo y desahogo",
+          "semanticKind": "brunch",
+          "temporalKind": "weekday-slot",
+          "weekday": 6,
+          "timeZone": "America/Denver",
+          "sourceRefs": [
+            "DeavRIxtdbl"
+          ],
+          "editorialStatus": "review",
+          "operationalApproval": null,
+          "rightsApproval": null,
+          "publicationEnabled": false,
+          "detail": "Dos planes anunciados para el sábado, sin horario propio confirmado.",
+          "validityUnknown": true
+        }
+      ]
+    }
+  }
+}

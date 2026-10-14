@@ -3,6 +3,7 @@ import { resolve } from 'node:path';
 import vm from 'node:vm';
 import assert from 'node:assert/strict';
 import { hours as usaHours } from './usa-hours.mjs';
+import { restoreAgendaSource } from './agenda-source-contract.mjs';
 
 export const origin = 'https://sin-yolanda.com';
 const root = resolve(import.meta.dirname, '..');
@@ -16,14 +17,14 @@ export const json = value => JSON.stringify(value).replaceAll('<', '\\u003c');
 
 // Render the same public templates, without running their browser event handlers.
 // This gives crawlers and visitors without JavaScript the approved HTML itself.
-export function renderShell(html, now = new Date()) {
+export function renderShell(html, now = new Date(), sourceRoot = root) {
   if (!html.includes('id="site-shell"')) return null;
   const dataset = { page: html.match(/data-page="([^"]+)"/)?.[1], branch: html.match(/data-branch="([^"]+)"/)?.[1] };
   const shell = { innerHTML: '' };
   class RenderDate extends Date { constructor(...args) { super(...(args.length ? args : [now])); } }
   const context = { window: {}, document: { body: { dataset }, getElementById: id => id === 'site-shell' ? shell : null }, Date: RenderDate, Intl, URL };
-  vm.runInNewContext(read('assets/js/public-data.js'), context, { timeout: 1000 });
-  const source = read('assets/js/site.js');
+  vm.runInNewContext(readFileSync(resolve(sourceRoot,'assets/js/public-data.js'),'utf8'), context, { timeout: 1000 });
+  const source = readFileSync(resolve(sourceRoot,'assets/js/site.js'),'utf8');
   const stop = source.lastIndexOf('\n  bindCommon();');
   assert.ok(stop > source.lastIndexOf('root.innerHTML ='), 'Public render boundary changed; review before prerendering');
   vm.runInNewContext(source.slice(0, stop) + '\n})();', context, { timeout: 1000 });
@@ -33,6 +34,7 @@ export function renderShell(html, now = new Date()) {
 }
 
 export function restoreSeoBaseline(file, html) {
+  html = restoreAgendaSource(file,html);
   html = html.replaceAll('\r\n', '\n');
   const baseline = JSON.parse(read('scripts/seo-baseline.json'))[file];
   if (!baseline) return html;

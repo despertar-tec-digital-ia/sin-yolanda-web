@@ -1,0 +1,325 @@
+{
+  "version": 1,
+  "observedOn": "2026-10-13",
+  "researchLevel": "N1-bounded",
+  "mode": "review-only",
+  "publicationEnabled": false,
+  "posts": [
+    {
+      "id": "Deavvksx1jo",
+      "branchId": "houston",
+      "url": "https://www.instagram.com/p/Deavvksx1jo/",
+      "classification": "compilation",
+      "observedOn": "2026-10-13",
+      "method": "visible-caption-and-poster-in-Brave",
+      "findings": "Cartelera por días: Pinta miércoles, Lotería jueves19–21, Ahogo viernes, Recovery sábado, BrunchNFL domingo.",
+      "approval": null
+    },
+    {
+      "id": "DeL7Ly_vyo2",
+      "branchId": "houston",
+      "url": "https://www.instagram.com/reel/DeL7Ly_vyo2/",
+      "classification": "recurring-night",
+      "observedOn": "2026-10-13",
+      "method": "visible-caption-and-poster-in-Brave",
+      "findings": "Miércoles; portada all Wednesdays2x1cocktails, open mic y ronda de shots para ellas. Caption confirma miércoles; horarios/condiciones/vigencia propios pendientes.",
+      "approval": null
+    },
+    {
+      "id": "Deavhittoz1",
+      "branchId": "the-woodlands",
+      "url": "https://www.instagram.com/p/Deavhittoz1/",
+      "classification": "compilation",
+      "observedOn": "2026-10-13",
+      "method": "visible-caption-and-poster-in-Brave",
+      "findings": "MiércolesLadies2x1; juevesMesHispano; viernesAhogo; sábadoRecovery/Ahogo; domingoBrunchNFL. MesHispano no se vuelve recurrente.",
+      "approval": null
+    },
+    {
+      "id": "DeL7RNGubUK",
+      "branchId": "the-woodlands",
+      "url": "https://www.instagram.com/reel/DeL7RNGubUK/",
+      "classification": "recurring-night",
+      "observedOn": "2026-10-13",
+      "method": "visible-caption-and-poster-in-Brave",
+      "findings": "Caption miércolesLadies;2x1 respaldado por cartelera local, no se adopta franja noviembre7–9.",
+      "approval": null
+    },
+    {
+      "id": "DeKHqcjy606",
+      "branchId": "the-woodlands",
+      "url": "https://www.instagram.com/p/DeKHqcjy606/",
+      "classification": "external-sponsorship",
+      "observedOn": "2026-10-13",
+      "method": "visible-caption-and-poster-in-Brave",
+      "findings": "Jets&Cars14nov11–13; instalación privada aviación Conroe; solo invitación; sponsorSinYolanda, colaboracióntw_carshow. Pie del cartel contiene NAP distinto, no sustituye ubicación recinto ni ficha.",
+      "approval": null
+    },
+    {
+      "id": "DeL2AuIuNTi",
+      "branchId": "the-woodlands",
+      "url": "https://www.instagram.com/reel/DeL2AuIuNTi/",
+      "classification": "recurring-night",
+      "observedOn": "2026-10-13",
+      "method": "visible-caption-and-poster-in-Brave",
+      "findings": "Texto dice jueves en SinYolandaHouston aunque cuentaWoodlands; conflicto de sede, no aprobar recurrencia local solo desde caption.",
+      "approval": null
+    },
+    {
+      "id": "Dd9hkdrJRo3",
+      "branchId": "the-woodlands",
+      "url": "https://www.instagram.com/p/Dd9hkdrJRo3/",
+      "classification": "recurring-offer",
+      "observedOn": "2026-10-13",
+      "method": "visible-caption-and-poster-in-Brave",
+      "findings": "Cada jueves16–21: Pepito+1Drink27USD. Arte elige tequila/whisky/rum/brandy; no todos cócteles. Vigencia/términos adicionales pendientes.",
+      "approval": null
+    },
+    {
+      "id": "DeavaGDhror",
+      "branchId": "san-antonio",
+      "url": "https://www.instagram.com/p/DeavaGDhror/",
+      "classification": "compilation",
+      "observedOn": "2026-10-13",
+      "method": "visible-caption-and-poster-in-Brave",
+      "findings": "MiércolesLadies2x1; juevesDontCry; viernesAhogo; sábadoPelucas; domingoBrunchNFL. Pelucas17oct en calendario, no perpetuar todos los sábados.",
+      "approval": null
+    },
+    {
+      "id": "DeaxTe3hV7k",
+      "branchId": "san-antonio",
+      "url": "https://www.instagram.com/p/DeaxTe3hV7k/",
+      "classification": "external-performance",
+      "observedOn": "2026-10-13",
+      "method": "visible-caption-and-poster-in-Brave",
+      "findings": "JorgeGuevara+MarianaOchoa14nov; K.O.P.314NolanStreet; boletosEventbrite. Preventa termina15oct, hora no declarada.",
+      "approval": null
+    },
+    {
+      "id": "DeL7NjSxiSY",
+      "branchId": "san-antonio",
+      "url": "https://www.instagram.com/reel/DeL7NjSxiSY/",
+      "classification": "recurring-night",
+      "observedOn": "2026-10-13",
+      "method": "visible-caption-and-poster-in-Brave",
+      "findings": "Caption confirma miércolesLadies;2x1 cartelera propia. No extrapolar shots/botellas de otra sede.",
+      "approval": null
+    },
+    {
+      "id": "DeL2KKox_AL",
+      "branchId": "san-antonio",
+      "url": "https://www.instagram.com/reel/DeL2KKox_AL/",
+      "classification": "recurring-night",
+      "observedOn": "2026-10-13",
+      "method": "visible-caption-and-poster-in-Brave",
+      "findings": "Texto dice jueves en SinYolandaHouston; carteleraSA sí anunciaDontCryjueves. Conservar discrepancia y revisar operación antes de publicar.",
+      "approval": null
+    },
+    {
+      "id": "DeZ3riUJ5Bu",
+      "branchId": "el-paso",
+      "url": "https://www.instagram.com/p/DeZ3riUJ5Bu/",
+      "classification": "in-branch-performance",
+      "observedOn": "2026-10-13",
+      "method": "visible-caption-and-poster-in-Brave",
+      "findings": "PalomazoJorgeGuevara16oct en SinYolandaElPaso340VinRambla; sin enlace boletos/precio/horario publicado, no declarar gratis.",
+      "approval": null
+    },
+    {
+      "id": "DeavRIxtdbl",
+      "branchId": "el-paso",
+      "url": "https://www.instagram.com/p/DeavRIxtdbl/",
+      "classification": "compilation",
+      "observedOn": "2026-10-13",
+      "method": "visible-caption-and-poster-in-Brave",
+      "findings": "MiércolesLadies2x1; juevesDontCry; viernesPalomazoJorgeGuevara; sábadoRecovery/Ahogo; domingoBrunchNFL. Jorge16oct ancla la semana, no repetir semanalmente.",
+      "approval": null
+    },
+    {
+      "id": "DeV29DjNFhF",
+      "branchId": "el-paso",
+      "url": "https://www.instagram.com/p/DeV29DjNFhF/",
+      "classification": "recurring-brunch",
+      "observedOn": "2026-10-13",
+      "method": "visible-caption-and-poster-in-Brave",
+      "findings": "RecoveryBrunch domingos desde10h; fin no declarado. Cartelera además dice sábadoRecovery; no extender el horario de domingo al sábado.",
+      "approval": null
+    },
+    {
+      "id": "DeaxjMhxieb",
+      "branchId": "houston",
+      "url": "https://www.instagram.com/p/DeaxjMhxieb/",
+      "classification": "in-branch-performance",
+      "observedOn": "2026-10-13",
+      "method": "visible-caption-and-poster-in-Brave",
+      "findings": "Jorge+Mariana13nov. Preventa25USD hasta15oct20h; después35USD sin cargos finales verificados. Cartel debe caducar15oct20h aunque evento siga.",
+      "approval": null
+    },
+    {
+      "id": "Dd9juidPsf6",
+      "branchId": "houston",
+      "url": "https://www.instagram.com/reel/Dd9juidPsf6/",
+      "classification": "recurring-night",
+      "observedOn": "2026-10-13",
+      "method": "visible-caption-and-poster-in-Brave",
+      "findings": "Fuente específica descubierta perfilHouston; portadaEveryThursday, LiveDJ, hitsEnglish/Español y drinkspecials sin precio. Imagen de publicación recuperada720x1280.",
+      "approval": null
+    },
+    {
+      "id": "DdpUHLrH4mo",
+      "branchId": "houston",
+      "url": "https://www.instagram.com/glossyco.tx/p/DdpUHLrH4mo/",
+      "classification": "workshop-series",
+      "observedOn": "2026-10-13",
+      "method": "visible-official-coauthors-poster-and-organizer-bio-to-event-navigation",
+      "findings": "GLOSSY CO. y sinyolandahouston coautores; cartel14/28oct19–22 anuncia tickets vía pintaycanta.eventbrite.com. BiografíaGLOSSY enlaza alias, hoy resuelve al ID2002912451058; ese organizador publica también ID2002912558379.",
+      "approval": null
+    }
+  ],
+  "tickets": [
+    {
+      "id": "tickets-pinta-14",
+      "branchId": "houston",
+      "url": "https://www.eventbrite.com/e/pinta-y-canta-despechados-ladies-night-tickets-2002912451058",
+      "date": "2026-10-14",
+      "start": "19:00",
+      "end": "22:00",
+      "checkIn": "18:30",
+      "status": "EventScheduled/InStock/Get tickets",
+      "venue": "Sin Yolanda Houston",
+      "rangeUSD": [
+        39.19,
+        60
+      ],
+      "finalCheckoutTotal": null,
+      "observedOn": "2026-10-13",
+      "method": "provider-HTTP200-HTML-and-JSONLD-read-only; no checkout",
+      "timeZone": "America/Chicago",
+      "approval": null,
+      "organizer": "GLOSSY CO.",
+      "linkVerification": {
+        "checkedOn": "2026-10-13",
+        "platformAnnouncedByBranch": true,
+        "exactDestinationConfirmed": true,
+        "promotionSourceRef": "DdpUHLrH4mo",
+        "organizerChannel": "https://www.instagram.com/glossyco.tx/",
+        "announcedAlias": "https://pintaycanta.eventbrite.com/",
+        "organizerUrl": "https://www.eventbrite.com/o/78057432803",
+        "basis": "Houston coauthors collaboration; organizer bio links alias resolving to14oct; same organizer Upcoming lists14/28 exact IDs",
+        "purchaseVerified": false
+      }
+    },
+    {
+      "id": "tickets-pinta-28",
+      "branchId": "houston",
+      "url": "https://www.eventbrite.com/e/pinta-y-canta-peluca-halloween-tickets-2002912558379",
+      "date": "2026-10-28",
+      "start": "19:00",
+      "end": "22:00",
+      "checkIn": "18:30",
+      "status": "EventScheduled/InStock/Get tickets",
+      "venue": "Sin Yolanda Houston",
+      "rangeUSD": [
+        39.19,
+        60
+      ],
+      "finalCheckoutTotal": null,
+      "observedOn": "2026-10-13",
+      "method": "provider-HTTP200-HTML-and-JSONLD-read-only; no checkout",
+      "timeZone": "America/Chicago",
+      "approval": null,
+      "organizer": "GLOSSY CO.",
+      "linkVerification": {
+        "checkedOn": "2026-10-13",
+        "platformAnnouncedByBranch": true,
+        "exactDestinationConfirmed": true,
+        "promotionSourceRef": "DdpUHLrH4mo",
+        "organizerChannel": "https://www.instagram.com/glossyco.tx/",
+        "announcedAlias": "https://pintaycanta.eventbrite.com/",
+        "organizerUrl": "https://www.eventbrite.com/o/78057432803",
+        "basis": "Houston coauthors collaboration; organizer bio links alias resolving to14oct; same organizer Upcoming lists14/28 exact IDs",
+        "purchaseVerified": false
+      }
+    },
+    {
+      "id": "tickets-jorge-houston",
+      "branchId": "houston",
+      "url": "https://www.eventbrite.com/e/jorge-guevara-el-regreso-sin-yolanda-houston-november-13th-tickets-2000487416715",
+      "date": "2026-11-13",
+      "start": "20:00",
+      "end": "23:00",
+      "status": "EventScheduled/InStock",
+      "venue": "Sin Yolanda Houston,4901WashingtonAve",
+      "rangeUSD": [
+        30.16,
+        41.57
+      ],
+      "finalCheckoutTotal": null,
+      "observedOn": "2026-10-13",
+      "method": "provider-HTTP200-HTML-and-JSONLD-read-only; no checkout",
+      "timeZone": "America/Chicago",
+      "approval": null,
+      "organizer": "Origin Entertainment Group",
+      "linkVerification": {
+        "checkedOn": "2026-10-13",
+        "platformAnnouncedByBranch": true,
+        "exactDestinationConfirmed": false,
+        "promotionSourceRef": "DeaxjMhxieb",
+        "organizerUrl": "https://www.eventbrite.com/o/origin-entertainment-group-121711802194",
+        "basis": "Branch post explicitly announces Eventbrite; matching provider listing, but no exact event URL linked in branch post/bio inspected",
+        "purchaseVerified": false
+      }
+    },
+    {
+      "id": "tickets-jorge-sa",
+      "branchId": "san-antonio",
+      "url": "https://www.eventbrite.com/e/jorge-guevara-el-regreso-san-antonio-november-14th-tickets-1997521649024",
+      "date": "2026-11-14",
+      "start": "20:00",
+      "end": "23:30",
+      "status": "EventScheduled/InStock",
+      "venue": "K.O.P.Sports&EntertainmentCenter,314NolanStreet",
+      "rangeUSD": [
+        17.32,
+        106.9
+      ],
+      "finalCheckoutTotal": null,
+      "observedOn": "2026-10-13",
+      "method": "provider-HTTP200-HTML-and-JSONLD-read-only; no checkout",
+      "timeZone": "America/Chicago",
+      "approval": null,
+      "organizer": "Origin Entertainment Group",
+      "linkVerification": {
+        "checkedOn": "2026-10-13",
+        "platformAnnouncedByBranch": true,
+        "exactDestinationConfirmed": false,
+        "promotionSourceRef": "DeaxTe3hV7k",
+        "organizerUrl": "https://www.eventbrite.com/o/origin-entertainment-group-121711802194",
+        "basis": "Branch post explicitly announces Eventbrite; matching provider listing, but no exact event URL linked in branch post/bio inspected",
+        "purchaseVerified": false
+      }
+    }
+  ],
+  "ticketLimits": {
+    "el-paso": "No verified official purchase link found; no claim of free admission, sold out or nonexistent",
+    "the-woodlands": "No own Jorge date or official purchase link verified"
+  },
+  "artworkManifest": "clientes-assets/sin-yolanda/marketing-2026/usa-post-artwork-2026-10-13.json",
+  "artworkStatus": "published-asset-review-only, not master original or rights approval",
+  "proposal": {
+    "dated": "Equal weight chronological poster-and-data units; no star plus secondary events",
+    "weekly": "Only explicitly confirmed recurrence, separate from a week compilation",
+    "offers": "Eligible products,franja,conditions and vigencia; no price-free prose substitution",
+    "external": "Separate host/venue/admission; never branch table reservation",
+    "compilation": "Source of multiple records, not another event or permanent recurrence"
+  },
+  "openIssues": [
+    "TW/SA DontCry captions name Houston",
+    "TWJets poster footerNAP differs from branch; external venue onlyConroe",
+    "Houston happyhour14–19 conflicts opening16",
+    "MesHispano15oct and Pelucas17oct are dated despite weekday compilations",
+    "SundayEPbrunch10h does not certify Saturdayhours/end",
+    "Concert event expiry and presale artwork expiry are different",
+    "Recurring validity periods and operational/artwork approvals pending"
+  ]
+}

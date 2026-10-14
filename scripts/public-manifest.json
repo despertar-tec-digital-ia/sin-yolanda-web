@@ -4,9 +4,11 @@
     "assets/js/site.js": "20261011-demo-polish",
     "assets/js/i18n.js": "20261013-site-intake-a",
     "assets/css/visual-pilot.css": "20261011-demo-polish",
-    "assets/js/public-data.js": "20261013-site-intake-a",
+    "assets/js/public-data.js": "20261013-approved-agenda",
     "assets/js/site-analytics.js": "20261012-root-routing",
-    "assets/css/houston-header.css": "20261012-overlay"
+    "assets/css/houston-header.css": "20261012-overlay",
+    "assets/js/agenda-clock.js": "20261013-approved-agenda",
+    "assets/css/branch-agenda.css": "20261013-approved-agenda"
   },
   "pages": [
     "index.html",
@@ -232,7 +234,17 @@
     "images/intake-a/el-paso-table-1404.webp",
     "images/intake-a/el-paso-table-480.webp",
     "images/intake-a/el-paso-table-800.webp",
-    "images/intake-a/el-paso-table-1200.webp"
+    "images/intake-a/el-paso-table-1200.webp",
+    "assets/css/branch-agenda.css",
+    "assets/js/agenda-clock.js",
+    "assets/agenda/hu-pinta-provider-2002912451058.jpg",
+    "assets/agenda/hu-jorge-provider-2000487416715.jpg",
+    "assets/agenda/hu-ladies-DeL7Ly_vyo2.jpg",
+    "assets/agenda/hu-dontcry-Dd9juidPsf6.jpg",
+    "assets/agenda/tw-happy-Dd9hkdrJRo3.jpg",
+    "assets/agenda/tw-jets-DeKHqcjy606.jpg",
+    "assets/agenda/ep-jorge-DeZ3riUJ5Bu.jpg",
+    "assets/agenda/ep-brunch-DeV29DjNFhF.jpg"
   ],
   "assetVersion": "20261008-migration-measurement",
   "reviewPages": []

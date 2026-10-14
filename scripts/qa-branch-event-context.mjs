@@ -55,7 +55,8 @@ async function scenario(branch, language, width, javascript = true) {
     if (tickets.length) { await tickets[0].focus(); await page.keyboard.press('Tab'); assert.ok(await page.evaluate(() => document.activeElement.tagName === 'A')); }
     assert.equal(await page.locator('.ve-hours dl>div').count(), 5);
     assert.equal(await page.locator('.ve-hours').getAttribute('data-hours-zone'), branch === 'el-paso' ? 'America/Denver' : 'America/Chicago');
-    assert.equal(await page.locator('meta[name="robots"]').getAttribute('content'), 'noindex,nofollow');
+    assert.equal(await page.locator('meta[name="robots"]').getAttribute('content'), process.env.SY_QA_PUBLIC_CANDIDATE === 'true' ? 'index,follow,max-image-preview:large' : 'noindex,nofollow');
+    if(process.env.SY_QA_PUBLIC_CANDIDATE==='true')assert.equal(await page.locator('.sy-review-controls').count(),0);
     // Capture the agenda with a little of its neighboring section for contextual inspection.
     await page.evaluate(() => scrollTo(0, document.querySelector('.sy-agenda').offsetTop - 170));
     if (language === 'es' && [390, 1440].includes(width) && javascript) {

@@ -1,5 +1,45 @@
 # Forma de trabajar y publicar
 
+### Agenda USA · publicación autorizada13-oct
+
+Luis aprueba las fichas y autoriza continuar con publicación: «Ok, las apruebo. sigue, no sé
+si toca publicarlos, si toca eso pues hazlo.». Release selectivo sobre main `b3040ef`, rama
+`release/approved-branch-agenda-20261013`; excluye las fotos candidatas A04. Los checkpoints
+locales que siguen son históricos. Preparación y QA terminadas; recibo remoto pendiente.
+
+- Ocho fichas ES/EN con14unidades aprobadas: acontecimientos fechados, noches recurrentes,
+  oferta Woodlands y participación externa Jets & Cars. Doce unidades ambiguas retenidas,
+  Guadalajara fuera de este release. Pinta comparte portada y separa funciones. Solo sus dos
+  destinos Eventbrite están corroborados; botones Jorge Houston/SA retenidos. No inferir precios,
+  inventario de entradas ni admisión gratuita donde no se conoce.
+- Fotos completas, mayores y clicables; Ladies/Don’t Cry a toda altura y borde derecho. Sin
+  botón «Ver publicación», controles de revisión ni duplicación del antiguo bloque Houston.
+  Home y SY_DATA corrigen Catrinas Houston a1nov. El menú El Paso conserva documento/zoom y
+  comparte el header actualizado de la ficha. Horarios, hero, menús/QR/WordPress conservados.
+- `approved-agenda.json` autoriza una proyección concreta de las fuentes existentes, ligada
+  a sus hashes. No es otro catálogo. Reloj compartido con zonas IANA; ventanas semiabiertas.
+  Inicio editorial desde esta aprobación, sin regla global de anticipación. Fin anunciado
+  retira el evento al cierre; con hora desconocida se retira al siguiente cambio de fecha
+  local, como corte editorial, sin inventar horario. Anuncios semanales siguen hasta revisión.
+- El empaquetado produce HTML inicial actualizado también sin JS, con la misma hora para
+  ambos idiomas. El navegador retira fechas vencidas con temporizador/retorno a la pestaña.
+  GitHub Actions comprueba cambios cada15minutos; si no cambiaron las páginas, hace solo una
+  consulta y omite build/publicación. Al vencer, CI→preview→producción conserva controles,
+  bytes/baseline y autorización del commit ya publicado. El HTML servido puede tardar la
+  cadencia más CI/propagación; no prometer retiro remoto al segundo ni ejecución puntual de cron.
+- La comprobación programada no puede publicar un main nuevo que todavía no esté en vivo.
+  Su concurrencia separada no cancela CI de un push. No incluye permisos de escritura nuevos.
+  Ejecución remota del scheduler y primer retiro real pendientes de observar después del release.
+
+QA local:303tests y46escenarios responsive/noJS, imágenes/foco/enlaces/horarios y fechas de
+caducidad/DST. Evidencia ignorada en `.artifacts/approved-agenda-candidate-v1/` y
+`.artifacts/approved-agenda-responsive-v1/`. Artefacto232archivos,23páginas indexables.
+Medición B05–B07, campañas/consentimiento y destinos Jorge siguen pendientes: no afirmar que
+esta agenda capture nuevos eventos Umami/GA4. El constructor histórico de revisión permanece
+en el checkpoint `5ce8558`; para publicación y siguientes previews usar el empaquetador actual.
+Rollback por operador controlado al release productivo anterior, nunca reconstrucción manual.
+
+
 ### Frente B13-oct · intake editorial y contrato analítico locales
 
 **Ajuste posterior de portadas y procedencia de boletos:** Luis pide más presencia, foto de

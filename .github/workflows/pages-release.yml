@@ -35,8 +35,10 @@ jobs:
       github.ref == 'refs/heads/main' &&
       (github.event_name == 'workflow_dispatch' ||
        (github.event.workflow_run.conclusion == 'success' &&
-        github.event.workflow_run.event == 'push' &&
+        (github.event.workflow_run.event == 'push' || github.event.workflow_run.event == 'schedule') &&
         github.event.workflow_run.head_branch == 'main'))
+    outputs:
+      has_artifact: ${{ steps.retrieve.outputs.has_artifact }}
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
@@ -48,11 +50,13 @@ jobs:
           node-version-file: .node-version
           package-manager-cache: false
       - name: Retrieve and verify the successful main artifact without Cloudflare secrets
+        id: retrieve
         env:
           GH_TOKEN: ${{ github.token }}
           CI_RUN_ID: ${{ inputs.ci_run_id || github.event.workflow_run.id }}
         run: node scripts/pages-release.mjs prepare "$CI_RUN_ID" .artifacts/bundle
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        if: steps.retrieve.outputs.has_artifact == 'true'
         with:
           name: pages-bundle-${{ github.run_id }}
           path: .artifacts/bundle
@@ -61,6 +65,7 @@ jobs:
           if-no-files-found: error
   preview:
     needs: prepare
+    if: needs.prepare.outputs.has_artifact == 'true'
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     environment:
@@ -104,7 +109,7 @@ jobs:
           if-no-files-found: error
   production:
     needs: preview
-    if: github.event_name == 'workflow_run' || inputs.destination == 'production'
+    if: needs.preview.result == 'success' && (github.event_name == 'workflow_run' || inputs.destination == 'production')
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     environment:

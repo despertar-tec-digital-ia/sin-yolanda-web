@@ -51,7 +51,7 @@ export function projectBranch(branch, asOf) {
   }
   return { visible, held, withheldArt };
 }
-export function renderBranchAgenda({ id, branch, registry, language = 'es', asOf }) {
+export function renderBranchAgenda({ id, branch, registry, language = 'es', asOf, assetPrefix = '/assets/review-agenda', audience = 'review' }) {
   const text = wording[language]; assert.ok(text);
   const sources = new Map([...registry.posts, ...registry.tickets].map(source => [source.id, source.url]));
   const projection = projectBranch(branch, asOf), heldActions = [];
@@ -70,7 +70,7 @@ export function renderBranchAgenda({ id, branch, registry, language = 'es', asOf
   };
   const art = (unit, linked = false) => {
     if (!unit.artwork) return '';
-    const image = `<img src="/assets/review-agenda/${escapeHtml(unit.artwork.file)}" width="${unit.artwork.width}" height="${unit.artwork.height}" alt="${escapeHtml(unit.title)}" loading="lazy" decoding="async">`;
+    const image = `<img src="${escapeHtml(assetPrefix)}/${escapeHtml(unit.artwork.file)}" width="${unit.artwork.width}" height="${unit.artwork.height}" alt="${escapeHtml(unit.title)}" loading="lazy" decoding="async">`;
     return `<figure class="sy-agenda-art">${linked ? link(unit.imageSource, image, '', text.post + ': ' + unit.title + ' · ' + text.tab) : image}</figure>`;
   };
   const date = unit => `<time datetime="${unit.date}">${dateLabel(unit.date, language)}</time>`;
@@ -96,7 +96,8 @@ export function renderBranchAgenda({ id, branch, registry, language = 'es', asOf
   const offers = units.filter(unit => ['offer', 'brunch'].includes(unit.semanticKind));
   const external = units.filter(unit => unit.venue?.kind === 'external').sort((a, b) => a.date.localeCompare(b.date));
   const heading = (key, label) => `<h3 id="agenda-${id}-${key}">${label}</h3>`;
-  const html = `<section class="sy-agenda" id="programacion-${id}" aria-labelledby="programacion-${id}-title" tabindex="-1" data-agenda-review="${asOf}"><div class="sy-agenda-inner"><h2 id="programacion-${id}-title">${text.heading}</h2>
+  if (!units.length) return { html: '', ...projection, heldActions };
+  const html = `<section class="sy-agenda" id="programacion-${id}" aria-labelledby="programacion-${id}-title" tabindex="-1"${audience === 'review' ? ' data-agenda-review="' + asOf + '"' : ''}><div class="sy-agenda-inner"><h2 id="programacion-${id}-title">${text.heading}</h2>
     ${datedHtml ? `<section class="sy-agenda-dates" aria-labelledby="agenda-${id}-dates">${heading('dates', text.dates)}<div class="sy-agenda-grid">${datedHtml}</div></section>` : ''}
     ${weekly.length ? `<section class="sy-agenda-weekly" aria-labelledby="agenda-${id}-weekly">${heading('weekly', text.weekly)}<div class="sy-agenda-weekly-grid">${weekly.map(unit => `<article class="sy-agenda-night" data-record="${unit.id}"><div class="sy-agenda-night-copy"><p class="sy-agenda-weekday">${text.weekdays[unit.weekday]}</p><h4>${unit.artwork ? escapeHtml(unit.title) : link(unit.sourceRefs[0], escapeHtml(unit.title), 'sy-agenda-title-link')}</h4>${description(unit)}</div>${art(unit, true)}</article>`).join('')}</div></section>` : ''}
     ${offers.length ? `<section class="sy-agenda-offers" aria-labelledby="agenda-${id}-offers">${heading('offers', text.offers)}${offers.map(unit => `<article class="sy-agenda-offer" data-record="${unit.id}">${art(unit, true)}<div><p class="sy-agenda-weekday">${text.weekdays[unit.weekday]}${unit.start ? ' · ' + timing(unit, language) : ''}</p><h4>${escapeHtml(unit.title)}</h4>${description(unit)}${unit.conditions ? `<p>${escapeHtml(language === 'en' ? copy[unit.id].conditionsEn : unit.conditions)}</p>` : ''}</div></article>`).join('')}</section>` : ''}

@@ -45,7 +45,7 @@ export function productionMetadata(previewDir, report) {
 }
 export function validateCiRun(run, artifact) {
   assert.equal(run.repository?.full_name,target.repository);assert.equal(run.head_branch,'main');
-  assert.equal(run.event,'push');assert.equal(run.conclusion,'success');assert.equal(run.status,'completed');
+  assert.ok(['push','schedule'].includes(run.event));assert.equal(run.conclusion,'success');assert.equal(run.status,'completed');
   assert.equal(run.path,'.github/workflows/quality.yml');assert.match(run.head_sha,/^[a-f0-9]{40}$/);
   assert.equal(artifact.name,'public-site-'+run.head_sha);assert.equal(artifact.expired,false);
   assert.equal(artifact.workflow_run?.id,run.id);assert.equal(artifact.workflow_run?.head_sha,run.head_sha);
@@ -65,6 +65,14 @@ export async function prepare(runId,destination) {
   const run=JSON.parse(gh('actions/runs/'+runId));
   const artifacts=JSON.parse(gh(`actions/runs/${runId}/artifacts`)).artifacts;
   const matches=artifacts.filter(a=>a.name==='public-site-'+run.head_sha);
+  if(run.event==='schedule'&&matches.length===0){
+    assert.equal(run.repository?.full_name,target.repository);assert.equal(run.head_branch,'main');
+    assert.equal(run.conclusion,'success');assert.equal(run.status,'completed');assert.equal(run.path,'.github/workflows/quality.yml');
+    const jobs=JSON.parse(gh('actions/runs/'+runId+'/jobs?per_page=100')).jobs;
+    assert.ok(jobs.some(job=>job.name==='Agenda freshness check'&&job.conclusion==='success'));
+    assert.ok(jobs.some(job=>job.name==='Public artifact checks'&&job.conclusion==='skipped'));
+    return {has_artifact:'false',reason:'unchanged-approved-agenda'};
+  }
   assert.equal(matches.length,1,'Require one CI artifact');const artifact=matches[0];validateCiRun(run,artifact);
   const zip=gh(`actions/artifacts/${artifact.id}/zip`,true);
   assert.equal('sha256:'+hash(zip),artifact.digest,'Downloaded archive digest mismatch');
@@ -84,7 +92,7 @@ export async function prepare(runId,destination) {
     previewHashesDigest:hash(JSON.stringify(preview.hashes)),productionHashesDigest:hash(JSON.stringify(prod.report.hashes)),
     productionTransformation:'Only remove the exact global noindex header added by CI; page noindex flags remain'};
   writeFileSync(resolve(destination,'control.json'),JSON.stringify(control,null,2));
-  return control;
+  return {...control,has_artifact:'true'};
 }
 export function checkBundle(directory) {
   const control=JSON.parse(readFileSync(resolve(directory,'control.json'),'utf8'));

@@ -6,6 +6,7 @@ import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import assert from 'node:assert/strict';
 import { parseQrRedirects } from './qr-redirects.mjs';
+import { projectPublicAgenda } from './editorial/public-agenda.mjs';
 
 export const projectRoot = fileURLToPath(new URL('../', import.meta.url));
 export const forbiddenRoute = /(?:^|\/)(?:dashboard|listings|reputation|requests|reports|review-detail|maricarmen)(?:\.html|\/|$)/i;
@@ -80,7 +81,7 @@ function inspectLimitedApproval({ root, approval, commit, dirty, publicDigest, o
     sourceCommit: record.sourceCommit, publicDigest: record.publicDigest, authorization: record.authorization };
 }
 
-export function packagePublic({ root = projectRoot, destination, metadata, audience = 'production', approval } = {}) {
+export function packagePublic({ root = projectRoot, destination, metadata, audience = 'production', approval, now } = {}) {
   assert.ok(['production', 'review', 'limited-production'].includes(audience), 'Unknown package audience');
   assert.ok(approval === undefined || audience === 'limited-production', 'Approval applies only to the explicit limited-production audience');
   assert.ok(destination, 'Provide a fresh artifact directory');
@@ -95,16 +96,20 @@ export function packagePublic({ root = projectRoot, destination, metadata, audie
   const { files, manifest } = inspectPublic(root); // Validate everything before creating any output.
   assert.ok(audience !== 'production' || !(manifest.reviewPages ?? []).length,
     'Review-only pages cannot enter a production package; use an explicit local review audience');
-  const hashes = Object.fromEntries(files.map(path => [path, createHash('sha256').update(readFileSync(resolve(root, path))).digest('hex')]));
-  const publicDigest = publicSourceDigest(hashes); // Source bytes, before review-only header mutation.
+  const sourceHashes = Object.fromEntries(files.map(path => [path, createHash('sha256').update(readFileSync(resolve(root, path))).digest('hex')]));
   let commit = null;
   try { commit = execFileSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }).trim(); } catch {}
   const dirty = commit ? Boolean(execFileSync('git', ['status', '--porcelain'], { cwd: root, encoding: 'utf8' }).trim()) : true;
+  const projection=projectPublicAgenda(root,{now,commit});
+  for(const path of projection.files.keys())assert.ok(files.includes(path),'Projected page outside manifest');
+  const hashes=Object.fromEntries(files.map(path=>[path,projection.files.has(path)?createHash('sha256').update(projection.files.get(path)).digest('hex'):sourceHashes[path]]));
+  const publicDigest=publicSourceDigest(hashes); // Exact current projection, before the preview header.
   const approved = audience === 'limited-production'
     ? inspectLimitedApproval({ root, approval, commit, dirty, publicDigest, out }) : null;
   for (const path of files) {
     mkdirSync(dirname(resolve(out, path)), { recursive: true });
-    copyFileSync(resolve(root, path), resolve(out, path));
+    if(projection.files.has(path))writeFileSync(resolve(out,path),projection.files.get(path));
+    else copyFileSync(resolve(root, path), resolve(out, path));
   }
   if (audience === 'review') {
     // Protect the entire candidate, including its unchanged indexable home, if served by a preview host.
@@ -113,6 +118,7 @@ export function packagePublic({ root = projectRoot, destination, metadata, audie
     hashes._headers = createHash('sha256').update(readFileSync(headers)).digest('hex');
   }
   const report = { version: 1, commit, dirty, audience, reviewPages: manifest.reviewPages ?? [], fileCount: files.length, hashes, publicDigest,
+    ...(projection.metadata?{sourcePublicDigest:publicSourceDigest(sourceHashes),agenda:projection.metadata}:{}),
     ...(approved ? { approval: approved } : {}) };
   if (reportPath) {
     mkdirSync(dirname(reportPath), { recursive: true });

@@ -1,0 +1,778 @@
+{
+  "version": 1,
+  "observedOn": "2026-10-13",
+  "mode": "editorial-preparation-only",
+  "publicationEnabled": false,
+  "schedulerEnabled": false,
+  "sources": [
+    {
+      "id": "calendar-houston-live-20261013",
+      "url": "https://docs.google.com/spreadsheets/d/16JD2eNH8atUX6nrT3ybdyA7LWtPJapo7MC82ADgyrek/edit",
+      "observedOn": "2026-10-13",
+      "method": "native-sheet-bounded-range",
+      "sheet": "Sheet1",
+      "sourceSnapshotSha256": "d3b03f3bac2a1e122d21006ff3f25684a43e5b876431302c901f8de1da35019e"
+    },
+    {
+      "id": "calendar-the-woodlands-live-20261013",
+      "url": "https://docs.google.com/spreadsheets/d/11YSc1afWv3UVEOdPjqgPOf59YcRUg4PvoM7G0bwI1z8/edit",
+      "observedOn": "2026-10-13",
+      "method": "native-sheet-bounded-range",
+      "sheet": "Sheet1",
+      "sourceSnapshotSha256": "d3b03f3bac2a1e122d21006ff3f25684a43e5b876431302c901f8de1da35019e"
+    },
+    {
+      "id": "calendar-san-antonio-live-20261013",
+      "url": "https://drive.google.com/file/d/1s8kCGfPnE1hkE7mZBfE57AYd4K-xf0zD/view",
+      "observedOn": "2026-10-13",
+      "method": "connector-readable-xlsx",
+      "sheet": "Sheet1",
+      "sourceSnapshotSha256": "d3b03f3bac2a1e122d21006ff3f25684a43e5b876431302c901f8de1da35019e"
+    },
+    {
+      "id": "instagram-gdl-brujas-20261013",
+      "url": "https://www.instagram.com/p/DeIbppdgMu3/",
+      "observedOn": "2026-10-13",
+      "method": "Brave-visible-caption-and-poster; published JPEG saved locally",
+      "artworkSha256": "7a65a1ee417e14e01671d0d1068f4a6f7507333a595f52f5dcebebf870e034f5"
+    },
+    {
+      "id": "instagram-gdl-solteras-20261013",
+      "url": "https://www.instagram.com/p/Dd7fzQkg_wG/",
+      "observedOn": "2026-10-13",
+      "method": "Brave-visible-caption-and-poster; published JPEG saved locally",
+      "artworkSha256": "6806556cb26adc69f5407f9659aa3a553296d833461f3e5ad801d7d0e3894598"
+    }
+  ],
+  "records": [
+    {
+      "id": "houston-pinta-canta-20261014",
+      "branchId": "houston",
+      "revision": 1,
+      "kind": "dated-event",
+      "editorialStatus": "draft",
+      "sourceRef": "calendar-houston-live-20261013",
+      "sourceRange": "Sheet1!A14:E14",
+      "title": {
+        "es": "pinta y canta",
+        "en": null
+      },
+      "date": "2026-10-14",
+      "sourceDateLabel": "MIercoles 14 de Octubre",
+      "startsAt": null,
+      "endsAt": null,
+      "timeZone": "America/Chicago",
+      "recurrence": null,
+      "publishFrom": null,
+      "expiresAt": null,
+      "artwork": null,
+      "artworkAlt": null,
+      "postUrl": null,
+      "rights": null,
+      "approval": null,
+      "blockers": [
+        "operational-approval",
+        "exact-start-end",
+        "publication-window",
+        "artwork-post",
+        "translation"
+      ]
+    },
+    {
+      "id": "houston-loteria-karaoke-20261015",
+      "branchId": "houston",
+      "revision": 1,
+      "kind": "dated-event",
+      "editorialStatus": "draft",
+      "sourceRef": "calendar-houston-live-20261013",
+      "sourceRange": "Sheet1!A15:E15",
+      "title": {
+        "es": "Loteria+Canta si te atreves",
+        "en": null
+      },
+      "date": "2026-10-15",
+      "sourceDateLabel": "Jueves 15 de Octubre",
+      "startsAt": null,
+      "endsAt": null,
+      "timeZone": "America/Chicago",
+      "recurrence": null,
+      "publishFrom": null,
+      "expiresAt": null,
+      "artwork": null,
+      "artworkAlt": null,
+      "postUrl": null,
+      "rights": null,
+      "approval": null,
+      "blockers": [
+        "operational-approval",
+        "exact-start-end",
+        "publication-window",
+        "artwork-post",
+        "translation"
+      ]
+    },
+    {
+      "id": "houston-industry-night-20261016",
+      "branchId": "houston",
+      "revision": 1,
+      "kind": "dated-event",
+      "editorialStatus": "draft",
+      "sourceRef": "calendar-houston-live-20261013",
+      "sourceRange": "Sheet1!A16:E16",
+      "title": {
+        "es": "Industry Night",
+        "en": null
+      },
+      "date": "2026-10-16",
+      "sourceDateLabel": "viernes 16 de Octubre",
+      "startsAt": null,
+      "endsAt": null,
+      "timeZone": "America/Chicago",
+      "recurrence": null,
+      "publishFrom": null,
+      "expiresAt": null,
+      "artwork": null,
+      "artworkAlt": null,
+      "postUrl": null,
+      "rights": null,
+      "approval": null,
+      "blockers": [
+        "operational-approval",
+        "exact-start-end",
+        "publication-window",
+        "artwork-post",
+        "translation"
+      ]
+    },
+    {
+      "id": "houston-brunch-nfl-20261018",
+      "branchId": "houston",
+      "revision": 1,
+      "kind": "dated-event",
+      "editorialStatus": "draft",
+      "sourceRef": "calendar-houston-live-20261013",
+      "sourceRange": "Sheet1!A18:E18",
+      "title": {
+        "es": "Brunch y NFL",
+        "en": null
+      },
+      "date": "2026-10-18",
+      "sourceDateLabel": "Domingo 18 de Octubre",
+      "startsAt": null,
+      "endsAt": null,
+      "timeZone": "America/Chicago",
+      "recurrence": null,
+      "publishFrom": null,
+      "expiresAt": null,
+      "artwork": null,
+      "artworkAlt": null,
+      "postUrl": null,
+      "rights": null,
+      "approval": null,
+      "blockers": [
+        "operational-approval",
+        "exact-start-end",
+        "publication-window",
+        "artwork-post",
+        "translation"
+      ]
+    },
+    {
+      "id": "houston-karaoke-20261022",
+      "branchId": "houston",
+      "revision": 1,
+      "kind": "dated-event",
+      "editorialStatus": "draft",
+      "sourceRef": "calendar-houston-live-20261013",
+      "sourceRange": "Sheet1!A19:E19",
+      "title": {
+        "es": "Canta si te atreves",
+        "en": null
+      },
+      "date": "2026-10-22",
+      "sourceDateLabel": "Jueves 22 de Octubre",
+      "startsAt": null,
+      "endsAt": null,
+      "timeZone": "America/Chicago",
+      "recurrence": null,
+      "publishFrom": null,
+      "expiresAt": null,
+      "artwork": null,
+      "artworkAlt": null,
+      "postUrl": null,
+      "rights": null,
+      "approval": null,
+      "blockers": [
+        "operational-approval",
+        "exact-start-end",
+        "publication-window",
+        "artwork-post",
+        "translation"
+      ]
+    },
+    {
+      "id": "houston-brunch-nfl-20261025",
+      "branchId": "houston",
+      "revision": 1,
+      "kind": "dated-event",
+      "editorialStatus": "draft",
+      "sourceRef": "calendar-houston-live-20261013",
+      "sourceRange": "Sheet1!A21:E21",
+      "title": {
+        "es": "Brunch y NFL",
+        "en": null
+      },
+      "date": "2026-10-25",
+      "sourceDateLabel": "Domingo 25 de Octubre",
+      "startsAt": null,
+      "endsAt": null,
+      "timeZone": "America/Chicago",
+      "recurrence": null,
+      "publishFrom": null,
+      "expiresAt": null,
+      "artwork": null,
+      "artworkAlt": null,
+      "postUrl": null,
+      "rights": null,
+      "approval": null,
+      "blockers": [
+        "operational-approval",
+        "exact-start-end",
+        "publication-window",
+        "artwork-post",
+        "translation"
+      ]
+    },
+    {
+      "id": "houston-voces-ultratumba-20261029",
+      "branchId": "houston",
+      "revision": 1,
+      "kind": "dated-event",
+      "editorialStatus": "draft",
+      "sourceRef": "calendar-houston-live-20261013",
+      "sourceRange": "Sheet1!A22:E22",
+      "title": {
+        "es": "Voces de Ultratumba",
+        "en": null
+      },
+      "date": "2026-10-29",
+      "sourceDateLabel": "Jueves 29 de Octubre",
+      "startsAt": null,
+      "endsAt": null,
+      "timeZone": "America/Chicago",
+      "recurrence": null,
+      "publishFrom": null,
+      "expiresAt": null,
+      "artwork": null,
+      "artworkAlt": null,
+      "postUrl": null,
+      "rights": null,
+      "approval": null,
+      "blockers": [
+        "operational-approval",
+        "exact-start-end",
+        "publication-window",
+        "artwork-post",
+        "translation"
+      ]
+    },
+    {
+      "id": "houston-industry-night-20261030",
+      "branchId": "houston",
+      "revision": 1,
+      "kind": "dated-event",
+      "editorialStatus": "draft",
+      "sourceRef": "calendar-houston-live-20261013",
+      "sourceRange": "Sheet1!A23:E23",
+      "title": {
+        "es": "Industry Night",
+        "en": null
+      },
+      "date": "2026-10-30",
+      "sourceDateLabel": "Viernes 30 de Octubre",
+      "startsAt": null,
+      "endsAt": null,
+      "timeZone": "America/Chicago",
+      "recurrence": null,
+      "publishFrom": null,
+      "expiresAt": null,
+      "artwork": null,
+      "artworkAlt": null,
+      "postUrl": null,
+      "rights": null,
+      "approval": null,
+      "blockers": [
+        "operational-approval",
+        "exact-start-end",
+        "publication-window",
+        "artwork-post",
+        "translation"
+      ]
+    },
+    {
+      "id": "houston-halloween-20261031",
+      "branchId": "houston",
+      "revision": 1,
+      "kind": "dated-event",
+      "editorialStatus": "draft",
+      "sourceRef": "calendar-houston-live-20261013",
+      "sourceRange": "Sheet1!A25:E25",
+      "title": {
+        "es": "Halloween Night",
+        "en": null
+      },
+      "date": "2026-10-31",
+      "sourceDateLabel": "Sabado 31 de Octubre",
+      "startsAt": null,
+      "endsAt": null,
+      "timeZone": "America/Chicago",
+      "recurrence": null,
+      "publishFrom": null,
+      "expiresAt": null,
+      "artwork": null,
+      "artworkAlt": null,
+      "postUrl": null,
+      "rights": null,
+      "approval": null,
+      "blockers": [
+        "operational-approval",
+        "exact-start-end",
+        "publication-window",
+        "artwork-post",
+        "translation"
+      ]
+    },
+    {
+      "id": "houston-catrinas-20261101",
+      "branchId": "houston",
+      "revision": 1,
+      "kind": "dated-event",
+      "editorialStatus": "draft",
+      "sourceRef": "calendar-houston-live-20261013",
+      "sourceRange": "Sheet1!A29:E29",
+      "title": {
+        "es": "Noche de Catrinas",
+        "en": null
+      },
+      "date": "2026-11-01",
+      "sourceDateLabel": "1 de Noviembre",
+      "startsAt": null,
+      "endsAt": null,
+      "timeZone": "America/Chicago",
+      "recurrence": null,
+      "publishFrom": null,
+      "expiresAt": null,
+      "artwork": null,
+      "artworkAlt": null,
+      "postUrl": null,
+      "rights": null,
+      "approval": null,
+      "blockers": [
+        "operational-approval",
+        "exact-start-end",
+        "publication-window",
+        "artwork-post",
+        "translation"
+      ]
+    },
+    {
+      "id": "the-woodlands-mes-hispano-20261015",
+      "branchId": "the-woodlands",
+      "revision": 1,
+      "kind": "dated-event",
+      "editorialStatus": "draft",
+      "sourceRef": "calendar-the-woodlands-live-20261013",
+      "sourceRange": "Sheet1!A6:E6",
+      "title": {
+        "es": "Mes Hispano",
+        "en": null
+      },
+      "date": "2026-10-15",
+      "sourceDateLabel": "Jueves 15 de Octubre",
+      "startsAt": null,
+      "endsAt": null,
+      "timeZone": "America/Chicago",
+      "recurrence": null,
+      "publishFrom": null,
+      "expiresAt": null,
+      "artwork": null,
+      "artworkAlt": null,
+      "postUrl": null,
+      "rights": null,
+      "approval": null,
+      "blockers": [
+        "operational-approval",
+        "exact-start-end",
+        "publication-window",
+        "artwork-post",
+        "translation"
+      ]
+    },
+    {
+      "id": "the-woodlands-catrinas-20261030",
+      "branchId": "the-woodlands",
+      "revision": 1,
+      "kind": "dated-event",
+      "editorialStatus": "draft",
+      "sourceRef": "calendar-the-woodlands-live-20261013",
+      "sourceRange": "Sheet1!A8:E8",
+      "title": {
+        "es": "Noche De Catrinas",
+        "en": null
+      },
+      "date": "2026-10-30",
+      "sourceDateLabel": "Viernes 30 de Octubre",
+      "startsAt": null,
+      "endsAt": null,
+      "timeZone": "America/Chicago",
+      "recurrence": null,
+      "publishFrom": null,
+      "expiresAt": null,
+      "artwork": null,
+      "artworkAlt": null,
+      "postUrl": null,
+      "rights": null,
+      "approval": null,
+      "blockers": [
+        "operational-approval",
+        "exact-start-end",
+        "publication-window",
+        "artwork-post",
+        "translation"
+      ]
+    },
+    {
+      "id": "the-woodlands-halloween-20261031",
+      "branchId": "the-woodlands",
+      "revision": 1,
+      "kind": "dated-event",
+      "editorialStatus": "draft",
+      "sourceRef": "calendar-the-woodlands-live-20261013",
+      "sourceRange": "Sheet1!A9:E9",
+      "title": {
+        "es": "Halloween Night",
+        "en": null
+      },
+      "date": "2026-10-31",
+      "sourceDateLabel": "Sabado 31 de Octubre",
+      "startsAt": null,
+      "endsAt": null,
+      "timeZone": "America/Chicago",
+      "recurrence": null,
+      "publishFrom": null,
+      "expiresAt": null,
+      "artwork": null,
+      "artworkAlt": null,
+      "postUrl": null,
+      "rights": null,
+      "approval": null,
+      "blockers": [
+        "operational-approval",
+        "exact-start-end",
+        "publication-window",
+        "artwork-post",
+        "translation"
+      ]
+    },
+    {
+      "id": "san-antonio-pelucas-20261017",
+      "branchId": "san-antonio",
+      "revision": 1,
+      "kind": "dated-event",
+      "editorialStatus": "draft",
+      "sourceRef": "calendar-san-antonio-live-20261013",
+      "sourceRange": "Sheet1!A67:E67",
+      "title": {
+        "es": "Noche de Pelucas",
+        "en": null
+      },
+      "date": "2026-10-17",
+      "sourceDateLabel": "17 de Octubre",
+      "startsAt": null,
+      "endsAt": null,
+      "timeZone": "America/Chicago",
+      "recurrence": null,
+      "publishFrom": null,
+      "expiresAt": null,
+      "artwork": null,
+      "artworkAlt": null,
+      "postUrl": null,
+      "rights": null,
+      "approval": null,
+      "blockers": [
+        "operational-approval",
+        "exact-start-end",
+        "publication-window",
+        "artwork-post",
+        "translation"
+      ]
+    },
+    {
+      "id": "san-antonio-don-omar-afterparty-20261022",
+      "branchId": "san-antonio",
+      "revision": 1,
+      "kind": "dated-event",
+      "editorialStatus": "draft",
+      "sourceRef": "calendar-san-antonio-live-20261013",
+      "sourceRange": "Sheet1!A68:E68",
+      "title": {
+        "es": "After Party de Don Omar",
+        "en": null
+      },
+      "date": "2026-10-22",
+      "sourceDateLabel": "22 de Octubre",
+      "startsAt": null,
+      "endsAt": null,
+      "timeZone": "America/Chicago",
+      "recurrence": null,
+      "publishFrom": null,
+      "expiresAt": null,
+      "artwork": null,
+      "artworkAlt": null,
+      "postUrl": null,
+      "rights": null,
+      "approval": null,
+      "blockers": [
+        "operational-approval",
+        "exact-start-end",
+        "publication-window",
+        "artwork-post",
+        "translation"
+      ]
+    },
+    {
+      "id": "san-antonio-willy-wonka-20261023",
+      "branchId": "san-antonio",
+      "revision": 1,
+      "kind": "dated-event",
+      "editorialStatus": "draft",
+      "sourceRef": "calendar-san-antonio-live-20261013",
+      "sourceRange": "Sheet1!A69:E69",
+      "title": {
+        "es": "ticket de Willy Wonka",
+        "en": null
+      },
+      "date": "2026-10-23",
+      "sourceDateLabel": "23 de Octubre",
+      "startsAt": null,
+      "endsAt": null,
+      "timeZone": "America/Chicago",
+      "recurrence": null,
+      "publishFrom": null,
+      "expiresAt": null,
+      "artwork": null,
+      "artworkAlt": null,
+      "postUrl": null,
+      "rights": null,
+      "approval": null,
+      "blockers": [
+        "operational-approval",
+        "exact-start-end",
+        "publication-window",
+        "artwork-post",
+        "translation"
+      ]
+    },
+    {
+      "id": "san-antonio-celebridad-20261024",
+      "branchId": "san-antonio",
+      "revision": 1,
+      "kind": "dated-event",
+      "editorialStatus": "draft",
+      "sourceRef": "calendar-san-antonio-live-20261013",
+      "sourceRange": "Sheet1!A70:E70",
+      "title": {
+        "es": "Noche de tu celebridad favorita",
+        "en": null
+      },
+      "date": "2026-10-24",
+      "sourceDateLabel": "24 de octubre",
+      "startsAt": null,
+      "endsAt": null,
+      "timeZone": "America/Chicago",
+      "recurrence": null,
+      "publishFrom": null,
+      "expiresAt": null,
+      "artwork": null,
+      "artworkAlt": null,
+      "postUrl": null,
+      "rights": null,
+      "approval": null,
+      "blockers": [
+        "operational-approval",
+        "exact-start-end",
+        "publication-window",
+        "artwork-post",
+        "translation"
+      ]
+    },
+    {
+      "id": "san-antonio-halloween-20261031",
+      "branchId": "san-antonio",
+      "revision": 1,
+      "kind": "dated-event",
+      "editorialStatus": "draft",
+      "sourceRef": "calendar-san-antonio-live-20261013",
+      "sourceRange": "Sheet1!A71:E71",
+      "title": {
+        "es": "Halloween",
+        "en": null
+      },
+      "date": "2026-10-31",
+      "sourceDateLabel": "31 de Octubre",
+      "startsAt": null,
+      "endsAt": null,
+      "timeZone": "America/Chicago",
+      "recurrence": null,
+      "publishFrom": null,
+      "expiresAt": null,
+      "artwork": null,
+      "artworkAlt": null,
+      "postUrl": null,
+      "rights": null,
+      "approval": null,
+      "blockers": [
+        "operational-approval",
+        "exact-start-end",
+        "publication-window",
+        "artwork-post",
+        "translation"
+      ]
+    },
+    {
+      "id": "san-antonio-catrinas-20261101",
+      "branchId": "san-antonio",
+      "revision": 1,
+      "kind": "dated-event",
+      "editorialStatus": "draft",
+      "sourceRef": "calendar-san-antonio-live-20261013",
+      "sourceRange": "Sheet1!A73:E73",
+      "title": {
+        "es": "Noche de Catrinas",
+        "en": null
+      },
+      "date": "2026-11-01",
+      "sourceDateLabel": "1 de noviembre",
+      "startsAt": null,
+      "endsAt": null,
+      "timeZone": "America/Chicago",
+      "recurrence": null,
+      "publishFrom": null,
+      "expiresAt": null,
+      "artwork": null,
+      "artworkAlt": null,
+      "postUrl": null,
+      "rights": null,
+      "approval": null,
+      "blockers": [
+        "operational-approval",
+        "exact-start-end",
+        "publication-window",
+        "artwork-post",
+        "translation"
+      ]
+    },
+    {
+      "id": "san-ignacio-brujas-20261031",
+      "branchId": "san-ignacio",
+      "revision": 1,
+      "kind": "dated-event",
+      "editorialStatus": "draft",
+      "sourceRef": "instagram-gdl-brujas-20261013",
+      "sourceRange": null,
+      "title": {
+        "es": "Noche de Brujas en Sin Yolanda",
+        "en": null
+      },
+      "date": "2026-10-31",
+      "sourceDateLabel": "31 de octubre",
+      "startsAt": "2026-10-31T19:00:00-06:00",
+      "endsAt": "2026-11-01T03:00:00-06:00",
+      "timeZone": "America/Mexico_City",
+      "recurrence": null,
+      "publishFrom": null,
+      "expiresAt": null,
+      "artwork": {
+        "privateFile": "gdl-brujas-DeIbppdgMu3.jpg",
+        "sha256": "7a65a1ee417e14e01671d0d1068f4a6f7507333a595f52f5dcebebf870e034f5",
+        "width": 1440,
+        "height": 1920
+      },
+      "artworkAlt": "Cartel de Noche de Brujas en Sin Yolanda, 31 de octubre",
+      "postUrl": "https://www.instagram.com/p/DeIbppdgMu3/",
+      "rights": "review-only",
+      "approval": null,
+      "blockers": [
+        "operational-approval",
+        "publication-window",
+        "rights-approval"
+      ],
+      "timeBasis": "branch-hours-fallback-authorized-by-Luis-20261013",
+      "hoursLabel": "Horario de la sucursal: 19:00–03:00 del día siguiente; horario propio del evento no confirmado"
+    },
+    {
+      "id": "san-ignacio-solteras-weekly",
+      "branchId": "san-ignacio",
+      "revision": 1,
+      "kind": "weekly-promotion",
+      "editorialStatus": "draft",
+      "sourceRef": "instagram-gdl-solteras-20261013",
+      "sourceRange": null,
+      "title": {
+        "es": "Jueves de Solteras",
+        "en": null
+      },
+      "date": null,
+      "sourceDateLabel": "Jueves, sin periodo de vigencia",
+      "startsAt": null,
+      "endsAt": null,
+      "timeZone": "America/Mexico_City",
+      "recurrence": {
+        "weekday": 4,
+        "startsOn": null,
+        "endsOn": null,
+        "startTime": "19:00",
+        "endTime": "03:00",
+        "endsNextDay": true
+      },
+      "publishFrom": null,
+      "expiresAt": null,
+      "artwork": {
+        "privateFile": "gdl-solteras-Dd7fzQkg_wG.jpg",
+        "sha256": "6806556cb26adc69f5407f9659aa3a553296d833461f3e5ad801d7d0e3894598",
+        "width": 1440,
+        "height": 1920
+      },
+      "artworkAlt": "Cartel de Jueves de Solteras en Sin Yolanda Guadalajara",
+      "postUrl": "https://www.instagram.com/p/Dd7fzQkg_wG/",
+      "rights": "review-only",
+      "approval": null,
+      "blockers": [
+        "operational-approval",
+        "exact-start-end",
+        "publication-window",
+        "rights-approval",
+        "recurrence-period"
+      ],
+      "timeBasis": "branch-hours-fallback-authorized-by-Luis-20261013",
+      "hoursLabel": "Horario de la sucursal: 19:00–03:00 del día siguiente; horario propio del evento no confirmado"
+    }
+  ],
+  "exclusions": [
+    {
+      "branchId": "el-paso",
+      "reason": "no source calendar; do not extrapolate"
+    },
+    {
+      "branchId": "the-woodlands",
+      "sourceRange": "Sheet1!A5:E5,A18:E18",
+      "reason": "Wednesday recurrence has no validity or complete details"
+    },
+    {
+      "branchId": "the-woodlands",
+      "sourceRange": "Sheet1!A4:E4,A7:E7,A19:E19,A21:E22",
+      "reason": "sports ideas, external sponsorship, Thanksgiving awaiting confirmation; not verified in-venue events"
+    }
+  ],
+  "publicationWindowProposal": "Show once editorial data and artwork are reviewed, until closing; override per event. Not configured or approved as a global rule."
+}

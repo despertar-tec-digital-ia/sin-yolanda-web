@@ -1,5 +1,134 @@
 # Migración de WordPress y medición · 8-oct-2026
 
+## Frente B · preparación local13-oct · eventos y atribución
+
+Encargo vigente: bloque B01–B07 del plan operativo del vault. Rama propia
+`feat/events-measurement-b-20261013`, base `origin/main` `f9c13a0`. Este corte prepara datos,
+contrato y diagnóstico; no modifica HTML/CSS, `public-data.js`, tracker, rutas, WP, QR,
+campañas, propiedad GA4 ni workflows. Integración con A será una sola revisión posterior.
+
+### Registro y fuentes
+
+`scripts/editorial/front-b-events.json` conserva21candidatos: Houston10, SA6, Woodlands3,
+Guadalajara2. Todos borradores, con bloqueos explícitos y sin autorización de publicación.
+Es un intake incompleto para adaptar al modelo existente `BranchEvent`/`branch-programming.ts`,
+no otro motor de reloj ni un catálogo servido al navegador. Los datos desconocidos quedan `null`.
+El preflight `node scripts/audit-front-b.mjs` solo valida procedencia/aislamiento y enumera
+pendientes/lista corta; no resuelve ventanas, convierte datos a aprobados ni llama APIs.
+
+Originales del Doc OPEN TABLE/EVENTOS releídos13-oct: Houston/Woodlands `Sheet1!A1:E65`,
+SA lectura completa legible del XLSX, sin conversión ni descarga binaria en esta sesión.
+Snapshot completo/reconciliación privados en `clientes-assets/sin-yolanda/marketing-2026/`.
+Cotejo de columnas nombre/fecha, no paridad comercial/binaria. Woodlands coincide en ese cotejo.
+Houston: Catrinas desaparece de fila20/24-oct y pasa a fila29/1-nov. SA conserva Terror9-oct,
+Celebridad24-oct y Catrinas1-nov frente a la copia2-oct; hay desplazamientos de filas posteriores.
+El home actual todavía declara Houston Catrinas24-oct: corrección pendiente de integración,
+sin alterar por este corte el archivo de datos compartido con A.
+
+Post Guadalajara `DeIbppdgMu3`: Noche de Brujas31-oct, sede/dirección y cartel coinciden.
+Post `Dd7fzQkg_wG`: Jueves de Solteras, sede/dirección confirmadas; sin horario/periodo.
+JPEG publicados1440×1920 descargados y revisados, hash/procedencia en
+`gdl-post-artwork-2026-10-13.json`. No se conservan URLs CDN efímeras ni comentarios personales.
+Arte `review-only`; link de cada imagen será el post específico con nombre accesible.
+Luis13-oct pide usar horario de la sucursal: GDL19:00–03:00 del día siguiente, cotejado
+visible/JSON-LD. Brujas: ventana de referencia31-oct19:00→1-nov03:00 `America/Mexico_City`.
+Rotular **horario de la sucursal**, no horario confirmado del evento. Solteras: jueves,
+mismo horario de referencia, inicio/fin de recurrencia pendientes. No inventar una vigencia.
+
+Primera solicitud acotada de post/arte: Houston Pinta y Canta14-oct y Lotería/Karaoke15-oct;
+SA Pelucas17-oct y Don Omar22-oct; Woodlands Mes Hispano15-oct y Catrinas30-oct.
+El calendario no aprueba condiciones, entradas, premios ni la realización de un afterparty.
+NFL/partidos, patrocinio externo, miércoles sin fechas y Thanksgiving por confirmar permanecen
+separados; El Paso no tiene calendario. Fuentes secundarias Houston/Eventbrite del intake anterior
+siguen en `ingesta.json`; sus links no sustituyen los posts ni autorizan condiciones comerciales.
+
+### Contrato editorial propuesto, todavía sin scheduler
+
+Usar el evaluador existente del programa: IDs estables por sede/ocurrencia, revisión/digest,
+fuente/celda, título localizado, tipo, inicio/fin con offset e IANA, recurrencia/excepciones,
+ventana de publicación/retiro, arte/hash/alt/derechos, post/acción y aprobación de revisión exacta.
+Estados editoriales: borrador→confirmado→listo; estado de entrega separado publicado/vencido.
+Mapear confirmado/listo al `status:approved` existente únicamente con aprobación/hash íntegros;
+una publicación Instagram acredita fuente, no aprobación universal. Si faltan arte/post,
+conservar revisión según B03; no rellenar con imagen/perfil ajenos. Horas fallback rotuladas.
+
+Luis no elige anticipación global y considera corta una semana. Propuesta: mostrar desde revisión
+completa hasta cierre, con ventana editable por evento; `publishFrom/expiresAt` siguen pendientes
+en el intake. No fabricar medianoche de apertura ni días de anticipación. Cierre03:00 pertenece
+al día siguiente. Caducidad cliente y HTML inicial deben coincidir; JS solo no retira HTML noJS.
+Antes de activar: probar límites exactos antes/al aparecer/al vencer, medianoche/DST por zona,
+recurrencias,0/1/2/4/5eventos, ausencia de arte y móvil/desktop. Esas pruebas de integración y
+visuales **no se ejecutaron por este corte sin UI**. Scheduler: derivar próxima transición del
+modelo existente, comparar digest y construir/publicar solo con cambio; alertar fallos/atrasos.
+Intervalo, responsable y activación pendientes; no nuevo cron ni automatización remota.
+
+### Auditoría analítica real y mapa para cablear después
+
+Fuente auditada `assets/js/site-analytics.js`:23páginas cargan loader único y404se excluye.
+HTTPS/hosts/rutas permitidos, DNT/desactivación, cola acotada y navegación no bloqueada existen.
+La sanitización deja únicamente `action/branch/language`; borra queries y `event/kind` editorial.
+Sin dimensiones de ubicación/destino ni catálogo de campañas. `branchFromPath` omite
+`/guadalajara`: contexto sin atributo puede caer en `group`, pendiente de mapear a `san-ignacio`.
+El GET público del tracker coincide con la fuente auditada; home/aviso no cargan GA4. Son GET sin
+ejecutar JS ni emitir eventos, **no verificación de transporte**. Recibos en `.artifacts/front-b-20261013/`.
+
+| Intención | Emisor actual | Nombre y extensión propuesta |
+|---|---|---|
+| Llegada/página/entrada | auto pageview Umami + hook común | URL pública canónica + UTM permitida; referrer reducido; landing separado de adquisición |
+| Abrir selector/elegir sede/filtro | click delegado común | `location_selector_open`, `location_select`, `location_filter_click` |
+| Ir a ficha o carta | común; carta también emisor de ficha importada | `branch_click`, `menu_click`; `branch` destino y `page_branch` contexto separados |
+| OpenTable/WhatsApp/teléfono/mapa | emisor propio de ficha; común donde falta | `reservation_click`, `phone_click`, `directions_click`; WhatsApp Catering se clasificará contacto Catering, no reserva por arrastre |
+| Catering/contacto | común para enlaces/clases actuales | `catering_click`, `catering_contact_click`; no lead confirmado |
+| Campaña en cartelera/evento/post | home hoy enlaza ficha; agenda importada emite directo | preservar evento único, añadir `event_id` allowlist y destino simbólico; link imagen+texto no duplica al propagar click |
+| Idioma | común + control propio según página | `language_switch_click`; excluir `menu_click` accidental de controles de idioma |
+
+El común omite elementos cuyo emisor importado ya cuenta. Agenda dispatcha `sy:branch-action`
+y llama Umami: no añadir un segundo listener Umami al custom event. Si se incorpora GA4,
+crear un único adaptador al mismo evento normalizado. Los emisores importados no comparten todos
+los filtros `isTrusted`/cola del común: verificar teclado/new-tab y carga tardía en navegador.
+No certificar unicidad solo contando funciones en el grafo.
+
+Dimensiones propuestas, pendientes de implementación: `schema_version`, `branch` (destino),
+`page_branch`, `language`, `action`, `link_location` (header/hero/selector/content/agenda/footer),
+`destination` (branch/menu/reservation/maps/phone/catering/instagram_post), `event_id` del registro,
+`landing_path` allowlist y `legacy_hop` verificado. GDL usa siempre ID histórico `san-ignacio`
+con ruta pública `/guadalajara`. Sin texto libre, href completo, título personal, búsquedas,
+formularios, nombre/email/teléfono, URL privada, `gclid/fbclid` ni IDs de contacto.
+
+UTM solo en entrada externa controlada, nunca en enlaces internos. Catálogo versionado por
+campaña con source/medium/campaign permitidos: instagram/organic_social para posts,
+qr/offline para QR creado para esa campaña, google/cpc solo campaña Ads comprobada.
+No aceptar solo un regex: códigos deben existir en el catálogo; sin coincidencia, descartar.
+No generar enlaces externos nuevos por este corte. Referrer disponible es evidencia limitada:
+vacío=desconocido/directo no distinguibles; saltoTX/USA no demuestra Instagram ni QR.
+Separar `legacy_hop` de source; capturar solo si referrer/marcador controlado lo acredita.
+Preservar UTMs permitidas en redirects; no migrar QR antiguos para inventar atribución.
+Propuesta de URL Umami: ruta permitida + solo UTM catalogada después del hook; comprobar
+recepción real y reporte de campaña porque hoy `data-exclude-search` elimina toda la query.
+Session attribution primero por sesión/pestaña si se decide persistir, sin IDs de persona,
+sin sustituir la fuente por navegación interna ni reproducir visitas anteriores al consentimiento.
+
+### GA4, privacidad y aceptación pendiente
+
+El alta8-oct no debe repetirse. Preparación recuperable en Git `b86f6cf` sobre `6b5d339`,
+rama `feat/ga4-basic-consent`: config `enabled:false`, consentimiento/QA y borrador del aviso.
+La base oficial actual no contiene esos assets ni la UI; no cherry-pick completo sobre páginas
+de A, ni declarar consentimiento implementado por una memoria histórica. Recuperar/adaptar
+selectivamente cuando corresponda, conservando ID público y decisiones de cuenta pendientes.
+Modo básico: no carga/envía GA4 antes de aceptar; rechazar/revocar con facilidad equivalente,
+cero replay previo, DNT/GPC/exclusiones, errores no bloqueantes, Signals/ads denegados.
+Aviso actual describe Umami/mapas; responsable/canal y retención/personalización pendientes.
+Rechazo GA4 no equivale hoy a apagar Umami; explicarlo y decidir política antes de cablear.
+
+QA requerida B07: un click→un evento por proveedor; teclado/ctrl/nueva pestaña, UTMs/referrer y
+series GDL; aceptar/rechazar/revocar/expirar y almacenamiento fallido; ausencia PII; excluir
+local/demo/pruebas; fallo proveedor permite navegar. Transporte real Umami/GA4 requiere pase
+autorizado por dominio/consentimiento y recibo, distinto de VM o presencia de script.
+KPIs: visitas/fichas, menú/reserva/contacto/eventos/campañas por sede/idioma/entrada. Clic≠reserva,
+consumo, venta o lead recibido; no sumar visitantes únicos de dominios ni prometer retrospectiva.
+Base técnica consultada N0: [Umami](https://docs.umami.is/docs/tracker-configuration) y
+[Google consent](https://developers.google.com/tag-platform/security/guides/consent).
+
 ## Ampliación12-oct · cuatro raíces y canonical Guadalajara
 
 Luis ratifica destinos generales y añade Maricarmen/GDL: TX/USA/Maricarmen →

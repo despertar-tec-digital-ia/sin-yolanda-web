@@ -1,5 +1,16 @@
 # Forma de trabajar y publicar
 
+### Frente B13-oct · intake editorial y contrato analítico locales
+
+Rama `feat/events-measurement-b-20261013`, base oficial `f9c13a0`, worktree propio.
+Registro/preflight y contrato → primer bloque de `MIGRATION-AND-MEASUREMENT.md`.
+21candidatos borrador; fuentes vivas reconciliadas y dos carteles GDL recuperados.
+Horario GDL fallback encargado por Luis; ventanas/recurrencia y aprobación de oferta pendientes.
+Sin cambios públicos ni conexión analítica/scheduler; archivos editoriales fuera del manifiesto.
+No inferir GA4 implementado: candidato histórico `b86f6cf` localizado, ausente en esta base.
+Siguiente: completar primera tanda de posts USA y ventanas, después adaptar registro/modelo
+existente y revisar los campos analíticos antes de cablear. Publicación conserva gate explícito.
+
 **Última actualización:** 2026-10-09 · **Responsables:** Luis, técnica; Karina, negocio/contenido y hero.
 **Estado:** candidato integrado en `main` y release limitado publicado el 8-oct; CI de PR y main
 verificado, publicación Pages manual y smoke remoto comprobado. CD automático, protecciones y

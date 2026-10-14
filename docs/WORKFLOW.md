@@ -2,6 +2,25 @@
 
 ### Frente B13-oct · intake editorial y contrato analítico locales
 
+**Integración en contexto solicitada por Luis:** A `5b96451` integrado localmente por merge
+`db24149`, conservando sus horarios/fotos/El Paso. `build-branch-event-review.mjs` compone ocho
+fichas USA ES/EN en un artefacto nuevo, sin editar los232archivos fuente publicables.
+Preview vigente loopback8820;14unidades observadas visibles y12ambiguas retenidas fuera de UI.
+Pinta comparte un solo arte con dos funciones/boletos; Houston reemplaza el bloque anterior,
+su snapshot, enlace genérico de promociones y emisor inline. Noches/ofertas/recintos externos
+conservan tipos y accesos propios; preventaSA omitida y horas/admisión desconocidas sin completar.
+Home local corrige Catrinas desde la fuente viva tanto en HTML como SY_DATA, para que no vuelva
+24-oct al regenerar; nuevo CSS corrige contraste del header Houston al hacer scroll.
+
+Checks295/295 y QA46escenarios verdes: cuatro sedes, ES/EN, cinco anchos320–1440, noJS,
+fuentes/destinos/anchors/imágenes/horarios y home con/sinJS. Capturas inspeccionadas.
+Artefacto241archivos en `.artifacts/branch-event-context-final/public`; evidencia y límites en
+`MIGRATION-AND-MEASUREMENT.md` §«Integración local en las fichas USA».
+La producción y el manifiesto conservan los bytes de A; este pase no activa derechos/ofertas,
+clock/scheduler, GA4 ni medición de la agenda. Sin push, PR ni publicación.
+Siguiente: aceptación visual y resolver vigencias/condiciones/permisos antes del renderer
+productivo/reloj y contrato analítico; el artefacto está congelado al corte13-oct.
+
 **Revisión posterior de fuentes USA:** Luis entrega 14 enlaces y captura, y pide cotejo/diseño
 cuidadosos y boletos Jorge. Investigación N1 acotada cerrada, con 16 posts observados y cuatro
 funciones Eventbrite verificadas. Registro de fuentes/proyección y hallazgos → sección nueva de
@@ -15,8 +34,8 @@ se corrigieron espacios de1registro, ausencia de arte, fila impar y actividad ex
 Fuentes de arte privadas con hash/resolución; no originalesHD ni permisos comerciales inferidos.
 Recibos en `.artifacts/front-b-source-review-20261013/`, prototipo final en
 `.artifacts/event-design-review-final/public`. Sin push/PR, instalación ni publicación.
-Siguiente: revisar la composición dentro de una ficha y resolver vigencias/derechos/condiciones,
-después adaptar reloj/registro/medición en pase acotado. Mantener un único release junto con A.
+Siguiente de ese checkpoint, atendido arriba: revisar la composición dentro de las fichas.
+Mantener un único release junto con A cuando el alcance y su publicación estén aprobados.
 
 Rama `feat/events-measurement-b-20261013`, base oficial `f9c13a0`, worktree propio.
 Registro/preflight y contrato → primer bloque de `MIGRATION-AND-MEASUREMENT.md`.

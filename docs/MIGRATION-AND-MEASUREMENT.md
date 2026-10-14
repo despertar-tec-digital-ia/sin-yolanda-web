@@ -2,6 +2,69 @@
 
 ## Frente B · preparación local13-oct · eventos y atribución
 
+### Integración local en las fichas USA
+
+Luis solicita integrar la propuesta para verla dentro de cada ficha, revisar concordancia y
+evitar repeticiones; mantener ambiguos en revisión y no publicar. Se integra el corte A
+`5b96451` por merge local `db24149`, sin editar su worktree ni incorporar cartas de otros frentes.
+El builder de revisión usa el manifiesto aprobado y compone ocho fichas ES/EN dentro de una
+salida nueva en `.artifacts`; el repositorio conserva los232archivos publicables de A idénticos.
+
+`scripts/editorial/branch-agenda.mjs` proyecta el mismo registro de26unidades:14visibles,
+12retenidas por caption conflictivo o vigencia/recurrencia sin confirmar. No duplica el intake
+de21borradores ni convierte el calendario completo en oferta aprobada. Todos conservan
+`publicationEnabled:false` y sus aprobaciones nulas. GDL/Solteras continúa en el intake, fuera
+del alcance de este pase USA. La proyección está congelada a `observedOn`,13-oct; filtra fechas
+anteriores a ese corte en el builder, sin reloj dinámico ni renovación operativa automática.
+
+- **Una agenda por ficha:** queda después de comida/bebidas y antes de Catering Houston o
+  ubicación en las otras tres. Header añade un acceso Agenda/Events al mismo anchor. No crea
+  otro H1 ni repite reservas, carta, dirección o horarios dentro de los registros.
+- **Pinta:** un arte genérico, un título y dos funciones con fecha, detalles, check-in y enlace
+  propios;14y28oct no se confunden con una recurrencia. No duplica imagen/publicación/boletos.
+- **Houston:** sustituye toda la antigua envolturaBPD, incluyendo cartelJorge, snapshot8-oct,
+  enlace genérico de promociones y listener inline. Queda una aparición del concierto y un
+  enlace a sus boletos. Los helpers analíticos comunes quedan intactos; el nuevo bloque no
+  emite eventos de medición todavía.
+- **Clasificación:** noches semanales corroboradas tienen su bloque; HappyHourWoodlands es
+  combo anunciado con bebida elegible y franja16–21; RecoveryEP conserva domingo desde10,
+  sin duplicar esa hora en descripción ni asignar fin/sábado/NFLespecífico.
+- **Externos:** JorgeSA muestra K.O.P./314NolanStreet y su Eventbrite. Se omite el cartel de
+  preventa que vence antes del concierto, conservándolo en el registro para revisión.
+  Jets&Cars muestra Conroe, patrocinio y solo invitación, sin compra/reserva inventada.
+- **Datos no resueltos:** Don’tCrySA/TW y slots de cartelera no se presentan como agenda
+  permanente. JorgeEP mantiene fecha/post propio sin afirmar hora, gratuidad ni boletos.
+  Pelucas conserva17oct, sin beneficio de shot no conciliado. Oferta/derechos/ventanas de
+  todas las propuestas siguen pendientes antes de su activación comercial.
+- **Concordancia al navegar:** el teaser existente del home local usa Houston1nov,
+  Woodlands30oct y SA1nov, rango30oct–1nov. La corrección se aplica también a SY_DATA,
+  conservando horarios/medios/heroes y otras campañas; no revive24oct al regenerar con JS.
+  La navegación Houston al hacer scroll conserva color claro sobre fondo oscuro mediante
+  una regla específica de esta revisión, tras detectar que un override anterior oscurecía el texto.
+
+`node scripts/build-branch-event-review.mjs --asset-root <marketing-2026-explícito> <salida-nueva>`
+genera241archivos permitidos/hash, ochoJPEG verificadas y CSS acotado; fuentes editoriales,
+notas privadas y reconciliación quedan fuera del directorio servido. `serve-review.mjs` conserva
+loopback127.0.0.1 y allowlist explícita. Preview vigente `http://127.0.0.1:8820/houston#programacion-houston`.
+El manifiesto productivo no se amplía y el build normal no incluye estos carteles ni la agenda.
+
+**Verificado:** npmci/check295/295, contrato de integración5/5;46escenarios Chromium
+(cuatro sedes×dos idiomas×cinco anchos320/390/768/1024/1440; cuatro noJS; home con/sinJS).
+Sin overflow, erroresJS ni recursos locales fallidos. Cada ID/agenda único; enlaces propios
+de sede con nueva pestaña/foco, boletos distinguidos también en su nombre accesible; imágenes
+cargadas y enteras. Horarios del corteA y menú/reservas/contacto/Catering/footer preservados.
+Capturas desktop/móvil de las cuatro sedes inspeccionadas; comparación por secciones comprueba
+el resto de las fichas. Fuente publicable232/232 igual a A; el artefacto cambia solo ocho fichas,
+teaserHTML y datos de esa campaña, además de los nueve assets nuevos de revisión.
+
+Artefacto definitivo: `.artifacts/branch-event-context-final/public`.
+Recibos: `.artifacts/branch-event-context-v3/` (check/parity), release/reconciliation del definitivo y
+`.artifacts/branch-event-context-final-qa/` (report/capturas). No certifica Safari/iPhone físico,
+checkout externo, nuevos eventos Umami/GA4 ni scheduler. Servicios externos bloqueados en QA.
+Sin publicación/push/PR ni cambios en WP, QR, DNS, CRM o cuenta analítica. Antes de producir:
+aceptación visual, permisos/vigencias/condiciones pendientes, integración del reloj/hash existente
+y pase separado del contrato analítico; no promover directamente este artefacto congelado.
+
 ### Revisión posterior de publicaciones USA y propuesta de agenda
 
 Luis aporta 14 URLs y una captura de Houston. Pide comparar los documentos, distinguir los

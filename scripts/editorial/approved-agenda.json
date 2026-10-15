@@ -4,7 +4,7 @@
   "approvedAt": "2026-10-14T01:54:28.000Z",
   "publicationEnabled": true,
   "authorization": "Ok, las apruebo. sigue, no sé si toca publicarlos, si toca eso pues hazlo.",
-  "sourceDigest": "b428211836adc437b3b90f767beefc1cd1d68686052e1283282fe3ff9a7c76cd",
+  "sourceDigest": "49a416f127ce09ffd93b647fb273a126f9141700af6151d1fa569474ed0bc031",
   "records": [
     {
       "id": "houston-pinta-canta-20261014",
@@ -89,6 +89,15 @@
       "publishFrom": "2026-10-14T01:54:28.000Z",
       "expiresAt": null,
       "expiryBasis": "ongoing-announcement-until-editorial-change"
+    }
+  ],
+  "revisions": [
+    {
+      "date": "2026-10-14",
+      "recordId": "the-woodlands-mes-hispano-20261015",
+      "authorizedBy": "Luis",
+      "authorization": "Karina quiere que pongamos esto en woodlands. https://www.instagram.com/p/DefaT9GBok6/ es mañana. pon la foto también.",
+      "scope": "Add original poster and verified caption facts to the existing dated record; preserve its date and editorial expiry."
     }
   ]
 }

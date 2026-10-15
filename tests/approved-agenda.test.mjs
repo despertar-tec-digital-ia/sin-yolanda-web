@@ -11,6 +11,17 @@ test('approval binds the exact sourced projection and cannot authorize unresolve
  assert.equal(selectApprovedAgenda(config,'2026-10-14T01:54:27Z').visible.length,0);
  assert.equal(selectApprovedAgenda(config,config.approval.approvedAt).visible.length,14);
  assert.ok(config.approval.records.every(record=>!record.id.includes('cartelera-slot')));
+ const id='the-woodlands-mes-hispano-20261015';
+ assert.equal(config.approval.records.filter(record=>record.id===id).length,1);
+ assert.equal(config.approval.records.find(record=>record.id===id).expiresAt,'2026-10-16T05:00:00.000Z');
+ const pages=projectPublicAgenda(root,{now:'2026-10-15T12:00:00Z',commit}).files;
+ for(const file of['the-woodlands.html','en/the-woodlands/index.html']){
+  const html=pages.get(file);
+  assert.equal((html.match(new RegExp('data-record="'+id+'"','g'))||[]).length,1);
+  assert.match(html,/href="https:\/\/www.instagram.com\/p\/DefaT9GBok6\/"/);
+  assert.match(html,/tw-mes-hispano-DefaT9GBok6.jpg/);
+ }
+ for(const html of projectPublicAgenda(root,{now:'2026-10-16T05:00:00Z',commit}).files.values())assert.ok(!html.includes('tw-mes-hispano-DefaT9GBok6.jpg'));
 });
 test('dated Pinta retires at the announced end, in both languages and HTML without JS',()=>{
  const id='houston-pinta-canta-20261014';

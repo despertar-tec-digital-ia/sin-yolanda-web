@@ -5,18 +5,20 @@ PUBLICADA por PR33/main `08027d9`, CI/CD/recibo verdes.
 Proyección14unidades en ocho fichas USA ES/EN reconciliada sobre main publicado `b3040ef`,
 con reloj editorial/caducidad y sin fotos A04. Doce unidades y dos botones Jorge retenidos.
 Contrato, evidencia y estado remoto tienen dueño en «Agenda USA · publicación autorizada13-oct»
-de [WORKFLOW](WORKFLOW.md). B05–B07 ahora tienen candidata preparada/probada abajo;
-no dar por publicada esa medición ni por conectado GA4.
+de [WORKFLOW](WORKFLOW.md). B05–B07 publicados por PR34/main `43c2c33` tras aprobación
+expresa, con recepción de campos v2 comprobada. GA4 sigue pendiente.
 Los bloques siguientes conservan la investigación y preparación previas, incluidas sus
 restricciones anteriores de publicación. La fuente editorial sin confirmar no se promociona.
 
-## Medición B05–B07 · candidata13-oct
+## Medición B05–B07 · publicada13-oct
 
 Solicitud de Luis después de publicar agenda: «ok con qué continuamos. dale». Rama propia
-`feat/agenda-measurement-20261013` sobre main `08027d9`. Implementación local con Umami
+`feat/agenda-measurement-20261013` sobre main `08027d9`. Implementación con Umami
 existente; sin nuevo proveedor, GA4, campañas activadas, cambios de mapas/QR/WP o dashboard.
-Esta sección sustituye el estado de preparación del mapa anterior, sin certificar transporte
-real de la candidata ni autorizar su publicación.
+Autorización posterior: «Publicar la medición y la aclaración del aviso». PR34, head revisado
+`007108ac3f517db6cd4e4a9bbe97de163f42692f`, integrada como main
+`43c2c33d8a7e1968bf18f81c81941170ea04576b`; CI/CD/recibo verdes. Esta sección sustituye
+el estado de preparación del mapa anterior. La aprobación no activa GA4 ni amplía la agenda.
 
 ### Contrato y fuente única
 
@@ -76,16 +78,30 @@ cumplimiento por estas pruebas ni activar publicidad/Signals/identificación.
 cuatro sedes ES/EN, desktop/móvil, imagen/teclado/modificadores/middle click, menú/reserva/mapa/
 teléfono, idioma/home/menú, fuente inicial,30min de inactividad, DNT/GPC, exclusiones, carga
 tardía y error de proveedor. Un clic→un evento; llamadas impedidas solo por el fixture de QA.
-Todos los POST se interceptan; cero envíos sintéticos al proveedor y ningún contacto/checkout.
+En estas20pruebas todos los POST se interceptaron; cero envíos al proveedor ni contacto/checkout.
 La primera sonda usó un header oculto por diseño y un WhatsApp inexistente en Catering;
 corregida para el recorrido real, sin force-click ni cambios de diseño para satisfacerla.
 El mapa de dependencias ahora sigue imports relativos/absolutos y exige dueño único.
 
 Evidencia ignorada: `.artifacts/measurement-v1/`, paquete `measurement-candidate-v4`,
 `.artifacts/measurement-browser-v4/`. Lectura autenticada de registro/stats/eventos de Umami
-actual200, sin escribir telemetría; puede incluir QA histórica. No prueba recepción/persistencia
-de estos campos nuevos. Publicar requiere OK del alcance y luego PR→CI→operador; comprobar
-recibo y transporte con exclusión de pruebas. No atribuir retrospectivamente dimensiones v2.
+actual200, sin escribir telemetría; puede incluir QA histórica. Esa lectura previa no prueba
+recepción de estos campos nuevos. Después de publicar, lectura autenticada agregada confirmó
+`schema_version=2`, `event_id=houston-dontcry-weekly` y `link_location=agenda` del clic controlado
+en la ficha real desde el navegador de Codex. Ventana interna de QA iniciada
+`2026-10-14T04:57:53.887Z`, cerrada `2026-10-14T05:09:05.282Z`; consulta confirmatoria
+`2026-10-14T05:03:43.191Z`.
+Estas visitas/clics son pruebas internas, no actividad de clientes: excluir esta ventana de
+cualquier primer KPI. No se compraron boletos ni se enviaron reservas/contactos; no atribuir
+retrospectivamente dimensiones v2. Evidencia: `.artifacts/measurement-live/`.
+
+La primera sonda HeadlessChrome obtuvo200 sin aceptación acreditada ni campos persistidos;
+se conserva su resultado negativo. El endpoint `event-data/events` devolvió500; la recepción
+se verificó con `event-data/values` y `event-data/fields`200, no usando ese endpoint fallido.
+La prueba real acredita transporte/persistencia del esquema, no todos los recorridos en dispositivos
+físicos. Fuente API N0: [eventos de Umami2](https://v2.umami.is/docs/api/events-api).
+Home y ocho fichas coinciden byte por byte con la proyección del commit publicado; aviso
+restaurado tras ofuscación de correo de Cloudflare coincide con fuente y párrafo aprobado.
 
 Consulta N0: configuración/funciones [Umami](https://docs.umami.is/docs/tracker-configuration),
 [SDK](https://docs.umami.is/docs/tracker-functions), contrastadas con script servido SHA

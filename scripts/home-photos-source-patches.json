@@ -38,9 +38,13 @@
         {
           "before": "assets/css/visual-pilot.css?v=20261011-demo-polish",
           "after": "assets/css/visual-pilot.css?v=20261015-approved-home-photos"
+        },
+        {
+          "before": "assets/css/visual-pilot.css?v=20261015-approved-home-photos",
+          "after": "assets/css/visual-pilot.css?v=20261015-blue-hat-mobile"
         }
       ],
-      "afterSha256": "88a9506d4b6ea0b904f668d0d150802de336dbd638f349175002621eeba2791b"
+      "afterSha256": "94b6047984dc36c178c95eee9ffb8c1bd657e9491c6f2a730c4bca39ae112fdd"
     },
     "assets/css/visual-pilot.css": {
       "baselineSha256": "dca615056cdf8c22b2095bbb891ade58be30de6e7783a2d8d2d15736816308ac",
@@ -48,9 +52,13 @@
         {
           "before": ".home-hero-cinema .hero-photo.is-active { opacity: 1; }",
           "after": ".home-hero-cinema .hero-photo.is-active { opacity: 1; }\n/* Approved portrait originals on narrow screens; generated extensions on wide screens. */\n.home-hero-cinema .hero-scene { position: absolute; inset: 0; display: block; }\n.home-hero-cinema .hero-photo[data-hero-scene] {\n  object-position: 50% 0% !important; filter: none; transform: none !important;\n}\n@media (max-width: 760px), (max-aspect-ratio: 1/1) {\n  .home-hero-cinema .hero-photo[data-hero-scene=\"cocktail\"] { object-position: 55% 12% !important; }\n  .home-hero-cinema .hero-photo[data-hero-scene=\"singing\"] { object-position: 80% 14% !important; }\n}"
+        },
+        {
+          "before": "[data-hero-scene=\"singing\"] { object-position: 80% 14% !important; }",
+          "after": "[data-hero-scene=\"singing\"] { object-position: 65% 14% !important; }"
         }
       ],
-      "afterSha256": "d2eb839be8c7d0d751358563bfd7880c86a198c9084143ebdca0e5ffdb13044f"
+      "afterSha256": "5db9e7e3da68ab420241e1d54abdf0e5df2e7f16d4e200bfea5b953a38233046"
     },
     "locations.html": {
       "baselineSha256": "0f37f35602df2c326d4ed7b916c0b89a1513c2318898ae04e996f763869159e7",
@@ -62,9 +70,13 @@
         {
           "before": "assets/css/visual-pilot.css?v=20261011-demo-polish",
           "after": "assets/css/visual-pilot.css?v=20261015-approved-home-photos"
+        },
+        {
+          "before": "assets/css/visual-pilot.css?v=20261015-approved-home-photos",
+          "after": "assets/css/visual-pilot.css?v=20261015-blue-hat-mobile"
         }
       ],
-      "afterSha256": "a44dde7c185d92f3f4bb2978463e911902d256f11f1c98184a7d38ea2a8827ca"
+      "afterSha256": "f5b489e7167df20d6afb09dbff8373da1d1e69ae9682c9dfe69b7e0f50d156f0"
     },
     "la-cantina.html": {
       "baselineSha256": "7e231f21eb73f242e549a49b1d624df5ef15f2c949f7438cd838264d889d4120",
@@ -76,9 +88,13 @@
         {
           "before": "assets/css/visual-pilot.css?v=20261011-demo-polish",
           "after": "assets/css/visual-pilot.css?v=20261015-approved-home-photos"
+        },
+        {
+          "before": "assets/css/visual-pilot.css?v=20261015-approved-home-photos",
+          "after": "assets/css/visual-pilot.css?v=20261015-blue-hat-mobile"
         }
       ],
-      "afterSha256": "f96125ebf9f9be02cbdb61ea30285078b912b0eb03a13b174a18a828adeca64e"
+      "afterSha256": "87d0d8029338eb4a10e38c210697cb5144f58f65404d2f6261be468381848dc8"
     },
     "eventos.html": {
       "baselineSha256": "849f2c5a836a00a21a1353295c2e275def3958f55fd6a6d09ff2dff13f62feb0",
@@ -90,9 +106,13 @@
         {
           "before": "assets/css/visual-pilot.css?v=20261011-demo-polish",
           "after": "assets/css/visual-pilot.css?v=20261015-approved-home-photos"
+        },
+        {
+          "before": "assets/css/visual-pilot.css?v=20261015-approved-home-photos",
+          "after": "assets/css/visual-pilot.css?v=20261015-blue-hat-mobile"
         }
       ],
-      "afterSha256": "c02ddeade983b6f2a4d384ef364f5a07711c44d9eafcb8f055b7a3a098e6990d"
+      "afterSha256": "55712fc1108da17d20b40477e027e8f3df4850014ff1b302b158ec9edebc9848"
     },
     "tienda.html": {
       "baselineSha256": "8b584f7474030def63d3ea72877bdac5cb95ce0feebca4cce3545aeae8bc5236",
@@ -104,9 +124,13 @@
         {
           "before": "assets/css/visual-pilot.css?v=20261011-demo-polish",
           "after": "assets/css/visual-pilot.css?v=20261015-approved-home-photos"
+        },
+        {
+          "before": "assets/css/visual-pilot.css?v=20261015-approved-home-photos",
+          "after": "assets/css/visual-pilot.css?v=20261015-blue-hat-mobile"
         }
       ],
-      "afterSha256": "2eccf1ce80451953676bf14d323c4c42ffa2c5e074ca509f08500e5e11767526"
+      "afterSha256": "64fec579f1616de6cd2b6d8f14e52131bfeb33442bdc5cdc9d2a556f9aef227d"
     }
   },
   "images": [

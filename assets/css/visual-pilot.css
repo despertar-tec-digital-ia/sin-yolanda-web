@@ -210,7 +210,7 @@ body[data-page="home"] .home-hero-cinema {
 }
 @media (max-width: 760px), (max-aspect-ratio: 1/1) {
   .home-hero-cinema .hero-photo[data-hero-scene="cocktail"] { object-position: 55% 12% !important; }
-  .home-hero-cinema .hero-photo[data-hero-scene="singing"] { object-position: 80% 14% !important; }
+  .home-hero-cinema .hero-photo[data-hero-scene="singing"] { object-position: 65% 14% !important; }
 }
 body[data-page="home"] .hero-copy-cinema {
   position: relative; width: min(460px, 42%); min-height: 0; height: 100%;

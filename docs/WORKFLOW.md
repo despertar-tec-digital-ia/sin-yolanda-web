@@ -1,5 +1,14 @@
 # Forma de trabajar y publicar
 
+### Ajuste móvil del sombrero azul · 15-oct
+
+Luis pide que en móvil asome un poco más el logo amarillo junto al sombrero azul.
+Se cambia únicamente el foco horizontal de esa foto de80% a65%, conservando14% vertical.
+Es el mismo retrato y conjunto de portada ya aprobado; desktop, otras fotos, rótulo y autoplay
+se conservan. CSS versionado en sus seis consumidores y cambio exacto añadido al contrato
+reversible, sin cambiar imágenes ni ampliar el manifiesto público.
+Estado: candidato local; verificar el encuadre en móvil antes de publicar.
+
 ### Portada · tres fotos aprobadas para producción15-oct
 
 Luis autoriza expresamente sustituir las fotos del carrusel público: «Ok. puedes deployar.

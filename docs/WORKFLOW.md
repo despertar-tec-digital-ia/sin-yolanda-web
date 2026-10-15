@@ -7,7 +7,13 @@ Se cambia únicamente el foco horizontal de esa foto de80% a65%, conservando14% 
 Es el mismo retrato y conjunto de portada ya aprobado; desktop, otras fotos, rótulo y autoplay
 se conservan. CSS versionado en sus seis consumidores y cambio exacto añadido al contrato
 reversible, sin cambiar imágenes ni ampliar el manifiesto público.
-Estado: candidato local; verificar el encuadre en móvil antes de publicar.
+PUBLICADO por PR37/head `2f80aec` → main `0aeb800`;317tests, CI38819555877/
+CD38819611518 y recibo verdes. Pages `81a40f9b-9542-41b0-9fb6-f9aea0e755b6`,
+rollback `d77b309e-b529-4e37-81c2-d506bb075257`.243archivos/47aliases/10excluidos,
+cero diferencias/fallos. Recibo `.artifacts/approved-release-37-1792104483609/receipt.json`.
+Navegador productivo confirma65%14% a390px sin overflow y50%0% en desktop. El logo
+amarillo parcial y el rostro fueron revisados en el paquete; captura estática del estado3
+(sin rotación solo para la captura) en `.artifacts/blue-hat-mobile-20261015/`.
 
 ### Portada · tres fotos aprobadas para producción15-oct
 

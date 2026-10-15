@@ -26,7 +26,7 @@ const restoreRoutes=(file,value)=>{
 };
 test('promotion retains the approved demo bytes rather than introducing a new design',()=>{
  assert.equal(contract.sourceCommit,'3a3ce446a901ce3bb167bef0bc636c71b4ee8ff4');
- for(const [file,expected]of Object.entries(contract.exactDemo))assert.equal(hash(/\.(html|js)$/.test(file)?restoreRoutes(file,read(file)):read(file)),expected,file);
+ for(const [file,expected]of Object.entries(contract.exactDemo))assert.equal(hash(/\.(html|js|css)$/.test(file)?restoreRoutes(file,read(file)):read(file)),expected,file);
 });
 test('promotion preserves native menus, QR, privacy, analytics and El Paso PR18/19',()=>{
  for(const [file,expected]of Object.entries(contract.preserved))assert.equal(hash(/\.(html|js)$/.test(file)||['robots.txt','sitemap.xml','_redirects'].includes(file)?restoreRoutes(file,read(file)):read(file)),expected,file);

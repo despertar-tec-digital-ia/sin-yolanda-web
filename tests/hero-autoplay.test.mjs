@@ -21,7 +21,10 @@ function harness({ reducedMotion = false, saveData = false, slideCount = 3 } = {
   let timerId = 0, intersection;
   const slides = Array.from({ length: slideCount }, (_, index) => {
     const classes = new Set(index === 0 ? ['is-active'] : []);
+    const desktopSource = { dataset: { srcset: `wide-${index}.webp 1672w` } };
     return { dataset: index ? { src: `scene-${index}.webp`, srcset: `scene-${index}-640.webp 640w` } : {},
+      desktopSource,
+      parentElement: index === 2 ? { tagName: 'PICTURE', querySelectorAll: () => [desktopSource] } : undefined,
       classList: { add: name => classes.add(name), remove: name => classes.delete(name) },
       classes, decode: async () => {} };
   });
@@ -76,6 +79,18 @@ test('device motion and data-saving preferences stop and resume autoplay without
   assert.equal(h.timers.size, 1);
   h.reduced.matches = true; h.reduced.fire('change');
   assert.equal(h.timers.size, 0);
+});
+
+test('the later wide source stays deferred until its scene is selected', async () => {
+  const h = harness();
+  await h.tick();
+  assert.equal(h.slides[2].desktopSource.srcset, undefined);
+  assert.ok(h.slides[2].desktopSource.dataset.srcset);
+  await h.tick();
+  assert.equal(h.active(), 2);
+  assert.equal(h.slides[2].desktopSource.srcset, 'wide-2.webp 1672w');
+  assert.equal(h.slides[2].desktopSource.dataset.srcset, undefined);
+  assert.equal(h.slides[2].src, 'scene-2.webp');
 });
 
 test('offscreen or hidden hero does not rotate until visible again', () => {

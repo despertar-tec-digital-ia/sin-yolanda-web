@@ -203,6 +203,15 @@ body[data-page="home"] .home-hero-cinema {
 .home-hero-cinema .hero-photo:first-child { object-position: 50% 42%; }
 .home-hero-cinema .hero-photo:last-child { object-position: 50% 34%; }
 .home-hero-cinema .hero-photo.is-active { opacity: 1; }
+/* Approved portrait originals on narrow screens; generated extensions on wide screens. */
+.home-hero-cinema .hero-scene { position: absolute; inset: 0; display: block; }
+.home-hero-cinema .hero-photo[data-hero-scene] {
+  object-position: 50% 0% !important; filter: none; transform: none !important;
+}
+@media (max-width: 760px), (max-aspect-ratio: 1/1) {
+  .home-hero-cinema .hero-photo[data-hero-scene="cocktail"] { object-position: 55% 12% !important; }
+  .home-hero-cinema .hero-photo[data-hero-scene="singing"] { object-position: 80% 14% !important; }
+}
 body[data-page="home"] .hero-copy-cinema {
   position: relative; width: min(460px, 42%); min-height: 0; height: 100%;
   margin-left: auto; margin-right: clamp(24px, 4vw, 80px);

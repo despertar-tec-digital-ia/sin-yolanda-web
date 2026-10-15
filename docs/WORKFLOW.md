@@ -1,5 +1,31 @@
 # Forma de trabajar y publicar
 
+### Portada · tres fotos aprobadas para producción15-oct
+
+Luis autoriza expresamente sustituir las fotos del carrusel público: «Ok. puedes deployar.
+asi nomas tu mandalo a prod en vez de las otras». Conjunto revisado con rótulo/copy/CTA:
+1 sombrero negro/bebida, 2 selfie actual de producción, 3 sombrero azul/micrófono.
+Micrófono rosa retirado por Luis. Este encargo habilita el cambio del hero reservado a Karina;
+no cambia título, botones, automatismo, fichas, agendas, menús ni medición.
+
+Las dos nuevas usan expansión generativa aprobada en desktop ancho y sus retratos originales
+en móvil o pantalla vertical. El entorno extendido es sintético y puede variar detalles respecto
+al original; no acredita la arquitectura de una sucursal. Selfie y su encuadre conservados;
+archivo1280 cotejado por SHA256 con producción. Ocho exports WebP sin ampliar resolución,
+806348bytes en total, máximo149228por archivo. PNG/fuentes privadas y controles de revisión
+no entran al artefacto. Las antiguas URLs se conservan por caché, fuera del carrusel vigente.
+
+`picture` selecciona por ancho/proporción; la tercera fuente ancha se carga cuando le toca,
+antes del fallback. El carrusel conserva6.5s, movimiento reducido, ahorro de datos y protección
+ante fallo de imagen. CSS/JS nuevos versionados en sus seis páginas consumidoras.
+Allowlist explícita y parches reversibles exactos mantienen los hashes históricos completos
+de contenido y estilos; una edición fuera del alcance sigue causando error.
+
+Primera validación:317tests pasan. Publicación por operador único PR→CI→CD→recibo;
+evidencia de paquete/navegador y recibo se guardan en `.artifacts/home-photos-20261015/`.
+Antes de afirmar publicación, comprobar CI/CD y el artefacto servido. Rollback: deployment
+productivo anterior registrado por el operador, sin reconstrucción manual ni cambios de DNS.
+
 ### Woodlands · cartel Mes Hispano15-oct · actualización14-oct
 
 Luis transmite la petición de Karina: integrar el post `DefaT9GBok6` y su foto. Cuenta propia

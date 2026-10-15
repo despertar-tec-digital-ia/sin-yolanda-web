@@ -1,0 +1,178 @@
+{
+  "version": 1,
+  "authorization": "Luis explicitly approves replacing the production hero with the reviewed three-photo set, 2026-10-15. Order: cocktail, existing second selfie, singing. Pink microphone excluded.",
+  "files": {
+    "assets/js/site.js": {
+      "baselineSha256": "6ec8d0bcfcd750f75cb508177468176808cb9dc28d8ba20004af8204f9269ba0",
+      "patches": [
+        {
+          "before": "<img class=\"hero-photo is-active\" data-hero-slide src=\"assets/media/cantina-duo-1280.webp\"\n              srcset=\"assets/media/cantina-duo-640.webp 640w, assets/media/cantina-duo-1280.webp 1280w\"\n              sizes=\"100vw\" width=\"1280\" height=\"1707\" alt=\"\" fetchpriority=\"high\" />",
+          "after": "<picture class=\"hero-scene\">\n              <source media=\"(min-width:761px) and (min-aspect-ratio:1/1)\" srcset=\"assets/media/home-cocktail-desktop-960.webp 960w, assets/media/home-cocktail-desktop-1672.webp 1672w\" sizes=\"100vw\" width=\"1672\" height=\"941\" />\n              <img class=\"hero-photo is-active\" data-hero-slide data-hero-scene=\"cocktail\" src=\"assets/media/home-cocktail-portrait-1148.webp\"\n                srcset=\"assets/media/home-cocktail-portrait-640.webp 640w, assets/media/home-cocktail-portrait-1148.webp 1148w\"\n                sizes=\"100vw\" width=\"1148\" height=\"1600\" alt=\"\" fetchpriority=\"high\" />\n            </picture>"
+        },
+        {
+          "before": "<img class=\"hero-photo\" data-hero-slide data-src=\"assets/media/cantina-canto-1280.webp\"\n              data-srcset=\"assets/media/cantina-canto-640.webp 640w, assets/media/cantina-canto-1280.webp 1280w\"\n              sizes=\"100vw\" width=\"1280\" height=\"1700\" alt=\"\" decoding=\"async\" />",
+          "after": "<picture class=\"hero-scene\">\n              <source media=\"(min-width:761px) and (min-aspect-ratio:1/1)\" data-srcset=\"assets/media/home-singing-desktop-960.webp 960w, assets/media/home-singing-desktop-1672.webp 1672w\" sizes=\"100vw\" width=\"1672\" height=\"940\" />\n              <img class=\"hero-photo\" data-hero-slide data-hero-scene=\"singing\" data-src=\"assets/media/home-singing-portrait-1305.webp\"\n                data-srcset=\"assets/media/home-singing-portrait-640.webp 640w, assets/media/home-singing-portrait-1305.webp 1305w\"\n                sizes=\"100vw\" width=\"1305\" height=\"1600\" alt=\"\" decoding=\"async\" />\n            </picture>"
+        },
+        {
+          "before": "      if (next.dataset.src) {",
+          "after": "      if (next.parentElement?.tagName === 'PICTURE') {\n        for (const source of next.parentElement.querySelectorAll('source[data-srcset]')) {\n          source.srcset = source.dataset.srcset;\n          delete source.dataset.srcset;\n        }\n      }\n      if (next.dataset.src) {"
+        }
+      ],
+      "afterSha256": "7f4a668f4254a7a4b37f307be1b862084c4637673d263db0172c3e764fd1b5cc"
+    },
+    "index.html": {
+      "baselineSha256": "405213b7300ed5e808b496d6b67d6e51e08cb17ed5de99f30c0a9fad57ae0ab3",
+      "patches": [
+        {
+          "before": "<img class=\"hero-photo is-active\" data-hero-slide src=\"assets/media/cantina-duo-1280.webp\"\n              srcset=\"assets/media/cantina-duo-640.webp 640w, assets/media/cantina-duo-1280.webp 1280w\"\n              sizes=\"100vw\" width=\"1280\" height=\"1707\" alt=\"\" fetchpriority=\"high\" />",
+          "after": "<picture class=\"hero-scene\">\n              <source media=\"(min-width:761px) and (min-aspect-ratio:1/1)\" srcset=\"assets/media/home-cocktail-desktop-960.webp 960w, assets/media/home-cocktail-desktop-1672.webp 1672w\" sizes=\"100vw\" width=\"1672\" height=\"941\" />\n              <img class=\"hero-photo is-active\" data-hero-slide data-hero-scene=\"cocktail\" src=\"assets/media/home-cocktail-portrait-1148.webp\"\n                srcset=\"assets/media/home-cocktail-portrait-640.webp 640w, assets/media/home-cocktail-portrait-1148.webp 1148w\"\n                sizes=\"100vw\" width=\"1148\" height=\"1600\" alt=\"\" fetchpriority=\"high\" />\n            </picture>"
+        },
+        {
+          "before": "<img class=\"hero-photo\" data-hero-slide data-src=\"assets/media/cantina-canto-1280.webp\"\n              data-srcset=\"assets/media/cantina-canto-640.webp 640w, assets/media/cantina-canto-1280.webp 1280w\"\n              sizes=\"100vw\" width=\"1280\" height=\"1700\" alt=\"\" decoding=\"async\" />",
+          "after": "<picture class=\"hero-scene\">\n              <source media=\"(min-width:761px) and (min-aspect-ratio:1/1)\" data-srcset=\"assets/media/home-singing-desktop-960.webp 960w, assets/media/home-singing-desktop-1672.webp 1672w\" sizes=\"100vw\" width=\"1672\" height=\"940\" />\n              <img class=\"hero-photo\" data-hero-slide data-hero-scene=\"singing\" data-src=\"assets/media/home-singing-portrait-1305.webp\"\n                data-srcset=\"assets/media/home-singing-portrait-640.webp 640w, assets/media/home-singing-portrait-1305.webp 1305w\"\n                sizes=\"100vw\" width=\"1305\" height=\"1600\" alt=\"\" decoding=\"async\" />\n            </picture>"
+        },
+        {
+          "before": "assets/js/site.js?v=20261011-demo-polish",
+          "after": "assets/js/site.js?v=20261015-approved-home-photos"
+        },
+        {
+          "before": "assets/css/visual-pilot.css?v=20261011-demo-polish",
+          "after": "assets/css/visual-pilot.css?v=20261015-approved-home-photos"
+        }
+      ],
+      "afterSha256": "88a9506d4b6ea0b904f668d0d150802de336dbd638f349175002621eeba2791b"
+    },
+    "assets/css/visual-pilot.css": {
+      "baselineSha256": "dca615056cdf8c22b2095bbb891ade58be30de6e7783a2d8d2d15736816308ac",
+      "patches": [
+        {
+          "before": ".home-hero-cinema .hero-photo.is-active { opacity: 1; }",
+          "after": ".home-hero-cinema .hero-photo.is-active { opacity: 1; }\n/* Approved portrait originals on narrow screens; generated extensions on wide screens. */\n.home-hero-cinema .hero-scene { position: absolute; inset: 0; display: block; }\n.home-hero-cinema .hero-photo[data-hero-scene] {\n  object-position: 50% 0% !important; filter: none; transform: none !important;\n}\n@media (max-width: 760px), (max-aspect-ratio: 1/1) {\n  .home-hero-cinema .hero-photo[data-hero-scene=\"cocktail\"] { object-position: 55% 12% !important; }\n  .home-hero-cinema .hero-photo[data-hero-scene=\"singing\"] { object-position: 80% 14% !important; }\n}"
+        }
+      ],
+      "afterSha256": "d2eb839be8c7d0d751358563bfd7880c86a198c9084143ebdca0e5ffdb13044f"
+    },
+    "locations.html": {
+      "baselineSha256": "0f37f35602df2c326d4ed7b916c0b89a1513c2318898ae04e996f763869159e7",
+      "patches": [
+        {
+          "before": "assets/js/site.js?v=20261011-demo-polish",
+          "after": "assets/js/site.js?v=20261015-approved-home-photos"
+        },
+        {
+          "before": "assets/css/visual-pilot.css?v=20261011-demo-polish",
+          "after": "assets/css/visual-pilot.css?v=20261015-approved-home-photos"
+        }
+      ],
+      "afterSha256": "a44dde7c185d92f3f4bb2978463e911902d256f11f1c98184a7d38ea2a8827ca"
+    },
+    "la-cantina.html": {
+      "baselineSha256": "7e231f21eb73f242e549a49b1d624df5ef15f2c949f7438cd838264d889d4120",
+      "patches": [
+        {
+          "before": "assets/js/site.js?v=20261011-demo-polish",
+          "after": "assets/js/site.js?v=20261015-approved-home-photos"
+        },
+        {
+          "before": "assets/css/visual-pilot.css?v=20261011-demo-polish",
+          "after": "assets/css/visual-pilot.css?v=20261015-approved-home-photos"
+        }
+      ],
+      "afterSha256": "f96125ebf9f9be02cbdb61ea30285078b912b0eb03a13b174a18a828adeca64e"
+    },
+    "eventos.html": {
+      "baselineSha256": "849f2c5a836a00a21a1353295c2e275def3958f55fd6a6d09ff2dff13f62feb0",
+      "patches": [
+        {
+          "before": "assets/js/site.js?v=20261011-demo-polish",
+          "after": "assets/js/site.js?v=20261015-approved-home-photos"
+        },
+        {
+          "before": "assets/css/visual-pilot.css?v=20261011-demo-polish",
+          "after": "assets/css/visual-pilot.css?v=20261015-approved-home-photos"
+        }
+      ],
+      "afterSha256": "c02ddeade983b6f2a4d384ef364f5a07711c44d9eafcb8f055b7a3a098e6990d"
+    },
+    "tienda.html": {
+      "baselineSha256": "8b584f7474030def63d3ea72877bdac5cb95ce0feebca4cce3545aeae8bc5236",
+      "patches": [
+        {
+          "before": "assets/js/site.js?v=20261011-demo-polish",
+          "after": "assets/js/site.js?v=20261015-approved-home-photos"
+        },
+        {
+          "before": "assets/css/visual-pilot.css?v=20261011-demo-polish",
+          "after": "assets/css/visual-pilot.css?v=20261015-approved-home-photos"
+        }
+      ],
+      "afterSha256": "2eccf1ce80451953676bf14d323c4c42ffa2c5e074ca509f08500e5e11767526"
+    }
+  },
+  "images": [
+    {
+      "file": "assets/media/home-cocktail-desktop-960.webp",
+      "width": 960,
+      "height": 540,
+      "bytes": 62550,
+      "sha256": "d921d71c714b6e85604618ec4f87fa7d2860709ad6157d3cf05a4ea3c8522322",
+      "sourceSha256": "33703b9ce68db26edc77355dbed27fe5ca6aeaa0b317424ff4c4ed69be768e26"
+    },
+    {
+      "file": "assets/media/home-cocktail-desktop-1672.webp",
+      "width": 1672,
+      "height": 941,
+      "bytes": 132464,
+      "sha256": "ce7c5f288744a4aa9ec7fd3878f14a4d42ab108c590a34c0ebd06a1478a3bf90",
+      "sourceSha256": "33703b9ce68db26edc77355dbed27fe5ca6aeaa0b317424ff4c4ed69be768e26"
+    },
+    {
+      "file": "assets/media/home-cocktail-portrait-640.webp",
+      "width": 640,
+      "height": 892,
+      "bytes": 61428,
+      "sha256": "0781c911bcfe2504bcd8079d5ec14294a988d29c80b4d39941b1e4276acff47b",
+      "sourceSha256": "05785f1bdca0c9981defb154781b0f6b59173d58f8dd563e9e0be299d2fb8aad"
+    },
+    {
+      "file": "assets/media/home-cocktail-portrait-1148.webp",
+      "width": 1148,
+      "height": 1600,
+      "bytes": 119278,
+      "sha256": "2b293500c0bed7d4ff8c388065b8b84a99fedd03c3375bc0a4ed15dff5a9e874",
+      "sourceSha256": "05785f1bdca0c9981defb154781b0f6b59173d58f8dd563e9e0be299d2fb8aad"
+    },
+    {
+      "file": "assets/media/home-singing-desktop-960.webp",
+      "width": 960,
+      "height": 540,
+      "bytes": 73324,
+      "sha256": "5867e82781e928736ce5d5c1f893f0fb744faa4d529fcb35dc6d6eb3bcfcfdb8",
+      "sourceSha256": "1d877e072eb060aa82c3d48cbf2b8cee1b157788bcab5844c9d4a102a5da14a5"
+    },
+    {
+      "file": "assets/media/home-singing-desktop-1672.webp",
+      "width": 1672,
+      "height": 940,
+      "bytes": 143142,
+      "sha256": "f93fa3181524079b5396273d9ce54a187756aab97d2bb9c8e3555093fc3efc80",
+      "sourceSha256": "1d877e072eb060aa82c3d48cbf2b8cee1b157788bcab5844c9d4a102a5da14a5"
+    },
+    {
+      "file": "assets/media/home-singing-portrait-640.webp",
+      "width": 640,
+      "height": 785,
+      "bytes": 64934,
+      "sha256": "069ae1bb0373889ef77ae5e933f1a1adc7f8efc93af23a2805b40950b3a81fc4",
+      "sourceSha256": "5ad5e0f64034c363a685c7f2936e91b422a676164e58c8cf7b505696f60bd54c"
+    },
+    {
+      "file": "assets/media/home-singing-portrait-1305.webp",
+      "width": 1305,
+      "height": 1600,
+      "bytes": 149228,
+      "sha256": "b5c046e932f3914b11afc783093c495cc62c26dd90dcfd39df6a32d83b475bb1",
+      "sourceSha256": "5ad5e0f64034c363a685c7f2936e91b422a676164e58c8cf7b505696f60bd54c"
+    }
+  ]
+}

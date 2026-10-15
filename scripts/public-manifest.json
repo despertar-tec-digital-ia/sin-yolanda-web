@@ -1,9 +1,9 @@
 {
   "version": 1,
   "assetVersions": {
-    "assets/js/site.js": "20261011-demo-polish",
+    "assets/js/site.js": "20261015-approved-home-photos",
     "assets/js/i18n.js": "20261013-site-intake-a",
-    "assets/css/visual-pilot.css": "20261011-demo-polish",
+    "assets/css/visual-pilot.css": "20261015-approved-home-photos",
     "assets/js/public-data.js": "20261013-approved-agenda",
     "assets/js/site-analytics.js": "20261012-root-routing",
     "assets/css/houston-header.css": "20261012-overlay",
@@ -251,7 +251,15 @@
     "_astro/BranchLayout.astro_astro_type_script_index_1_lang.fe95c5e955.js",
     "assets/js/branch-language.js",
     "assets/js/site-measurement.js",
-    "assets/agenda/tw-mes-hispano-DefaT9GBok6.jpg"
+    "assets/agenda/tw-mes-hispano-DefaT9GBok6.jpg",
+    "assets/media/home-cocktail-desktop-1672.webp",
+    "assets/media/home-cocktail-desktop-960.webp",
+    "assets/media/home-cocktail-portrait-1148.webp",
+    "assets/media/home-cocktail-portrait-640.webp",
+    "assets/media/home-singing-desktop-1672.webp",
+    "assets/media/home-singing-desktop-960.webp",
+    "assets/media/home-singing-portrait-1305.webp",
+    "assets/media/home-singing-portrait-640.webp"
   ],
   "assetVersion": "20261008-migration-measurement",
   "reviewPages": []

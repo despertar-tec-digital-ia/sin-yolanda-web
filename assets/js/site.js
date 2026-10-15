@@ -163,15 +163,21 @@
       <main>
         <section class="home-hero home-hero-cinema" id="inicio">
           <div class="hero-media" aria-hidden="true">
-            <img class="hero-photo is-active" data-hero-slide src="assets/media/cantina-duo-1280.webp"
-              srcset="assets/media/cantina-duo-640.webp 640w, assets/media/cantina-duo-1280.webp 1280w"
-              sizes="100vw" width="1280" height="1707" alt="" fetchpriority="high" />
+            <picture class="hero-scene">
+              <source media="(min-width:761px) and (min-aspect-ratio:1/1)" srcset="assets/media/home-cocktail-desktop-960.webp 960w, assets/media/home-cocktail-desktop-1672.webp 1672w" sizes="100vw" width="1672" height="941" />
+              <img class="hero-photo is-active" data-hero-slide data-hero-scene="cocktail" src="assets/media/home-cocktail-portrait-1148.webp"
+                srcset="assets/media/home-cocktail-portrait-640.webp 640w, assets/media/home-cocktail-portrait-1148.webp 1148w"
+                sizes="100vw" width="1148" height="1600" alt="" fetchpriority="high" />
+            </picture>
             <img class="hero-photo" data-hero-slide data-src="assets/media/cantina-selfie-1280.webp"
               data-srcset="assets/media/cantina-selfie-640.webp 640w, assets/media/cantina-selfie-1280.webp 1280w"
               sizes="100vw" width="1280" height="1445" alt="" decoding="async" />
-            <img class="hero-photo" data-hero-slide data-src="assets/media/cantina-canto-1280.webp"
-              data-srcset="assets/media/cantina-canto-640.webp 640w, assets/media/cantina-canto-1280.webp 1280w"
-              sizes="100vw" width="1280" height="1700" alt="" decoding="async" />
+            <picture class="hero-scene">
+              <source media="(min-width:761px) and (min-aspect-ratio:1/1)" data-srcset="assets/media/home-singing-desktop-960.webp 960w, assets/media/home-singing-desktop-1672.webp 1672w" sizes="100vw" width="1672" height="940" />
+              <img class="hero-photo" data-hero-slide data-hero-scene="singing" data-src="assets/media/home-singing-portrait-1305.webp"
+                data-srcset="assets/media/home-singing-portrait-640.webp 640w, assets/media/home-singing-portrait-1305.webp 1305w"
+                sizes="100vw" width="1305" height="1600" alt="" decoding="async" />
+            </picture>
           </div>
           <div class="hero-copy hero-copy-cinema">
             <p class="hero-micro">México · Estados Unidos</p>
@@ -826,6 +832,12 @@
       advancing = true;
       const nextIndex = (index + 1) % slides.length;
       const next = slides[nextIndex];
+      if (next.parentElement?.tagName === 'PICTURE') {
+        for (const source of next.parentElement.querySelectorAll('source[data-srcset]')) {
+          source.srcset = source.dataset.srcset;
+          delete source.dataset.srcset;
+        }
+      }
       if (next.dataset.src) {
         next.srcset = next.dataset.srcset;
         next.src = next.dataset.src;

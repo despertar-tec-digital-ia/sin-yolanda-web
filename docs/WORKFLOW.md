@@ -1,5 +1,22 @@
 # Forma de trabajar y publicar
 
+### Woodlands · cartel Mes Hispano15-oct · actualización14-oct
+
+Luis transmite la petición de Karina: integrar el post `DefaT9GBok6` y su foto. Cuenta propia
+`sinyolanda.tw`, caption y cartel original1280×1600 comprobados por navegador; fecha15-oct2026.
+Se amplía el registro existente `the-woodlands-mes-hispano-20261015` en ES/EN, sin duplicarlo:
+gran cierre y comida/bebidas de Venezuela, Ecuador, Colombia y México. No se anuncian horas,
+precio, descuento ni boletaje. Conserva caducidad editorial16-oct00:00 America/Chicago.
+Arte completo, enlazado al post, sin botón visible adicional ni cambio de CSS/hero.
+Catálogo de medición actualizado para ese mismo ID; URL del tracker versionada en23páginas
+por caché30d. Fuente histórica preservada mediante parches exactos. Un asset nuevo permitido.
+313tests previos verdes y6escenarios ES/EN390/768/1440: una entrada, ratio completo, foco,
+enlace y sin overflow. Recibo/publicación se registran después del operador autorizado.
+
+Scheduler: ya hay ejecuciones naturales verificadas; calidad38683801194/CD38683863310 verdes,
+primer retiro Pinta14-oct actualizado por ese pase. Confirmar archivos servidos antes de cerrar.
+La solicitud posterior de diez fotos de Drive es curaduría aparte; no incorpora fotos A04 al sitio.
+
 ### Medición de agenda y adquisición · publicada13-oct
 
 Solicitud posterior de Luis: continuar con B05–B07. Rama `feat/agenda-measurement-20261013`,

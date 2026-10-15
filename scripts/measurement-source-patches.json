@@ -7,6 +7,10 @@
         {
           "before": "assets/js/site-analytics.js?v=20261012-root-routing",
           "after": "assets/js/site-measurement.js?v=20261013-measurement-v2"
+        },
+        {
+          "before": "assets/js/site-measurement.js?v=20261013-measurement-v2",
+          "after": "assets/js/site-measurement.js?v=20261014-woodlands-mes-hispano"
         }
       ]
     },
@@ -15,6 +19,10 @@
         {
           "before": "assets/js/site-analytics.js?v=20261012-root-routing",
           "after": "assets/js/site-measurement.js?v=20261013-measurement-v2"
+        },
+        {
+          "before": "assets/js/site-measurement.js?v=20261013-measurement-v2",
+          "after": "assets/js/site-measurement.js?v=20261014-woodlands-mes-hispano"
         }
       ]
     },
@@ -23,6 +31,10 @@
         {
           "before": "assets/js/site-analytics.js?v=20261012-root-routing",
           "after": "assets/js/site-measurement.js?v=20261013-measurement-v2"
+        },
+        {
+          "before": "assets/js/site-measurement.js?v=20261013-measurement-v2",
+          "after": "assets/js/site-measurement.js?v=20261014-woodlands-mes-hispano"
         }
       ]
     },
@@ -31,6 +43,10 @@
         {
           "before": "assets/js/site-analytics.js?v=20261012-root-routing",
           "after": "assets/js/site-measurement.js?v=20261013-measurement-v2"
+        },
+        {
+          "before": "assets/js/site-measurement.js?v=20261013-measurement-v2",
+          "after": "assets/js/site-measurement.js?v=20261014-woodlands-mes-hispano"
         }
       ]
     },
@@ -39,6 +55,10 @@
         {
           "before": "assets/js/site-analytics.js?v=20261012-root-routing",
           "after": "assets/js/site-measurement.js?v=20261013-measurement-v2"
+        },
+        {
+          "before": "assets/js/site-measurement.js?v=20261013-measurement-v2",
+          "after": "assets/js/site-measurement.js?v=20261014-woodlands-mes-hispano"
         }
       ]
     },
@@ -47,6 +67,10 @@
         {
           "before": "assets/js/site-analytics.js?v=20261012-root-routing",
           "after": "assets/js/site-measurement.js?v=20261013-measurement-v2"
+        },
+        {
+          "before": "assets/js/site-measurement.js?v=20261013-measurement-v2",
+          "after": "assets/js/site-measurement.js?v=20261014-woodlands-mes-hispano"
         }
       ]
     },
@@ -59,6 +83,10 @@
         {
           "before": "/_astro/BranchLanding.astro_astro_type_script_index_1_lang.BlqKqRiJ.js",
           "after": "/_astro/BranchLanding.astro_astro_type_script_index_1_lang.fe95c5e955.js"
+        },
+        {
+          "before": "assets/js/site-measurement.js?v=20261013-measurement-v2",
+          "after": "assets/js/site-measurement.js?v=20261014-woodlands-mes-hispano"
         }
       ]
     },
@@ -71,6 +99,10 @@
         {
           "before": "/_astro/BranchLanding.astro_astro_type_script_index_1_lang.BlqKqRiJ.js",
           "after": "/_astro/BranchLanding.astro_astro_type_script_index_1_lang.fe95c5e955.js"
+        },
+        {
+          "before": "assets/js/site-measurement.js?v=20261013-measurement-v2",
+          "after": "assets/js/site-measurement.js?v=20261014-woodlands-mes-hispano"
         }
       ]
     },
@@ -83,6 +115,10 @@
         {
           "before": "/_astro/BranchLanding.astro_astro_type_script_index_1_lang.BlqKqRiJ.js",
           "after": "/_astro/BranchLanding.astro_astro_type_script_index_1_lang.fe95c5e955.js"
+        },
+        {
+          "before": "assets/js/site-measurement.js?v=20261013-measurement-v2",
+          "after": "assets/js/site-measurement.js?v=20261014-woodlands-mes-hispano"
         }
       ]
     },
@@ -95,6 +131,10 @@
         {
           "before": "/_astro/BranchLanding.astro_astro_type_script_index_1_lang.BlqKqRiJ.js",
           "after": "/_astro/BranchLanding.astro_astro_type_script_index_1_lang.fe95c5e955.js"
+        },
+        {
+          "before": "assets/js/site-measurement.js?v=20261013-measurement-v2",
+          "after": "assets/js/site-measurement.js?v=20261014-woodlands-mes-hispano"
         }
       ]
     },
@@ -107,6 +147,10 @@
         {
           "before": "/_astro/BranchLanding.astro_astro_type_script_index_1_lang.BlqKqRiJ.js",
           "after": "/_astro/BranchLanding.astro_astro_type_script_index_1_lang.fe95c5e955.js"
+        },
+        {
+          "before": "assets/js/site-measurement.js?v=20261013-measurement-v2",
+          "after": "assets/js/site-measurement.js?v=20261014-woodlands-mes-hispano"
         }
       ]
     },
@@ -119,6 +163,10 @@
         {
           "before": "Esta medición no utiliza cookies de seguimiento ni envía nombres, teléfonos, correos, mensajes, búsquedas del menú o parámetros de las direcciones web. Respeta la señal «No rastrear» del navegador.",
           "after": "Esta medición no utiliza cookies de seguimiento ni envía nombres, teléfonos, correos, mensajes, búsquedas del menú ni parámetros libres de las direcciones web. Solo admite etiquetas de procedencia registradas y códigos de campaña autorizados. Conserva temporalmente, en esta pestaña, la página de entrada y esas etiquetas para relacionar los clics; se descartan al cerrar la pestaña o después de 30 minutos de inactividad. Respeta las señales «No rastrear» y Global Privacy Control del navegador."
+        },
+        {
+          "before": "assets/js/site-measurement.js?v=20261013-measurement-v2",
+          "after": "assets/js/site-measurement.js?v=20261014-woodlands-mes-hispano"
         }
       ]
     },
@@ -131,6 +179,10 @@
         {
           "before": "/_astro/BranchLanding.astro_astro_type_script_index_1_lang.BlqKqRiJ.js",
           "after": "/_astro/BranchLanding.astro_astro_type_script_index_1_lang.fe95c5e955.js"
+        },
+        {
+          "before": "assets/js/site-measurement.js?v=20261013-measurement-v2",
+          "after": "assets/js/site-measurement.js?v=20261014-woodlands-mes-hispano"
         }
       ]
     },
@@ -143,6 +195,10 @@
         {
           "before": "/_astro/BranchLayout.astro_astro_type_script_index_1_lang.BlqKqRiJ.js",
           "after": "/_astro/BranchLayout.astro_astro_type_script_index_1_lang.fe95c5e955.js"
+        },
+        {
+          "before": "assets/js/site-measurement.js?v=20261013-measurement-v2",
+          "after": "assets/js/site-measurement.js?v=20261014-woodlands-mes-hispano"
         }
       ]
     },
@@ -155,6 +211,10 @@
         {
           "before": "/_astro/BranchLanding.astro_astro_type_script_index_1_lang.BlqKqRiJ.js",
           "after": "/_astro/BranchLanding.astro_astro_type_script_index_1_lang.fe95c5e955.js"
+        },
+        {
+          "before": "assets/js/site-measurement.js?v=20261013-measurement-v2",
+          "after": "assets/js/site-measurement.js?v=20261014-woodlands-mes-hispano"
         }
       ]
     },
@@ -163,6 +223,10 @@
         {
           "before": "assets/js/site-analytics.js?v=20261012-root-routing",
           "after": "assets/js/site-measurement.js?v=20261013-measurement-v2"
+        },
+        {
+          "before": "assets/js/site-measurement.js?v=20261013-measurement-v2",
+          "after": "assets/js/site-measurement.js?v=20261014-woodlands-mes-hispano"
         }
       ]
     },
@@ -171,6 +235,10 @@
         {
           "before": "assets/js/site-analytics.js?v=20261012-root-routing",
           "after": "assets/js/site-measurement.js?v=20261013-measurement-v2"
+        },
+        {
+          "before": "assets/js/site-measurement.js?v=20261013-measurement-v2",
+          "after": "assets/js/site-measurement.js?v=20261014-woodlands-mes-hispano"
         }
       ]
     },
@@ -183,6 +251,10 @@
         {
           "before": "/_astro/BranchLanding.astro_astro_type_script_index_1_lang.BlqKqRiJ.js",
           "after": "/_astro/BranchLanding.astro_astro_type_script_index_1_lang.fe95c5e955.js"
+        },
+        {
+          "before": "assets/js/site-measurement.js?v=20261013-measurement-v2",
+          "after": "assets/js/site-measurement.js?v=20261014-woodlands-mes-hispano"
         }
       ]
     },
@@ -191,6 +263,10 @@
         {
           "before": "assets/js/site-analytics.js?v=20261012-root-routing",
           "after": "assets/js/site-measurement.js?v=20261013-measurement-v2"
+        },
+        {
+          "before": "assets/js/site-measurement.js?v=20261013-measurement-v2",
+          "after": "assets/js/site-measurement.js?v=20261014-woodlands-mes-hispano"
         }
       ]
     },
@@ -199,6 +275,10 @@
         {
           "before": "assets/js/site-analytics.js?v=20261012-root-routing",
           "after": "assets/js/site-measurement.js?v=20261013-measurement-v2"
+        },
+        {
+          "before": "assets/js/site-measurement.js?v=20261013-measurement-v2",
+          "after": "assets/js/site-measurement.js?v=20261014-woodlands-mes-hispano"
         }
       ]
     },
@@ -211,6 +291,10 @@
         {
           "before": "/_astro/BranchLanding.astro_astro_type_script_index_1_lang.BlqKqRiJ.js",
           "after": "/_astro/BranchLanding.astro_astro_type_script_index_1_lang.fe95c5e955.js"
+        },
+        {
+          "before": "assets/js/site-measurement.js?v=20261013-measurement-v2",
+          "after": "assets/js/site-measurement.js?v=20261014-woodlands-mes-hispano"
         }
       ]
     },
@@ -219,6 +303,10 @@
         {
           "before": "assets/js/site-analytics.js?v=20261012-root-routing",
           "after": "assets/js/site-measurement.js?v=20261013-measurement-v2"
+        },
+        {
+          "before": "assets/js/site-measurement.js?v=20261013-measurement-v2",
+          "after": "assets/js/site-measurement.js?v=20261014-woodlands-mes-hispano"
         }
       ]
     },
@@ -227,6 +315,10 @@
         {
           "before": "assets/js/site-analytics.js?v=20261012-root-routing",
           "after": "assets/js/site-measurement.js?v=20261013-measurement-v2"
+        },
+        {
+          "before": "assets/js/site-measurement.js?v=20261013-measurement-v2",
+          "after": "assets/js/site-measurement.js?v=20261014-woodlands-mes-hispano"
         }
       ]
     }

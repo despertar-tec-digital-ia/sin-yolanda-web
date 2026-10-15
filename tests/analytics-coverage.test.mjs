@@ -281,6 +281,7 @@ test('compiled measurement contains only the approved public records and corrobo
  assert.equal(Object.keys(catalog.events).length,14);
  assert.equal(Object.values(catalog.events).filter(event=>event.tickets).length,2);
  assert.equal(catalog.events['houston-jorge-mariana-20261113'].tickets,undefined);
+ assert.equal(catalog.events['the-woodlands-mes-hispano-20261015'].post,'https://www.instagram.com/p/DefaT9GBok6/');
  assert.equal(catalog.routes['/guadalajara'],'san-ignacio');
  assert.equal(catalog.routes['/san-ignacio/menu'],'san-ignacio');
  assert.equal(catalog.routes['/en/san-antonio/menu'],'san-antonio');

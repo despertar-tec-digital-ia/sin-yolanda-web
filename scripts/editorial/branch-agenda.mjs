@@ -13,7 +13,7 @@ const copy = {
   'houston-jorge-mariana-20261113': { en: 'With special guest Mariana Ochoa.' },
   'houston-ladies-weekly': { en: '2-for-1 cocktails. Open mic.' },
   'houston-dontcry-weekly': { en: 'Hits in English and Spanish. Live DJ.' },
-  'the-woodlands-mes-hispano-20261015': { en: 'Closing night of Mes Hispano.' },
+  'the-woodlands-mes-hispano-20261015': { en: 'Food and drinks from Venezuela, Ecuador, Colombia and Mexico.' },
   'the-woodlands-ladies-weekly': { en: '2-for-1 cocktails.' },
   'the-woodlands-thursday-offer': { es: 'Pepito + una bebida: USD 27 anunciados.', en: 'Advertised offer: Pepito + one drink for US$27.', conditionsEn: 'Choose tequila, whisky, rum or brandy.' },
   'the-woodlands-jets-cars-20261114': { en: 'Sin Yolanda participates as a sponsor.' },

@@ -234,12 +234,13 @@
       "units": [
         {
           "id": "the-woodlands-mes-hispano-20261015",
-          "title": "Mes Hispano",
+          "title": "Gran cierre del Mes Hispano",
           "semanticKind": "theme-night",
           "temporalKind": "dated",
           "sourceRefs": [
             "Deavhittoz1",
-            "calendar-the-woodlands-live-20261013"
+            "calendar-the-woodlands-live-20261013",
+            "DefaT9GBok6"
           ],
           "editorialStatus": "review",
           "operationalApproval": null,
@@ -247,7 +248,15 @@
           "publicationEnabled": false,
           "date": "2026-10-15",
           "timeZone": "America/Chicago",
-          "detail": "Cierre del Mes Hispano."
+          "detail": "Comida y bebidas de Venezuela, Ecuador, Colombia y México.",
+          "imageSource": "DefaT9GBok6",
+          "artwork": {
+            "file": "tw-mes-hispano-DefaT9GBok6.jpg",
+            "width": 1280,
+            "height": 1600,
+            "sha256": "440f68e4afbd2b5ed7aa735d3a8b9cc512cbeb864f23fd28838550ca77977a98",
+            "rights": "publication-requested-by-Luis-20261014"
+          }
         },
         {
           "id": "the-woodlands-ladies-weekly",

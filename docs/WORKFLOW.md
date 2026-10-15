@@ -21,10 +21,22 @@ ante fallo de imagen. CSS/JS nuevos versionados en sus seis páginas consumidora
 Allowlist explícita y parches reversibles exactos mantienen los hashes históricos completos
 de contenido y estilos; una edición fuera del alcance sigue causando error.
 
-Primera validación:317tests pasan. Publicación por operador único PR→CI→CD→recibo;
-evidencia de paquete/navegador y recibo se guardan en `.artifacts/home-photos-20261015/`.
-Antes de afirmar publicación, comprobar CI/CD y el artefacto servido. Rollback: deployment
-productivo anterior registrado por el operador, sin reconstrucción manual ni cambios de DNS.
+PUBLICADO por PR36/head `6c71916bad111b80ac23be65285eee268819fbab` → main
+`2b197c5383a92b620351b71895fe6ae1368af3b4`.317tests sobre commit limpio;245archivos
+empaquetados. CI PR38816706235/main38817009685 y CD38817056662 verdes. Operador único
+completado; Pages `d77b309e-b529-4e37-81c2-d506bb075257`, rollback anterior
+`6d611bf5-03b3-42ac-a3d6-121301e257f7`.243archivos servidos/47aliases/10excluidos,
+242hashes exactos y aviso normalizado por Cloudflare; cero diferencias/fallos. Digest público
+`25dfc0dccb732906375652b9521745dcc38ee3269ca866fff8232b5fb4e07f79`.
+Recibo ignorado `.artifacts/approved-release-36-1792103122261/receipt.json`.
+
+QA de navegador en320/390/768/1024/1440/1920 sin overflow, ES/EN, tres fotos cargadas y
+rotación real; desktop usa las expansiones y móvil los retratos, selfie con zoom previo.
+Después de publicar: ocho hashes nuevos remotos exactos, selfie1280 idéntica, tres escenas
+en el orden aprobado y sin controles de ensayo. Navegador productivo confirma la tercera
+escena ancha, las tres fuentes móviles y el título/CTA. Capturas desktop/tablet/móvil
+inspeccionadas. Evidencia en `.artifacts/home-photos-20261015/`; visitas de QA internas,
+no evidencia de clientes. Sin cambios de DNS, cartas, reservas ni analítica.
 
 ### Woodlands · cartel Mes Hispano15-oct · actualización14-oct
 

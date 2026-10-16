@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { restoreHomePhotos } from '../scripts/home-photos-source-contract.mjs';
+import { restoreGa4Source } from '../scripts/ga4-source-contract.mjs';
 
 const read = file => readFileSync(new URL('../' + file, import.meta.url));
 const hash = value => createHash('sha256').update(value).digest('hex');
@@ -10,7 +11,7 @@ const contract = JSON.parse(read('scripts/home-photos-source-patches.json'));
 
 test('approved photo changes retain full historical file guards and reject ambiguous patches', () => {
   for (const [file, entry] of Object.entries(contract.files)) {
-    const source = read(file).toString();
+    const source = restoreGa4Source(file, read(file).toString());
     assert.equal(hash(source), entry.afterSha256, file);
     assert.equal(hash(restoreHomePhotos(file, source)), entry.baselineSha256, file);
     assert.notEqual(hash(restoreHomePhotos(file, source + 'unapproved change')), entry.baselineSha256);

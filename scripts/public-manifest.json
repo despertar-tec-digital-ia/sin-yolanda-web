@@ -9,8 +9,10 @@
     "assets/css/houston-header.css": "20261012-overlay",
     "assets/js/agenda-clock.js": "20261013-approved-agenda",
     "assets/css/branch-agenda.css": "20261013-approved-agenda",
-    "assets/js/site-measurement.js": "20261014-woodlands-mes-hispano",
-    "assets/js/branch-language.js": "20261013-measurement-v2"
+    "assets/js/site-measurement.js": "20261016-ga4-consent",
+    "assets/js/branch-language.js": "20261013-measurement-v2",
+    "assets/js/ga4-consent.js": "20261016-ga4-consent",
+    "assets/css/ga4-consent.css": "20261016-ga4-consent"
   },
   "pages": [
     "index.html",
@@ -259,7 +261,9 @@
     "assets/media/home-singing-desktop-1672.webp",
     "assets/media/home-singing-desktop-960.webp",
     "assets/media/home-singing-portrait-1305.webp",
-    "assets/media/home-singing-portrait-640.webp"
+    "assets/media/home-singing-portrait-640.webp",
+    "assets/js/ga4-consent.js",
+    "assets/css/ga4-consent.css"
   ],
   "assetVersion": "20261008-migration-measurement",
   "reviewPages": []

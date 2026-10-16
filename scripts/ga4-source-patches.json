@@ -1,0 +1,442 @@
+{
+  "version": 1,
+  "authorization": "Luis · 16-oct-2026: así está bien lo del Google Analytics, así déjalo y sube. Datos actuales del aviso conservados; no se inventan responsable/domicilio/canal ni se publican marcadores de revisión.",
+  "files": {
+    "index.html": {
+      "baselineSha256": "94b6047984dc36c178c95eee9ffb8c1bd657e9491c6f2a730c4bca39ae112fdd",
+      "patches": [
+        {
+          "before": "site-measurement.js?v=20261014-woodlands-mes-hispano",
+          "after": "site-measurement.js?v=20261016-ga4-consent"
+        },
+        {
+          "before": "</head>",
+          "after": "<link rel=\"stylesheet\" href=\"/assets/css/ga4-consent.css?v=20261016-ga4-consent\"></head>"
+        },
+        {
+          "before": "</body>",
+          "after": "<script defer src=\"/assets/js/ga4-consent.js?v=20261016-ga4-consent\"></script></body>"
+        }
+      ],
+      "afterSha256": "15f7b42153634b7d20ef0bfc9765e90da8b238f599e90b902b727e151b7caa26"
+    },
+    "locations.html": {
+      "baselineSha256": "f5b489e7167df20d6afb09dbff8373da1d1e69ae9682c9dfe69b7e0f50d156f0",
+      "patches": [
+        {
+          "before": "site-measurement.js?v=20261014-woodlands-mes-hispano",
+          "after": "site-measurement.js?v=20261016-ga4-consent"
+        },
+        {
+          "before": "</head>",
+          "after": "<link rel=\"stylesheet\" href=\"/assets/css/ga4-consent.css?v=20261016-ga4-consent\"></head>"
+        },
+        {
+          "before": "</body>",
+          "after": "<script defer src=\"/assets/js/ga4-consent.js?v=20261016-ga4-consent\"></script></body>"
+        }
+      ],
+      "afterSha256": "5470cb5bf816334574fb83e82fa1b9b15df8fa7c05015f06fc9b739dcd740ff7"
+    },
+    "la-cantina.html": {
+      "baselineSha256": "87d0d8029338eb4a10e38c210697cb5144f58f65404d2f6261be468381848dc8",
+      "patches": [
+        {
+          "before": "site-measurement.js?v=20261014-woodlands-mes-hispano",
+          "after": "site-measurement.js?v=20261016-ga4-consent"
+        },
+        {
+          "before": "</head>",
+          "after": "<link rel=\"stylesheet\" href=\"/assets/css/ga4-consent.css?v=20261016-ga4-consent\"></head>"
+        },
+        {
+          "before": "</body>",
+          "after": "<script defer src=\"/assets/js/ga4-consent.js?v=20261016-ga4-consent\"></script></body>"
+        }
+      ],
+      "afterSha256": "61153eaa3c195b2fd23e905b09cd9820c31e7a9b5764f374fe06a47cea9fb68c"
+    },
+    "catering.html": {
+      "baselineSha256": "f56d3e9475cca11e492510835f5e6f46e57e41a45e9b6545deb41fff286616fb",
+      "patches": [
+        {
+          "before": "site-measurement.js?v=20261014-woodlands-mes-hispano",
+          "after": "site-measurement.js?v=20261016-ga4-consent"
+        },
+        {
+          "before": "</head>",
+          "after": "<link rel=\"stylesheet\" href=\"/assets/css/ga4-consent.css?v=20261016-ga4-consent\"></head>"
+        },
+        {
+          "before": "</body>",
+          "after": "<script defer src=\"/assets/js/ga4-consent.js?v=20261016-ga4-consent\"></script></body>"
+        }
+      ],
+      "afterSha256": "136ce4557bda53bd2e564c0ee827a659bfa73a7e5a1c4c8765762d3c6198d039"
+    },
+    "eventos.html": {
+      "baselineSha256": "55712fc1108da17d20b40477e027e8f3df4850014ff1b302b158ec9edebc9848",
+      "patches": [
+        {
+          "before": "site-measurement.js?v=20261014-woodlands-mes-hispano",
+          "after": "site-measurement.js?v=20261016-ga4-consent"
+        },
+        {
+          "before": "</head>",
+          "after": "<link rel=\"stylesheet\" href=\"/assets/css/ga4-consent.css?v=20261016-ga4-consent\"></head>"
+        },
+        {
+          "before": "</body>",
+          "after": "<script defer src=\"/assets/js/ga4-consent.js?v=20261016-ga4-consent\"></script></body>"
+        }
+      ],
+      "afterSha256": "b11f1d111a658bb9e757d1740cdca8b011f768afed3b2daff3a5a5893964111f"
+    },
+    "tienda.html": {
+      "baselineSha256": "64fec579f1616de6cd2b6d8f14e52131bfeb33442bdc5cdc9d2a556f9aef227d",
+      "patches": [
+        {
+          "before": "site-measurement.js?v=20261014-woodlands-mes-hispano",
+          "after": "site-measurement.js?v=20261016-ga4-consent"
+        },
+        {
+          "before": "</head>",
+          "after": "<link rel=\"stylesheet\" href=\"/assets/css/ga4-consent.css?v=20261016-ga4-consent\"></head>"
+        },
+        {
+          "before": "</body>",
+          "after": "<script defer src=\"/assets/js/ga4-consent.js?v=20261016-ga4-consent\"></script></body>"
+        }
+      ],
+      "afterSha256": "5723203b7e9832efa02e0f526f22abf2850f0766232e2abc3a47d252489a3f87"
+    },
+    "el-paso.html": {
+      "baselineSha256": "fd65febe0d120c59e78704751ce0e4fa5d6dc6a794ca7fd12a437760bb78fd86",
+      "patches": [
+        {
+          "before": "site-measurement.js?v=20261014-woodlands-mes-hispano",
+          "after": "site-measurement.js?v=20261016-ga4-consent"
+        },
+        {
+          "before": "</head>",
+          "after": "<link rel=\"stylesheet\" href=\"/assets/css/ga4-consent.css?v=20261016-ga4-consent\"></head>"
+        },
+        {
+          "before": "</body>",
+          "after": "<script defer src=\"/assets/js/ga4-consent.js?v=20261016-ga4-consent\"></script></body>"
+        }
+      ],
+      "afterSha256": "163acaef4cee4295fe83128e7dd1fdc387a99aaa31d60eda86acd3816f975129"
+    },
+    "guadalajara.html": {
+      "baselineSha256": "26a7c3d23a184b0ae0c775b2a96293937c43691b2ed3be7c180215a90ecee9f9",
+      "patches": [
+        {
+          "before": "site-measurement.js?v=20261014-woodlands-mes-hispano",
+          "after": "site-measurement.js?v=20261016-ga4-consent"
+        },
+        {
+          "before": "</head>",
+          "after": "<link rel=\"stylesheet\" href=\"/assets/css/ga4-consent.css?v=20261016-ga4-consent\"></head>"
+        },
+        {
+          "before": "</body>",
+          "after": "<script defer src=\"/assets/js/ga4-consent.js?v=20261016-ga4-consent\"></script></body>"
+        }
+      ],
+      "afterSha256": "07c7e5eff71a556bf0136b70d067497f326b9ddf985622e9cd6d8314271050bb"
+    },
+    "san-antonio.html": {
+      "baselineSha256": "5a0d69bbc9588d2c38a0eaf8e656e0ddaf34ee97709c7cab5ecdf363b54ec30e",
+      "patches": [
+        {
+          "before": "site-measurement.js?v=20261014-woodlands-mes-hispano",
+          "after": "site-measurement.js?v=20261016-ga4-consent"
+        },
+        {
+          "before": "</head>",
+          "after": "<link rel=\"stylesheet\" href=\"/assets/css/ga4-consent.css?v=20261016-ga4-consent\"></head>"
+        },
+        {
+          "before": "</body>",
+          "after": "<script defer src=\"/assets/js/ga4-consent.js?v=20261016-ga4-consent\"></script></body>"
+        }
+      ],
+      "afterSha256": "39a203a3ce247df55f33255027249b606fd1e3cc16ec9aeeee558fe756a520dd"
+    },
+    "the-woodlands.html": {
+      "baselineSha256": "b9196136dc067d47104944cfcba2f45d5d18fed0f53eba7f6e63a2ba74802a58",
+      "patches": [
+        {
+          "before": "site-measurement.js?v=20261014-woodlands-mes-hispano",
+          "after": "site-measurement.js?v=20261016-ga4-consent"
+        },
+        {
+          "before": "</head>",
+          "after": "<link rel=\"stylesheet\" href=\"/assets/css/ga4-consent.css?v=20261016-ga4-consent\"></head>"
+        },
+        {
+          "before": "</body>",
+          "after": "<script defer src=\"/assets/js/ga4-consent.js?v=20261016-ga4-consent\"></script></body>"
+        }
+      ],
+      "afterSha256": "715649c819265c11170aec330a96fec522abe9b8db59ec57faf8c41d28643edf"
+    },
+    "houston.html": {
+      "baselineSha256": "f3ff72d13e3fc844d96bce52c53f549f5915b84af794b5d8baabe07714b80c58",
+      "patches": [
+        {
+          "before": "site-measurement.js?v=20261014-woodlands-mes-hispano",
+          "after": "site-measurement.js?v=20261016-ga4-consent"
+        },
+        {
+          "before": "</head>",
+          "after": "<link rel=\"stylesheet\" href=\"/assets/css/ga4-consent.css?v=20261016-ga4-consent\"></head>"
+        },
+        {
+          "before": "</body>",
+          "after": "<script defer src=\"/assets/js/ga4-consent.js?v=20261016-ga4-consent\"></script></body>"
+        }
+      ],
+      "afterSha256": "603eaef35df52880582f11308d00665a6dd00fd6bd647d0e77e5cd4af982d3fd"
+    },
+    "aviso-de-privacidad.html": {
+      "baselineSha256": "ec0e31781882a578f24cc77ba5f0c8dfda28340996f5026c4362dc4b0f66d929",
+      "patches": [
+        {
+          "before": "site-measurement.js?v=20261014-woodlands-mes-hispano",
+          "after": "site-measurement.js?v=20261016-ga4-consent"
+        },
+        {
+          "before": "</head>",
+          "after": "<link rel=\"stylesheet\" href=\"/assets/css/ga4-consent.css?v=20261016-ga4-consent\"></head>"
+        },
+        {
+          "before": "</body>",
+          "after": "<script defer src=\"/assets/js/ga4-consent.js?v=20261016-ga4-consent\"></script></body>"
+        },
+        {
+          "before": "Última actualización: 8 de octubre de 2026.",
+          "after": "Última actualización: 16 de octubre de 2026."
+        },
+        {
+          "before": "<strong>Navegación anónima:</strong> datos técnicos del sitio (tipo de dispositivo, páginas vistas) sin identificarte.",
+          "after": "<strong>Uso del sitio:</strong> páginas vistas y acciones como abrir menús o reservas. Umami mide sin cookies de seguimiento. Si aceptas GA4, Google utiliza cookies e identificadores del navegador para elaborar estadísticas; no enviamos a GA4 nombres, teléfonos, correos, mensajes ni texto libre."
+        },
+        {
+          "before": "<h2>4. Quién más los ve</h2>",
+          "after": "<h3>Google Analytics 4 · opcional</h3>\n      <p>Utilizamos Google Analytics 4 (GA4), de Google, para conocer visitas y clics por página, idioma, sucursal y evento. La etiqueta de Google se carga únicamente después de aceptar. Rechazar desactiva GA4; Umami continúa con las condiciones descritas arriba. Puedes cambiar tu elección en «Preferencias de privacidad», al pie de la página. Las señales «No rastrear» y Global Privacy Control mantienen desactivada la medición. El sitio funciona igual si rechazas GA4.</p>\n      <p>La elección se guarda en este navegador por hasta 180 días; al caducar se solicita de nuevo. GA4 puede utilizar las cookies propias <code>_ga</code> y <code>_ga_PZQE63983T</code>, con duración máxima configurada de 180 días, sin renovación por actividad. Al retirar el permiso se detienen nuevos envíos y se intenta eliminar esas cookies. Si falla el almacenamiento, GA4 permanece apagado en la página; se intenta guardar un bloqueo funcional <code>sy_ga4_denied</code> para evitar reutilizar una aceptación anterior. Retirar el permiso no elimina automáticamente los datos ya enviados.</p>\n      <p>La propiedad de GA4 conserva datos de eventos durante 2 meses y datos de usuarios durante 14 meses, con reinicio del plazo de usuarios por nueva actividad. Estos plazos no eliminan por sí solos los informes agregados. La etiqueta mantiene denegados el almacenamiento y uso de datos para anuncios y desactiva las señales de Google Signals y personalización publicitaria. Google recibe datos técnicos de la conexión y trata los datos conforme a su <a href=\"https://policies.google.com/privacy\">política de privacidad</a>.</p>\n      <h2>4. Quién más los ve</h2>"
+        }
+      ],
+      "afterSha256": "7828dd8eb7ce4905ed3737a4982efed7617266b0ea62ef96db064c728f392b3d"
+    },
+    "en/houston/index.html": {
+      "baselineSha256": "82f267a1bd743f075fe0b4e133a1fc7aa060ff1ef4f664c80b6a3d5cd2930b1c",
+      "patches": [
+        {
+          "before": "site-measurement.js?v=20261014-woodlands-mes-hispano",
+          "after": "site-measurement.js?v=20261016-ga4-consent"
+        },
+        {
+          "before": "</head>",
+          "after": "<link rel=\"stylesheet\" href=\"/assets/css/ga4-consent.css?v=20261016-ga4-consent\"></head>"
+        },
+        {
+          "before": "</body>",
+          "after": "<script defer src=\"/assets/js/ga4-consent.js?v=20261016-ga4-consent\"></script></body>"
+        }
+      ],
+      "afterSha256": "4e2e615ffa60fa802fab73513172ad3789739ed411452f5e3ddb34a730cfacdd"
+    },
+    "houston/menu/index.html": {
+      "baselineSha256": "2b04c51c0860bd2d9dbd299dc18820e4a01a8ae6ac75d19df01b2239f5a132e3",
+      "patches": [
+        {
+          "before": "site-measurement.js?v=20261014-woodlands-mes-hispano",
+          "after": "site-measurement.js?v=20261016-ga4-consent"
+        },
+        {
+          "before": "</head>",
+          "after": "<link rel=\"stylesheet\" href=\"/assets/css/ga4-consent.css?v=20261016-ga4-consent\"></head>"
+        },
+        {
+          "before": "</body>",
+          "after": "<script defer src=\"/assets/js/ga4-consent.js?v=20261016-ga4-consent\"></script></body>"
+        }
+      ],
+      "afterSha256": "4c92f487af18b471a4cf297bef132c79b37522b0c4b49571d91cc4c9d90652c1"
+    },
+    "en/san-antonio/index.html": {
+      "baselineSha256": "89ba20b2cdb2b9dcb51a75b4bd582c6aad5296316800a20d1547ffc471813ec0",
+      "patches": [
+        {
+          "before": "site-measurement.js?v=20261014-woodlands-mes-hispano",
+          "after": "site-measurement.js?v=20261016-ga4-consent"
+        },
+        {
+          "before": "</head>",
+          "after": "<link rel=\"stylesheet\" href=\"/assets/css/ga4-consent.css?v=20261016-ga4-consent\"></head>"
+        },
+        {
+          "before": "</body>",
+          "after": "<script defer src=\"/assets/js/ga4-consent.js?v=20261016-ga4-consent\"></script></body>"
+        }
+      ],
+      "afterSha256": "f34b6f2fc69423ba1bc111409c88b09936556088450864e1d261b30dc29746fc"
+    },
+    "san-antonio/menu/index.html": {
+      "baselineSha256": "9cbcff5f05d1d13f2a958cd979faf743ffa78c369e1bcbfbbb9a9d94ae71b72e",
+      "patches": [
+        {
+          "before": "site-measurement.js?v=20261014-woodlands-mes-hispano",
+          "after": "site-measurement.js?v=20261016-ga4-consent"
+        },
+        {
+          "before": "</head>",
+          "after": "<link rel=\"stylesheet\" href=\"/assets/css/ga4-consent.css?v=20261016-ga4-consent\"></head>"
+        },
+        {
+          "before": "</body>",
+          "after": "<script defer src=\"/assets/js/ga4-consent.js?v=20261016-ga4-consent\"></script></body>"
+        }
+      ],
+      "afterSha256": "c6ba0a2e1828b3be29c8217980ea3afaf922e0ac8cbffa4a23fe5154b5ca968e"
+    },
+    "en/san-antonio/menu/index.html": {
+      "baselineSha256": "98fcc85eacb3d3cda9b19045ed1ad2817703499de295e0fe25885357b8220791",
+      "patches": [
+        {
+          "before": "site-measurement.js?v=20261014-woodlands-mes-hispano",
+          "after": "site-measurement.js?v=20261016-ga4-consent"
+        },
+        {
+          "before": "</head>",
+          "after": "<link rel=\"stylesheet\" href=\"/assets/css/ga4-consent.css?v=20261016-ga4-consent\"></head>"
+        },
+        {
+          "before": "</body>",
+          "after": "<script defer src=\"/assets/js/ga4-consent.js?v=20261016-ga4-consent\"></script></body>"
+        }
+      ],
+      "afterSha256": "2500820c58c3ed6de0b0d4a513087a45eb43e8ce8cccb86cca461eb99ed834b8"
+    },
+    "en/the-woodlands/index.html": {
+      "baselineSha256": "495d23adbc37cbdb82f31567c17ef30f6c8de637e62ba15c5a3390853749760a",
+      "patches": [
+        {
+          "before": "site-measurement.js?v=20261014-woodlands-mes-hispano",
+          "after": "site-measurement.js?v=20261016-ga4-consent"
+        },
+        {
+          "before": "</head>",
+          "after": "<link rel=\"stylesheet\" href=\"/assets/css/ga4-consent.css?v=20261016-ga4-consent\"></head>"
+        },
+        {
+          "before": "</body>",
+          "after": "<script defer src=\"/assets/js/ga4-consent.js?v=20261016-ga4-consent\"></script></body>"
+        }
+      ],
+      "afterSha256": "de3534c5690364c0f8be800cc067e37dbe0e29ceb99db6428c18bbdfe9a21092"
+    },
+    "the-woodlands/menu/index.html": {
+      "baselineSha256": "944b4903497fec48fbc60bf117094cca845d43819626ce52b764ce9c0b1d870e",
+      "patches": [
+        {
+          "before": "site-measurement.js?v=20261014-woodlands-mes-hispano",
+          "after": "site-measurement.js?v=20261016-ga4-consent"
+        },
+        {
+          "before": "</head>",
+          "after": "<link rel=\"stylesheet\" href=\"/assets/css/ga4-consent.css?v=20261016-ga4-consent\"></head>"
+        },
+        {
+          "before": "</body>",
+          "after": "<script defer src=\"/assets/js/ga4-consent.js?v=20261016-ga4-consent\"></script></body>"
+        }
+      ],
+      "afterSha256": "4177d39189aa9c9f479c85886cd611246b4282bb58fc1d53b2d7dd8781be8286"
+    },
+    "san-ignacio/menu/index.html": {
+      "baselineSha256": "495e8502db1a786b168cb8a6a432a27e1fc8c48ba7f08ff5950c95249808d0d1",
+      "patches": [
+        {
+          "before": "site-measurement.js?v=20261014-woodlands-mes-hispano",
+          "after": "site-measurement.js?v=20261016-ga4-consent"
+        },
+        {
+          "before": "</head>",
+          "after": "<link rel=\"stylesheet\" href=\"/assets/css/ga4-consent.css?v=20261016-ga4-consent\"></head>"
+        },
+        {
+          "before": "</body>",
+          "after": "<script defer src=\"/assets/js/ga4-consent.js?v=20261016-ga4-consent\"></script></body>"
+        }
+      ],
+      "afterSha256": "f8f3d598348f05e485437bb779d3f1628e09bb5a8dc57f41cbee8da5176c1a68"
+    },
+    "en/el-paso/index.html": {
+      "baselineSha256": "84559cd0db691734357d9ada386298affc10eee73802c639bc9903c297606899",
+      "patches": [
+        {
+          "before": "site-measurement.js?v=20261014-woodlands-mes-hispano",
+          "after": "site-measurement.js?v=20261016-ga4-consent"
+        },
+        {
+          "before": "</head>",
+          "after": "<link rel=\"stylesheet\" href=\"/assets/css/ga4-consent.css?v=20261016-ga4-consent\"></head>"
+        },
+        {
+          "before": "</body>",
+          "after": "<script defer src=\"/assets/js/ga4-consent.js?v=20261016-ga4-consent\"></script></body>"
+        }
+      ],
+      "afterSha256": "d75b042ff49e0f950c867c8197a93ec5c9f2df7b6004541139a48d05a7febfae"
+    },
+    "en/catering/index.html": {
+      "baselineSha256": "d657e80525ede62a9f5f72f9e570f1c2cbfda54cf162b2e7f3680542200a6eb3",
+      "patches": [
+        {
+          "before": "site-measurement.js?v=20261014-woodlands-mes-hispano",
+          "after": "site-measurement.js?v=20261016-ga4-consent"
+        },
+        {
+          "before": "</head>",
+          "after": "<link rel=\"stylesheet\" href=\"/assets/css/ga4-consent.css?v=20261016-ga4-consent\"></head>"
+        },
+        {
+          "before": "</body>",
+          "after": "<script defer src=\"/assets/js/ga4-consent.js?v=20261016-ga4-consent\"></script></body>"
+        }
+      ],
+      "afterSha256": "b34e90e40ff8b20d9e6ecaeed4834089b78e4cbf65af2b8248cb4016325d279a"
+    },
+    "el-paso/menu/index.html": {
+      "baselineSha256": "e792b30f594e083e5f191e1f680ec9646aea90a2538f182aec006738f4893989",
+      "patches": [
+        {
+          "before": "site-measurement.js?v=20261014-woodlands-mes-hispano",
+          "after": "site-measurement.js?v=20261016-ga4-consent"
+        },
+        {
+          "before": "</head>",
+          "after": "<link rel=\"stylesheet\" href=\"/assets/css/ga4-consent.css?v=20261016-ga4-consent\"></head>"
+        },
+        {
+          "before": "</body>",
+          "after": "<script defer src=\"/assets/js/ga4-consent.js?v=20261016-ga4-consent\"></script></body>"
+        }
+      ],
+      "afterSha256": "0c8944df6f73aa5c6d468f009243f1accf688d0eb149299573f4606ac8604414"
+    },
+    "assets/js/site-measurement.js": {
+      "baselineSha256": "041cff667e2fe3dcc1914c949ee243daacef72b6a546a8db72cdf7c0949581db",
+      "patches": [
+        {
+          "before": "/* Anonymous measurement. It never changes links or presentation. */\n(function () {\n  \"use strict\";\n  const contract =\n/* BEGIN GENERATED MEASUREMENT CONTRACT */\n{\"version\":2,\"routes\":{\"/\":\"group\",\"/locations\":\"group\",\"/la-cantina\":\"group\",\"/catering\":\"catering\",\"/eventos\":\"group\",\"/tienda\":\"group\",\"/el-paso\":\"el-paso\",\"/guadalajara\":\"san-ignacio\",\"/san-antonio\":\"san-antonio\",\"/the-woodlands\":\"the-woodlands\",\"/houston\":\"houston\",\"/aviso-de-privacidad\":\"group\",\"/en/houston\":\"houston\",\"/houston/menu\":\"houston\",\"/en/san-antonio\":\"san-antonio\",\"/san-antonio/menu\":\"san-antonio\",\"/en/san-antonio/menu\":\"san-antonio\",\"/en/the-woodlands\":\"the-woodlands\",\"/the-woodlands/menu\":\"the-woodlands\",\"/san-ignacio/menu\":\"san-ignacio\",\"/en/el-paso\":\"el-paso\",\"/en/catering\":\"catering\",\"/el-paso/menu\":\"el-paso\"},\"branches\":[\"group\",\"catering\",\"el-paso\",\"san-ignacio\",\"san-antonio\",\"the-woodlands\",\"houston\"],\"events\":{\"houston-pinta-canta-20261014\":{\"branch\":\"houston\",\"kind\":\"workshop\",\"post\":\"https://www.instagram.com/glossyco.tx/p/DdpUHLrH4mo/\",\"tickets\":\"https://www.eventbrite.com/e/pinta-y-canta-despechados-ladies-night-tickets-2002912451058\"},\"houston-pinta-20261028\":{\"branch\":\"houston\",\"kind\":\"workshop\",\"post\":\"https://www.instagram.com/glossyco.tx/p/DdpUHLrH4mo/\",\"tickets\":\"https://www.eventbrite.com/e/pinta-y-canta-peluca-halloween-tickets-2002912558379\"},\"houston-jorge-mariana-20261113\":{\"branch\":\"houston\",\"kind\":\"performance\",\"post\":\"https://www.instagram.com/p/DeaxjMhxieb/\"},\"houston-ladies-weekly\":{\"branch\":\"houston\",\"kind\":\"recurring-night\",\"post\":\"https://www.instagram.com/reel/DeL7Ly_vyo2/\"},\"houston-dontcry-weekly\":{\"branch\":\"houston\",\"kind\":\"recurring-night\",\"post\":\"https://www.instagram.com/reel/Dd9juidPsf6/\"},\"the-woodlands-mes-hispano-20261015\":{\"branch\":\"the-woodlands\",\"kind\":\"theme-night\",\"post\":\"https://www.instagram.com/p/DefaT9GBok6/\"},\"the-woodlands-ladies-weekly\":{\"branch\":\"the-woodlands\",\"kind\":\"recurring-night\",\"post\":\"https://www.instagram.com/reel/DeL7RNGubUK/\"},\"the-woodlands-thursday-offer\":{\"branch\":\"the-woodlands\",\"kind\":\"offer\",\"post\":\"https://www.instagram.com/p/Dd9hkdrJRo3/\"},\"the-woodlands-jets-cars-20261114\":{\"branch\":\"the-woodlands\",\"kind\":\"external-sponsorship\",\"post\":\"https://www.instagram.com/p/DeKHqcjy606/\"},\"san-antonio-pelucas-20261017\":{\"branch\":\"san-antonio\",\"kind\":\"theme-night\",\"post\":\"https://www.instagram.com/p/DeavaGDhror/\"},\"san-antonio-ladies-weekly\":{\"branch\":\"san-antonio\",\"kind\":\"recurring-night\",\"post\":\"https://www.instagram.com/reel/DeL7NjSxiSY/\"},\"san-antonio-jorge-20261114\":{\"branch\":\"san-antonio\",\"kind\":\"external-performance\",\"post\":\"https://www.instagram.com/p/DeaxTe3hV7k/\"},\"el-paso-jorge-20261016\":{\"branch\":\"el-paso\",\"kind\":\"performance\",\"post\":\"https://www.instagram.com/p/DeZ3riUJ5Bu/\"},\"el-paso-recovery-brunch\":{\"branch\":\"el-paso\",\"kind\":\"brunch\",\"post\":\"https://www.instagram.com/p/DeV29DjNFhF/\"}},\"series\":{\"houston-pinta-y-canta\":{\"branch\":\"houston\",\"kind\":\"workshop\",\"events\":[\"houston-pinta-canta-20261014\",\"houston-pinta-20261028\"],\"post\":\"https://www.instagram.com/glossyco.tx/p/DdpUHLrH4mo/\"}},\"editorialCampaigns\":[\"catrinas-2026\",\"halloween-2026\"],\"utmValues\":{\"utm_source\":[\"instagram\",\"facebook\",\"google\",\"google_maps\",\"bing\",\"whatsapp\",\"qr\",\"newsletter\",\"opentable\",\"tripadvisor\"],\"utm_medium\":[\"organic\",\"referral\",\"social\",\"paid_social\",\"cpc\",\"email\",\"qr\"],\"utm_campaign\":[],\"utm_id\":[],\"utm_term\":[],\"utm_content\":[]},\"trafficCampaigns\":[],\"legacyHosts\":{\"sinyolandatx.com\":\"tx\",\"sinyolandausa.com\":\"usa\",\"maricarmengdl.com\":\"maricarmen\",\"sinyolandagdl.com\":\"gdl\"}}\n/* END GENERATED MEASUREMENT CONTRACT */\n  ;\n  const hosts = new Set([\"sin-yolanda.com\", \"www.sin-yolanda.com\"]);\n  const websiteId = \"cbfa7fb3-230e-405c-a0b8-06c762d6216b\";\n  const branchIds = new Set(contract.branches);\n  const events = new Set([\"location_select\", \"location_selector_open\", \"branch_click\", \"catering_click\", \"reservation_click\", \"menu_click\", \"phone_click\", \"directions_click\", \"social_click\", \"programming_action_click\", \"language_switch_click\", \"location_filter_click\", \"catering_contact_click\"]);\n  const actions = new Set([...events, \"filter_all\", \"filter_mx\", \"filter_us\", \"filter_soon\", \"contact_section\", \"instagram\", \"post\", \"tickets\", \"agenda_section\"]);\n  const destinations = new Set([\"branch\", \"menu\", \"selector\", \"reservation\", \"whatsapp\", \"phone\", \"maps\", \"catering\", \"contact_section\", \"instagram_post\", \"tickets\", \"instagram_profile\", \"facebook\", \"tiktok\", \"language\", \"filter\", \"agenda_section\"]);\n  const locations = new Set([\"header\", \"hero\", \"selector\", \"agenda\", \"footer\", \"content\", \"unknown\"]);\n  const sessionKey = \"sy-acquisition-v2\", sessionIdle = 30 * 60 * 1000;\n  function route(pathname) {\n    const clean = pathname.replace(/\\/index(?:\\.html)?\\/?$/, \"/\").replace(/\\.html$/, \"\").replace(/\\/$/, \"\") || \"/\";\n    return Object.hasOwn(contract.routes, clean) ? clean : null;\n  }\n  const pageBranch = () => contract.routes[route(window.location.pathname)] || \"group\";\n  const pageLanguage = () => document.documentElement.lang === \"en\" ? \"en\" : \"es\";\n  function disabled() {\n    if (navigator.globalPrivacyControl === true || [navigator.doNotTrack, navigator.msDoNotTrack, window.doNotTrack].some(value => value === \"1\" || value === \"yes\")) return true;\n    try { return Boolean(window.localStorage.getItem(\"umami.disabled\")); } catch { return false; }\n  }\n  let entry;\n  const discardSession = () => { entry = { landing_path: route(window.location.pathname), entry_referrer: \"unknown\" }; try { window.sessionStorage?.removeItem(sessionKey); } catch {} };\n  if (window.location.protocol !== \"https:\" || !hosts.has(window.location.hostname) || !route(window.location.pathname)) return;\n  if (disabled()) { discardSession(); return; }\n  if (window.__sySiteAnalytics || typeof window.sySiteAnalyticsSanitize !== \"undefined\") return;\n  window.__sySiteAnalytics = true;\n  function registeredUtms(search) {\n    const input = new URLSearchParams(search), result = {};\n    for (const key of [\"utm_source\", \"utm_medium\"]) {\n      const values = input.getAll(key);\n      if (values.length === 1 && contract.utmValues[key]?.includes(values[0])) result[key] = values[0];\n    }\n    const campaign = input.getAll(\"utm_campaign\");\n    if (campaign.length === 1 && contract.trafficCampaigns.some(item => item.code === campaign[0] && item.source === result.utm_source && item.medium === result.utm_medium)) result.utm_campaign = campaign[0];\n    return result;\n  }\n  const referralGroups = { instagram: [\"instagram.com\", \"www.instagram.com\", \"l.instagram.com\"], facebook: [\"facebook.com\", \"www.facebook.com\", \"l.facebook.com\", \"lm.facebook.com\"], google: [\"google.com\", \"www.google.com\"], bing: [\"bing.com\", \"www.bing.com\"], opentable: [\"opentable.com\", \"www.opentable.com\"], tripadvisor: [\"tripadvisor.com\", \"www.tripadvisor.com\"] };\n  function referrerDetails(value) {\n    try {\n      const url = new URL(value); if (![\"http:\", \"https:\"].includes(url.protocol)) throw Error();\n      if (hosts.has(url.hostname)) return { kind: \"internal\", safe: url.origin + (route(url.pathname) || \"\") };\n      const legacy = contract.legacyHosts[url.hostname.replace(/^www\\./, \"\")];\n      if (legacy) return { kind: \"legacy\", legacy, safe: url.origin };\n      for (const [kind, allowed] of Object.entries(referralGroups)) if (allowed.includes(url.hostname)) return { kind, safe: url.origin };\n      return { kind: \"other_external\", safe: \"\" };\n    } catch { return { kind: \"unknown\", safe: \"\" }; }\n  }\n  const entryReferrer = referrerDetails(document.referrer), entryUtms = registeredUtms(window.location.search);\n  function acquisition() {\n    const result = { landing_path: route(window.location.pathname), entry_referrer: entryReferrer.kind };\n    if (entryReferrer.legacy) result.legacy_hop = entryReferrer.legacy;\n    if (entryUtms.utm_source) result.source = entryUtms.utm_source;\n    if (entryUtms.utm_medium) result.medium = entryUtms.utm_medium;\n    if (entryUtms.utm_campaign) result.campaign = entryUtms.utm_campaign;\n    return result;\n  }\n  function safeAcquisition(value) {\n    if (!value || !route(value.landing_path) || ![\"unknown\", \"internal\", \"legacy\", \"other_external\", ...Object.keys(referralGroups)].includes(value.entry_referrer)) return null;\n    const result = { landing_path: route(value.landing_path), entry_referrer: value.entry_referrer };\n    if (Object.values(contract.legacyHosts).includes(value.legacy_hop)) result.legacy_hop = value.legacy_hop;\n    if (contract.utmValues.utm_source.includes(value.source)) result.source = value.source;\n    if (contract.utmValues.utm_medium.includes(value.medium)) result.medium = value.medium;\n    if (contract.trafficCampaigns.some(item => item.code === value.campaign && item.source === result.source && item.medium === result.medium)) result.campaign = value.campaign;\n    return result;\n  }\n  entry = acquisition();\n  try {\n    const stored = JSON.parse(window.sessionStorage?.getItem(sessionKey) || \"null\");\n    // Only our own navigation inherits acquisition; an external return starts again.\n    if (entryReferrer.kind === \"internal\" && !Object.keys(entryUtms).length && stored?.version === 2 && Number.isFinite(stored.seenAt) && Date.now() >= stored.seenAt && Date.now() - stored.seenAt < sessionIdle) entry = safeAcquisition(stored.entry) || entry;\n    window.sessionStorage?.setItem(sessionKey, JSON.stringify({ version: 2, seenAt: Date.now(), entry }));\n  } catch {}\n  let lastActivity = Date.now();\n  function touchAcquisition() {\n    const now = Date.now();\n    if (now - lastActivity >= sessionIdle) entry = { landing_path: route(window.location.pathname), entry_referrer: \"unknown\" };\n    lastActivity = now;\n    try { window.sessionStorage?.setItem(sessionKey, JSON.stringify({ version: 2, seenAt: now, entry })); } catch {}\n  }\n  const commonData = () => ({ schema_version: 2, page_branch: pageBranch(), page_language: pageLanguage(), ...entry });\n  function safeEventData(data, name) {\n    if (!data || !actions.has(data.action) || !branchIds.has(data.branch) || ![\"es\", \"en\"].includes(data.language)) return null;\n    const allowedActions = name === \"programming_action_click\" ? [\"post\", \"tickets\", \"agenda_section\", name] : name === \"location_filter_click\" ? [\"filter_all\", \"filter_mx\", \"filter_us\", \"filter_soon\"] : name === \"catering_contact_click\" ? [\"contact_section\", \"instagram\", name] : [name];\n    if (!allowedActions.includes(data.action)) return null;\n    const result = { action: data.action, branch: data.branch, language: data.language, ...commonData() };\n    // A trusted click snapshots its source language before the UI switches it.\n    if (data.schema_version === 2 && [\"es\", \"en\"].includes(data.page_language)) result.page_language = data.page_language;\n    if (locations.has(data.link_location)) result.link_location = data.link_location;\n    if (destinations.has(data.destination)) result.destination = data.destination;\n    if ([\"es\", \"en\"].includes(data.destination_language)) result.destination_language = data.destination_language;\n    if (data.event_id) { const event = contract.events[data.event_id]; if (!event || event.branch !== result.branch || (data.destination === \"tickets\" && !event.tickets)) return null; result.event_id = data.event_id; result.event_kind = event.kind; }\n    if (data.series_id) { const series = contract.series[data.series_id]; if (!series || series.branch !== result.branch) return null; result.series_id = data.series_id; result.event_kind = series.kind; }\n    if (contract.editorialCampaigns.includes(data.campaign_id)) result.campaign_id = data.campaign_id;\n    return result;\n  }\n  const previousHookName = document.currentScript?.getAttribute(\"data-before-send\") || \"sySiteAnalyticsBeforeSend\";\n  const previousHook = typeof window[previousHookName] === \"function\" ? window[previousHookName] : null;\n  function safePayload(type, payload) {\n    const path = route(window.location.pathname);\n    if (type !== \"event\" || !payload || !path || disabled()) { if (disabled()) discardSession(); return false; }\n    if (payload.name && !events.has(payload.name)) return false;\n    const result = { website: websiteId, hostname: window.location.hostname, url: path, title: \"Sin Yolanda\", referrer: referrerDetails(payload.referrer).safe };\n    // Reinsert only registered labels after the SDK strips search parameters.\n    if (typeof payload.language === \"string\" && /^[a-z]{2}(?:-[A-Za-z]{2})?$/.test(payload.language)) result.language = payload.language;\n    if (typeof payload.screen === \"string\" && /^\\d{1,5}x\\d{1,5}$/.test(payload.screen)) result.screen = payload.screen;\n    if (payload.name) {\n      let data = safeEventData(payload.data, payload.name); if (!data) return false;\n      const sourceLanguage = data.page_language;touchAcquisition();\n      data = safeEventData(payload.data, payload.name);data.page_language = sourceLanguage;\n      result.name = payload.name;result.data = data;\n    }\n    else {\n      touchAcquisition(); result.data = commonData();\n      if (Object.keys(entryUtms).length && entryUtms.utm_source === entry.source && entryUtms.utm_medium === entry.medium) result.url += \"?\" + new URLSearchParams(entryUtms).toString();\n    }\n    return result;\n  }\n  window.sySiteAnalyticsSanitize = function (type, payload) {\n    try { const prepared = previousHook ? previousHook(type, payload) : payload;\n      return prepared && typeof prepared.then === \"function\" ? prepared.then(value => safePayload(type, value)).catch(() => false) : safePayload(type, prepared);\n    } catch { return false; }\n  };\n  const pending = [];\n  function send(name, data) {\n    if (disabled()) { discardSession(); pending.length = 0; return; }\n    if (!events.has(name)) return;\n    let safe = safeEventData(data, name); if (!safe) return;\n    const sourceLanguage=safe.page_language;touchAcquisition();safe=safeEventData(data,name);safe.page_language=sourceLanguage;\n    if (typeof window.umami?.track !== \"function\") { if (pending.length < 20) pending.push({ name, data: safe, at: Date.now() }); return; }\n    try { Promise.resolve(window.umami.track(name, safe)).catch(() => {}); } catch {}\n  }\n  function contextBranch(element) {\n    const owner = element.closest(\"[data-branch-id],[data-branch],[data-agenda-branch]\");\n    const explicit = owner?.dataset.branchId || owner?.dataset.branch || owner?.dataset.agendaBranch;\n    if (branchIds.has(explicit)) return explicit;\n    const card = element.closest(\".location-card\");\n    if (card) for (const link of card.querySelectorAll(\"a[href]\")) {\n      try { const url = new URL(link.getAttribute(\"href\"), window.location.href); const branch = hosts.has(url.hostname) && contract.routes[route(url.pathname)]; if (branchIds.has(branch)) return branch; } catch {}\n    }\n    return pageBranch();\n  }\n  function linkLocation(element) {\n    if (element.closest(\"header,.hh-header,.ct-header,.site-header\")) return \"header\";\n    if (element.closest(\"footer,.bf-footer,.ct-footer\")) return \"footer\";\n    if (element.closest(\".sy-agenda,.home-campaign,.programming-block\")) return \"agenda\";\n    if (element.closest(\".location-card,#ubicaciones\")) return \"selector\";\n    if (element.closest(\".hh-welcome,.home-hero,.hero,.ct-opening\")) return \"hero\";\n    return \"content\";\n  }\n  function destinationBranch(url, fallback) {\n    for (const branch of window.SY_DATA?.branches || []) {\n      if (!branchIds.has(branch.id)) continue;\n      if (url.protocol === \"tel:\" && url.pathname === branch.phoneIntl) return branch.id;\n      if (url.hostname === \"wa.me\" && url.pathname === \"/\" + branch.whatsapp && branch.whatsapp) return branch.id;\n      try { const reserve = new URL(branch.reserveUrl); if (reserve.origin === url.origin && reserve.pathname === url.pathname) return branch.id; } catch {}\n    }\n    return fallback;\n  }\n  function destinationKey(value) { try { const url = value instanceof URL ? value : new URL(value); return url.protocol === \"https:\" ? url.origin + url.pathname.replace(/\\/$/, \"\") : null; } catch { return null; } }\n  function identify(element) {\n    const branch = contextBranch(element), language = pageLanguage(), location = linkLocation(element);\n    const decision = (name, destination, action = name, targetBranch = branch, extras = {}) => ({ name, data: { action, branch: targetBranch, language, link_location: location, destination, ...extras } });\n    const filter = element.dataset.venueFilter;\n    if ([\"all\", \"mx\", \"us\", \"soon\"].includes(filter)) return decision(\"location_filter_click\", \"filter\", \"filter_\" + filter);\n    if (element.matches(\"[data-select-location]\")) return decision(\"location_selector_open\", \"selector\");\n    if (!element.matches(\"a[href]\")) return [\"es\", \"en\"].includes(element.dataset.langBtn) ? decision(\"language_switch_click\", \"language\", \"language_switch_click\", branch, { language: element.dataset.langBtn, destination_language: element.dataset.langBtn }) : null;\n    let url; try { url = new URL(element.getAttribute(\"href\"), window.location.href); } catch { return null; }\n    if (element.matches(\"[data-venue]\") && branchIds.has(element.dataset.branchId)) return decision(\"location_select\", \"branch\", \"location_select\", element.dataset.branchId);\n    const record = element.closest(\"[data-record]\");\n    if (record) {\n      const id = record.dataset.record, event = contract.events[id]; if (!event || event.branch !== branch) return null;\n      const key = destinationKey(url), destination = key === destinationKey(event.post) ? \"instagram_post\" : event.tickets && key === destinationKey(event.tickets) ? \"tickets\" : null;\n      return destination ? decision(\"programming_action_click\", destination, destination === \"tickets\" ? \"tickets\" : \"post\", branch, { event_id: id }) : null;\n    }\n    const seriesNode = element.closest(\".sy-agenda-series\");\n    if (seriesNode) {\n      const ids = [...seriesNode.querySelectorAll(\"[data-record]\")].map(record => record.dataset.record);\n      for (const [id, series] of Object.entries(contract.series)) if (series.branch === branch && ids.length && ids.every(record => series.events.includes(record)) && destinationKey(url) === destinationKey(series.post)) return decision(\"programming_action_click\", \"instagram_post\", \"post\", branch, { series_id: id });\n      return null;\n    }\n    const campaign = element.closest(\"[data-campaign]\")?.dataset.campaign;\n    if (contract.editorialCampaigns.includes(campaign) && hosts.has(url.hostname) && contract.routes[route(url.pathname)] === branch) return decision(\"programming_action_click\", \"branch\", \"programming_action_click\", branch, { campaign_id: campaign });\n    // Compatibility for already-open pages with the old immutable branch bundles.\n    const oldHandler = document.querySelector('script[src*=\"_script_index_1_lang.BlqKqRiJ.js\"]');\n    const oldOwned = element.matches(\".hh-reserve,.bf-book,.header-reserve,.hh-nav-menu,.hh-welcome-menu,.hh-table-copy>a,.bf-navigation a[hreflang]\") || url.protocol === \"tel:\" || (url.hostname === \"www.google.com\" && url.pathname.startsWith(\"/maps\")) || element.closest(\".bf-social\");\n    if (document.body.dataset.branch && oldHandler && oldOwned) return null;\n    if (element.matches(\".ct-nav-contact,.ct-opening-contact,.ct-text-link\")) return decision(\"catering_contact_click\", \"contact_section\", \"contact_section\");\n    if (pageBranch() === \"catering\" && url.hostname === \"wa.me\") return decision(\"catering_contact_click\", \"whatsapp\");\n    if ((element.matches(\".hh-language,.ct-language-switch\") || element.lang) && [\"es\", \"en\"].includes(element.lang) && hosts.has(url.hostname) && route(url.pathname)) return decision(\"language_switch_click\", \"language\", \"language_switch_click\", branch, { language: element.lang, destination_language: element.lang });\n    if ([\"www.opentable.com\", \"opentable.com\", \"wa.me\"].includes(url.hostname)) return decision(\"reservation_click\", url.hostname === \"wa.me\" ? \"whatsapp\" : \"reservation\", \"reservation_click\", destinationBranch(url, branch));\n    if (url.protocol === \"tel:\") return decision(\"phone_click\", \"phone\", \"phone_click\", destinationBranch(url, branch));\n    if ([\"www.google.com\", \"maps.google.com\", \"maps.app.goo.gl\"].includes(url.hostname) && (url.pathname.startsWith(\"/maps\") || url.hostname === \"maps.app.goo.gl\")) return decision(\"directions_click\", \"maps\");\n    if (element.closest(\".bf-social\") || element.matches(\".ct-profile-link\")) {\n      const social = { \"instagram.com\": \"instagram_profile\", \"www.instagram.com\": \"instagram_profile\", \"facebook.com\": \"facebook\", \"www.facebook.com\": \"facebook\", \"www.tiktok.com\": \"tiktok\", \"tiktok.com\": \"tiktok\" }[url.hostname];\n      return social ? decision(pageBranch() === \"catering\" ? \"catering_contact_click\" : \"social_click\", social, pageBranch() === \"catering\" ? \"instagram\" : \"social_click\") : null;\n    }\n    if (!hosts.has(url.hostname)) return null;\n    const destination = route(url.pathname);\n    if (destination === route(window.location.pathname) && url.hash.startsWith(\"#programacion-\")) return decision(\"programming_action_click\", \"agenda_section\", \"agenda_section\");\n    if ([\"/catering\", \"/en/catering\"].includes(destination)) return decision(\"catering_click\", \"catering\");\n    if (destination?.endsWith(\"/menu\")) return decision(\"menu_click\", \"menu\", \"menu_click\", contract.routes[destination]);\n    if (![\"group\", \"catering\", undefined].includes(contract.routes[destination])) return decision(\"branch_click\", \"branch\", \"branch_click\", contract.routes[destination]);\n    if (destination === \"/locations\" || (destination === \"/\" && url.hash === \"#ubicaciones\")) return decision(\"location_selector_open\", \"selector\");\n    return null;\n  }\n  document.addEventListener(\"click\", event => {\n    if (event.isTrusted === false) return;\n    const element = event.target instanceof Element ? event.target.closest(\"a[href],button[data-venue-filter],button[data-lang-btn]\") : null;\n    if (!element) return; const chosen = identify(element); if (chosen) send(chosen.name, chosen.data);\n  }, true);\n  document.addEventListener(\"auxclick\", event => {\n    if (event.isTrusted === false || event.button !== 1) return;\n    const element = event.target instanceof Element ? event.target.closest(\"a[href]\") : null;\n    if (!element) return; const chosen = identify(element); if (chosen) send(chosen.name, chosen.data);\n  }, true);\n  if (!document.querySelector(\"#sy-umami-tracker\")) {\n    const tracker = document.createElement(\"script\"); tracker.id = \"sy-umami-tracker\";\n    tracker.src = \"https://analytics.despertartdigital.cloud/script.js\"; tracker.async = true; tracker.referrerPolicy = \"origin\";\n    for (const [name, value] of Object.entries({ \"data-website-id\": websiteId, \"data-domains\": [...hosts].join(\",\"), \"data-do-not-track\": \"true\", \"data-exclude-search\": \"true\", \"data-exclude-hash\": \"true\", \"data-before-send\": \"sySiteAnalyticsSanitize\" })) tracker.setAttribute(name, value);\n    tracker.addEventListener(\"load\", () => { if (typeof window.umami?.track === \"function\") pending.splice(0).forEach(item => { if (Date.now() - item.at < 60000) send(item.name, item.data); }); });\n    tracker.addEventListener(\"error\", () => { pending.length = 0; }); document.head.appendChild(tracker);\n  }\n})();\n",
+          "after": "/* Anonymous measurement. It never changes links or presentation. */\n(function () {\n  \"use strict\";\n  const contract =\n/* BEGIN GENERATED MEASUREMENT CONTRACT */\n{\"version\":2,\"routes\":{\"/\":\"group\",\"/locations\":\"group\",\"/la-cantina\":\"group\",\"/catering\":\"catering\",\"/eventos\":\"group\",\"/tienda\":\"group\",\"/el-paso\":\"el-paso\",\"/guadalajara\":\"san-ignacio\",\"/san-antonio\":\"san-antonio\",\"/the-woodlands\":\"the-woodlands\",\"/houston\":\"houston\",\"/aviso-de-privacidad\":\"group\",\"/en/houston\":\"houston\",\"/houston/menu\":\"houston\",\"/en/san-antonio\":\"san-antonio\",\"/san-antonio/menu\":\"san-antonio\",\"/en/san-antonio/menu\":\"san-antonio\",\"/en/the-woodlands\":\"the-woodlands\",\"/the-woodlands/menu\":\"the-woodlands\",\"/san-ignacio/menu\":\"san-ignacio\",\"/en/el-paso\":\"el-paso\",\"/en/catering\":\"catering\",\"/el-paso/menu\":\"el-paso\"},\"branches\":[\"group\",\"catering\",\"el-paso\",\"san-ignacio\",\"san-antonio\",\"the-woodlands\",\"houston\"],\"events\":{\"houston-pinta-canta-20261014\":{\"branch\":\"houston\",\"kind\":\"workshop\",\"post\":\"https://www.instagram.com/glossyco.tx/p/DdpUHLrH4mo/\",\"tickets\":\"https://www.eventbrite.com/e/pinta-y-canta-despechados-ladies-night-tickets-2002912451058\"},\"houston-pinta-20261028\":{\"branch\":\"houston\",\"kind\":\"workshop\",\"post\":\"https://www.instagram.com/glossyco.tx/p/DdpUHLrH4mo/\",\"tickets\":\"https://www.eventbrite.com/e/pinta-y-canta-peluca-halloween-tickets-2002912558379\"},\"houston-jorge-mariana-20261113\":{\"branch\":\"houston\",\"kind\":\"performance\",\"post\":\"https://www.instagram.com/p/DeaxjMhxieb/\"},\"houston-ladies-weekly\":{\"branch\":\"houston\",\"kind\":\"recurring-night\",\"post\":\"https://www.instagram.com/reel/DeL7Ly_vyo2/\"},\"houston-dontcry-weekly\":{\"branch\":\"houston\",\"kind\":\"recurring-night\",\"post\":\"https://www.instagram.com/reel/Dd9juidPsf6/\"},\"the-woodlands-mes-hispano-20261015\":{\"branch\":\"the-woodlands\",\"kind\":\"theme-night\",\"post\":\"https://www.instagram.com/p/DefaT9GBok6/\"},\"the-woodlands-ladies-weekly\":{\"branch\":\"the-woodlands\",\"kind\":\"recurring-night\",\"post\":\"https://www.instagram.com/reel/DeL7RNGubUK/\"},\"the-woodlands-thursday-offer\":{\"branch\":\"the-woodlands\",\"kind\":\"offer\",\"post\":\"https://www.instagram.com/p/Dd9hkdrJRo3/\"},\"the-woodlands-jets-cars-20261114\":{\"branch\":\"the-woodlands\",\"kind\":\"external-sponsorship\",\"post\":\"https://www.instagram.com/p/DeKHqcjy606/\"},\"san-antonio-pelucas-20261017\":{\"branch\":\"san-antonio\",\"kind\":\"theme-night\",\"post\":\"https://www.instagram.com/p/DeavaGDhror/\"},\"san-antonio-ladies-weekly\":{\"branch\":\"san-antonio\",\"kind\":\"recurring-night\",\"post\":\"https://www.instagram.com/reel/DeL7NjSxiSY/\"},\"san-antonio-jorge-20261114\":{\"branch\":\"san-antonio\",\"kind\":\"external-performance\",\"post\":\"https://www.instagram.com/p/DeaxTe3hV7k/\"},\"el-paso-jorge-20261016\":{\"branch\":\"el-paso\",\"kind\":\"performance\",\"post\":\"https://www.instagram.com/p/DeZ3riUJ5Bu/\"},\"el-paso-recovery-brunch\":{\"branch\":\"el-paso\",\"kind\":\"brunch\",\"post\":\"https://www.instagram.com/p/DeV29DjNFhF/\"}},\"series\":{\"houston-pinta-y-canta\":{\"branch\":\"houston\",\"kind\":\"workshop\",\"events\":[\"houston-pinta-canta-20261014\",\"houston-pinta-20261028\"],\"post\":\"https://www.instagram.com/glossyco.tx/p/DdpUHLrH4mo/\"}},\"editorialCampaigns\":[\"catrinas-2026\",\"halloween-2026\"],\"utmValues\":{\"utm_source\":[\"instagram\",\"facebook\",\"google\",\"google_maps\",\"bing\",\"whatsapp\",\"qr\",\"newsletter\",\"opentable\",\"tripadvisor\"],\"utm_medium\":[\"organic\",\"referral\",\"social\",\"paid_social\",\"cpc\",\"email\",\"qr\"],\"utm_campaign\":[],\"utm_id\":[],\"utm_term\":[],\"utm_content\":[]},\"trafficCampaigns\":[],\"legacyHosts\":{\"sinyolandatx.com\":\"tx\",\"sinyolandausa.com\":\"usa\",\"maricarmengdl.com\":\"maricarmen\",\"sinyolandagdl.com\":\"gdl\"}}\n/* END GENERATED MEASUREMENT CONTRACT */\n  ;\n  const hosts = new Set([\"sin-yolanda.com\", \"www.sin-yolanda.com\"]);\n  const websiteId = \"cbfa7fb3-230e-405c-a0b8-06c762d6216b\";\n  const branchIds = new Set(contract.branches);\n  const events = new Set([\"location_select\", \"location_selector_open\", \"branch_click\", \"catering_click\", \"reservation_click\", \"menu_click\", \"phone_click\", \"directions_click\", \"social_click\", \"programming_action_click\", \"language_switch_click\", \"location_filter_click\", \"catering_contact_click\"]);\n  const actions = new Set([...events, \"filter_all\", \"filter_mx\", \"filter_us\", \"filter_soon\", \"contact_section\", \"instagram\", \"post\", \"tickets\", \"agenda_section\"]);\n  const destinations = new Set([\"branch\", \"menu\", \"selector\", \"reservation\", \"whatsapp\", \"phone\", \"maps\", \"catering\", \"contact_section\", \"instagram_post\", \"tickets\", \"instagram_profile\", \"facebook\", \"tiktok\", \"language\", \"filter\", \"agenda_section\"]);\n  const locations = new Set([\"header\", \"hero\", \"selector\", \"agenda\", \"footer\", \"content\", \"unknown\"]);\n  const sessionKey = \"sy-acquisition-v2\", sessionIdle = 30 * 60 * 1000;\n  function route(pathname) {\n    const clean = pathname.replace(/\\/index(?:\\.html)?\\/?$/, \"/\").replace(/\\.html$/, \"\").replace(/\\/$/, \"\") || \"/\";\n    return Object.hasOwn(contract.routes, clean) ? clean : null;\n  }\n  const pageBranch = () => contract.routes[route(window.location.pathname)] || \"group\";\n  const pageLanguage = () => document.documentElement.lang === \"en\" ? \"en\" : \"es\";\n  function disabled() {\n    if (navigator.globalPrivacyControl === true || [navigator.doNotTrack, navigator.msDoNotTrack, window.doNotTrack].some(value => value === \"1\" || value === \"yes\")) return true;\n    try { return Boolean(window.localStorage.getItem(\"umami.disabled\")); } catch { return false; }\n  }\n  let entry;\n  const discardSession = () => { entry = { landing_path: route(window.location.pathname), entry_referrer: \"unknown\" }; try { window.sessionStorage?.removeItem(sessionKey); } catch {} };\n  if (window.location.protocol !== \"https:\" || !hosts.has(window.location.hostname) || !route(window.location.pathname)) return;\n  if (disabled()) { discardSession(); return; }\n  if (window.__sySiteAnalytics || typeof window.sySiteAnalyticsSanitize !== \"undefined\") return;\n  window.__sySiteAnalytics = true;\n  function registeredUtms(search) {\n    const input = new URLSearchParams(search), result = {};\n    for (const key of [\"utm_source\", \"utm_medium\"]) {\n      const values = input.getAll(key);\n      if (values.length === 1 && contract.utmValues[key]?.includes(values[0])) result[key] = values[0];\n    }\n    const campaign = input.getAll(\"utm_campaign\");\n    if (campaign.length === 1 && contract.trafficCampaigns.some(item => item.code === campaign[0] && item.source === result.utm_source && item.medium === result.utm_medium)) result.utm_campaign = campaign[0];\n    return result;\n  }\n  const referralGroups = { instagram: [\"instagram.com\", \"www.instagram.com\", \"l.instagram.com\"], facebook: [\"facebook.com\", \"www.facebook.com\", \"l.facebook.com\", \"lm.facebook.com\"], google: [\"google.com\", \"www.google.com\"], bing: [\"bing.com\", \"www.bing.com\"], opentable: [\"opentable.com\", \"www.opentable.com\"], tripadvisor: [\"tripadvisor.com\", \"www.tripadvisor.com\"] };\n  function referrerDetails(value) {\n    try {\n      const url = new URL(value); if (![\"http:\", \"https:\"].includes(url.protocol)) throw Error();\n      if (hosts.has(url.hostname)) return { kind: \"internal\", safe: url.origin + (route(url.pathname) || \"\") };\n      const legacy = contract.legacyHosts[url.hostname.replace(/^www\\./, \"\")];\n      if (legacy) return { kind: \"legacy\", legacy, safe: url.origin };\n      for (const [kind, allowed] of Object.entries(referralGroups)) if (allowed.includes(url.hostname)) return { kind, safe: url.origin };\n      return { kind: \"other_external\", safe: \"\" };\n    } catch { return { kind: \"unknown\", safe: \"\" }; }\n  }\n  const entryReferrer = referrerDetails(document.referrer), entryUtms = registeredUtms(window.location.search);\n  function acquisition() {\n    const result = { landing_path: route(window.location.pathname), entry_referrer: entryReferrer.kind };\n    if (entryReferrer.legacy) result.legacy_hop = entryReferrer.legacy;\n    if (entryUtms.utm_source) result.source = entryUtms.utm_source;\n    if (entryUtms.utm_medium) result.medium = entryUtms.utm_medium;\n    if (entryUtms.utm_campaign) result.campaign = entryUtms.utm_campaign;\n    return result;\n  }\n  function safeAcquisition(value) {\n    if (!value || !route(value.landing_path) || ![\"unknown\", \"internal\", \"legacy\", \"other_external\", ...Object.keys(referralGroups)].includes(value.entry_referrer)) return null;\n    const result = { landing_path: route(value.landing_path), entry_referrer: value.entry_referrer };\n    if (Object.values(contract.legacyHosts).includes(value.legacy_hop)) result.legacy_hop = value.legacy_hop;\n    if (contract.utmValues.utm_source.includes(value.source)) result.source = value.source;\n    if (contract.utmValues.utm_medium.includes(value.medium)) result.medium = value.medium;\n    if (contract.trafficCampaigns.some(item => item.code === value.campaign && item.source === result.source && item.medium === result.medium)) result.campaign = value.campaign;\n    return result;\n  }\n  entry = acquisition();\n  try {\n    const stored = JSON.parse(window.sessionStorage?.getItem(sessionKey) || \"null\");\n    // Only our own navigation inherits acquisition; an external return starts again.\n    if (entryReferrer.kind === \"internal\" && !Object.keys(entryUtms).length && stored?.version === 2 && Number.isFinite(stored.seenAt) && Date.now() >= stored.seenAt && Date.now() - stored.seenAt < sessionIdle) entry = safeAcquisition(stored.entry) || entry;\n    window.sessionStorage?.setItem(sessionKey, JSON.stringify({ version: 2, seenAt: Date.now(), entry }));\n  } catch {}\n  let lastActivity = Date.now();\n  function touchAcquisition() {\n    const now = Date.now();\n    if (now - lastActivity >= sessionIdle) entry = { landing_path: route(window.location.pathname), entry_referrer: \"unknown\" };\n    lastActivity = now;\n    try { window.sessionStorage?.setItem(sessionKey, JSON.stringify({ version: 2, seenAt: now, entry })); } catch {}\n  }\n  const commonData = () => ({ schema_version: 2, page_branch: pageBranch(), page_language: pageLanguage(), ...entry });\n  function safeEventData(data, name) {\n    if (!data || !actions.has(data.action) || !branchIds.has(data.branch) || ![\"es\", \"en\"].includes(data.language)) return null;\n    const allowedActions = name === \"programming_action_click\" ? [\"post\", \"tickets\", \"agenda_section\", name] : name === \"location_filter_click\" ? [\"filter_all\", \"filter_mx\", \"filter_us\", \"filter_soon\"] : name === \"catering_contact_click\" ? [\"contact_section\", \"instagram\", name] : [name];\n    if (!allowedActions.includes(data.action)) return null;\n    const result = { action: data.action, branch: data.branch, language: data.language, ...commonData() };\n    // A trusted click snapshots its source language before the UI switches it.\n    if (data.schema_version === 2 && [\"es\", \"en\"].includes(data.page_language)) result.page_language = data.page_language;\n    if (locations.has(data.link_location)) result.link_location = data.link_location;\n    if (destinations.has(data.destination)) result.destination = data.destination;\n    if ([\"es\", \"en\"].includes(data.destination_language)) result.destination_language = data.destination_language;\n    if (data.event_id) { const event = contract.events[data.event_id]; if (!event || event.branch !== result.branch || (data.destination === \"tickets\" && !event.tickets)) return null; result.event_id = data.event_id; result.event_kind = event.kind; }\n    if (data.series_id) { const series = contract.series[data.series_id]; if (!series || series.branch !== result.branch) return null; result.series_id = data.series_id; result.event_kind = series.kind; }\n    if (contract.editorialCampaigns.includes(data.campaign_id)) result.campaign_id = data.campaign_id;\n    return result;\n  }\n  window.syGa4MeasurementContext = () => {\n    if (disabled()) return null;\n    touchAcquisition(); return Object.freeze(commonData());\n  };\n  const previousHookName = document.currentScript?.getAttribute(\"data-before-send\") || \"sySiteAnalyticsBeforeSend\";\n  const previousHook = typeof window[previousHookName] === \"function\" ? window[previousHookName] : null;\n  function safePayload(type, payload) {\n    const path = route(window.location.pathname);\n    if (type !== \"event\" || !payload || !path || disabled()) { if (disabled()) discardSession(); return false; }\n    if (payload.name && !events.has(payload.name)) return false;\n    const result = { website: websiteId, hostname: window.location.hostname, url: path, title: \"Sin Yolanda\", referrer: referrerDetails(payload.referrer).safe };\n    // Reinsert only registered labels after the SDK strips search parameters.\n    if (typeof payload.language === \"string\" && /^[a-z]{2}(?:-[A-Za-z]{2})?$/.test(payload.language)) result.language = payload.language;\n    if (typeof payload.screen === \"string\" && /^\\d{1,5}x\\d{1,5}$/.test(payload.screen)) result.screen = payload.screen;\n    if (payload.name) {\n      let data = safeEventData(payload.data, payload.name); if (!data) return false;\n      const sourceLanguage = data.page_language;touchAcquisition();\n      data = safeEventData(payload.data, payload.name);data.page_language = sourceLanguage;\n      result.name = payload.name;result.data = data;\n    }\n    else {\n      touchAcquisition(); result.data = commonData();\n      if (Object.keys(entryUtms).length && entryUtms.utm_source === entry.source && entryUtms.utm_medium === entry.medium) result.url += \"?\" + new URLSearchParams(entryUtms).toString();\n    }\n    return result;\n  }\n  window.sySiteAnalyticsSanitize = function (type, payload) {\n    try { const prepared = previousHook ? previousHook(type, payload) : payload;\n      return prepared && typeof prepared.then === \"function\" ? prepared.then(value => safePayload(type, value)).catch(() => false) : safePayload(type, prepared);\n    } catch { return false; }\n  };\n  const pending = [];\n  function send(name, data, replay = false) {\n    if (disabled()) { discardSession(); pending.length = 0; return; }\n    if (!events.has(name)) return;\n    let safe = safeEventData(data, name); if (!safe) return;\n    const sourceLanguage=safe.page_language;touchAcquisition();safe=safeEventData(data,name);safe.page_language=sourceLanguage;\n    if (!replay && typeof window.syGa4MeasurementObserver === \"function\") {\n      try { Promise.resolve(window.syGa4MeasurementObserver(name, Object.freeze({ ...safe }))).catch(() => {}); } catch {}\n    }\n    if (typeof window.umami?.track !== \"function\") { if (pending.length < 20) pending.push({ name, data: safe, at: Date.now() }); return; }\n    try { Promise.resolve(window.umami.track(name, safe)).catch(() => {}); } catch {}\n  }\n  function contextBranch(element) {\n    const owner = element.closest(\"[data-branch-id],[data-branch],[data-agenda-branch]\");\n    const explicit = owner?.dataset.branchId || owner?.dataset.branch || owner?.dataset.agendaBranch;\n    if (branchIds.has(explicit)) return explicit;\n    const card = element.closest(\".location-card\");\n    if (card) for (const link of card.querySelectorAll(\"a[href]\")) {\n      try { const url = new URL(link.getAttribute(\"href\"), window.location.href); const branch = hosts.has(url.hostname) && contract.routes[route(url.pathname)]; if (branchIds.has(branch)) return branch; } catch {}\n    }\n    return pageBranch();\n  }\n  function linkLocation(element) {\n    if (element.closest(\"header,.hh-header,.ct-header,.site-header\")) return \"header\";\n    if (element.closest(\"footer,.bf-footer,.ct-footer\")) return \"footer\";\n    if (element.closest(\".sy-agenda,.home-campaign,.programming-block\")) return \"agenda\";\n    if (element.closest(\".location-card,#ubicaciones\")) return \"selector\";\n    if (element.closest(\".hh-welcome,.home-hero,.hero,.ct-opening\")) return \"hero\";\n    return \"content\";\n  }\n  function destinationBranch(url, fallback) {\n    for (const branch of window.SY_DATA?.branches || []) {\n      if (!branchIds.has(branch.id)) continue;\n      if (url.protocol === \"tel:\" && url.pathname === branch.phoneIntl) return branch.id;\n      if (url.hostname === \"wa.me\" && url.pathname === \"/\" + branch.whatsapp && branch.whatsapp) return branch.id;\n      try { const reserve = new URL(branch.reserveUrl); if (reserve.origin === url.origin && reserve.pathname === url.pathname) return branch.id; } catch {}\n    }\n    return fallback;\n  }\n  function destinationKey(value) { try { const url = value instanceof URL ? value : new URL(value); return url.protocol === \"https:\" ? url.origin + url.pathname.replace(/\\/$/, \"\") : null; } catch { return null; } }\n  function identify(element) {\n    const branch = contextBranch(element), language = pageLanguage(), location = linkLocation(element);\n    const decision = (name, destination, action = name, targetBranch = branch, extras = {}) => ({ name, data: { action, branch: targetBranch, language, link_location: location, destination, ...extras } });\n    const filter = element.dataset.venueFilter;\n    if ([\"all\", \"mx\", \"us\", \"soon\"].includes(filter)) return decision(\"location_filter_click\", \"filter\", \"filter_\" + filter);\n    if (element.matches(\"[data-select-location]\")) return decision(\"location_selector_open\", \"selector\");\n    if (!element.matches(\"a[href]\")) return [\"es\", \"en\"].includes(element.dataset.langBtn) ? decision(\"language_switch_click\", \"language\", \"language_switch_click\", branch, { language: element.dataset.langBtn, destination_language: element.dataset.langBtn }) : null;\n    let url; try { url = new URL(element.getAttribute(\"href\"), window.location.href); } catch { return null; }\n    if (element.matches(\"[data-venue]\") && branchIds.has(element.dataset.branchId)) return decision(\"location_select\", \"branch\", \"location_select\", element.dataset.branchId);\n    const record = element.closest(\"[data-record]\");\n    if (record) {\n      const id = record.dataset.record, event = contract.events[id]; if (!event || event.branch !== branch) return null;\n      const key = destinationKey(url), destination = key === destinationKey(event.post) ? \"instagram_post\" : event.tickets && key === destinationKey(event.tickets) ? \"tickets\" : null;\n      return destination ? decision(\"programming_action_click\", destination, destination === \"tickets\" ? \"tickets\" : \"post\", branch, { event_id: id }) : null;\n    }\n    const seriesNode = element.closest(\".sy-agenda-series\");\n    if (seriesNode) {\n      const ids = [...seriesNode.querySelectorAll(\"[data-record]\")].map(record => record.dataset.record);\n      for (const [id, series] of Object.entries(contract.series)) if (series.branch === branch && ids.length && ids.every(record => series.events.includes(record)) && destinationKey(url) === destinationKey(series.post)) return decision(\"programming_action_click\", \"instagram_post\", \"post\", branch, { series_id: id });\n      return null;\n    }\n    const campaign = element.closest(\"[data-campaign]\")?.dataset.campaign;\n    if (contract.editorialCampaigns.includes(campaign) && hosts.has(url.hostname) && contract.routes[route(url.pathname)] === branch) return decision(\"programming_action_click\", \"branch\", \"programming_action_click\", branch, { campaign_id: campaign });\n    // Compatibility for already-open pages with the old immutable branch bundles.\n    const oldHandler = document.querySelector('script[src*=\"_script_index_1_lang.BlqKqRiJ.js\"]');\n    const oldOwned = element.matches(\".hh-reserve,.bf-book,.header-reserve,.hh-nav-menu,.hh-welcome-menu,.hh-table-copy>a,.bf-navigation a[hreflang]\") || url.protocol === \"tel:\" || (url.hostname === \"www.google.com\" && url.pathname.startsWith(\"/maps\")) || element.closest(\".bf-social\");\n    if (document.body.dataset.branch && oldHandler && oldOwned) return null;\n    if (element.matches(\".ct-nav-contact,.ct-opening-contact,.ct-text-link\")) return decision(\"catering_contact_click\", \"contact_section\", \"contact_section\");\n    if (pageBranch() === \"catering\" && url.hostname === \"wa.me\") return decision(\"catering_contact_click\", \"whatsapp\");\n    if ((element.matches(\".hh-language,.ct-language-switch\") || element.lang) && [\"es\", \"en\"].includes(element.lang) && hosts.has(url.hostname) && route(url.pathname)) return decision(\"language_switch_click\", \"language\", \"language_switch_click\", branch, { language: element.lang, destination_language: element.lang });\n    if ([\"www.opentable.com\", \"opentable.com\", \"wa.me\"].includes(url.hostname)) return decision(\"reservation_click\", url.hostname === \"wa.me\" ? \"whatsapp\" : \"reservation\", \"reservation_click\", destinationBranch(url, branch));\n    if (url.protocol === \"tel:\") return decision(\"phone_click\", \"phone\", \"phone_click\", destinationBranch(url, branch));\n    if ([\"www.google.com\", \"maps.google.com\", \"maps.app.goo.gl\"].includes(url.hostname) && (url.pathname.startsWith(\"/maps\") || url.hostname === \"maps.app.goo.gl\")) return decision(\"directions_click\", \"maps\");\n    if (element.closest(\".bf-social\") || element.matches(\".ct-profile-link\")) {\n      const social = { \"instagram.com\": \"instagram_profile\", \"www.instagram.com\": \"instagram_profile\", \"facebook.com\": \"facebook\", \"www.facebook.com\": \"facebook\", \"www.tiktok.com\": \"tiktok\", \"tiktok.com\": \"tiktok\" }[url.hostname];\n      return social ? decision(pageBranch() === \"catering\" ? \"catering_contact_click\" : \"social_click\", social, pageBranch() === \"catering\" ? \"instagram\" : \"social_click\") : null;\n    }\n    if (!hosts.has(url.hostname)) return null;\n    const destination = route(url.pathname);\n    if (destination === route(window.location.pathname) && url.hash.startsWith(\"#programacion-\")) return decision(\"programming_action_click\", \"agenda_section\", \"agenda_section\");\n    if ([\"/catering\", \"/en/catering\"].includes(destination)) return decision(\"catering_click\", \"catering\");\n    if (destination?.endsWith(\"/menu\")) return decision(\"menu_click\", \"menu\", \"menu_click\", contract.routes[destination]);\n    if (![\"group\", \"catering\", undefined].includes(contract.routes[destination])) return decision(\"branch_click\", \"branch\", \"branch_click\", contract.routes[destination]);\n    if (destination === \"/locations\" || (destination === \"/\" && url.hash === \"#ubicaciones\")) return decision(\"location_selector_open\", \"selector\");\n    return null;\n  }\n  document.addEventListener(\"click\", event => {\n    if (event.isTrusted === false) return;\n    const element = event.target instanceof Element ? event.target.closest(\"a[href],button[data-venue-filter],button[data-lang-btn]\") : null;\n    if (!element) return; const chosen = identify(element); if (chosen) send(chosen.name, chosen.data);\n  }, true);\n  document.addEventListener(\"auxclick\", event => {\n    if (event.isTrusted === false || event.button !== 1) return;\n    const element = event.target instanceof Element ? event.target.closest(\"a[href]\") : null;\n    if (!element) return; const chosen = identify(element); if (chosen) send(chosen.name, chosen.data);\n  }, true);\n  if (!document.querySelector(\"#sy-umami-tracker\")) {\n    const tracker = document.createElement(\"script\"); tracker.id = \"sy-umami-tracker\";\n    tracker.src = \"https://analytics.despertartdigital.cloud/script.js\"; tracker.async = true; tracker.referrerPolicy = \"origin\";\n    for (const [name, value] of Object.entries({ \"data-website-id\": websiteId, \"data-domains\": [...hosts].join(\",\"), \"data-do-not-track\": \"true\", \"data-exclude-search\": \"true\", \"data-exclude-hash\": \"true\", \"data-before-send\": \"sySiteAnalyticsSanitize\" })) tracker.setAttribute(name, value);\n    tracker.addEventListener(\"load\", () => { if (typeof window.umami?.track === \"function\") pending.splice(0).forEach(item => { if (Date.now() - item.at < 60000) send(item.name, item.data, true); }); });\n    tracker.addEventListener(\"error\", () => { pending.length = 0; }); document.head.appendChild(tracker);\n  }\n})();\n"
+        }
+      ],
+      "afterSha256": "28340b84e96a7ea0dae0d58d9e6b77a35801298eb772a7b6ddcf84837f731445"
+    }
+  }
+}

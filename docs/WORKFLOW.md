@@ -1,5 +1,46 @@
 # Forma de trabajar y publicar
 
+### GA4 · pase autorizado16-oct, publicación en curso
+
+Luis autoriza publicar el consentimiento revisado y conservar los datos actuales del aviso.
+Integración en23páginas,404excluido; GA4 solo tras aceptación guardada/verificada, rechazo soloGA4,
+Umami continúa. Un dueño de clics y versiones explícitas del loader/consentimiento/CSS. Bundle
+compilado desde config/controlador/contrato únicos, comprobado en CI. Aviso añade funcionamiento,
+cookies y retención actual2meses eventos/14usuarios con reinicio; sin placeholders, nueva identidad
+legal inferida ni cambios de cuenta. Datos administrativos/canal del aviso siguen sin corroborar,
+pendiente factual conservado por decisión de Luis. No certificación legal ni recepción Google aún.
+
+356tests verdes y paquete247archivos; QA local Brave320/390/768/1440 sin overflow, controles48px
+iguales, opt-out respetado. Contrato reversible exacto recupera todos los hashes anteriores de
+portada/cartas/agenda y rechaza ediciones ajenas. La candidata anterior queda como histórico abajo.
+Publicación y recibo/rollback se registran al finalizar el operador único.
+
+### GA4 · consentimiento candidato16-oct, solo local
+
+Luis elige rechazo soloGA4; Umami continúa con sus controles existentes. Config apagada,
+controlador/UI ES/EN y carga básica adaptados al dueño de eventos actual, con borrador del aviso
+solo en paquete local.354tests verdes y QA Brave móvil/escritorio/foco. Fuentes públicas/digest/
+manifiesto intactos; ningún tag, UI, aviso o ajuste de cuenta publicado. Datos del responsable,
+canal operativo y aprobación de ajustes/release siguen pendientes. Fuente/evidencia/límites
+→ «Consentimiento GA4» en MIGRATION-AND-MEASUREMENT.
+
+### Cierre secuencial de eventos/medición · 16-oct
+
+Goal activo por encargo de Luis. Estado/fuentes/decisiones de esta ronda tienen dueño en
+[MIGRATION-AND-MEASUREMENT](MIGRATION-AND-MEASUREMENT.md#cierre-secuencial--16-oct--local-sin-publicación).
+GDL montada solo en paquete local mediante `build-gdl-event-review.mjs`;317tests verdes y
+QA Brave320/390/768/1440, sin duplicar piezas. Brujas con horario de sucursal previamente
+permitido; Solteras/12USA retenidas tras respuesta «no se» a vigencia. Dos destinos Jorge
+siguen sin confirmación exacta de sucursal. Cinco enlaces externos propuestos, no activados.
+GA4 existente en cuenta Karina revalidado; todavía apagado, sin otra alta. Alcance elegido y
+candidato técnico revisado según el bloque anterior; pendientes responsable/canal y aprobaciones.
+
+Recuperación operativa: Mes Hispano permanecía en HTML después de vencer. Rerun de schedule
+38850291263/intento2 del mismo main0aeb800, cubierto por el retiro ya aprobado, CI y CD38866731805
+verdes. Cero Mes Hispano en GET ES/EN,243archivos/47aliases/10excluidos sin diferencias/fallos.
+Recibo/rollback y limitación de frescura del cron en el documento dueño. Nuevas propuestas
+no publicadas; no merge/push del trabajo local ni cambios de cuentas por este cierre.
+
 ### Ajuste móvil del sombrero azul · 15-oct
 
 Luis pide que en móvil asome un poco más el logo amarillo junto al sombrero azul.
@@ -7,7 +48,13 @@ Se cambia únicamente el foco horizontal de esa foto de80% a65%, conservando14% 
 Es el mismo retrato y conjunto de portada ya aprobado; desktop, otras fotos, rótulo y autoplay
 se conservan. CSS versionado en sus seis consumidores y cambio exacto añadido al contrato
 reversible, sin cambiar imágenes ni ampliar el manifiesto público.
-Estado: candidato local; verificar el encuadre en móvil antes de publicar.
+PUBLICADO por PR37/head `2f80aec` → main `0aeb800`;317tests, CI38819555877/
+CD38819611518 y recibo verdes. Pages `81a40f9b-9542-41b0-9fb6-f9aea0e755b6`,
+rollback `d77b309e-b529-4e37-81c2-d506bb075257`.243archivos/47aliases/10excluidos,
+cero diferencias/fallos. Recibo `.artifacts/approved-release-37-1792104483609/receipt.json`.
+Navegador productivo confirma65%14% a390px sin overflow y50%0% en desktop. El logo
+amarillo parcial y el rostro fueron revisados en el paquete; captura estática del estado3
+(sin rotación solo para la captura) en `.artifacts/blue-hat-mobile-20261015/`.
 
 ### Portada · tres fotos aprobadas para producción15-oct
 

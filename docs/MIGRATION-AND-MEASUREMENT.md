@@ -10,6 +10,127 @@ expresa, con recepción de campos v2 comprobada. GA4 sigue pendiente.
 Los bloques siguientes conservan la investigación y preparación previas, incluidas sus
 restricciones anteriores de publicación. La fuente editorial sin confirmar no se promociona.
 
+## Cierre secuencial · 16-oct · local, sin publicación
+
+Luis encarga avanzar uno por uno y mantener el goal activo. No es una nueva autorización de
+publicación. Fuentes del primer paso revalidadas15-oct; cierre/QA16-oct. No reabrir las fotos
+PR36/37, la medición PR34 ni el cron ya comprobado.
+
+- **Guadalajara:** Brujas31-oct montada en la ficha actual solo en paquete local. Cartel propio
+  completo/clicable; horario rotulado como **de la sucursal**, autorizado antes por Luis,
+  19:00–03:00 día siguiente. Propuesta de ventana: desde aprobación hasta1-nov03:00 Ciudad de México,
+  corte tomado del cierre de sucursal, sin presentarlo como horario propio confirmado del evento.
+  No imponer una semana de anticipación. Solteras permanece retenida por vigencia/horario propio;
+  se incluye en el ensayo con aviso de revisión. No heredar2x1 de USA.
+- **Doce USA:** continúan retenidas. Luis respondió «no se» sobre vigencia de carteleras12-oct;
+  no convertir los días impresos en recurrencias indefinidas. El reel SA `DeL2KKox_AL` aún dice
+  Houston. Viernes Houston figura como Industry Night en la hoja y Ahogo en cartelera: posible
+  convivencia, no identidad comprobada. Recovery Brunch El Paso ya tiene su pieza, no duplicarla.
+- **Novedad Woodlands:** hoja modificada14-oct incorpora concurso21-oct y menú22-oct. Anuncio
+  propio [Canta Sin Yolanda](https://www.instagram.com/sinyolandahouston/p/DefGFDdvkHr/)14-oct
+  confirma miércoles21-oct–2-dic y las tres sedes Houston/SA/TW. Resuelve el periodo público,
+  pero no todas las bases/horas ni la aprobación editorial. Menú22-oct sigue como plan interno;
+  no enviar invitaciones por haber leído la instrucción de la hoja.
+
+Fuente privada de la relectura: `clientes-assets/sin-yolanda/marketing-2026/drive-live-calendars-2026-10-15.json`.
+Decisiones/deltas en `calendar-reconciliation-2026-10-13.json/recheck20261015` de esa misma carpeta.
+No cambiar las fuentes bloqueadas por el digest de las14unidades aprobadas para registrar investigación.
+
+**Candidata GDL reproducible:** `node scripts/build-gdl-event-review.mjs --asset-root <directorio-privado> <salida-nueva-en-.artifacts>`.
+Reutiliza ficha/CSS de agenda y artes cotejados por SHA; solo escribe paquete de revisión.
+Salida revisada `.artifacts/gdl-closeout-20261016-v3/public`; loopback8832/guadalajara#programacion-san-ignacio.
+No modifica HTML público, manifiesto, aprobación, cartas, rutas, tracker ni hero. Pruebas317/317
+verdes; Brave comprobado320/390/768/1440 sin overflow, dos carteles cargados y enlace de imagen
+accesible por Tab. IAB no aplicó los anchos solicitados y esos intentos se descartaron. Evidencia
+`.artifacts/gdl-closeout-20261016-v3/qa.json`; paquete público normal separado sigue excluyendo estos artes y la propuesta GDL.
+
+### Recuperación del retiro ya autorizado · 16-oct
+
+GET07:19UTC encontró Mes Hispano todavía en HTML ES/EN después del corte05:00UTC. Main y marca
+pública seguían0aeb800; último cron04:22UTC verde, anterior al vencimiento. Sin ejecuciones posteriores
+visibles. El cron nominal15min no garantizó el plazo en esta ocasión. No se cambió su configuración.
+
+Se reejecutó únicamente el job de agenda ya autorizado38850291263, mismo main0aeb800, intento2:
+check y317tests verdes. CD38866731805 completó prepare/preview/producción sin bypass. Pages
+`866fd6d7-f052-4636-a321-0cc55c7c8a9f`, rollback `81a40f9b-9542-41b0-9fb6-f9aea0e755b6`.
+Recibo `.artifacts/agenda-retirement-20261016/production-proof.json`:243archivos/47aliases/
+10exclusiones, cero diferencias/fallos. GET posterior07:25UTC: cero ocurrencias Mes Hispano en
+ambos idiomas, una agenda. Propuestas nuevas, fotos y GA4 no entraron al release. La eliminación
+estaba en la ventana aprobada13-oct; no se amplió esa autorización.
+
+La recuperación no resuelve el silencio del scheduler. Hallazgo localDDTIA-20261016-089;
+próxima decisión: tolerancia de retiro HTML y vigilancia de frescura/disparador. GitHub documenta
+[posibles retrasos o descarte](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#schedule)
+de schedule; no se aisló la causa exacta de esta brecha. Conservar controles de commit vivo, CI,
+artefacto único y baseline. No alta de monitor, servicio, secreto ni publicador adicional en este pase.
+
+### Jorge Guevara · destinos todavía retenidos
+
+[Organizador Origin](https://www.eventbrite.com/o/origin-entertainment-group-121711802194)
+verificado por navegador16-oct: enlaza ambas fichas. Houston13-nov20–23 en Sin Yolanda4901Washington;
+San Antonio14-nov20–23:30 en **K.O.P.,314NolanStreet**, actividad externa. La ficha Houston muestra
+«Get tickets»; no se abrió checkout ni se acreditaron existencias exactas/precios finales.
+Ambos posts propios `DeaxjMhxieb`/`DeaxTe3hV7k` devolvieron «Post isn't available» en consulta pública;
+esto no demuestra eliminación. Bio Houston sigue enlazando OpenTable. No apareció una cadena
+sucursal→URL exacta de venta: conservar botones retenidos y obtener confirmación de Karina/organizador
+por un canal autorizado. También revisar esos dos enlaces de anuncio antes del siguiente release;
+no sustituirlos silenciosamente por Eventbrite. Evidencia en la reconciliación privada anterior.
+
+### Campañas · enlaces propuestos, ninguno activado
+
+Cinco candidatos derivados de anuncios reales, `utm_source=instagram`/`utm_medium=social`;
+GET sin JavaScript confirma200 de sus fichas. Son códigos **nuevos propuestos**, no prueba de
+campañas distribuidas ni de atribución ya recibida. El catálogo activo sigue vacío. Antes de uso:
+aprobar ubicación externa/destino, registrar código+tupla, integrar contenido faltante, QA y publicar
+el pase exacto. No enviar a marketing ni alterar enlaces internos por esta preparación.
+
+| Código propuesto | URL externa preparada | Contenido |
+|---|---|---|
+| `pinta_houston_20261028` | [Propuesta houston](https://sin-yolanda.com/houston?utm_source=instagram&utm_medium=social&utm_campaign=pinta_houston_20261028) | agenda-content-already-approved |
+| `brujas_guadalajara_20261031` | [Propuesta san-ignacio](https://sin-yolanda.com/guadalajara?utm_source=instagram&utm_medium=social&utm_campaign=brujas_guadalajara_20261031) | gdl-candidate-needs-publication-approval |
+| `canta_sy_2026_houston` | [Propuesta houston](https://sin-yolanda.com/houston?utm_source=instagram&utm_medium=social&utm_campaign=canta_sy_2026_houston) | official-campaign-announcement-content-not-integrated |
+| `canta_sy_2026_san_antonio` | [Propuesta san-antonio](https://sin-yolanda.com/san-antonio?utm_source=instagram&utm_medium=social&utm_campaign=canta_sy_2026_san_antonio) | official-campaign-announcement-content-not-integrated |
+| `canta_sy_2026_the_woodlands` | [Propuesta the-woodlands](https://sin-yolanda.com/the-woodlands?utm_source=instagram&utm_medium=social&utm_campaign=canta_sy_2026_the_woodlands) | official-campaign-announcement-content-not-integrated |
+
+Los QR reales conservan sus códigos existentes `menu_guadalajara` y `loyalty_el_paso`, con
+`medium=offline` y destinos WordPress/GHL. Esos destinos no acreditan recepción en la analítica
+del central; no renombrar códigos ni tocar QR/formularios para llenar su catálogo. Verificador y
+respuestas en `.artifacts/campaign-links-20261016/proposals.json`.
+
+### GA4 · propiedad existente revalidada, adaptación pendiente de política
+
+La cuenta **ya fue confirmada y el alta autorizada8-oct**: Karina. Flujo y propiedad existentes
+revalidados16-oct por navegador autenticado; mismo ID público `G-PZQE63983T`, URL sin-yolanda.com,
+medición mejorada OFF y sin recogida activa. No crear otra propiedad ni pedir otra vez su cuenta.
+Recibo privado de esta lectura: `.artifacts/ga4-recheck-20261016/receipt.json`.
+
+Ajustes actuales: eventos2meses, usuarios14meses/reinicio ON; Signals/datos proporcionados OFF;
+granularidad ubicación/dispositivo ON y personalización permitida307/307regiones. Propuesta para
+revisión: usuarios2meses/reinicio OFF y personalización OFF. No se modificaron controles.
+La retención de eventos/usuarios y los informes agregados tienen alcances distintos según
+[Google](https://support.google.com/analytics/answer/7667196); no prometer borrar todos los informes
+al cumplir ese plazo.
+
+La candidata histórica `b86f6cf` sigue apagada y fuera del paquete actual. **No sirve pegarla sin
+adaptación:** escuchaba emisores anteriores; el sitio actual tiene un dueño nuevo en
+`site-measurement.js`. El siguiente pase debe emitir una vez desde su decisión ya sanitizada,
+consumir el catálogo vigente para IDs/destinos, conservar Guadalajara como `san-ignacio`, incluir
+la ruta canónica y la carta El Paso y evitar replay al vaciar cola Umami. No reactivar listeners
+anteriores para conseguir cobertura.
+
+Pendientes preguntados en este chat: alcance del rechazo (toda medición opcional o solo GA4) y
+responsable legal/domicilio/correo operativo. Mantenerlos pendientes; no escoger política por silencio.
+Borrador factual del aviso: analítica opcional, proveedor Google y propósito visitas/clics, elección
+aceptar/rechazar/cambiar, cookies propias y retención real; Umami/almacenamiento por pestaña/mapas
+explicados según la decisión. Campos del responsable `{PENDIENTE}`. Sin certificación jurídica.
+
+Aceptación técnica del próximo candidato: modo básico sin solicitudes Google antes de aceptar,
+ningún clic retrospectivo, rechazo/revocación/expiración/DNT/GPC/fallo de almacenamiento, un clic
+por proveedor permitido, sin texto libre/PII/URLs completas, ningún envío local/preview/404 y fallo
+no bloqueante. Consentimiento según [documentación primaria](https://developers.google.com/tag-platform/security/guides/consent).
+La aprobación de ajustes de cuenta y del release exacto se solicita al tener ese candidato probado;
+no publicar esta preparación ni tomar las aprobaciones de fotos/medición anterior como permiso GA4.
+
 ## Medición B05–B07 · publicada13-oct
 
 Solicitud de Luis después de publicar agenda: «ok con qué continuamos. dale». Rama propia

@@ -1,5 +1,22 @@
 # Forma de trabajar y publicar
 
+### Cierre secuencial de eventos/medición · 16-oct
+
+Goal activo por encargo de Luis. Estado/fuentes/decisiones de esta ronda tienen dueño en
+[MIGRATION-AND-MEASUREMENT](MIGRATION-AND-MEASUREMENT.md#cierre-secuencial--16-oct--local-sin-publicación).
+GDL montada solo en paquete local mediante `build-gdl-event-review.mjs`;317tests verdes y
+QA Brave320/390/768/1440, sin duplicar piezas. Brujas con horario de sucursal previamente
+permitido; Solteras/12USA retenidas tras respuesta «no se» a vigencia. Dos destinos Jorge
+siguen sin confirmación exacta de sucursal. Cinco enlaces externos propuestos, no activados.
+GA4 existente en cuenta Karina revalidado; todavía apagado, sin otra alta. Pendientes alcance
+del rechazo, responsable/canal, ajustes de cuenta y adaptación al tracker actual antes de su QA.
+
+Recuperación operativa: Mes Hispano permanecía en HTML después de vencer. Rerun de schedule
+38850291263/intento2 del mismo main0aeb800, cubierto por el retiro ya aprobado, CI y CD38866731805
+verdes. Cero Mes Hispano en GET ES/EN,243archivos/47aliases/10excluidos sin diferencias/fallos.
+Recibo/rollback y limitación de frescura del cron en el documento dueño. Nuevas propuestas
+no publicadas; no merge/push del trabajo local ni cambios de cuentas por este cierre.
+
 ### Ajuste móvil del sombrero azul · 15-oct
 
 Luis pide que en móvil asome un poco más el logo amarillo junto al sombrero azul.

@@ -1,5 +1,21 @@
 # Forma de trabajar y publicar
 
+### Consentimiento simple · corrección16-oct
+
+Luis pide recuadro básico: sin título, Umami, mensaje del navegador ni bloqueo de Aceptar.
+ES: «¿Aceptas cookies de Google Analytics para medir visitas y clics? Puedes rechazar o cambiar
+tu elección cuando quieras». EN equivalente; ambos botones siempre disponibles. La elección
+guardada controla GA4, independientemente de señales del navegador o preferencia de Umami.
+Rechazo, retirada, caducidad, almacenamiento y exclusiones de host/ruta conservan su control.
+
+El dueño único sigue identificando clics para el GA4 consentido; Umami mantiene sus propios
+controles DNT/GPC/opt-out, sin cargar SDK ni guardar atribución cuando aplican. Aviso completo
+ajustado en la frase específica de GA4 para concordar con la elección. No cambios de cuenta.
+Versiones explícitas `20261016-ga4-simple-choice`; contrato reversible y bundle actualizados.
+356tests verdes; Brave320/390/1440 sin overflow, dos botones habilitados de48px, sin título ni
+estado automático. Aceptación y reapertura local comprobadas, sin Google en loopback.
+Release y verificación productiva pendientes de completar el operador único.
+
 ### GA4 · PUBLICADO16-oct con consentimiento
 
 Luis autoriza publicar el consentimiento revisado y conservar los datos actuales del aviso.

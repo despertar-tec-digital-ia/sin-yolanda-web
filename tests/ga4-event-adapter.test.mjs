@@ -102,12 +102,18 @@ test('unapproved hosts, non-default ports, local, preview, unknown and demo page
   }
 });
 
-test('rejection, expiry signals, DNT, GPC and opt-out are rechecked at each delivery', () => {
+test('explicit GA4 consent controls each delivery independently of browser signals and the Umami preference', () => {
   for (const privacy of [{ globalPrivacyControl: true }, { doNotTrack: '1' }, { doNotTrack: 'yes' },
     { windowDoNotTrack: '1' }, { msDoNotTrack: '1' }, { umamiDisabled: true }]) {
-    const state = fixture(); state.adapter.pageView(); Object.assign(state.context, privacy);
+    const state = fixture({consent: false, ...privacy});
     assert.equal(state.adapter.event('menu_click', baseData()), false);
-    assert.equal(state.adapter.configuration(), null); assert.equal(state.calls.length, 1);
+    assert.equal(state.adapter.configuration(), null); assert.equal(state.calls.length, 0);
+    state.grant(true);
+    assert.equal(state.adapter.event('menu_click', baseData()), true);
+    assert.ok(state.adapter.configuration()); assert.equal(state.calls.length, 1);
+    state.grant(false);
+    assert.equal(state.adapter.event('menu_click', baseData()), false);
+    assert.equal(state.calls.length, 1);
   }
   for (const consent of [false, null, undefined, 'granted', 1]) {
     const state = fixture(); state.grant(consent);

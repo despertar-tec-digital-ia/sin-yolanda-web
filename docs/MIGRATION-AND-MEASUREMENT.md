@@ -1,5 +1,12 @@
 # Migración de WordPress y medición · 8-oct-2026
 
+**Revisión posterior16-oct del recuadro:** Luis pide texto sencillo y aceptar/rechazar libremente.
+Se retira título, Umami y aviso/bloqueo por señales del navegador. GA4 depende de la elección
+explícita guardada; Umami conserva sus controles propios. El medidor común mantiene un dueño de
+clics y puede servir al GA4 consentido sin cargar Umami/atribución bajo su opt-out. El aviso completo
+se corrige en esa frase de GA4. Estado/evidencia vigentes → «Consentimiento simple» de WORKFLOW;
+los controles automáticos de GA4 descritos en bloques anteriores son históricos y quedan sustituidos.
+
 **Estado vigente13-oct:** Luis aprueba la composición final y autoriza su publicación;
 PUBLICADA por PR33/main `08027d9`, CI/CD/recibo verdes.
 Proyección14unidades en ocho fichas USA ES/EN reconciliada sobre main publicado `b3040ef`,

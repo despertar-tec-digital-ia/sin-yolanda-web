@@ -242,14 +242,16 @@ test('an absent or different consent scope cannot activate the controller or reu
   }
 });
 
-test('ES/EN explain the GA4-only decision without changing the separate Umami preference', () => {
+test('ES/EN keep the consent copy simple and specific to Google Analytics while preserving the separate Umami preference', () => {
   for (const language of ['es', 'en']) {
     const state = harness({ language });
     const description = state.document.querySelector('.sy-consent__description').textContent;
-    assert.match(description, /GA4/); assert.match(description, /Umami/);
-    assert.match(description, /cookies/); assert.match(description, /Global Privacy Control/);
+    assert.match(description, /Google Analytics/); assert.match(description, /cookies/);
+    assert.doesNotMatch(description, /Umami|Global Privacy Control|GA4/);
+    assert.equal(state.document.querySelector('.sy-consent__title'), null);
     state.api().choose('denied'); state.api().open();
-    assert.match(state.document.querySelector('[data-sy-consent-status]').textContent, /Umami/);
+    assert.match(state.document.querySelector('[data-sy-consent-status]').textContent, /Google Analytics/);
+    assert.doesNotMatch(state.document.querySelector('[data-sy-consent-status]').textContent, /Umami/);
     assert.equal(state.values.has('umami.disabled'), false);
     assert.ok(state.storageWrites.every(([key]) => key === storageKey));
     assert.ok(state.storageRemovals.every(key => key === storageKey));
@@ -338,7 +340,7 @@ test('saved granted and denied choices are respected, while corrupt, expired or 
   }
 });
 
-test('preview keeps UI available but hosts, 404 and privacy signals never send to Google', () => {
+test('hosts and 404 never send to Google while browser signals leave the explicit choice available', () => {
   for (const url of ['http://localhost:8080/houston', 'http://127.0.0.1:8080/houston']) {
     const state = harness({ url, enabled: false });
     assert.ok(state.document.querySelector('[data-sy-consent]'), 'Local/Pages preview should exercise the UI without analytics.');
@@ -350,9 +352,15 @@ test('preview keeps UI available but hosts, 404 and privacy signals never send t
     assert.equal(state.scripts.length, 0, url); assert.equal(typeof state.window.gtag, 'undefined', url);
   }
   for (const options of [{ dnt: '1' }, { dnt: 'yes' }, { msDnt: '1' }, { windowDnt: '1' }, { gpc: true }, { umamiDisabled: true }]) {
-    const state = harness({ ...options, stored: record('granted') });
-    state.api()?.choose('granted');
+    const state = harness(options);
     assert.equal(state.scripts.length, 0); assert.equal(typeof state.window.gtag, 'undefined');
+    assert.notEqual(state.document.querySelector('[data-sy-consent-choice="granted"]').disabled, true);
+    assert.equal(state.document.querySelector('[data-sy-consent-status]').textContent, '');
+    assert.equal(state.api().choose('granted'), true); state.load();
+    assert.equal(state.scripts.length, 1); assert.equal(state.events('page_view').length, 1);
+    state.api().choose('denied');
+    state.observe('menu_click', {action:'menu_click',branch:'houston',language:'es'});
+    assert.equal(state.events('menu_click').length, 0);
   }
 });
 
@@ -457,24 +465,27 @@ test('another tab can revoke consent and expiration stops future sends without r
   assert.equal(state.events('menu_click').length, 0); assert.equal(state.events('page_view').length, 1);
 });
 
-test('the current click owner supplies one event to each provider and rejection leaves Umami active', () => {
-  const state = harness({ body: { branch: 'houston', status: 'open', language: 'es' } });
+test('the current click owner follows the GA4 choice independently while preserving Umami privacy controls', () => {
+  for (const options of [{}, {gpc:true}, {dnt:'1'}, {umamiDisabled:true}]) {
+  const state = harness({ ...options, body: { branch: 'houston', status: 'open', language: 'es' } });
+  const umamiCount = Object.keys(options).length ? 0 : 1;
   state.context.sessionStorage = state.window.sessionStorage = { getItem: () => null, setItem() {}, removeItem() {} };
   vm.runInContext(read('assets/js/public-data.js'), state.context);
   vm.runInContext(read('assets/js/site-measurement.js'), state.context);
   const link = state.element('a', { href: 'https://www.opentable.com/r/sin-yolanda-houston', class: 'hh-reserve' });
   link.click();
-  assert.equal(state.umamiCalls.filter(([name]) => name === 'reservation_click').length, 1);
+  assert.equal(state.umamiCalls.filter(([name]) => name === 'reservation_click').length, umamiCount);
   assert.equal(state.events('reservation_click').length, 0);
   state.api().choose('granted'); state.load(); link.click();
   assert.equal(state.events('reservation_click').length, 1);
-  assert.equal(state.umamiCalls.filter(([name]) => name === 'reservation_click').length, 2);
+  assert.equal(state.umamiCalls.filter(([name]) => name === 'reservation_click').length, 2 * umamiCount);
   state.api().choose('denied'); link.click();
   assert.equal(state.events('reservation_click').length, 1);
-  assert.equal(state.umamiCalls.filter(([name]) => name === 'reservation_click').length, 3);
-  assert.equal(state.values.has('umami.disabled'), false);
+  assert.equal(state.umamiCalls.filter(([name]) => name === 'reservation_click').length, 3 * umamiCount);
+  assert.equal(state.values.has('umami.disabled'), !!options.umamiDisabled);
   state.document.dispatchEvent(new state.context.CustomEvent('sy:site-action', {detail: {name: 'reservation_click', data: actionData({action: 'reservation_click', branch: 'houston', language: 'es'})}}));
-  assert.equal(state.umamiCalls.filter(([name]) => name === 'reservation_click').length, 3, 'Historical emitters have no new listeners.');
+  assert.equal(state.umamiCalls.filter(([name]) => name === 'reservation_click').length, 3 * umamiCount, 'Historical emitters have no new listeners.');
+  }
 });
 
 test('failed withdrawal removes the old grant or persists a functional denial guard before another document can resume Google', () => {
@@ -583,7 +594,7 @@ test('late home i18n initialization and live ES/EN switches refresh consent copy
   state.flushMutations();
   assert.equal(state.document.documentElement.lang, 'en');
   const panel = state.document.querySelector('[data-sy-consent]');
-  assert.equal(state.document.querySelector('.sy-consent__title').textContent, 'Your privacy, your choice.');
+  assert.match(state.document.querySelector('.sy-consent__description').textContent, /^Allow Google Analytics cookies/);
   assert.equal(state.document.querySelector('[data-sy-consent-choice="granted"]').textContent, 'Accept');
   assert.equal(state.document.querySelector('[data-sy-consent-choice="denied"]').textContent, 'Reject');
   assert.equal(state.document.querySelector('[data-sy-consent-open]').textContent, 'Privacy preferences');
@@ -592,13 +603,13 @@ test('late home i18n initialization and live ES/EN switches refresh consent copy
   for (let cycle = 0; state.timers.size && cycle < 4; cycle++) { state.fireTimer(); state.flushMutations(); }
   assert.equal(state.timers.size, 0, 'Reapplying an unchanged EN language must settle, not feed a consent/i18n MutationObserver loop.');
   state.window.SY_I18N.apply('es'); state.flushMutations();
-  assert.equal(state.document.querySelector('.sy-consent__title').textContent, 'Tu privacidad, tú decides.');
+  assert.match(state.document.querySelector('.sy-consent__description').textContent, /^¿Aceptas cookies de Google Analytics/);
   assert.equal(state.document.querySelector('[data-sy-consent-choice="granted"]').textContent, 'Aceptar');
   assert.equal(panel.getAttribute('aria-label'), 'Preferencias de privacidad');
   state.api().choose('denied'); state.api().open();
-  assert.equal(state.document.querySelector('[data-sy-consent-status]').textContent, 'Has rechazado GA4. Umami continúa sin cookies de seguimiento.');
+  assert.equal(state.document.querySelector('[data-sy-consent-status]').textContent, 'Has rechazado las cookies de Google Analytics.');
   state.window.SY_I18N.apply('en'); state.flushMutations();
-  assert.equal(state.document.querySelector('[data-sy-consent-status]').textContent, 'You have rejected GA4. Umami continues without tracking cookies.');
+  assert.equal(state.document.querySelector('[data-sy-consent-status]').textContent, 'You have rejected Google Analytics cookies.');
   assert.equal(state.api().getChoice(), 'denied');
   assert.equal(state.scripts.length, 0); assert.equal(state.events().length, 0);
 });
@@ -632,9 +643,10 @@ test('a fallback rejection from another tab revokes a ready document on visibili
 });
 
 
-test('opening preferences with browser opt-out focuses the usable rejection control', () => {
+test('both choices remain available and preference focus is usable with browser signals', () => {
   const state = harness({gpc: true});
   state.document.querySelector('[data-sy-consent-open]').click();
-  assert.equal(state.document.activeElement.getAttribute('data-sy-consent-choice'), 'denied');
-  assert.equal(state.document.querySelector('[data-sy-consent-choice="granted"]').disabled, true);
+  assert.equal(state.document.activeElement.getAttribute('data-sy-consent-choice'), 'granted');
+  assert.notEqual(state.document.querySelector('[data-sy-consent-choice="granted"]').disabled, true);
+  assert.notEqual(state.document.querySelector('[data-sy-consent-choice="denied"]').disabled, true);
 });

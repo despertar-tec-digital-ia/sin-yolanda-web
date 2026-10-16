@@ -1,12 +1,13 @@
 # Forma de trabajar y publicar
 
-### GA4 · adaptador de eventos candidato16-oct
+### GA4 · consentimiento candidato16-oct, solo local
 
-Se prepara el consumo del medidor vigente sin escoger política pendiente: adaptador, config
-apagada/alcance nulo y proyección local exacta.332tests verdes;13eventos,14registros ES/EN,
-cola sin duplicados/replay, rutas y privacidad. Fuentes públicas/digest/manifiesto intactos;
-ningún tag, UI, aviso o ajuste de cuenta publicado. Fuente/evidencia/límites y siguiente gate
-→ «Adaptador de eventos GA4» en MIGRATION-AND-MEASUREMENT. Consentimiento completo aún pendiente.
+Luis elige rechazo soloGA4; Umami continúa con sus controles existentes. Config apagada,
+controlador/UI ES/EN y carga básica adaptados al dueño de eventos actual, con borrador del aviso
+solo en paquete local.354tests verdes y QA Brave móvil/escritorio/foco. Fuentes públicas/digest/
+manifiesto intactos; ningún tag, UI, aviso o ajuste de cuenta publicado. Datos del responsable,
+canal operativo y aprobación de ajustes/release siguen pendientes. Fuente/evidencia/límites
+→ «Consentimiento GA4» en MIGRATION-AND-MEASUREMENT.
 
 ### Cierre secuencial de eventos/medición · 16-oct
 
@@ -16,8 +17,8 @@ GDL montada solo en paquete local mediante `build-gdl-event-review.mjs`;317tests
 QA Brave320/390/768/1440, sin duplicar piezas. Brujas con horario de sucursal previamente
 permitido; Solteras/12USA retenidas tras respuesta «no se» a vigencia. Dos destinos Jorge
 siguen sin confirmación exacta de sucursal. Cinco enlaces externos propuestos, no activados.
-GA4 existente en cuenta Karina revalidado; todavía apagado, sin otra alta. Pendientes alcance
-del rechazo, responsable/canal, ajustes de cuenta y adaptación al tracker actual antes de su QA.
+GA4 existente en cuenta Karina revalidado; todavía apagado, sin otra alta. Alcance elegido y
+candidato técnico revisado según el bloque anterior; pendientes responsable/canal y aprobaciones.
 
 Recuperación operativa: Mes Hispano permanecía en HTML después de vencer. Rerun de schedule
 38850291263/intento2 del mismo main0aeb800, cubierto por el retiro ya aprobado, CI y CD38866731805

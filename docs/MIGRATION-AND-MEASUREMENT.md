@@ -97,7 +97,7 @@ Los QR reales conservan sus códigos existentes `menu_guadalajara` y `loyalty_el
 del central; no renombrar códigos ni tocar QR/formularios para llenar su catálogo. Verificador y
 respuestas en `.artifacts/campaign-links-20261016/proposals.json`.
 
-### GA4 · propiedad existente revalidada, adaptación pendiente de política
+### GA4 · propiedad existente revalidada, alcance elegido y candidata local
 
 La cuenta **ya fue confirmada y el alta autorizada8-oct**: Karina. Flujo y propiedad existentes
 revalidados16-oct por navegador autenticado; mismo ID público `G-PZQE63983T`, URL sin-yolanda.com,
@@ -118,8 +118,14 @@ consumir el catálogo vigente para IDs/destinos, conservar Guadalajara como `san
 la ruta canónica y la carta El Paso y evitar replay al vaciar cola Umami. No reactivar listeners
 anteriores para conseguir cobertura.
 
-Pendientes preguntados en este chat: alcance del rechazo (toda medición opcional o solo GA4) y
-responsable legal/domicilio/correo operativo. Mantenerlos pendientes; no escoger política por silencio.
+Luis responde16-oct «solo GA4 no?»: rechazo/revocación afectan **solo GA4**; Umami continúa bajo
+sus controles existentes. Alcance registrado como `ga4-only`, sin permiso de activación.
+Siguen sin confirmar identidad/domicilio del responsable y canal operativo de privacidad.
+No hace falta inventar un buzón dedicado: puede utilizarse un canal existente que realmente atiendan.
+Revisión primariaN0 del [texto vigente LFPDPPP](https://www.diputados.gob.mx/LeyesBiblio/pdf/LFPDPPP.pdf),
+reforma14-nov2025: art15 exige identidad/domicilio y mecanismos para derechos ARCO; art29 exige
+designar persona/departamento que tramite solicitudes. No establece que el canal deba ser un correo
+nuevo exclusivo. No acredita cumplimiento de todas las jurisdicciones ni valida el buzón ya impreso.
 Borrador factual del aviso: analítica opcional, proveedor Google y propósito visitas/clics, elección
 aceptar/rechazar/cambiar, cookies propias y retención real; Umami/almacenamiento por pestaña/mapas
 explicados según la decisión. Campos del responsable `{PENDIENTE}`. Sin certificación jurídica.
@@ -133,11 +139,11 @@ no publicar esta preparación ni tomar las aprobaciones de fotos/medición anter
 
 ### Adaptador de eventos GA4 · siguiente paso16-oct, solo candidato
 
-Rama `feat/ga4-event-adapter-20261016`. Preparación independiente de las respuestas pendientes:
+Rama `feat/ga4-event-adapter-20261016`. Preparación inicial independiente de las respuestas:
 `scripts/analytics/ga4-event-adapter.mjs` consume el contrato aprobado vigente, sin cargar Google,
 guardar elecciones ni instalar otro listener de clics. Config dueña del ID ya verificado en
-`ga4-event-config.json`: `enabled:false`, `consentScope:null`. Una política vacía sigue bloqueando
-el adaptador aunque se habilitara accidentalmente el flag; no escoger alcance por silencio.
+`ga4-event-config.json`: `enabled:false`, `consentScope:ga4-only` tras elección16-oct. Una política
+vacía sigue bloqueando el adaptador aunque se habilitara accidentalmente el flag, cubierto en tests.
 
 `project-ga4-event-bridge.mjs` produce una proyección local exacta del dueño actual. Observa una
 vez la decisión sanitizada y no vuelve a observarla cuando Umami vacía su cola. Expone contexto
@@ -164,22 +170,50 @@ informes completos; no se modificó su configuración.
 Evidencia ignorada `.artifacts/ga4-event-adapter/report.json`, proyección y contrato regenerables,
 log completo y paquete normal `ga4-event-adapter-public-proof`. Digest de las fuentes públicas
 idéntico al de antes del adaptador; módulos candidatos fuera del artefacto publicable.
-Siguiente: respuesta sobre alcance→adaptar controlador/UI/carga de etiqueta y aviso con responsable
-confirmado→QA de navegador/races/almacenamiento→aprobar ajustes de cuenta y release exacto.
-No es integración completa de consentimiento ni permiso de activación.
+El control de consentimiento posterior se describe abajo; este adaptador por sí solo no carga Google
+ni acredita recepción real. No es permiso de activación.
 
-### Auditoría de continuación16-oct · bloqueo por decisiones y datos
+### Consentimiento GA4 · respuesta y candidata local16-oct
 
-La revisión del checkout limpio4042432, los artefactos de propuesta, el contrato y el log332/332
-confirma lo preparado; no acredita consentimiento completo, recepción Google ni oficialidad de
-los dos destinos Jorge. Se agotó la preparación independiente de las respuestas: siguen pendientes
-las preguntas ya abiertas sobre alcance de rechazo y responsable/domicilio/correo operativo.
-No interpretar silencio como elección, completar datos legales por inferencia, contactar a terceros
-ni ampliar autorización de publicación. El goal se marca bloqueado tras reaparecer la misma falta
-de información en tres turnos consecutivos; retomar desde estas respuestas y el candidato actual,
-sin repetir cuenta/alta, pruebas intactas, fuentes ya revisadas ni la curaduría de fotos cerrada.
-Los registros ambiguos y botones Jorge permanecen retenidos. No hay job en curso que justifique
-seguir esperando ni otra implementación necesaria independiente de esas decisiones en este pase.
+La auditoría previa dejó el goal bloqueado tras tres turnos sin las decisiones de privacidad.
+La respuesta de Luis resuelve el alcance y permite continuar la preparación técnica. No repetir
+preguntas de alcance/cuenta, altas ni curaduría de fotos; los ambiguos y botones Jorge siguen retenidos.
+
+`ga4-consent-review.js` adapta el controlador histórico al adaptador y contrato actuales. Carga
+básica tras aceptación explícita guardada y comprobada; antes de aceptar no se crea la etiqueta
+ni la cola Google. Un pageview por documento; solo acciones posteriores, cola postaceptación de
+máximo20, sin replay de la cola Umami. Rechazo/revocación no escribe `umami.disabled` ni instala
+listeners históricos. La preferencia registra alcance, versión y caducidad180d; acepta únicamente
+el alcance elegido. Revocación, vencimiento, almacenamiento fallido, pestañas, carga obsoleta,
+DNT/GPC y fallos del proveedor cierran los envíos. Ads denegados; flags de Signals/personalización
+apagados en la etiqueta, sin sustituir ajustes de cuenta pendientes.
+
+UI ES/EN con aceptar/rechazar equivalentes, aviso y reapertura al pie. Explica explícitamente que
+rechazar apaga GA4 y Umami continúa sin cookies de seguimiento, respetando señales del navegador.
+Reapertura enfoca el control utilizable y devuelve foco al cerrarse. Rutas compiladas incluyen
+Guadalajara/ID `san-ignacio` y carta El Paso; local/preview/404 no envían a Google.
+
+Construcción: `node scripts/build-ga4-consent-review.mjs <salida-nueva-en-.artifacts>`.
+Bundle y CSS fuera del manifiesto, páginas públicas intactas. Paquete revisado
+`.artifacts/ga4-consent-review-20261016-v2/public`, servidor loopback8833. Aviso **solo borrador
+local**: identidad/domicilio/canal `{PENDIENTE}`, reemplaza en el ensayo el buzón no corroborado y
+refleja retención de la propiedad consultada, separada de la reducción propuesta. No publicarlo así.
+
+QA:354tests verdes, sin skips; incluye22casos de consentimiento, además de15del adaptador.
+Click real del dueño actual: Umami antes/durante/después de
+rechazar, Google solo tras aceptar; sin listeners duplicados. Brave320/390/1440: anchos aplicados,
+sin overflow, botones48px y mismo tamaño; ES/EN, rechazo/reapertura/foco comprobados. Portada,
+GDL, carta El Paso y aviso también sin overflow/duplicación en viewport normal1503. Brave tenía
+señal de opt-out: aceptación y ciclo de transporte se verificaron con fixtures VM, sin desactivar
+la preferencia del navegador. No prueba Safari físico, recepción real Google ni toda la red de mapas.
+Captura móvil automática inspeccionada, evidencia/limitaciones en `qa.json` junto al paquete;
+log completo `.artifacts/ga4-consent-review-full-check-final.log`.
+
+Paquete normal separado245archivos: digest de fuentes públicas idéntico a la base y ningún asset
+candidato incluido. Sin push/PR/deploy, etiquetas activas, cambios de cuenta ni contacto a terceros.
+Siguiente: confirmar datos del aviso, revisar/aprobar ajustes de cuenta y copia final, preparar
+el release exacto con versiones/manifiesto/contrato y pedir autorización de activación. Recepción
+Google y dimensiones/eventos de la propiedad se acreditan en el pase autorizado, no con callbacks VM.
 
 ## Medición B05–B07 · publicada13-oct
 

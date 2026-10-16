@@ -8,7 +8,7 @@ import { measurementHarness } from './helpers/measurement-harness.mjs';
 
 const read = path => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
 const config = JSON.parse(read('scripts/analytics/ga4-event-config.json'));
-// The checked-in policy stays null. This explicit value is only a test fixture.
+// Activation is only a test fixture; the scope was chosen by Luis on 16 October.
 const testConfig = { ...config, enabled: true, consentScope: 'ga4-only' };
 const contract = compileMeasurementContract(new URL('../', import.meta.url).pathname);
 const currentSource = read('assets/js/site-measurement.js');
@@ -42,8 +42,8 @@ function integrated({ consent = true, ...options } = {}) {
   return { ...state, adapter, googleCalls: calls, grant: value => { granted = value; } };
 }
 
-test('the candidate stays disabled with an unresolved policy and is absent from every public asset/page', () => {
-  assert.equal(config.enabled, false); assert.equal(config.consentScope, null);
+test('the chosen GA4-only scope stays disabled and is absent from every public asset/page', () => {
+  assert.equal(config.enabled, false); assert.equal(config.consentScope, 'ga4-only');
   assert.equal(config.measurementId, 'G-PZQE63983T');
   const manifest = JSON.parse(read('scripts/public-manifest.json'));
   assert.doesNotMatch(JSON.stringify(manifest), /ga4-event|scripts\/analytics/);
@@ -53,7 +53,7 @@ test('the candidate stays disabled with an unresolved policy and is absent from 
   assert.equal(state.adapter.pageView(), false);
   assert.equal(state.adapter.event('menu_click', baseData()), false);
   assert.equal(state.calls.length, 0);
-  const undecided = createGa4EventAdapter({ config: { ...config, enabled: true }, contract,
+  const undecided = createGa4EventAdapter({ config: { ...config, enabled: true, consentScope: null }, contract,
     hasConsent: () => true, readContext: () => ({ href: 'https://sin-yolanda.com/houston' }),
     sendEvent: () => assert.fail('An undecided policy must remain disabled') });
   assert.equal(undecided.event('menu_click', baseData()), false);

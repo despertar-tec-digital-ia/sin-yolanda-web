@@ -1,7 +1,7 @@
 {
   "enabled": false,
   "measurementId": "G-PZQE63983T",
-  "consentScope": null,
+  "consentScope": "ga4-only",
   "consentVersion": 1,
   "consentMaxAgeDays": 180
 }

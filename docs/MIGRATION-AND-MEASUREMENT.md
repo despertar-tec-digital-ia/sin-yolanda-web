@@ -168,6 +168,19 @@ Siguiente: respuesta sobre alcance→adaptar controlador/UI/carga de etiqueta y 
 confirmado→QA de navegador/races/almacenamiento→aprobar ajustes de cuenta y release exacto.
 No es integración completa de consentimiento ni permiso de activación.
 
+### Auditoría de continuación16-oct · bloqueo por decisiones y datos
+
+La revisión del checkout limpio4042432, los artefactos de propuesta, el contrato y el log332/332
+confirma lo preparado; no acredita consentimiento completo, recepción Google ni oficialidad de
+los dos destinos Jorge. Se agotó la preparación independiente de las respuestas: siguen pendientes
+las preguntas ya abiertas sobre alcance de rechazo y responsable/domicilio/correo operativo.
+No interpretar silencio como elección, completar datos legales por inferencia, contactar a terceros
+ni ampliar autorización de publicación. El goal se marca bloqueado tras reaparecer la misma falta
+de información en tres turnos consecutivos; retomar desde estas respuestas y el candidato actual,
+sin repetir cuenta/alta, pruebas intactas, fuentes ya revisadas ni la curaduría de fotos cerrada.
+Los registros ambiguos y botones Jorge permanecen retenidos. No hay job en curso que justifique
+seguir esperando ni otra implementación necesaria independiente de esas decisiones en este pase.
+
 ## Medición B05–B07 · publicada13-oct
 
 Solicitud de Luis después de publicar agenda: «ok con qué continuamos. dale». Rama propia

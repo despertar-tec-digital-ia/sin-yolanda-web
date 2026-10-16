@@ -27,7 +27,6 @@
   let entry;
   const discardSession = () => { entry = { landing_path: route(window.location.pathname), entry_referrer: "unknown" }; try { window.sessionStorage?.removeItem(sessionKey); } catch {} };
   if (window.location.protocol !== "https:" || !hosts.has(window.location.hostname) || !route(window.location.pathname)) return;
-  if (disabled()) { discardSession(); return; }
   if (window.__sySiteAnalytics || typeof window.sySiteAnalyticsSanitize !== "undefined") return;
   window.__sySiteAnalytics = true;
   function registeredUtms(search) {
@@ -70,7 +69,8 @@
     return result;
   }
   entry = acquisition();
-  try {
+  if (disabled()) discardSession();
+  else try {
     const stored = JSON.parse(window.sessionStorage?.getItem(sessionKey) || "null");
     // Only our own navigation inherits acquisition; an external return starts again.
     if (entryReferrer.kind === "internal" && !Object.keys(entryUtms).length && stored?.version === 2 && Number.isFinite(stored.seenAt) && Date.now() >= stored.seenAt && Date.now() - stored.seenAt < sessionIdle) entry = safeAcquisition(stored.entry) || entry;
@@ -78,6 +78,7 @@
   } catch {}
   let lastActivity = Date.now();
   function touchAcquisition() {
+    if (disabled()) { discardSession(); return; }
     const now = Date.now();
     if (now - lastActivity >= sessionIdle) entry = { landing_path: route(window.location.pathname), entry_referrer: "unknown" };
     lastActivity = now;
@@ -100,7 +101,6 @@
     return result;
   }
   window.syGa4MeasurementContext = () => {
-    if (disabled()) return null;
     touchAcquisition(); return Object.freeze(commonData());
   };
   const previousHookName = document.currentScript?.getAttribute("data-before-send") || "sySiteAnalyticsBeforeSend";
@@ -132,13 +132,13 @@
   };
   const pending = [];
   function send(name, data, replay = false) {
-    if (disabled()) { discardSession(); pending.length = 0; return; }
     if (!events.has(name)) return;
     let safe = safeEventData(data, name); if (!safe) return;
     const sourceLanguage=safe.page_language;touchAcquisition();safe=safeEventData(data,name);safe.page_language=sourceLanguage;
     if (!replay && typeof window.syGa4MeasurementObserver === "function") {
       try { Promise.resolve(window.syGa4MeasurementObserver(name, Object.freeze({ ...safe }))).catch(() => {}); } catch {}
     }
+    if (disabled()) { pending.length = 0; return; }
     if (typeof window.umami?.track !== "function") { if (pending.length < 20) pending.push({ name, data: safe, at: Date.now() }); return; }
     try { Promise.resolve(window.umami.track(name, safe)).catch(() => {}); } catch {}
   }
@@ -226,7 +226,7 @@
     const element = event.target instanceof Element ? event.target.closest("a[href]") : null;
     if (!element) return; const chosen = identify(element); if (chosen) send(chosen.name, chosen.data);
   }, true);
-  if (!document.querySelector("#sy-umami-tracker")) {
+  if (!disabled() && !document.querySelector("#sy-umami-tracker")) {
     const tracker = document.createElement("script"); tracker.id = "sy-umami-tracker";
     tracker.src = "https://analytics.despertartdigital.cloud/script.js"; tracker.async = true; tracker.referrerPolicy = "origin";
     for (const [name, value] of Object.entries({ "data-website-id": websiteId, "data-domains": [...hosts].join(","), "data-do-not-track": "true", "data-exclude-search": "true", "data-exclude-hash": "true", "data-before-send": "sySiteAnalyticsSanitize" })) tracker.setAttribute(name, value);

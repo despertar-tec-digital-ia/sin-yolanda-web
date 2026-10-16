@@ -1,6 +1,22 @@
 # Forma de trabajar y publicar
 
-### GA4 · pase autorizado16-oct, publicación en curso
+### Consentimiento simple · corrección16-oct
+
+Luis pide recuadro básico: sin título, Umami, mensaje del navegador ni bloqueo de Aceptar.
+ES: «¿Aceptas cookies de Google Analytics para medir visitas y clics? Puedes rechazar o cambiar
+tu elección cuando quieras». EN equivalente; ambos botones siempre disponibles. La elección
+guardada controla GA4, independientemente de señales del navegador o preferencia de Umami.
+Rechazo, retirada, caducidad, almacenamiento y exclusiones de host/ruta conservan su control.
+
+El dueño único sigue identificando clics para el GA4 consentido; Umami mantiene sus propios
+controles DNT/GPC/opt-out, sin cargar SDK ni guardar atribución cuando aplican. Aviso completo
+ajustado en la frase específica de GA4 para concordar con la elección. No cambios de cuenta.
+Versiones explícitas `20261016-ga4-simple-choice`; contrato reversible y bundle actualizados.
+356tests verdes; Brave320/390/1440 sin overflow, dos botones habilitados de48px, sin título ni
+estado automático. Aceptación y reapertura local comprobadas, sin Google en loopback.
+Release y verificación productiva pendientes de completar el operador único.
+
+### GA4 · PUBLICADO16-oct con consentimiento
 
 Luis autoriza publicar el consentimiento revisado y conservar los datos actuales del aviso.
 Integración en23páginas,404excluido; GA4 solo tras aceptación guardada/verificada, rechazo soloGA4,
@@ -8,12 +24,30 @@ Umami continúa. Un dueño de clics y versiones explícitas del loader/consentim
 compilado desde config/controlador/contrato únicos, comprobado en CI. Aviso añade funcionamiento,
 cookies y retención actual2meses eventos/14usuarios con reinicio; sin placeholders, nueva identidad
 legal inferida ni cambios de cuenta. Datos administrativos/canal del aviso siguen sin corroborar,
-pendiente factual conservado por decisión de Luis. No certificación legal ni recepción Google aún.
+pendiente factual conservado por decisión de Luis. Sin certificación legal; recepción Google comprobada en el cierre de abajo.
 
 356tests verdes y paquete247archivos; QA local Brave320/390/768/1440 sin overflow, controles48px
 iguales, opt-out respetado. Contrato reversible exacto recupera todos los hashes anteriores de
 portada/cartas/agenda y rechaza ediciones ajenas. La candidata anterior queda como histórico abajo.
-Publicación y recibo/rollback se registran al finalizar el operador único.
+PUBLICADO mediante PR38/head `da9ea4e3ad05c563111214afcbe74fe4e3cb92d7` → main
+`45d15ba2933df811eeb2a4a3ac88848b27a1d197`. CI38972556816 y CD38972610106 verdes;
+prepare/preview/producción del mismo artefacto. Pages `39379089-b1ed-4f7e-a9c2-e55d7276318e`,
+rollback `866fd6d7-f052-4636-a321-0cc55c7c8a9f`.245archivos servidos/47aliases/10excluidos,
+244hashes exactos y aviso normalizado por Cloudflare; cero diferencias/fallos. Recibo ignorado
+`.artifacts/approved-release-38-1792187704343/receipt.json`.
+
+Dominio oficial/IAB: cero etiquetas GA4 antes de aceptar; después carga exclusivamente
+`G-PZQE63983T`, elección conservada ES→EN. Rechazo y recarga: cero etiquetas, panel cerrado con
+preferencia conservada. Propiedad558237511 en UI autenticada pasó de cero datos en tiempo real
+a recibir `page_view`, `language_switch_click` y `programming_action_click`; tabla de parámetros
+confirma `branch=houston` para el clic de agenda. También había actividad concurrente; ventana con QA, no indicador de clientes
+ni reservas. Cuenta sin modificaciones. Pruebas locales y recepción real son evidencias distintas.
+Captura pública inspeccionada: `20261016-145925-sy-ga4-publicado-20261016.png` en previews DDTIA;
+QA consolidada `.artifacts/ga4-production-pinned-20261016/qa.json`.
+
+Pendientes: corroborar datos del aviso y preparar definiciones/informes de la propiedad con su
+revisión específica. Nuevas ofertas/eventos Instagram GDL esperan links de Luis; alcance en el
+documento de medición y tracker del cliente. No cambian los ambiguos, destinos Jorge ni la agenda.
 
 ### GA4 · consentimiento candidato16-oct, solo local
 

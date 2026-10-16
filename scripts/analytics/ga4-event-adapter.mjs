@@ -99,8 +99,7 @@ export function createGa4EventAdapter({ config, contract, hasConsent, readContex
   function permittedPage() {
     if (!enabled || config.enabled !== true || !['ga4-only', 'all-optional'].includes(config.consentScope) || hasConsent() !== true) return null;
     const context = readContext();
-    if (!context || context.globalPrivacyControl === true || context.umamiDisabled ||
-        [context.doNotTrack, context.msDoNotTrack, context.windowDoNotTrack].some(value => value === '1' || value === 'yes')) return null;
+    if (!context) return null;
     if (config.enabled !== true || hasConsent() !== true) return null;
     const page = publicPage(context, contract);
     return page && { ...page, acquisition: safeAcquisition(context.acquisition || {}, contract) };

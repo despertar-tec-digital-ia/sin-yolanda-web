@@ -9,10 +9,10 @@
     "assets/css/houston-header.css": "20261012-overlay",
     "assets/js/agenda-clock.js": "20261013-approved-agenda",
     "assets/css/branch-agenda.css": "20261013-approved-agenda",
-    "assets/js/site-measurement.js": "20261016-ga4-consent",
+    "assets/js/site-measurement.js": "20261016-ga4-simple-choice",
     "assets/js/branch-language.js": "20261013-measurement-v2",
-    "assets/js/ga4-consent.js": "20261016-ga4-consent",
-    "assets/css/ga4-consent.css": "20261016-ga4-consent"
+    "assets/js/ga4-consent.js": "20261016-ga4-simple-choice",
+    "assets/css/ga4-consent.css": "20261016-ga4-simple-choice"
   },
   "pages": [
     "index.html",

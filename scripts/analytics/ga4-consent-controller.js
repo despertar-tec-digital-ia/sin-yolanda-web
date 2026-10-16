@@ -23,30 +23,22 @@
   if (config.consentVersion !== 1 || !(maxAge > 0 && maxAge <= 180 * 86400000)) return;
   window.__syGA4Consent = true;
   const messages = {en: {
-    title: "Your privacy, your choice.",
-    description: "May we use Google Analytics (GA4) and its cookies to understand visits and clicks? Rejecting turns off GA4. Umami continues without tracking cookies and respects your browser’s Do Not Track and Global Privacy Control signals.",
+    description: "Allow Google Analytics cookies to measure visits and clicks? You can reject them or change your choice at any time.",
     privacy: "Privacy notice", accept: "Accept", reject: "Reject", preferences: "Privacy preferences",
-    accepted: "You have accepted GA4. You can change your choice here.", rejected: "You have rejected GA4. Umami continues without tracking cookies.",
-    blocked: "Your browser requests that analytics remain off.",
-    storage: "We could not save your choice. GA4 will remain off on this page."
+    accepted: "You have accepted Google Analytics cookies.", rejected: "You have rejected Google Analytics cookies.",
+    storage: "We could not save your choice. Google Analytics will remain off on this page."
   }, es: {
-    title: "Tu privacidad, tú decides.",
-    description: "¿Nos permites usar Google Analytics (GA4) y sus cookies para conocer visitas y clics? Rechazar desactiva GA4. Umami continúa sin cookies de seguimiento y respeta las señales «No rastrear» y Global Privacy Control del navegador.",
+    description: "¿Aceptas cookies de Google Analytics para medir visitas y clics? Puedes rechazar o cambiar tu elección cuando quieras.",
     privacy: "Aviso de privacidad", accept: "Aceptar", reject: "Rechazar", preferences: "Preferencias de privacidad",
-    accepted: "Has aceptado GA4. Puedes cambiar tu elección aquí.", rejected: "Has rechazado GA4. Umami continúa sin cookies de seguimiento.",
-    blocked: "Tu navegador solicita mantener desactivada la analítica.",
-    storage: "No pudimos guardar tu preferencia. GA4 seguirá desactivado en esta página."
+    accepted: "Has aceptado las cookies de Google Analytics.", rejected: "Has rechazado las cookies de Google Analytics.",
+    storage: "No pudimos guardar tu elección. Google Analytics seguirá desactivado en esta página."
   }};
   let copy = messages[document.documentElement.lang.toLowerCase().startsWith("en") ? "en" : "es"];
   let record = null, ready = false, active = false, loading = false, generation = 0, script = null;
   let returnFocus = null, panel = null, status = null, accept = null, expiryTimer = null;
-  let storageFailed = false, heading, description, privacy, preferences, headerObserver;
+  let storageFailed = false, description, privacy, preferences, headerObserver;
   const pending = [];
   const denied = {analytics_storage: "denied", ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied"};
-  function optedOut() {
-    if ([navigator.doNotTrack, navigator.msDoNotTrack, window.doNotTrack].some(value => value === "1" || value === "yes") || navigator.globalPrivacyControl === true) return true;
-    try { return Boolean(localStorage.getItem("umami.disabled")); } catch (_) { return false; }
-  }
   function denialGuard() {
     try { return document.cookie.split(";").some(value => value.trim() === "sy_ga4_denied=1"); }
     catch (_) { return true; }
@@ -71,7 +63,7 @@
   function allowed() {
     expire();
     const permitted = official && config.enabled === true && config.consentScope === "ga4-only"
-      && !optedOut() && !denialGuard() && record?.choice === "granted";
+      && !denialGuard() && record?.choice === "granted";
     if (!permitted && (active || loading)) stop();
     return permitted;
   }
@@ -116,9 +108,7 @@
   }
   const adapter = createGa4EventAdapter({ config, contract, hasConsent: allowed,
     readContext: () => ({ href: location.href, referrer: document.referrer,
-      acquisition: window.syGa4MeasurementContext?.(), doNotTrack: navigator.doNotTrack,
-      msDoNotTrack: navigator.msDoNotTrack, windowDoNotTrack: window.doNotTrack,
-      globalPrivacyControl: navigator.globalPrivacyControl, umamiDisabled: optedOut() }),
+      acquisition: window.syGa4MeasurementContext?.() }),
     sendEvent: (name, data) => {
       if (!allowed()) return;
       if (ready && active) tag("event", name, data);
@@ -186,9 +176,7 @@
   }
   function show() {
     if (!panel) return;
-    const blocked = optedOut();
-    accept.disabled = blocked;
-    status.textContent = storageFailed ? copy.storage : blocked ? copy.blocked : record ? (record.choice === "granted" ? copy.accepted : copy.rejected) : denialGuard() ? copy.rejected : "";
+    status.textContent = storageFailed ? copy.storage : record ? (record.choice === "granted" ? copy.accepted : copy.rejected) : denialGuard() ? copy.rejected : "";
     panel.hidden = false;
     updateClearance();
   }
@@ -200,7 +188,6 @@
   }
   function choose(choice) {
     if (!["granted", "denied"].includes(choice)) return false;
-    if (choice === "granted" && optedOut()) { stop(); show(); return false; }
     if (choice === "denied") stop();
     storageFailed = false;
     const now = Date.now();
@@ -240,7 +227,7 @@
     returnFocus = document.activeElement;
     panel?.setAttribute("data-sy-consent-mode", "preferences");
     show();
-    (accept?.disabled ? panel?.querySelector('[data-sy-consent-choice="denied"]') : accept)?.focus({preventScroll: true});
+    accept?.focus({preventScroll: true});
   }
   function updateClearance() {
     if (!panel || panel.hidden || panel.getAttribute("data-sy-consent-mode") === "preferences") return;
@@ -255,7 +242,6 @@
     copy = nextCopy;
     if (!panel) return;
     panel.setAttribute("aria-label", copy.preferences);
-    heading.textContent = copy.title;
     description.textContent = copy.description;
     privacy.textContent = copy.privacy;
     accept.textContent = copy.accept;
@@ -272,11 +258,9 @@
     panel.hidden = true;
     const inner = element("div", "sy-consent__inner");
     const content = element("div", "sy-consent__copy");
-    heading = element("h2", "sy-consent__title", copy.title);
     description = element("p", "sy-consent__description", copy.description);
     privacy = element("a", "sy-consent__notice", copy.privacy);
     privacy.href = "/aviso-de-privacidad";
-    content.appendChild(heading);
     content.appendChild(description);
     content.appendChild(privacy);
     status = element("p", "sy-consent__status");
@@ -312,7 +296,6 @@
     scheduleExpiry();
     if (!record) show();
     else if (record.choice === "granted") start();
-    if (optedOut()) stop();
     if (typeof MutationObserver !== "undefined") new MutationObserver(refreshLanguage)
       .observe(document.documentElement, {attributes: true, attributeFilter: ["lang"]});
     const header = document.querySelector("header");
@@ -324,7 +307,7 @@
   }
   window.SY_GA4_CONSENT = Object.freeze({open, choose, getChoice: () => { expire(); return record?.choice || null; }});
   window.addEventListener("storage", event => {
-    if (event.key !== key && event.key !== "umami.disabled" && event.key !== null) return;
+    if (event.key !== key && event.key !== null) return;
     record = readChoice();
     if (allowed()) start(); else stop();
     scheduleExpiry();
@@ -333,7 +316,6 @@
   document.addEventListener("visibilitychange", () => {
     if (document.visibilityState !== "visible") return;
     expire();
-    if (optedOut()) stop();
   });
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", createUI, {once: true});
   else createUI();

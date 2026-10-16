@@ -1,5 +1,12 @@
 # Migración de WordPress y medición · 8-oct-2026
 
+**Revisión posterior16-oct del recuadro:** Luis pide texto sencillo y aceptar/rechazar libremente.
+Se retira título, Umami y aviso/bloqueo por señales del navegador. GA4 depende de la elección
+explícita guardada; Umami conserva sus controles propios. El medidor común mantiene un dueño de
+clics y puede servir al GA4 consentido sin cargar Umami/atribución bajo su opt-out. El aviso completo
+se corrige en esa frase de GA4. Estado/evidencia vigentes → «Consentimiento simple» de WORKFLOW;
+los controles automáticos de GA4 descritos en bloques anteriores son históricos y quedan sustituidos.
+
 **Estado vigente13-oct:** Luis aprueba la composición final y autoriza su publicación;
 PUBLICADA por PR33/main `08027d9`, CI/CD/recibo verdes.
 Proyección14unidades en ocho fichas USA ES/EN reconciliada sobre main publicado `b3040ef`,
@@ -10,9 +17,9 @@ expresa, con recepción de campos v2 comprobada. GA4 sigue pendiente.
 Los bloques siguientes conservan la investigación y preparación previas, incluidas sus
 restricciones anteriores de publicación. La fuente editorial sin confirmar no se promociona.
 
-## Cierre secuencial · 16-oct · local, sin publicación
+## Cierre secuencial · 16-oct · GA4 publicado; eventos pendientes locales
 
-**Decisión posterior16-oct · GA4 autorizado para publicación:** Luis pide «así déjalo y sube».
+**Decisión posterior16-oct · GA4 PUBLICADO con autorización:** Luis pide «así déjalo y sube».
 Se publica el consentimiento revisado, rechazo soloGA4/Umami continúa, conservando los datos
 administrativos actuales del aviso y añadiendo explicación técnica. No se publican marcadores
 de revisión ni se inventan responsable/domicilio/canal. Esos datos siguen pendientes factuales,
@@ -29,8 +36,10 @@ Configuración apagada/alcance nulo continúan probados como estados que bloquea
 
 QA final:356tests verdes, sin skips, log `.artifacts/ga4-release-check-final.log` y paquete
 `.artifacts/ga4-release-20261016-v2/public`; Brave320/390/768/1440 sin overflow, controles48px y
-mismo tamaño. Cuenta no modificada. Recepción real Google y pruebas en el dominio tras CD,
-evidencia/rollback en el bloque «GA4 · pase autorizado16-oct» de WORKFLOW.
+mismo tamaño. Cuenta no modificada. Publicación PR38/main45d15ba, CI/CD y recibo verdes.
+Recepción real `page_view`, idioma y agenda comprobada en la propiedad existente; rechazo/recarga
+sin etiqueta en dominio. Evidencia, ventana QA y rollback en «GA4 · PUBLICADO16-oct» de WORKFLOW.
+Definiciones de informes y datos administrativos del aviso conservan pendientes propios.
 
 **Nueva recopilación GDL solicitada16-oct:** Luis enviará enlaces de ofertas/eventos Instagram
 Guadalajara. Comparar por tipo, vigencia, sede, condiciones y arte con Brujas/Solteras/agenda antes

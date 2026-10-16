@@ -15,7 +15,6 @@
 .sy-consent *, .sy-consent-preferences { box-sizing: border-box; }
 .sy-consent__inner { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; gap: 40px; }
 .sy-consent__copy { flex: 1 1 0; min-width: 0; }
-.sy-consent .sy-consent__title { color: inherit; font: inherit; font-size: 20px; line-height: 1.3; font-weight: 700; letter-spacing: normal; text-transform: none; margin: 0 0 6px; }
 .sy-consent .sy-consent__description { color: inherit; font: inherit; font-size: 15px; line-height: 1.5; margin: 0 0 8px; }
 .sy-consent .sy-consent__notice { color: inherit; font: inherit; font-size: 14px; line-height: 1.5; text-decoration: underline; text-underline-offset: 3px; }
 .sy-consent .sy-consent__status { color: inherit; font: inherit; font-size: 14px; line-height: 1.5; margin: 8px 0 0; }
@@ -33,7 +32,6 @@
   .sy-consent { padding: calc(18px + var(--sy-consent-header-clearance, 0px)) max(20px, env(safe-area-inset-right)) max(18px, env(safe-area-inset-bottom)) max(20px, env(safe-area-inset-left)); }
   .sy-consent[data-sy-consent-mode="preferences"] { padding-top: 18px; }
   .sy-consent__inner { display: block; }
-  .sy-consent .sy-consent__title { font-size: 18px; }
   .sy-consent .sy-consent__description { font-size: 14px; }
   .sy-consent__actions { display: grid; grid-template-columns: 1fr 1fr; margin-top: 16px; }
   .sy-consent .sy-consent__button { padding: 12px; min-width: 0; }

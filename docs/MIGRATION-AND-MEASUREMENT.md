@@ -12,8 +12,33 @@ restricciones anteriores de publicación. La fuente editorial sin confirmar no s
 
 ## Cierre secuencial · 16-oct · local, sin publicación
 
+**Decisión posterior16-oct · GA4 autorizado para publicación:** Luis pide «así déjalo y sube».
+Se publica el consentimiento revisado, rechazo soloGA4/Umami continúa, conservando los datos
+administrativos actuales del aviso y añadiendo explicación técnica. No se publican marcadores
+de revisión ni se inventan responsable/domicilio/canal. Esos datos siguen pendientes factuales,
+sin convertir esta decisión en validación del buzón o certificación legal. Ajustes de cuenta
+actuales conservados; reducción de retención/personalización y dimensiones no aplicadas.
+
+Fuentes canónicas: `scripts/analytics/ga4-event-config.json` (`enabled:true`, `ga4-only`),
+`ga4-consent-controller.js`, adaptador y contrato actual; `ga4-bundle.mjs` compila el único asset
+servido `assets/js/ga4-consent.js`. `sync-ga4.mjs --check` y tests exigen bundle/cobertura/versiones
+vigentes; `--write` regenera después de cambiar sus dueños.23páginas/404excluido, fuentes no
+servidas bajo `scripts/`, ningún segundo emisor. Contrato `ga4-source-patches.json` restaura
+bytes completos anteriores, incluida portada PR36/37, sin relajar las comprobaciones históricas.
+Configuración apagada/alcance nulo continúan probados como estados que bloquean Google.
+
+QA final:356tests verdes, sin skips, log `.artifacts/ga4-release-check-final.log` y paquete
+`.artifacts/ga4-release-20261016-v2/public`; Brave320/390/768/1440 sin overflow, controles48px y
+mismo tamaño. Cuenta no modificada. Recepción real Google y pruebas en el dominio tras CD,
+evidencia/rollback en el bloque «GA4 · pase autorizado16-oct» de WORKFLOW.
+
+**Nueva recopilación GDL solicitada16-oct:** Luis enviará enlaces de ofertas/eventos Instagram
+Guadalajara. Comparar por tipo, vigencia, sede, condiciones y arte con Brujas/Solteras/agenda antes
+de integrar. Sin enlaces nuevos recibidos ni autorización de publicación de ese lote. Pendiente
+vivo en el PENDIENTES del cliente y en la continuación B del plan operativo.
+
 Luis encarga avanzar uno por uno y mantener el goal activo. No es una nueva autorización de
-publicación. Fuentes del primer paso revalidadas15-oct; cierre/QA16-oct. No reabrir las fotos
+publicación de eventos. Fuentes del primer paso revalidadas15-oct; cierre/QA16-oct. No reabrir las fotos
 PR36/37, la medición PR34 ni el cron ya comprobado.
 
 - **Guadalajara:** Brujas31-oct montada en la ficha actual solo en paquete local. Cartel propio

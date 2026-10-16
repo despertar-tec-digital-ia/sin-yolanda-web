@@ -2,12 +2,11 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import vm from 'node:vm';
-import { ga4ReviewBundle } from '../scripts/analytics/ga4-review-bundle.mjs';
-import { projectGa4EventBridge } from '../scripts/analytics/project-ga4-event-bridge.mjs';
+import { compileGa4Bundle } from '../scripts/analytics/ga4-bundle.mjs';
 import { compileMeasurementContract } from '../scripts/measurement-contract.mjs';
 
 const root = new URL('../', import.meta.url).pathname;
-const bundle = overrides => ga4ReviewBundle(root, overrides);
+const bundle = overrides => compileGa4Bundle(root, overrides);
 const actionData = data => ({ schema_version: 2, page_branch: 'houston', page_language: 'es', ...data });
 
 const read = path => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
@@ -214,9 +213,9 @@ function harness({ url = 'https://sin-yolanda.com/houston', enabled = true, stor
   };
 }
 
-test('checked-in GA4 config is real but disabled and does not activate production by being packaged', () => {
+test('authorized production config retains an explicit off switch that prevents any Google flow', () => {
   const context = { window: {} }; context.window.SY_GA4_CONFIG = JSON.parse(read('scripts/analytics/ga4-event-config.json'));
-  assert.equal(context.window.SY_GA4_CONFIG.enabled, false);
+  assert.equal(context.window.SY_GA4_CONFIG.enabled, true);
   assert.equal(context.window.SY_GA4_CONFIG.measurementId, measurementId);
   assert.equal(context.window.SY_GA4_CONFIG.consentVersion, 1);
   assert.equal(context.window.SY_GA4_CONFIG.consentMaxAgeDays, 180);
@@ -462,7 +461,7 @@ test('the current click owner supplies one event to each provider and rejection 
   const state = harness({ body: { branch: 'houston', status: 'open', language: 'es' } });
   state.context.sessionStorage = state.window.sessionStorage = { getItem: () => null, setItem() {}, removeItem() {} };
   vm.runInContext(read('assets/js/public-data.js'), state.context);
-  vm.runInContext(projectGa4EventBridge(read('assets/js/site-measurement.js')), state.context);
+  vm.runInContext(read('assets/js/site-measurement.js'), state.context);
   const link = state.element('a', { href: 'https://www.opentable.com/r/sin-yolanda-houston', class: 'hh-reserve' });
   link.click();
   assert.equal(state.umamiCalls.filter(([name]) => name === 'reservation_click').length, 1);

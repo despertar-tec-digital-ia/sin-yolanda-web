@@ -99,6 +99,10 @@
     if (contract.editorialCampaigns.includes(data.campaign_id)) result.campaign_id = data.campaign_id;
     return result;
   }
+  window.syGa4MeasurementContext = () => {
+    if (disabled()) return null;
+    touchAcquisition(); return Object.freeze(commonData());
+  };
   const previousHookName = document.currentScript?.getAttribute("data-before-send") || "sySiteAnalyticsBeforeSend";
   const previousHook = typeof window[previousHookName] === "function" ? window[previousHookName] : null;
   function safePayload(type, payload) {
@@ -127,11 +131,14 @@
     } catch { return false; }
   };
   const pending = [];
-  function send(name, data) {
+  function send(name, data, replay = false) {
     if (disabled()) { discardSession(); pending.length = 0; return; }
     if (!events.has(name)) return;
     let safe = safeEventData(data, name); if (!safe) return;
     const sourceLanguage=safe.page_language;touchAcquisition();safe=safeEventData(data,name);safe.page_language=sourceLanguage;
+    if (!replay && typeof window.syGa4MeasurementObserver === "function") {
+      try { Promise.resolve(window.syGa4MeasurementObserver(name, Object.freeze({ ...safe }))).catch(() => {}); } catch {}
+    }
     if (typeof window.umami?.track !== "function") { if (pending.length < 20) pending.push({ name, data: safe, at: Date.now() }); return; }
     try { Promise.resolve(window.umami.track(name, safe)).catch(() => {}); } catch {}
   }
@@ -223,7 +230,7 @@
     const tracker = document.createElement("script"); tracker.id = "sy-umami-tracker";
     tracker.src = "https://analytics.despertartdigital.cloud/script.js"; tracker.async = true; tracker.referrerPolicy = "origin";
     for (const [name, value] of Object.entries({ "data-website-id": websiteId, "data-domains": [...hosts].join(","), "data-do-not-track": "true", "data-exclude-search": "true", "data-exclude-hash": "true", "data-before-send": "sySiteAnalyticsSanitize" })) tracker.setAttribute(name, value);
-    tracker.addEventListener("load", () => { if (typeof window.umami?.track === "function") pending.splice(0).forEach(item => { if (Date.now() - item.at < 60000) send(item.name, item.data); }); });
+    tracker.addEventListener("load", () => { if (typeof window.umami?.track === "function") pending.splice(0).forEach(item => { if (Date.now() - item.at < 60000) send(item.name, item.data, true); }); });
     tracker.addEventListener("error", () => { pending.length = 0; }); document.head.appendChild(tracker);
   }
 })();

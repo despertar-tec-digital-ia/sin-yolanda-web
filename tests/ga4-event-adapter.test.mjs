@@ -2,7 +2,8 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createGa4EventAdapter } from '../scripts/analytics/ga4-event-adapter.mjs';
-import { projectGa4EventBridge } from '../scripts/analytics/project-ga4-event-bridge.mjs';
+import { projectGa4EventBridge, restoreGa4EventBridge } from '../scripts/analytics/project-ga4-event-bridge.mjs';
+import { checkGa4Coverage } from '../scripts/sync-ga4.mjs';
 import { compileMeasurementContract } from '../scripts/measurement-contract.mjs';
 import { measurementHarness } from './helpers/measurement-harness.mjs';
 
@@ -11,7 +12,7 @@ const config = JSON.parse(read('scripts/analytics/ga4-event-config.json'));
 // Activation is only a test fixture; the scope was chosen by Luis on 16 October.
 const testConfig = { ...config, enabled: true, consentScope: 'ga4-only' };
 const contract = compileMeasurementContract(new URL('../', import.meta.url).pathname);
-const currentSource = read('assets/js/site-measurement.js');
+const currentSource = restoreGa4EventBridge(read('assets/js/site-measurement.js'));
 const projectedSource = projectGa4EventBridge(currentSource);
 const baseData = (branch = 'houston') => ({ schema_version: 2, action: 'menu_click', branch,
   language: 'es', page_branch: branch, page_language: 'es', destination: 'menu', link_location: 'hero' });
@@ -42,12 +43,13 @@ function integrated({ consent = true, ...options } = {}) {
   return { ...state, adapter, googleCalls: calls, grant: value => { granted = value; } };
 }
 
-test('the chosen GA4-only scope stays disabled and is absent from every public asset/page', () => {
-  assert.equal(config.enabled, false); assert.equal(config.consentScope, 'ga4-only');
+test('the authorized GA4-only integration covers public pages while disabled and unresolved policies still fail closed', () => {
+  assert.equal(config.enabled, true); assert.equal(config.consentScope, 'ga4-only');
   assert.equal(config.measurementId, 'G-PZQE63983T');
   const manifest = JSON.parse(read('scripts/public-manifest.json'));
   assert.doesNotMatch(JSON.stringify(manifest), /ga4-event|scripts\/analytics/);
-  for (const page of manifest.pages) assert.doesNotMatch(read(page), /ga4-event|ga4-consent|G-PZQE63983T/);
+  assert.equal(checkGa4Coverage().measuredPages, manifest.pages.length - 1);
+  assert.equal(read('assets/js/site-measurement.js'), projectedSource);
   const state = fixture({ enabled: false });
   assert.equal(state.adapter.configuration(), null);
   assert.equal(state.adapter.pageView(), false);

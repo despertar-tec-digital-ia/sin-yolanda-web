@@ -1,5 +1,20 @@
 # Forma de trabajar y publicar
 
+### GA4 · pase autorizado16-oct, publicación en curso
+
+Luis autoriza publicar el consentimiento revisado y conservar los datos actuales del aviso.
+Integración en23páginas,404excluido; GA4 solo tras aceptación guardada/verificada, rechazo soloGA4,
+Umami continúa. Un dueño de clics y versiones explícitas del loader/consentimiento/CSS. Bundle
+compilado desde config/controlador/contrato únicos, comprobado en CI. Aviso añade funcionamiento,
+cookies y retención actual2meses eventos/14usuarios con reinicio; sin placeholders, nueva identidad
+legal inferida ni cambios de cuenta. Datos administrativos/canal del aviso siguen sin corroborar,
+pendiente factual conservado por decisión de Luis. No certificación legal ni recepción Google aún.
+
+356tests verdes y paquete247archivos; QA local Brave320/390/768/1440 sin overflow, controles48px
+iguales, opt-out respetado. Contrato reversible exacto recupera todos los hashes anteriores de
+portada/cartas/agenda y rechaza ediciones ajenas. La candidata anterior queda como histórico abajo.
+Publicación y recibo/rollback se registran al finalizar el operador único.
+
 ### GA4 · consentimiento candidato16-oct, solo local
 
 Luis elige rechazo soloGA4; Umami continúa con sus controles existentes. Config apagada,

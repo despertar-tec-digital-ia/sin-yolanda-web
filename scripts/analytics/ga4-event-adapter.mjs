@@ -1,5 +1,5 @@
-// Policy-independent candidate. This module neither loads Google nor stores consent.
-// The production manifest does not include it; activation needs a reviewed consent owner.
+// Provider adapter. This module neither loads Google nor stores consent.
+// The consent owner supplies explicit permission and the compiled public contract.
 const publicHosts = new Set(['sin-yolanda.com', 'www.sin-yolanda.com']);
 const referralHosts = new Set(['instagram.com', 'www.instagram.com', 'l.instagram.com',
   'facebook.com', 'www.facebook.com', 'l.facebook.com', 'lm.facebook.com',

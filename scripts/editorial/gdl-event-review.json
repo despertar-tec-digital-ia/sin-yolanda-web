@@ -1,0 +1,186 @@
+{
+  "version": 1,
+  "observedOn": "2026-10-16",
+  "branchId": "san-ignacio",
+  "account": "sinyolandagdl",
+  "mode": "local-review-only",
+  "publicationEnabled": false,
+  "sources": [
+    {
+      "id": "gdl-birthday-20261016",
+      "url": "https://www.instagram.com/p/DeSh3VJxBxE/",
+      "publishedOn": "2026-10-09",
+      "observed": "visible caption and full original poster",
+      "facts": {
+        "audience": "October birthdays",
+        "weekdays": [
+          5,
+          6
+        ],
+        "startsOn": "2026-10-01",
+        "endsOn": "2026-10-31",
+        "condition": "Purchase of participating bottles; inclusions vary by package",
+        "prices": null
+      }
+    },
+    {
+      "id": "gdl-canta-invitation-20261016",
+      "url": "https://www.instagram.com/reel/DeNifbXAYbT/",
+      "observed": "visible caption, complete 22.97s silent video track and final poster",
+      "facts": {
+        "edition": 5,
+        "weekday": 3,
+        "startsOn": "2026-10-07",
+        "finalOn": "2026-12-02",
+        "stages": {
+          "qualifiers": 7,
+          "semifinals": 1,
+          "finals": 1
+        },
+        "qualifierDates": null,
+        "startTime": null,
+        "registrationDeadline": null,
+        "registrationPrice": null,
+        "minimumAge": 18,
+        "registrationPhone": "+523319422709",
+        "prizes": [
+          {
+            "place": 1,
+            "amount": 100000,
+            "currency": "MXN",
+            "kind": "cash"
+          },
+          {
+            "place": 2,
+            "amount": 50000,
+            "currency": "MXN",
+            "kind": "cash"
+          },
+          {
+            "place": 3,
+            "amount": 5000,
+            "currency": "MXN",
+            "kind": "in-venue-consumption"
+          }
+        ]
+      }
+    },
+    {
+      "id": "gdl-canta-faq-20261016",
+      "url": "https://www.instagram.com/reel/DefY-g7RTFo/",
+      "observed": "visible full caption and FAQ title frame; spoken FAQ not transcribed",
+      "facts": {
+        "sameCompetitionAs": "gdl-canta-invitation-20261016",
+        "separateEvent": false,
+        "prizesMatch": true
+      }
+    },
+    {
+      "id": "gdl-solteras-corroboration-20261016",
+      "url": "https://www.instagram.com/p/DeXwAW8gAGu/",
+      "publishedOn": "2026-10-11",
+      "observed": "visible own-account caption, timestamp",
+      "facts": {
+        "mentions": [
+          "Wednesday Canta por tu Cuenta",
+          "Thursday Solteras"
+        ],
+        "explicitEndDate": null
+      }
+    }
+  ],
+  "existingRecords": [
+    {
+      "id": "san-ignacio-brujas-20261031",
+      "sourceFile": "front-b-events.json",
+      "recheckedSourceUrl": "https://www.instagram.com/p/DeIbppdgMu3/",
+      "decision": "candidate",
+      "duplicate": false,
+      "note": "Same existing record and original artwork. Branch hours remain explicitly labelled; no event-specific hours invented."
+    },
+    {
+      "id": "san-ignacio-solteras-weekly",
+      "sourceFile": "front-b-events.json",
+      "recheckedSourceUrl": "https://www.instagram.com/p/Dd7fzQkg_wG/",
+      "decision": "held",
+      "corroboratingSourceRef": "gdl-solteras-corroboration-20261016",
+      "reason": "Later own-account mention supports recurrence, but no validity period or own hours. Do not schedule perpetually."
+    }
+  ],
+  "records": [
+    {
+      "id": "san-ignacio-cumpleanos-202610",
+      "kind": "seasonal-promotion",
+      "sourceRefs": [
+        "gdl-birthday-20261016"
+      ],
+      "title": "Cumples en octubre. Nosotros ponemos el fiestón.",
+      "postUrl": "https://www.instagram.com/p/DeSh3VJxBxE/",
+      "artwork": {
+        "privateFile": "gdl-cumpleanos-DeSh3VJxBxE.jpg",
+        "sha256": "911102c651cb77030e42fad6f15ec21fb349e673be682965514caaf60220deb3",
+        "bytes": 1022556,
+        "type": "image",
+        "width": 1402,
+        "height": 1753
+      },
+      "artworkAlt": "Promoción de cumpleaños de octubre en Sin Yolanda Guadalajara, con paquetes de botellas y sus beneficios",
+      "approval": null,
+      "blockers": [
+        "publication-approval"
+      ],
+      "rights": "user-supplied-brand-post-for-review"
+    },
+    {
+      "id": "san-ignacio-canta-5-2026",
+      "kind": "competition-series",
+      "sourceRefs": [
+        "gdl-canta-invitation-20261016",
+        "gdl-canta-faq-20261016"
+      ],
+      "title": "Canta por tu Cuenta",
+      "postUrl": "https://www.instagram.com/reel/DeNifbXAYbT/",
+      "detailsUrl": "https://www.instagram.com/reel/DefY-g7RTFo/",
+      "artwork": {
+        "privateFile": "gdl-canta-DeNifbXAYbT-convocatoria.jpg",
+        "sha256": "206c5671122bfcf2831e620952149d03b712cb07746728ddf1c8bf398c7ef8ad",
+        "bytes": 154167,
+        "type": "image",
+        "width": 1080,
+        "height": 1920
+      },
+      "artworkAlt": "Convocatoria de Canta por tu Cuenta, del 7 de octubre al 2 de diciembre, con premios en pesos mexicanos",
+      "video": {
+        "privateFile": "gdl-canta-DeNifbXAYbT-web.mp4",
+        "sha256": "523a53576fcd597b5b169a42f79a8b40eba7e392b8166e275190b3d2e57c4f39",
+        "bytes": 6698076,
+        "type": "video",
+        "width": 720,
+        "height": 1280,
+        "durationSeconds": 22.966667,
+        "audio": false
+      },
+      "approval": null,
+      "blockers": [
+        "publication-approval",
+        "own-hours-and-registration-terms-unconfirmed"
+      ],
+      "rights": "user-requested-brand-video-for-review"
+    }
+  ],
+  "proposedExpiry": {
+    "san-ignacio-brujas-20261031": {
+      "at": "2026-11-01T03:00:00-06:00",
+      "basis": "previously authorized branch closing time"
+    },
+    "san-ignacio-cumpleanos-202610": {
+      "at": "2026-11-01T03:00:00-06:00",
+      "basis": "last eligible business day October31 plus branch closing; pending release approval"
+    },
+    "san-ignacio-canta-5-2026": {
+      "at": "2026-12-02T00:00:00-06:00",
+      "basis": "conservative start-of-final-day until final-specific hours confirmed; not a registration deadline"
+    }
+  },
+  "releaseGate": "Explicit approval of reviewed GDL candidate required. No public HTML, manifest, analytics contract or scheduler changes in this intake."
+}

@@ -1,5 +1,24 @@
 # Forma de trabajar y publicar
 
+### Guadalajara · Instagram16-oct · candidata LOCAL
+
+Cinco enlaces de Luis revisados en la cuenta oficial `sinyolandagdl` con investigación N0.
+Dueño de la nueva reconciliación: `scripts/editorial/gdl-event-review.json`; Brujas/Solteras
+conservan sus IDs y artes de `front-b-events.json`. Una ficha Canta reúne los dos reels;
+cumpleaños queda como promoción con compra condicionante y viernes/sábados de octubre.
+Solteras retenida: mención propia11-oct apoya recurrencia, sin horizonte confirmado.
+
+`build-gdl-event-review.mjs` prepara solo Guadalajara en paquete local: video H264 completo,
+silencioso, en bucle al entrar en pantalla; pausa manual, poster, reduced-motion/ahorro de datos
+y fallo de autoplay probados. Sin iframe/player externo ni solicitudes de Instagram al cargar.
+Las fuentes públicas, manifiesto, agenda aprobada y contrato GA4 quedan intactos; no hay release.
+361tests verdes; QA Brave320/390/768/1440 sin overflow, una agenda/tres piezas candidatas,
+tres imágenes cargadas al abrir el retenido, destinos propios y teclado/pausa comprobados.
+Paquete: `.artifacts/gdl-intake-20261016/public`, loopback8835. Arte original/derivados y
+procedencia privada: `clientes-assets/sin-yolanda/marketing-2026/gdl-media-2026-10-16.json`.
+Horario, disponibilidad y cierre de inscripción del concurso permanecen sin confirmar;
+FAQ enlazada y caption cotejado, audio del segundo reel no transcrito. Publicación GDL sin autorizar.
+
 ### Consentimiento simple · PUBLICADO16-oct
 
 Luis pide recuadro básico: sin título, Umami, mensaje del navegador ni bloqueo de Aceptar.

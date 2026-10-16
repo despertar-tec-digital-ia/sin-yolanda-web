@@ -131,6 +131,43 @@ no bloqueante. Consentimiento según [documentación primaria](https://developer
 La aprobación de ajustes de cuenta y del release exacto se solicita al tener ese candidato probado;
 no publicar esta preparación ni tomar las aprobaciones de fotos/medición anterior como permiso GA4.
 
+### Adaptador de eventos GA4 · siguiente paso16-oct, solo candidato
+
+Rama `feat/ga4-event-adapter-20261016`. Preparación independiente de las respuestas pendientes:
+`scripts/analytics/ga4-event-adapter.mjs` consume el contrato aprobado vigente, sin cargar Google,
+guardar elecciones ni instalar otro listener de clics. Config dueña del ID ya verificado en
+`ga4-event-config.json`: `enabled:false`, `consentScope:null`. Una política vacía sigue bloqueando
+el adaptador aunque se habilitara accidentalmente el flag; no escoger alcance por silencio.
+
+`project-ga4-event-bridge.mjs` produce una proyección local exacta del dueño actual. Observa una
+vez la decisión sanitizada y no vuelve a observarla cuando Umami vacía su cola. Expone contexto
+limitado del dueño, con caducidad30min; falla si el código fuente ya cambió. No se editó el JS
+servido. Helper de pruebas compartido extraído sin cambiar las expectativas existentes.
+
+Cobertura:332tests del repositorio verdes, incluidos los13nombres actuales,14registros aprobados
+ES/EN, las rutas/aliases del manifiesto, GDL/ID histórico y carta El Paso. Prueba clic/auxclick,
+carga tardía y reejecución, aceptación durante cola (sin replay previo), rechazo, DNT/GPC,
+expiración por decisión del dueño y fallos de callbacks/contexto. Solo un pageview por instancia;
+la integración futura debe conservar el guard de documento del controlador de consentimiento.
+Sanitiza URL/referrer y valores permitidos; no datos personales, queries, texto libre ni
+orígenes privados. Destinos Jorge/retenidos siguen rechazados. Un callback aceptado no certifica
+entrega de red ni recepción de Google; no se enviaron mediciones reales.
+
+Mapeo GA4: `entry_source/entry_medium/entry_campaign` para contexto, `editorial_campaign_id`
+para cartelera. `campaign_source/campaign_medium/campaign_name` nativos solo en configuración
+consentida y con tupla/código permitido; catálogo activo todavía vacío. Así no se usa la campaña
+editorial como origen comercial. Referencia primaria revisadaN0:
+[campos de configuración Google](https://developers.google.com/analytics/devguides/collection/ga4/reference/config).
+La propiedad aún necesitará las dimensiones/eventos acordados y recepción real antes de prometer
+informes completos; no se modificó su configuración.
+
+Evidencia ignorada `.artifacts/ga4-event-adapter/report.json`, proyección y contrato regenerables,
+log completo y paquete normal `ga4-event-adapter-public-proof`. Digest de las fuentes públicas
+idéntico al de antes del adaptador; módulos candidatos fuera del artefacto publicable.
+Siguiente: respuesta sobre alcance→adaptar controlador/UI/carga de etiqueta y aviso con responsable
+confirmado→QA de navegador/races/almacenamiento→aprobar ajustes de cuenta y release exacto.
+No es integración completa de consentimiento ni permiso de activación.
+
 ## Medición B05–B07 · publicada13-oct
 
 Solicitud de Luis después de publicar agenda: «ok con qué continuamos. dale». Rama propia

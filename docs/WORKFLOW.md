@@ -1,5 +1,13 @@
 # Forma de trabajar y publicar
 
+### GA4 · adaptador de eventos candidato16-oct
+
+Se prepara el consumo del medidor vigente sin escoger política pendiente: adaptador, config
+apagada/alcance nulo y proyección local exacta.332tests verdes;13eventos,14registros ES/EN,
+cola sin duplicados/replay, rutas y privacidad. Fuentes públicas/digest/manifiesto intactos;
+ningún tag, UI, aviso o ajuste de cuenta publicado. Fuente/evidencia/límites y siguiente gate
+→ «Adaptador de eventos GA4» en MIGRATION-AND-MEASUREMENT. Consentimiento completo aún pendiente.
+
 ### Cierre secuencial de eventos/medición · 16-oct
 
 Goal activo por encargo de Luis. Estado/fuentes/decisiones de esta ronda tienen dueño en

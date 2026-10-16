@@ -1,6 +1,6 @@
 # Forma de trabajar y publicar
 
-### Consentimiento simple · corrección16-oct
+### Consentimiento simple · PUBLICADO16-oct
 
 Luis pide recuadro básico: sin título, Umami, mensaje del navegador ni bloqueo de Aceptar.
 ES: «¿Aceptas cookies de Google Analytics para medir visitas y clics? Puedes rechazar o cambiar
@@ -14,7 +14,14 @@ ajustado en la frase específica de GA4 para concordar con la elección. No camb
 Versiones explícitas `20261016-ga4-simple-choice`; contrato reversible y bundle actualizados.
 356tests verdes; Brave320/390/1440 sin overflow, dos botones habilitados de48px, sin título ni
 estado automático. Aceptación y reapertura local comprobadas, sin Google en loopback.
-Release y verificación productiva pendientes de completar el operador único.
+PUBLICADO por PR39/head02c3c4f → main `8d5132aae564ac368a9e976a5405577aa01d13ac`,
+CI38974535219/CD38974585079 y recibo verdes. Pages `cc77c107-ebc8-441e-aa0e-f5d0cc5b56c1`,
+rollback `39379089-b1ed-4f7e-a9c2-e55d7276318e`.245archivos/47aliases/10excluidos, cero
+hashmismatches/fallos. Recibo `.artifacts/approved-release-39-1792188833104/receipt.json`.
+Brave en el dominio, mismo navegador antes bloqueado: ambos botones habilitados, estado inicial
+vacío, cero GA4 antes de aceptar; después carga el ID propio y se cierra. Rechazo/recarga: cero
+GA4 y elección conservada. IAB Guadalajara refrescada con el texto simple visible en preferencias.
+QA de esta corrección en `.artifacts/ga4-simple-choice-pinned/qa.json`.
 
 ### GA4 · PUBLICADO16-oct con consentimiento
 

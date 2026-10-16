@@ -70,13 +70,18 @@ test('browser autoplay refusal leaves a usable manual control without retry loop
   p.videoEvents.error(); assert.equal(p.toggle.hidden, true);
 });
 
-test('the GDL intake groups the two reels once and keeps unbounded Solteras held', () => {
+test('the GDL intake groups the reels once and keeps local Solteras approval separate from validity', () => {
   const data = JSON.parse(readFileSync(new URL('../scripts/editorial/gdl-event-review.json', import.meta.url)));
   assert.equal(data.publicationEnabled, false);
   const contest = data.records.filter(r => r.kind === 'competition-series');
   assert.equal(contest.length, 1); assert.equal(contest[0].sourceRefs.length, 2);
   assert.equal(contest[0].approval, null);
-  assert.equal(data.existingRecords.find(r => r.id === 'san-ignacio-solteras-weekly').decision, 'held');
+  const solteras = data.existingRecords.find(r => r.id === 'san-ignacio-solteras-weekly');
+  assert.equal(solteras.decision, 'candidate-local');
+  assert.equal(solteras.localDisplayApproval.scope, 'local-preview-only');
+  const original = JSON.parse(readFileSync(new URL('../scripts/editorial/front-b-events.json', import.meta.url)));
+  const recurrence = original.records.find(r => r.id === solteras.id).recurrence;
+  assert.equal(recurrence.startsOn, null); assert.equal(recurrence.endsOn, null);
   const birthday = data.sources.find(r => r.id === 'gdl-birthday-20261016');
   assert.deepEqual(birthday.facts.weekdays, [5, 6]);
   assert.equal(birthday.facts.endsOn, '2026-10-31');

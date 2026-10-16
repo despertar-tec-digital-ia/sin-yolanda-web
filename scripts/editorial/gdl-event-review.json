@@ -102,9 +102,15 @@
       "id": "san-ignacio-solteras-weekly",
       "sourceFile": "front-b-events.json",
       "recheckedSourceUrl": "https://www.instagram.com/p/Dd7fzQkg_wG/",
-      "decision": "held",
+      "decision": "candidate-local",
       "corroboratingSourceRef": "gdl-solteras-corroboration-20261016",
-      "reason": "Later own-account mention supports recurrence, but no validity period or own hours. Do not schedule perpetually."
+      "reason": "Included in the local agenda at Luis request. Validity period and own hours remain unconfirmed; no indefinite schedule or publication approval inferred.",
+      "localDisplayApproval": {
+        "by": "Luis",
+        "on": "2026-10-16",
+        "scope": "local-preview-only",
+        "instruction": "la de solteras sí ponla. dame local version"
+      }
     }
   ],
   "records": [

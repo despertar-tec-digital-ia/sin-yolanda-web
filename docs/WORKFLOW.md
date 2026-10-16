@@ -2,6 +2,11 @@
 
 ### Guadalajara · Instagram16-oct · candidata LOCAL
 
+**Ajuste posterior de Luis16-oct:** incluir Solteras en la agenda local, sin acordeón de retenidos.
+Aprobación limitada a la vista local registrada en `gdl-event-review.json`; fechas/horas siguen
+sin confirmar y publicación apagada. Nuevo paquete `.artifacts/gdl-intake-solteras-20261016/public`
+en el mismo loopback8835. CSS/registro/destino propios, sin2x1 inferido ni recurrencia perpetua.
+
 Cinco enlaces de Luis revisados en la cuenta oficial `sinyolandagdl` con investigación N0.
 Dueño de la nueva reconciliación: `scripts/editorial/gdl-event-review.json`; Brujas/Solteras
 conservan sus IDs y artes de `front-b-events.json`. Una ficha Canta reúne los dos reels;

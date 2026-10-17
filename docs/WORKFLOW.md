@@ -26,7 +26,10 @@ sin sonido ni errores. Paquete `.artifacts/gdl-publication-review/public`, loopb
 La validación anterior de foco/teclado, pausa y reduced-motion aplica al mismo controlador.
 Procedencia privada del arte: `clientes-assets/sin-yolanda/marketing-2026/gdl-media-2026-10-16.json`.
 No se inventan hora específica, precio ni cierre de inscripción del concurso; FAQ enlazada,
-caption cotejado, audio del segundo reel no transcrito. Falta verificar CI/CD y dominio servido.
+caption cotejado, audio del segundo reel no transcrito. Primer CI PR40 detectó dos fixtures del release limitado que seguían calculando solo la
+proyección USA; el ensayo local clonaba el HEAD anterior y ocultó el desfase de archivos aún no
+commiteados. Se corrige el import del fixture a la misma proyección conjunta del empaquetador,
+sin relajar el digest ni sus gates. Revalidar después del commit limpio y verificar CI/CD/dominio.
 
 ### Consentimiento simple · PUBLICADO16-oct
 

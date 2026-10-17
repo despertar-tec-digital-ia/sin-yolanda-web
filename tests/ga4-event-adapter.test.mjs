@@ -134,9 +134,10 @@ test('revocation during context preparation wins before any event or pageview ca
 });
 
 test('all approved agenda records use current event/branch/kind and retained ticket destinations stay rejected', () => {
-  for (const [id, event] of Object.entries(contract.events)) for (const language of ['es', 'en']) {
+  for (const [id, event] of Object.entries(contract.events)) for (const language of (event.branch === 'san-ignacio' ? ['es'] : ['es', 'en'])) {
     const branch = event.branch;
-    const state = integrated({ url: 'https://sin-yolanda.com/' + (language === 'en' ? 'en/' : '') + branch, body: { branch } });
+    const route = branch === 'san-ignacio' ? 'guadalajara' : (language === 'en' ? 'en/' : '') + branch;
+    const state = integrated({ url: 'https://sin-yolanda.com/' + route, body: { branch } });
     state.document.documentElement.lang = language;
     const agenda = new state.Element({ tag: 'section', classes: ['sy-agenda'], dataset: { branch } });
     const record = new state.Element({ tag: 'article', dataset: { record: id }, parent: agenda });

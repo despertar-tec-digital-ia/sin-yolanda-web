@@ -41,10 +41,13 @@ Recepción real `page_view`, idioma y agenda comprobada en la propiedad existent
 sin etiqueta en dominio. Evidencia, ventana QA y rollback en «GA4 · PUBLICADO16-oct» de WORKFLOW.
 Definiciones de informes y datos administrativos del aviso conservan pendientes propios.
 
-**Nueva recopilación GDL solicitada16-oct:** Luis enviará enlaces de ofertas/eventos Instagram
-Guadalajara. Comparar por tipo, vigencia, sede, condiciones y arte con Brujas/Solteras/agenda antes
-de integrar. Sin enlaces nuevos recibidos ni autorización de publicación de ese lote. Pendiente
-vivo en el PENDIENTES del cliente y en la continuación B del plan operativo.
+**Nueva tanda GDL recibida y preparada16-oct:** cinco enlaces propios reconciliados en
+`scripts/editorial/gdl-event-review.json`. Una ficha Canta reúne invitación/FAQ; promoción de
+cumpleaños con vigencia/condición propias; Brujas conserva su registro previo. Solteras sigue
+retenida aunque otra mención11-oct respalda recurrencia. No convertir esta evidencia en vigencia
+perpetua. El video completo breve queda en bucle sin sonido dentro de la ficha local. QA, paquete,
+límites y reentrada actual → «Guadalajara · Instagram16-oct · candidata LOCAL» de WORKFLOW.
+No publicación autorizada; las14unidades USA, manifiesto y emisores analíticos no cambian.
 
 Luis encarga avanzar uno por uno y mantener el goal activo. No es una nueva autorización de
 publicación de eventos. Fuentes del primer paso revalidadas15-oct; cierre/QA16-oct. No reabrir las fotos

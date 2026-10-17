@@ -4,6 +4,7 @@ import {resolve} from 'node:path';
 import vm from 'node:vm';
 import assert from 'node:assert/strict';
 import {loadApprovedAgenda} from './editorial/public-agenda.mjs';
+import {loadGdlApproval} from './editorial/gdl-approved.mjs';
 
 export function compileMeasurementContract(root) {
   const read=file=>readFileSync(resolve(root,file),'utf8');
@@ -30,6 +31,11 @@ export function compileMeasurementContract(root) {
     events[unit.id]={branch:branchId,kind:unit.semanticKind,post:posts.get(postId),...(verified?{tickets:ticket.url}:{})};
   }
   const series={};
+  const gdl = loadGdlApproval(root);
+  for (const record of gdl?.records ?? []) events[record.id] = {
+    branch: 'san-ignacio', kind: record.kind, post: record.postUrl,
+    ...(record.detailsUrl ? { additionalPosts: [record.detailsUrl] } : {}),
+  };
   const workshops=Object.entries(events).filter(([,event])=>event.kind==='workshop');
   if(workshops.length)series['houston-pinta-y-canta']={branch:'houston',kind:'workshop',events:workshops.map(([id])=>id),post:workshops[0][1].post};
   const registry=JSON.parse(read('scripts/legacy-redirects/sin-yolanda-legacy-redirects/redirects.json'));

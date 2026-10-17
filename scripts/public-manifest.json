@@ -9,10 +9,12 @@
     "assets/css/houston-header.css": "20261012-overlay",
     "assets/js/agenda-clock.js": "20261013-approved-agenda",
     "assets/css/branch-agenda.css": "20261013-approved-agenda",
-    "assets/js/site-measurement.js": "20261016-ga4-simple-choice",
+    "assets/js/site-measurement.js": "20261016-gdl-agenda",
     "assets/js/branch-language.js": "20261013-measurement-v2",
-    "assets/js/ga4-consent.js": "20261016-ga4-simple-choice",
-    "assets/css/ga4-consent.css": "20261016-ga4-simple-choice"
+    "assets/js/ga4-consent.js": "20261016-gdl-agenda",
+    "assets/css/ga4-consent.css": "20261016-ga4-simple-choice",
+    "assets/css/gdl-agenda.css": "20261016-gdl-agenda",
+    "assets/js/gdl-agenda-video.js": "20261016-gdl-agenda"
   },
   "pages": [
     "index.html",
@@ -263,7 +265,14 @@
     "assets/media/home-singing-portrait-1305.webp",
     "assets/media/home-singing-portrait-640.webp",
     "assets/js/ga4-consent.js",
-    "assets/css/ga4-consent.css"
+    "assets/css/ga4-consent.css",
+    "assets/agenda/gdl-brujas-DeIbppdgMu3.jpg",
+    "assets/agenda/gdl-solteras-Dd7fzQkg_wG.jpg",
+    "assets/agenda/gdl-cumpleanos-DeSh3VJxBxE.jpg",
+    "assets/agenda/gdl-canta-DeNifbXAYbT-convocatoria.jpg",
+    "assets/agenda/gdl-canta-DeNifbXAYbT-web.mp4",
+    "assets/css/gdl-agenda.css",
+    "assets/js/gdl-agenda-video.js"
   ],
   "assetVersion": "20261008-migration-measurement",
   "reviewPages": []

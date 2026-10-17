@@ -1,6 +1,37 @@
 # Forma de trabajar y publicar
 
-### Consentimiento simple · corrección16-oct
+### Guadalajara · agenda autorizada16-oct · publicación en curso
+
+Luis autoriza «a ver publica pues» sobre la vista revisada con Brujas, Canta por tu Cuenta,
+Jueves de Solteras y cumpleaños de octubre. Autoridad independiente en
+`scripts/editorial/approved-gdl-agenda.json`; fuentes originales conservadas en
+`front-b-events.json` y `gdl-event-review.json`. Cuenta oficial `sinyolandagdl`, cinco enlaces
+revisados por investigación N0. Una sola ficha Canta reúne convocatoria y FAQ del mismo concurso.
+
+La composición compartida `gdl-agenda.mjs` conserva el diseño local aprobado. Publicación y
+scheduler usan `all-agendas.mjs`, manteniendo intacta la aprobación USA. Brujas y cumpleaños
+se retiran al cierre del último día anunciado (1-nov03:00 Guadalajara); Canta permanece todo
+el 2-dic y se retira a medianoche. Solteras es anuncio semanal aprobado hasta cambio editorial:
+sus fechas reales de vigencia siguen sin confirmar, sin generar ocurrencias fechadas.
+
+Video completo H264, silencioso, en bucle al entrar en pantalla, con pausa manual y poster;
+respeta movimiento reducido/ahorro de datos. No iframe ni carga de Instagram al abrir la página.
+Cuatro IDs GDL incorporados al dueño único de clics; los dos reels atribuyen al mismo concurso.
+Versiones JS explícitas `20261016-gdl-agenda`; contrato reversible conserva los hashes históricos
+completos. Consentimiento, cuentas, portada, menús, otras ofertas y destinos retenidos sin cambios.
+
+364tests verdes y paquete local254archivos. Brave320/390/768/1440 sin overflow; cuatro fichas
+persisten con reloj de producción activo, imágenes cargadas y video22.966667s reproduciéndose,
+sin sonido ni errores. Paquete `.artifacts/gdl-publication-review/public`, loopback8838.
+La validación anterior de foco/teclado, pausa y reduced-motion aplica al mismo controlador.
+Procedencia privada del arte: `clientes-assets/sin-yolanda/marketing-2026/gdl-media-2026-10-16.json`.
+No se inventan hora específica, precio ni cierre de inscripción del concurso; FAQ enlazada,
+caption cotejado, audio del segundo reel no transcrito. Primer CI PR40 detectó dos fixtures del release limitado que seguían calculando solo la
+proyección USA; el ensayo local clonaba el HEAD anterior y ocultó el desfase de archivos aún no
+commiteados. Se corrige el import del fixture a la misma proyección conjunta del empaquetador,
+sin relajar el digest ni sus gates. Revalidar después del commit limpio y verificar CI/CD/dominio.
+
+### Consentimiento simple · PUBLICADO16-oct
 
 Luis pide recuadro básico: sin título, Umami, mensaje del navegador ni bloqueo de Aceptar.
 ES: «¿Aceptas cookies de Google Analytics para medir visitas y clics? Puedes rechazar o cambiar
@@ -14,7 +45,14 @@ ajustado en la frase específica de GA4 para concordar con la elección. No camb
 Versiones explícitas `20261016-ga4-simple-choice`; contrato reversible y bundle actualizados.
 356tests verdes; Brave320/390/1440 sin overflow, dos botones habilitados de48px, sin título ni
 estado automático. Aceptación y reapertura local comprobadas, sin Google en loopback.
-Release y verificación productiva pendientes de completar el operador único.
+PUBLICADO por PR39/head02c3c4f → main `8d5132aae564ac368a9e976a5405577aa01d13ac`,
+CI38974535219/CD38974585079 y recibo verdes. Pages `cc77c107-ebc8-441e-aa0e-f5d0cc5b56c1`,
+rollback `39379089-b1ed-4f7e-a9c2-e55d7276318e`.245archivos/47aliases/10excluidos, cero
+hashmismatches/fallos. Recibo `.artifacts/approved-release-39-1792188833104/receipt.json`.
+Brave en el dominio, mismo navegador antes bloqueado: ambos botones habilitados, estado inicial
+vacío, cero GA4 antes de aceptar; después carga el ID propio y se cierra. Rechazo/recarga: cero
+GA4 y elección conservada. IAB Guadalajara refrescada con el texto simple visible en preferencias.
+QA de esta corrección en `.artifacts/ga4-simple-choice-pinned/qa.json`.
 
 ### GA4 · PUBLICADO16-oct con consentimiento
 

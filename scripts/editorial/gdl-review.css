@@ -1,0 +1,23 @@
+/* GDL review only; the established branch palette and fonts remain authoritative. */
+#programacion-san-ignacio .sy-gdl-competition{margin-top:48px;display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,34%);max-width:1050px;background:var(--agenda-brand);color:var(--paper,#fff4de);scroll-margin-top:88px}
+#programacion-san-ignacio .sy-gdl-competition-copy{padding:40px;align-self:center}
+#programacion-san-ignacio .sy-gdl-competition h3{font-size:clamp(52px,5.6vw,78px);line-height:.98;margin-bottom:24px}
+#programacion-san-ignacio .sy-gdl-competition time{display:inline;font:inherit}
+#programacion-san-ignacio .sy-gdl-prizes{display:grid;grid-template-columns:1fr;gap:12px;margin:24px 0}
+#programacion-san-ignacio .sy-gdl-prizes>div{display:grid;grid-template-columns:90px 1fr;gap:10px;align-items:baseline}
+#programacion-san-ignacio .sy-gdl-prizes dt{font-size:13px}
+#programacion-san-ignacio .sy-gdl-prizes dd{margin:0;font-size:20px;font-weight:700}
+#programacion-san-ignacio .sy-gdl-prizes span{font-size:12px;font-weight:400;white-space:nowrap}
+#programacion-san-ignacio .sy-gdl-terms{font-size:12px;line-height:1.65}
+#programacion-san-ignacio .sy-gdl-detail-link{display:inline-flex;align-items:center;min-height:44px;font-size:14px;font-weight:700}
+#programacion-san-ignacio .sy-gdl-competition a:focus-visible{outline-color:var(--paper,#fff4de)}
+#programacion-san-ignacio .sy-gdl-video{position:relative;align-self:center}
+#programacion-san-ignacio .sy-gdl-video a{display:block}
+#programacion-san-ignacio .sy-gdl-video video{display:block;width:100%;height:auto;aspect-ratio:9/16;object-fit:contain}
+#programacion-san-ignacio .sy-gdl-video button{position:absolute;right:10px;bottom:10px;min-height:44px;padding:9px 14px;border:1px solid #fff4de;background:#30201c;color:#fff4de;font:13px/1.2 HoustonSlab,Georgia,serif;cursor:pointer}
+#programacion-san-ignacio .sy-gdl-video button[hidden]{display:none}
+#programacion-san-ignacio .sy-gdl-video button:focus-visible{outline:3px solid #fff4de;outline-offset:3px}
+#programacion-san-ignacio .sy-gdl-solteras .sy-agenda-night{grid-template-columns:minmax(0,1fr) 48%;max-width:720px}
+#programacion-san-ignacio .sy-gdl-solteras .sy-agenda-art img{aspect-ratio:3/4}
+@media(max-width:900px){#programacion-san-ignacio .sy-gdl-competition-copy{padding:28px}#programacion-san-ignacio .sy-gdl-competition h3{font-size:56px}}
+@media(max-width:600px){#programacion-san-ignacio .sy-gdl-competition{grid-template-columns:1fr;margin-top:36px}#programacion-san-ignacio .sy-gdl-competition-copy{padding:28px 24px}#programacion-san-ignacio .sy-gdl-competition h3{font-size:56px}#programacion-san-ignacio .sy-gdl-video{width:100%}#programacion-san-ignacio .sy-gdl-solteras .sy-agenda-night-copy{padding:16px}#programacion-san-ignacio .sy-gdl-solteras .sy-agenda-night h4{font-size:32px}#programacion-san-ignacio .sy-gdl-solteras .sy-agenda-night p{font-size:12px}}

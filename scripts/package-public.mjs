@@ -6,7 +6,7 @@ import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import assert from 'node:assert/strict';
 import { parseQrRedirects } from './qr-redirects.mjs';
-import { projectPublicAgenda } from './editorial/public-agenda.mjs';
+import { projectAllAgendas as projectPublicAgenda } from './editorial/all-agendas.mjs';
 
 export const projectRoot = fileURLToPath(new URL('../', import.meta.url));
 export const forbiddenRoute = /(?:^|\/)(?:dashboard|listings|reputation|requests|reports|review-detail|maricarmen)(?:\.html|\/|$)/i;

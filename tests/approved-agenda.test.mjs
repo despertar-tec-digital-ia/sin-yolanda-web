@@ -5,6 +5,7 @@ import{resolve}from'node:path';
 import{localInstant,resolveProgrammingClock}from'../scripts/editorial/programming-clock.mjs';
 import{loadApprovedAgenda,selectApprovedAgenda,projectPublicAgenda,elementRange}from'../scripts/editorial/public-agenda.mjs';
 import{planAgendaRefresh}from'../scripts/plan-agenda-refresh.mjs';
+import{projectAllAgendas}from'../scripts/editorial/all-agendas.mjs';
 const root=resolve(import.meta.dirname,'..'),config=loadApprovedAgenda(root),commit='a'.repeat(40);
 test('approval binds the exact sourced projection and cannot authorize unresolved calendar slots',()=>{
  assert.equal(config.approval.records.length,14);
@@ -59,7 +60,7 @@ test('homepage source and JS share corrected dates and its static block retires 
  assert.equal(after.match(/<h1[\s\S]*?<\/h1>/)[0],before.match(/<h1[\s\S]*?<\/h1>/)[0]);
 });
 test('freshness gate skips identical pages, refreshes a transition and refuses an unreleased main',async()=>{
- const at='2026-10-14T02:00:00Z',pages=projectPublicAgenda(root,{now:at,commit}).files;
+ const at='2026-10-14T02:00:00Z',pages=projectAllAgendas(root,{now:at,commit}).files;
  const loader=async url=>{const file=new URL(url).pathname==='/houston'?'houston.html':new URL(url).pathname.slice(1);return new Response(pages.get(file));};
  assert.equal((await planAgendaRefresh({root,commit,now:at,fetchImpl:loader})).changed,false);
  assert.equal((await planAgendaRefresh({root,commit,now:'2026-10-15T03:00:00Z',fetchImpl:loader})).changed,true);

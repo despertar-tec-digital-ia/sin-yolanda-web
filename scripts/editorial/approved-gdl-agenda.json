@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "approvedBy": "Luis",
+  "approvedAt": "2026-10-17T00:04:42.276Z",
+  "publicationEnabled": true,
+  "authorization": "a ver publica pues. Scope: reviewed Guadalajara agenda including Brujas, Canta por tu Cuenta, Jueves de Solteras and October birthdays.",
+  "sourceDigest": "315cd8edfc77fed025fdaf05fc1081847e15fdf0d9e2420ba78ea3b7c9809e99",
+  "records": [
+    {
+      "id": "san-ignacio-brujas-20261031",
+      "publishFrom": "2026-10-17T00:04:42.276Z",
+      "expiresAt": "2026-11-01T09:00:00.000Z",
+      "expiryBasis": "last-announced-business-day-branch-closing"
+    },
+    {
+      "id": "san-ignacio-cumpleanos-202610",
+      "publishFrom": "2026-10-17T00:04:42.276Z",
+      "expiresAt": "2026-11-01T09:00:00.000Z",
+      "expiryBasis": "last-announced-business-day-branch-closing"
+    },
+    {
+      "id": "san-ignacio-canta-5-2026",
+      "publishFrom": "2026-10-17T00:04:42.276Z",
+      "expiresAt": "2026-12-03T06:00:00.000Z",
+      "expiryBasis": "editorial-next-local-midnight-after-final-date"
+    },
+    {
+      "id": "san-ignacio-solteras-weekly",
+      "publishFrom": "2026-10-17T00:04:42.276Z",
+      "expiresAt": null,
+      "expiryBasis": "approved-informational-weekly-announcement-until-editorial-change"
+    }
+  ],
+  "limitations": [
+    "No event-specific hours or registration deadlines invented.",
+    "Solteras validity dates remain unconfirmed; no future dated occurrences generated."
+  ]
+}

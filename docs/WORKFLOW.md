@@ -1,28 +1,32 @@
 # Forma de trabajar y publicar
 
-### Guadalajara · Instagram16-oct · candidata LOCAL
+### Guadalajara · agenda autorizada16-oct · publicación en curso
 
-**Ajuste posterior de Luis16-oct:** incluir Solteras en la agenda local, sin acordeón de retenidos.
-Aprobación limitada a la vista local registrada en `gdl-event-review.json`; fechas/horas siguen
-sin confirmar y publicación apagada. Nuevo paquete `.artifacts/gdl-intake-solteras-20261016/public`
-en el mismo loopback8835. CSS/registro/destino propios, sin2x1 inferido ni recurrencia perpetua.
+Luis autoriza «a ver publica pues» sobre la vista revisada con Brujas, Canta por tu Cuenta,
+Jueves de Solteras y cumpleaños de octubre. Autoridad independiente en
+`scripts/editorial/approved-gdl-agenda.json`; fuentes originales conservadas en
+`front-b-events.json` y `gdl-event-review.json`. Cuenta oficial `sinyolandagdl`, cinco enlaces
+revisados por investigación N0. Una sola ficha Canta reúne convocatoria y FAQ del mismo concurso.
 
-Cinco enlaces de Luis revisados en la cuenta oficial `sinyolandagdl` con investigación N0.
-Dueño de la nueva reconciliación: `scripts/editorial/gdl-event-review.json`; Brujas/Solteras
-conservan sus IDs y artes de `front-b-events.json`. Una ficha Canta reúne los dos reels;
-cumpleaños queda como promoción con compra condicionante y viernes/sábados de octubre.
-Solteras retenida: mención propia11-oct apoya recurrencia, sin horizonte confirmado.
+La composición compartida `gdl-agenda.mjs` conserva el diseño local aprobado. Publicación y
+scheduler usan `all-agendas.mjs`, manteniendo intacta la aprobación USA. Brujas y cumpleaños
+se retiran al cierre del último día anunciado (1-nov03:00 Guadalajara); Canta permanece todo
+el 2-dic y se retira a medianoche. Solteras es anuncio semanal aprobado hasta cambio editorial:
+sus fechas reales de vigencia siguen sin confirmar, sin generar ocurrencias fechadas.
 
-`build-gdl-event-review.mjs` prepara solo Guadalajara en paquete local: video H264 completo,
-silencioso, en bucle al entrar en pantalla; pausa manual, poster, reduced-motion/ahorro de datos
-y fallo de autoplay probados. Sin iframe/player externo ni solicitudes de Instagram al cargar.
-Las fuentes públicas, manifiesto, agenda aprobada y contrato GA4 quedan intactos; no hay release.
-361tests verdes; QA Brave320/390/768/1440 sin overflow, una agenda/tres piezas candidatas,
-tres imágenes cargadas al abrir el retenido, destinos propios y teclado/pausa comprobados.
-Paquete: `.artifacts/gdl-intake-20261016/public`, loopback8835. Arte original/derivados y
-procedencia privada: `clientes-assets/sin-yolanda/marketing-2026/gdl-media-2026-10-16.json`.
-Horario, disponibilidad y cierre de inscripción del concurso permanecen sin confirmar;
-FAQ enlazada y caption cotejado, audio del segundo reel no transcrito. Publicación GDL sin autorizar.
+Video completo H264, silencioso, en bucle al entrar en pantalla, con pausa manual y poster;
+respeta movimiento reducido/ahorro de datos. No iframe ni carga de Instagram al abrir la página.
+Cuatro IDs GDL incorporados al dueño único de clics; los dos reels atribuyen al mismo concurso.
+Versiones JS explícitas `20261016-gdl-agenda`; contrato reversible conserva los hashes históricos
+completos. Consentimiento, cuentas, portada, menús, otras ofertas y destinos retenidos sin cambios.
+
+364tests verdes y paquete local254archivos. Brave320/390/768/1440 sin overflow; cuatro fichas
+persisten con reloj de producción activo, imágenes cargadas y video22.966667s reproduciéndose,
+sin sonido ni errores. Paquete `.artifacts/gdl-publication-review/public`, loopback8838.
+La validación anterior de foco/teclado, pausa y reduced-motion aplica al mismo controlador.
+Procedencia privada del arte: `clientes-assets/sin-yolanda/marketing-2026/gdl-media-2026-10-16.json`.
+No se inventan hora específica, precio ni cierre de inscripción del concurso; FAQ enlazada,
+caption cotejado, audio del segundo reel no transcrito. Falta verificar CI/CD y dominio servido.
 
 ### Consentimiento simple · PUBLICADO16-oct
 

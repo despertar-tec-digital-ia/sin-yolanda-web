@@ -6,7 +6,8 @@ import { resolve } from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
-import { projectPublicAgenda,loadApprovedAgenda } from './editorial/public-agenda.mjs';
+import { loadApprovedAgenda } from './editorial/public-agenda.mjs';
+import { projectAllAgendas as projectPublicAgenda } from './editorial/all-agendas.mjs';
 const hash=value=>createHash('sha256').update(value).digest('hex');
 export async function planAgendaRefresh({root,commit,now=new Date().toISOString(),fetchImpl=fetch,origin='https://sin-yolanda.com'}={}){
   assert.equal(origin,'https://sin-yolanda.com');assert.match(commit??'',/^[a-f0-9]{40}$/);

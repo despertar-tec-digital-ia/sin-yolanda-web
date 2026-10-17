@@ -5,7 +5,8 @@ import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
 import { packagePublic } from './package-public.mjs';
-import { integrateAgenda, escapeHtml as esc } from './editorial/branch-agenda.mjs';
+import { integrateAgenda } from './editorial/branch-agenda.mjs';
+import { renderGdlAgenda } from './editorial/gdl-agenda.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 assert.equal(process.argv[2], '--asset-root', 'Supply the private artwork directory.');
@@ -48,14 +49,7 @@ for (const record of records) {
   copyFileSync(source, resolve(output, file)); files.add(file);
   }
 }
-const title = record => typeof record.title === 'string' ? record.title : record.title.es;
-const art = record => `<figure class="sy-agenda-art"><a href="${esc(record.postUrl)}" target="_blank" rel="noopener noreferrer" aria-label="${esc(title(record))} en Instagram · abre otra pestaña"><img src="/assets/review-agenda/${esc(record.artwork.privateFile)}" width="${record.artwork.width}" height="${record.artwork.height}" alt="${esc(record.artworkAlt)}" loading="lazy" decoding="async"></a></figure>`;
-const html = `<section class="sy-agenda" id="programacion-san-ignacio" aria-labelledby="programacion-san-ignacio-title" tabindex="-1"><div class="sy-agenda-inner"><h2 id="programacion-san-ignacio-title">La agenda de tu cantina.</h2>
-<section class="sy-agenda-dates" aria-labelledby="agenda-san-ignacio-dates"><h3 id="agenda-san-ignacio-dates">Próximas fechas</h3><div class="sy-agenda-grid"><article class="sy-agenda-event" data-record="${brujas.id}">${art(brujas)}<div class="sy-agenda-copy"><time datetime="2026-10-31">31 de octubre</time><h4>${esc(brujas.title.es)}</h4><p>Noche temática de brujas y villanas. Premios a los mejores disfraces.</p><p class="sy-agenda-time">Horario de la sucursal: 7:00 p. m.–3:00 a. m. del día siguiente.</p></div></article></div></section>
-<section class="sy-gdl-competition" id="agenda-san-ignacio-canta" aria-labelledby="agenda-san-ignacio-canta-title" data-record="${canta.id}"><div class="sy-gdl-competition-copy"><p class="sy-agenda-weekday">Miércoles · 5.ª edición</p><h3 id="agenda-san-ignacio-canta-title">Canta por<br>tu Cuenta</h3><p>Del 7 de octubre al 2 de diciembre. Sube al escenario o ven a apoyar a tu favorito.</p><dl class="sy-gdl-prizes"><div><dt>1.er lugar</dt><dd>$100,000 MXN <span>en efectivo</span></dd></div><div><dt>2.º lugar</dt><dd>$50,000 MXN <span>en efectivo</span></dd></div><div><dt>3.er lugar</dt><dd>$5,000 MXN <span>en consumo</span></dd></div></dl><p>Siete eliminatorias, una semifinal y la gran final el <time datetime="2026-12-02">2 de diciembre</time>.</p><p class="sy-gdl-terms">Para mayores de edad. Inscripción: envía un video cantando a capela el coro de una canción al (33) 1942 2709. Consulta requisitos y disponibilidad con la sucursal.</p><a class="sy-gdl-detail-link" href="${esc(canta.detailsUrl)}" target="_blank" rel="noopener noreferrer">Bases e inscripción<span class="sy-agenda-sr"> en Instagram · abre otra pestaña</span></a></div><div class="sy-gdl-video" data-agenda-video><a href="${esc(canta.postUrl)}" target="_blank" rel="noopener noreferrer" aria-label="Canta por tu Cuenta en Instagram · abre otra pestaña"><video id="gdl-canta-video" muted loop playsinline preload="none" poster="/assets/review-agenda/${esc(canta.artwork.privateFile)}" width="720" height="1280" aria-label="Video de la convocatoria de Canta por tu Cuenta, sin sonido" data-src="/assets/review-agenda/${esc(canta.video.privateFile)}"></video></a><button type="button" data-video-toggle aria-controls="gdl-canta-video" hidden>Reproducir video</button></div></section>
-<section class="sy-agenda-weekly sy-gdl-solteras" id="agenda-san-ignacio-solteras" aria-labelledby="agenda-san-ignacio-weekly"><h3 id="agenda-san-ignacio-weekly">Las noches de la semana</h3><div class="sy-agenda-weekly-grid"><article class="sy-agenda-night" data-record="${solteras.id}"><div class="sy-agenda-night-copy"><p class="sy-agenda-weekday">Jueves</p><h4>${esc(solteras.title.es)}</h4><p>Con tus amigas, drinks y dinámicas especiales.</p></div>${art(solteras)}</article></div></section>
-<section class="sy-agenda-offers" aria-labelledby="agenda-san-ignacio-offers"><h3 id="agenda-san-ignacio-offers">Para celebrar en octubre</h3><article class="sy-agenda-offer" data-record="${birthday.id}">${art(birthday)}<div><p class="sy-agenda-weekday">Viernes y sábados · hasta el 31 de octubre</p><h4>${esc(birthday.title)}</h4><p>Si cumples años en octubre, celebra con botanas y shots al comprar una de las botellas participantes.</p><p>Los beneficios cambian según el paquete: Misil Maestro Dobel, Misil Herradura Plata, Misil Bacardí Blanco o botellas premium del cartel.</p><p>Reserva por mensaje directo en Instagram o al (33) 1018 6159.</p></div></article></section>
-</div></section>`;
+const html = renderGdlAgenda({ records, assetPrefix: '/assets/review-agenda' });
 const file = 'guadalajara.html';
 let source = readFileSync(resolve(output, file), 'utf8');
 assert.ok(!source.includes('id="programacion-san-ignacio"'));

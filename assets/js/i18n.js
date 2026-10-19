@@ -315,6 +315,7 @@
     "El boletín por correo se activará con la conexión del sistema.": "The email newsletter will switch on once the system is connected.",
     "Dirección:": "Address:",
     "Horarios:": "Hours:",
+    "Lun–Mar cerrado · Mié–Jue 4 pm–12 am · Vie 4 pm–2 am · Sáb–Dom 10 am–2 am": "Mon–Tue closed · Wed–Thu 4 pm–12 am · Fri 4 pm–2 am · Sat–Sun 10 am–2 am",
     "Lun–Mar cerrado · Mié 4–11 pm · Jue–Vie 4 pm–2 am · Sáb 10 am–2 am · Dom 10 am–11 pm": "Mon–Tue closed · Wed 4–11 pm · Thu–Fri 4 pm–2 am · Sat 10 am–2 am · Sun 10 am–11 pm",
     "Reseña de Google · julio 2026": "Google review · July 2026",
     "Estacionamiento": "Parking",

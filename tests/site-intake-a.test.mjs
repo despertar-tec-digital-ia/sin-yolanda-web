@@ -9,8 +9,8 @@ import { hoursHtml } from '../scripts/usa-hours.mjs';
 const read = file => readFileSync(new URL('../' + file, import.meta.url), 'utf8');
 const zones = { houston: 'America/Chicago', 'san-antonio': 'America/Chicago', 'the-woodlands': 'America/Chicago', 'el-paso': 'America/Denver' };
 const weekly = [
-  [['Monday', 'Tuesday'], '00:00', '00:00'], [['Wednesday'], '16:00', '23:00'],
-  [['Thursday', 'Friday'], '16:00', '02:00'], [['Saturday'], '10:00', '02:00'], [['Sunday'], '10:00', '23:00'],
+  [['Monday', 'Tuesday'], '00:00', '00:00'], [['Wednesday', 'Thursday'], '16:00', '00:00'],
+  [['Friday'], '16:00', '02:00'], [['Saturday', 'Sunday'], '10:00', '02:00'],
 ];
 test('confirmed USA hours agree across visible ES/EN, JSON-LD, registry and discovery; overnight closing stays on its opening day', () => {
   const context = { window: {} }; vm.runInNewContext(read('assets/js/public-data.js'), context);

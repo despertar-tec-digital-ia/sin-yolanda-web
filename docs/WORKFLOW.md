@@ -1,5 +1,20 @@
 # Forma de trabajar y publicar
 
+### Horario unificado · encargo de Karina19-oct
+
+Karina autoriza desde el19-oct el mismo horario local en Guadalajara/San Ignacio,
+Houston, San Antonio, The Woodlands y El Paso: lunes/martes cerrado; miércoles/jueves
+16–00 (medianoche); viernes16–02; sábado/domingo10–02 del día siguiente. Sustituye para
+estas cinco sedes el horario USA13-oct y las propuestas anteriores de este chat.
+`usa-operating-hours.json` conserva su nombre por compatibilidad y ahora cubre las cinco.
+Registro público, traducción, nueve fichas ES/EN, HTML inicial y discovery/schema concuerdan.
+La etiqueta de horario del31-oct en la agenda GDL sigue el nuevo sábado; no cambian sus
+anuncios, fechas, enlaces ni aprobación editorial. El contrato reversible de este lote conserva
+los hashes completos anteriores; no se sustituyen las aprobaciones ni los guards históricos.
+Solo horarios y versiones de sus consumidores; fotos, hero, cartas/precios, contactos,
+reservas, medición y rutas permanecen. Publicación autorizada por PR→CI→operador→recibo.
+Los estados de Google/OpenTable/Tripadvisor/Apple son externos y se verifican por separado.
+
 ### Guadalajara · agenda autorizada16-oct · publicación en curso
 
 Luis autoriza «a ver publica pues» sobre la vista revisada con Brujas, Canta por tu Cuenta,

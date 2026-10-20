@@ -7,6 +7,11 @@
     document.querySelectorAll('[data-gdl-event-feature]').forEach(element => {
       element.hidden = (element.dataset.gdlEventFeature === 'active') !== active;
     });
+    document.querySelectorAll('[data-gdl-contest-link]').forEach(element => {
+      element.setAttribute('href',active?element.dataset.contestActiveHref:element.dataset.contestFallbackHref);
+      if(active)element.dataset.record=element.dataset.contestRecord;
+      else delete element.dataset.record;
+    });
   }
   update();
   window.setInterval(update, 30000);

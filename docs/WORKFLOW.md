@@ -44,6 +44,33 @@ Paquete ignorado `.artifacts/gdl-focus-20261019-v4/`, evidencia en
 `.artifacts/gdl-focus-20261019-qa/`, loopback8840. Sin push ni publicación.
 
 
+#### Ampliación19-oct · página del concurso e inscripción, solo local
+
+Luis aporta el cartel dorado y pide revisar `/canta-cuenta/`, replicar su estructura en una
+página propia y facilitar inscripción. Ruta candidata por edición:
+`/guadalajara/canta-por-tu-cuenta-2026/`; «Ver concurso» y navegación de la ficha llevan ahí,
+con icono de micrófono. Reservar mesa conserva WhatsApp3310186159 con SVG; inscripción usa
+**otro destino**, WhatsApp/teléfono3319422709, según cartel y web propios. Mensaje prellenado
+identifica quinta edición/Guadalajara y solicita disponibilidad/pasos; no envía ni da un alta.
+
+Página con arte original intacto (compresión WebP), titular HTML, premios/mecánica/calendario,
+ocho apartados resumidos de información y enlaces a bases originales/cartel completo. Inicio
+7-oct confirmado por el cartel nuevo; semifinal/final25-nov/2-dic de la fuente web. Persisten
+contradicciones de video y avance de ronda: se invita a consultar producción, sin prometer
+registro automático, pase directo ni horario/cierre no corroborados. WordPress/Pierre intactos.
+
+Config único e iconos en `scripts/review/gdl-contest-config.mjs`, página/estilos en `gdl-contest-page.*`.
+Ambos medidores de la candidata proyectan el mismo contrato extendido: ruta exacta, evento
+existente y destinos públicos permitidos. Inscripción es `programming_action_click`; reservar
+sigue `reservation_click`, sin teléfono/mensaje libre en payloads. Consentimiento/ID/cuenta
+idénticos; ningún listener duplicado ni cambios públicos. Bundle de consentimiento también
+incluye la ruta nueva, con prueba aceptación/rechazo/retirada, para evitar dejarla sin cobertura.
+
+El builder recibe cuarto argumento de assets del cartel con manifiesto/hash verificados.
+Candidata `.artifacts/gdl-contest-20261019-v4/public`, evidencia en
+`.artifacts/gdl-contest-20261019-qa/`;370tests verdes y QA desktop/móvil. No publicar el paquete
+ni actualizar el digestPR40 para aparentar autorización. Integración/release siguen pendientes.
+
 ### Guadalajara · agenda autorizada16-oct · publicación en curso
 
 Luis autoriza «a ver publica pues» sobre la vista revisada con Brujas, Canta por tu Cuenta,

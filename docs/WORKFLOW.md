@@ -1,5 +1,49 @@
 # Forma de trabajar y publicar
 
+### Guadalajara · menú v82 y prioridad al concurso19-oct · candidata local
+
+Encargo de Luis: actualizar el menú recibido, priorizar Canta por tu Cuenta y después Jueves
+de Solteras; «Tu cantina en Guadalajara», Visítanos naranja y botón hacia el concurso vigente.
+Guadalajara conserva su fotografía; el concurso ocupa el mensaje principal y la agenda pasa
+antes de Comida y bebidas. Una sola ficha por evento; el botón usa el ancla ya reconocida
+por medición. Al vencer Canta (3-dic00:00 Guadalajara) vuelve la invitación general, también
+en pestañas abiertas. Home/otras sedes sin cambios.
+
+PDF aportado19-oct: `Menu Sin Yolanda v82_optweb.pdf`,15páginas, SHA256
+`fbcf290eb0af66b539781f592ecfca230662b5a926d94a81ef5bce2d12f3c341`.
+La candidata sustituye el menú central anterior por páginas WebP900/1800, navegación por
+secciones, ampliación con desplazamiento y PDF original. Retira buscador/tablas/artículos
+viejos para no mezclar precios. Ruta `/san-ignacio/menu/`, regreso a `/guadalajara`.
+**Pendiente distinto:** digitalización HTML con texto/buscador conservando arte, tipografía
+y composición; requiere cotejo completo y aclarar ambigüedades de receta. El visor conserva
+el diseño original, no se presenta como esa transcripción terminada.
+
+Fuentes vigentes: convocatoria `https://www.instagram.com/reel/DeNifbXAYbT/` y preguntas
+`https://www.instagram.com/reel/DefY-g7RTFo/`, quinta edición con final2-dic2026. El enlace
+se rotula «Preguntas e inscripción», sin anunciar un documento de bases completas validado.
+La copia indexada de `/canta-cuenta/` de WordPress tiene arte de tercera edición; GET fresco
+sirve arte2026. Sus bases y `/sinyolanda-cantar/` contienen contradicciones de día/fecha y
+avance de ronda: no copiarlas ni corregirlas sin confirmación. Luis desconoce el enlace
+reportado; informa que WordPress lo maneja Pierre. Conservar ese frente con su responsable,
+sin contactos ni cambios remotos por esta tarea. El central usa los dos reels vigentes.
+
+**Operación GDL19-oct:** preferir cambios grandes lunes/martes sin operación. Si se propone
+aplicar durante operación, avisar primero para decidir. El día no autoriza un deploy;
+el pase concreto conserva aprobación explícita. No extrapolar esta preferencia a USA.
+
+Reproducción: `node scripts/build-gdl-focus-review.mjs <salida-nueva-en-.artifacts/public>
+<directorio-de-assets-v82>`; exige `manifest.json` con31archivos verificados. Estilos/control
+locales en `scripts/review/`. Paquete noindex, `publicationEnabled:false`, digest candidato
+separado de la proyección base. Fuentes públicas/manifiesto/aprobaciónPR40 intactos.
+Tras aprobación, integrar su delta exacto, renovar aprobación de composición GDL y pasar
+por CI/CD normal conservando retiros/rollback. No publicar el paquete de revisión.
+
+QA local367tests verdes; menú15páginas sin contenido previo, PDF exacto, zoom/cierre/foco
+comprobados. Brave320/390 sin overflow, CTA visible, naranja rgb(189,74,21), concurso primero.
+Paquete ignorado `.artifacts/gdl-focus-20261019-v4/`, evidencia en
+`.artifacts/gdl-focus-20261019-qa/`, loopback8840. Sin push ni publicación.
+
+
 ### Guadalajara · agenda autorizada16-oct · publicación en curso
 
 Luis autoriza «a ver publica pues» sobre la vista revisada con Brujas, Canta por tu Cuenta,

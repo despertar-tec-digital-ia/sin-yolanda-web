@@ -1,0 +1,20 @@
+/* The edition closes with the same cantina identity and branch destinations. */
+.cp-page .cp-footer-full{max-width:none;display:block;padding:0;background:#170b05;border-top:1px solid #926221;color:#eadac0}
+.cp-footer-full .cp-footer-main{max-width:1440px;margin:auto;padding:54px 4vw 42px;display:grid;grid-template-columns:1.2fr 1fr .8fr;gap:44px}
+.cp-footer-full .cp-footer-brand{min-height:52px;display:inline-flex}
+.cp-footer-brand img{width:190px;height:auto;filter:brightness(0) invert(1)}
+.cp-footer-identity p{font:400 35px/1.12 CantaDisplay,Impact,sans-serif;max-width:10em;margin:19px 0 8px;color:var(--cp-ivory)}
+.cp-footer-identity>span{font-size:14px;color:#cdbb9e}
+.cp-page .cp-footer-visit h2{font-family:SYSlab,Georgia,serif;font-size:16px;font-weight:700;line-height:1.5;margin:0 0 16px;color:#ffda46}
+.cp-footer-visit address{font-style:normal;line-height:1.7;margin-bottom:4px}
+.cp-footer-full .cp-footer-visit>a{display:flex;width:fit-content;gap:10px}
+.cp-footer-full .cp-footer-reserve{margin-top:8px;font-weight:700;color:var(--cp-ivory)}
+.cp-footer-reserve svg{width:19px;height:19px}
+.cp-footer-nav{display:flex;flex-direction:column;align-items:flex-start;gap:0}
+.cp-footer-full .cp-footer-nav a{text-decoration:none;line-height:1.4}
+.cp-footer-full .cp-footer-nav a:hover{text-decoration:underline;color:#ffda46}
+.cp-footer-bottom{max-width:1440px;margin:auto;padding:19px 4vw;display:flex;align-items:center;justify-content:space-between;gap:14px 28px;border-top:1px solid #593d22;color:#cdbb9e;font-size:12px}
+.cp-footer-full>.sy-consent-preferences{max-width:1440px;margin:0 auto;padding:0 4vw 22px;text-align:right}
+.cp-footer-full .sy-consent-preferences__button{font-size:12px;color:#cdbb9e}
+@media(max-width:900px){.cp-footer-full .cp-footer-main{grid-template-columns:1fr 1fr;gap:34px}.cp-footer-identity{grid-column:1/-1}.cp-footer-identity p{max-width:none}}
+@media(max-width:520px){.cp-footer-full .cp-footer-main{grid-template-columns:1fr;padding:36px 20px 26px;gap:28px}.cp-footer-identity{grid-column:auto}.cp-footer-brand img{width:170px}.cp-footer-identity p{font-size:32px;margin-top:13px}.cp-footer-nav{border-top:1px solid #593d22;padding-top:18px}.cp-footer-bottom{padding:16px 20px 4px;flex-direction:column;align-items:flex-start;gap:3px}.cp-footer-full>.sy-consent-preferences{padding:0 20px 22px;text-align:left}}

@@ -11,14 +11,22 @@ Icons1.11.3, con fill nativo y sin stroke heredado, en ficha y página2026; lice
 
 Fuentes propuestas en `scripts/review/gdl-invitation-*`; builder local
 `node scripts/build-gdl-invitation-review.mjs <salida-nueva-en-.artifacts/public>`.
-Candidata `.artifacts/gdl-invitation-20261019-v3/public`, loopback8842;294archivos/noindex y
+Candidata `.artifacts/gdl-invitation-20261019-v6/public`, loopback8842;295archivos/noindex y
 `publicationEnabled:false`. Propietarios de producción/manifiesto/aprobación anterior intactos.
 Al aprobar, promover el SVG común, renderer y estilos de la propuesta y renovar únicamente el
 digest de composición conforme al flujo normal; no publicar la candidata ni relajar sus gates.
 
+Ampliación solicitada por Luis: footer propio en la página del concurso con marca, ubicación,
+reservas y navegación; conserva el acceso funcional a preferencias de privacidad. El número de
+reservas sigue separado del de inscripción. En la ficha, noches/fechas/promociones comparten
+separación y jerarquía; títulos de evento con saltos equilibrados y fecha de menor tamaño.
+Fuentes adicionales `scripts/review/gdl-contest-footer.{mjs,css}`. No cambia contenido editorial.
+
 QA381tests verdes; móvil320/390, tablet768 y escritorio sin cortes. Enter del CTA llega al
 concurso, SVG cuadrado con stroke none, video silencioso/bucle y destinos de medición conservados.
-Evidencia en `.artifacts/gdl-invitation-20261019-qa/`. Pendiente revisión/autorización del pase.
+Footer: teclado visible, enlaces locales200, privacidad abre y conserva elección; secciones
+con separación uniforme. Evidencia en `.artifacts/gdl-invitation-20261019-qa/` (incluye
+`footer-check.log` y `footer-proof.json`). Pendiente revisión/autorización del pase completo.
 
 ### Guadalajara · pase PUBLICADO19-oct
 

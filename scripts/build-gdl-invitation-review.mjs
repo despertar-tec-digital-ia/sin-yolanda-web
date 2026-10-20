@@ -11,6 +11,7 @@ import {projectGdlHours} from './unified-hours-source-contract.mjs';
 import {renderGdlAgenda} from './review/gdl-invitation-agenda.mjs';
 import {whatsappIcon as oldIcon,contestPath} from './editorial/gdl-contest-config.mjs';
 import {whatsappIcon} from './review/gdl-invitation-config.mjs';
+import {renderContestFooter} from './review/gdl-contest-footer.mjs';
 const hash=value=>createHash('sha256').update(value).digest('hex');
 export function arrangeInvitation(html){
  const promoted=[];
@@ -34,8 +35,13 @@ export function buildInvitationReview({destination,now=new Date().toISOString()}
   .replace('content="index,follow,max-image-preview:large"','content="noindex,nofollow"');
  write('guadalajara.html',branch);
  const detail=contestPath.slice(1)+'index.html';
- write(detail,readFileSync(resolve(out,detail),'utf8').replaceAll(oldIcon,whatsappIcon).replace('content="index,follow,max-image-preview:large"','content="noindex,nofollow"'));
+ let contest=readFileSync(resolve(out,detail),'utf8').replaceAll(oldIcon,whatsappIcon).replace('content="index,follow,max-image-preview:large"','content="noindex,nofollow"');
+ assert.equal((contest.match(/<footer\b/g)||[]).length,1,'One contest footer expected');
+ contest=contest.replace(/<footer\b[^>]*>[\s\S]*?<\/footer>/,renderContestFooter())
+  .replace('</head>','<link rel="stylesheet" href="/assets/review-gdl/gdl-contest-footer.css?v=20261019-gdl-footer"></head>');
+ write(detail,contest);
  write('assets/review-gdl/gdl-invitation.css',readFileSync(resolve(root,'scripts/review/gdl-invitation.css')));
+ write('assets/review-gdl/gdl-contest-footer.css',readFileSync(resolve(root,'scripts/review/gdl-contest-footer.css')));
  write('licenses/bootstrap-icons.txt',readFileSync(resolve(root,'licenses/bootstrap-icons.txt')));
  const hashes=Object.fromEntries([...files].sort().map(file=>[file,hash(readFileSync(resolve(out,file)))]));
  const {agenda:baseAgenda,publicDigest:baseDigest,...metadata}=base;

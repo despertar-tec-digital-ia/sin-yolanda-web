@@ -1,6 +1,6 @@
 # Forma de trabajar y publicar
 
-### Guadalajara · pase autorizado19-oct · publicación
+### Guadalajara · pase PUBLICADO19-oct
 
 Luis responde «ok» a publicar el pase revisado: foco de Canta/quinta edición y página propia,
 inscripción separada de reservas, Jueves de Solteras segundo, menú original v82 con zoom/PDF,
@@ -22,7 +22,16 @@ Aprobación de composición renovada con autorización de hoy, preservando venta
 históricos completos. Medición de24páginas: un dueño, contrato compartido, sin teléfono/mensaje
 en payload; consentimiento/ID/cuenta y reserva sin cambios. Publicación por PR→CI→operador→recibo.
 Rollback técnico: revertir este pase mediante PR o deployment anterior registrado en el recibo;
-no restaurar WordPress ni subir carpetas locales. Pruebas y resultado final → memoria del cliente.
+no restaurar WordPress ni subir carpetas locales.
+
+PUBLICADO por PR42/head `65c12ef8248bb166d5c700cd4680bacf39fe7977` → main
+`d596e7ad99129e5cb9604b49496fdf7b65f8e48e`.379tests sobre commit limpio, CI39375513158 y
+CD39375566615 verdes; preview y producción verificadas. Pages `fcda2a9e-4286-4108-8546-7890b17abd07`,
+anterior/rollback `fc51f168-4867-4c0b-b2cc-90fb8c3e35b6`.292archivos de paquete; GET verifica
+290archivos,49aliases y10rutas excluidas, sin hashes distintos ni fallos. Recibo local en
+`.artifacts/approved-release-42-1792474377818/receipt.json`. Brave en dominio: ficha→concurso→menú,
+cartel1080px cargado, WhatsApp de inscripción correcto, móvil390 sin overflow y15páginas v82
+con PDF/zoom/ancla histórica. WordPress/QR intactos. Cierre documental local; no nueva publicación.
 
 ### Guadalajara · menú v82 y prioridad al concurso19-oct · candidata local
 

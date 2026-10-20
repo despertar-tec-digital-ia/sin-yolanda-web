@@ -6,6 +6,7 @@ import vm from 'node:vm';
 import { schemas } from '../scripts/seo.mjs';
 import { hours, hoursHtml, summary, summaryEn } from '../scripts/usa-hours.mjs';
 import { restoreUnifiedHours } from '../scripts/unified-hours-source-contract.mjs';
+import { restoreGdlFocus } from '../scripts/gdl-focus-source-contract.mjs';
 import { projectAllAgendas } from '../scripts/editorial/all-agendas.mjs';
 import { fileURLToPath } from 'node:url';
 const root = fileURLToPath(new URL('../', import.meta.url));
@@ -45,7 +46,7 @@ test('the October 19 schedule covers all five current branches and keeps midnigh
 test('only the exact authorized hours and cache deltas can pass the older complete-file guards', () => {
   const contract = JSON.parse(read('scripts/unified-hours-source-patches.json'));
   for (const [file, entry] of Object.entries(contract.files)) {
-    const source = read(file);
+    const source = restoreGdlFocus(file, read(file));
     assert.equal(hash(source), entry.afterSha256, file);
     assert.equal(hash(restoreUnifiedHours(file, source)), entry.beforeSha256, file);
     assert.throws(() => restoreUnifiedHours(file, source.replace(entry.patches[0].after, 'unapproved edit')), /Unified hours patch/);

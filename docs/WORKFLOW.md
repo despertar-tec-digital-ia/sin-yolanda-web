@@ -1,5 +1,29 @@
 # Forma de trabajar y publicar
 
+### Guadalajara · pase autorizado19-oct · publicación
+
+Luis responde «ok» a publicar el pase revisado: foco de Canta/quinta edición y página propia,
+inscripción separada de reservas, Jueves de Solteras segundo, menú original v82 con zoom/PDF,
+iconos, «Tu cantina en Guadalajara» y Visítanos naranja. Se promueve la candidata v7; se integra
+PR41 de horarios unificados sin revertirla. El original de WordPress, QR, home/fotos y demás
+sedes conservan su contenido; todas las páginas actualizan solo la versión de medición común.
+
+Nueva ruta indexable `/guadalajara/canta-por-tu-cuenta-2026/`, canonical por edición y WebPage/
+BreadcrumbList; no se inventa un Event con horario o disponibilidad desconocidos. Medios propios
+permitidos explícitamente: cartel WebP y31archivos de carta. Conserva ancla histórica `#cocktails`
+hacia página8, sin reactivar redirecciones antiguas. Menú fiel en páginas; transcripción HTML
+sigue pendiente. Las contradicciones de bases siguen remitidas al organizador.
+
+La proyección de cada build/scheduler conserva orden Canta/Solteras y retiro del protagonismo
+al3-dic00:00 Guadalajara; la página de edición oculta inscripción y muestra aviso de término
+primero, también con HTML nuevo sin JS. Pestañas abiertas se actualizan con el mismo límite.
+Aprobación de composición renovada con autorización de hoy, preservando ventanas originales.
+`gdl-focus-source-contract` revierte exclusivamente bytes aprobados para conservar guards
+históricos completos. Medición de24páginas: un dueño, contrato compartido, sin teléfono/mensaje
+en payload; consentimiento/ID/cuenta y reserva sin cambios. Publicación por PR→CI→operador→recibo.
+Rollback técnico: revertir este pase mediante PR o deployment anterior registrado en el recibo;
+no restaurar WordPress ni subir carpetas locales. Pruebas y resultado final → memoria del cliente.
+
 ### Guadalajara · menú v82 y prioridad al concurso19-oct · candidata local
 
 Encargo de Luis: actualizar el menú recibido, priorizar Canta por tu Cuenta y después Jueves

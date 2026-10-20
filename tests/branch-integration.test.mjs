@@ -133,7 +133,7 @@ for (const id of branchIds) {
 test('Guadalajara canonical rename preserves Chapalita, original avenue, IDs and media provenance', () => {
   const html = read('guadalajara.html');
   const [schema] = schemas(html);
-  assert.equal(heading(html), 'Sin Yolanda Guadalajara');
+  assert.equal(heading(html), 'Sin Yolanda · Tu cantina en Guadalajara');
   assert.equal(schema.name, 'Sin Yolanda Guadalajara');
   assert.equal(schema.address.streetAddress, 'Avenida San Ignacio 78');
   assert.match(schema.description, /Avenida San Ignacio 78, Zapopan/);
@@ -143,7 +143,7 @@ test('Guadalajara canonical rename preserves Chapalita, original avenue, IDs and
   assert.match(html, /images\/branch-review\/san-ignacio-hero-/);
   assert.doesNotMatch(html, /Avenida Guadalajara/);
   assert.match(html, /rel="canonical" href="https:\/\/sin-yolanda.com\/guadalajara"/);
-  assert.match(read('san-ignacio/menu/index.html'), /<p>Guadalajara<\/p>/);
+  assert.match(read('san-ignacio/menu/index.html'), /<h1>Menú de Guadalajara<\/h1>/);
   const oldSnapshot = JSON.parse(read(archiveRoot + 'san-ignacio.json'));
   assert.match(oldSnapshot.registry.address, /San Ignacio 78/);
   assert.equal(oldSnapshot.registry.shortName, 'Guadalajara');
@@ -155,7 +155,7 @@ for (const id of branchIds) {
     test(`menu ${route.to} returns to its own branch and does not fabricate another edition`, () => {
       const html = read(route.to);
       assert.ok(html.includes('data-branch-id="' + id + '"'));
-      assert.match(html, /class="digital-menu-group /);
+      assert.match(html, /class="[^\"]*\bdigital-menu-group(?:\s|")/);
       assert.doesNotMatch(html, /Prueba local|Editorial review pending|About this menu preview|Local design review/);
       const ownBranch = selection.routes.find(candidate => candidate.kind !== 'menu' && candidate.lang === route.lang)
         ?? selection.routes.find(candidate => candidate.kind !== 'menu' && candidate.lang === 'es');

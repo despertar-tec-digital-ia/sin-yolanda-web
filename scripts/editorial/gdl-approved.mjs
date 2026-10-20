@@ -6,10 +6,14 @@ import { createHash } from 'node:crypto';
 import { elementRange } from './public-agenda.mjs';
 import { resolveProgrammingClock } from './programming-clock.mjs';
 import { renderGdlAgenda } from './gdl-agenda.mjs';
+import { arrangeGdlAgenda, refreshGdlFeature } from './gdl-featured.mjs';
 
 export const gdlApprovalInputs = ['scripts/editorial/front-b-events.json', 'scripts/editorial/gdl-event-review.json',
   'scripts/editorial/gdl-agenda.mjs', 'scripts/editorial/gdl-approved.mjs',
-  'scripts/editorial/gdl-review.css', 'scripts/editorial/gdl-review-video.js'];
+  'scripts/editorial/gdl-review.css', 'scripts/editorial/gdl-review-video.js',
+  'scripts/editorial/gdl-featured.mjs', 'scripts/editorial/gdl-contest-config.mjs',
+  'scripts/editorial/gdl-contest-page.mjs', 'assets/css/gdl-focus.css', 'assets/css/gdl-contest-page.css',
+  'assets/css/gdl-menu.css', 'assets/js/gdl-focus.js', 'assets/js/gdl-menu.js'];
 const hash = value => createHash('sha256').update(value).digest('hex');
 export function gdlApprovalDigest(root) {
   return hash(JSON.stringify(gdlApprovalInputs.map(file => [file, hash(readFileSync(resolve(root, file)))])));
@@ -51,9 +55,13 @@ export function projectGdlAgenda(root, { now, commit } = {}) {
   const file = 'guadalajara.html', source = readFileSync(resolve(root, file), 'utf8');
   const range = elementRange(source, 'section', 'programacion-san-ignacio');
   assert.ok(range, 'Approved Guadalajara agenda missing from source');
-  const html = renderGdlAgenda({ records: config.records, visibleIds: visible.map(record => record.id), windows: visible, commit, approvalDigest: config.approval.sourceDigest });
+  const html = arrangeGdlAgenda(renderGdlAgenda({ records: config.records, visibleIds: visible.map(record => record.id), windows: visible, commit, approvalDigest: config.approval.sourceDigest }));
   let page = source.slice(0, range.start) + html + source.slice(range.end);
   if (!html) page = page.replace(/<a class="hh-nav-agenda"[^>]*>[\s\S]*?<\/a>/, '');
-  return { files: new Map([[file, page]]), metadata: { approvalDigest: config.approval.sourceDigest,
+  page = refreshGdlFeature(page,{now:evaluatedAt});
+  const files = new Map([[file,page]]);
+  const detail = 'guadalajara/canta-por-tu-cuenta-2026/index.html';
+  if(existsSync(resolve(root,detail))) files.set(detail,refreshGdlFeature(readFileSync(resolve(root,detail),'utf8'),{now:evaluatedAt}));
+  return { files, metadata: { approvalDigest: config.approval.sourceDigest,
     evaluatedAt, visibleIds: visible.map(record => record.id), nextTransitionAt: next[0] ?? null } };
 }

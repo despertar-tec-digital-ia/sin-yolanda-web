@@ -4,6 +4,7 @@ import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {restoreGa4Source} from '../scripts/ga4-source-contract.mjs';
 import {restoreUnifiedHours} from '../scripts/unified-hours-source-contract.mjs';
+import {restoreGdlFocus} from '../scripts/gdl-focus-source-contract.mjs';
 import {checkGa4Coverage} from '../scripts/sync-ga4.mjs';
 
 const root = new URL('../', import.meta.url).pathname;
@@ -13,13 +14,14 @@ const hash = value => createHash('sha256').update(value).digest('hex');
 test('the GA4 release changes only its exact authorized patches and retains complete historical byte guards', () => {
   const contract = JSON.parse(read('scripts/ga4-source-patches.json'));
   for (const [file, entry] of Object.entries(contract.files)) {
-    const source = restoreUnifiedHours(file, read(file));
+    const source = restoreUnifiedHours(file, restoreGdlFocus(file, read(file)));
     assert.equal(hash(source), entry.afterSha256, file);
     assert.equal(hash(restoreGa4Source(file, source)), entry.baselineSha256, file);
     assert.notEqual(hash(restoreGa4Source(file, source + 'unapproved change')), entry.baselineSha256);
     assert.throws(() => restoreGa4Source(file, source + entry.patches.at(-1).after), /GA4 patch/);
   }
-  assert.equal(checkGa4Coverage(root).measuredPages, 23);
+  const manifest = JSON.parse(read('scripts/public-manifest.json'));
+  assert.equal(checkGa4Coverage(root).measuredPages, manifest.pages.length - 1);
 });
 
 test('the served consent bundle matches its current owners and the final notice has no draft or invented fields', () => {

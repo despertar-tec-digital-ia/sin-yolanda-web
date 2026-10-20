@@ -1,5 +1,11 @@
 # Registro de rutas y cambios
 
+**Pase Guadalajara autorizado19-oct:** `/guadalajara/canta-por-tu-cuenta-2026/` es la página
+canónica de la quinta edición, enlazada desde la ficha y el sitemap. Registra contacto directo
+con producción por WhatsApp/teléfono; no captura altas. Tras final2-dic conserva archivo de
+edición con inscripción oculta y regreso a agenda. `/san-ignacio/menu/` mantiene su canonical
+con carta original v82, zoom/PDF y `#cocktails` en página8. QR y WordPress GDL no cambian.
+
 **Última actualización:** 2026-10-09 · **Dueño:** Luis, con aprobación de producto/contenido de Karina.
 **Estado:** inventario de fuentes versionadas y destinos propuestos; no es un crawl HTTP completo.
 No aplicar redirects ni crear páginas solo por figurar en esta tabla.

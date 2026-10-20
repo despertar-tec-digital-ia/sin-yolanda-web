@@ -1,5 +1,107 @@
 # Forma de trabajar y publicar
 
+### Guadalajara · pase autorizado19-oct · publicación
+
+Luis responde «ok» a publicar el pase revisado: foco de Canta/quinta edición y página propia,
+inscripción separada de reservas, Jueves de Solteras segundo, menú original v82 con zoom/PDF,
+iconos, «Tu cantina en Guadalajara» y Visítanos naranja. Se promueve la candidata v7; se integra
+PR41 de horarios unificados sin revertirla. El original de WordPress, QR, home/fotos y demás
+sedes conservan su contenido; todas las páginas actualizan solo la versión de medición común.
+
+Nueva ruta indexable `/guadalajara/canta-por-tu-cuenta-2026/`, canonical por edición y WebPage/
+BreadcrumbList; no se inventa un Event con horario o disponibilidad desconocidos. Medios propios
+permitidos explícitamente: cartel WebP y31archivos de carta. Conserva ancla histórica `#cocktails`
+hacia página8, sin reactivar redirecciones antiguas. Menú fiel en páginas; transcripción HTML
+sigue pendiente. Las contradicciones de bases siguen remitidas al organizador.
+
+La proyección de cada build/scheduler conserva orden Canta/Solteras y retiro del protagonismo
+al3-dic00:00 Guadalajara; la página de edición oculta inscripción y muestra aviso de término
+primero, también con HTML nuevo sin JS. Pestañas abiertas se actualizan con el mismo límite.
+Aprobación de composición renovada con autorización de hoy, preservando ventanas originales.
+`gdl-focus-source-contract` revierte exclusivamente bytes aprobados para conservar guards
+históricos completos. Medición de24páginas: un dueño, contrato compartido, sin teléfono/mensaje
+en payload; consentimiento/ID/cuenta y reserva sin cambios. Publicación por PR→CI→operador→recibo.
+Rollback técnico: revertir este pase mediante PR o deployment anterior registrado en el recibo;
+no restaurar WordPress ni subir carpetas locales. Pruebas y resultado final → memoria del cliente.
+
+### Guadalajara · menú v82 y prioridad al concurso19-oct · candidata local
+
+Encargo de Luis: actualizar el menú recibido, priorizar Canta por tu Cuenta y después Jueves
+de Solteras; «Tu cantina en Guadalajara», Visítanos naranja y botón hacia el concurso vigente.
+Guadalajara conserva su fotografía; el concurso ocupa el mensaje principal y la agenda pasa
+antes de Comida y bebidas. Una sola ficha por evento; el botón usa el ancla ya reconocida
+por medición. Al vencer Canta (3-dic00:00 Guadalajara) vuelve la invitación general, también
+en pestañas abiertas. Home/otras sedes sin cambios.
+
+PDF aportado19-oct: `Menu Sin Yolanda v82_optweb.pdf`,15páginas, SHA256
+`fbcf290eb0af66b539781f592ecfca230662b5a926d94a81ef5bce2d12f3c341`.
+La candidata sustituye el menú central anterior por páginas WebP900/1800, navegación por
+secciones, ampliación con desplazamiento y PDF original. Retira buscador/tablas/artículos
+viejos para no mezclar precios. Ruta `/san-ignacio/menu/`, regreso a `/guadalajara`.
+**Pendiente distinto:** digitalización HTML con texto/buscador conservando arte, tipografía
+y composición; requiere cotejo completo y aclarar ambigüedades de receta. El visor conserva
+el diseño original, no se presenta como esa transcripción terminada.
+
+Fuentes vigentes: convocatoria `https://www.instagram.com/reel/DeNifbXAYbT/` y preguntas
+`https://www.instagram.com/reel/DefY-g7RTFo/`, quinta edición con final2-dic2026. El enlace
+se rotula «Preguntas e inscripción», sin anunciar un documento de bases completas validado.
+La copia indexada de `/canta-cuenta/` de WordPress tiene arte de tercera edición; GET fresco
+sirve arte2026. Sus bases y `/sinyolanda-cantar/` contienen contradicciones de día/fecha y
+avance de ronda: no copiarlas ni corregirlas sin confirmación. Luis desconoce el enlace
+reportado; informa que WordPress lo maneja Pierre. Conservar ese frente con su responsable,
+sin contactos ni cambios remotos por esta tarea. El central usa los dos reels vigentes.
+
+**Operación GDL19-oct:** preferir cambios grandes lunes/martes sin operación. Si se propone
+aplicar durante operación, avisar primero para decidir. El día no autoriza un deploy;
+el pase concreto conserva aprobación explícita. No extrapolar esta preferencia a USA.
+
+Reproducción: `node scripts/build-gdl-focus-review.mjs <salida-nueva-en-.artifacts/public>
+<directorio-de-assets-v82>`; exige `manifest.json` con31archivos verificados. Estilos/control
+locales en `scripts/review/`. Paquete noindex, `publicationEnabled:false`, digest candidato
+separado de la proyección base. Fuentes públicas/manifiesto/aprobaciónPR40 intactos.
+Tras aprobación, integrar su delta exacto, renovar aprobación de composición GDL y pasar
+por CI/CD normal conservando retiros/rollback. No publicar el paquete de revisión.
+
+QA local367tests verdes; menú15páginas sin contenido previo, PDF exacto, zoom/cierre/foco
+comprobados. Brave320/390 sin overflow, CTA visible, naranja rgb(189,74,21), concurso primero.
+Paquete ignorado `.artifacts/gdl-focus-20261019-v4/`, evidencia en
+`.artifacts/gdl-focus-20261019-qa/`, loopback8840. Sin push ni publicación.
+
+
+#### Ampliación19-oct · página del concurso e inscripción, solo local
+
+Luis aporta el cartel dorado y pide revisar `/canta-cuenta/`, replicar su estructura en una
+página propia y facilitar inscripción. Ruta candidata por edición:
+`/guadalajara/canta-por-tu-cuenta-2026/`; «Ver concurso» y navegación de la ficha llevan ahí,
+con icono de micrófono. Reservar mesa conserva WhatsApp3310186159 con SVG; inscripción usa
+**otro destino**, WhatsApp/teléfono3319422709, según cartel y web propios. Mensaje prellenado
+identifica quinta edición/Guadalajara y solicita disponibilidad/pasos; no envía ni da un alta.
+
+Página con arte original intacto (compresión WebP), titular HTML, premios/mecánica/calendario,
+ocho apartados resumidos de información y enlaces a bases originales/cartel completo. Inicio
+7-oct confirmado por el cartel nuevo; semifinal/final25-nov/2-dic de la fuente web. Persisten
+contradicciones de video y avance de ronda: se invita a consultar producción, sin prometer
+registro automático, pase directo ni horario/cierre no corroborados. WordPress/Pierre intactos.
+
+Config único e iconos en `scripts/review/gdl-contest-config.mjs`, página/estilos en `gdl-contest-page.*`.
+Ambos medidores de la candidata proyectan el mismo contrato extendido: ruta exacta, evento
+existente y destinos públicos permitidos. Inscripción es `programming_action_click`; reservar
+sigue `reservation_click`, sin teléfono/mensaje libre en payloads. Consentimiento/ID/cuenta
+idénticos; ningún listener duplicado ni cambios públicos. Bundle de consentimiento también
+incluye la ruta nueva, con prueba aceptación/rechazo/retirada, para evitar dejarla sin cobertura.
+
+El builder recibe cuarto argumento de assets del cartel con manifiesto/hash verificados.
+Candidata `.artifacts/gdl-contest-20261019-v7/public`, evidencia en
+`.artifacts/gdl-contest-20261019-qa/`;370tests verdes y QA desktop/móvil. No publicar el paquete
+ni actualizar el digestPR40 para aparentar autorización. Integración/release siguen pendientes.
+
+Pulido solicitado por Luis: Roboto Slab compartida con la ficha en cuerpo/navegación/botones,
+transición del cartel en ambos ejes, icono de confirmación coherente y regreso visible a
+Guadalajara. El aviso de edición terminada precede al titular al caducar; destinos/reglas
+se conservan. QA Brave320/390/768/820/1024/1440, sin cortes/desbordamientos; salto con teclado,
+anclas bajo encabezado, imágenes, privacidad con ambos botones habilitados y consola sin errores.
+370tests verdes; capturas `polish-desktop.jpg` y `polish-proof.json` en la carpeta de evidencia.
+
 ### Horario unificado · encargo de Karina19-oct
 
 Karina autoriza desde el19-oct el mismo horario local en Guadalajara/San Ignacio,

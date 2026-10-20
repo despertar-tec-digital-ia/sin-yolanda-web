@@ -10,8 +10,8 @@ const discovery = JSON.parse(read('discovery.json'));
 const sitemap = [...read('sitemap.xml').matchAll(/<loc>([^<]+)<\/loc>/g)].map(([, url]) => url);
 
 test('all public destinations are indexable, canonical, unique and in the sitemap; missing pages remain excluded', () => {
-  assert.equal(pages.length, 23);
-  assert.equal(sitemap.length, 23);
+  assert.equal(pages.length, 24);
+  assert.equal(sitemap.length, 24);
   assert.deepEqual(sitemap.sort(), pages.map(page => canonical(read(page))).sort());
   const titles = new Set();
   for (const file of pages) {

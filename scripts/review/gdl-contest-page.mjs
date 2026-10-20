@@ -50,6 +50,7 @@ export function renderContestPage({ active = true } = {}) {
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="/images/sin-yolanda-logo.png">
   <link rel="preload" href="/fonts/bebas-neue-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/roboto-slab-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/review-gdl/gdl-contest-page.css?v=20261019-contest-review">
   <link rel="stylesheet" href="/assets/css/ga4-consent.css?v=20261016-ga4-simple-choice">
   <script defer src="/assets/review-gdl/contest-measurement.js?v=20261019-contest-review"></script>
@@ -68,14 +69,14 @@ export function renderContestPage({ active = true } = {}) {
   <main id="concurso" tabindex="-1">
     <section class="cp-hero" aria-labelledby="cp-title">
       <div class="cp-hero-copy">
-        <p class="cp-location">Sin Yolanda Guadalajara <span>5.ª edición · 2026</span></p>
+        <div class="cp-expired" data-gdl-event-feature="fallback"${fallbackHidden}><p>Esta edición ha terminado.</p><a href="/guadalajara#programacion-san-ignacio">Ver la agenda de Guadalajara</a></div>
+        <p class="cp-location"><a href="/guadalajara" aria-label="Volver a Sin Yolanda Guadalajara"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m14 6-6 6 6 6M8 12h13"/></svg>Sin Yolanda Guadalajara</a><span>5.ª edición · 2026</span></p>
         <h1 id="cp-title">Canta <span class="cp-title-small">por tu</span> Cuenta</h1>
         <p class="cp-challenge">¿Tu voz vale <strong>$100,000?</strong></p>
         <p class="cp-hero-intro">Demuéstralo en Canta por tu Cuenta.</p>
         <p class="cp-hero-dates">Los miércoles, del <time datetime="2026-10-07">7 de octubre</time> al <time datetime="2026-12-02">2 de diciembre de 2026</time>.</p>
         <div class="cp-hero-actions">${registrationLink({ active })}<a class="cp-link" href="#como-participar">Conocer la dinámica ${microphoneIcon}</a></div>
         <p class="cp-registration-note" data-gdl-event-feature="active"${activeHidden}>Inscripción gratuita. Consulta disponibilidad con producción.</p>
-        <div class="cp-expired" data-gdl-event-feature="fallback"${fallbackHidden}><p>Esta edición ha terminado.</p><a href="/guadalajara#programacion-san-ignacio">Ver la agenda de Guadalajara</a></div>
       </div>
       <figure class="cp-hero-art"><img src="${poster}" width="1080" height="1920" alt="Micrófono dorado de Sin Yolanda iluminado sobre una montaña de billetes." fetchpriority="high" decoding="async"></figure>
     </section>
@@ -94,7 +95,7 @@ export function renderContestPage({ active = true } = {}) {
         <ol class="cp-steps">
           <li><span class="cp-step-icon">${whatsappIcon}</span><div><h3>Escríbele a producción</h3><p>Abre WhatsApp para consultar lugares y los pasos de inscripción.</p></div></li>
           <li><span class="cp-step-icon">${microphoneIcon}</span><div><h3>Prepara tu voz</h3><p>Ten listo el coro de una canción a capela y consulta cómo enviar tu video.</p></div></li>
-          <li><span class="cp-step-number" aria-hidden="true">3</span><div><h3>Confirma tu participación</h3><p>Producción te indica la fecha y la hora para presentarte.</p></div></li>
+          <li><span class="cp-step-icon"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4m10-4v4M3 10h18m-13 5 3 3 5-5"/></svg></span><div><h3>Confirma tu participación</h3><p>Producción te indica la fecha y la hora para presentarte.</p></div></li>
         </ol>
         <p class="cp-rounds"><span><strong>7</strong> eliminatorias</span><span><strong>1</strong> semifinal</span><span><strong>1</strong> gran final</span></p>
         <dl class="cp-key-dates"><div><dt>Inicio</dt><dd><time datetime="2026-10-07">7 de octubre</time></dd></div><div><dt>Semifinal</dt><dd><time datetime="2026-11-25">25 de noviembre</time></dd></div><div><dt>Gran final</dt><dd><time datetime="2026-12-02">2 de diciembre</time></dd></div></dl>

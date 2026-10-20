@@ -67,9 +67,16 @@ idénticos; ningún listener duplicado ni cambios públicos. Bundle de consentim
 incluye la ruta nueva, con prueba aceptación/rechazo/retirada, para evitar dejarla sin cobertura.
 
 El builder recibe cuarto argumento de assets del cartel con manifiesto/hash verificados.
-Candidata `.artifacts/gdl-contest-20261019-v4/public`, evidencia en
+Candidata `.artifacts/gdl-contest-20261019-v7/public`, evidencia en
 `.artifacts/gdl-contest-20261019-qa/`;370tests verdes y QA desktop/móvil. No publicar el paquete
 ni actualizar el digestPR40 para aparentar autorización. Integración/release siguen pendientes.
+
+Pulido solicitado por Luis: Roboto Slab compartida con la ficha en cuerpo/navegación/botones,
+transición del cartel en ambos ejes, icono de confirmación coherente y regreso visible a
+Guadalajara. El aviso de edición terminada precede al titular al caducar; destinos/reglas
+se conservan. QA Brave320/390/768/820/1024/1440, sin cortes/desbordamientos; salto con teclado,
+anclas bajo encabezado, imágenes, privacidad con ambos botones habilitados y consola sin errores.
+370tests verdes; capturas `polish-desktop.jpg` y `polish-proof.json` en la carpeta de evidencia.
 
 ### Guadalajara · agenda autorizada16-oct · publicación en curso
 

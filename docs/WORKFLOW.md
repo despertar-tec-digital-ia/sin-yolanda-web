@@ -1,5 +1,25 @@
 # Forma de trabajar y publicar
 
+### Guadalajara · invitación al concurso e icono WhatsApp19-oct · solo local
+
+Luis pide corregir el SVG de WhatsApp y que el bloque de Canta tenga más fuerza y dirija a la
+página propia. Propuesta local: escenario negro/dorado, premio principal destacado, dos premios
+secundarios, video existente silencioso y botón principal «Ver concurso». Botón y video llevan
+al detalle2026; WhatsApp queda secundario. Se reduce texto repetido, sin cambiar premios,
+fechas, condiciones, Jueves, menú, horarios unificados ni caducidad. SVG proporcional de Bootstrap
+Icons1.11.3, con fill nativo y sin stroke heredado, en ficha y página2026; licencia MIT conservada.
+
+Fuentes propuestas en `scripts/review/gdl-invitation-*`; builder local
+`node scripts/build-gdl-invitation-review.mjs <salida-nueva-en-.artifacts/public>`.
+Candidata `.artifacts/gdl-invitation-20261019-v3/public`, loopback8842;294archivos/noindex y
+`publicationEnabled:false`. Propietarios de producción/manifiesto/aprobación anterior intactos.
+Al aprobar, promover el SVG común, renderer y estilos de la propuesta y renovar únicamente el
+digest de composición conforme al flujo normal; no publicar la candidata ni relajar sus gates.
+
+QA381tests verdes; móvil320/390, tablet768 y escritorio sin cortes. Enter del CTA llega al
+concurso, SVG cuadrado con stroke none, video silencioso/bucle y destinos de medición conservados.
+Evidencia en `.artifacts/gdl-invitation-20261019-qa/`. Pendiente revisión/autorización del pase.
+
 ### Guadalajara · pase PUBLICADO19-oct
 
 Luis responde «ok» a publicar el pase revisado: foco de Canta/quinta edición y página propia,

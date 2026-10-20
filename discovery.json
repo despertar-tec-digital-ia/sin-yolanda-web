@@ -36,15 +36,15 @@
         {
           "@type": "OpeningHoursSpecification",
           "dayOfWeek": [
-            "https://schema.org/Wednesday"
+            "https://schema.org/Wednesday",
+            "https://schema.org/Thursday"
           ],
           "opens": "16:00",
-          "closes": "23:00"
+          "closes": "00:00"
         },
         {
           "@type": "OpeningHoursSpecification",
           "dayOfWeek": [
-            "https://schema.org/Thursday",
             "https://schema.org/Friday"
           ],
           "opens": "16:00",
@@ -53,18 +53,11 @@
         {
           "@type": "OpeningHoursSpecification",
           "dayOfWeek": [
-            "https://schema.org/Saturday"
-          ],
-          "opens": "10:00",
-          "closes": "02:00"
-        },
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": [
+            "https://schema.org/Saturday",
             "https://schema.org/Sunday"
           ],
           "opens": "10:00",
-          "closes": "23:00"
+          "closes": "02:00"
         }
       ],
       "timeZone": "America/Denver"
@@ -86,7 +79,45 @@
       "reservation": "https://wa.me/5213310186159",
       "languages": [
         "https://sin-yolanda.com/guadalajara"
-      ]
+      ],
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "https://schema.org/Monday",
+            "https://schema.org/Tuesday"
+          ],
+          "opens": "00:00",
+          "closes": "00:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "https://schema.org/Wednesday",
+            "https://schema.org/Thursday"
+          ],
+          "opens": "16:00",
+          "closes": "00:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "https://schema.org/Friday"
+          ],
+          "opens": "16:00",
+          "closes": "02:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "https://schema.org/Saturday",
+            "https://schema.org/Sunday"
+          ],
+          "opens": "10:00",
+          "closes": "02:00"
+        }
+      ],
+      "timeZone": "America/Mexico_City"
     },
     {
       "id": "san-antonio",
@@ -120,15 +151,15 @@
         {
           "@type": "OpeningHoursSpecification",
           "dayOfWeek": [
-            "https://schema.org/Wednesday"
+            "https://schema.org/Wednesday",
+            "https://schema.org/Thursday"
           ],
           "opens": "16:00",
-          "closes": "23:00"
+          "closes": "00:00"
         },
         {
           "@type": "OpeningHoursSpecification",
           "dayOfWeek": [
-            "https://schema.org/Thursday",
             "https://schema.org/Friday"
           ],
           "opens": "16:00",
@@ -137,18 +168,11 @@
         {
           "@type": "OpeningHoursSpecification",
           "dayOfWeek": [
-            "https://schema.org/Saturday"
-          ],
-          "opens": "10:00",
-          "closes": "02:00"
-        },
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": [
+            "https://schema.org/Saturday",
             "https://schema.org/Sunday"
           ],
           "opens": "10:00",
-          "closes": "23:00"
+          "closes": "02:00"
         }
       ],
       "timeZone": "America/Chicago"
@@ -185,15 +209,15 @@
         {
           "@type": "OpeningHoursSpecification",
           "dayOfWeek": [
-            "https://schema.org/Wednesday"
+            "https://schema.org/Wednesday",
+            "https://schema.org/Thursday"
           ],
           "opens": "16:00",
-          "closes": "23:00"
+          "closes": "00:00"
         },
         {
           "@type": "OpeningHoursSpecification",
           "dayOfWeek": [
-            "https://schema.org/Thursday",
             "https://schema.org/Friday"
           ],
           "opens": "16:00",
@@ -202,18 +226,11 @@
         {
           "@type": "OpeningHoursSpecification",
           "dayOfWeek": [
-            "https://schema.org/Saturday"
-          ],
-          "opens": "10:00",
-          "closes": "02:00"
-        },
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": [
+            "https://schema.org/Saturday",
             "https://schema.org/Sunday"
           ],
           "opens": "10:00",
-          "closes": "23:00"
+          "closes": "02:00"
         }
       ],
       "timeZone": "America/Chicago"
@@ -250,15 +267,15 @@
         {
           "@type": "OpeningHoursSpecification",
           "dayOfWeek": [
-            "https://schema.org/Wednesday"
+            "https://schema.org/Wednesday",
+            "https://schema.org/Thursday"
           ],
           "opens": "16:00",
-          "closes": "23:00"
+          "closes": "00:00"
         },
         {
           "@type": "OpeningHoursSpecification",
           "dayOfWeek": [
-            "https://schema.org/Thursday",
             "https://schema.org/Friday"
           ],
           "opens": "16:00",
@@ -267,18 +284,11 @@
         {
           "@type": "OpeningHoursSpecification",
           "dayOfWeek": [
-            "https://schema.org/Saturday"
-          ],
-          "opens": "10:00",
-          "closes": "02:00"
-        },
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": [
+            "https://schema.org/Saturday",
             "https://schema.org/Sunday"
           ],
           "opens": "10:00",
-          "closes": "23:00"
+          "closes": "02:00"
         }
       ],
       "timeZone": "America/Chicago"

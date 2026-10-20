@@ -1,17 +1,52 @@
 {
-  "confirmedOn": "2026-10-13",
-  "source": "Luis: intake 13-oct-2026, A01; usa-hours-confirmed-2026-10-13.png",
+  "confirmedOn": "2026-10-19",
+  "source": "Karina: horario definitivo autorizado en este chat para las cinco sucursales, vigente desde el 19-oct-2026; miércoles y jueves cierran a medianoche.",
   "zones": {
     "houston": "America/Chicago",
     "san-antonio": "America/Chicago",
     "the-woodlands": "America/Chicago",
-    "el-paso": "America/Denver"
+    "el-paso": "America/Denver",
+    "san-ignacio": "America/Mexico_City"
   },
   "periods": [
-    { "days": ["Monday", "Tuesday"], "closed": true, "es": "Lunes y martes", "en": "Monday and Tuesday" },
-    { "days": ["Wednesday"], "opens": "16:00", "closes": "23:00", "es": "Miércoles", "en": "Wednesday" },
-    { "days": ["Thursday", "Friday"], "opens": "16:00", "closes": "02:00", "es": "Jueves y viernes", "en": "Thursday and Friday" },
-    { "days": ["Saturday"], "opens": "10:00", "closes": "02:00", "es": "Sábado", "en": "Saturday" },
-    { "days": ["Sunday"], "opens": "10:00", "closes": "23:00", "es": "Domingo", "en": "Sunday" }
-  ]
+    {
+      "days": [
+        "Monday",
+        "Tuesday"
+      ],
+      "closed": true,
+      "es": "Lunes y martes",
+      "en": "Monday and Tuesday"
+    },
+    {
+      "days": [
+        "Wednesday",
+        "Thursday"
+      ],
+      "opens": "16:00",
+      "closes": "00:00",
+      "es": "Miércoles y jueves",
+      "en": "Wednesday and Thursday"
+    },
+    {
+      "days": [
+        "Friday"
+      ],
+      "opens": "16:00",
+      "closes": "02:00",
+      "es": "Viernes",
+      "en": "Friday"
+    },
+    {
+      "days": [
+        "Saturday",
+        "Sunday"
+      ],
+      "opens": "10:00",
+      "closes": "02:00",
+      "es": "Sábado y domingo",
+      "en": "Saturday and Sunday"
+    }
+  ],
+  "effectiveDate": "2026-10-19"
 }

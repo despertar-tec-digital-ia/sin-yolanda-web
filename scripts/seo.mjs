@@ -7,6 +7,7 @@ import { restoreAgendaSource } from './agenda-source-contract.mjs';
 import { restoreMeasurementSource } from './measurement-source-contract.mjs';
 import { restoreHomePhotos } from './home-photos-source-contract.mjs';
 import { restoreGa4Source } from './ga4-source-contract.mjs';
+import { restoreUnifiedHours } from './unified-hours-source-contract.mjs';
 
 export const origin = 'https://sin-yolanda.com';
 const root = resolve(import.meta.dirname, '..');
@@ -37,6 +38,7 @@ export function renderShell(html, now = new Date(), sourceRoot = root) {
 }
 
 export function restoreSeoBaseline(file, html) {
+  html = restoreUnifiedHours(file, html);
   html = restoreGa4Source(file,html);
   html = restoreHomePhotos(file,html);
   html = restoreMeasurementSource(file,html);

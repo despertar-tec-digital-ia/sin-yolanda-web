@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {restoreGa4Source} from '../scripts/ga4-source-contract.mjs';
+import {restoreUnifiedHours} from '../scripts/unified-hours-source-contract.mjs';
 import {checkGa4Coverage} from '../scripts/sync-ga4.mjs';
 
 const root = new URL('../', import.meta.url).pathname;
@@ -12,7 +13,7 @@ const hash = value => createHash('sha256').update(value).digest('hex');
 test('the GA4 release changes only its exact authorized patches and retains complete historical byte guards', () => {
   const contract = JSON.parse(read('scripts/ga4-source-patches.json'));
   for (const [file, entry] of Object.entries(contract.files)) {
-    const source = read(file);
+    const source = restoreUnifiedHours(file, read(file));
     assert.equal(hash(source), entry.afterSha256, file);
     assert.equal(hash(restoreGa4Source(file, source)), entry.baselineSha256, file);
     assert.notEqual(hash(restoreGa4Source(file, source + 'unapproved change')), entry.baselineSha256);

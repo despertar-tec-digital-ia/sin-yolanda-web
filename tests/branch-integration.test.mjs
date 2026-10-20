@@ -189,7 +189,7 @@ test('El Paso keeps verified reservations, phone and original menu; A01 supplies
     assert.match(html, /data-status="open"/);
     assert.equal(schema.hasMenu, 'https://sin-yolanda.com/el-paso/menu/');
     assert.equal(schema.telephone, '+19153636330');
-    assert.equal(schema.openingHoursSpecification.length, 5);
+    assert.equal(schema.openingHoursSpecification.length, 4);
     assert.equal(schema.acceptsReservations, 'https://www.opentable.com/restaurant/profile/1559290');
     assert.doesNotMatch(html, /widget\/reservation\/loader|class="ep-reservations"/);
     assert.match(html, /href="https:\/\/www.opentable.com\/restaurant\/profile\/1559290"/);

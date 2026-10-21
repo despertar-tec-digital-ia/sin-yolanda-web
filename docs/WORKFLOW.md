@@ -1,6 +1,6 @@
 # Forma de trabajar y publicar
 
-### Guadalajara · corrección de WhatsApp20-oct · publicación en preparación
+### Guadalajara · corrección de WhatsApp PUBLICADA20-oct
 
 Luis reporta que el logo sigue deformado en la ficha publicada. Causa reproducida: el CSS importado
 `houston-hero-study.JylKseCc.css` aplica `svg path{fill:none;stroke:currentColor;stroke-width:1.5px}`.
@@ -12,8 +12,18 @@ con el encargo correctivo; contrato histórico conserva bytes completos y rechaz
 
 381tests pasan; navegador local verifica los tres paths con relleno de su contexto y stroke none,
 más captura inspeccionada del botón. Evidencia en `.artifacts/whatsapp-fill-20261020/`.
-Menú v82 y su digitalización siguen sin tocarse. Pendiente CI→operador→recibo→QA de paths en dominio.
-Rollback: deployment de PR43 o revertir solo este ajuste por PR.
+Menú v82 y su digitalización siguen sin tocarse. Publicado por PR44/head
+`83030073a408a2f7897f7f5e9a205abe59832b56` → main `f02e061b6e82fbaf4e169f1d747136d19ea5a74f`.
+CI39546965810/CD39547022729, preview y producción verdes. Pages
+`3311d85f-f297-49eb-9d6f-57cb44b4f817`; anterior/rollback PR43
+`606d22e6-c223-4223-86a7-464a6405b0bd`. Recibo
+`.artifacts/approved-release-44-1792558688250/receipt.json`: GET291archivos/49aliases/10excluidos,
+sin fallos ni hashes distintos. Cotejo de fuentes: solo gdl-focus.css y versión en guadalajara.html;
+menú y detalle del concurso exactos al pase previo. Navegador productivo: tres paths de ficha y
+cinco de detalle con fill igual al color de contexto/stroke none; móvil390 sin overflow y override
+restablecido. Se recarga la ficha abierta de Luis y se inspecciona `after-production.png`.
+Contención verificada; hueco de QA registrado como recurrencia del hallazgo010 local, sin refactor
+global. Rollback: deployment anterior o revertir solo este ajuste por PR. Cierre documental local.
 
 ### Guadalajara · pase visual PUBLICADO20-oct · menú conservado
 

@@ -3,8 +3,8 @@
   "approvedBy": "Luis",
   "approvedAt": "2026-10-17T00:04:42.276Z",
   "publicationEnabled": true,
-  "authorization": "Luis approves publishing the reviewed Guadalajara pass with ok: contest-first branch, edition page and registration, Solteras second, original v82 menu viewer, icons, cantina wording and orange Visítanos. Existing event windows and unresolved factual limits retained.",
-  "sourceDigest": "368ef7bb24e5bb8f12206e2769505a49fbbd4c02f8be9a9f1ee3c91370ab825d",
+  "authorization": "Luis approves publishing the reviewed Guadalajara visual pass with ok: stronger contest invitation linking to the 2026 detail page, corrected WhatsApp artwork, contest footer and agenda heading spacing. Menu digitization explicitly deferred; current v82 viewer and original event windows retained.",
+  "sourceDigest": "4c6cb6f9e8d0e312df728f3685068a8a03115d6f7c5c75857d7a9f3215af520b",
   "records": [
     {
       "id": "san-ignacio-brujas-20261031",
@@ -35,5 +35,5 @@
     "No event-specific hours or registration deadlines invented.",
     "Solteras validity dates remain unconfirmed; no future dated occurrences generated."
   ],
-  "presentationApprovedAt": "2026-10-20T05:23:45.411Z"
+  "presentationApprovedAt": "2026-10-21T04:16:35.702Z"
 }

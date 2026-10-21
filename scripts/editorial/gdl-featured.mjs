@@ -1,7 +1,5 @@
 // Approved Guadalajara presentation; reused by builds and scheduled expiry projections.
 import {elementRange} from './public-agenda.mjs';
-import {escapeHtml as esc} from './branch-agenda.mjs';
-import {registrationWhatsapp,whatsappIcon} from './gdl-contest-config.mjs';
 export const featuredUntil='2026-12-03T06:00:00.000Z';
 
 export function arrangeGdlAgenda(html) {
@@ -10,11 +8,8 @@ export function arrangeGdlAgenda(html) {
     const part=elementRange(html,'section',id);
     if(part){promoted.push(part.html);html=html.slice(0,part.start)+html.slice(part.end);}
   }
-  html=html.replace(/(<h2 id="programacion-san-ignacio-title")[^>]*>/,'$1 class="sy-agenda-sr">')
-    .replace('</h2>','</h2>'+promoted.join('\n'))
-    .replace('Bases e inscripción<span','Preguntas e inscripción<span')
-    .replace('Para mayores de edad. Inscripción: envía un video cantando a capela el coro de una canción al (33) 1942 2709. Consulta requisitos y disponibilidad con la sucursal.','Para mayores de edad. Consulta cómo inscribirte, requisitos y disponibilidad al (33) 1942 2709.');
-  return html.replace(/<a class="sy-gdl-detail-link"[\s\S]*?<\/a>/,link=>`<div class="gdl-card-actions"><a class="gdl-register-link" href="${esc(registrationWhatsapp)}" target="_blank" rel="noopener noreferrer">${whatsappIcon}Inscribirme por WhatsApp<span class="sy-agenda-sr"> · abre otra pestaña</span></a>${link}</div>`);
+  return html.replace(/(<h2 id="programacion-san-ignacio-title")[^>]*>/,'$1 class="sy-agenda-sr">')
+    .replace('</h2>','</h2>'+promoted.join('\n'));
 }
 
 export function refreshGdlFeature(source,{now}={}) {

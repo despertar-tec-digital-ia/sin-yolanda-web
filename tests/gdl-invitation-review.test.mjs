@@ -1,8 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {loadGdlApproval} from '../scripts/editorial/gdl-approved.mjs';
-import {renderGdlAgenda} from '../scripts/review/gdl-invitation-agenda.mjs';
-import {arrangeInvitation} from '../scripts/build-gdl-invitation-review.mjs';
+import {renderGdlAgenda} from '../scripts/editorial/gdl-agenda.mjs';
+import {arrangeGdlAgenda as arrangeInvitation} from '../scripts/editorial/gdl-featured.mjs';
 import {contestPath,contestRecord,registrationWhatsapp} from '../scripts/editorial/gdl-contest-config.mjs';
 import {measurementHarness} from './helpers/measurement-harness.mjs';
 const root=new URL('../',import.meta.url).pathname;

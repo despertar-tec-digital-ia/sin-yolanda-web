@@ -15,8 +15,8 @@
     "assets/css/ga4-consent.css": "20261016-ga4-simple-choice",
     "assets/css/gdl-agenda.css": "20261016-gdl-agenda",
     "assets/js/gdl-agenda-video.js": "20261016-gdl-agenda",
-    "assets/css/gdl-contest-page.css": "20261019-gdl-contest",
-    "assets/css/gdl-focus.css": "20261019-gdl-focus",
+    "assets/css/gdl-contest-page.css": "20261020-gdl-visual",
+    "assets/css/gdl-focus.css": "20261020-gdl-visual",
     "assets/js/gdl-focus.js": "20261019-gdl-focus",
     "assets/css/gdl-menu.css": "20261019-gdl-v82",
     "assets/js/gdl-menu.js": "20261019-gdl-v82"
@@ -315,7 +315,8 @@
     "assets/menus/gdl-v82/gdl-v82-14-900.webp",
     "assets/menus/gdl-v82/gdl-v82-15-1800.webp",
     "assets/menus/gdl-v82/gdl-v82-15-900.webp",
-    "assets/menus/gdl-v82/original.pdf"
+    "assets/menus/gdl-v82/original.pdf",
+    "licenses/bootstrap-icons.txt"
   ],
   "assetVersion": "20261008-migration-measurement",
   "reviewPages": []

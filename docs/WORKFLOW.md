@@ -1,5 +1,21 @@
 # Forma de trabajar y publicar
 
+### Guadalajara · pase visual autorizado20-oct · publicación en preparación
+
+Luis responde «ok» a cerrar la publicación del último pase y precisa «no digitalices menú aún».
+Alcance exacto: invitación negro/dorado y CTA/video hacia detalle2026, SVG WhatsApp corregido,
+footer del concurso y acomodo de títulos/fechas/separaciones en agenda. Se promueven los bytes
+revisados de la candidata v6; el renderer público conserva esa composición en cada build.
+Footer con reservas de sucursal, distintas de inscripción; preferencias de privacidad conservadas.
+Fuentes y CSS propios pasan al circuito publicado, licencia MIT de Bootstrap Icons incluida.
+Digest de composición renovado con el OK actual, sin alterar ventanas originales, datos ni horarios.
+Contrato histórico de Guadalajara conserva restauración completa y rechazos a cambios desconocidos.
+
+Menú v82/visor/PDF sin cambios; digitalización HTML aplazada expresamente. Home, otras sedes,
+WordPress, QR y consentimiento sin cambios. Publicación pendiente de CI→operador→recibo y
+verificación en dominio. Rollback disponible: deployment anterior PR42 o revertir solo este pase
+mediante PR. Evidencia de integración/QA en `.artifacts/gdl-visual-release-20261020/`.
+
 ### Guadalajara · invitación al concurso e icono WhatsApp19-oct · solo local
 
 Luis pide corregir el SVG de WhatsApp y que el bloque de Canta tenga más fuerza y dirija a la

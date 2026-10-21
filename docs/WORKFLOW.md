@@ -1,6 +1,6 @@
 # Forma de trabajar y publicar
 
-### Guadalajara · pase visual autorizado20-oct · publicación en preparación
+### Guadalajara · pase visual PUBLICADO20-oct · menú conservado
 
 Luis responde «ok» a cerrar la publicación del último pase y precisa «no digitalices menú aún».
 Alcance exacto: invitación negro/dorado y CTA/video hacia detalle2026, SVG WhatsApp corregido,
@@ -12,11 +12,22 @@ Digest de composición renovado con el OK actual, sin alterar ventanas originale
 Contrato histórico de Guadalajara conserva restauración completa y rechazos a cambios desconocidos.
 
 Menú v82/visor/PDF sin cambios; digitalización HTML aplazada expresamente. Home, otras sedes,
-WordPress, QR y consentimiento sin cambios. Publicación pendiente de CI→operador→recibo y
-verificación en dominio. Rollback disponible: deployment anterior PR42 o revertir solo este pase
-mediante PR. Evidencia de integración/QA en `.artifacts/gdl-visual-release-20261020/`.
+WordPress, QR y consentimiento sin cambios.381tests sobre commit limpio con Node22.23.3;
+paquete293archivos. Cotejo de292fuentes previas: solo dos páginas de GDL y sus dos CSS cambiaron,
+más licencia nueva. Agenda, footer y estilos coinciden con candidata revisada v6.
 
-### Guadalajara · invitación al concurso e icono WhatsApp19-oct · solo local
+Publicado por PR43/head `a8fabed8b34ba5abcf7a0e3e4ca5ddf8ea28a9af` → main
+`42ad94a0e10f2150ed26cf0a929f4e069e7b482b`. CI39543570825/CD39543619864 y preview/producción
+verdes. Pages `606d22e6-c223-4223-86a7-464a6405b0bd`; anterior/rollback PR42
+`fcda2a9e-4286-4108-8546-7890b17abd07`. GET:291archivos,49aliases y10rutas excluidas,
+sin fallos ni hashes distintos. Recibo `.artifacts/approved-release-43-1792556457630/receipt.json`.
+Navegador en dominio: una sola tarjeta Canta, Enter del CTA llega a edición2026, iconos16×16
+sin stroke, horario PR41 y canales distintos conservados; footer cargado con preferencias.
+Móvil390: agenda y footer sin overflow/textos cortados; override restablecido. Captura publicada
+y prueba de alcance en `.artifacts/gdl-visual-release-20261020/`. Rollback mediante deployment
+anterior o revertir solo este pase mediante PR. Cierre documental local, sin otro despliegue.
+
+### Guadalajara · invitación al concurso e icono WhatsApp19-oct · antecedente local, promovido20-oct
 
 Luis pide corregir el SVG de WhatsApp y que el bloque de Canta tenga más fuerza y dirija a la
 página propia. Propuesta local: escenario negro/dorado, premio principal destacado, dos premios
@@ -42,7 +53,7 @@ QA381tests verdes; móvil320/390, tablet768 y escritorio sin cortes. Enter del C
 concurso, SVG cuadrado con stroke none, video silencioso/bucle y destinos de medición conservados.
 Footer: teclado visible, enlaces locales200, privacidad abre y conserva elección; secciones
 con separación uniforme. Evidencia en `.artifacts/gdl-invitation-20261019-qa/` (incluye
-`footer-check.log` y `footer-proof.json`). Pendiente revisión/autorización del pase completo.
+`footer-check.log` y `footer-proof.json`). Aprobado y publicado posteriormente en PR43, bloque superior.
 
 ### Guadalajara · pase PUBLICADO19-oct
 

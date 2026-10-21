@@ -3,8 +3,8 @@
   "approvedBy": "Luis",
   "approvedAt": "2026-10-17T00:04:42.276Z",
   "publicationEnabled": true,
-  "authorization": "Luis approves publishing the reviewed Guadalajara visual pass with ok: stronger contest invitation linking to the 2026 detail page, corrected WhatsApp artwork, contest footer and agenda heading spacing. Menu digitization explicitly deferred; current v82 viewer and original event windows retained.",
-  "sourceDigest": "4c6cb6f9e8d0e312df728f3685068a8a03115d6f7c5c75857d7a9f3215af520b",
+  "authorization": "Luis requests fixing the WhatsApp logo on the published Guadalajara page. This repairs inherited fill/stroke on the actual SVG path within the already approved visual pass. Existing content, contacts, event windows and menu remain unchanged.",
+  "sourceDigest": "70b3e5e2b6fcea90c1aa0b4a7ccc847a353122e51883daea23844a22cabb7e38",
   "records": [
     {
       "id": "san-ignacio-brujas-20261031",
@@ -35,5 +35,5 @@
     "No event-specific hours or registration deadlines invented.",
     "Solteras validity dates remain unconfirmed; no future dated occurrences generated."
   ],
-  "presentationApprovedAt": "2026-10-21T04:16:35.702Z"
+  "presentationApprovedAt": "2026-10-21T04:55:22.169Z"
 }

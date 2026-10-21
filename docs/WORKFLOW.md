@@ -1,5 +1,20 @@
 # Forma de trabajar y publicar
 
+### Guadalajara · corrección de WhatsApp20-oct · publicación en preparación
+
+Luis reporta que el logo sigue deformado en la ficha publicada. Causa reproducida: el CSS importado
+`houston-hero-study.JylKseCc.css` aplica `svg path{fill:none;stroke:currentColor;stroke-width:1.5px}`.
+El SVG raíz tenía stroke none, pero su path computaba fill none/stroke del texto; la QA anterior
+solo comprobó el contenedor. Corrección limitada en gdl-focus.css: relleno currentColor y stroke
+none también sobre el path del logo, con selector de Guadalajara. No se modifica el CSS importado,
+el SVG aprobado, tamaños, destinos ni contenido. Caché CSS nueva y digest de composición renovado
+con el encargo correctivo; contrato histórico conserva bytes completos y rechazos negativos.
+
+381tests pasan; navegador local verifica los tres paths con relleno de su contexto y stroke none,
+más captura inspeccionada del botón. Evidencia en `.artifacts/whatsapp-fill-20261020/`.
+Menú v82 y su digitalización siguen sin tocarse. Pendiente CI→operador→recibo→QA de paths en dominio.
+Rollback: deployment de PR43 o revertir solo este ajuste por PR.
+
 ### Guadalajara · pase visual PUBLICADO20-oct · menú conservado
 
 Luis responde «ok» a cerrar la publicación del último pase y precisa «no digitalices menú aún».

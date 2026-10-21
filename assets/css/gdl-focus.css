@@ -9,6 +9,8 @@ body[data-branch="san-ignacio"] #programacion-san-ignacio .sy-gdl-competition{ma
 body[data-branch="san-ignacio"] #visita-san-ignacio{--local-secondary:#bd4a15}
 [data-gdl-event-feature][hidden]{display:none!important}
 .gdl-action-icon{width:21px;height:21px;display:inline-block;vertical-align:middle;flex-shrink:0}
+/* The imported hero sheet outlines every svg path; this brand glyph uses filled artwork. */
+body[data-branch="san-ignacio"] svg.gdl-whatsapp-icon,body[data-branch="san-ignacio"] svg.gdl-whatsapp-icon>path{fill:currentColor;stroke:none}
 body[data-branch="san-ignacio"] .hh-welcome-actions .hh-reserve,body[data-branch="san-ignacio"] .hh-welcome-actions .hh-welcome-menu{display:inline-flex;align-items:center;justify-content:center;gap:10px}
 body[data-branch="san-ignacio"] .hh-welcome-actions .gdl-action-icon{width:21px;height:21px}
 .gdl-card-actions{display:flex;align-items:center;flex-wrap:wrap;gap:16px;margin-top:24px}

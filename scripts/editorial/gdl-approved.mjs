@@ -12,7 +12,7 @@ export const gdlApprovalInputs = ['scripts/editorial/front-b-events.json', 'scri
   'scripts/editorial/gdl-agenda.mjs', 'scripts/editorial/gdl-approved.mjs',
   'scripts/editorial/gdl-review.css', 'scripts/editorial/gdl-review-video.js',
   'scripts/editorial/gdl-featured.mjs', 'scripts/editorial/gdl-contest-config.mjs',
-  'scripts/editorial/gdl-contest-page.mjs', 'assets/css/gdl-focus.css', 'assets/css/gdl-contest-page.css',
+  'scripts/editorial/gdl-contest-page.mjs', 'scripts/editorial/gdl-contest-footer.mjs', 'assets/css/gdl-focus.css', 'assets/css/gdl-contest-page.css',
   'assets/css/gdl-menu.css', 'assets/js/gdl-focus.js', 'assets/js/gdl-menu.js'];
 const hash = value => createHash('sha256').update(value).digest('hex');
 export function gdlApprovalDigest(root) {

@@ -1,6 +1,50 @@
 # Forma de trabajar y publicar
 
-### Guadalajara · pase autorizado19-oct · publicación
+### Guadalajara · pase visual autorizado20-oct · publicación en preparación
+
+Luis responde «ok» a cerrar la publicación del último pase y precisa «no digitalices menú aún».
+Alcance exacto: invitación negro/dorado y CTA/video hacia detalle2026, SVG WhatsApp corregido,
+footer del concurso y acomodo de títulos/fechas/separaciones en agenda. Se promueven los bytes
+revisados de la candidata v6; el renderer público conserva esa composición en cada build.
+Footer con reservas de sucursal, distintas de inscripción; preferencias de privacidad conservadas.
+Fuentes y CSS propios pasan al circuito publicado, licencia MIT de Bootstrap Icons incluida.
+Digest de composición renovado con el OK actual, sin alterar ventanas originales, datos ni horarios.
+Contrato histórico de Guadalajara conserva restauración completa y rechazos a cambios desconocidos.
+
+Menú v82/visor/PDF sin cambios; digitalización HTML aplazada expresamente. Home, otras sedes,
+WordPress, QR y consentimiento sin cambios. Publicación pendiente de CI→operador→recibo y
+verificación en dominio. Rollback disponible: deployment anterior PR42 o revertir solo este pase
+mediante PR. Evidencia de integración/QA en `.artifacts/gdl-visual-release-20261020/`.
+
+### Guadalajara · invitación al concurso e icono WhatsApp19-oct · solo local
+
+Luis pide corregir el SVG de WhatsApp y que el bloque de Canta tenga más fuerza y dirija a la
+página propia. Propuesta local: escenario negro/dorado, premio principal destacado, dos premios
+secundarios, video existente silencioso y botón principal «Ver concurso». Botón y video llevan
+al detalle2026; WhatsApp queda secundario. Se reduce texto repetido, sin cambiar premios,
+fechas, condiciones, Jueves, menú, horarios unificados ni caducidad. SVG proporcional de Bootstrap
+Icons1.11.3, con fill nativo y sin stroke heredado, en ficha y página2026; licencia MIT conservada.
+
+Fuentes propuestas en `scripts/review/gdl-invitation-*`; builder local
+`node scripts/build-gdl-invitation-review.mjs <salida-nueva-en-.artifacts/public>`.
+Candidata `.artifacts/gdl-invitation-20261019-v6/public`, loopback8842;295archivos/noindex y
+`publicationEnabled:false`. Propietarios de producción/manifiesto/aprobación anterior intactos.
+Al aprobar, promover el SVG común, renderer y estilos de la propuesta y renovar únicamente el
+digest de composición conforme al flujo normal; no publicar la candidata ni relajar sus gates.
+
+Ampliación solicitada por Luis: footer propio en la página del concurso con marca, ubicación,
+reservas y navegación; conserva el acceso funcional a preferencias de privacidad. El número de
+reservas sigue separado del de inscripción. En la ficha, noches/fechas/promociones comparten
+separación y jerarquía; títulos de evento con saltos equilibrados y fecha de menor tamaño.
+Fuentes adicionales `scripts/review/gdl-contest-footer.{mjs,css}`. No cambia contenido editorial.
+
+QA381tests verdes; móvil320/390, tablet768 y escritorio sin cortes. Enter del CTA llega al
+concurso, SVG cuadrado con stroke none, video silencioso/bucle y destinos de medición conservados.
+Footer: teclado visible, enlaces locales200, privacidad abre y conserva elección; secciones
+con separación uniforme. Evidencia en `.artifacts/gdl-invitation-20261019-qa/` (incluye
+`footer-check.log` y `footer-proof.json`). Pendiente revisión/autorización del pase completo.
+
+### Guadalajara · pase PUBLICADO19-oct
 
 Luis responde «ok» a publicar el pase revisado: foco de Canta/quinta edición y página propia,
 inscripción separada de reservas, Jueves de Solteras segundo, menú original v82 con zoom/PDF,
@@ -22,7 +66,16 @@ Aprobación de composición renovada con autorización de hoy, preservando venta
 históricos completos. Medición de24páginas: un dueño, contrato compartido, sin teléfono/mensaje
 en payload; consentimiento/ID/cuenta y reserva sin cambios. Publicación por PR→CI→operador→recibo.
 Rollback técnico: revertir este pase mediante PR o deployment anterior registrado en el recibo;
-no restaurar WordPress ni subir carpetas locales. Pruebas y resultado final → memoria del cliente.
+no restaurar WordPress ni subir carpetas locales.
+
+PUBLICADO por PR42/head `65c12ef8248bb166d5c700cd4680bacf39fe7977` → main
+`d596e7ad99129e5cb9604b49496fdf7b65f8e48e`.379tests sobre commit limpio, CI39375513158 y
+CD39375566615 verdes; preview y producción verificadas. Pages `fcda2a9e-4286-4108-8546-7890b17abd07`,
+anterior/rollback `fc51f168-4867-4c0b-b2cc-90fb8c3e35b6`.292archivos de paquete; GET verifica
+290archivos,49aliases y10rutas excluidas, sin hashes distintos ni fallos. Recibo local en
+`.artifacts/approved-release-42-1792474377818/receipt.json`. Brave en dominio: ficha→concurso→menú,
+cartel1080px cargado, WhatsApp de inscripción correcto, móvil390 sin overflow y15páginas v82
+con PDF/zoom/ancla histórica. WordPress/QR intactos. Cierre documental local; no nueva publicación.
 
 ### Guadalajara · menú v82 y prioridad al concurso19-oct · candidata local
 

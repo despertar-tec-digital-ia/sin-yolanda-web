@@ -63,7 +63,9 @@ test('Dedicated page keeps the 2026 identity, registration contact and original 
   assert.equal((html.match(/<h1\b/g)||[]).length,1);
   assert.equal((html.match(/<li><h3>/g)||[]).length,8);
   assert.ok(html.includes('canta-2026-poster.webp'));
-  assert.ok(html.includes(registrationPhone));assert.ok(!html.includes('3310186159'));
+  const main=html.match(/<main\b[\s\S]*?<\/main>/)?.[0];
+  assert.ok(main.includes(registrationPhone));assert.ok(!main.includes('3310186159'),'Contest signup stays separate from branch reservations in the footer');
+  assert.match(html,/<footer\b[\s\S]*href="https:\/\/wa.me\/5213310186159"/);
   assert.ok(!html.includes('6 de octubre'));
   assert.ok(!html.includes('pase directo a la final'));
   assert.match(expired,/data-gdl-event-feature="fallback"><p>Esta edición ha terminado/);

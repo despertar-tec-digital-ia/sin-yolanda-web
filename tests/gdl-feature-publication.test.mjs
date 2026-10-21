@@ -22,6 +22,11 @@ test('approved GDL production feature survives fresh agenda projection without d
  assert.ok(html.includes('data-agenda-approval="'+approval.sourceDigest+'"'));
  assert.ok(html.includes('10:00 a. m.–2:00 a. m. del día siguiente.'));
  for(const page of [html,result.files.get(detail)])assert.doesNotMatch(page,/assets\/review-gdl|noindex,nofollow/);
+ const footer=result.files.get(detail).match(/<footer\b[\s\S]*?<\/footer>/)?.[0];
+ assert.ok(footer?.includes('cp-footer-full'));
+ assert.match(footer,/href="https:\/\/wa.me\/5213310186159"/,'Footer reservations keep the branch channel');
+ assert.ok(!footer.includes('data-record='),'Footer reservation must not inherit contest signup intent');
+ for(const href of ['/guadalajara','/san-ignacio/menu/','/#ubicaciones','/aviso-de-privacidad'])assert.ok(footer.includes('href="'+href+'"'));
 });
 
 test('a fresh build retires registration on both GDL pages at final-date local midnight',()=>{

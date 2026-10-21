@@ -1,3 +1,4 @@
+import {renderContestFooter} from './gdl-contest-footer.mjs';
 import {
   contestPath,
   contestRecord,
@@ -111,7 +112,7 @@ export function renderContestPage({ active = true, publication = false } = {}) {
       <div class="cp-contact-actions">${registrationLink({ active })}<a class="cp-phone" href="${escapeHtml(registrationPhone)}" data-record="${escapeHtml(contestRecord)}">O llama al ${escapeHtml(registrationNumber)}</a></div>
     </section>
   </main>
-  <footer class="cp-footer"><a href="/guadalajara">Volver a tu cantina en Guadalajara</a><a href="/aviso-de-privacidad">Privacidad</a></footer>
+  ${renderContestFooter()}
   <script defer src="/assets/review-gdl/contest-consent.js?v=20261019-contest-review"></script>
   <script defer src="/assets/review-gdl/gdl-focus.js?v=20261019-gdl-focus"></script>
 </body>
@@ -123,7 +124,7 @@ export function renderContestPage({ active = true, publication = false } = {}) {
   ] };
   return html.replace('content="noindex,nofollow"','content="index,follow,max-image-preview:large"')
     .replaceAll('/assets/review-gdl/canta-2026-poster.webp','/assets/agenda/gdl-canta-2026-poster.webp')
-    .replaceAll('/assets/review-gdl/gdl-contest-page.css?v=20261019-contest-review','/assets/css/gdl-contest-page.css?v=20261019-gdl-contest')
+    .replaceAll('/assets/review-gdl/gdl-contest-page.css?v=20261019-contest-review','/assets/css/gdl-contest-page.css?v=20261020-gdl-visual')
     .replaceAll('/assets/review-gdl/contest-measurement.js?v=20261019-contest-review','/assets/js/site-measurement.js?v=20261019-gdl-contest')
     .replaceAll('/assets/review-gdl/contest-consent.js?v=20261019-contest-review','/assets/js/ga4-consent.js?v=20261019-gdl-contest')
     .replaceAll('/assets/review-gdl/gdl-focus.js?v=20261019-gdl-focus','/assets/js/gdl-focus.js?v=20261019-gdl-focus')

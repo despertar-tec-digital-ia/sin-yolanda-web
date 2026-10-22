@@ -1,0 +1,17 @@
+[data-participation-review] [data-gdl-participation][hidden]{display:none!important}
+body[data-participation-review][data-branch="san-ignacio"] .gdl-participation{margin-top:20px;max-width:38em}
+body[data-participation-review] .gdl-participate-message{margin:0;max-width:22em;font-family:HoustonDisplay,Impact,sans-serif;font-weight:400;line-height:1.08;text-wrap:balance}
+body[data-participation-review] .gdl-participate-message strong{display:block;font-size:clamp(42px,3.5vw,54px);font-weight:400;margin-bottom:8px}
+body[data-participation-review] .gdl-participate-message>span{display:block;font-size:clamp(29px,2.3vw,36px);line-height:1.15;max-width:30ch}
+body[data-participation-review] .gdl-participate-message time{white-space:nowrap}
+body[data-participation-review] .gdl-registration-number{display:flex;flex-direction:column;align-items:flex-start;gap:3px;margin-top:21px}
+body[data-participation-review] .gdl-registration-number>span{font-size:12px;line-height:1.5}
+body[data-participation-review] .gdl-registration-number>a{display:inline-flex;align-items:center;min-height:48px;color:inherit;font:400 clamp(50px,4.3vw,62px)/1.1 HoustonDisplay,Impact,sans-serif;text-decoration:none;white-space:nowrap;letter-spacing:.025em}
+body[data-participation-review] .gdl-registration-number>a:hover{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:6px}
+body[data-participation-review] .gdl-registration-number>a:focus-visible{outline:3px solid currentColor;outline-offset:5px}
+body[data-participation-review].cp-page .gdl-registration-number>a{font-family:CantaDisplay,Impact,sans-serif;color:var(--cp-bright);font-size:clamp(43px,4vw,58px)}
+body[data-participation-review].cp-page .gdl-registration-number>span{color:#cdbb9e}
+body[data-participation-review].cp-page .cp-contact .cp-phone{font-family:CantaDisplay,Impact,sans-serif;font-size:36px;line-height:1.2;text-decoration:none}
+@media(min-width:761px){body[data-participation-review] .hh-invitation[data-gdl-event-feature="active"]{font-size:clamp(68px,6.4vw,90px);line-height:.9;margin-top:24px}body[data-participation-review] .hh-welcome{padding-top:114px;padding-bottom:40px}body[data-participation-review] .hh-welcome-actions{margin-top:23px}body[data-participation-review] .hh-welcome-foot{margin-top:27px}}
+@media(max-width:760px){body[data-participation-review][data-branch="san-ignacio"] .gdl-participation{margin-top:20px}body[data-participation-review] .gdl-participate-message strong{font-size:42px}body[data-participation-review] .gdl-participate-message>span{font-size:29px;max-width:24ch}body[data-participation-review] .gdl-registration-number{margin-top:19px}body[data-participation-review] .gdl-registration-number>a{font-size:48px}body[data-participation-review] .hh-welcome{padding-bottom:28px}body[data-participation-review] .hh-invitation[data-gdl-event-feature="active"]{font-size:76px;line-height:.9}body[data-participation-review].cp-page .gdl-detail-phone{order:9}body[data-participation-review].cp-page .gdl-registration-number{align-items:center;margin-top:22px}body[data-participation-review].cp-page .cp-contact .cp-phone{font-size:32px}}
+@media(max-width:760px){body[data-participation-review] #san-ignacio .hh-cantina-photo::after{background:linear-gradient(180deg,#15070aeb 0%,#1f080cc7 32%,#1f080cb3 70%,#15070af2 100%)}}

@@ -1,5 +1,28 @@
 # Forma de trabajar y publicar
 
+### Guadalajara · participa/última eliminatoria y teléfono21-oct · propuesta local
+
+Luis aporta cambio de comunicación y aclara que «esta parte» es la portada de Guadalajara de
+su captura: «PARTICIPA, HAY ELIMINATORIAS CADA MIÉRCOLES HASTA EL18DE NOVIEMBRE» y teléfono grande.
+Se prepara mensaje en ese lugar, conservando Canta y botones, con teléfono3319422709 destacado
+y clicable bajo «Inscripciones al concurso». Reservas siguen en3310186159. Número también visible
+en el hero del detalle y enlace existente inferior ampliado. Tipografía SY y foto conservadas;
+overlay móvil más oscuro para que el mensaje ampliado contraste sobre la barra.
+
+Fuente nueva de fecha: indicación de Luis21-oct, no inferencia del WordPress. Final2-dic conservada.
+El aviso de eliminatorias cambia después del18-nov, a medianoche GDL19-nov (`2026-11-19T06:00Z`),
+tanto en HTML fresco como pestaña abierta. Esa fecha no se interpreta como cierre de inscripción:
+el teléfono conserva la ventana del concurso ya aprobada hasta3-dic00:00 GDL.
+
+Builder local `scripts/build-gdl-participation-review.mjs`, componentes en
+`scripts/review/gdl-participation.*`; paquete `.artifacts/gdl-participation-20261021-v5/public`,
+loopback8845,295archivos/noindex/`publicationEnabled:false`. CSS/HTML públicos, manifiesto y
+approval productivos intactos. Para promover, llevar el cambio al dueño público y renovar el
+digest solamente con autorización de publicación. No digitalizar menú: sigue aplazado por Luis.
+QA móvil320/390, tablet768 y desktop1280; sin cortes/overflow y phone intent reconocido por
+medición. Retiro temporal probado. Evidencia `.artifacts/gdl-participation-20261021-qa/`.
+Pendiente revisión de esta propuesta, sin PR/push ni publicación.
+
 ### Guadalajara · corrección de WhatsApp PUBLICADA20-oct
 
 Luis reporta que el logo sigue deformado en la ficha publicada. Causa reproducida: el CSS importado

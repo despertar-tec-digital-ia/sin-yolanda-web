@@ -1,27 +1,33 @@
 # Forma de trabajar y publicar
 
-### Guadalajara · participa/última eliminatoria y teléfono21-oct · propuesta local
+### Guadalajara · titular y acceso visible al concurso21-oct · propuesta local revisada
 
-Luis aporta cambio de comunicación y aclara que «esta parte» es la portada de Guadalajara de
-su captura: «PARTICIPA, HAY ELIMINATORIAS CADA MIÉRCOLES HASTA EL18DE NOVIEMBRE» y teléfono grande.
-Se prepara mensaje en ese lugar, conservando Canta y botones, con teléfono3319422709 destacado
-y clicable bajo «Inscripciones al concurso». Reservas siguen en3310186159. Número también visible
-en el hero del detalle y enlace existente inferior ampliado. Tipografía SY y foto conservadas;
-overlay móvil más oscuro para que el mensaje ampliado contraste sobre la barra.
+Luis descarta la primera propuesta de mensaje/teléfono. Precisa el titular de la sucursal:
+«A cantar, bailar y brindar», en lugar de la invitación temporal Canta/Pasa a la cantina.
+El protagonismo del evento se lleva al acceso: botón amplio con «Participa», eliminatorias
+cada miércoles hasta18-nov y «Ver concurso», todo enlazado a página2026. Reservar mesa sigue
+como acción separada. El titular permanece cuando termina el concurso; el acceso temporal
+conserva su retiro aprobado. No se duplica el botón antiguo dentro del hero.
 
-Fuente nueva de fecha: indicación de Luis21-oct, no inferencia del WordPress. Final2-dic conservada.
-El aviso de eliminatorias cambia después del18-nov, a medianoche GDL19-nov (`2026-11-19T06:00Z`),
-tanto en HTML fresco como pestaña abierta. Esa fecha no se interpreta como cierre de inscripción:
-el teléfono conserva la ventana del concurso ya aprobada hasta3-dic00:00 GDL.
+**Teléfono pendiente de aclaración por Luis con quienes lo solicitaron:** retira la ampliación
+propuesta y no elige entre reservas e inscripción. Página del concurso y teléfonos quedan como
+están publicados; no se inserta número grande ni se cambia su enlace. La v5 anterior queda
+como antecedente rechazado, no como propuesta vigente.
+
+Fuente de fecha: indicación de Luis21-oct. Final2-dic conservada. El aviso de eliminatorias
+cambia después del18-nov, a medianoche GDL19-nov (`2026-11-19T06:00Z`), en HTML fresco y pestaña
+abierta. No se interpreta como cierre de inscripción. Foto y tipografía de la cantina conservadas;
+fondo móvil con contraste para el título y el botón de color crema.
 
 Builder local `scripts/build-gdl-participation-review.mjs`, componentes en
-`scripts/review/gdl-participation.*`; paquete `.artifacts/gdl-participation-20261021-v5/public`,
-loopback8845,295archivos/noindex/`publicationEnabled:false`. CSS/HTML públicos, manifiesto y
-approval productivos intactos. Para promover, llevar el cambio al dueño público y renovar el
-digest solamente con autorización de publicación. No digitalizar menú: sigue aplazado por Luis.
-QA móvil320/390, tablet768 y desktop1280; sin cortes/overflow y phone intent reconocido por
-medición. Retiro temporal probado. Evidencia `.artifacts/gdl-participation-20261021-qa/`.
-Pendiente revisión de esta propuesta, sin PR/push ni publicación.
+`scripts/review/gdl-participation.*`; paquete `.artifacts/gdl-participation-20261021-v8/public`,
+loopback8845,295archivos/noindex/`publicationEnabled:false`. Única página transformada: Guadalajara.
+Fuentes públicas, manifiesto, approval productivo, menú y página2026 intactos. Para promover,
+integrar al dueño público y renovar el digest solo con autorización de publicación. Menú HTML
+sigue aplazado. QA320/390/768/1280 sin cortes/overflow; Enter del botón llega al detalle y el
+click conserva el intent de concurso. Retiro temporal y titular permanente probados.
+Evidencia `.artifacts/gdl-participation-20261021-qa/`, capturas `revised-desktop.png` y
+`revised-mobile.png`. Propuesta pendiente de revisión; sin push/PR/publicación.
 
 ### Guadalajara · corrección de WhatsApp PUBLICADA20-oct
 

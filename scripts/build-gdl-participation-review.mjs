@@ -5,7 +5,7 @@ import {resolve,relative,isAbsolute,dirname} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {createHash} from 'node:crypto';
 import {packagePublic,publicSourceDigest,projectRoot as root} from './package-public.mjs';
-import {participationBranch,participationDetail} from './review/gdl-participation.mjs';
+import {participationBranch} from './review/gdl-participation.mjs';
 const hash=value=>createHash('sha256').update(value).digest('hex');
 export function buildParticipationReview({destination,now=new Date().toISOString()}={}){
  const out=resolve(destination||''),within=relative(resolve(root,'.artifacts'),out);
@@ -14,7 +14,7 @@ export function buildParticipationReview({destination,now=new Date().toISOString
  const files=new Set(Object.keys(base.hashes));
  const write=(path,value)=>{mkdirSync(dirname(resolve(out,path)),{recursive:true});writeFileSync(resolve(out,path),value);files.add(path);};
  const extras='<link rel="stylesheet" href="/assets/review-gdl/gdl-participation.css?v=20261021-participation"><script defer src="/assets/review-gdl/gdl-participation.js?v=20261021-participation"></script>';
- for(const [path,project] of [['guadalajara.html',participationBranch],['guadalajara/canta-por-tu-cuenta-2026/index.html',participationDetail]]){
+ for(const [path,project] of [['guadalajara.html',participationBranch]]){
   let page=project(readFileSync(resolve(out,path),'utf8'),{now});
   write(path,page.replace('</head>',extras+'</head>').replace('content="index,follow,max-image-preview:large"','content="noindex,nofollow"'));
  }

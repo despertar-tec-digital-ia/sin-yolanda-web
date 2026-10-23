@@ -6,7 +6,7 @@ import { createHash } from 'node:crypto';
 import { elementRange } from './public-agenda.mjs';
 import { resolveProgrammingClock } from './programming-clock.mjs';
 import { renderGdlAgenda } from './gdl-agenda.mjs';
-import { arrangeGdlAgenda, refreshGdlFeature } from './gdl-featured.mjs';
+import { arrangeGdlAgenda, refreshGdlFeature, participationUntil } from './gdl-featured.mjs';
 
 export const gdlApprovalInputs = ['scripts/editorial/front-b-events.json', 'scripts/editorial/gdl-event-review.json',
   'scripts/editorial/gdl-agenda.mjs', 'scripts/editorial/gdl-approved.mjs',
@@ -51,7 +51,9 @@ export function projectGdlAgenda(root, { now, commit } = {}) {
   if (!config) return { files: new Map(), metadata: null };
   const evaluatedAt = resolveProgrammingClock(now), instant = Date.parse(evaluatedAt);
   const visible = config.approval.records.filter(record => instant >= Date.parse(record.publishFrom) && (!record.expiresAt || instant < Date.parse(record.expiresAt)));
-  const next = config.approval.records.flatMap(record => [record.publishFrom, record.expiresAt].filter(value => value && Date.parse(value) > instant)).sort();
+  const next = config.approval.records.flatMap(record => [record.publishFrom, record.expiresAt].filter(value => value && Date.parse(value) > instant));
+  if (Date.parse(participationUntil) > instant) next.push(participationUntil);
+  next.sort();
   const file = 'guadalajara.html', source = readFileSync(resolve(root, file), 'utf8');
   const range = elementRange(source, 'section', 'programacion-san-ignacio');
   assert.ok(range, 'Approved Guadalajara agenda missing from source');

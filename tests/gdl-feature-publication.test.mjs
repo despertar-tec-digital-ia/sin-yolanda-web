@@ -41,7 +41,8 @@ test('a fresh build retires registration on both GDL pages at final-date local m
  assert.ok(!branch.includes('id="agenda-san-ignacio-canta"'));
  assert.ok(branch.includes('id="agenda-san-ignacio-solteras"'));
  assert.match(branch,/<a class="hh-nav-agenda" href="#programacion-san-ignacio"/);
- assert.match(branch,/data-gdl-event-feature="fallback">Pasa a la/);
+ assert.match(branch,/<p class="hh-invitation gdl-local-invitation">A cantar,<br>bailar y<br>brindar\./);
+ assert.match(branch,/<div class="gdl-participation" data-gdl-event-feature="active" hidden>/);
 });
 
 test('the published menu keeps exact supplied v82 PDF and fifteen original page pairs',()=>{

@@ -127,6 +127,6 @@ export function renderContestPage({ active = true, publication = false } = {}) {
     .replaceAll('/assets/review-gdl/gdl-contest-page.css?v=20261019-contest-review','/assets/css/gdl-contest-page.css?v=20261020-gdl-visual')
     .replaceAll('/assets/review-gdl/contest-measurement.js?v=20261019-contest-review','/assets/js/site-measurement.js?v=20261019-gdl-contest')
     .replaceAll('/assets/review-gdl/contest-consent.js?v=20261019-contest-review','/assets/js/ga4-consent.js?v=20261019-gdl-contest')
-    .replaceAll('/assets/review-gdl/gdl-focus.js?v=20261019-gdl-focus','/assets/js/gdl-focus.js?v=20261019-gdl-focus')
+    .replaceAll('/assets/review-gdl/gdl-focus.js?v=20261019-gdl-focus','/assets/js/gdl-focus.js?v=20261022-gdl-participation')
     .replace('</head>','<script id="seo-page" type="application/ld+json">'+JSON.stringify(page).replaceAll('<','\\u003c')+'</script></head>');
 }

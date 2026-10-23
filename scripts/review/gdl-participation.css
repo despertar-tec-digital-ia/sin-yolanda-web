@@ -1,0 +1,20 @@
+[data-participation-review] [data-gdl-participation][hidden]{display:none!important}
+body[data-participation-review][data-branch="san-ignacio"] .gdl-local-invitation{font-size:clamp(74px,6.6vw,100px);line-height:.9;margin-top:25px}
+body[data-participation-review] .gdl-participation{margin-top:28px;width:100%;max-width:480px}
+body[data-participation-review] .gdl-participation-cta{display:flex;align-items:flex-start;gap:20px;padding:23px 25px 21px;background:#fff4de;color:#8c350f;text-decoration:none;text-shadow:none;border:1px solid #fff4de;box-shadow:0 4px 0 #a14b21}
+body[data-participation-review] .gdl-participation-cta:hover{background:#ffdf9e;border-color:#ffdf9e}
+body[data-participation-review] .gdl-participation-cta:focus-visible{outline:3px solid #fff4de;outline-offset:7px}
+body[data-participation-review] .gdl-participation-icon{display:flex;padding-top:28px;flex:none}
+body[data-participation-review] .gdl-participation-icon svg{width:32px;height:40px;stroke:currentColor}
+body[data-participation-review] .gdl-participation-content{display:flex;flex-direction:column;align-items:flex-start;min-width:0;flex:1}
+body[data-participation-review] .gdl-contest-name{font-size:12px;line-height:1.5;margin-bottom:5px}
+body[data-participation-review] .gdl-participation-title{font:400 48px/1 HoustonDisplay,Impact,sans-serif}
+body[data-participation-review] .gdl-participation-schedule{font:400 26px/1.12 HoustonDisplay,Impact,sans-serif;margin-top:8px}
+body[data-participation-review] .gdl-participation-schedule time{white-space:nowrap}
+body[data-participation-review] .gdl-participation-action{display:flex;align-items:center;justify-content:space-between;gap:24px;width:100%;margin-top:16px;padding-top:11px;border-top:1px solid #c28c64;font-size:14px;font-weight:700;line-height:1.5}
+body[data-participation-review] .gdl-participation-action>span{font-size:24px;font-weight:400;line-height:1}
+body[data-participation-review] .hh-welcome-actions[data-gdl-event-feature="active"]{margin-top:22px;gap:0}
+body[data-participation-review] .hh-welcome-actions[data-gdl-event-feature="active"] .hh-welcome-menu{min-height:48px;padding:11px 17px;font-size:14px}
+@media(min-width:761px){body[data-participation-review] .hh-welcome{padding-top:114px;padding-bottom:40px}body[data-participation-review] .hh-welcome-foot{margin-top:24px}}
+@media(max-width:760px){body[data-participation-review][data-branch="san-ignacio"] .gdl-local-invitation{font-size:76px;margin-top:22px}body[data-participation-review] .gdl-participation{margin-top:25px;max-width:none}body[data-participation-review] .gdl-participation-cta{gap:15px;padding:20px}body[data-participation-review] .gdl-participation-icon svg{width:25px;height:35px}body[data-participation-review] .gdl-participation-icon{padding-top:26px}body[data-participation-review] .gdl-participation-title{font-size:46px}body[data-participation-review] .gdl-participation-schedule{font-size:24px}body[data-participation-review] .gdl-contest-name{font-size:11px}body[data-participation-review] .hh-welcome{padding-bottom:28px}body[data-participation-review] .hh-welcome-actions[data-gdl-event-feature="active"]{padding-top:0;margin-top:19px}body[data-participation-review] .hh-welcome-actions[data-gdl-event-feature="active"] .hh-welcome-menu{justify-content:center;background:#240a0f9e}body[data-participation-review] #san-ignacio .hh-cantina-photo::after{background:linear-gradient(180deg,#15070aeb 0%,#1f080cbf 32%,#1f080c94 70%,#15070af2 100%)}}
+@media(max-width:360px){body[data-participation-review][data-branch="san-ignacio"] .gdl-local-invitation{font-size:68px}body[data-participation-review] .gdl-participation-cta{padding:18px 16px;gap:12px}body[data-participation-review] .gdl-participation-icon svg{width:23px}body[data-participation-review] .gdl-participation-schedule{font-size:22px}}

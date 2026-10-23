@@ -1,6 +1,17 @@
 // Approved Guadalajara presentation; reused by builds and scheduled expiry projections.
 import {elementRange} from './public-agenda.mjs';
 export const featuredUntil='2026-12-03T06:00:00.000Z';
+// Presentation boundary after the user-confirmed last elimination, not a signup deadline.
+export const participationUntil='2026-11-19T06:00:00.000Z';
+
+export function refreshParticipation(source,{now}={}) {
+  const instant=Date.parse(now);if(!Number.isFinite(instant))throw new Error('Valid participation clock required');
+  const active=instant<Date.parse(participationUntil);
+  return source.replace(/<[^>]+data-gdl-participation="(active|fallback)"[^>]*>/g,(tag,mode)=>{
+    tag=tag.replace(/\s+hidden(?:="[^"]*")?/g,'');
+    return (mode==='active')===active?tag:tag.replace(/>$/,' hidden>');
+  });
+}
 
 export function arrangeGdlAgenda(html) {
   const promoted=[];
@@ -14,6 +25,7 @@ export function arrangeGdlAgenda(html) {
 
 export function refreshGdlFeature(source,{now}={}) {
   const instant=Date.parse(now);if(!Number.isFinite(instant))throw new Error('Valid Guadalajara feature clock required');
+  source=refreshParticipation(source,{now});
   const active=instant<Date.parse(featuredUntil);
   source=source.replace(/<[^>]+data-gdl-event-feature="(active|fallback)"[^>]*>/g,(tag,mode)=>{
     tag=tag.replace(/\s+hidden(?:="[^"]*")?/g,'');

@@ -1,6 +1,53 @@
 # Forma de trabajar y publicar
 
-### Guadalajara · corrección de WhatsApp20-oct · publicación en preparación
+### Guadalajara · titular y acceso al concurso22-oct · publicación autorizada
+
+Luis autoriza «ok. continuamos a publicar?» sobre la propuesta revisada a6b3178/v8.
+Se integra a los dueños públicos el titular permanente «A cantar, bailar y brindar» y el
+acceso crema «Participa / Hay eliminatorias cada miércoles hasta el18 de noviembre / Ver concurso».
+Todo el acceso lleva a la página2026; Reservar mesa queda separado y sin botón de concurso duplicado.
+La ampliación del teléfono sigue retirada hasta que Luis aclare su propósito. Menú HTML aplazado.
+
+El aviso cambia19-nov00:00 Guadalajara en build, programación y pestaña abierta; no se anuncia
+cierre de inscripción. El concurso conserva final2-dic y retiro3-dic; el titular permanece.
+CSS/JS de GDL reciben versión de caché; en detalle2026 solo cambia la referencia al JS compartido.
+Se preserva la corrección del path de WhatsApp. Ventanas/datos originales, menú, fotos,
+home, otras sucursales, WordPress, QR y medición conservados. Contrato histórico exacto actualizado
+sin desactivar rechazos de cambios desconocidos. Aprobación de composición renovada con este OK.
+Publicación pendiente de CI/operador y recibo; evidencia de integración en
+`.artifacts/gdl-participation-release-20261022/`. Rollback disponible al deployment PR44
+`3311d85f-f297-49eb-9d6f-57cb44b4f817` o revertir solo este pase mediante PR.
+
+### Guadalajara · titular y acceso visible al concurso21-oct · propuesta local revisada
+
+Luis descarta la primera propuesta de mensaje/teléfono. Precisa el titular de la sucursal:
+«A cantar, bailar y brindar», en lugar de la invitación temporal Canta/Pasa a la cantina.
+El protagonismo del evento se lleva al acceso: botón amplio con «Participa», eliminatorias
+cada miércoles hasta18-nov y «Ver concurso», todo enlazado a página2026. Reservar mesa sigue
+como acción separada. El titular permanece cuando termina el concurso; el acceso temporal
+conserva su retiro aprobado. No se duplica el botón antiguo dentro del hero.
+
+**Teléfono pendiente de aclaración por Luis con quienes lo solicitaron:** retira la ampliación
+propuesta y no elige entre reservas e inscripción. Página del concurso y teléfonos quedan como
+están publicados; no se inserta número grande ni se cambia su enlace. La v5 anterior queda
+como antecedente rechazado, no como propuesta vigente.
+
+Fuente de fecha: indicación de Luis21-oct. Final2-dic conservada. El aviso de eliminatorias
+cambia después del18-nov, a medianoche GDL19-nov (`2026-11-19T06:00Z`), en HTML fresco y pestaña
+abierta. No se interpreta como cierre de inscripción. Foto y tipografía de la cantina conservadas;
+fondo móvil con contraste para el título y el botón de color crema.
+
+Builder local `scripts/build-gdl-participation-review.mjs`, componentes en
+`scripts/review/gdl-participation.*`; paquete `.artifacts/gdl-participation-20261021-v8/public`,
+loopback8845,295archivos/noindex/`publicationEnabled:false`. Única página transformada: Guadalajara.
+Fuentes públicas, manifiesto, approval productivo, menú y página2026 intactos. Para promover,
+integrar al dueño público y renovar el digest solo con autorización de publicación. Menú HTML
+sigue aplazado. QA320/390/768/1280 sin cortes/overflow; Enter del botón llega al detalle y el
+click conserva el intent de concurso. Retiro temporal y titular permanente probados.
+Evidencia `.artifacts/gdl-participation-20261021-qa/`, capturas `revised-desktop.png` y
+`revised-mobile.png`. Propuesta pendiente de revisión; sin push/PR/publicación.
+
+### Guadalajara · corrección de WhatsApp PUBLICADA20-oct
 
 Luis reporta que el logo sigue deformado en la ficha publicada. Causa reproducida: el CSS importado
 `houston-hero-study.JylKseCc.css` aplica `svg path{fill:none;stroke:currentColor;stroke-width:1.5px}`.
@@ -12,8 +59,18 @@ con el encargo correctivo; contrato histórico conserva bytes completos y rechaz
 
 381tests pasan; navegador local verifica los tres paths con relleno de su contexto y stroke none,
 más captura inspeccionada del botón. Evidencia en `.artifacts/whatsapp-fill-20261020/`.
-Menú v82 y su digitalización siguen sin tocarse. Pendiente CI→operador→recibo→QA de paths en dominio.
-Rollback: deployment de PR43 o revertir solo este ajuste por PR.
+Menú v82 y su digitalización siguen sin tocarse. Publicado por PR44/head
+`83030073a408a2f7897f7f5e9a205abe59832b56` → main `f02e061b6e82fbaf4e169f1d747136d19ea5a74f`.
+CI39546965810/CD39547022729, preview y producción verdes. Pages
+`3311d85f-f297-49eb-9d6f-57cb44b4f817`; anterior/rollback PR43
+`606d22e6-c223-4223-86a7-464a6405b0bd`. Recibo
+`.artifacts/approved-release-44-1792558688250/receipt.json`: GET291archivos/49aliases/10excluidos,
+sin fallos ni hashes distintos. Cotejo de fuentes: solo gdl-focus.css y versión en guadalajara.html;
+menú y detalle del concurso exactos al pase previo. Navegador productivo: tres paths de ficha y
+cinco de detalle con fill igual al color de contexto/stroke none; móvil390 sin overflow y override
+restablecido. Se recarga la ficha abierta de Luis y se inspecciona `after-production.png`.
+Contención verificada; hueco de QA registrado como recurrencia del hallazgo010 local, sin refactor
+global. Rollback: deployment anterior o revertir solo este ajuste por PR. Cierre documental local.
 
 ### Guadalajara · pase visual PUBLICADO20-oct · menú conservado
 

@@ -30,7 +30,7 @@ test('Featured contest retires from fresh HTML and from an already open tab',()=
   const after=projectGdlAgenda(root,{now:featuredUntil,commit:'a'.repeat(40)}).files.get('guadalajara.html');
   const html=focusGuadalajara(after,{now:featuredUntil});
   assert.match(html,/data-gdl-event-feature="active" hidden/);
-  assert.match(html,/data-gdl-event-feature="fallback">Pasa a la/);
+  assert.match(html,/<p class="hh-invitation gdl-local-invitation">A cantar,<br>bailar y<br>brindar\./);
   const nodes=['active','fallback','active'].map(mode=>({dataset:{gdlEventFeature:mode},hidden:false}));
   const nav={dataset:{contestActiveHref:contestPath,contestFallbackHref:'#programacion-san-ignacio',contestRecord},setAttribute(key,value){this[key]=value;}};
   let instant=Date.parse(featuredUntil)-1,interval;

@@ -2,8 +2,12 @@
 (() => {
   'use strict';
   const end = Date.parse('2026-12-03T06:00:00.000Z');
+  const lastElimination = Date.parse('2026-11-19T06:00:00.000Z');
   function update() {
-    const active = Date.now() < end;
+    const now = Date.now(), active = now < end;
+    document.querySelectorAll('[data-gdl-participation]').forEach(element => {
+      element.hidden = (element.dataset.gdlParticipation === 'active') !== (now < lastElimination);
+    });
     document.querySelectorAll('[data-gdl-event-feature]').forEach(element => {
       element.hidden = (element.dataset.gdlEventFeature === 'active') !== active;
     });

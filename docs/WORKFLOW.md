@@ -1,5 +1,23 @@
 # Forma de trabajar y publicar
 
+### Guadalajara · titular y acceso al concurso22-oct · publicación autorizada
+
+Luis autoriza «ok. continuamos a publicar?» sobre la propuesta revisada a6b3178/v8.
+Se integra a los dueños públicos el titular permanente «A cantar, bailar y brindar» y el
+acceso crema «Participa / Hay eliminatorias cada miércoles hasta el18 de noviembre / Ver concurso».
+Todo el acceso lleva a la página2026; Reservar mesa queda separado y sin botón de concurso duplicado.
+La ampliación del teléfono sigue retirada hasta que Luis aclare su propósito. Menú HTML aplazado.
+
+El aviso cambia19-nov00:00 Guadalajara en build, programación y pestaña abierta; no se anuncia
+cierre de inscripción. El concurso conserva final2-dic y retiro3-dic; el titular permanece.
+CSS/JS de GDL reciben versión de caché; en detalle2026 solo cambia la referencia al JS compartido.
+Se preserva la corrección del path de WhatsApp. Ventanas/datos originales, menú, fotos,
+home, otras sucursales, WordPress, QR y medición conservados. Contrato histórico exacto actualizado
+sin desactivar rechazos de cambios desconocidos. Aprobación de composición renovada con este OK.
+Publicación pendiente de CI/operador y recibo; evidencia de integración en
+`.artifacts/gdl-participation-release-20261022/`. Rollback disponible al deployment PR44
+`3311d85f-f297-49eb-9d6f-57cb44b4f817` o revertir solo este pase mediante PR.
+
 ### Guadalajara · titular y acceso visible al concurso21-oct · propuesta local revisada
 
 Luis descarta la primera propuesta de mensaje/teléfono. Precisa el titular de la sucursal:

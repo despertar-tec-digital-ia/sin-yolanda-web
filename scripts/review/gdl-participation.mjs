@@ -1,17 +1,9 @@
 import {contestPath,contestRecord,microphoneIcon} from '../editorial/gdl-contest-config.mjs';
 import {refreshGdlFeature} from '../editorial/gdl-featured.mjs';
+export {participationUntil,refreshParticipation} from '../editorial/gdl-featured.mjs';
 
-// User-confirmed final elimination date; Guadalajara's following local midnight.
-export const participationUntil='2026-11-19T06:00:00.000Z';
-export function refreshParticipation(source,{now}={}){
- const instant=Date.parse(now);if(!Number.isFinite(instant))throw new Error('Valid participation clock required');
- const active=instant<Date.parse(participationUntil);
- return source.replace(/<[^>]+data-gdl-participation="(active|fallback)"[^>]*>/g,(tag,mode)=>{
-  tag=tag.replace(/\s+hidden(?:="[^"]*")?/g,'');
-  return (mode==='active')===active?tag:tag.replace(/>$/,' hidden>');
- });
-}
 export function participationBranch(source,{now}={}){
+ if(source.includes('class="gdl-participation-cta"'))return refreshGdlFeature(source,{now});
  const original=/<p class="gdl-feature-date" data-gdl-event-feature="active"(?: hidden)?>[\s\S]*?<\/p>/;
  if(!original.test(source))throw new Error('Expected Guadalajara feature introduction');
  const invitation='<p class="hh-invitation gdl-local-invitation">A cantar,<br>bailar y<br>brindar.</p>';
@@ -21,5 +13,5 @@ export function participationBranch(source,{now}={}){
   .replace(original,callout);
  // The callout is the single contest access; the existing table-reservation button stays separate.
  source=source.replace(/<div class="hh-welcome-actions" data-gdl-event-feature="active">[\s\S]*?<a class="hh-reserve"[\s\S]*?<\/a>/,'<div class="hh-welcome-actions" data-gdl-event-feature="active">');
- return refreshGdlFeature(refreshParticipation(source.replace('<body ','<body data-participation-review="" '),{now}),{now});
+ return refreshGdlFeature(source.replace('<body ','<body data-participation-review="" '),{now});
 }

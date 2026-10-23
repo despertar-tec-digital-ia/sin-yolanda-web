@@ -3,8 +3,8 @@
   "approvedBy": "Luis",
   "approvedAt": "2026-10-17T00:04:42.276Z",
   "publicationEnabled": true,
-  "authorization": "Luis requests fixing the WhatsApp logo on the published Guadalajara page. This repairs inherited fill/stroke on the actual SVG path within the already approved visual pass. Existing content, contacts, event windows and menu remain unchanged.",
-  "sourceDigest": "70b3e5e2b6fcea90c1aa0b4a7ccc847a353122e51883daea23844a22cabb7e38",
+  "authorization": "Luis approves publishing the revised Guadalajara hero: permanent A cantar, bailar y brindar invitation and prominent Participa contest link with eliminations every Wednesday through November 18. Preserve the separate reservation channel, current phone sizes, menu and other branches.",
+  "sourceDigest": "2d9a6a35e0abb2dcf9888022231151ed66994d6083aa360302a33ab68b32dfbc",
   "records": [
     {
       "id": "san-ignacio-brujas-20261031",
@@ -35,5 +35,5 @@
     "No event-specific hours or registration deadlines invented.",
     "Solteras validity dates remain unconfirmed; no future dated occurrences generated."
   ],
-  "presentationApprovedAt": "2026-10-21T04:55:22.169Z"
+  "presentationApprovedAt": "2026-10-23T03:40:24.000Z"
 }

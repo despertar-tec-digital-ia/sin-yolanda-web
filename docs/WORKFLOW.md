@@ -1,5 +1,16 @@
 # Forma de trabajar y publicar
 
+### San Diego · próxima apertura23-oct · candidata local
+
+Luis confirma próxima apertura sin fecha y aporta 2470 San Diego Avenue, Ste101–105,
+San Diego, CA92110. Builder `scripts/build-san-diego-opening-review.mjs` genera una franja
+con nombre, dirección y mapa bajo el hero, manteniendo fotos/copy/CTA del hero. No anuncia mes,
+día, horarios, reservas ni operación. Fotos nuevas de El Paso excluidas de este cambio.
+Candidata `.artifacts/san-diego-opening-20261023-v3/public`, `publicationEnabled:false`, noindex;
+383tests base y comprobación de alcance5archivos/hero exacto pasan. QA visual y publicación
+pendientes: el control de Brave está desactivado en Work. No promover un paquete de revisión
+ni presentar esta preparación como publicada. Dirección/estado dueños en la base maestra del vault.
+
 ### Guadalajara · titular y acceso al concurso22-oct · publicación autorizada
 
 Luis autoriza «ok. continuamos a publicar?» sobre la propuesta revisada a6b3178/v8.

@@ -1,34 +1,40 @@
 # Forma de trabajar y publicar
 
-### Central · mejoras SEO25-oct · candidata local para revisión
+### Central · mejoras SEO25-oct · integración y publicación autorizadas
 
-Se conserva Guadalajara WordPress como destino principal desde selector/directorio y pies del grupo.
-La ficha central `/guadalajara` sigue indexable y accesible por su URL propia. No cambiar el destino
-de GBP/redes/QR GDL ni activar redirecciones desde WordPress. No se modifican sus menús/horarios.
+Luis acepta la propuesta y autoriza integrarla/publicarla con estas correcciones: retirar el texto
+nuevo del selector y conservar la portada y **todos** los menús. Aclara después que los enlaces
+Guadalajara **dentro del central** deben abrir `/guadalajara`. WordPress sigue independiente en
+`sinyolandagdl.com` para sus accesos externos/QR. La primera candidata que enviaba los enlaces
+internos al WordPress interpretaba mal el alcance y queda sustituida; no fue publicada.
 
-`node scripts/prepare-central-seo-review.mjs .artifacts/central-seo-review-v2/public` prepara un
-paquete de **revisión**, con hashes y `noindex` de preview: descripción visible ES/EN del grupo,
-title/descripción local, relación Organization↔Restaurant y enlaces principales GDL a WordPress.
-Base main5c848c5. Hero/medios, cartas, reservas, horarios, canonicals, sitemap y QR se conservan.
-Los helpers no se ejecutan en CI/CD: esta candidata no modifica los dueños productivos. Tras aceptar
-la propuesta, integrar solo el delta aprobado a sus fuentes/contratos antes de PR→CI→publicación.
-No publicar directamente el paquete de review ni trasladar sus headers `noindex` a producción.
+`scripts/central-seo.mjs` es el dueño del delta: title/metadescripción de home y GDL, el párrafo
+aprobado de la ficha GDL y entidades Organization↔Restaurant. No modifica contenido visible del
+home, navegación, JS, CSS, menús, horarios, reservas, QR, sitemap ni canonicals. `seo.mjs` utiliza
+el mismo transformador al regenerar; su aplicación repetida no agrega cambios. Los diez HTML
+afectados están versionados. `central-seo-source-patches.json` conserva reversión exacta de los
+parches y hashes de los283archivos públicos protegidos; los controles históricos siguen activos.
 
-Servidor local: `node scripts/serve-central-seo-review.mjs .artifacts/central-seo-review-v2/public 8842`.
-Sirve el paquete comprobado solo en loopback. `/__review/home` y `/__review/guadalajara` son extractos
-del HTML y CSS reales para ver las secciones sin animación; no entran al paquete ni al sitemap.
-Sitio completo en `/` y `/locations`. Evidencia local: `scope.json`, `release.json` y capturas de
-preview con TTL.387tests y build base verificados; nueva prueba comprueba destinos principales,
-canonicals/facts preservados, integridad hero/QR y entidades. Capturas desktop/móvil por script;
-QA interactiva completa pendiente por Browser Use desactivado, no confundir con prueba de clics.
+Base main5c848c5. Pruebas cubren cuerpo completo del home idéntico, navegación GDL central en
+HTML inicial/runtime, todos los menús/QR/medios inmutables y datos de cada Restaurant conservados.
+La prueba histórica de agenda y la restauración de San Diego incorporan la nueva capa sin cambiar
+sus hashes originales ni aceptar ediciones desconocidas. Preparación/revisión en
+`.artifacts/central-seo-integration-20261025/`. El helper de candidata anterior se retira; se conserva
+en aff9062 como antecedente. No publicar el paquete review ni sus headers `noindex`.
+
+`serve-central-seo-review.mjs` permite revisión loopback del paquete explícito y dos extractos del
+HTML/CSS reales sin animación (`/__review/home`, `/__review/guadalajara`), excluidos de producción.
+Capturas por preview.py; QA interactiva completa pendiente si Browser Use permanece desactivado.
 
 `scripts/central-www-redirect-proposal.json` especifica la regla301 www→apex con ruta/query
 preservadas. Es propuesta de configuración Cloudflare Bulk Redirects, no regla Pages `_redirects`:
-los redirects de dominio no se admiten allí. Leer/exportar reglas existentes y obtener autorización
-productiva antes de activarla; no modificar DNS por defecto. Fuente:
+los redirects de dominio no se admiten allí. La autorización de este pase incluye la propuesta,
+pero DNS/Pages tokens existentes reciben403 al leer reglas de cuenta/zona: no se activa la regla
+ni se amplían permisos. Queda pendiente por acceso independiente; no modificar DNS. Fuente:
 https://developers.cloudflare.com/pages/how-to/www-redirect/.
 
-Sin push, PR, despliegue, edición de WordPress/GBP/redes ni permisos nuevos por esta preparación.
+Publicación del sitio por PR→CI→release:approved→recibo; añadir resultado al completar. No se toca
+WordPress/GBP/redes ni permisos. La regla www conserva su pendiente aunque el sitio se publique.
 
 ### San Diego · anuncio visible25-oct · publicación solicitada
 

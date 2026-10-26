@@ -1,0 +1,432 @@
+{
+  "version": 1,
+  "baselineCommit": "5c848c5205aaeeb78169637615121f604f502834",
+  "authorization": "Luis approved publication25Oct with no new selector text, unchanged home appearance/menus/QR/WordPress. Final correction: Guadalajara navigation inside the central opens /guadalajara; external WordPress remains independent.",
+  "files": {
+    "index.html": {
+      "beforeSha256": "3b5120a1195b8517841a9e087e763a1fbdbbfc4e07cbb53b5df83f61e470aed1",
+      "afterSha256": "3abd1be6a2b217831dd95eedbbbe4035c20c6c3b8afc9a63e49f293f79601d94",
+      "patches": [
+        {
+          "before": "<title>Sin Yolanda® | Cantina contemporánea en Guadalajara y Texas</title>",
+          "after": "<title>Sin Yolanda | Cantinas en México y Estados Unidos</title>"
+        },
+        {
+          "before": "<meta name=\"description\" content=\"Cantina contemporánea con comida que sí llena, tragos coquetos y micrófono abierto. Cinco casas entre Guadalajara y Texas. El plan ya está armado: reserva tu mesa.",
+          "after": "<meta name=\"description\" content=\"Encuentra tu cantina Sin Yolanda en México y Estados Unidos. Consulta las sucursales, sus menús, agenda y opciones para reservar."
+        },
+        {
+          "before": "<meta property=\"og:title\" content=\"Sin Yolanda® | Cantina contemporánea en Guadalajara y Texas",
+          "after": "<meta property=\"og:title\" content=\"Sin Yolanda | Cantinas en México y Estados Unidos"
+        },
+        {
+          "before": "<meta property=\"og:description\" content=\"Cantina contemporánea con comida que sí llena, tragos coquetos y micrófono abierto. Cinco casas entre Guadalajara y Texas. El plan ya está armado: reserva tu mesa.",
+          "after": "<meta property=\"og:description\" content=\"Encuentra tu cantina Sin Yolanda en México y Estados Unidos. Consulta las sucursales, sus menús, agenda y opciones para reservar."
+        },
+        {
+          "before": "<script id=\"seo-page\" type=\"application/ld+json\">{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"@id\":\"https://sin-yolanda.com/#webpage\",\"url\":\"https://sin-yolanda.com/\",\"name\":\"Sin Yolanda® | Cantina contemporánea en Guadalajara y Texas\",\"description\":\"Cantina contemporánea con comida que sí llena, tragos coquetos y micrófono abierto. Cinco casas entre Guadalajara y Texas. El plan ya está armado: reserva tu mesa.\",\"inLanguage\":\"es\",\"isPartOf\":{\"@id\":\"https://sin-yolanda.com/#website\"}},{\"@type\":\"WebSite\",\"@id\":\"https://sin-yolanda.com/#website\",\"url\":\"https://sin-yolanda.com/\",\"name\":\"Sin Yolanda\",\"alternateName\":\"Sin Yolanda Cantina\",\"inLanguage\":[\"es\",\"en\"],\"publisher\":{\"@id\":\"https://sin-yolanda.com/#organization\"}},{\"@type\":\"Organization\",\"@id\":\"https://sin-yolanda.com/#organization\",\"name\":\"Sin Yolanda\",\"url\":\"https://sin-yolanda.com/\",\"logo\":\"https://sin-yolanda.com/assets/media/brand-logo-gdl.png\"}]}</script>",
+          "after": "<script id=\"seo-page\" type=\"application/ld+json\">{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"@id\":\"https://sin-yolanda.com/#webpage\",\"url\":\"https://sin-yolanda.com/\",\"name\":\"Sin Yolanda | Cantinas en México y Estados Unidos\",\"description\":\"Encuentra tu cantina Sin Yolanda en México y Estados Unidos. Consulta las sucursales, sus menús, agenda y opciones para reservar.\",\"inLanguage\":\"es\",\"isPartOf\":{\"@id\":\"https://sin-yolanda.com/#website\"},\"mainEntity\":{\"@id\":\"https://sin-yolanda.com/#organization\"}},{\"@type\":\"WebSite\",\"@id\":\"https://sin-yolanda.com/#website\",\"url\":\"https://sin-yolanda.com/\",\"name\":\"Sin Yolanda\",\"alternateName\":\"Sin Yolanda Cantina\",\"inLanguage\":[\"es\",\"en\"],\"publisher\":{\"@id\":\"https://sin-yolanda.com/#organization\"}},{\"@type\":\"Organization\",\"@id\":\"https://sin-yolanda.com/#organization\",\"name\":\"Sin Yolanda\",\"url\":\"https://sin-yolanda.com/\",\"logo\":\"https://sin-yolanda.com/assets/media/brand-logo-gdl.png\",\"description\":\"Marca de cantinas mexicanas en México y Estados Unidos.\",\"subOrganization\":[{\"@id\":\"https://sin-yolanda.com/el-paso#restaurant\",\"@type\":\"Restaurant\",\"name\":\"Sin Yolanda El Paso\",\"url\":\"https://sin-yolanda.com/el-paso\"},{\"@id\":\"https://sin-yolanda.com/guadalajara#restaurant\",\"@type\":\"Restaurant\",\"name\":\"Sin Yolanda Guadalajara\",\"url\":\"https://sin-yolanda.com/guadalajara\"},{\"@id\":\"https://sin-yolanda.com/san-antonio#restaurant\",\"@type\":\"Restaurant\",\"name\":\"Sin Yolanda San Antonio\",\"url\":\"https://sin-yolanda.com/san-antonio\"},{\"@id\":\"https://sin-yolanda.com/the-woodlands#restaurant\",\"@type\":\"Restaurant\",\"name\":\"Sin Yolanda The Woodlands\",\"url\":\"https://sin-yolanda.com/the-woodlands\"},{\"@id\":\"https://sin-yolanda.com/houston#restaurant\",\"@type\":\"Restaurant\",\"name\":\"Sin Yolanda Houston\",\"url\":\"https://sin-yolanda.com/houston\"}]}]}</script>"
+        }
+      ]
+    },
+    "el-paso.html": {
+      "beforeSha256": "e0c22ef4830ba7b1a674d77984943937eb94605d04576e5fce2485e269bc4595",
+      "afterSha256": "fe7357b319d3f7f41eedc1f63f7d92a74d35147c118e126c210ef1f7ec7ebd29",
+      "patches": [
+        {
+          "before": "<script type=\"application/ld+json\">{\"@context\":\"https://schema.org\",\"@type\":\"Restaurant\",\"@id\":\"https://sin-yolanda.com/el-paso#restaurant\",\"name\":\"Sin Yolanda El Paso\",\"url\":\"https://sin-yolanda.com/el-paso\",\"description\":\"Sin Yolanda El Paso en 340 Vin Rambla Dr, El Paso. Una cantina para cantar, brindar y compartir la mesa. Consulta el menú y cómo llegar.\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"340 Vin Rambla Dr\",\"addressLocality\":\"El Paso\",\"addressRegion\":\"TX\",\"postalCode\":\"79912\",\"addressCountry\":\"US\"},\"telephone\":\"+19153636330\",\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":31.8090372,\"longitude\":-106.5236712},\"hasMenu\":\"https://sin-yolanda.com/el-paso/menu/\",\"acceptsReservations\":\"https://www.opentable.com/restaurant/profile/1559290\",\"sameAs\":[\"https://www.instagram.com/sinyolandaelpaso/\"],\"openingHoursSpecification\":[{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Monday\",\"https://schema.org/Tuesday\"],\"opens\":\"00:00\",\"closes\":\"00:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Wednesday\",\"https://schema.org/Thursday\"],\"opens\":\"16:00\",\"closes\":\"00:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Friday\"],\"opens\":\"16:00\",\"closes\":\"02:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Saturday\",\"https://schema.org/Sunday\"],\"opens\":\"10:00\",\"closes\":\"02:00\"}]}</script>",
+          "after": "<script type=\"application/ld+json\">{\"@context\":\"https://schema.org\",\"@type\":\"Restaurant\",\"@id\":\"https://sin-yolanda.com/el-paso#restaurant\",\"name\":\"Sin Yolanda El Paso\",\"url\":\"https://sin-yolanda.com/el-paso\",\"description\":\"Sin Yolanda El Paso en 340 Vin Rambla Dr, El Paso. Una cantina para cantar, brindar y compartir la mesa. Consulta el menú y cómo llegar.\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"340 Vin Rambla Dr\",\"addressLocality\":\"El Paso\",\"addressRegion\":\"TX\",\"postalCode\":\"79912\",\"addressCountry\":\"US\"},\"telephone\":\"+19153636330\",\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":31.8090372,\"longitude\":-106.5236712},\"hasMenu\":\"https://sin-yolanda.com/el-paso/menu/\",\"acceptsReservations\":\"https://www.opentable.com/restaurant/profile/1559290\",\"sameAs\":[\"https://www.instagram.com/sinyolandaelpaso/\"],\"openingHoursSpecification\":[{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Monday\",\"https://schema.org/Tuesday\"],\"opens\":\"00:00\",\"closes\":\"00:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Wednesday\",\"https://schema.org/Thursday\"],\"opens\":\"16:00\",\"closes\":\"00:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Friday\"],\"opens\":\"16:00\",\"closes\":\"02:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Saturday\",\"https://schema.org/Sunday\"],\"opens\":\"10:00\",\"closes\":\"02:00\"}],\"parentOrganization\":{\"@id\":\"https://sin-yolanda.com/#organization\"}}</script>"
+        }
+      ]
+    },
+    "guadalajara.html": {
+      "beforeSha256": "3f0a132a4a12c9ab806e7dc2a89ffd06134fbb424c448c7011a36c2322bf9676",
+      "afterSha256": "24ab1fc4409c54bd261490a0713291c794a68f6e35108fb139e94b0eff955bcf",
+      "patches": [
+        {
+          "before": "<title>Sin Yolanda Guadalajara · La cantina</title>",
+          "after": "<title>Sin Yolanda Guadalajara | Cantina y bar en Zapopan</title>"
+        },
+        {
+          "before": "<meta name=\"description\" content=\"Sin Yolanda Guadalajara en Avenida San Ignacio 78, Zapopan. Una cantina para cantar, brindar y compartir la mesa. Consulta el menú y cómo llegar.",
+          "after": "<meta name=\"description\" content=\"Sin Yolanda Guadalajara: cantina y bar en la zona de Chapalita, Zapopan. Comida, cócteles y micrófono abierto en Avenida San Ignacio 78."
+        },
+        {
+          "before": "<meta property=\"og:title\" content=\"Sin Yolanda Guadalajara · La cantina",
+          "after": "<meta property=\"og:title\" content=\"Sin Yolanda Guadalajara | Cantina y bar en Zapopan"
+        },
+        {
+          "before": "<meta property=\"og:description\" content=\"Sin Yolanda Guadalajara en Avenida San Ignacio 78, Zapopan. Una cantina para cantar, brindar y compartir la mesa. Consulta el menú y cómo llegar.",
+          "after": "<meta property=\"og:description\" content=\"Sin Yolanda Guadalajara: cantina y bar en la zona de Chapalita, Zapopan. Comida, cócteles y micrófono abierto en Avenida San Ignacio 78."
+        },
+        {
+          "before": "Una cantina para cantar, brindar y compartir la mesa. Explora el menú de Guadalajara.",
+          "after": "Sin Yolanda Guadalajara es una cantina y bar en la zona de Chapalita, Zapopan. Comida, cócteles y noches de micrófono abierto en Avenida San Ignacio 78. Consulta la agenda y el menú para armar tu visita."
+        },
+        {
+          "before": "<script type=\"application/ld+json\">{\"@context\":\"https://schema.org\",\"@type\":\"Restaurant\",\"@id\":\"https://sin-yolanda.com/guadalajara#restaurant\",\"name\":\"Sin Yolanda Guadalajara\",\"url\":\"https://sin-yolanda.com/guadalajara\",\"description\":\"Sin Yolanda Guadalajara en Avenida San Ignacio 78, Zapopan. Una cantina para cantar, brindar y compartir la mesa. Consulta el menú y cómo llegar.\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"Avenida San Ignacio 78\",\"addressLocality\":\"Zapopan\",\"addressRegion\":\"JAL\",\"postalCode\":\"45040\",\"addressCountry\":\"MX\"},\"telephone\":\"+523310186159\",\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":20.6677774,\"longitude\":-103.4046841},\"image\":\"https://sin-yolanda.com/images/branch-review/san-ignacio-hero-1200.webp\",\"hasMenu\":\"https://sin-yolanda.com/san-ignacio/menu/\",\"acceptsReservations\":\"https://wa.me/5213310186159\",\"sameAs\":[\"https://www.instagram.com/sinyolandagdl/\",\"https://www.facebook.com/sinyolandagd\",\"https://www.tiktok.com/@sinyolandagdl\"],\"openingHoursSpecification\":[{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Monday\",\"https://schema.org/Tuesday\"],\"opens\":\"00:00\",\"closes\":\"00:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Wednesday\",\"https://schema.org/Thursday\"],\"opens\":\"16:00\",\"closes\":\"00:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Friday\"],\"opens\":\"16:00\",\"closes\":\"02:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Saturday\",\"https://schema.org/Sunday\"],\"opens\":\"10:00\",\"closes\":\"02:00\"}]}</script>",
+          "after": "<script type=\"application/ld+json\">{\"@context\":\"https://schema.org\",\"@type\":\"Restaurant\",\"@id\":\"https://sin-yolanda.com/guadalajara#restaurant\",\"name\":\"Sin Yolanda Guadalajara\",\"url\":\"https://sin-yolanda.com/guadalajara\",\"description\":\"Sin Yolanda Guadalajara en Avenida San Ignacio 78, Zapopan. Una cantina para cantar, brindar y compartir la mesa. Consulta el menú y cómo llegar.\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"Avenida San Ignacio 78\",\"addressLocality\":\"Zapopan\",\"addressRegion\":\"JAL\",\"postalCode\":\"45040\",\"addressCountry\":\"MX\"},\"telephone\":\"+523310186159\",\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":20.6677774,\"longitude\":-103.4046841},\"image\":\"https://sin-yolanda.com/images/branch-review/san-ignacio-hero-1200.webp\",\"hasMenu\":\"https://sin-yolanda.com/san-ignacio/menu/\",\"acceptsReservations\":\"https://wa.me/5213310186159\",\"sameAs\":[\"https://www.instagram.com/sinyolandagdl/\",\"https://www.facebook.com/sinyolandagd\",\"https://www.tiktok.com/@sinyolandagdl\"],\"openingHoursSpecification\":[{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Monday\",\"https://schema.org/Tuesday\"],\"opens\":\"00:00\",\"closes\":\"00:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Wednesday\",\"https://schema.org/Thursday\"],\"opens\":\"16:00\",\"closes\":\"00:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Friday\"],\"opens\":\"16:00\",\"closes\":\"02:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Saturday\",\"https://schema.org/Sunday\"],\"opens\":\"10:00\",\"closes\":\"02:00\"}],\"parentOrganization\":{\"@id\":\"https://sin-yolanda.com/#organization\"}}</script>"
+        },
+        {
+          "before": "<script id=\"seo-page\" type=\"application/ld+json\">{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"@id\":\"https://sin-yolanda.com/guadalajara#webpage\",\"url\":\"https://sin-yolanda.com/guadalajara\",\"name\":\"Sin Yolanda Guadalajara · La cantina\",\"description\":\"Sin Yolanda Guadalajara en Avenida San Ignacio 78, Zapopan. Una cantina para cantar, brindar y compartir la mesa. Consulta el menú y cómo llegar.\",\"inLanguage\":\"es\",\"isPartOf\":{\"@id\":\"https://sin-yolanda.com/#website\"},\"breadcrumb\":{\"@id\":\"https://sin-yolanda.com/guadalajara#breadcrumb\"},\"mainEntity\":{\"@id\":\"https://sin-yolanda.com/guadalajara#restaurant\"}},{\"@type\":\"BreadcrumbList\",\"@id\":\"https://sin-yolanda.com/guadalajara#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Sin Yolanda\",\"item\":\"https://sin-yolanda.com/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sin Yolanda Guadalajara · La cantina\",\"item\":\"https://sin-yolanda.com/guadalajara\"}]}]}</script>",
+          "after": "<script id=\"seo-page\" type=\"application/ld+json\">{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"@id\":\"https://sin-yolanda.com/guadalajara#webpage\",\"url\":\"https://sin-yolanda.com/guadalajara\",\"name\":\"Sin Yolanda Guadalajara | Cantina y bar en Zapopan\",\"description\":\"Sin Yolanda Guadalajara: cantina y bar en la zona de Chapalita, Zapopan. Comida, cócteles y micrófono abierto en Avenida San Ignacio 78.\",\"inLanguage\":\"es\",\"isPartOf\":{\"@id\":\"https://sin-yolanda.com/#website\"},\"breadcrumb\":{\"@id\":\"https://sin-yolanda.com/guadalajara#breadcrumb\"},\"mainEntity\":{\"@id\":\"https://sin-yolanda.com/guadalajara#restaurant\"}},{\"@type\":\"BreadcrumbList\",\"@id\":\"https://sin-yolanda.com/guadalajara#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Sin Yolanda\",\"item\":\"https://sin-yolanda.com/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Sin Yolanda Guadalajara · La cantina\",\"item\":\"https://sin-yolanda.com/guadalajara\"}]}]}</script>"
+        }
+      ]
+    },
+    "san-antonio.html": {
+      "beforeSha256": "2fb18f6c8f75a2df593a63034590725ba7f9e8ee363e7365c7aa6f566d14a9b4",
+      "afterSha256": "c36846e83812d6be08ea48e05a3c5f47ace342a90116a88abf8370f57a2f17f9",
+      "patches": [
+        {
+          "before": "<script type=\"application/ld+json\">{\"@context\":\"https://schema.org\",\"@type\":\"Restaurant\",\"@id\":\"https://sin-yolanda.com/san-antonio#restaurant\",\"name\":\"Sin Yolanda San Antonio\",\"url\":\"https://sin-yolanda.com/san-antonio\",\"description\":\"Sin Yolanda San Antonio en 415 East Commerce Street, San Antonio. Una cantina para cantar, brindar y compartir la mesa. Consulta el menú y cómo llegar.\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"415 East Commerce Street\",\"addressLocality\":\"San Antonio\",\"addressRegion\":\"TX\",\"postalCode\":\"78205\",\"addressCountry\":\"US\"},\"telephone\":\"+12102720133\",\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":29.4240038,\"longitude\":-98.4885171},\"image\":\"https://sin-yolanda.com/images/branch-review/san-antonio-hero-1200.webp\",\"hasMenu\":\"https://sin-yolanda.com/san-antonio/menu/\",\"acceptsReservations\":\"https://www.opentable.com/r/sin-yolanda-san-antonio\",\"sameAs\":[\"https://www.instagram.com/sinyolanda.sa/\",\"https://www.facebook.com/sinyolanda.sa\"],\"openingHoursSpecification\":[{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Monday\",\"https://schema.org/Tuesday\"],\"opens\":\"00:00\",\"closes\":\"00:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Wednesday\",\"https://schema.org/Thursday\"],\"opens\":\"16:00\",\"closes\":\"00:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Friday\"],\"opens\":\"16:00\",\"closes\":\"02:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Saturday\",\"https://schema.org/Sunday\"],\"opens\":\"10:00\",\"closes\":\"02:00\"}]}</script>",
+          "after": "<script type=\"application/ld+json\">{\"@context\":\"https://schema.org\",\"@type\":\"Restaurant\",\"@id\":\"https://sin-yolanda.com/san-antonio#restaurant\",\"name\":\"Sin Yolanda San Antonio\",\"url\":\"https://sin-yolanda.com/san-antonio\",\"description\":\"Sin Yolanda San Antonio en 415 East Commerce Street, San Antonio. Una cantina para cantar, brindar y compartir la mesa. Consulta el menú y cómo llegar.\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"415 East Commerce Street\",\"addressLocality\":\"San Antonio\",\"addressRegion\":\"TX\",\"postalCode\":\"78205\",\"addressCountry\":\"US\"},\"telephone\":\"+12102720133\",\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":29.4240038,\"longitude\":-98.4885171},\"image\":\"https://sin-yolanda.com/images/branch-review/san-antonio-hero-1200.webp\",\"hasMenu\":\"https://sin-yolanda.com/san-antonio/menu/\",\"acceptsReservations\":\"https://www.opentable.com/r/sin-yolanda-san-antonio\",\"sameAs\":[\"https://www.instagram.com/sinyolanda.sa/\",\"https://www.facebook.com/sinyolanda.sa\"],\"openingHoursSpecification\":[{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Monday\",\"https://schema.org/Tuesday\"],\"opens\":\"00:00\",\"closes\":\"00:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Wednesday\",\"https://schema.org/Thursday\"],\"opens\":\"16:00\",\"closes\":\"00:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Friday\"],\"opens\":\"16:00\",\"closes\":\"02:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Saturday\",\"https://schema.org/Sunday\"],\"opens\":\"10:00\",\"closes\":\"02:00\"}],\"parentOrganization\":{\"@id\":\"https://sin-yolanda.com/#organization\"}}</script>"
+        }
+      ]
+    },
+    "the-woodlands.html": {
+      "beforeSha256": "6a8a75b477238ecb4dd40771bd454b7bc9434c3d2c5e5dc42ceb68e6e5037a70",
+      "afterSha256": "94557db0ac96db89be42947e3373e72f8f25371e753b399c27cb17f8f7241f8b",
+      "patches": [
+        {
+          "before": "<script type=\"application/ld+json\">{\"@context\":\"https://schema.org\",\"@type\":\"Restaurant\",\"@id\":\"https://sin-yolanda.com/the-woodlands#restaurant\",\"name\":\"Sin Yolanda The Woodlands\",\"url\":\"https://sin-yolanda.com/the-woodlands\",\"description\":\"Sin Yolanda The Woodlands en 1400 Research Forest Dr, Suite 180, Shenandoah. Una cantina para cantar, brindar y compartir la mesa. Consulta el menú y cómo llegar.\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"1400 Research Forest Dr, Suite 180\",\"addressLocality\":\"Shenandoah\",\"addressRegion\":\"TX\",\"postalCode\":\"77381\",\"addressCountry\":\"US\"},\"telephone\":\"+13463823863\",\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":30.1783964,\"longitude\":-95.4566085},\"image\":\"https://sin-yolanda.com/images/branch-review/the-woodlands-hero-1200.webp\",\"hasMenu\":\"https://sin-yolanda.com/the-woodlands/menu/\",\"acceptsReservations\":\"https://www.opentable.com/r/sin-yolanda-woodlands-shenandoah\",\"sameAs\":[\"https://www.instagram.com/sinyolanda.tw/\",\"https://www.facebook.com/sinyolanda.tw\"],\"openingHoursSpecification\":[{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Monday\",\"https://schema.org/Tuesday\"],\"opens\":\"00:00\",\"closes\":\"00:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Wednesday\",\"https://schema.org/Thursday\"],\"opens\":\"16:00\",\"closes\":\"00:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Friday\"],\"opens\":\"16:00\",\"closes\":\"02:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Saturday\",\"https://schema.org/Sunday\"],\"opens\":\"10:00\",\"closes\":\"02:00\"}]}</script>",
+          "after": "<script type=\"application/ld+json\">{\"@context\":\"https://schema.org\",\"@type\":\"Restaurant\",\"@id\":\"https://sin-yolanda.com/the-woodlands#restaurant\",\"name\":\"Sin Yolanda The Woodlands\",\"url\":\"https://sin-yolanda.com/the-woodlands\",\"description\":\"Sin Yolanda The Woodlands en 1400 Research Forest Dr, Suite 180, Shenandoah. Una cantina para cantar, brindar y compartir la mesa. Consulta el menú y cómo llegar.\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"1400 Research Forest Dr, Suite 180\",\"addressLocality\":\"Shenandoah\",\"addressRegion\":\"TX\",\"postalCode\":\"77381\",\"addressCountry\":\"US\"},\"telephone\":\"+13463823863\",\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":30.1783964,\"longitude\":-95.4566085},\"image\":\"https://sin-yolanda.com/images/branch-review/the-woodlands-hero-1200.webp\",\"hasMenu\":\"https://sin-yolanda.com/the-woodlands/menu/\",\"acceptsReservations\":\"https://www.opentable.com/r/sin-yolanda-woodlands-shenandoah\",\"sameAs\":[\"https://www.instagram.com/sinyolanda.tw/\",\"https://www.facebook.com/sinyolanda.tw\"],\"openingHoursSpecification\":[{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Monday\",\"https://schema.org/Tuesday\"],\"opens\":\"00:00\",\"closes\":\"00:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Wednesday\",\"https://schema.org/Thursday\"],\"opens\":\"16:00\",\"closes\":\"00:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Friday\"],\"opens\":\"16:00\",\"closes\":\"02:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Saturday\",\"https://schema.org/Sunday\"],\"opens\":\"10:00\",\"closes\":\"02:00\"}],\"parentOrganization\":{\"@id\":\"https://sin-yolanda.com/#organization\"}}</script>"
+        }
+      ]
+    },
+    "houston.html": {
+      "beforeSha256": "927242bec05100127b8bd5bdace60356c274e5564593618d2e95b69479bc6ec3",
+      "afterSha256": "a79d8187358376effcfce84385ada023eb8eeefa9787b60969bdaf3bf6883639",
+      "patches": [
+        {
+          "before": "<script type=\"application/ld+json\">{\"@context\":\"https://schema.org\",\"@type\":\"Restaurant\",\"@id\":\"https://sin-yolanda.com/houston#restaurant\",\"name\":\"Sin Yolanda Houston\",\"url\":\"https://sin-yolanda.com/houston\",\"description\":\"Sin Yolanda Houston en 4901 Washington Ave, Houston. Una cantina para cantar, brindar y compartir la mesa. Consulta el menú y cómo llegar.\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"4901 Washington Ave\",\"addressLocality\":\"Houston\",\"addressRegion\":\"TX\",\"postalCode\":\"77007-5305\",\"addressCountry\":\"US\"},\"telephone\":\"+13468791675\",\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":29.7702213,\"longitude\":-95.4108443},\"image\":\"https://sin-yolanda.com/images/houston-entry-study/toast-900.webp\",\"hasMenu\":\"https://sin-yolanda.com/houston/menu/\",\"acceptsReservations\":\"https://www.opentable.com/r/sin-yolanda-houston\",\"sameAs\":[\"https://www.instagram.com/sinyolandahouston/\",\"https://www.facebook.com/sinyolanda.htx\",\"https://www.tiktok.com/@sinyolanda.htx\"],\"openingHoursSpecification\":[{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Monday\",\"https://schema.org/Tuesday\"],\"opens\":\"00:00\",\"closes\":\"00:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Wednesday\",\"https://schema.org/Thursday\"],\"opens\":\"16:00\",\"closes\":\"00:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Friday\"],\"opens\":\"16:00\",\"closes\":\"02:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Saturday\",\"https://schema.org/Sunday\"],\"opens\":\"10:00\",\"closes\":\"02:00\"}]}</script>",
+          "after": "<script type=\"application/ld+json\">{\"@context\":\"https://schema.org\",\"@type\":\"Restaurant\",\"@id\":\"https://sin-yolanda.com/houston#restaurant\",\"name\":\"Sin Yolanda Houston\",\"url\":\"https://sin-yolanda.com/houston\",\"description\":\"Sin Yolanda Houston en 4901 Washington Ave, Houston. Una cantina para cantar, brindar y compartir la mesa. Consulta el menú y cómo llegar.\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"4901 Washington Ave\",\"addressLocality\":\"Houston\",\"addressRegion\":\"TX\",\"postalCode\":\"77007-5305\",\"addressCountry\":\"US\"},\"telephone\":\"+13468791675\",\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":29.7702213,\"longitude\":-95.4108443},\"image\":\"https://sin-yolanda.com/images/houston-entry-study/toast-900.webp\",\"hasMenu\":\"https://sin-yolanda.com/houston/menu/\",\"acceptsReservations\":\"https://www.opentable.com/r/sin-yolanda-houston\",\"sameAs\":[\"https://www.instagram.com/sinyolandahouston/\",\"https://www.facebook.com/sinyolanda.htx\",\"https://www.tiktok.com/@sinyolanda.htx\"],\"openingHoursSpecification\":[{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Monday\",\"https://schema.org/Tuesday\"],\"opens\":\"00:00\",\"closes\":\"00:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Wednesday\",\"https://schema.org/Thursday\"],\"opens\":\"16:00\",\"closes\":\"00:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Friday\"],\"opens\":\"16:00\",\"closes\":\"02:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Saturday\",\"https://schema.org/Sunday\"],\"opens\":\"10:00\",\"closes\":\"02:00\"}],\"parentOrganization\":{\"@id\":\"https://sin-yolanda.com/#organization\"}}</script>"
+        }
+      ]
+    },
+    "en/houston/index.html": {
+      "beforeSha256": "087489f94c9e123614b28844db032edb4e5ce4c9a3be9f19d328b9993c623b4b",
+      "afterSha256": "3763b210c44a0d512bae1b189264cc869fe3e663f394e4fb6cdaf8948df17aa1",
+      "patches": [
+        {
+          "before": "<script type=\"application/ld+json\">{\"@context\":\"https://schema.org\",\"@type\":\"Restaurant\",\"@id\":\"https://sin-yolanda.com/houston#restaurant\",\"name\":\"Sin Yolanda Houston\",\"url\":\"https://sin-yolanda.com/en/houston/\",\"description\":\"Sin Yolanda Houston at 4901 Washington Ave, Houston. A cantina for singing, drinks and sharing a table. Explore the menu and get directions.\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"4901 Washington Ave\",\"addressLocality\":\"Houston\",\"addressRegion\":\"TX\",\"postalCode\":\"77007-5305\",\"addressCountry\":\"US\"},\"telephone\":\"+13468791675\",\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":29.7702213,\"longitude\":-95.4108443},\"image\":\"https://sin-yolanda.com/images/houston-entry-study/toast-900.webp\",\"hasMenu\":\"https://sin-yolanda.com/houston/menu/\",\"acceptsReservations\":\"https://www.opentable.com/r/sin-yolanda-houston\",\"sameAs\":[\"https://www.instagram.com/sinyolandahouston/\",\"https://www.facebook.com/sinyolanda.htx\",\"https://www.tiktok.com/@sinyolanda.htx\"],\"openingHoursSpecification\":[{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Monday\",\"https://schema.org/Tuesday\"],\"opens\":\"00:00\",\"closes\":\"00:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Wednesday\",\"https://schema.org/Thursday\"],\"opens\":\"16:00\",\"closes\":\"00:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Friday\"],\"opens\":\"16:00\",\"closes\":\"02:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Saturday\",\"https://schema.org/Sunday\"],\"opens\":\"10:00\",\"closes\":\"02:00\"}]}</script>",
+          "after": "<script type=\"application/ld+json\">{\"@context\":\"https://schema.org\",\"@type\":\"Restaurant\",\"@id\":\"https://sin-yolanda.com/houston#restaurant\",\"name\":\"Sin Yolanda Houston\",\"url\":\"https://sin-yolanda.com/en/houston/\",\"description\":\"Sin Yolanda Houston at 4901 Washington Ave, Houston. A cantina for singing, drinks and sharing a table. Explore the menu and get directions.\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"4901 Washington Ave\",\"addressLocality\":\"Houston\",\"addressRegion\":\"TX\",\"postalCode\":\"77007-5305\",\"addressCountry\":\"US\"},\"telephone\":\"+13468791675\",\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":29.7702213,\"longitude\":-95.4108443},\"image\":\"https://sin-yolanda.com/images/houston-entry-study/toast-900.webp\",\"hasMenu\":\"https://sin-yolanda.com/houston/menu/\",\"acceptsReservations\":\"https://www.opentable.com/r/sin-yolanda-houston\",\"sameAs\":[\"https://www.instagram.com/sinyolandahouston/\",\"https://www.facebook.com/sinyolanda.htx\",\"https://www.tiktok.com/@sinyolanda.htx\"],\"openingHoursSpecification\":[{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Monday\",\"https://schema.org/Tuesday\"],\"opens\":\"00:00\",\"closes\":\"00:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Wednesday\",\"https://schema.org/Thursday\"],\"opens\":\"16:00\",\"closes\":\"00:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Friday\"],\"opens\":\"16:00\",\"closes\":\"02:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Saturday\",\"https://schema.org/Sunday\"],\"opens\":\"10:00\",\"closes\":\"02:00\"}],\"parentOrganization\":{\"@id\":\"https://sin-yolanda.com/#organization\"}}</script>"
+        }
+      ]
+    },
+    "en/san-antonio/index.html": {
+      "beforeSha256": "6a31da9198792444085856a1382287aef134ba500567bab5325d34a2d6cfb90b",
+      "afterSha256": "12393417da6b9198df521578fa07042b44c0ff1566619902d109e21ca361757e",
+      "patches": [
+        {
+          "before": "<script type=\"application/ld+json\">{\"@context\":\"https://schema.org\",\"@type\":\"Restaurant\",\"@id\":\"https://sin-yolanda.com/san-antonio#restaurant\",\"name\":\"Sin Yolanda San Antonio\",\"url\":\"https://sin-yolanda.com/en/san-antonio/\",\"description\":\"Sin Yolanda San Antonio at 415 East Commerce Street, San Antonio. A cantina for singing, drinks and sharing a table. Explore the menu and get directions.\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"415 East Commerce Street\",\"addressLocality\":\"San Antonio\",\"addressRegion\":\"TX\",\"postalCode\":\"78205\",\"addressCountry\":\"US\"},\"telephone\":\"+12102720133\",\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":29.4240038,\"longitude\":-98.4885171},\"image\":\"https://sin-yolanda.com/images/branch-review/san-antonio-hero-1200.webp\",\"hasMenu\":\"https://sin-yolanda.com/en/san-antonio/menu/\",\"acceptsReservations\":\"https://www.opentable.com/r/sin-yolanda-san-antonio\",\"sameAs\":[\"https://www.instagram.com/sinyolanda.sa/\",\"https://www.facebook.com/sinyolanda.sa\"],\"openingHoursSpecification\":[{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Monday\",\"https://schema.org/Tuesday\"],\"opens\":\"00:00\",\"closes\":\"00:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Wednesday\",\"https://schema.org/Thursday\"],\"opens\":\"16:00\",\"closes\":\"00:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Friday\"],\"opens\":\"16:00\",\"closes\":\"02:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Saturday\",\"https://schema.org/Sunday\"],\"opens\":\"10:00\",\"closes\":\"02:00\"}]}</script>",
+          "after": "<script type=\"application/ld+json\">{\"@context\":\"https://schema.org\",\"@type\":\"Restaurant\",\"@id\":\"https://sin-yolanda.com/san-antonio#restaurant\",\"name\":\"Sin Yolanda San Antonio\",\"url\":\"https://sin-yolanda.com/en/san-antonio/\",\"description\":\"Sin Yolanda San Antonio at 415 East Commerce Street, San Antonio. A cantina for singing, drinks and sharing a table. Explore the menu and get directions.\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"415 East Commerce Street\",\"addressLocality\":\"San Antonio\",\"addressRegion\":\"TX\",\"postalCode\":\"78205\",\"addressCountry\":\"US\"},\"telephone\":\"+12102720133\",\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":29.4240038,\"longitude\":-98.4885171},\"image\":\"https://sin-yolanda.com/images/branch-review/san-antonio-hero-1200.webp\",\"hasMenu\":\"https://sin-yolanda.com/en/san-antonio/menu/\",\"acceptsReservations\":\"https://www.opentable.com/r/sin-yolanda-san-antonio\",\"sameAs\":[\"https://www.instagram.com/sinyolanda.sa/\",\"https://www.facebook.com/sinyolanda.sa\"],\"openingHoursSpecification\":[{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Monday\",\"https://schema.org/Tuesday\"],\"opens\":\"00:00\",\"closes\":\"00:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Wednesday\",\"https://schema.org/Thursday\"],\"opens\":\"16:00\",\"closes\":\"00:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Friday\"],\"opens\":\"16:00\",\"closes\":\"02:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Saturday\",\"https://schema.org/Sunday\"],\"opens\":\"10:00\",\"closes\":\"02:00\"}],\"parentOrganization\":{\"@id\":\"https://sin-yolanda.com/#organization\"}}</script>"
+        }
+      ]
+    },
+    "en/the-woodlands/index.html": {
+      "beforeSha256": "03e711cf63f181d80ea2a1e95f47081648b1ca7741cd1a6cbc332e441e4b18b1",
+      "afterSha256": "e88223c44d0055c2b4fea1af955b3c6b19face59907b282c82a1e6334e9a64f3",
+      "patches": [
+        {
+          "before": "<script type=\"application/ld+json\">{\"@context\":\"https://schema.org\",\"@type\":\"Restaurant\",\"@id\":\"https://sin-yolanda.com/the-woodlands#restaurant\",\"name\":\"Sin Yolanda The Woodlands\",\"url\":\"https://sin-yolanda.com/en/the-woodlands/\",\"description\":\"Sin Yolanda The Woodlands at 1400 Research Forest Dr, Suite 180, Shenandoah. A cantina for singing, drinks and sharing a table. Explore the menu and get directions.\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"1400 Research Forest Dr, Suite 180\",\"addressLocality\":\"Shenandoah\",\"addressRegion\":\"TX\",\"postalCode\":\"77381\",\"addressCountry\":\"US\"},\"telephone\":\"+13463823863\",\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":30.1783964,\"longitude\":-95.4566085},\"image\":\"https://sin-yolanda.com/images/branch-review/the-woodlands-hero-1200.webp\",\"hasMenu\":\"https://sin-yolanda.com/the-woodlands/menu/\",\"acceptsReservations\":\"https://www.opentable.com/r/sin-yolanda-woodlands-shenandoah\",\"sameAs\":[\"https://www.instagram.com/sinyolanda.tw/\",\"https://www.facebook.com/sinyolanda.tw\"],\"openingHoursSpecification\":[{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Monday\",\"https://schema.org/Tuesday\"],\"opens\":\"00:00\",\"closes\":\"00:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Wednesday\",\"https://schema.org/Thursday\"],\"opens\":\"16:00\",\"closes\":\"00:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Friday\"],\"opens\":\"16:00\",\"closes\":\"02:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Saturday\",\"https://schema.org/Sunday\"],\"opens\":\"10:00\",\"closes\":\"02:00\"}]}</script>",
+          "after": "<script type=\"application/ld+json\">{\"@context\":\"https://schema.org\",\"@type\":\"Restaurant\",\"@id\":\"https://sin-yolanda.com/the-woodlands#restaurant\",\"name\":\"Sin Yolanda The Woodlands\",\"url\":\"https://sin-yolanda.com/en/the-woodlands/\",\"description\":\"Sin Yolanda The Woodlands at 1400 Research Forest Dr, Suite 180, Shenandoah. A cantina for singing, drinks and sharing a table. Explore the menu and get directions.\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"1400 Research Forest Dr, Suite 180\",\"addressLocality\":\"Shenandoah\",\"addressRegion\":\"TX\",\"postalCode\":\"77381\",\"addressCountry\":\"US\"},\"telephone\":\"+13463823863\",\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":30.1783964,\"longitude\":-95.4566085},\"image\":\"https://sin-yolanda.com/images/branch-review/the-woodlands-hero-1200.webp\",\"hasMenu\":\"https://sin-yolanda.com/the-woodlands/menu/\",\"acceptsReservations\":\"https://www.opentable.com/r/sin-yolanda-woodlands-shenandoah\",\"sameAs\":[\"https://www.instagram.com/sinyolanda.tw/\",\"https://www.facebook.com/sinyolanda.tw\"],\"openingHoursSpecification\":[{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Monday\",\"https://schema.org/Tuesday\"],\"opens\":\"00:00\",\"closes\":\"00:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Wednesday\",\"https://schema.org/Thursday\"],\"opens\":\"16:00\",\"closes\":\"00:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Friday\"],\"opens\":\"16:00\",\"closes\":\"02:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Saturday\",\"https://schema.org/Sunday\"],\"opens\":\"10:00\",\"closes\":\"02:00\"}],\"parentOrganization\":{\"@id\":\"https://sin-yolanda.com/#organization\"}}</script>"
+        }
+      ]
+    },
+    "en/el-paso/index.html": {
+      "beforeSha256": "22dc15b1bdb45cc7ed60d5f7a4d0ddf8df7e1fa37b015e118d24c490114630ec",
+      "afterSha256": "26a4411267711c2dda3da4e90f9965eb4555ecd1f897dfb039dc99b07067d607",
+      "patches": [
+        {
+          "before": "<script type=\"application/ld+json\">{\"@context\":\"https://schema.org\",\"@type\":\"Restaurant\",\"@id\":\"https://sin-yolanda.com/el-paso#restaurant\",\"name\":\"Sin Yolanda El Paso\",\"url\":\"https://sin-yolanda.com/en/el-paso/\",\"description\":\"Sin Yolanda El Paso at 340 Vin Rambla Dr, El Paso. A cantina for singing, drinks and sharing a table. Explore the menu and get directions.\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"340 Vin Rambla Dr\",\"addressLocality\":\"El Paso\",\"addressRegion\":\"TX\",\"postalCode\":\"79912\",\"addressCountry\":\"US\"},\"telephone\":\"+19153636330\",\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":31.8090372,\"longitude\":-106.5236712},\"hasMenu\":\"https://sin-yolanda.com/el-paso/menu/\",\"acceptsReservations\":\"https://www.opentable.com/restaurant/profile/1559290\",\"sameAs\":[\"https://www.instagram.com/sinyolandaelpaso/\"],\"openingHoursSpecification\":[{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Monday\",\"https://schema.org/Tuesday\"],\"opens\":\"00:00\",\"closes\":\"00:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Wednesday\",\"https://schema.org/Thursday\"],\"opens\":\"16:00\",\"closes\":\"00:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Friday\"],\"opens\":\"16:00\",\"closes\":\"02:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Saturday\",\"https://schema.org/Sunday\"],\"opens\":\"10:00\",\"closes\":\"02:00\"}]}</script>",
+          "after": "<script type=\"application/ld+json\">{\"@context\":\"https://schema.org\",\"@type\":\"Restaurant\",\"@id\":\"https://sin-yolanda.com/el-paso#restaurant\",\"name\":\"Sin Yolanda El Paso\",\"url\":\"https://sin-yolanda.com/en/el-paso/\",\"description\":\"Sin Yolanda El Paso at 340 Vin Rambla Dr, El Paso. A cantina for singing, drinks and sharing a table. Explore the menu and get directions.\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"340 Vin Rambla Dr\",\"addressLocality\":\"El Paso\",\"addressRegion\":\"TX\",\"postalCode\":\"79912\",\"addressCountry\":\"US\"},\"telephone\":\"+19153636330\",\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":31.8090372,\"longitude\":-106.5236712},\"hasMenu\":\"https://sin-yolanda.com/el-paso/menu/\",\"acceptsReservations\":\"https://www.opentable.com/restaurant/profile/1559290\",\"sameAs\":[\"https://www.instagram.com/sinyolandaelpaso/\"],\"openingHoursSpecification\":[{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Monday\",\"https://schema.org/Tuesday\"],\"opens\":\"00:00\",\"closes\":\"00:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Wednesday\",\"https://schema.org/Thursday\"],\"opens\":\"16:00\",\"closes\":\"00:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Friday\"],\"opens\":\"16:00\",\"closes\":\"02:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"https://schema.org/Saturday\",\"https://schema.org/Sunday\"],\"opens\":\"10:00\",\"closes\":\"02:00\"}],\"parentOrganization\":{\"@id\":\"https://sin-yolanda.com/#organization\"}}</script>"
+        }
+      ]
+    }
+  },
+  "protected": {
+    "locations.html": "8a4b3b0587d863c8e5235daa85408ae72206781c41c303e8000bbffaf4c99896",
+    "la-cantina.html": "ab2cf734eb0859c57c0fcf6d16b1ac463f1cfcf32da3bbf531b1968e1e061430",
+    "catering.html": "c78ec91931b9117d0eb2cc9cecac635705b519fc4c27d901bd8377f14f1d7538",
+    "eventos.html": "07894d8bf9877dddf8aee34037cc19758272727dc98f343cfbbbf490bfedf93e",
+    "tienda.html": "43d6a6c1366e9b02f3a32b1aec1eb9585dc3159d9f29b325d8e6d0d0e003b09d",
+    "aviso-de-privacidad.html": "2051a832e2838004527b98199b2951f37d816bea6f78b6e72f14b55d24ee3351",
+    "houston/menu/index.html": "e8d7d6f366fbd8e4b1aa31515a9fd828ca3251a735b4f2c65313414337aeaaa1",
+    "404.html": "ba258afd4fc39d742b95b465d9bc8e65cf5fa3420131dec954e7176f1ed33b40",
+    "san-antonio/menu/index.html": "6aaf40f162e642a80ed4d5320873cda2537e9ef3ff9600001d03c05f08172b6e",
+    "en/san-antonio/menu/index.html": "517450f789d1109e35923eb7576728a2bdfacf2e443c53326a8345b169a0c8d9",
+    "the-woodlands/menu/index.html": "9e590856533c3917a3f030a8ca758c937f321dbc78ccfa6e1962dcf0b2f40f75",
+    "san-ignacio/menu/index.html": "034e8f94a9824457c192f8aad9f3c6c46f94d28f16656364abd9bb5f0cd4a16e",
+    "en/catering/index.html": "caba3d1d140de48d1e129f186428e41047cdc5133f3735cf4c4a4db514b853c9",
+    "el-paso/menu/index.html": "9f219238f610f443e3b9838674a440b35fe61f47e53950668cb452d5ba02da2c",
+    "guadalajara/canta-por-tu-cuenta-2026/index.html": "8da7be166e1355b26217f3ff5743c7df801514bb1805c471da0707aa4a023114",
+    "styles.css": "784e25bd6d724c7c92c8571c7e69599c60ff9490a63d6575b58fc38efce139aa",
+    "assets/css/houston-header.css": "34d71316a37abd87b21fcb1db113ba587ac1df09fd925d37902c87ca3e963191",
+    "_headers": "d9a3498ea52f1ee58ec233eb3902d3872d7c50de7c6b471d5676c8a231cb4911",
+    "_redirects": "ad8cfeae4aaf405e2e3251a3794497a74e29a9710e833b1e16bb197985e7a0a8",
+    "robots.txt": "7e3f7f1270f21a1098bc6d65f6caecc9f34696f08ddeede99642f7e03a5fc681",
+    "sitemap.xml": "4ad2ee0ad69ad4ce5c09a7405ac9f6b9265612c86df942ea95402334ea25f864",
+    "assets/js/public-data.js": "c568fb131189ec8ef86f0e2859a7ad226c4f9bafda15fba59f30c1d19e83bf9c",
+    "assets/js/site.js": "db8559e64e6b71e2143f1cd9c47e525cf98dbcc0836dc407a2fc739cfdab4d0a",
+    "assets/js/i18n.js": "da8314d49c45450273a22674cd83e007a022f9683916e94954b1e469d429af73",
+    "_astro/BranchLanding.astro_astro_type_script_index_0_lang.DLcwMrbI.js": "b0505f37da9415bc1ba2777bd90131f7c978ff43bf1a4c21e1c60b0172b4590b",
+    "_astro/BranchLanding.astro_astro_type_script_index_1_lang.BlqKqRiJ.js": "b129ded28856c8e4fc7e05517257cbc061581f1c0720c631698e0b945e444ed8",
+    "_astro/BranchLayout.astro_astro_type_script_index_1_lang.BlqKqRiJ.js": "b129ded28856c8e4fc7e05517257cbc061581f1c0720c631698e0b945e444ed8",
+    "_astro/HoustonHeroStudy.DKeWBigy.css": "c4122ccb60ec4faa6b17868e94b05b531adea78b7676a5ed7a5d560882288ee5",
+    "_astro/MenuArtwork.DkCp5p4L.css": "e67f1430f94ba6533ee49110cd3a6250837286a31914a1565f5c0c8cb1fa5b57",
+    "_astro/branch-landing.DvYw-im_.js": "acde5fb0be595f3e21fca5b7b27f5c886394af73893deb37d48c767224f739c2",
+    "_astro/houston-5.DznGJ7Ud_2upFPq.webp": "be920b207f15c60bd063f36cc209c938c09a7e565bb6c691540cf65ebb9193b2",
+    "_astro/houston-7.BrxxM2Gf_1UJoT7.webp": "a7d11eb0a40b4f516cad0f67b9e7ea6ea9bef10db58d25aeaed30cc0b618ae5a",
+    "_astro/houston-hero-study.DTgviCkq.css": "1acccfae16cf05bdc433db0720e6e5220e01fc59c8fcd4307136243415efb3d1",
+    "_astro/houston-scroll-header.2fq7Vde6.js": "7bf4a9fd55db7ccd64445d30976936b760e845c071850cf8df8531cd8f2869b9",
+    "assets/media/apple-touch-gdl.png": "7c9f7ece4247808ea725c7f2fdb4c53307bde5934d5f94699f40304115a5ae4a",
+    "assets/media/apple-touch-icon.png": "7c9f7ece4247808ea725c7f2fdb4c53307bde5934d5f94699f40304115a5ae4a",
+    "assets/media/brand-logo-crop-old.jpg": "7206519db8ece2f5a57a4ade56e769d91bcdb539764f2fe65bd6e5726338df75",
+    "assets/media/brand-logo-full.jpg": "daef7b8a73d9efdffea731a7c6caa33b23252201d44a7ca4b379e96f530ae725",
+    "assets/media/brand-logo-gdl.png": "25ad66a7e199ba7a8c2841ce2e6e4e010a397e31bbf66c638d0fdda3f2cbcf13",
+    "assets/media/brand-logo.png": "25ad66a7e199ba7a8c2841ce2e6e4e010a397e31bbf66c638d0fdda3f2cbcf13",
+    "assets/media/celebration.webp": "96a8bd2974bf41ed42aefabd3128ab32b954a616998817ce127af0b7d14c22a0",
+    "assets/media/cocktail.webp": "f285484ab083b0f5948d80560abe4dd047755ef98002e81b1480f0977d2720d4",
+    "assets/media/dining.webp": "d2c67c4b49eabcd97a7d8bd928f4a9ac89362a988bc7af9f17a691f8a8819e73",
+    "assets/media/favicon-32x32.png": "0ab169b84214160fb1f2f5d98c7a01f12eebfdf1c5050095bb4374cf04cd627d",
+    "assets/media/favicon-gdl-32.png": "0ab169b84214160fb1f2f5d98c7a01f12eebfdf1c5050095bb4374cf04cd627d",
+    "assets/media/hero-celebration-poster.webp": "0567e84fbfe37de22fbc6d8d7095971f352d18d53c409ba0af294a8ec5fa7014",
+    "assets/media/hero-celebration.mp4": "d32102ec76b1e71bdeec8a600c85899832683231e323fb06c52660d0b2446228",
+    "assets/media/hero-night.webp": "49fd280e68757e87620ad6b2debfd289e3f3168eeb36a04840acbeaa2e7a5ee3",
+    "assets/media/hospitality.webp": "0f4090d8efe741fc7728d714266eb2d9da133cd731992ae07e4c6693f41ba44b",
+    "assets/media/icon-192.png": "66eb66047945fa960345a68a52d9e72e86fa84c3eb4b15c403bde130c9748372",
+    "assets/media/icon-512.png": "bfbd474f5957c535580d54aef3d14d96422bcf33d44abe72867b1d5ab3b80b3e",
+    "assets/media/interior.webp": "a384675a2d161496c72b390fc2e12b933f97653df70717f195cff0c317b40a92",
+    "assets/media/karaoke.webp": "ac1d0ba906ee928b1c12e009cca654cb081bd72d5ac1eaf81f0db4c4b0e6d6ea",
+    "assets/sin-yolanda-logo-avatar.jpg": "ab2cf22d58ed52909aa07e5e6c3e0316a2d24d1fed701d1ecdb71faeb3f8b726",
+    "fonts/alfa-slab-one-latin-400.woff2": "48a110c7fda81f9921a6437e1a813dcea56df5a9f52f778c7b2f2151e36e4f2c",
+    "fonts/bebas-neue-400.woff2": "a7c90c89240c134f7fdd33d40c000ec90b79d675ea53e8cc5a6d423c073de412",
+    "fonts/licenses/ALFA-SLAB-ONE-OFL.txt": "e315abc82a78710c7242e2f2e6529651fd631d4d50e6ad98ea194f9b54c3d701",
+    "fonts/licenses/BEBAS-NEUE-OFL.txt": "1ad713665104ebc1ad80176b6b14f2d7dbc91aeed4180855a9514bb350b52e31",
+    "fonts/licenses/ROBOTO-SLAB-APACHE-2.0.txt": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "fonts/licenses/ROBOTO-SLAB-COPYRIGHT.txt": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "fonts/roboto-slab-400.woff2": "484e9925bb3045e88a8eec1103ab125e6dbe486172fb56b06fe6751c8b570839",
+    "fonts/roboto-slab-700.woff2": "66fa77aafb51fb5058e1fd7e34977f55e84494600bccb2d4cc9d0cbc998eb5cb",
+    "images/houston-entry-study/preparation-1200.webp": "064deb02a7e480e2fd0f259efa65c183843e77327498ff8f0e7a716dc2453db3",
+    "images/houston-entry-study/table-1280.webp": "861a4baa56131c9b152c6699eea0b1bdccfb483ebae65e4436d2c3c431ddc7c5",
+    "images/houston-entry-study/table-1600.webp": "c15b711116119bceb5a1d4ac9bc3d2f29086efd631bd24003fe020a936b93b55",
+    "images/houston-entry-study/table-2000.webp": "63e562c1c7b07b33e034b6cd5fb6424f369a01347a020d39395ce971d265da89",
+    "images/houston-entry-study/table-2400.webp": "59fed1c6ddb4f877add560b7b03411ada65afa35080139293ce0520a78902d95",
+    "images/houston-entry-study/table-400.webp": "a16490baac3fa3390fc87244b2283d2d0e1e2072e520ec96c8b3948b3b9f2b11",
+    "images/houston-entry-study/table-640.webp": "63340156021bc0ad25d7ddbca89d399c6f8a38de04c78336ae22f0b2d196d07b",
+    "images/houston-entry-study/table-960.webp": "0e7da799ef16b9bfad00baadee139752d5b9226e72216a2ef42bf4e3f5c964a9",
+    "images/houston-entry-study/toast-1200.webp": "8ccccf0ff3691a50bcac38e34ad097bfdea628bcae3890ae0290582abb001292",
+    "images/houston-entry-study/toast-1700.webp": "99461fb193ea43fc4ef120412c21cb6c43dcd626115875e88a36c6c60a364e65",
+    "images/houston-entry-study/toast-360.webp": "f7bbb52bd41d91fd84fe3c2692fc9478deac929ec9ff5b17cab99275748d6bc1",
+    "images/houston-entry-study/toast-600.webp": "b1c5d11428483b72c17041c2d0445ac24d966b7ad8db169640eb362839d1d0bc",
+    "images/houston-entry-study/toast-900.webp": "44a294caaa5f1ccbad99b91bf00a8ac32fc23a0be1c120099349de0f0067c44c",
+    "images/houston-hands.webp": "39b7b35d5f7ecfa2c795979204463ed612a008025bffc9387fa8667c69a79e55",
+    "images/houston-menu-cenefa.webp": "84df6c4a518cec7b8da92eaef3f0e34fd039f149d5a52ede0a2c1d5354eb26fc",
+    "images/opentable-mark.svg": "b22c2f17063288307aa00a7854ab21f58a9b43932e757264d7ace81a76378baa",
+    "images/sin-yolanda-logo.png": "808c3688690b149e183a779c72cdc591f4c0a8a42784a470819c74fc93080e8b",
+    "assets/css/venue-selector.css": "f621c3bb09744917c0c9afed1d5ab99f4e24d46285db0ff37b7ad0fc2171f2ac",
+    "assets/css/home-actions.css": "7fc10c10fd7aa52fa61f9c024e321e280ede7aa1eae43ad0ecce7853abfaba44",
+    "assets/js/venue-selector.js": "68d6c867b712a26fd52338dea9ec2fe80e732dbc9cf8adaffc6f0fd2fb347b8a",
+    "licenses/react-bits.txt": "f4c33af6739191537738662d223b68d77bc226f4b57ea883e16481d8cc5c73c9",
+    "assets/media/hero-fiesta-real.mp4": "e03997b6c3842b466bfb04b45906aa7655c9770c16636f70133e251e39d3b0ce",
+    "assets/media/hero-fiesta-real-poster.webp": "75752e160287d825f6f2bc4dafd875d8ecb79f67558dc39a7e7951ee267d4688",
+    "assets/media/banner-canto.jpg": "9dcece5ddf15cae4b45e57279a86b14d8d1bfc236d537f0734df43eeeea91871",
+    "assets/media/banner-celebracion.jpg": "eba7854084963e9d578213754c35592c8da3ca97f593ba22ba985d20eba565d6",
+    "assets/media/venue-elpaso.webp": "b4f2dee684dc34895d7ba24df1f10fdb363f33ad903178c5b6a13fd0523c2e54",
+    "assets/media/venues/san-ignacio.webp": "59ad1cb3fa31e777106bc2a0963738619ad941cebececc041c77678d3d55c708",
+    "assets/media/venues/san-antonio.webp": "bfe6ae8f8a7cd694a93d79c7463301ccf4cfe4e6d6a94882a4e7210e5c7b011c",
+    "assets/media/venues/the-woodlands.webp": "8de9075f137afb828fd502e73f19cf73f37b04badcb9d596dbfb37d36c04c008",
+    "assets/media/venues/houston.webp": "f375863aa6bcae584dfa5b09dc853d71b74b059416eb30d1fce0fbebb74ec626",
+    "_astro/BranchFooter.4SmD_LYs.css": "9f4b6f6d0b2e3f46b295ef04bb020604b50bd7e58b878144fdafbfdb179edbc9",
+    "_astro/BranchLanding.CDfgwMss.css": "55e141881f26d953c3b1139bb9a3ea35c14fd0bdf9a175b5b4f02a8706c2c08d",
+    "_astro/BranchLanding.astro_astro_type_script_index_0_lang.CeQk4s02.js": "52ef8a531532da947e0be1c750bd7a6bf586bcc8e72f551aa98e7d2cf4ac3c8b",
+    "_astro/BranchProgrammingBoard.C-mtfQNN.css": "740fa21fd058b360ae386ac42c1548b8a36082ed3be29676d6902a7f5412fc44",
+    "_astro/DigitalMenu.BF-pQq6e.css": "d132cd72ca9b46d6098971f210fe16e44acb9a8e01571b63df00eddf2ae84e89",
+    "_astro/MenuArtwork.ONFpGAmS.css": "a08addcd696e4cf838ccd85c6b56a7d6dedc3793c9cbff9d44ea466522ab16ff",
+    "_astro/houston-hero-study.JylKseCc.css": "18ce7ce5f9c53943dd5b1c3cb1add9401a813c74045cc7dfa928997f2bdcb64a",
+    "_astro/houston-scroll-header.DrYaFs3s.js": "ea2a8f5717bcf4f014b4d4c3c364e9574d2fff840e3b502e9db665eb6219015d",
+    "images/catering-review/celebration-1440.webp": "9878387e6b1f5df06fdd597cc9eedb027e9c82a6f3ccb9696087364f4e2a7562",
+    "images/catering-review/celebration-480.webp": "29bea35701918608fa8640fa4f1faeb82a28838d9ef4ffd9b031986692c08b66",
+    "images/catering-review/celebration-960.webp": "5d35acec1ad881d6de83fdda3a37debdd707bce7a4f2c108ab51fb58eaceec6c",
+    "images/programming-review/jorge-mariana-20261113-1200.webp": "61ab184b17257700c9e8615f9538d1da17482b65bbca72b45955dc30c4dddd2c",
+    "images/programming-review/jorge-mariana-20261113-480.webp": "de50346991d1de205b637d2a5b378c7ee54ef18be284fd258b6057d50870a83a",
+    "images/programming-review/jorge-mariana-20261113-900.webp": "f4dc772ccc3d7c1f84ef9586a736bf6f9852df214988889a1e081530547f6fa8",
+    "_astro/v36-es-04.jBXCe0BQ_23DDRs.webp": "0ee3a8809fdb3b725f5a82f8ad287df11c44c0681dfcb6dee95cb7a1f873329f",
+    "_astro/v36-es-05.DtILu6sL_Z1FUh84.webp": "5d1a4ae604364c2b314a700ab00dcdeba13ade3fd4e34f16ef64fcdbfdf2d023",
+    "_astro/v36-es-06.DQW-qjLw_Tlfj6.webp": "df08d6d9fa6e37ba3b9e2e9d2fb1f9aaeb2720240892ceb20d5ed13903c2c0a7",
+    "_astro/v36-es-07.DJXRA9wg_Z1kJMGE.webp": "044d7174db05b0589c3c6e45117c0c6186e81eb85449af08e8e5a1f49631bd41",
+    "_astro/v36-es-08.eTn3BUB1_3DFtD.webp": "d47911e0d34935bf888943708b5e6ce49516f612c8d4c9221998293f4173b785",
+    "_astro/v36-es-09.DUVvMLwh_1Xe4Hc.webp": "2723888fb9e38144a724e3f03fa79b975e44edc05c793033ae37cd12ff0aa19d",
+    "images/branch-review/san-antonio-food-1200.webp": "36085250ec230a89f952602519c6ce729dfd341fc43c9e013f90d9e94be65b8d",
+    "images/branch-review/san-antonio-food-1600.webp": "1220ec3f6417c43120beb61469d486046b1e5eab3c6db831ba0a4b42202b6ec8",
+    "images/branch-review/san-antonio-food-2000.webp": "869903d4c0c83f9230440c10cbbad767c69ea13f9092c4cb13b03341e30bd85c",
+    "images/branch-review/san-antonio-food-480.webp": "3032c023b0533b762a1360e58d6dc55e4522e0603004c474d1314e0b5e67e54e",
+    "images/branch-review/san-antonio-food-800.webp": "60703e803fc1cc6dd3ec63345ae58cfbdc92100a21dae1573224d858d33e358a",
+    "images/branch-review/san-antonio-footer-1200.webp": "ec6d3c82778a585ef7f0b12f67372b04f3318819f5f96e7284800392a1a438e1",
+    "images/branch-review/san-antonio-hero-1200.webp": "f87d395fe9cbc217e45dad8f26b70c573a34456321d76b26070850b7f7222294",
+    "images/branch-review/san-antonio-hero-1600.webp": "9c4153047ae364244769cc881ee06799aaf978bd4bb702cbf7e4e5d6722909c7",
+    "images/branch-review/san-antonio-hero-2000.webp": "b72587c2b34ae519a88a0cadc91e19d247fa516e3068b4d813f0d6ae6893cf35",
+    "images/branch-review/san-antonio-hero-480.webp": "c0831416c89f8fb75a8656dfa8ed6866bea3b50e9d1334797c8bc0e4ec34d4d1",
+    "images/branch-review/san-antonio-hero-800.webp": "77eb603c0b647f2a6d0a907902385e46c4a74a8796d437b361c1b91287f60bd0",
+    "_astro/linked-04.DINxVZSR_Z24rssn.webp": "0590fb06fa1873dfcca8f0b1866a3a42bc8580b9ef3eb0abdbd4cf526a8a2945",
+    "_astro/linked-05.BKft0gGY_Z1URRR5.webp": "3160282035e3dc6e0a0a1fdcc33c2cb5bf9c9ef2495d207fd46571d0553deeaf",
+    "_astro/linked-06.CKB1kxKW_Z1IzYjR.webp": "60764bd3a2ac05dc416b2515aafae748eb1f83e12baee278a0f353e821bb519c",
+    "_astro/linked-07.p26UFnVS_2j8io.webp": "09a290f5c4ee95f2143780a764ffce5f065e3199c9efe2b35052b192cc8e90c4",
+    "_astro/linked-08.CLJ4qKeU_Z1v6LF5.webp": "e65f29f23fd683ab67390d0d740d6eecd739ea715d2bdf17a9e1f0adf6aa7b86",
+    "images/branch-review/the-woodlands-food-1200.webp": "1808819063e98fca212148a26858324f5497f6c601a6076383377c8ac959c298",
+    "images/branch-review/the-woodlands-food-1600.webp": "0aeeeaf58332c56ec9e6bd13be304926115df22453af26a162bf88e0bcb544ae",
+    "images/branch-review/the-woodlands-food-2000.webp": "94695d76821a38d0bf555618f7dd5a5136e971e3fb4ccdbeea161c25649275f2",
+    "images/branch-review/the-woodlands-food-480.webp": "b1e234d752ee243b2ff4a69d41438de4bad4eb1635b556d513c97500dcecd633",
+    "images/branch-review/the-woodlands-food-800.webp": "1aecbbc8d315cd572551e2daa8ee4ab1d968b6501bdd278d218bb955e83e94c2",
+    "images/branch-review/the-woodlands-footer-1200.webp": "2a267768f8a623492023926a3a83ce029d69c6dcb7c7a7d7f3ea0b3f0893e4eb",
+    "images/branch-review/the-woodlands-hero-1200.webp": "bb21e941b1de6cb8a4e98159d13bdc64e10dbfe466ed60d05302d91f34537128",
+    "images/branch-review/the-woodlands-hero-1600.webp": "8de9075f137afb828fd502e73f19cf73f37b04badcb9d596dbfb37d36c04c008",
+    "images/branch-review/the-woodlands-hero-2000.webp": "b51d7bbfc8f4c4f4554846ecd534b7b40e75fef4dac6e9391271743d835ff5e5",
+    "images/branch-review/the-woodlands-hero-480.webp": "1d9a98c8d5f14b255e14b732619db47b3be9679d9c90a302194241fdcaa1a864",
+    "images/branch-review/the-woodlands-hero-800.webp": "1252ce2c0ed7ab8da64e0cb6c51695435d9ba3e926eea55de2cc692b74fe5e50",
+    "_astro/linked-09.kVyBpGyt_Z2bsaJa.webp": "c175b4da9f27535cfc92e257a8f777cb91dd1e55a7b58370f185b7d11e70ebf8",
+    "_astro/linked-10.BKHnoNwS_ZYIsX9.webp": "e946742f5202a9c4cf8f6a0b2dbec1cbfd3104120df75d742370196a17e7648c",
+    "_astro/linked-11.B7w66LIi_y2sY1.webp": "147d2dd26dedb7feeacc0903adedcabc051cb92f478eabc8e7732115cb5d9a41",
+    "_astro/linked-13.Bl9uyNo7_Z1JQLru.webp": "7e091321ae78fbeed2555ae3692e7d09dd19760483e3ebe809c94b228f6fbbc4",
+    "_astro/linked-14.DuYx0P3h_ZEMcLc.webp": "661761d669bd1e09f361b64199d26f22ac2d9e6f31de1ed29ead2a649b9c0370",
+    "images/branch-review/san-ignacio-food-1200.webp": "3549bb799b1b59aaa671c3a92b4e6b09af9e5d22144b759654aa99cf590bedea",
+    "images/branch-review/san-ignacio-food-1600.webp": "1a8596a840a7719fd9d5c6f750b7ca516d54f19d2cc539822fd9359770e90fae",
+    "images/branch-review/san-ignacio-food-480.webp": "07ebe324ed500d4ed2ab5638aa2ec15dc9788af32099357268f4ebb0c6d7494b",
+    "images/branch-review/san-ignacio-food-800.webp": "eaa5a47d68b077220b54858e60b5c4f4929514a851e88a71dc259ba5985916a2",
+    "images/branch-review/san-ignacio-footer-1200.webp": "84d02bd71144576ab913d8c16f800236cdfae447b31af7357699cb0127d1a7a8",
+    "images/branch-review/san-ignacio-hero-1200.webp": "4d911b642b3f1432dfb2d948d54fd8b02ad49e6e45ae24e977be771a834fdea1",
+    "images/branch-review/san-ignacio-hero-1600.webp": "74fde271e9d3b997e9d1ca885fa5e5574777fd20b7a046fb413b20c3ef349a92",
+    "images/branch-review/san-ignacio-hero-2000.webp": "25230b91c3a3a159ef075da91cb630aa5d19b2b00668dba77dc2d6296389eb82",
+    "images/branch-review/san-ignacio-hero-2400.webp": "c5f2ec8fdcb853f650ba3f7cda3d0ecd79b79176c25193b83f709d23995c5533",
+    "images/branch-review/san-ignacio-hero-480.webp": "f790d120123464d63e67d4172c02d70263e1aabd197e20619377fba9b523aa4d",
+    "images/branch-review/san-ignacio-hero-800.webp": "2e8d7c71d143e0f5962339a5c44935cfc8bb9eb530d4bf852c18935e6de19aac",
+    "images/branch-review/el-paso-hero-1200.webp": "a5685bbcb387a927f8b6a28c09e67430c59a94ae063a3fa472e8cbf402e53e0a",
+    "images/branch-review/el-paso-hero-1600.webp": "704f50897d555a871e44a5232b5a865f52400bb10ac87eeb677f64bbca5cbc50",
+    "images/branch-review/el-paso-hero-2000.webp": "31bbd4a2c5b4e8fddec96bb275a9afff9da73ca7e2aa00dc81c85b8375c9b003",
+    "images/branch-review/el-paso-hero-480.webp": "654f1190211321360318c9d67282c5f0d8de217fc2535684c446983e4c3a23fc",
+    "images/branch-review/el-paso-hero-800.webp": "ea5456942ebe2d4f36f28e8ba17b3aefb8882cf8358715059d2ffcb6f2f319cb",
+    "_astro/CateringPage.ChFeKhdP.css": "e0ab6c19128279b7064f2eef3fbc0869893eb30b20d47cda0d1f1aad571aa9d0",
+    "images/catering-review/bar-1440.webp": "ad2861e2d6c61391ddfe1662589c0b0465bc20174f19510974158b7ae8cb8783",
+    "images/catering-review/bar-480.webp": "e3606c0c3e5472c20562164e742a21c7942ef43abf65ef7afe7c5075279a3f3c",
+    "images/catering-review/bar-960.webp": "07b15874ab4a6801c9250c2669bae64dd64fca6ede76b38ab25378bb850fb4cd",
+    "images/catering-review/buffet.webp": "445053be9e41b587cfbce429b86a07af88d1eb987dd2e66e43c20230cfbb23d9",
+    "images/catering-review/emblem.webp": "1a0da802b81906d24eb542244959d5477717fdaa82c2b20ada5bbf43102d3285",
+    "images/catering-review/grill.webp": "c28082d8c9a1c62e0d201c1f965fdbbee45fe4903d024ad3b6861ebdbd90d012",
+    "images/catering-review/pattern-band.webp": "80ccfb1cb4f7b2eeb02b2205a2c179819c99ebdcfd866c4fa569c5b2c16b5a2d",
+    "images/catering-review/shell.webp": "217c64e3e6972402aabcf98820118958114b025cead1bd9c445e4fffad3ad3f7",
+    "images/catering-review/singing-480.webp": "fc9b7654559cd645b79ff98c577ee23cd1872ec41dcb1abb8d0dc87c8672ae25",
+    "images/catering-review/singing-960.webp": "7151c3e78b4a7901577588f6b9651c21b4f7f455895638fbbe7e3fe4aca769bb",
+    "images/catering-review/table-480.webp": "eea81720221f8f196d7f6934a92204477bf55f13087232c2cad917e4f4983fce",
+    "images/catering-review/table-960.webp": "9a8508b346a55fc76014bf77e64ca200225cb121213ba5ab3c32a622afa9e6d2",
+    "images/catering-review/table-scene-desktop-1280.webp": "0d7c565c94ecc6dd8d15dba8c5434659266db30a8d8051adcb709be759e9e5b6",
+    "images/catering-review/table-scene-desktop-1600.webp": "c11299daa95c98c0ca47a378df4aa97c24b9432b089dbe2d8da93370576f6863",
+    "images/catering-review/table-scene-desktop-800.webp": "f7f371f80d62d391e23da35d58702fbabb07492596d145fe966fbc1e68582801",
+    "images/catering-review/table-scene-mobile-480.webp": "b496593f8c7a9076adc515ad394752e31b8e04daed6bab30f0a40c67c1a6af02",
+    "images/catering-review/table-scene-mobile-800.webp": "139d399b4bb557562d8d298e96f95ae4dda96194ecbbcc121bc029c894d52f0a",
+    "assets/js/site-analytics.js": "0e6123e9bcd03395502ba5775f6c260e2f72272a62380b0cb130472ba9560818",
+    "_astro/BranchLanding.K3DaC-7P.css": "e9ae045a51da0fa32a75d1b24a5fcd7c9e7ac382262638d2be5aa641be99c0cd",
+    "images/el-paso-menu-en-v6.webp": "e5c2eba518258f671ac6ac503491cef9d7628b297cebe7b7fc9cabbd09115df2",
+    "menus/el-paso-menu-en-v6.pdf": "a63cc8d8b31743d377de6e4bb9fa1dc9c19203fcf4d9c5439c085ac96854aa29",
+    "_astro/BranchLanding.D3-__LgN.css": "e92ee90edd94ead90165f0448e897da50964bb36038af39839772c18cf4a2dff",
+    "_astro/BranchLanding.DjLMrFlp.css": "6adbfc5223639689ba7f7f9ab716f9d9c5fa79c143d7d089975261c57585bbd5",
+    "_astro/BranchLanding.astro_astro_type_script_index_0_lang.ZQG6QDdt.js": "33a29be69974d141f8fc26c81bad6e9494f5144a08d6ed81e21403b51d3b7dc7",
+    "_astro/CateringPage.astro_astro_type_script_index_0_lang.ZQG6QDdt.js": "33a29be69974d141f8fc26c81bad6e9494f5144a08d6ed81e21403b51d3b7dc7",
+    "_astro/CateringPage.oLi_lI-G.css": "bee203ced1a9f00530d35485db28034080538ef24111fcc3e8327625ce206e2b",
+    "_astro/houston-scroll-header.BxWPzCxQ.js": "25f4391d4074d6e78cf80b42287a5d458e7c3397bfb74da7a41468718ce52784",
+    "assets/css/visual-pilot.css": "5db9e7e3da68ab420241e1d54abdf0e5df2e7f16d4e200bfea5b953a38233046",
+    "assets/media/agenda-canto-1280.webp": "5b10409cf7e2f78e14174b1667a6271db29f78d2281a3709334c07e8814d85e7",
+    "assets/media/agenda-canto-640.webp": "759f0de190923cb3d83d176744e85106afa22a6f2f95037cf4f740cd3d200521",
+    "assets/media/agenda-canto-preview.webp": "54da8e91e6447d044c638c7b46fc58761e269efa45b62a4c9fc6edfaf99b4ea9",
+    "assets/media/cantina-canto-1280.webp": "e063705a2a03a8f5dc0d25fcb671c35966a95a655072d987d0e95bb9f52e9209",
+    "assets/media/cantina-canto-640.webp": "14e2007452e702977b07ec4340cef3850824cec0e2f0e1a9a6dd440963384345",
+    "assets/media/cantina-duo-1280.webp": "81da4faef4ac3a74dfa1606bc17c535e4d14fe2327ff6b6888165b090cd183f6",
+    "assets/media/cantina-duo-640.webp": "7c79f29e64b20474b31ea56170d9d7c095c67f056a6d7566e15d7842b6abadf9",
+    "assets/media/cantina-selfie-1280.webp": "1062e99f1c6e1ba55ebd88660727a6bb317bfb14febd22f252540ffc1b1a27ec",
+    "assets/media/cantina-selfie-640.webp": "31874ee4104f2ba0c3e77806e7523f726f6fdf1d430264a5aa4f79ba68cb84c9",
+    "assets/media/catering-servicio-1280.webp": "80c942f215aa7fceb63608737c3a4252a2019010a52dd5e86ba4f27e4acafb6e",
+    "assets/media/catering-servicio-640.webp": "f517d5b6504d1e2873831fd7710216a0d490180c6c7e6f0ee22e790704fe5764",
+    "assets/media/venues/future/future-crowd-640.webp": "506e04e48ab5e19b0a176dd680cb3cee665ff6b4a90857a43d0d12db3fef7f63",
+    "assets/media/venues/future/future-crowd-960.webp": "37aedba4c47c59729bb0e6a4457c0bb39e26d504a1dac89c1cc695e93ff52ab5",
+    "assets/media/venues/future/future-singalong-640.webp": "9ef95cb8b79b13aad7ecf6b7a2d53210ed172c638cdeeba05586f8a3c8c20d80",
+    "assets/media/venues/future/future-singalong-960.webp": "ad34d8c038b43bd22a7d66c3e14dc4b18c0a3425284b305e29f68e1dc852f587",
+    "images/catering-review/logo.webp": "4ae8a8a4ae0b687130d9600dc12243c9ff69e75e83d1b89e84e23a3be279fb2c",
+    "assets/js/webmcp.js": "89485fadd5d0cc6d8c0454e1bc68d906af42913fa114249f77e0644b3085e274",
+    "discovery.json": "a8bb0d43bf88078147787e43a16cf49cc05a399c3542ab60ea9a6a029a7fba14",
+    "llms.txt": "3b1b7d5075892a4e1aa16142e1314b6049cc55449791606d699b11c010538ed8",
+    "assets/js/el-paso-menu.js": "5dc821d81773a79c84988cb766695189d50f91cfe93e5880812f2d08e17b9adf",
+    "images/intake-a/el-paso-table-1404.webp": "d825940dadf9a5f4101173d37b34d80f8a270b56bed960c21d1ffcbb6cbe0117",
+    "images/intake-a/el-paso-table-480.webp": "cf8c93f35a8ac8cd8645722c4259dca38a46a0a43755f00d042de32fbc60bf87",
+    "images/intake-a/el-paso-table-800.webp": "502eb4e68d175a2de5c02077d7c93a5eaa30b4ed5cc93f40629d218d836d20d1",
+    "images/intake-a/el-paso-table-1200.webp": "8c1c310faf4d36c8a6588f8ae53f4189934e3b1ed3cde5d377d2d874251ea57f",
+    "assets/css/branch-agenda.css": "feebde706c2e574beb25755330e6c32a47908b10b06e624e1feca17923e83664",
+    "assets/js/agenda-clock.js": "06afd801e8dea871564626848081753ffba7300d692b1f3992e4799a97d1ded1",
+    "assets/agenda/hu-pinta-provider-2002912451058.jpg": "48122aad25f280b32479d611a7ada7b2af0b0d212be40ef274abb1c0356070ca",
+    "assets/agenda/hu-jorge-provider-2000487416715.jpg": "13482d7e84dcff40d66821ce0a2a43559d11f33e1b81879f79a2ce0e0f1ce9e7",
+    "assets/agenda/hu-ladies-DeL7Ly_vyo2.jpg": "0d218381d3bd7e8727a105ddebafc6fa05a0991c949f4a9a7961bc4220ba4c78",
+    "assets/agenda/hu-dontcry-Dd9juidPsf6.jpg": "35dc9f47dd3a2719ac7d0f1cf183b535fb4a832dda883743eeda6d49bfc4cd99",
+    "assets/agenda/tw-happy-Dd9hkdrJRo3.jpg": "d02db0a2b174cb139a6f488c063ba5b0365cef37ccc77153d18ea974553e1fbb",
+    "assets/agenda/tw-jets-DeKHqcjy606.jpg": "a372d9d8f4af5d61f7dd188eb4e5c79f7bc67a527e4fcfbb125027a9035b80cb",
+    "assets/agenda/ep-jorge-DeZ3riUJ5Bu.jpg": "7bf7f826dfdcb3c98ef564d87625587111c43ab875b797e97075fcfaa94e29d3",
+    "assets/agenda/ep-brunch-DeV29DjNFhF.jpg": "a4e46a28ae69d87f1995f3899f3e94398d9d3aafac8010c28d1d8cf0a0fa1a4e",
+    "_astro/BranchLanding.astro_astro_type_script_index_1_lang.fe95c5e955.js": "fe95c5e955c41bdb2eedfaf526d520934734e4b1c2f7d10f9f697dd9ad030e87",
+    "_astro/BranchLayout.astro_astro_type_script_index_1_lang.fe95c5e955.js": "fe95c5e955c41bdb2eedfaf526d520934734e4b1c2f7d10f9f697dd9ad030e87",
+    "assets/js/branch-language.js": "f9253b87a3b8df8b686fa133942e4538a3902533fcd02242ddf3bff586dd34e0",
+    "assets/js/site-measurement.js": "c7a941fe2267acf2328313a92dccba0ba36e7484653234a7aaf68614ecc77579",
+    "assets/agenda/tw-mes-hispano-DefaT9GBok6.jpg": "440f68e4afbd2b5ed7aa735d3a8b9cc512cbeb864f23fd28838550ca77977a98",
+    "assets/media/home-cocktail-desktop-1672.webp": "ce7c5f288744a4aa9ec7fd3878f14a4d42ab108c590a34c0ebd06a1478a3bf90",
+    "assets/media/home-cocktail-desktop-960.webp": "d921d71c714b6e85604618ec4f87fa7d2860709ad6157d3cf05a4ea3c8522322",
+    "assets/media/home-cocktail-portrait-1148.webp": "2b293500c0bed7d4ff8c388065b8b84a99fedd03c3375bc0a4ed15dff5a9e874",
+    "assets/media/home-cocktail-portrait-640.webp": "0781c911bcfe2504bcd8079d5ec14294a988d29c80b4d39941b1e4276acff47b",
+    "assets/media/home-singing-desktop-1672.webp": "f93fa3181524079b5396273d9ce54a187756aab97d2bb9c8e3555093fc3efc80",
+    "assets/media/home-singing-desktop-960.webp": "5867e82781e928736ce5d5c1f893f0fb744faa4d529fcb35dc6d6eb3bcfcfdb8",
+    "assets/media/home-singing-portrait-1305.webp": "b5c046e932f3914b11afc783093c495cc62c26dd90dcfd39df6a32d83b475bb1",
+    "assets/media/home-singing-portrait-640.webp": "069ae1bb0373889ef77ae5e933f1a1adc7f8efc93af23a2805b40950b3a81fc4",
+    "assets/js/ga4-consent.js": "dbbb61752cce816a4f4b18b11af4f2e3787a22d99bc5147eac3e2b536f433d1d",
+    "assets/css/ga4-consent.css": "7dced0372e8594e6dc8b510984d3ecc384e959e07962aa155900b8f4bba0a8aa",
+    "assets/agenda/gdl-brujas-DeIbppdgMu3.jpg": "7a65a1ee417e14e01671d0d1068f4a6f7507333a595f52f5dcebebf870e034f5",
+    "assets/agenda/gdl-solteras-Dd7fzQkg_wG.jpg": "6806556cb26adc69f5407f9659aa3a553296d833461f3e5ad801d7d0e3894598",
+    "assets/agenda/gdl-cumpleanos-DeSh3VJxBxE.jpg": "911102c651cb77030e42fad6f15ec21fb349e673be682965514caaf60220deb3",
+    "assets/agenda/gdl-canta-DeNifbXAYbT-convocatoria.jpg": "206c5671122bfcf2831e620952149d03b712cb07746728ddf1c8bf398c7ef8ad",
+    "assets/agenda/gdl-canta-DeNifbXAYbT-web.mp4": "523a53576fcd597b5b169a42f79a8b40eba7e392b8166e275190b3d2e57c4f39",
+    "assets/css/gdl-agenda.css": "d9fd16bd246ca07be586769ed414e7a0493fd07c2bc5fb61bd61db6a7461f2d9",
+    "assets/js/gdl-agenda-video.js": "bda16dec345a494b7f7105db783202abd03fc83c13d84e77d74f9b466c4b3573",
+    "assets/css/gdl-focus.css": "55f8bbed7ebbccc11a89df49110e70133a05918b1265b35f4592f6bd5359927b",
+    "assets/js/gdl-focus.js": "c5e77906fa915903ca9dd40c721d4a5090a502ffce3efdba4f935869ac7eb2c6",
+    "assets/css/gdl-menu.css": "9f1ded6d0df34b2b94582a8f9cd91e3e142d6d63fd6576fe216e5e40d90a2a10",
+    "assets/js/gdl-menu.js": "203423cdc49e22c85d1e07f76f78089ed454cd141dd9bbc9baac7ca08bf6fc95",
+    "assets/css/gdl-contest-page.css": "c333a0c84a7f0892a99536ccfc6f52e14f5a4f34262fc83718045bc939278256",
+    "assets/agenda/gdl-canta-2026-poster.webp": "c8b02d83af9da49d44f31306389fa78b209f1b88ac2cbf92f0a26f4d8324d3af",
+    "assets/menus/gdl-v82/gdl-v82-01-1800.webp": "13ee21aeff256b4f059631899a8221e3f570bc23352d79372fffdca4fad7036d",
+    "assets/menus/gdl-v82/gdl-v82-01-900.webp": "4f97b6a896e28b7632f833beb3e7f2138a899406966712238f6b7f4fd325b392",
+    "assets/menus/gdl-v82/gdl-v82-02-1800.webp": "7939e7fab0f7423882f73fbfa69b2264d27e000e1f5a0e501dd00b39aed21f8a",
+    "assets/menus/gdl-v82/gdl-v82-02-900.webp": "ae9420b7365cfe733055146c7a6315df8e2f6186c3f693a043762183bfadc065",
+    "assets/menus/gdl-v82/gdl-v82-03-1800.webp": "f76780318b7dac9b2b29ffd6dd6c390d3df5db6af9297a3eb7e2456983e4f2e7",
+    "assets/menus/gdl-v82/gdl-v82-03-900.webp": "e74665ffc87e6eda78d59c0be3e9f2af1f9bb8a48320d0eafc1f7b4373eeb475",
+    "assets/menus/gdl-v82/gdl-v82-04-1800.webp": "64b999ca6bbf3b4b023899bdf8b1bffc8c28eda43229322b1e5def8ae7bafe26",
+    "assets/menus/gdl-v82/gdl-v82-04-900.webp": "4ce9feea8d41a2c4d536f731688fb9fa8e96bfde9b0234a90d9827b293acdd0b",
+    "assets/menus/gdl-v82/gdl-v82-05-1800.webp": "c417338ff87f3b028401f0821604a5c2eda964e472cd566b883d664297a8fdec",
+    "assets/menus/gdl-v82/gdl-v82-05-900.webp": "21a588d5b3dd3caa671b1e5b25593f0c8579a178308ebb5ebdb305fe5498a1c8",
+    "assets/menus/gdl-v82/gdl-v82-06-1800.webp": "cecf3b5dfeacbb6e29c7292207eb849b2b240a131b11583b9c27a2ec7123b888",
+    "assets/menus/gdl-v82/gdl-v82-06-900.webp": "3d50a0d656957ea41ebff3bb1a8e589783121e5ec16e46fa2133c9b42f82d91c",
+    "assets/menus/gdl-v82/gdl-v82-07-1800.webp": "91e9fabd0bd598a775a1626e40961fcd522d6aa15968eb9e652d96d039e6fdc3",
+    "assets/menus/gdl-v82/gdl-v82-07-900.webp": "3621d39c7c763439ac882c535ea3e4d3bacf0d257322c7efa80b5614dabca049",
+    "assets/menus/gdl-v82/gdl-v82-08-1800.webp": "747df2716409b9c6f1be4e7abadb6e07a1907e250ac78b0995fa4b548e1a8e74",
+    "assets/menus/gdl-v82/gdl-v82-08-900.webp": "fe7ed5b8629abd6d216e5d76e17544e156a1853abe6cd4479429504482600f76",
+    "assets/menus/gdl-v82/gdl-v82-09-1800.webp": "8e33b5e97423c44cdcabae27c390e1adfde6a19dc5076ac1d62907cb6b496215",
+    "assets/menus/gdl-v82/gdl-v82-09-900.webp": "4b495fe88864eb4910e6a2f2da6ad10d9a9f12e5c65d922bdbc50b05bc91cfe4",
+    "assets/menus/gdl-v82/gdl-v82-10-1800.webp": "625263db760e4b7eef0a6da350f6aedcdeea668fac9c7223e193cd6175f0abab",
+    "assets/menus/gdl-v82/gdl-v82-10-900.webp": "787c5c7dd2ae7139a459be078708deb4fe612ae2e5aed492690b0e518aeb1c32",
+    "assets/menus/gdl-v82/gdl-v82-11-1800.webp": "79499f245f34606c6c4a0e41c601fff059f2b859f6bff56594d0a90f486b701d",
+    "assets/menus/gdl-v82/gdl-v82-11-900.webp": "132099b34fe96061d9f6014cfa0f94372471cd10669612493a91fbdae7011ef0",
+    "assets/menus/gdl-v82/gdl-v82-12-1800.webp": "350a997261e89b775d2ab0d677c752fe38a2d36c86b8d3494a005f98d2bf7d63",
+    "assets/menus/gdl-v82/gdl-v82-12-900.webp": "1b5b7cae6bd526f7f88eee3dc0a5752af993da2e62786772f7cb9ca8d762acaa",
+    "assets/menus/gdl-v82/gdl-v82-13-1800.webp": "06c51d45415aba53d28bd1c034284d470faf5a001417ce738ba2a7e05744f058",
+    "assets/menus/gdl-v82/gdl-v82-13-900.webp": "2fff73ffae4cad1719133f424347793283d84a79c4bd099b13b1fc0e1800599a",
+    "assets/menus/gdl-v82/gdl-v82-14-1800.webp": "ca7db11912f8f42a9a40316b26d13bb75bec42d952578b8cd659ffa1d64fd58b",
+    "assets/menus/gdl-v82/gdl-v82-14-900.webp": "b437167b19ce0797dcc5a42e6eb0f470bcb108557961484bef50b5507516bca5",
+    "assets/menus/gdl-v82/gdl-v82-15-1800.webp": "b44674d0c7219f781a68d2d78f1d27308a448b70c8a8e8a0a77e94128307463f",
+    "assets/menus/gdl-v82/gdl-v82-15-900.webp": "20fb33fa73579c0c166f4c6d05e03f5cd61a285e7cf70e814fdd96ec4ee032f9",
+    "assets/menus/gdl-v82/original.pdf": "fbcf290eb0af66b539781f592ecfca230662b5a926d94a81ef5bce2d12f3c341",
+    "licenses/bootstrap-icons.txt": "0fb3e11bd57e896c5a512afd64864d28a37de45d19835016c87ca1ad19ead969"
+  }
+}

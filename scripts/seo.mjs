@@ -10,6 +10,7 @@ import { restoreGa4Source } from './ga4-source-contract.mjs';
 import { restoreUnifiedHours } from './unified-hours-source-contract.mjs';
 import { restoreGdlFocus } from './gdl-focus-source-contract.mjs';
 import { restoreSanDiegoOpening } from './san-diego-opening-source-contract.mjs';
+import { applyCentralSeoHtml, centralBranchReferences } from './central-seo.mjs';
 
 export const origin = 'https://sin-yolanda.com';
 const root = resolve(import.meta.dirname, '..');
@@ -65,6 +66,7 @@ export function applySeo() {
     for (const file of ['robots.txt', 'sitemap.xml', 'san-ignacio.html']) if (previous[file]) baseline[file] = previous[file];
   }
   const pages = manifest.pages.filter(file => file !== '404.html');
+  const branchReferences = centralBranchReferences(pages.map(file => [file, read(file)]));
   const urls = pages.map(file => canonical(read(file)));
   assert.ok(urls.every(url => url?.startsWith(origin + '/')));
   const locations = [];
@@ -129,7 +131,7 @@ export function applySeo() {
     const fallback = shell ? '<noscript><style>.reveal,.reveal-scale{opacity:1;transform:none;animation:none}</style></noscript>' : '';
     html = html.replace('</head>', additions + fallback + '</head>');
     html = html.replace(/<head>[\s\S]*?<\/head>/i, head => head.replace(/^[\t ]+$/gm, ''));
-    write(file, html);
+    write(file, applyCentralSeoHtml(file, html, branchReferences));
   }
   write('scripts/seo-baseline.json', JSON.stringify(baseline, null, 2) + '\n');
   manifest.reviewPages = manifest.reviewPages.filter(file => !policy.pages.includes(file));

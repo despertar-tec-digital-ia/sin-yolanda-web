@@ -7,6 +7,7 @@ import { restoreMeasurementSource } from '../scripts/measurement-source-contract
 import { restoreGa4Source } from '../scripts/ga4-source-contract.mjs';
 import { restoreUnifiedHours } from '../scripts/unified-hours-source-contract.mjs';
 import { restoreGdlFocus } from '../scripts/gdl-focus-source-contract.mjs';
+import { restoreCentralSeo } from '../scripts/central-seo-source-contract.mjs';
 
 const data = JSON.parse(readFileSync(new URL('../scripts/editorial/front-b-review.json', import.meta.url)));
 const registry = JSON.parse(readFileSync(new URL('../scripts/editorial/front-b-sources.json', import.meta.url)));
@@ -78,7 +79,7 @@ test('integration replaces legacy snapshot and event emitter once, preserving su
   for (const [id] of Object.entries(data.branches)) for (const language of ['es', 'en']) {
     const file = language === 'es' ? '../' + id + '.html' : '../en/' + id + '/index.html';
     const sourceFile = language === 'es' ? id + '.html' : 'en/' + id + '/index.html';
-    const baseline = restoreAgendaSource(sourceFile,restoreMeasurementSource(sourceFile,restoreGa4Source(sourceFile,restoreUnifiedHours(sourceFile,restoreGdlFocus(sourceFile,readFileSync(new URL(file, import.meta.url), 'utf8'))))));
+    const baseline = restoreAgendaSource(sourceFile,restoreMeasurementSource(sourceFile,restoreGa4Source(sourceFile,restoreUnifiedHours(sourceFile,restoreGdlFocus(sourceFile,restoreCentralSeo(sourceFile,readFileSync(new URL(file, import.meta.url), 'utf8')))))));
     const integrated = integrateAgenda(baseline, id, render(id, language).html, language);
     assert.equal((integrated.match(new RegExp('id="programacion-' + id + '"', 'g')) || []).length, 1);
     assert.ok(!integrated.includes('data-programming-snapshot='));

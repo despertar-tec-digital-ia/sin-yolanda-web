@@ -1,5 +1,14 @@
 # Registro de rutas y cambios
 
+**Decisión final25-oct para SEO del central:** selector/directorio y pies del grupo conservan
+Guadalajara→`/guadalajara`. WordPress sigue independiente en `sinyolandagdl.com` para sus accesos
+externos. La candidata previa que enviaba enlaces internos al WordPress fue una interpretación
+incorrecta, sustituida antes de publicar. La ficha `/guadalajara` conserva canonical propio e
+indexación. No sustituir el destino GDL de GBP/redes ni reactivar redirects WordPress. QR y cartas intactos.
+Los aliases internos `/san-ignacio` siguen resolviendo a `/guadalajara`; no son redirects desde
+WordPress. La regla www→apex del **central** se propone separada en Cloudflare, sin cambios remotos.
+Estos requisitos sustituyen las propuestas de migración GDL del diagnóstico; estado local en WORKFLOW.
+
 **Pase Guadalajara autorizado19-oct:** `/guadalajara/canta-por-tu-cuenta-2026/` es la página
 canónica de la quinta edición, enlazada desde la ficha y el sitemap. Registra contacto directo
 con producción por WhatsApp/teléfono; no captura altas. Tras final2-dic conserva archivo de

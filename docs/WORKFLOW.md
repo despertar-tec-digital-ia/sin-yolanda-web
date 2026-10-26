@@ -1,6 +1,6 @@
 # Forma de trabajar y publicar
 
-### San Diego · anuncio visible25-oct · publicación solicitada
+### San Diego · anuncio visible sin hover PUBLICADO25-oct
 
 Luis reitera que el anuncio debe llegar a producción con «Próximamente» más visible.
 Se integra la preparación23-oct a los dueños públicos: franja naranja bajo el hero, nombre
@@ -13,8 +13,19 @@ No se crea ficha operativa San Diego. Selector y pie conservan el estado coming-
 Cambios exactos/caché en `scripts/san-diego-opening-source-patches.json`; los controles históricos
 restauran solo ese delta y conservan sus hashes originales. QA Brave320/390/768/1280 sin
 overflow; etiqueta visible contraída y expandida, ES/EN y mapa con foco de teclado. Hero/fotos
-intactos.386tests pasan; recibo productivo se anota al completar el operador. Evidencia `.artifacts/san-diego-implementation-20261025/`.
-Publicación por PR→CI→`release:approved`→recibo; no subir el paquete de revisión23-oct.
+intactos.386tests pasan. Evidencia `.artifacts/san-diego-implementation-20261025/`.
+Publicado por PR46/head `f0b20020f1ab1f05b150bb095d9ca22ba68b0bc7` → main
+`5c848c5205aaeeb78169637615121f604f502834`; CI40249661957/CD40249729251, preview/producción
+verdes. Pages `2bfea451-ef49-41a8-bd2b-73e17918927e`; anterior/rollback
+`330e79ce-4060-45ed-8f9e-372fd7d7c7c6` (PR45). Recibo
+`.artifacts/approved-release-46-1792974573044/receipt.json`: GET291archivos/49aliases/10excluidos,
+290exactos, sin diferencias ni fallos. Digest servido
+`d4df2c76111cb4b7af0893bf102863fe5ac4c2251b5fb59c114cc9b466f00d36`.
+Navegador en dominio: tarjeta contraída sin hover con «Muy pronto»/opacidad1, móvil390 contenido
+sin desbordamiento; captura `production-card.png`, evidencia `production-browser-qa.json`.
+Override de viewport restablecido. Hero/medios intactos; no se publica paquete local de revisión.
+Reversión: deployment anterior o PR que revierta solo este pase. Cierre documental local, sin
+segunda publicación por documentación.
 
 Antecedente local23-oct, commit17ed706: franja preparada/no publicada por control Brave desactivado.
 Su helper se retira del árbol actual al integrarse a los dueños reales; fuente recuperable con

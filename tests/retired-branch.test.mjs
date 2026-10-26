@@ -7,7 +7,7 @@ test('retired branch is absent from public data, navigation, metadata and sitema
   const context = { window: {} };
   vm.runInNewContext(readFileSync(new URL('assets/js/public-data.js', root), 'utf8'), context);
   assert.deepEqual(Array.from(context.window.SY_DATA.branches, branch => branch.id),
-    ['san-ignacio', 'san-antonio', 'the-woodlands', 'houston', 'el-paso', 'moreno-valley', 'san-diego']);
+    ['san-ignacio', 'san-antonio', 'the-woodlands', 'houston', 'el-paso', 'san-diego', 'moreno-valley']);
   assert.ok(!context.window.SY_DATA.branches.some(branch => branch.id === 'maricarmen'));
   assert.doesNotMatch(readFileSync(new URL('assets/js/site.js', root), 'utf8'), /href=["']maricarmen(?:\.html|\/)/i);
   for (const path of ['locations.html', 'sitemap.xml']) {

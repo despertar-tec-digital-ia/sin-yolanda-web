@@ -1,5 +1,35 @@
 # Forma de trabajar y publicar
 
+### Central · mejoras SEO25-oct · candidata local para revisión
+
+Se conserva Guadalajara WordPress como destino principal desde selector/directorio y pies del grupo.
+La ficha central `/guadalajara` sigue indexable y accesible por su URL propia. No cambiar el destino
+de GBP/redes/QR GDL ni activar redirecciones desde WordPress. No se modifican sus menús/horarios.
+
+`node scripts/prepare-central-seo-review.mjs .artifacts/central-seo-review-v2/public` prepara un
+paquete de **revisión**, con hashes y `noindex` de preview: descripción visible ES/EN del grupo,
+title/descripción local, relación Organization↔Restaurant y enlaces principales GDL a WordPress.
+Base main5c848c5. Hero/medios, cartas, reservas, horarios, canonicals, sitemap y QR se conservan.
+Los helpers no se ejecutan en CI/CD: esta candidata no modifica los dueños productivos. Tras aceptar
+la propuesta, integrar solo el delta aprobado a sus fuentes/contratos antes de PR→CI→publicación.
+No publicar directamente el paquete de review ni trasladar sus headers `noindex` a producción.
+
+Servidor local: `node scripts/serve-central-seo-review.mjs .artifacts/central-seo-review-v2/public 8842`.
+Sirve el paquete comprobado solo en loopback. `/__review/home` y `/__review/guadalajara` son extractos
+del HTML y CSS reales para ver las secciones sin animación; no entran al paquete ni al sitemap.
+Sitio completo en `/` y `/locations`. Evidencia local: `scope.json`, `release.json` y capturas de
+preview con TTL.387tests y build base verificados; nueva prueba comprueba destinos principales,
+canonicals/facts preservados, integridad hero/QR y entidades. Capturas desktop/móvil por script;
+QA interactiva completa pendiente por Browser Use desactivado, no confundir con prueba de clics.
+
+`scripts/central-www-redirect-proposal.json` especifica la regla301 www→apex con ruta/query
+preservadas. Es propuesta de configuración Cloudflare Bulk Redirects, no regla Pages `_redirects`:
+los redirects de dominio no se admiten allí. Leer/exportar reglas existentes y obtener autorización
+productiva antes de activarla; no modificar DNS por defecto. Fuente:
+https://developers.cloudflare.com/pages/how-to/www-redirect/.
+
+Sin push, PR, despliegue, edición de WordPress/GBP/redes ni permisos nuevos por esta preparación.
+
 ### San Diego · anuncio visible25-oct · publicación solicitada
 
 Luis reitera que el anuncio debe llegar a producción con «Próximamente» más visible.

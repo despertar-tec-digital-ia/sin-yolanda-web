@@ -1,0 +1,23 @@
+{
+  "status": "proposal-not-applied",
+  "mechanism": "Cloudflare Bulk Redirects; domain redirects are unsupported in Pages _redirects",
+  "documentation": "https://developers.cloudflare.com/pages/how-to/www-redirect/",
+  "source_url": "www.sin-yolanda.com/",
+  "target_url": "https://sin-yolanda.com/",
+  "status_code": 301,
+  "preserve_query_string": true,
+  "subpath_matching": true,
+  "preserve_path_suffix": true,
+  "include_subdomains": false,
+  "before_activation": [
+    "Read existing rules and www DNS; back up the exact settings without changing DNS by default",
+    "Check for overlapping rules and confirm apex cannot redirect back to www",
+    "Obtain explicit production approval"
+  ],
+  "acceptance": [
+    "https://www.sin-yolanda.com/ ->301 https://sin-yolanda.com/",
+    "https://www.sin-yolanda.com/guadalajara?utm_source=test ->301 https://sin-yolanda.com/guadalajara?utm_source=test",
+    "Guadalajara WordPress and QR destinations remain unchanged"
+  ],
+  "rollback": "Disable only the new rule and restore its prior settings. Do not alter unrelated redirect lists or DNS."
+}

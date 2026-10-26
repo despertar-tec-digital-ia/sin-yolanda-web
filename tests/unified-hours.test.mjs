@@ -9,6 +9,7 @@ import { restoreUnifiedHours } from '../scripts/unified-hours-source-contract.mj
 import { restoreGdlFocus } from '../scripts/gdl-focus-source-contract.mjs';
 import { restoreSanDiegoOpening } from '../scripts/san-diego-opening-source-contract.mjs';
 import { projectAllAgendas } from '../scripts/editorial/all-agendas.mjs';
+import { restoreOctober } from '../scripts/october-source-contract.mjs';
 import { fileURLToPath } from 'node:url';
 const root = fileURLToPath(new URL('../', import.meta.url));
 const read = file => readFileSync(new URL('../' + file, import.meta.url), 'utf8').replaceAll('\r\n', '\n');
@@ -30,7 +31,7 @@ test('the October 19 schedule covers all five current branches and keeps midnigh
     assert.equal(branch.hours, summary); assert.equal(branch.hoursTimezone, zone);
     const files = id === 'san-ignacio' ? [['guadalajara.html', 'es']] : [[id + '.html', 'es'], ['en/' + id + '/index.html', 'en']];
     for (const [file, lang] of files) {
-      const html = read(file), restaurant = schemas(html).find(s => s['@type'] === 'Restaurant');
+      const html = restoreOctober(file, read(file)), restaurant = schemas(html).find(s => s['@type'] === 'Restaurant');
       assert.ok(html.includes(hoursHtml(lang, zone)), file);
       assert.equal(restaurant.openingHoursSpecification.length, 4);
       assert.deepEqual(restaurant.openingHoursSpecification, discovery.locations.find(b => b.id === id).openingHoursSpecification);

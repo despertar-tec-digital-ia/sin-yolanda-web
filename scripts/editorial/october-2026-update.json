@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "approvedBy": "Karina",
+  "approvedOn": "2026-10-26",
+  "publishFrom": "2026-10-26T06:00:00Z",
+  "authorization": "Realiza estos cambios. Concurso desde el 29 de octubre y apertura jueves a domingo en las cuatro sucursales de Texas; conservar cierres actuales. Foto 63 confirmada para San Antonio. TikTok central para todas las sedes.",
+  "effectiveDate": "2026-10-29",
+  "catrinas": { "houston": "2026-10-30", "the-woodlands": "2026-10-30", "el-paso": "2026-10-30", "san-antonio": "2026-11-01" },
+  "halloween": { "date": "2026-10-31", "coverUSD": 10, "firstPrizeConsumptionUSD": 1000, "secondPrize": "bottle" },
+  "tiktokCentral": null,
+  "tiktokStatus": "Deferred explicitly by Karina: central link not yet available."
+}

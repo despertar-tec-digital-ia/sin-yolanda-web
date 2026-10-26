@@ -1,5 +1,35 @@
 # Forma de trabajar y publicar
 
+### Fotos y agenda · autorización de Karina26-oct
+
+Karina pide realizar los cambios revisados y confirma que el concurso pasa al jueves29-oct
+y la apertura jueves–domingo aplica a Houston, San Antonio, The Woodlands y El Paso,
+conservando sus cierres. Antes del29 se anuncia el nuevo horario; el horario vigente y
+Restaurant/discovery cambian desde la medianoche local de cada sede. Guadalajara conserva
+su programación. `october-hours.js` comparte el modelo entre proyección y navegador;
+`editorial/october-2026-update.json` conserva la autorización independiente de la agenda14-oct.
+El scheduler existente vuelve a proyectar las fechas; los eventos también caducan en pestañas abiertas.
+
+Catrinas30-oct en Houston/Woodlands/El Paso y1-nov solo San Antonio. Halloween31-oct en
+las cuatro: coverUSD10, primer premioUSD1,000 en consumo, segundo una botella. Los jueves:
+concurso de canto, Don’t Cry/open mic bilingüe y Ladies Night4–8PM/2x1 para mujeres.
+Domingo Recovery Brunch+NFL desde11AM. Se retiran Pinta y Canta Houston y los artes/ofertas
+anteriores incompatibles. No se inventa el cuarto evento de jueves que la minuta no identifica.
+
+Fotos optimizadas por sede en `images/approved-20261026`, con hashes/dimensiones en
+`scripts/october-photos.json`; San Antonio confirma expresamente el platillo del catálogo63.
+Los tacos de Houston conservan su referencia con fondo de mesa editado mediante ImageGen.
+Las nuevas fotos de El Paso no anuncian Coming Soon. Home hero, cartas, QR, fotos Woodlands/
+Moreno Valley y políticas de reserva se conservan. San Diego queda antes de Moreno Valley,
+con dirección y estado Próximamente. Catering usa el texto encargado; se muestran los Instagram
+verificados. El TikTok central queda pendiente por instrucción de Karina al no tener el enlace.
+
+La restauración exacta `october-source-patches.json` encadena el delta autorizado con los
+controles históricos sin cambiar sus hashes. Pruebas específicas: límites de fecha/IANA/DST,
+coherencia de horas y discovery, caducidad, fotos, menú/QR y hero intactos. Node22.23.3.
+Publicación exclusivamente PR→CI→`release:approved`→recibo; verificar el resultado servido.
+No cambia redes, Google/Yelp, pauta, GHL, DNS ni WordPress.
+
 ### Central · mejoras SEO25-oct · integración y publicación autorizadas
 
 Luis acepta la propuesta y autoriza integrarla/publicarla con estas correcciones: retirar el texto

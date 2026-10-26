@@ -42,8 +42,10 @@ test('directory and footer follow the same registry when a location is added or 
 });
 
 test('opening strip has a real date/destination between the hero and early location selector', () => {
-  assert.equal(render('openingAnnouncement'), '', 'Luis confirmed El Paso is already open');
   const future = structuredClone(data);
+  // Retain the prior dated El Paso contract independently from the new undated San Diego notice.
+  future.branches.find(b => b.id === 'san-diego').status = 'active';
+  assert.equal(render('openingAnnouncement', future), '', 'Luis confirmed El Paso is already open');
   future.branches.find(b => b.id === 'el-paso').status = 'coming-soon';
   future.branches.find(b => b.id === 'el-paso').statusLabel = 'Nueva apertura';
   const html = render('openingAnnouncement', future);
@@ -59,9 +61,32 @@ test('opening strip has a real date/destination between the hero and early locat
   const withoutDate = structuredClone(future);
   withoutDate.branches.find(b => b.id === 'el-paso').openingDate = '';
   assert.equal(render('openingAnnouncement', withoutDate), '');
-  const opened = structuredClone(data);
+  const opened = structuredClone(future);
   opened.branches.find(b => b.id === 'el-paso').status = 'active';
   assert.equal(render('openingAnnouncement', opened), '');
+});
+
+test('San Diego opening notice uses only its confirmed address, without a date or reservations', () => {
+  const html = render('openingAnnouncement');
+  assert.match(html, /opening-announcement--san-diego/);
+  assert.match(html, /San Diego<\/span>/);
+  assert.match(html, /data-i18n-en="Coming soon"/);
+  assert.match(html, /2470 San Diego Avenue, Ste 101–105, San Diego, CA 92110/);
+  assert.match(html, /https:\/\/www.google.com\/maps\/search\//);
+  assert.doesNotMatch(html, /<time|datetime=|noviembre|November|Reservar|OpenTable|wa\.me|el-paso\.html/i);
+  const fallback = read('index.html');
+  const strip = fallback.indexOf('<aside class="opening-announcement opening-announcement--san-diego"');
+  assert.ok(strip > fallback.indexOf('class="home-hero home-hero-cinema"'));
+  assert.ok(strip < fallback.indexOf('<section class="section venue-showcase"'));
+});
+
+test('San Diego notice is removed when the branch is open or the destination is unconfirmed', () => {
+  for (const mutation of [branch => branch.status = 'active', branch => branch.address = '',
+    branch => branch.mapsUrl = '']) {
+    const facts = structuredClone(data);
+    mutation(facts.branches.find(branch => branch.id === 'san-diego'));
+    assert.equal(render('openingAnnouncement', facts), '');
+  }
 });
 
 test('future photos are illustrative brand media, without invented dates or destinations', () => {

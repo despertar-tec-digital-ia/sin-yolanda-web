@@ -3,8 +3,9 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { restoreGdlFocus } from '../scripts/gdl-focus-source-contract.mjs';
+import { restoreSanDiegoOpening } from '../scripts/san-diego-opening-source-contract.mjs';
 
-const read = file => readFileSync(new URL('../' + file, import.meta.url), 'utf8');
+const read = file => restoreSanDiegoOpening(file, readFileSync(new URL('../' + file, import.meta.url), 'utf8'));
 const hash = source => createHash('sha256').update(source).digest('hex');
 
 test('the authorized GDL deltas restore complete prior release bytes without hiding unknown changes', () => {

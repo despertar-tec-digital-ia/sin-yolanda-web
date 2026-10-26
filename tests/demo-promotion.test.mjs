@@ -29,7 +29,7 @@ test('promotion retains the approved demo bytes rather than introducing a new de
  for(const [file,expected]of Object.entries(contract.exactDemo))assert.equal(hash(/\.(html|js|css)$/.test(file)?restoreRoutes(file,read(file)):read(file)),expected,file);
 });
 test('promotion preserves native menus, QR, privacy, analytics and El Paso PR18/19',()=>{
- for(const [file,expected]of Object.entries(contract.preserved))assert.equal(hash(/\.(html|js)$/.test(file)||['robots.txt','sitemap.xml','_redirects'].includes(file)?restoreRoutes(file,read(file)):read(file)),expected,file);
+ for(const [file,expected]of Object.entries(contract.preserved))assert.equal(hash(/\.(html|js|css)$/.test(file)||['robots.txt','sitemap.xml','_redirects'].includes(file)?restoreRoutes(file,read(file)):read(file)),expected,file);
  for(const file of contract.protectedFiles)assert.ok(contract.preserved[file],file);
  assert.equal(contract.protectedFiles.filter(file=>file.includes('/menu/')).length,6);
 });

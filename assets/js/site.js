@@ -110,11 +110,12 @@
               return `<li class="venue-item${index === 0 ? " is-open" : ""}" data-venue-item data-region="${branch.region}" data-status="${branch.status}">
               <${tag} class="venue-card${index === 0 ? " is-open" : ""}${branch.status === "coming-soon" ? " venue-card--soon" : ""}${branch.venuePhoto ? "" : " venue-card--announcement"}"${hasPage ? ` href="${branch.page}"` : ""} data-venue data-branch-id="${branch.id}">
                 <span class="venue-frame" aria-hidden="true">${branch.venuePhoto ? `<img src="${branch.venuePhoto}"${branch.venuePhotoSet ? ` srcset="${branch.venuePhotoSet}" sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 60vw"` : ""} alt="" width="${branch.venuePhotoWidth || 1400}" height="${branch.venuePhotoHeight || 1000}" loading="lazy" decoding="async" style="object-position:${branch.venuePosition || "50% 50%"}" />` : `<span class="venue-announcement">Sin Yolanda<span>Próximamente</span></span>`}<span class="venue-shade"></span></span>
+                ${branch.id === "san-diego" && branch.status === "coming-soon" ? `<span class="venue-coming-soon" data-i18n-es="Muy pronto" data-i18n-en="Coming soon">Muy pronto</span>` : ""}
                 <span class="venue-location" aria-hidden="true">${branch.country === "México" ? "Jalisco, México" : branch.city}</span>
                 <span class="venue-collapsed" aria-hidden="true">${name}</span>
                 ${hasOpeningDate ? `<span class="venue-opening-date" aria-hidden="true"><span>Apertura</span>9 OCT</span>` : ""}
                 <span class="venue-label">
-                  ${branch.status === "coming-soon" ? `<span class="venue-badge${hasOpeningDate ? " venue-badge--opening" : ""}">${opening}</span>` : ""}
+                  ${branch.status === "coming-soon" && branch.id !== "san-diego" ? `<span class="venue-badge${hasOpeningDate ? " venue-badge--opening" : ""}">${opening}</span>` : ""}
                   <strong>${name}</strong>
                   <span class="venue-city">${branch.venueCity || branch.city}</span>
                   ${hasPage ? `<span class="venue-invitation" aria-hidden="true">Ver sucursal <svg viewBox="0 0 20 20" fill="none"><path d="M4 10h12m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.5"></path></svg></span>` : ""}
@@ -128,6 +129,17 @@
   }
 
   function openingAnnouncement() {
+    const upcoming = data.branches.find((item) => item.id === "san-diego");
+    if (upcoming?.status === "coming-soon" && upcoming.address && upcoming.mapsUrl?.startsWith("https://www.google.com/maps/")) {
+      return `<aside class="opening-announcement opening-announcement--san-diego" aria-labelledby="opening-san-diego">
+        <div class="opening-announcement-inner">
+          <h2 class="opening-announcement-title" id="opening-san-diego"><span>San Diego</span><span class="opening-announcement-status" data-i18n-es="Próximamente" data-i18n-en="Coming soon">Próximamente</span></h2>
+          <div class="opening-announcement-visit"><p class="opening-announcement-address">${escapeHtml(upcoming.address)}</p>
+            <a class="opening-announcement-link" href="${escapeHtml(upcoming.mapsUrl)}" target="_blank" rel="noopener noreferrer"><span data-i18n-es="Ver ubicación" data-i18n-en="View location">Ver ubicación</span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h12m-5-5 5 5-5 5"/></svg></a>
+          </div>
+        </div>
+      </aside>`;
+    }
     const branch = data.branches.find((item) => item.id === "el-paso");
     if (!branch || branch.status !== "coming-soon" || branch.openingDate !== "2026-10-09") return "";
     return `<aside class="opening-announcement" aria-label="${escapeHtml(branch.statusLabel)}">

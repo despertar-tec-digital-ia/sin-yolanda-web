@@ -1,10 +1,10 @@
 {
   "version": 1,
   "assetVersions": {
-    "assets/js/site.js": "20261015-approved-home-photos",
+    "assets/js/site.js": "20261025-san-diego-opening",
     "assets/js/i18n.js": "20261019-unified-hours",
     "assets/css/visual-pilot.css": "20261015-blue-hat-mobile",
-    "assets/js/public-data.js": "20261019-unified-hours",
+    "assets/js/public-data.js": "20261025-san-diego-opening",
     "assets/js/site-analytics.js": "20261012-root-routing",
     "assets/css/houston-header.css": "20261012-overlay",
     "assets/js/agenda-clock.js": "20261013-approved-agenda",
@@ -19,7 +19,8 @@
     "assets/css/gdl-focus.css": "20261022-gdl-participation",
     "assets/js/gdl-focus.js": "20261022-gdl-participation",
     "assets/css/gdl-menu.css": "20261019-gdl-v82",
-    "assets/js/gdl-menu.js": "20261019-gdl-v82"
+    "assets/js/gdl-menu.js": "20261019-gdl-v82",
+    "assets/css/venue-selector.css": "20261025-san-diego-opening"
   },
   "pages": [
     "index.html",

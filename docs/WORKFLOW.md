@@ -1,15 +1,25 @@
 # Forma de trabajar y publicar
 
-### San Diego · próxima apertura23-oct · candidata local
+### San Diego · anuncio visible25-oct · publicación solicitada
 
-Luis confirma próxima apertura sin fecha y aporta 2470 San Diego Avenue, Ste101–105,
-San Diego, CA92110. Builder `scripts/build-san-diego-opening-review.mjs` genera una franja
-con nombre, dirección y mapa bajo el hero, manteniendo fotos/copy/CTA del hero. No anuncia mes,
-día, horarios, reservas ni operación. Fotos nuevas de El Paso excluidas de este cambio.
-Candidata `.artifacts/san-diego-opening-20261023-v3/public`, `publicationEnabled:false`, noindex;
-383tests base y comprobación de alcance5archivos/hero exacto pasan. QA visual y publicación
-pendientes: el control de Brave está desactivado en Work. No promover un paquete de revisión
-ni presentar esta preparación como publicada. Dirección/estado dueños en la base maestra del vault.
+Luis reitera que el anuncio debe llegar a producción con «Próximamente» más visible.
+Se integra la preparación23-oct a los dueños públicos: franja naranja bajo el hero, nombre
+San Diego con estado en texto normal, dirección confirmada y enlace al mapa. La tarjeta lleva
+«Muy pronto» fijo fuera del bloque que depende del hover, en home/directorio. ES/EN, sin fecha/mes, horarios, reservas ni afirmación de operación.
+Dirección:2470 San Diego Avenue, Ste101–105, San Diego, CA92110, aportada por Luis23-oct.
+No se modifica el hero (HTML/JS/fotos), otras sedes, cartas/QR, WordPress, GHL o medición.
+No se crea ficha operativa San Diego. Selector y pie conservan el estado coming-soon.
+
+Cambios exactos/caché en `scripts/san-diego-opening-source-patches.json`; los controles históricos
+restauran solo ese delta y conservan sus hashes originales. QA Brave320/390/768/1280 sin
+overflow; etiqueta visible contraída y expandida, ES/EN y mapa con foco de teclado. Hero/fotos
+intactos.386tests pasan; recibo productivo se anota al completar el operador. Evidencia `.artifacts/san-diego-implementation-20261025/`.
+Publicación por PR→CI→`release:approved`→recibo; no subir el paquete de revisión23-oct.
+
+Antecedente local23-oct, commit17ed706: franja preparada/no publicada por control Brave desactivado.
+Su helper se retira del árbol actual al integrarse a los dueños reales; fuente recuperable con
+`git show 17ed706:scripts/build-san-diego-opening-review.mjs`. Dirección/estado dueños en base
+maestra del vault. Fotos nuevas de El Paso quedan fuera de este cambio.
 
 ### Guadalajara · titular y acceso al concurso22-oct · publicación autorizada
 

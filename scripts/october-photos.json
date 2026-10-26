@@ -1,0 +1,227 @@
+[
+  {
+    "name": "san-antonio-people",
+    "sourceSha256": "ae03853d0efa5a2d9688e4e45752f15ab147f359cd763732782f0614c2a64201",
+    "sourceDimensions": [
+      4284,
+      5712
+    ],
+    "catalogIndex": 37,
+    "backgroundEdited": false,
+    "files": [
+      {
+        "file": "images/approved-20261026/san-antonio-people-480.webp",
+        "sha256": "796ad78a8fa9cc2598b7895a1f26eb2a5d4eaa2fdc65f1275a2303c9b769bd86",
+        "bytes": 63170
+      },
+      {
+        "file": "images/approved-20261026/san-antonio-people-800.webp",
+        "sha256": "1e49b21c103baf9351ae5140c4142d79523e64cc683b5d46f007625b848d1270",
+        "bytes": 143664
+      },
+      {
+        "file": "images/approved-20261026/san-antonio-people-1200.webp",
+        "sha256": "bf672bf9b46f57401ad063a48e4cb01d59a8a8300b55f3592476e6025e78ce1f",
+        "bytes": 278410
+      },
+      {
+        "file": "images/approved-20261026/san-antonio-people-1600.webp",
+        "sha256": "b7c96b02dca4d8006a7cffad1f9d02aa3295d9c66aa0fc4b2906f91875688876",
+        "bytes": 450908
+      }
+    ]
+  },
+  {
+    "name": "san-antonio-facade",
+    "sourceSha256": "7a122129b14cc1211492c9b296a647c395ddb766bba9e15eab1181899e273641",
+    "sourceDimensions": [
+      2268,
+      4032
+    ],
+    "catalogIndex": 24,
+    "backgroundEdited": false,
+    "files": [
+      {
+        "file": "images/approved-20261026/san-antonio-facade-480.webp",
+        "sha256": "6ffbaf5b5aef0923c07979a88ac20d368b38531d64be9fc8ca64dcf221b8f883",
+        "bytes": 114594
+      },
+      {
+        "file": "images/approved-20261026/san-antonio-facade-800.webp",
+        "sha256": "36057874c3ce24833b15fd1cc1ff782c4f128ce1d9eeb3442c727dcb71215617",
+        "bytes": 252774
+      },
+      {
+        "file": "images/approved-20261026/san-antonio-facade-1200.webp",
+        "sha256": "73244bf89d8f1f13f73ee3ebe286197dd79d9b08d97bd84c882870e0c95196ec",
+        "bytes": 462204
+      },
+      {
+        "file": "images/approved-20261026/san-antonio-facade-1600.webp",
+        "sha256": "491c822a5fb8918badcb668605300af22ce778512c40b3cccb31495dd461cce1",
+        "bytes": 513676
+      }
+    ]
+  },
+  {
+    "name": "san-antonio-food",
+    "sourceSha256": "dc120ab66623d3f044db673fa15ea505ab4b48644c8254351c478b96405e5e4c",
+    "sourceDimensions": [
+      1720,
+      1792
+    ],
+    "catalogIndex": 63,
+    "backgroundEdited": false,
+    "files": [
+      {
+        "file": "images/approved-20261026/san-antonio-food-480.webp",
+        "sha256": "cfee27077528f3c4bc3634eb9c9c45d2ec202d4b435d8c507e9c26c0ca6ecd45",
+        "bytes": 44950
+      },
+      {
+        "file": "images/approved-20261026/san-antonio-food-800.webp",
+        "sha256": "c302b5062130aab4dd4d778405a354a8f8f33a1cef5894230878b3f64b73621c",
+        "bytes": 93380
+      },
+      {
+        "file": "images/approved-20261026/san-antonio-food-1200.webp",
+        "sha256": "0fe0c2de7a2155ff93538a6b697b9c113a99d31ccf91eb6c028cbcf837239819",
+        "bytes": 154950
+      },
+      {
+        "file": "images/approved-20261026/san-antonio-food-1600.webp",
+        "sha256": "d2384d1cfc7d7d53656f0616151bb56f7430cfcc4a954069efaba048d6820911",
+        "bytes": 219368
+      }
+    ],
+    "confirmation": "Karina confirmed this dish and presentation are offered in San Antonio on 2026-10-26."
+  },
+  {
+    "name": "houston-neon",
+    "sourceSha256": "52f99dbf40e9a95eab7964a9b44485655ae5c91f59dcd78a8fea6380097ea29e",
+    "sourceDimensions": [
+      3213,
+      5712
+    ],
+    "catalogIndex": 39,
+    "backgroundEdited": false,
+    "files": [
+      {
+        "file": "images/approved-20261026/houston-neon-480.webp",
+        "sha256": "b03a019215ebb09bbc70ca4810ca96ab09a825838eac5c4b8a9b68f4a1557f90",
+        "bytes": 24064
+      },
+      {
+        "file": "images/approved-20261026/houston-neon-800.webp",
+        "sha256": "b43ef96ac305f0d1d9b689321e900cd4f5ab2e45fb0c6fdc72c88c972cda63d9",
+        "bytes": 50726
+      },
+      {
+        "file": "images/approved-20261026/houston-neon-1200.webp",
+        "sha256": "947eb35dcbf125f77a7a26d0bbd411a5901aeb9bfb8730d129107ae50e405b96",
+        "bytes": 91668
+      },
+      {
+        "file": "images/approved-20261026/houston-neon-1600.webp",
+        "sha256": "ae03e4e064045c4ac536d7ae53ca09c524e52909c68517b3e45cefeee5236253",
+        "bytes": 137626
+      }
+    ]
+  },
+  {
+    "name": "el-paso-people",
+    "sourceSha256": "08aceeb96ddafebe86d8a975deb9fe09b9ff4e66e1357762a87c89b434b410f0",
+    "sourceDimensions": [
+      4284,
+      5712
+    ],
+    "catalogIndex": 527,
+    "backgroundEdited": false,
+    "files": [
+      {
+        "file": "images/approved-20261026/el-paso-people-480.webp",
+        "sha256": "dd343e57dd9df38587801046c2bb1eff230f06b2da03a8e705805d70257a8e35",
+        "bytes": 45964
+      },
+      {
+        "file": "images/approved-20261026/el-paso-people-800.webp",
+        "sha256": "be5c602471386663526174b0fd225a79f8bd0a6cbe72793e0c77e1ce554abf9d",
+        "bytes": 94182
+      },
+      {
+        "file": "images/approved-20261026/el-paso-people-1200.webp",
+        "sha256": "95bd09ce87ac129c5eaca9128c3ee813a5eaa379c586e4eb31c7d18fb9578b85",
+        "bytes": 165600
+      },
+      {
+        "file": "images/approved-20261026/el-paso-people-1600.webp",
+        "sha256": "25203369e60dec731fe2831779de8772c0aa7dd71f07dd977c96f26e4f482dd6",
+        "bytes": 260206
+      }
+    ]
+  },
+  {
+    "name": "el-paso-food",
+    "sourceSha256": "92bcde2ea48da724af57bf2421c3c90ad98d6ac36dfcc14b8c3d96891267ffd6",
+    "sourceDimensions": [
+      4284,
+      5712
+    ],
+    "catalogIndex": 579,
+    "backgroundEdited": false,
+    "files": [
+      {
+        "file": "images/approved-20261026/el-paso-food-480.webp",
+        "sha256": "e66e521749223d93412ec2ef5cc0019678f6a25843ecc638f97d3a3559d3470d",
+        "bytes": 36140
+      },
+      {
+        "file": "images/approved-20261026/el-paso-food-800.webp",
+        "sha256": "8bd3fcb8c2a4cbb772e7733452d9b917e13faf43a741528a6bf4f780b421774f",
+        "bytes": 71230
+      },
+      {
+        "file": "images/approved-20261026/el-paso-food-1200.webp",
+        "sha256": "8c96f8579e11df87242578b5423ea9256038968aaeef329a3300efb4d20cee1d",
+        "bytes": 124742
+      },
+      {
+        "file": "images/approved-20261026/el-paso-food-1600.webp",
+        "sha256": "631a51aa55d314188c9fff00e4cb2dae62e60ee5ae16e594dcd3ef8bfcc7ba80",
+        "bytes": 183824
+      }
+    ]
+  },
+  {
+    "name": "houston-food",
+    "sourceSha256": "6a0faf16a46187f391e65f53e7194d0c8e17de78af07063478cc7b240f9c5c70",
+    "sourceDimensions": [
+      1086,
+      1448
+    ],
+    "catalogIndex": 522,
+    "backgroundEdited": true,
+    "files": [
+      {
+        "file": "images/approved-20261026/houston-food-480.webp",
+        "sha256": "6af49fed2832f8e2f97e3d742fc3fe94d07ce75e945b372f5ad95ad03c759d7f",
+        "bytes": 67802
+      },
+      {
+        "file": "images/approved-20261026/houston-food-800.webp",
+        "sha256": "5841676266d01c5f3435b793a686bc047b3d175bde258370e3728aaf60930d02",
+        "bytes": 161556
+      },
+      {
+        "file": "images/approved-20261026/houston-food-1200.webp",
+        "sha256": "41ebfafcd7613bd530172aeac969f249b1ffd9bef182b76d6d729b3fa4ae7c48",
+        "bytes": 285844
+      },
+      {
+        "file": "images/approved-20261026/houston-food-1600.webp",
+        "sha256": "9559d26132acaba9c29523681fde93a068ec548065fd9f3c8e5148a12780de83",
+        "bytes": 401250
+      }
+    ]
+  }
+]

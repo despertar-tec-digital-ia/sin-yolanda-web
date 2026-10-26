@@ -3,10 +3,13 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { restoreCentralSeo } from '../scripts/central-seo-source-contract.mjs';
+import { restoreOctober } from '../scripts/october-source-contract.mjs';
 import { applyCentralSeoHtml, centralBranchReferences, centralSeoCopy } from '../scripts/central-seo.mjs';
 import { schemas, canonical, renderShell } from '../scripts/seo.mjs';
 
-const read = file => readFileSync(new URL('../' + file, import.meta.url), 'utf8');
+// Check the unchanged October 25 contract after reversing only the exact,
+// separately tested October 26 authorization. Keep all historical hashes.
+const read = file => restoreOctober(file, readFileSync(new URL('../' + file, import.meta.url), 'utf8'));
 const hash = value => createHash('sha256').update(value).digest('hex');
 const contract = JSON.parse(read('scripts/central-seo-source-patches.json'));
 const manifest = JSON.parse(read('scripts/public-manifest.json'));
@@ -19,7 +22,7 @@ test('central SEO restores exact prior bytes and rejects missing or ambiguous ap
     assert.equal(hash(restoreCentralSeo(file, html)), item.beforeSha256, file);
     assert.notEqual(hash(restoreCentralSeo(file, html + 'unknown edit')), item.beforeSha256);
     assert.throws(() => restoreCentralSeo(file, html + item.patches.at(-1).after), /Central SEO patch/);
-    assert.throws(() => restoreCentralSeo(file, html.replace(item.patches[0].after, 'unknown edit')), /Central SEO patch/);
+    assert.throws(() => restoreCentralSeo(file, html.replace(item.patches[0].after, 'unknown edit')), /Central SEO patch|October update patch/);
   }
 });
 
@@ -27,7 +30,8 @@ test('all menus, QR, home renderer, styles, media and other out-of-scope public 
   const files = [...manifest.pages, ...manifest.assets].sort();
   assert.deepEqual([...Object.keys(contract.files), ...Object.keys(contract.protected)].sort(), files);
   for (const [file, expected] of Object.entries(contract.protected)) {
-    assert.equal(hash(readFileSync(new URL('../' + file, import.meta.url))), expected, file);
+    const bytes = readFileSync(new URL('../' + file, import.meta.url));
+    assert.equal(hash(/\.(?:html|js|css|json|txt|xml)$/.test(file) ? restoreOctober(file, bytes.toString()) : bytes), expected, file);
   }
   for (const file of ['assets/js/site.js', 'assets/js/public-data.js', 'styles.css', '_redirects', 'sitemap.xml']) assert.ok(contract.protected[file]);
   assert.ok(files.filter(file => /\/menu\/|\/menus\/|\.pdf$/.test(file)).every(file => contract.protected[file]));

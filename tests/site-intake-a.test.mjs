@@ -35,7 +35,7 @@ test('El Paso removes the extra reservation section and retains its own native c
     assert.doesNotMatch(html, /ep-reservations|widget\/reservation\/loader|bl-table--no-photo/);
     assert.ok(html.includes('https://www.opentable.com/restaurant/profile/1559290'));
     assert.ok(html.includes('tel:+19153636330'));
-    assert.match(html, /<section class="hh-table"[\s\S]*?<figure><img src="\/images\/intake-a\/el-paso-table-/);
+    assert.match(html, /<section class="hh-table"[\s\S]*?<figure><img src="\/images\/approved-20261026\/el-paso-food-/);
     const links = html.match(/<a\b[^>]*href="\/el-paso\/menu\/"[^>]*>/g);
     assert.equal(links.length, 4);
     for (const link of links) {

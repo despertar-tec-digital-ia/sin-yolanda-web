@@ -15,7 +15,12 @@ test('group footer gives each open location a real link and separates unlinked f
  const next=html.slice(html.indexOf('class="group-footer-upcoming"'));
  assert.match(next,/Moreno Valley/);assert.match(next,/San Diego/);assert.doesNotMatch(next,/El Paso|href="#"/);
  for(const branch of data.branches.filter(b=>b.status==='active')) assert.ok(html.includes(`href="${branch.page}"`));
- assert.doesNotMatch(html,/OpenTable en Texas|maricarmen|instagram\.com|tel:/);
+ assert.doesNotMatch(html,/OpenTable en Texas|maricarmen|tel:/);
+ for(const branch of data.branches.filter(b=>b.status==='active')) {
+  assert.ok(html.includes(`href="${branch.socialUrl}"`));
+  assert.ok(html.includes(`aria-label="Instagram · ${branch.shortName}"`));
+ }
+ assert.equal((html.match(/aria-label="Instagram · /g)||[]).length,5);
  assert.match(html,/aviso-de-privacidad.html/);
 });
 

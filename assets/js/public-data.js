@@ -1,5 +1,5 @@
 window.SY_DATA = {
-  "updatedAt": "2026-10-12",
+  "updatedAt": "2026-10-26",
   "branches": [
     {
       "id": "san-ignacio",
@@ -83,9 +83,13 @@ window.SY_DATA = {
           "source": "Descripción oficial · Google"
         }
       ],
-      "venuePhoto": "assets/media/venues/san-antonio.webp",
+      "venuePhoto": "images/approved-20261026/san-antonio-people-1200.webp",
       "venueCity": "San Antonio, Texas",
-      "hoursTimezone": "America/Chicago"
+      "hoursTimezone": "America/Chicago",
+      "venuePhotoSet": "images/approved-20261026/san-antonio-people-480.webp 480w, images/approved-20261026/san-antonio-people-800.webp 800w, images/approved-20261026/san-antonio-people-1200.webp 1200w, images/approved-20261026/san-antonio-people-1600.webp 1600w",
+      "venuePhotoWidth": 4284,
+      "venuePhotoHeight": 5712,
+      "venuePosition": "50% 40%"
     },
     {
       "id": "the-woodlands",
@@ -181,9 +185,13 @@ window.SY_DATA = {
           "source": "Reseña de Google · julio 2026"
         }
       ],
-      "venuePhoto": "assets/media/venues/houston.webp",
+      "venuePhoto": "images/approved-20261026/houston-neon-1200.webp",
       "venueCity": "Houston, Texas",
-      "hoursTimezone": "America/Chicago"
+      "hoursTimezone": "America/Chicago",
+      "venuePhotoSet": "images/approved-20261026/houston-neon-480.webp 480w, images/approved-20261026/houston-neon-800.webp 800w, images/approved-20261026/houston-neon-1200.webp 1200w, images/approved-20261026/houston-neon-1600.webp 1600w",
+      "venuePhotoWidth": 3213,
+      "venuePhotoHeight": 5712,
+      "venuePosition": "50% 40%"
     },
     {
       "id": "el-paso",
@@ -216,49 +224,14 @@ window.SY_DATA = {
       "rating": null,
       "reviewsTotal": 0,
       "quotes": [],
-      "venuePhoto": "assets/media/venue-elpaso.webp",
+      "venuePhoto": "images/approved-20261026/el-paso-people-1200.webp",
       "venueCity": "El Paso, Texas",
       "openingDate": "2026-10-09",
-      "hoursTimezone": "America/Denver"
-    },
-    {
-      "id": "moreno-valley",
-      "page": "#",
-      "name": "Sin Yolanda Moreno Valley",
-      "shortName": "Moreno Valley",
-      "city": "Moreno Valley, California",
-      "country": "Estados Unidos",
-      "region": "us",
-      "status": "coming-soon",
-      "statusLabel": "Próxima apertura",
-      "concept": "Mexican restaurant · En preparación",
-      "address": "Moreno Valley, CA · dirección por confirmar",
-      "hours": "Horario por confirmar en la apertura",
-      "phone": "Por confirmar",
-      "phoneIntl": "",
-      "whatsapp": "",
-      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Moreno+Valley,+California",
-      "website": "",
-      "reserveUrl": "",
-      "reserveChannel": "none",
-      "gbpUrl": "",
-      "parking": "Información por confirmar",
-      "accessibility": "Información por confirmar",
-      "image": "assets/media/interior.webp",
-      "gallery": [],
-      "summary": "El Inland Empire tiene voz de mariachi y todavía no tiene dónde usarla. Ya vamos.",
-      "tagline": "El Inland Empire",
-      "socialUrl": "",
-      "menuUrl": "",
-      "rating": null,
-      "reviewsTotal": 0,
-      "quotes": [],
-      "venuePhoto": "assets/media/venues/future/future-crowd-960.webp",
-      "venuePhotoSet": "assets/media/venues/future/future-crowd-640.webp 640w, assets/media/venues/future/future-crowd-960.webp 960w",
-      "venuePhotoWidth": 960,
-      "venuePhotoHeight": 1237,
-      "venuePosition": "50% 48%",
-      "venuePhotoKind": "brand-illustrative"
+      "hoursTimezone": "America/Denver",
+      "venuePhotoSet": "images/approved-20261026/el-paso-people-480.webp 480w, images/approved-20261026/el-paso-people-800.webp 800w, images/approved-20261026/el-paso-people-1200.webp 1200w, images/approved-20261026/el-paso-people-1600.webp 1600w",
+      "venuePhotoWidth": 4284,
+      "venuePhotoHeight": 5712,
+      "venuePosition": "50% 40%"
     },
     {
       "id": "san-diego",
@@ -298,6 +271,45 @@ window.SY_DATA = {
       "venuePhotoHeight": 1305,
       "venuePosition": "50% 38%",
       "venuePhotoKind": "brand-illustrative"
+    },
+    {
+      "id": "moreno-valley",
+      "page": "#",
+      "name": "Sin Yolanda Moreno Valley",
+      "shortName": "Moreno Valley",
+      "city": "Moreno Valley, California",
+      "country": "Estados Unidos",
+      "region": "us",
+      "status": "coming-soon",
+      "statusLabel": "Próxima apertura",
+      "concept": "Mexican restaurant · En preparación",
+      "address": "Moreno Valley, CA · dirección por confirmar",
+      "hours": "Horario por confirmar en la apertura",
+      "phone": "Por confirmar",
+      "phoneIntl": "",
+      "whatsapp": "",
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Moreno+Valley,+California",
+      "website": "",
+      "reserveUrl": "",
+      "reserveChannel": "none",
+      "gbpUrl": "",
+      "parking": "Información por confirmar",
+      "accessibility": "Información por confirmar",
+      "image": "assets/media/interior.webp",
+      "gallery": [],
+      "summary": "El Inland Empire tiene voz de mariachi y todavía no tiene dónde usarla. Ya vamos.",
+      "tagline": "El Inland Empire",
+      "socialUrl": "",
+      "menuUrl": "",
+      "rating": null,
+      "reviewsTotal": 0,
+      "quotes": [],
+      "venuePhoto": "assets/media/venues/future/future-crowd-960.webp",
+      "venuePhotoSet": "assets/media/venues/future/future-crowd-640.webp 640w, assets/media/venues/future/future-crowd-960.webp 960w",
+      "venuePhotoWidth": 960,
+      "venuePhotoHeight": 1237,
+      "venuePosition": "50% 48%",
+      "venuePhotoKind": "brand-illustrative"
     }
   ],
   "events": [
@@ -311,13 +323,18 @@ window.SY_DATA = {
       "occurrences": [
         {
           "branchId": "houston",
-          "date": "2026-11-01",
+          "date": "2026-10-30",
           "timeZone": "America/Chicago"
         },
         {
           "branchId": "the-woodlands",
           "date": "2026-10-30",
           "timeZone": "America/Chicago"
+        },
+        {
+          "branchId": "el-paso",
+          "date": "2026-10-30",
+          "timeZone": "America/Denver"
         },
         {
           "branchId": "san-antonio",
@@ -332,10 +349,15 @@ window.SY_DATA = {
       "status": "scheduled",
       "visibleFrom": "2026-10-01",
       "title": "Halloween Night",
-      "description": "Ven con tu disfraz. El concurso se vive en cada cantina.",
+      "description": "Cover: USD $10. Concurso de disfraces: primer lugar, USD $1,000 en consumo; segundo lugar, una botella.",
       "occurrences": [
         {
           "branchId": "houston",
+          "date": "2026-10-31",
+          "timeZone": "America/Chicago"
+        },
+        {
+          "branchId": "san-antonio",
           "date": "2026-10-31",
           "timeZone": "America/Chicago"
         },
@@ -345,11 +367,12 @@ window.SY_DATA = {
           "timeZone": "America/Chicago"
         },
         {
-          "branchId": "san-antonio",
+          "branchId": "el-paso",
           "date": "2026-10-31",
-          "timeZone": "America/Chicago"
+          "timeZone": "America/Denver"
         }
       ]
     }
   ]
 };
+if (window.SY_OCTOBER_HOURS) window.SY_OCTOBER_HOURS.applyToData(window.SY_DATA);

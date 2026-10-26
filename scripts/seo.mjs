@@ -11,6 +11,7 @@ import { restoreUnifiedHours } from './unified-hours-source-contract.mjs';
 import { restoreGdlFocus } from './gdl-focus-source-contract.mjs';
 import { restoreSanDiegoOpening } from './san-diego-opening-source-contract.mjs';
 import { applyCentralSeoHtml, centralBranchReferences } from './central-seo.mjs';
+import { applyOctoberSiteHtml } from './october-site.mjs';
 
 export const origin = 'https://sin-yolanda.com';
 const root = resolve(import.meta.dirname, '..');
@@ -30,6 +31,7 @@ export function renderShell(html, now = new Date(), sourceRoot = root) {
   const shell = { innerHTML: '' };
   class RenderDate extends Date { constructor(...args) { super(...(args.length ? args : [now])); } }
   const context = { window: {}, document: { body: { dataset }, getElementById: id => id === 'site-shell' ? shell : null }, Date: RenderDate, Intl, URL };
+  if (existsSync(resolve(sourceRoot, 'assets/js/october-hours.js'))) vm.runInNewContext(readFileSync(resolve(sourceRoot, 'assets/js/october-hours.js'), 'utf8'), context, { timeout: 1000 });
   vm.runInNewContext(readFileSync(resolve(sourceRoot,'assets/js/public-data.js'),'utf8'), context, { timeout: 1000 });
   const source = readFileSync(resolve(sourceRoot,'assets/js/site.js'),'utf8');
   const stop = source.lastIndexOf('\n  bindCommon();');
@@ -131,7 +133,7 @@ export function applySeo() {
     const fallback = shell ? '<noscript><style>.reveal,.reveal-scale{opacity:1;transform:none;animation:none}</style></noscript>' : '';
     html = html.replace('</head>', additions + fallback + '</head>');
     html = html.replace(/<head>[\s\S]*?<\/head>/i, head => head.replace(/^[\t ]+$/gm, ''));
-    write(file, applyCentralSeoHtml(file, html, branchReferences));
+    write(file, applyOctoberSiteHtml(file, applyCentralSeoHtml(file, html, branchReferences)));
   }
   write('scripts/seo-baseline.json', JSON.stringify(baseline, null, 2) + '\n');
   manifest.reviewPages = manifest.reviewPages.filter(file => !policy.pages.includes(file));

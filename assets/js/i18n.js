@@ -10,6 +10,7 @@
    ============================================================ */
 (function () {
   const DICT = {
+    "Lun–Mié cerrado · Jue 4 pm–12 am · Vie–Sáb 4 pm–2 am · Dom 11 am–2 am": "Mon–Wed closed · Thu 4 pm–12 am · Fri–Sat 4 pm–2 am · Sun 11 am–2 am",
     /* ---------- HEADER / NAV ---------- */
     "Inicio": "Home",
     "La Cantina": "The Cantina",
@@ -60,7 +61,7 @@
     "Seguir la apertura": "Follow the opening",
     "Recibir novedades": "Get updates",
     "Próxima apertura": "Opening soon",
-    "Llevamos la cantina a tu fiesta.": "We bring the cantina to your party.",
+    "Te llevamos la experiencia Sin Yolanda hasta tu lugar": "We bring the Sin Yolanda experience to your place",
     "Comida mexicana, un brindis y una canción para compartir. Catering para tu celebración en Houston.": "Mexican food, a toast and a song to share. Catering for your celebration in Houston.",
     "Explora Catering": "Explore Catering",
     "Bebidas preparadas sobre un sarape de colores": "Prepared drinks on a colorful sarape",

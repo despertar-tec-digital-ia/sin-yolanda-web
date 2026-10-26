@@ -67,8 +67,9 @@
   function groupFooter() {
     const opened = data.branches.filter(branch => branch.status === "active");
     const upcoming = data.branches.filter(branch => branch.status === "coming-soon");
+    const instagram = branch => branch.socialUrl ? `<span class="sy-branch-socials"><a href="${branch.socialUrl}" target="_blank" rel="noopener noreferrer" aria-label="Instagram · ${branch.shortName}"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2"/></svg></a></span>` : "";
     const locations = region => opened.filter(branch => branch.region === region).map(branch =>
-      `<li><a href="${branch.page}"><span>${branch.shortName}</span><small>${branch.venueCity || branch.city}</small></a></li>`).join("");
+      `<li><a href="${branch.page}"><span>${branch.shortName}</span><small>${branch.venueCity || branch.city}</small></a>${instagram(branch)}</li>`).join("");
     return `<footer class="public-footer group-footer" data-header-tone="dark">
       <div class="group-footer-main">
         <div class="group-footer-brand">
@@ -259,7 +260,7 @@
     return `<section class="section catering-feature" id="catering" aria-labelledby="home-catering-heading" data-header-tone="light">
       <div class="catering-feature-copy">
         <img class="catering-feature-brand" src="images/catering-review/logo.webp" width="750" height="210" alt="Sin Yolanda Catering" loading="lazy" />
-        <h2 id="home-catering-heading">Llevamos la cantina a tu fiesta.</h2>
+        <h2 id="home-catering-heading">Te llevamos la experiencia Sin Yolanda hasta tu lugar</h2>
         <p>Comida mexicana, un brindis y una canción para compartir. Catering para tu celebración en Houston.</p>
         <a class="editorial-link" href="/catering" data-i18n-href-es="/catering" data-i18n-href-en="/en/catering/">Explora Catering <span aria-hidden="true">↗</span></a>
       </div>

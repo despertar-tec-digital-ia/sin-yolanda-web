@@ -5,6 +5,16 @@
 .sy-october-programming h4{overflow-wrap:anywhere}
 .sy-october-dates{margin-bottom:36px}
 .sy-october-dates .sy-agenda-copy{padding:24px;background:var(--agenda-brand);color:var(--paper,#fff4de)}
+.sy-event-poster a{position:relative;cursor:zoom-in}
+.sy-event-poster img{display:block;width:100%;height:auto;object-fit:contain}
+.sy-agenda .sy-event-poster img{max-height:none;aspect-ratio:auto}
+.sy-agenda .sy-poster-enlarge{display:block;padding:10px 14px;background:var(--ink,#30201c);color:var(--paper,#fff4de);font-size:12px;text-align:right}
+.sy-october-programming .sy-agenda-weekly-grid{grid-template-columns:repeat(3,minmax(0,1fr));align-items:start}
+.sy-october-programming .sy-sunday-programming{grid-column:1/-1;grid-template-columns:minmax(0,320px) minmax(0,1fr);padding:0;max-width:900px;width:100%}
+.sy-sunday-programming .sy-agenda-night-copy{padding:32px}
+.sy-sunday-programming:not(:has(.sy-event-poster)){grid-template-columns:1fr}
+@media(max-width:900px){.sy-october-programming .sy-agenda-weekly-grid{grid-template-columns:1fr}}
+@media(max-width:600px){.sy-october-programming .sy-sunday-programming{grid-template-columns:1fr;padding:0}.sy-sunday-programming .sy-agenda-night-copy{padding:24px 22px}}
 .sy-branch-socials{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
 .sy-branch-socials a{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;color:inherit}
 .sy-branch-socials a:focus-visible{outline:3px solid currentColor;outline-offset:3px}

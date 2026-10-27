@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "approvedBy": "Luis",
+  "approvedOn": "2026-10-26",
+  "authorization": "quiero asegurarnos de que quede como lo pidieron, con fotos y todo",
+  "source": "Five original posters supplied in this chat; preserve their complete artwork.",
+  "assets": {
+    "catrinasSunday": {
+      "file": "assets/agenda/catrinas-20261101.jpg",
+      "width": 1280,
+      "height": 1600,
+      "sha256": "ac64167c42108ec9f38590cc45a92d13f78d53950e7ff98f9a3bf354ab18cbd2",
+      "alt": {
+        "es": "Cartel Noche de Catrinas, domingo 1 de noviembre.",
+        "en": "Catrinas Night poster, Sunday, November 1."
+      }
+    },
+    "halloween": {
+      "file": "assets/agenda/halloween-20261031.jpg",
+      "width": 1280,
+      "height": 1600,
+      "sha256": "31e7197b3f3166ecaa293c2df391432459a47fd033c2fdb6d211238a4957c75f",
+      "alt": {
+        "es": "Cartel Halloween, sábado 31 de octubre: concurso de disfraces y entrada de 10 dólares.",
+        "en": "Halloween poster, Saturday, October 31: costume contest and 10-dollar cover."
+      }
+    },
+    "jorge": {
+      "file": "assets/agenda/jorge-guevara-20261113-14.jpg",
+      "width": 1080,
+      "height": 1440,
+      "sha256": "59923e6e9cf0d27bb3b1d333d236b287dcdb2135e871699a467f5fd45f1ecc34",
+      "alt": {
+        "es": "Jorge Guevara con Mariana Ochoa: Houston 13 de noviembre y K.O.P. San Antonio 14 de noviembre.",
+        "en": "Jorge Guevara with Mariana Ochoa: Houston November 13 and K.O.P. San Antonio November 14."
+      }
+    },
+    "nfl": {
+      "file": "assets/agenda/nfl-november-2026.jpg",
+      "width": 900,
+      "height": 1600,
+      "sha256": "870ca0824c949b7b91b73d8e6a26f6e87bb151317e620ae3686ccc8d9e61eb40",
+      "alt": {
+        "es": "Cartelera NFL de noviembre de Sin Yolanda: domingos 1, 8, 15 y 22.",
+        "en": "Sin Yolanda November NFL poster: Sundays November 1, 8, 15 and 22."
+      }
+    },
+    "catrinasFriday": {
+      "file": "assets/agenda/catrinas-20261030.jpg",
+      "width": 1280,
+      "height": 1600,
+      "sha256": "b3c083acb932dff6fc5cef1586ea4a9042566d37caeb12e2f0fd8932d2ebd312",
+      "alt": {
+        "es": "Cartel Noche de Catrinas, viernes 30 de octubre.",
+        "en": "Catrinas Night poster, Friday, October 30."
+      }
+    }
+  },
+  "catrinasByBranch": {
+    "houston": "catrinasFriday",
+    "the-woodlands": "catrinasFriday",
+    "el-paso": "catrinasFriday",
+    "san-antonio": "catrinasSunday"
+  },
+  "jorgeByBranch": {
+    "houston": "houston-jorge-mariana-20261113",
+    "san-antonio": "san-antonio-jorge-20261114"
+  },
+  "nflLastDate": "2026-11-22"
+}

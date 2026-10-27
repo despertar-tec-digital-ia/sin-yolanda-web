@@ -5,7 +5,7 @@ import { createHash } from 'node:crypto';
 import { resolve } from 'node:path';
 import vm from 'node:vm';
 import { projectAllAgendas } from '../scripts/editorial/all-agendas.mjs';
-import { approval, octoberHours } from '../scripts/editorial/october-2026-update.mjs';
+import { approval, octoberHours, eventArtwork } from '../scripts/editorial/october-2026-update.mjs';
 import { restoreOctober } from '../scripts/october-source-contract.mjs';
 import { schemas, renderShell } from '../scripts/seo.mjs';
 import { applyOctoberSiteHtml, photoExports } from '../scripts/october-site.mjs';
@@ -29,7 +29,7 @@ test('October authorization restores exact preceding bytes and rejects unrelated
   const prior = JSON.parse(restoreOctober('scripts/public-manifest.json', read('scripts/public-manifest.json')));
   assert.deepEqual(manifest.pages, prior.pages);
   assert.deepEqual(manifest.assets.filter(f => !prior.assets.includes(f)).sort(),
-    [...photoExports.flatMap(p => p.files.map(f => f.file)), 'assets/js/october-hours.js', 'assets/css/october-update.css'].sort());
+    [...photoExports.flatMap(p => p.files.map(f => f.file)), ...Object.values(eventArtwork.assets).map(a => a.file), 'assets/js/october-hours.js', 'assets/css/october-update.css'].sort());
   for (const photo of photoExports) for (const file of photo.files) {
     assert.ok(manifest.assets.includes(file.file));
     assert.equal(hash(readFileSync(resolve(root,file.file))), file.sha256);

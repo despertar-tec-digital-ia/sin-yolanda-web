@@ -22,7 +22,7 @@
     "assets/js/gdl-menu.js": "20261019-gdl-v82",
     "assets/css/venue-selector.css": "20261025-san-diego-opening",
     "assets/js/october-hours.js": "20261026-approved-update",
-    "assets/css/october-update.css": "20261026-approved-update"
+    "assets/css/october-update.css": "20261026-event-posters-clean"
   },
   "pages": [
     "index.html",
@@ -349,7 +349,12 @@
     "images/approved-20261026/houston-food-1200.webp",
     "images/approved-20261026/houston-food-1600.webp",
     "assets/js/october-hours.js",
-    "assets/css/october-update.css"
+    "assets/css/october-update.css",
+    "assets/agenda/catrinas-20261101.jpg",
+    "assets/agenda/halloween-20261031.jpg",
+    "assets/agenda/jorge-guevara-20261113-14.jpg",
+    "assets/agenda/nfl-november-2026.jpg",
+    "assets/agenda/catrinas-20261030.jpg"
   ],
   "assetVersion": "20261008-migration-measurement",
   "reviewPages": []

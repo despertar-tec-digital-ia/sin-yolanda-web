@@ -1,5 +1,39 @@
 # Forma de trabajar y publicar
 
+### Eventos USA · carteles completos26-oct · candidato para revisión
+
+Luis precisa que la entrega incluye los cinco carteles suministrados, además de las fechas.
+Se incorporan los JPEG originales sin recorte ni cambio de bytes a las ocho fichas ES/EN.
+Houston, The Woodlands y El Paso usan Catrinas30-oct; San Antonio usa únicamente Catrinas1-nov
+y muestra primero Halloween31-oct. Cada cartel permite ampliación en otra pestaña.
+Revisión de Luis: retirar la franja visible «Ampliar cartel» y su flecha; el cartel conserva
+el enlace de la imagen y su nombre accesible, sin añadir texto visible.
+Jorge conserva sus dos registros existentes: Houston13-nov y San Antonio14-nov en K.O.P.;
+el nuevo cartel conjunto sustituye el arte previo sin duplicar el concierto ni activar boletos.
+NFL acompaña el bloque semanal existente de Recovery Brunch y se retira después del22-nov
+en la zona local de cada sede; el anuncio semanal permanece. Partidos/horas impresos proceden
+del cartel entregado, sin afirmar cotejo independiente con la liga ni ampliar su vigencia.
+
+Fuente de medios/dimensiones/SHA256/mapeo → `scripts/editorial/usa-event-artwork.json`.
+La proyección existente de octubre incorpora esos medios y su digest, conserva las fechas,
+los IDs, reservas y caducidades. El contrato October sigue restaurando los mismos hashes
+históricos; no se relajan las verificaciones. Home, Guadalajara, fotos de las sedes, cartas,
+QR, WordPress, GHL y medición conservan sus fuentes completas.
+
+Validación local: `npm ci --ignore-scripts`, `npm run check` (401pruebas) y `npm run build`
+correctos;328archivos publicables. Pruebas específicas comprueban mapeo de carteles/fechas,
+un solo registro por evento, orden temporal San Antonio, originales íntegros, proyección
+repetible y retiro por zona. QA visual/teclado/ampliación/caducidad del navegador y capturas
+en `.artifacts/event-posters-qa/`. Chromium local emulado; sin prueba física de iPhone/Safari.
+24recorridos ES/EN en390/768/1280px sin desbordamiento, cuatro ampliaciones a JPEG original,
+cuatro retiros temporales en navegador y ocho fichas sin JavaScript comprobados.
+Preview loopback8856 sobre el paquete permitido, no el checkout.
+
+Estado: candidato local, sin nueva publicación. La aprobación de implementación no sustituye
+el OK de publicación exigido por AGENTS. Publicar después exclusivamente con PR→CI→
+`release:approved`→recibo. Rollback: revertir este pase sobre mainf508cf7 o volver al deployment
+previo conservado en el recibo de publicación.
+
 ### Fotos y agenda · autorización de Karina26-oct
 
 Karina pide realizar los cambios revisados y confirma que el concurso pasa al jueves29-oct

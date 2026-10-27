@@ -8,7 +8,6 @@
 .sy-event-poster a{position:relative;cursor:zoom-in}
 .sy-event-poster img{display:block;width:100%;height:auto;object-fit:contain}
 .sy-agenda .sy-event-poster img{max-height:none;aspect-ratio:auto}
-.sy-agenda .sy-poster-enlarge{display:block;padding:10px 14px;background:var(--ink,#30201c);color:var(--paper,#fff4de);font-size:12px;text-align:right}
 .sy-october-programming .sy-agenda-weekly-grid{grid-template-columns:repeat(3,minmax(0,1fr));align-items:start}
 .sy-october-programming .sy-sunday-programming{grid-column:1/-1;grid-template-columns:minmax(0,320px) minmax(0,1fr);padding:0;max-width:900px;width:100%}
 .sy-sunday-programming .sy-agenda-night-copy{padding:32px}

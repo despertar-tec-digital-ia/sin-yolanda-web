@@ -19,7 +19,7 @@ const expiration = (date, id) => localInstant(nextLocalDay(date), '00:00', octob
 
 export function renderEventPoster(key, language) {
   const asset = eventArtwork.assets[key], label = en(language) ? 'Enlarge poster' : 'Ampliar cartel';
-  return `<figure class="sy-agenda-art sy-event-poster"><a href="/${asset.file}" target="_blank" rel="noopener noreferrer" aria-label="${label}: ${escapeHtml(asset.alt[language])}"><img src="/${asset.file}" width="${asset.width}" height="${asset.height}" alt="${escapeHtml(asset.alt[language])}" loading="lazy" decoding="async"><span class="sy-poster-enlarge">${label} ↗</span></a></figure>`;
+  return `<figure class="sy-agenda-art sy-event-poster"><a href="/${asset.file}" target="_blank" rel="noopener noreferrer" aria-label="${label}: ${escapeHtml(asset.alt[language])}"><img src="/${asset.file}" width="${asset.width}" height="${asset.height}" alt="${escapeHtml(asset.alt[language])}" loading="lazy" decoding="async"></a></figure>`;
 }
 
 export function renderOctoberProgramming(id, language, now) {

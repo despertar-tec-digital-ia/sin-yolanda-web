@@ -6,6 +6,8 @@ Luis precisa que la entrega incluye los cinco carteles suministrados, además de
 Se incorporan los JPEG originales sin recorte ni cambio de bytes a las ocho fichas ES/EN.
 Houston, The Woodlands y El Paso usan Catrinas30-oct; San Antonio usa únicamente Catrinas1-nov
 y muestra primero Halloween31-oct. Cada cartel permite ampliación en otra pestaña.
+Revisión de Luis: retirar la franja visible «Ampliar cartel» y su flecha; el cartel conserva
+el enlace de la imagen y su nombre accesible, sin añadir texto visible.
 Jorge conserva sus dos registros existentes: Houston13-nov y San Antonio14-nov en K.O.P.;
 el nuevo cartel conjunto sustituye el arte previo sin duplicar el concierto ni activar boletos.
 NFL acompaña el bloque semanal existente de Recovery Brunch y se retira después del22-nov

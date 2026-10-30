@@ -159,9 +159,9 @@
       ["Comida", "images/houston-entry-study/table-1600.webp", "Para el centro de la mesa. Se comparte o no se pide."],
       ["Tragos", "assets/media/cocktail.webp", "Coquetos. Sin lista de precios: pregunta y te contamos."],
       ["Música", "assets/media/venues/the-woodlands.webp", "Canciones que te sabes completas.", "50% 56%"],
-      ["Micrófono", "assets/media/karaoke.webp", "Pasa por las mesas. Nadie se lo niega a nadie.", "50% 42%"],
-      ["La banda", "assets/media/hero-night.webp", "Trae a los cuatro. Aquí caben todos.", "50% 22%"],
-      ["Celebraciones", "assets/media/hospitality.webp", "Cumpleaños, renuncias, quincenas. Cualquier pretexto.", "50% 12%"],
+      ["Micrófono", "images/home-20261029/microphone.webp", "Pasa por las mesas. Nadie se lo niega a nadie.", "50% 55%"],
+      ["La banda", "images/home-20261029/friends.webp", "Trae a los cuatro. Aquí caben todos.", "50% 0%"],
+      ["Celebraciones", "images/home-20261029/celebrations.webp", "Cumpleaños, renuncias, quincenas. Cualquier pretexto.", "50% 0%"],
     ];
     const pretextos = [
       ["Cumpleaños", "Aquí se entera todo el lugar."],

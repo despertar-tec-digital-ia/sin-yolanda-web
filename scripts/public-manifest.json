@@ -1,10 +1,10 @@
 {
   "version": 1,
   "assetVersions": {
-    "assets/js/site.js": "20261026-approved-update",
+    "assets/js/site.js": "20261029-home-photos",
     "assets/js/i18n.js": "20261026-approved-update",
     "assets/css/visual-pilot.css": "20261015-blue-hat-mobile",
-    "assets/js/public-data.js": "20261026-approved-update",
+    "assets/js/public-data.js": "20261029-home-photos",
     "assets/js/site-analytics.js": "20261012-root-routing",
     "assets/css/houston-header.css": "20261012-overlay",
     "assets/js/agenda-clock.js": "20261013-approved-agenda",
@@ -354,7 +354,11 @@
     "assets/agenda/halloween-20261031.jpg",
     "assets/agenda/jorge-guevara-20261113-14.jpg",
     "assets/agenda/nfl-november-2026.jpg",
-    "assets/agenda/catrinas-20261030.jpg"
+    "assets/agenda/catrinas-20261030.jpg",
+    "images/home-20261029/microphone.webp",
+    "images/home-20261029/friends.webp",
+    "images/home-20261029/celebrations.webp",
+    "images/home-20261029/el-paso.webp"
   ],
   "assetVersion": "20261008-migration-measurement",
   "reviewPages": []

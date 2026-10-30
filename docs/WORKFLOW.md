@@ -1,5 +1,33 @@
 # Forma de trabajar y publicar
 
+
+### Home · cuatro fotos autorizadas29-oct
+
+Luis revisó las cuatro fotos en `localhost:8847` y autoriza: «OK, puedes subirlo así, porfa?
+ya a producción». Se conserva el encuadre revisado: Micrófono50%55% (Karina#111, toma de
+bengalas indicada por Luis), La banda50%0% (B2), Celebraciones50%0% (C1, para conservar las
+caras superiores en móvil) y selector ElPaso50%35% (E1, vasos sobre la barra de esa sede).
+
+Los cuatro WebP de `images/home-20261029/` conservan exactamente los bytes de la prueba
+local. Procedencia, dimensiones, hashes y deltas autorizados en
+`scripts/home-selection-source-patches.json`. Solo se actualizan las tres tarjetas del home,
+el selector ElPaso en home/directorio y sus datos compartidos; las fichas ElPaso ES/EN conservan
+sus fotos. Se renuevan las versiones de los dos scripts compartidos en los cinco HTML que los
+consumen. Hero, otras fotos, cartas/QR, agenda, horarios, WordPress, GHL y medición no cambian.
+
+El restaurador de esta autorización conserva los hashes históricos íntegros de octubre/SEO y
+rechaza parches desconocidos o ambiguos. Las pruebas de octubre leen su capa histórica después
+de retirar exclusivamente este delta; no se cambian hashes ni se retiran comprobaciones.
+Nuevo guard comprueba los cuatro medios, HTML inicial/runtime, hero intacto y datos de las otras
+sedes. El paquete público incluye únicamente los cuatro medios nuevos además de su allowlist.
+
+Validación: npm ci --ignore-scripts y npm run check403/403; empaquetado332archivos correcto.
+Evidencia visual revisada1502/390 en el directorio de propuestas del cliente y tablet768 sin
+overflow ni medios rotos en .artifacts/home-selection-final/tablet.png; candidata aprobada
+sobre817e95c, con los mismos archivos públicos que maina9d2ebf. Publicación exclusivamente por
+PR→CI→`release:approved`→recibo verificado. Guardar resultado/rollback en el cierre del cliente;
+no considerar este bloque una confirmación de despliegue por sí solo.
+
 ### Eventos USA · carteles completos26-oct · candidato para revisión
 
 Luis precisa que la entrega incluye los cinco carteles suministrados, además de las fechas.

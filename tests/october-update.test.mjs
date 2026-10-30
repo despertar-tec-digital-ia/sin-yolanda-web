@@ -9,8 +9,9 @@ import { approval, octoberHours, eventArtwork } from '../scripts/editorial/octob
 import { restoreOctober } from '../scripts/october-source-contract.mjs';
 import { schemas, renderShell } from '../scripts/seo.mjs';
 import { applyOctoberSiteHtml, photoExports } from '../scripts/october-site.mjs';
+import { restoreHomeSelection } from '../scripts/home-selection-source-contract.mjs';
 const root = resolve(import.meta.dirname, '..');
-const read = file => readFileSync(resolve(root, file), 'utf8');
+const read = file => restoreHomeSelection(file, readFileSync(resolve(root, file), 'utf8'));
 const hash = value => createHash('sha256').update(value).digest('hex');
 const project = now => projectAllAgendas(root, { now, commit: 'a'.repeat(40) });
 const plain = value => JSON.parse(JSON.stringify(value));

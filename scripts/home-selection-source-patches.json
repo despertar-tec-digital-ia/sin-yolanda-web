@@ -1,0 +1,153 @@
+{
+  "version": 1,
+  "baseCommit": "a9d2ebf6447ee81334bf20a5e34462f47efc8bf8",
+  "authorization": "Luis, 29-oct-2026: OK, puedes subirlo así, porfa? ya a producción. Four photographs and crops reviewed at localhost:8847; El Paso selector, Micrófono, La banda, Celebraciones.",
+  "files": {
+    "index.html": {
+      "beforeSha256": "88ccdde997ca229378ea24987e9ada7a98d6df08e0c5f137988dfc8627ddf317",
+      "afterSha256": "7e0adde080ec269517334d92ffa0ea8706e6d8c6bf3dd3c2d552a69c82d80127",
+      "patches": [
+        {
+          "before": "-branch-id=\"el-paso\">\n                <span class=\"venue-frame\" aria-hidden=\"true\"><img src=\"images/approved-20261026/el-paso-people-1200.webp\" srcset=\"images/approved-20261026/el-paso-people-480.webp 480w, images/approved-20261026/el-paso-people-800.webp 800w, images/approved-20261026/el-paso-people-1200.webp 1200w, images/approved-20261026/el-paso-people-1600.webp 1600w\" sizes=\"(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 60vw\" alt=\"\" width=\"4284\" height=\"5712\" loading=\"lazy\" decoding=\"async\" style=\"object-position:50% 40%\" /><span class=\"venue-shade\"></span></span>\n\n                <span class=\"venue-location\" aria-hid",
+          "after": "-branch-id=\"el-paso\">\n                <span class=\"venue-frame\" aria-hidden=\"true\"><img src=\"images/home-20261029/el-paso.webp\" alt=\"\" width=\"1350\" height=\"2400\" loading=\"lazy\" decoding=\"async\" style=\"object-position:50% 35%\" /><span class=\"venue-shade\"></span></span>\n\n                <span class=\"venue-location\" aria-hid"
+        },
+        {
+          "before": "sabes completas.</p></article><article class=\"reveal-scale\" style=\"animation-delay:0.24s\"><img src=\"assets/media/karaoke.webp\" alt=\"Micrófono\" loading=\"lazy\" width=\"640\" height=\"420\" style=\"object-position:50% 42%\" /><h3>Micrófono</h3><p>Pasa por las mesas. Nadie se lo niega a nadie.</p></article><article class=\"reveal-scale\" style=\"animation-delay:0.32s\"><img src=\"assets/media/hero-night.webp\" alt=\"La banda\" loading=\"lazy\" width=\"640\" height=\"420\" style=\"object-position:50% 22%\" /><h3>La banda</h3><p>Trae a los cuatro. Aquí caben todos.</p></article><article class=\"reveal-scale\" style=\"animation-delay:0.4s\"><img src=\"assets/media/hospitality.webp\" alt=\"Celebraciones\" loading=\"lazy\" width=\"640\" height=\"420\" style=\"object-position:50% 12%\" /><h3>Celebraciones</h3><p>Cumpleaños, renuncias, quincenas. Cualquier pretexto.</p></article>\n  ",
+          "after": "sabes completas.</p></article><article class=\"reveal-scale\" style=\"animation-delay:0.24s\"><img src=\"images/home-20261029/microphone.webp\" alt=\"Micrófono\" loading=\"lazy\" width=\"640\" height=\"420\" style=\"object-position:50% 55%\" /><h3>Micrófono</h3><p>Pasa por las mesas. Nadie se lo niega a nadie.</p></article><article class=\"reveal-scale\" style=\"animation-delay:0.32s\"><img src=\"images/home-20261029/friends.webp\" alt=\"La banda\" loading=\"lazy\" width=\"640\" height=\"420\" style=\"object-position:50% 0%\" /><h3>La banda</h3><p>Trae a los cuatro. Aquí caben todos.</p></article><article class=\"reveal-scale\" style=\"animation-delay:0.4s\"><img src=\"images/home-20261029/celebrations.webp\" alt=\"Celebraciones\" loading=\"lazy\" width=\"640\" height=\"420\" style=\"object-position:50% 0%\" /><h3>Celebraciones</h3><p>Cumpleaños, renuncias, quincenas. Cualquier pretexto.</p></article>\n  "
+        },
+        {
+          "before": "live=\"polite\"></div></div><!-- seo-shell-end -->\n    <script src=\"assets/js/public-data.js?v=20261026-approved-update\"></script>\n    <script src=\"assets/js/site.js?v=20261026-approved-update\"></script>\n    <script src=\"assets/js/venue-selector.js?v=20261008-migration-measurement\"></script>",
+          "after": "live=\"polite\"></div></div><!-- seo-shell-end -->\n    <script src=\"assets/js/public-data.js?v=20261029-home-photos\"></script>\n    <script src=\"assets/js/site.js?v=20261029-home-photos\"></script>\n    <script src=\"assets/js/venue-selector.js?v=20261008-migration-measurement\"></script>"
+        }
+      ]
+    },
+    "locations.html": {
+      "beforeSha256": "e91470f5f680407598c1068447492567e6956f717010a23b45bdf84540c6a08d",
+      "afterSha256": "780ac0eff6f12fc3b4945e412548567c7eab79cc27494bb4deda292d0978217a",
+      "patches": [
+        {
+          "before": "-branch-id=\"el-paso\">\n                <span class=\"venue-frame\" aria-hidden=\"true\"><img src=\"images/approved-20261026/el-paso-people-1200.webp\" srcset=\"images/approved-20261026/el-paso-people-480.webp 480w, images/approved-20261026/el-paso-people-800.webp 800w, images/approved-20261026/el-paso-people-1200.webp 1200w, images/approved-20261026/el-paso-people-1600.webp 1600w\" sizes=\"(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 60vw\" alt=\"\" width=\"4284\" height=\"5712\" loading=\"lazy\" decoding=\"async\" style=\"object-position:50% 40%\" /><span class=\"venue-shade\"></span></span>\n\n                <span class=\"venue-location\" aria-hid",
+          "after": "-branch-id=\"el-paso\">\n                <span class=\"venue-frame\" aria-hidden=\"true\"><img src=\"images/home-20261029/el-paso.webp\" alt=\"\" width=\"1350\" height=\"2400\" loading=\"lazy\" decoding=\"async\" style=\"object-position:50% 35%\" /><span class=\"venue-shade\"></span></span>\n\n                <span class=\"venue-location\" aria-hid"
+        },
+        {
+          "before": "live=\"polite\"></div></div><!-- seo-shell-end -->\n    <script src=\"assets/js/public-data.js?v=20261026-approved-update\"></script>\n    <script src=\"assets/js/site.js?v=20261026-approved-update\"></script>\n    <script src=\"assets/js/venue-selector.js?v=20261008-migration-measurement\"></script>",
+          "after": "live=\"polite\"></div></div><!-- seo-shell-end -->\n    <script src=\"assets/js/public-data.js?v=20261029-home-photos\"></script>\n    <script src=\"assets/js/site.js?v=20261029-home-photos\"></script>\n    <script src=\"assets/js/venue-selector.js?v=20261008-migration-measurement\"></script>"
+        }
+      ]
+    },
+    "la-cantina.html": {
+      "beforeSha256": "d64e1f56d3c8b26493f0bdb9488a1d44268449f35d21f4573d8a9a1bcbf6b9a5",
+      "afterSha256": "affdb948b09e4806a6c2a87b6b5e85a0a9d4c9728763be6b4e564f561fc48e2b",
+      "patches": [
+        {
+          "before": "live=\"polite\"></div></div><!-- seo-shell-end -->\n    <script src=\"assets/js/public-data.js?v=20261026-approved-update\"></script>\n    <script src=\"assets/js/site.js?v=20261026-approved-update\"></script>\n    <script src=\"assets/js/i18n.js?v=20261026-approved-update\"></script>\n  <script defer",
+          "after": "live=\"polite\"></div></div><!-- seo-shell-end -->\n    <script src=\"assets/js/public-data.js?v=20261029-home-photos\"></script>\n    <script src=\"assets/js/site.js?v=20261029-home-photos\"></script>\n    <script src=\"assets/js/i18n.js?v=20261026-approved-update\"></script>\n  <script defer"
+        }
+      ]
+    },
+    "eventos.html": {
+      "beforeSha256": "af6e9e0198b453d62ddf30a0420231ed433cdf1508728b16124596a27fcaa493",
+      "afterSha256": "3a47292fffb69edabf8ab6cceaccff0f711ab07701d9066a67ec74c484efddd1",
+      "patches": [
+        {
+          "before": "live=\"polite\"></div></div><!-- seo-shell-end -->\n    <script src=\"assets/js/public-data.js?v=20261026-approved-update\"></script>\n    <script src=\"assets/js/site.js?v=20261026-approved-update\"></script>\n    <script src=\"assets/js/i18n.js?v=20261026-approved-update\"></script>\n  <script defer",
+          "after": "live=\"polite\"></div></div><!-- seo-shell-end -->\n    <script src=\"assets/js/public-data.js?v=20261029-home-photos\"></script>\n    <script src=\"assets/js/site.js?v=20261029-home-photos\"></script>\n    <script src=\"assets/js/i18n.js?v=20261026-approved-update\"></script>\n  <script defer"
+        }
+      ]
+    },
+    "tienda.html": {
+      "beforeSha256": "339968449cc1877f3cd4642cbe5aaef70915e4f29f08265f3d77b1f5e339f305",
+      "afterSha256": "4beffec857317a6113a1a3811f8c9be5c24f5a7c79c505dc69acef1feb168630",
+      "patches": [
+        {
+          "before": "live=\"polite\"></div></div><!-- seo-shell-end -->\n    <script src=\"assets/js/public-data.js?v=20261026-approved-update\"></script>\n    <script src=\"assets/js/site.js?v=20261026-approved-update\"></script>\n    <script src=\"assets/js/i18n.js?v=20261026-approved-update\"></script>\n  <script defer",
+          "after": "live=\"polite\"></div></div><!-- seo-shell-end -->\n    <script src=\"assets/js/public-data.js?v=20261029-home-photos\"></script>\n    <script src=\"assets/js/site.js?v=20261029-home-photos\"></script>\n    <script src=\"assets/js/i18n.js?v=20261026-approved-update\"></script>\n  <script defer"
+        }
+      ]
+    },
+    "assets/js/public-data.js": {
+      "beforeSha256": "0404db27c12ba290c063fc0695bf36ad50a83b7d9481b70fbd0099828c2491b1",
+      "afterSha256": "bd82df1e2e2e8d9ef7a5a372864a2067cbe28fa0072c43942f5a0f626d6d66ec",
+      "patches": [
+        {
+          "before": "o/\",\n      \"rating\": null,\n      \"reviewsTotal\": 0,\n      \"quotes\": [],\n      \"venuePhoto\": \"images/approved-20261026/el-paso-people-1200.webp\",\n      \"venueCity\": \"El Paso, Texas\",\n      \"openingDate\": \"2026-10-09\",\n      \"hoursTimezone\": \"America/Denver\",\n      \"venuePhotoSet\": \"images/approved-20261026/el-paso-people-480.webp 480w, images/approved-20261026/el-paso-people-800.webp 800w, images/approved-20261026/el-paso-people-1200.webp 1200w, images/approved-20261026/el-paso-people-1600.webp 1600w\",\n      \"venuePhotoWidth\": 4284,\n      \"venuePhotoHeight\": 5712,\n      \"venuePosition\": \"50% 40%\"\n    },\n    {\n      \"id\": \"san-diego\",\n      \"page\": \"#\",\n      \"name\": \"Sin Yolanda San Diego\",\n ",
+          "after": "o/\",\n      \"rating\": null,\n      \"reviewsTotal\": 0,\n      \"quotes\": [],\n      \"venuePhoto\": \"images/home-20261029/el-paso.webp\",\n      \"venueCity\": \"El Paso, Texas\",\n      \"openingDate\": \"2026-10-09\",\n      \"hoursTimezone\": \"America/Denver\",\n      \"venuePhotoSet\": \"\",\n      \"venuePhotoWidth\": 1350,\n      \"venuePhotoHeight\": 2400,\n      \"venuePosition\": \"50% 35%\"\n    },\n    {\n      \"id\": \"san-diego\",\n      \"page\": \"#\",\n      \"name\": \"Sin Yolanda San Diego\",\n "
+        }
+      ]
+    },
+    "assets/js/site.js": {
+      "beforeSha256": "ec743c90b2fc35fc08a9882f19d2fbc4a67a46d7dbdc484080deb80547637dcb",
+      "afterSha256": "7f6552dad83230bbef8a6c43f580766bc1909e0af13f6403b1e7312ee2a119c4",
+      "patches": [
+        {
+          "before": "a/venues/the-woodlands.webp\", \"Canciones que te sabes completas.\", \"50% 56%\"],\n      [\"Micrófono\", \"assets/media/karaoke.webp\", \"Pasa por las mesas. Nadie se lo niega a nadie.\", \"50% 42%\"],\n      [\"La banda\", \"assets/media/hero-night.webp\", \"Trae a los cuatro. Aquí caben todos.\", \"50% 22%\"],\n      [\"Celebraciones\", \"assets/media/hospitality.webp\", \"Cumpleaños, renuncias, quincenas. Cualquier pretexto.\", \"50% 12%\"],\n    ];\n    const pretextos = [\n      [\"Cumpleaños\", \"Aquí se entera todo el lugar.\"],\n      [\"Q",
+          "after": "a/venues/the-woodlands.webp\", \"Canciones que te sabes completas.\", \"50% 56%\"],\n      [\"Micrófono\", \"images/home-20261029/microphone.webp\", \"Pasa por las mesas. Nadie se lo niega a nadie.\", \"50% 55%\"],\n      [\"La banda\", \"images/home-20261029/friends.webp\", \"Trae a los cuatro. Aquí caben todos.\", \"50% 0%\"],\n      [\"Celebraciones\", \"images/home-20261029/celebrations.webp\", \"Cumpleaños, renuncias, quincenas. Cualquier pretexto.\", \"50% 0%\"],\n    ];\n    const pretextos = [\n      [\"Cumpleaños\", \"Aquí se entera todo el lugar.\"],\n      [\"Q"
+        }
+      ]
+    },
+    "scripts/public-manifest.json": {
+      "beforeSha256": "773c5c5644663854a844e52b2a438c0b87716731c2e85cdecaf833287e43138a",
+      "afterSha256": "c029afe2ce3fb02516910f8cd01c710ee01679e23572529e79ce978c8f256e25",
+      "patches": [
+        {
+          "before": "{\n  \"version\": 1,\n  \"assetVersions\": {\n    \"assets/js/site.js\": \"20261026-approved-update\",\n    \"assets/js/i18n.js\": \"20261026-approved-update\",\n    \"assets/css/visual-pilot.css\": \"20261015-blue-hat-mobile\",\n    \"assets/js/public-data.js\": \"20261026-approved-update\",\n    \"assets/js/site-analytics.js\": \"20261012-root-routing\",\n    \"assets/css/houston-header.css\": ",
+          "after": "{\n  \"version\": 1,\n  \"assetVersions\": {\n    \"assets/js/site.js\": \"20261029-home-photos\",\n    \"assets/js/i18n.js\": \"20261026-approved-update\",\n    \"assets/css/visual-pilot.css\": \"20261015-blue-hat-mobile\",\n    \"assets/js/public-data.js\": \"20261029-home-photos\",\n    \"assets/js/site-analytics.js\": \"20261012-root-routing\",\n    \"assets/css/houston-header.css\": "
+        },
+        {
+          "before": "261113-14.jpg\",\n    \"assets/agenda/nfl-november-2026.jpg\",\n    \"assets/agenda/catrinas-20261030.jpg\"\n  ],\n  \"assetVersion\": \"20261008-migration-measurement\",\n  \"reviewPages\": []\n}\n",
+          "after": "261113-14.jpg\",\n    \"assets/agenda/nfl-november-2026.jpg\",\n    \"assets/agenda/catrinas-20261030.jpg\",\n    \"images/home-20261029/microphone.webp\",\n    \"images/home-20261029/friends.webp\",\n    \"images/home-20261029/celebrations.webp\",\n    \"images/home-20261029/el-paso.webp\"\n  ],\n  \"assetVersion\": \"20261008-migration-measurement\",\n  \"reviewPages\": []\n}\n"
+        }
+      ]
+    }
+  },
+  "images": [
+    {
+      "slot": "microphone",
+      "file": "images/home-20261029/microphone.webp",
+      "width": 1118,
+      "height": 1490,
+      "bytes": 116946,
+      "sha256": "9c701fac844c630db56963b5432c04a38136e66ae7e55e9b17c3363ee4dd17c8",
+      "sourceId": "1TPQ1dVCo16cfRpBJ0xutxmg-b3lraOt3",
+      "sourceUrl": "https://drive.google.com/file/d/1TPQ1dVCo16cfRpBJ0xutxmg-b3lraOt3/view?usp=drivesdk",
+      "sourceSha256": "031afe18af4f4ac1d8cc374fccdaf2745b04f819682b76be8c9afd80172046ef",
+      "position": "50% 55%"
+    },
+    {
+      "slot": "friends",
+      "file": "images/home-20261029/friends.webp",
+      "width": 1294,
+      "height": 1706,
+      "bytes": 244406,
+      "sha256": "3ee5832624bc050e3dec3f7704e5020d747a99e031f09129e78bfd9cf4850b57",
+      "sourceId": "1hD3owotXwSSGRo_ei2gOgy-Qn8CokMcm",
+      "sourceUrl": "https://drive.google.com/file/d/1hD3owotXwSSGRo_ei2gOgy-Qn8CokMcm/view?usp=drivesdk",
+      "sourceSha256": "3a5423ae53059ff7712f95659f5fd34e361cc89522bdc6dd7162b797049aef3f",
+      "position": "50% 0%"
+    },
+    {
+      "slot": "celebrations",
+      "file": "images/home-20261029/celebrations.webp",
+      "width": 1342,
+      "height": 1806,
+      "bytes": 228192,
+      "sha256": "965a19404f3f5d6ca03f68caddc520f15ecde1783423456bc1840dd926419ac8",
+      "sourceId": "1SdR5ErbXXQChmkm5Mw31clyZqT25hCFD",
+      "sourceUrl": "https://drive.google.com/file/d/1SdR5ErbXXQChmkm5Mw31clyZqT25hCFD/view?usp=drivesdk",
+      "sourceSha256": "c37fc0a71053fe065cbf6bc61100f920442691136dc735d838566bbc526ab044",
+      "position": "50% 0%"
+    },
+    {
+      "slot": "el-paso",
+      "file": "images/home-20261029/el-paso.webp",
+      "width": 1350,
+      "height": 2400,
+      "bytes": 177760,
+      "sha256": "f92882eaff1ffd9d19821bb2ac5f1e1cedc3ab30b71486408c795eb1af18ecc1",
+      "sourceId": "1SxOcCYOf163o_0w2QnniGyIgUSK4PAFt",
+      "sourceUrl": "https://drive.google.com/file/d/1SxOcCYOf163o_0w2QnniGyIgUSK4PAFt/view",
+      "sourceSha256": null,
+      "position": "50% 35%"
+    }
+  ]
+}

@@ -224,14 +224,14 @@ window.SY_DATA = {
       "rating": null,
       "reviewsTotal": 0,
       "quotes": [],
-      "venuePhoto": "images/approved-20261026/el-paso-people-1200.webp",
+      "venuePhoto": "images/home-20261029/el-paso.webp",
       "venueCity": "El Paso, Texas",
       "openingDate": "2026-10-09",
       "hoursTimezone": "America/Denver",
-      "venuePhotoSet": "images/approved-20261026/el-paso-people-480.webp 480w, images/approved-20261026/el-paso-people-800.webp 800w, images/approved-20261026/el-paso-people-1200.webp 1200w, images/approved-20261026/el-paso-people-1600.webp 1600w",
-      "venuePhotoWidth": 4284,
-      "venuePhotoHeight": 5712,
-      "venuePosition": "50% 40%"
+      "venuePhotoSet": "",
+      "venuePhotoWidth": 1350,
+      "venuePhotoHeight": 2400,
+      "venuePosition": "50% 35%"
     },
     {
       "id": "san-diego",

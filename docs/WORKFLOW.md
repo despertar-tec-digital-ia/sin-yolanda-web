@@ -1,5 +1,90 @@
 # Forma de trabajar y publicar
 
+### Instagram Houston · prueba compartible autorizada3-nov
+
+Luis pide «publica para una prueba convertible a Karina»; se interpreta y se comunica como
+prueba **compartible por enlace**, separada del dominio oficial. Autoriza publicar ese preview,
+no sustituir `sin-yolanda.com` ni activar un feed automático. La revisión previa de código pasa;
+QA visual interactiva posterior sigue limitada por Browser Use desactivado por preferencia de Luis.
+
+Destino aislado: `instagram-sy.187.77.220.209.sslip.io`, nuevo servicioVPS
+`sy-instagram-review-20261103`, proyectoCompose `sy-instagram-review-20261103`, sin tocar otras
+instancias. No DNS nuevo ni acceso a GHL desde cliente. Código/selección/miniaturas versionados
+en esta rama; push sin merge. No ejecutar `release:approved` ni publicar en Cloudflare oficial.
+El workflow CD solo promueve main: esta rama de prueba no lo dispara.
+
+`review/social-feed-houston/selection.json` y sus6WebP son el insumo reproducible revisado;
+no originales ni secretos. `scripts/build-social-feed-share.mjs` exige fuentecommiteada/limpia,
+construye el mismo feed del piloto, agrega aviso visible de prueba y selección manual,
+retira scripts de analítica de las páginas de prueba y crea recibo de todos los archivos.
+Solo `public/` se monta en Nginx; ni repo, recibos, docs o JSON internos se sirven. Nginx
+añade `X-Robots-Tag`, robotsDisallow, no-store y 404 reales. Reutiliza digest de imagen existente,
+sin puertos dehost, filesystemreadonly y límites de memoria/CPU.
+
+Autorización cubre7días de revisión; retiro previsto por timer aislado que detiene únicamente
+este proyecto. Rollback de primera publicación: detener este servicio, conservando fuentes/recibo;
+no revertir producción. Antes/después: guardarestado decontendores e identidad de tres rutas
+oficiales, validarHTTPS/medio/html/robots/noindex/archivo interno404/healthy y TTL.
+Recibo y estado real tras ejecución pertenecen al plan operativo del cliente y DEPLOY.
+
+### Instagram Houston · piloto local3-nov, sin publicación
+
+**QA posterior solicitado por Luis3-nov:** validación completa `npm ci --ignore-scripts` +
+`npm run check` pasa410pruebas (7del nuevo módulo). Corregidos orden descendente por publicación,
+etiqueta accesible inglesa, metadatos de10/11a12px y digest del recibo usando el helper canónico.
+Se rechazan también URLs con credenciales y `srcset` con anchos duplicados/no ascendentes.
+Artefacto vigente sustituye alv3: `.artifacts/social-feed-review-20261103-qa-final/public`.
+Auditoría final338hashes,330archivos base intactos; retiro literal de overlay recupera exactamente
+las dos páginas originales. GET deES/EN y6imágenes200,4enlaces por ficha con destinoInstagram/
+noopener, IDs sin duplicar y fechas descendentes. Contraste principal8.56:1; variantes grandes
+suman218,802bytes, sinMP4/script/iframe nuevo. Evidencia `.artifacts/social-feed-qa/final-audit.json`.
+
+**Límite de esta ronda:** Browser Use desactivado al intentar consultar la candidata. Se pidió
+habilitación async; no se usó otro navegador automatizado para eludirla. Las capturas y pruebas
+interactivas previas son dev3; no se presentan como evidencia nueva de los ajustes. Falta recaptura
+y navegación interactiva del artefacto final. La cobertura API parcial sigue bloqueando declarar
+feed automático completo. Sin producción/PR/commit por QA. Preview8850 ahora sirve la candidata
+final con TTL2h hasta04:58:30UTC4-nov (21:58:30Mazatlán3-nov); sesión local29464.
+
+Luis acepta continuar la estrategia con prueba de cobertura y prototipo local. Base remota
+`f83a788`; rama `feat/social-feed-review-20261103`, worktree DDTIA
+`.worktrees/sy-social-feed-20261103`. No cambios a fuentes HTML/CSS productivas, manifiesto,
+hero, agenda, contactos ni conexiones de GHL. Sin push/commit/PR ni despliegue en esta tanda.
+
+`scripts/build-social-feed-review.mjs` empaqueta un overlay de revisión: solo Houston ES/EN
+modificados en el artefacto,330archivos base intactos y6WebP añadidos. Selección de3posts:
+`DfDHlMMgeCK`/`De2S1RsmNNq` vía API y `De7If21xS3t` seleccionado manualmente en el perfil
+oficial. El origen manual queda separado; **no es un feed automático ni una sincronización
+completa**. No mostrar la selección como los últimos posts de toda la cuenta. Se descartó la
+portada `DfA7QrZAL3u` porque contiene convocatoria/promesa de premio, inadecuada para ambiente.
+
+Comparación acotada del mismo corte:12posts visibles,9del autor Houston,3coinciden con la
+consulta pública de API;6no aparecen. `type:all` también devuelve7composer/published.
+Sin atribuir causa definitiva a la diferencia. Estrategia/evidencia/decisión operativa dueñas en
+vault del cliente, plan operativo «Feed de Instagram/GHL3-nov». No copiar cookies ni credenciales.
+
+Artefacto vigente ignorado: `.artifacts/social-feed-review-20261103-v3/public`, con recibo de
+hashes en su directorio padre. Entrada local `.artifacts/social-feed-input/selection.json` y
+miniaturas; dos pruebas previas sustituidas fueron retiradas. Originales de videos no guardados;
+solo fotograma/miniaturas elegidos, ningún MP4 nuevo en el paquete. Recolector dinámico pendiente.
+
+Servidor solo loopback `http://127.0.0.1:8850/houston#instagram-houston`, con cierre automático
+2h después de iniciarse (03:51:54UTC4-nov). No URL pública ni DNS. Para reconstruir: ejecutar
+el builder con selección existente y nombre nuevo `social-feed-review-...`; servir únicamente
+paquete/allowlist/recibo, no checkout. Si falta la selección local, recuperar las piezas del
+registro privado del cliente; los tests usan fixtures ficticias sin accesos.
+
+Validación:5casos de frontera editorial pasan (sede/cuenta, borrador/retiro, duplicados/URL/ruta,
+origen manual frente a API, escape/lista de campos e inserción sin tocar hero/agenda).
+QA navegador ES320/390/768/1440px, EN768px: medios cargados y sin desbordamiento. Teclado
+perfil→primerpost con foco visible; los enlaces abren Instagram, no envían formularios.
+Capturas finales desktop/móvil y `qa.json` en `.artifacts/social-feed-qa/`, revisadas visualmente.
+La suite completa del sitio no se repitió: no se prepara todavía un release ni PR productivo.
+
+Siguiente gate: evaluar la propuesta visual y resolver captura de posts nativos. La API actual
+sirve para la selección disponible; no prometer cobertura universal. Probar widget nativo/GHL
+como alternativa requiere un encargo específico antes de crear/publicar contenido remoto.
+
 
 ### Home · cuatro fotos autorizadas29-oct
 

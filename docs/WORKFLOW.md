@@ -1,5 +1,27 @@
 # Forma de trabajar y publicar
 
+### Revisión sutil de todo el sitio · candidata local5-nov
+
+Luis aclara que la revisión abarca todo el sitio, no solo Catering o The Woodlands. Se revisan
+las25páginas publicables en móvil/escritorio: home, directorio, fichas ES/EN, cartas, páginas
+generales, privacidad y concurso. Se conserva la composición existente y se corrigen hallazgos
+concretos: búsqueda de carta con44px/16px en móvil, categorías desplegables con altura acotada y
+scroll, accesos de44px en categorías y pies secundarios, foco visible en esos pies y accesos del
+menú original GDL. No se digitaliza Guadalajara ni se toca el contenido del PDF o sus imágenes.
+
+`scripts/site-ui-review.mjs <directorio-nuevo-en-.artifacts>` compone el pase Texas siguiente y
+añade una hoja opt-in a las25páginas. Solo la candidata cambia el párrafo Catering del home y
+su traducción para consultar disponibilidad por ciudad; el hero, sus medios y textos permanecen.
+Las cartas, datos comerciales y aviso legal conservan sus bytes fuera de los marcadores CSS.
+La prueba de restauración compara cada archivo contra el paquete base, incluidos todos los medios.
+
+Esta ampliación sigue aislada del build/scheduler y manifiesto productivos. El artefacto tiene
+354archivos y noindex; no es una alternativa de deploy. Antes de publicar: revisión de Luis,
+integración de lo aprobado al carril productivo y release:approved con autorización explícita.
+QA local:429tests;50vistas(25×320/1440) sin overflow, búsqueda/limpiar/última categoría, idioma
+ES/EN, menú móvil/Escape y ampliación GDL/retorno del foco comprobados en Brave. Evidencia y
+estado actual → bloque Revisión UI del plan del cliente. No afirmar certificación de iOS físico.
+
 ### Revisión UI USA y Catering Texas · candidata local
 
 Luis pide revisar detalles menores de UI/completitud y añadir Catering al menos en Texas.

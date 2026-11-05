@@ -1,0 +1,53 @@
+/* Small, isolated refinements. No home hero, photographs or menu artwork overrides. */
+body[data-site-ui-review].digital-menu-page .digital-menu-tools input {
+  min-height: 44px;
+}
+body[data-site-ui-review].digital-menu-page .digital-menu-index summary {
+  min-height: 44px;
+  padding-block: 10px;
+}
+body[data-site-ui-review].digital-menu-page .digital-menu-tools nav a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+body[data-site-ui-review].gdl-original-menu .gm-brand {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+body[data-site-ui-review].gdl-original-menu .gm-index a {
+  min-height: 44px;
+}
+body[data-site-ui-review] .public-footer:not(.group-footer) a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+@media (hover: hover) {
+  body[data-site-ui-review] .public-footer:not(.group-footer) a:hover {
+    text-decoration: underline;
+    text-underline-offset: .2em;
+  }
+}
+@media (max-width: 700px) {
+  body[data-site-ui-review].digital-menu-page .digital-menu-tools input {
+    font-size: 16px;
+  }
+  body[data-site-ui-review].digital-menu-page .digital-menu-index nav {
+    max-height: min(55svh, 480px);
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+    scrollbar-gutter: stable;
+  }
+  body[data-site-ui-review].digital-menu-page .digital-menu-index nav a {
+    display: block;
+    min-height: 44px;
+    padding-block: 11px;
+    margin-bottom: 0;
+  }
+  body[data-site-ui-review] .public-footer:not(.group-footer) a {
+    display: block;
+    min-height: 44px;
+    padding-block: 12px;
+  }
+}

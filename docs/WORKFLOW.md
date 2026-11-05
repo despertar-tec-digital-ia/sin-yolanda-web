@@ -1,5 +1,29 @@
 # Forma de trabajar y publicar
 
+### Revisión UI USA y Catering Texas · candidata local
+
+Luis pide revisar detalles menores de UI/completitud y añadir Catering al menos en Texas.
+`scripts/usa-ui-review.mjs <directorio-nuevo-en-.artifacts>` genera una revisión local reproducible:
+parte del paquete actual, conserva sus hashes base y aplica cambios declarados únicamente a
+Houston/The Woodlands/San Antonio/El Paso ES/EN y a la página central Catering ES/EN.
+No está integrado al empaquetado productivo ni al scheduler; no hay aprobación de publicación.
+
+La candidata unifica el scroll/foco del header, separa umbrales de entrada/salida para evitar
+oscilación, desvanece las capas del fondo y suaviza el cambio de altura. Menú permanece accesible
+en móvil con objetivos de44px; Sucursales usa icono de selector con nombre accesible. Catering
+se integra después de la agenda y tiene acceso directo en el navbar de escritorio. Se reutiliza
+el mismo medio aprobado y destino central, sin duplicar la oferta en nuevas páginas por ciudad.
+La central consulta disponibilidad por ciudad; no inventa radio de entrega, paquetes o contactos.
+
+Guadalajara, home, cartas, datos de operación y selección de Instagram se conservan. Las nuevas
+CSS/JS deliberadamente no están en el manifiesto productivo. Para publicar habrá que integrar
+la composición aprobada al build/scheduler, versionar/allowlistar activos, pasar CI y usar la
+entrada de release vigente, con la autorización de Luis; este builder no es un deploy alternativo.
+
+Pruebas: estado del navbar (histeresis/foco/overscroll), aislamiento del artefacto y restauración
+exacta de cada parche. QA Brave de las ocho fichas a320/1440px, encuadres móviles y navegación.
+Resultado y captura de revisión → cierre del cliente/plan operativo. No afirmar que estén publicados.
+
 ### Instagram Houston · presentación mínima4-nov-2026
 
 Luis pide retirar etiquetas de formato, flechas de apertura, botones visibles, contador,

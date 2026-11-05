@@ -6,7 +6,7 @@ import { existsSync, mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { inspectPublic, packagePublic, projectRoot, publicSourceDigest } from '../scripts/package-public.mjs';
-import { projectAllAgendas as projectPublicAgenda } from '../scripts/editorial/all-agendas.mjs';
+import { projectPublicSite as projectPublicAgenda } from '../scripts/editorial/public-site.mjs';
 
 function fixture(t) {
   const temporary = mkdtempSync(join(tmpdir(), 'sy-limited-release-'));
@@ -30,8 +30,8 @@ function fixture(t) {
     'commit', '--quiet', '-m', 'Create isolated review-only release fixture'], { cwd: root, stdio: 'pipe' });
   const sourceCommit = execFileSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim();
   assert.equal(execFileSync('git', ['status', '--porcelain'], { cwd: root, encoding: 'utf8' }).trim(), '');
-  // Pin one build instant and the disposable clone's HEAD. The approved agenda
-  // generates current HTML; the digest must bind those exact pre-preview bytes.
+  // Pin one build instant and the disposable clone's HEAD. All approved sections
+  // generate current HTML; the digest must bind those exact pre-preview bytes.
   const now = '2026-10-14T02:00:00Z';
   const projection = projectPublicAgenda(root, { now, commit: sourceCommit });
   const hashes = Object.fromEntries(inspectPublic(root).files.map(path => [path,

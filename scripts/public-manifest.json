@@ -22,7 +22,8 @@
     "assets/js/gdl-menu.js": "20261019-gdl-v82",
     "assets/css/venue-selector.css": "20261025-san-diego-opening",
     "assets/js/october-hours.js": "20261026-approved-update",
-    "assets/css/october-update.css": "20261026-event-posters-clean"
+    "assets/css/october-update.css": "20261026-event-posters-clean",
+    "assets/css/branch-social-feed.css": "20261104-instagram-houston"
   },
   "pages": [
     "index.html",
@@ -358,7 +359,14 @@
     "images/home-20261029/microphone.webp",
     "images/home-20261029/friends.webp",
     "images/home-20261029/celebrations.webp",
-    "images/home-20261029/el-paso.webp"
+    "images/home-20261029/el-paso.webp",
+    "assets/css/branch-social-feed.css",
+    "assets/social-feed-houston/DfDHlMMgeCK-400.webp",
+    "assets/social-feed-houston/DfDHlMMgeCK-800.webp",
+    "assets/social-feed-houston/De2S1RsmNNq-400.webp",
+    "assets/social-feed-houston/De2S1RsmNNq-800.webp",
+    "assets/social-feed-houston/De7If21xS3t-400.webp",
+    "assets/social-feed-houston/De7If21xS3t-800.webp"
   ],
   "assetVersion": "20261008-migration-measurement",
   "reviewPages": []

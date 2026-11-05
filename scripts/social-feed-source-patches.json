@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "file": "scripts/public-manifest.json",
+  "beforeSha256": "c029afe2ce3fb02516910f8cd01c710ee01679e23572529e79ce978c8f256e25",
+  "afterSha256": "7c43c3dedc6c1c738712dc3ab2718e745a3c48629ee87e8affa3897082a754fd",
+  "patches": [
+    {
+      "before": "    \"assets/css/october-update.css\": \"20261026-event-posters-clean\"\n",
+      "after": "    \"assets/css/october-update.css\": \"20261026-event-posters-clean\",\n    \"assets/css/branch-social-feed.css\": \"20261104-instagram-houston\"\n"
+    },
+    {
+      "before": "    \"images/home-20261029/el-paso.webp\"\n",
+      "after": "    \"images/home-20261029/el-paso.webp\",\n    \"assets/css/branch-social-feed.css\",\n    \"assets/social-feed-houston/DfDHlMMgeCK-400.webp\",\n    \"assets/social-feed-houston/DfDHlMMgeCK-800.webp\",\n    \"assets/social-feed-houston/De2S1RsmNNq-400.webp\",\n    \"assets/social-feed-houston/De2S1RsmNNq-800.webp\",\n    \"assets/social-feed-houston/De7If21xS3t-400.webp\",\n    \"assets/social-feed-houston/De7If21xS3t-800.webp\"\n"
+    }
+  ]
+}

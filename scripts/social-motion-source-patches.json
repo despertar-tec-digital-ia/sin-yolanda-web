@@ -2,7 +2,7 @@
   "version": 1,
   "file": "scripts/public-manifest.json",
   "beforeSha256": "7c43c3dedc6c1c738712dc3ab2718e745a3c48629ee87e8affa3897082a754fd",
-  "afterSha256": "cdb26a3d8e0f189526a162fb57c93bc9bf387faf66cc25d1d6ca048a5d612cca",
+  "afterSha256": "24a2e2f59251ba569cea299275f43907099f5a9b6abda83904c6bba07d7e95c3",
   "patches": [
     {
       "before": "    \"assets/css/branch-social-feed.css\": \"20261104-instagram-houston\"\n",
@@ -10,7 +10,7 @@
     },
     {
       "before": "    \"assets/social-feed-houston/De7If21xS3t-800.webp\"\n",
-      "after": "    \"assets/social-feed-houston/De7If21xS3t-800.webp\",\n    \"assets/css/branch-social-motion.css\",\n    \"assets/js/branch-social-motion.js\",\n    \"assets/social-feed-houston/DfDHlMMgeCK-silent.mp4\",\n    \"assets/social-feed-houston/De7If21xS3t-silent.mp4\",\n    \"assets/social-feed-houston/De2S1RsmNNq-photo-2-400.webp\",\n    \"assets/social-feed-houston/De2S1RsmNNq-photo-2-800.webp\",\n    \"assets/social-feed-houston/De2S1RsmNNq-photo-3-400.webp\",\n    \"assets/social-feed-houston/De2S1RsmNNq-photo-3-800.webp\",\n    \"assets/social-feed-houston/De2S1RsmNNq-photo-4-400.webp\",\n    \"assets/social-feed-houston/De2S1RsmNNq-photo-4-800.webp\"\n"
+      "after": "    \"assets/social-feed-houston/De7If21xS3t-800.webp\",\n    \"assets/css/branch-social-motion.css\",\n    \"assets/js/branch-social-motion.js\",\n    \"assets/social-feed-houston/DfDHlMMgeCK-silent.mp4\",\n    \"assets/social-feed-houston/De7If21xS3t-silent.mp4\",\n    \"assets/social-feed-houston/De2S1RsmNNq-photo-2-400.webp\",\n    \"assets/social-feed-houston/De2S1RsmNNq-photo-2-800.webp\",\n    \"assets/social-feed-houston/De2S1RsmNNq-photo-3-400.webp\",\n    \"assets/social-feed-houston/De2S1RsmNNq-photo-3-800.webp\",\n    \"assets/social-feed-houston/De2S1RsmNNq-photo-4-400.webp\",\n    \"assets/social-feed-houston/De2S1RsmNNq-photo-4-800.webp\",\n    \"assets/social-feed-houston/De2S1RsmNNq-photo-2-red-hat-400.webp\",\n    \"assets/social-feed-houston/De2S1RsmNNq-photo-2-red-hat-800.webp\"\n"
     }
   ]
 }

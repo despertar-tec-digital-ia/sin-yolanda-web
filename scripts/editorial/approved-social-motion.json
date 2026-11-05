@@ -38,19 +38,19 @@
       "photos": [
         {
           "alt": {
-            "es": "Invitados celebrando con un marco de Sin Yolanda Houston.",
-            "en": "Guests celebrating with a Sin Yolanda Houston photo frame."
+            "es": "Invitada con sombrero rojo, bebida y micrófono en Sin Yolanda Houston.",
+            "en": "A guest with a red hat, drink and microphone at Sin Yolanda Houston."
           },
           "media": [
             {
-              "file": "assets/social-feed-houston/De2S1RsmNNq-photo-2-400.webp",
+              "file": "assets/social-feed-houston/De2S1RsmNNq-photo-2-red-hat-400.webp",
               "width": 400,
-              "height": 600
+              "height": 541
             },
             {
-              "file": "assets/social-feed-houston/De2S1RsmNNq-photo-2-800.webp",
+              "file": "assets/social-feed-houston/De2S1RsmNNq-photo-2-red-hat-800.webp",
               "width": 800,
-              "height": 1200
+              "height": 1081
             }
           ]
         },
@@ -110,14 +110,6 @@
       "bytes": 5263707,
       "sha256": "ecc845ea1a2dfac46f118fc6910ca64eb92ee1bb15aa4f2c94bd9bcaa716bf11"
     },
-    "assets/social-feed-houston/De2S1RsmNNq-photo-2-400.webp": {
-      "bytes": 33000,
-      "sha256": "08ad8a556179038624a2f54ca715c9fa5a85f4fbe2c5a026b8327e50a532c2ce"
-    },
-    "assets/social-feed-houston/De2S1RsmNNq-photo-2-800.webp": {
-      "bytes": 75034,
-      "sha256": "daa816412ba08824e35c57f719e553f8873ab965f5e294cae21db9898c5ca9d4"
-    },
     "assets/social-feed-houston/De2S1RsmNNq-photo-3-400.webp": {
       "bytes": 42322,
       "sha256": "3a0cf71b2af69cc918f0fe478b074850bf2bafe6aeac51d92347a397d51c3a9c"
@@ -133,6 +125,14 @@
     "assets/social-feed-houston/De2S1RsmNNq-photo-4-800.webp": {
       "bytes": 64808,
       "sha256": "d9f74190d1afb05090460a1490dfa8bc926f742d9b0226d3be2be6a9b9b6f9c2"
+    },
+    "assets/social-feed-houston/De2S1RsmNNq-photo-2-red-hat-400.webp": {
+      "bytes": 30686,
+      "sha256": "f7d47717be0e0967f28644c9fd2dedb100f7f3699760b5fc7ab68b9c7d9293d5"
+    },
+    "assets/social-feed-houston/De2S1RsmNNq-photo-2-red-hat-800.webp": {
+      "bytes": 78224,
+      "sha256": "6a64dc928e363a3501339898fc3fdbde5f432bd58505028f47107d60471a2393"
     }
   }
 }

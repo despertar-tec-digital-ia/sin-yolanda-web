@@ -23,7 +23,9 @@
     "assets/css/venue-selector.css": "20261025-san-diego-opening",
     "assets/js/october-hours.js": "20261026-approved-update",
     "assets/css/october-update.css": "20261026-event-posters-clean",
-    "assets/css/branch-social-feed.css": "20261104-instagram-houston"
+    "assets/css/branch-social-feed.css": "20261104-instagram-houston",
+    "assets/css/branch-social-motion.css": "20261104-instagram-motion",
+    "assets/js/branch-social-motion.js": "20261104-instagram-motion"
   },
   "pages": [
     "index.html",
@@ -366,7 +368,17 @@
     "assets/social-feed-houston/De2S1RsmNNq-400.webp",
     "assets/social-feed-houston/De2S1RsmNNq-800.webp",
     "assets/social-feed-houston/De7If21xS3t-400.webp",
-    "assets/social-feed-houston/De7If21xS3t-800.webp"
+    "assets/social-feed-houston/De7If21xS3t-800.webp",
+    "assets/css/branch-social-motion.css",
+    "assets/js/branch-social-motion.js",
+    "assets/social-feed-houston/DfDHlMMgeCK-silent.mp4",
+    "assets/social-feed-houston/De7If21xS3t-silent.mp4",
+    "assets/social-feed-houston/De2S1RsmNNq-photo-2-400.webp",
+    "assets/social-feed-houston/De2S1RsmNNq-photo-2-800.webp",
+    "assets/social-feed-houston/De2S1RsmNNq-photo-3-400.webp",
+    "assets/social-feed-houston/De2S1RsmNNq-photo-3-800.webp",
+    "assets/social-feed-houston/De2S1RsmNNq-photo-4-400.webp",
+    "assets/social-feed-houston/De2S1RsmNNq-photo-4-800.webp"
   ],
   "assetVersion": "20261008-migration-measurement",
   "reviewPages": []

@@ -9,13 +9,15 @@ import {projectAllAgendas} from '../scripts/editorial/all-agendas.mjs';
 import {renderSocialFeed} from '../scripts/editorial/social-feed.mjs';
 import {createHash} from 'node:crypto';
 import {socialFeedSource,restoreSocialFeedSource} from '../scripts/social-feed-source-contract.mjs';
+import {restoreSocialMotionSource} from '../scripts/social-motion-source-contract.mjs';
+import {loadApprovedSocialMotion,enhanceSocialMotionHtml} from '../scripts/editorial/social-motion-approved.mjs';
 
 const root=resolve(import.meta.dirname,'..'),commit='a'.repeat(40);
 const config=loadApprovedSocialFeed(root);
 const stripDigest=html=>html.replace(/ data-agenda-render-digest="[a-f0-9]+"/,'');
 
 test('the exact allowlist addition preserves historical hashes and rejects ambiguous patches',()=>{
- const file=socialFeedSource.file,source=readFileSync(resolve(root,file),'utf8');
+ const file=socialFeedSource.file,source=restoreSocialMotionSource(file,readFileSync(resolve(root,file),'utf8'));
  const hash=value=>createHash('sha256').update(value).digest('hex');
  assert.equal(hash(source),socialFeedSource.afterSha256);
  assert.equal(hash(restoreSocialFeedSource(file,source)),socialFeedSource.beforeSha256);
@@ -32,9 +34,11 @@ test('public projection preserves every reviewed photo and all existing page con
   let actual=after.files.get(file);
   if(['houston.html','en/houston/index.html'].includes(file)){
    const language=file==='houston.html'?'es':'en';
-   const feed=renderSocialFeed(config.selection,language).replace('data-social-review="true"','data-social-selection="houston-20261104"').replaceAll('/assets/social-feed-review/','/assets/social-feed-houston/');
+   const motion=loadApprovedSocialMotion(root);
+   const feed=enhanceSocialMotionHtml(renderSocialFeed(config.selection,language).replace('data-social-review="true"','data-social-selection="houston-20261104"').replaceAll('/assets/social-feed-review/','/assets/social-feed-houston/'),motion,language);
    assert.equal(actual.split(feed).length,2,'Publish the exact reviewed section once');
-   actual=actual.replace(feed,'').replace('<link rel="stylesheet" href="/assets/css/branch-social-feed.css?v=20261104-instagram-houston">','');
+   actual=actual.replace(feed,'').replace('<link rel="stylesheet" href="/assets/css/branch-social-feed.css?v=20261104-instagram-houston">','')
+    .replace(`<link rel="stylesheet" href="/${motion.stylesheet}?v=${motion.assetVersion}"><script type="module" src="/${motion.script}?v=${motion.assetVersion}"></script>`,'');
    assert.equal(stripDigest(actual),stripDigest(original),'Hero, agenda, Catering and tracking must remain intact');
   }else assert.equal(actual,original,file);
  }

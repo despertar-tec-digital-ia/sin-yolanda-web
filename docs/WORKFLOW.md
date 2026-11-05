@@ -1,5 +1,32 @@
 # Forma de trabajar y publicar
 
+### Instagram Houston · reels y carrusel4-nov-2026
+
+Luis solicita ampliar el bloque recién publicado: los dos reels completos se reproducen dentro
+de las tarjetas, sin sonido y en bucle; la publicación múltiple muestra sus cuatro fotografías
+distintas. Se conserva la portada ya aprobada y se añaden las otras tres, sin duplicar esa portada.
+Los MP4 H.264 se optimizan a540px/24fps/faststart y **no contienen pista de audio**. Los archivos
+se sirven desde el sitio; no se incrusta el reproductor de Instagram ni sus peticiones/cookies.
+
+El carrusel cambia cada cinco segundos, con anterior/siguiente/pausa. Los botones son hermanos
+del enlace de la foto, nunca controles anidados dentro del enlace. Las imágenes conservan su
+destino original. La reproducción se pausa al salir de pantalla o al ocultarse la pestaña;
+el carrusel también pausa con hover/foco. Movimiento reducido y ahorro de datos comienzan con
+imagen fija; el visitante puede iniciar manualmente. Si autoplay o un archivo fallan, se conserva
+la imagen y se ofrece reproducción manual. El navegador puede restringir autoplay.
+
+`approved-social-motion.json` vincula el snapshot previo, los diez activos nuevos y sus hashes.
+`social-motion-approved.mjs` compone solo HoustonES/EN antes de calcular la huella de agenda;
+el scheduler conserva la mejora. No cambia el snapshot de publicaciones ni la selección manual.
+La nueva capa de allowlist se retira por dos parches exactos antes de las guardas históricas.
+Fuentes de medios: los dos posts publicados por Social Planner y el reel nativo De7If21xS3t
+verificado en su página pública. No se publican URLs firmadas ni metadatos privados de origen.
+
+QA: pruebas de visibilidad, pausa persistente, rechazo de autoplay, preferencias, cargas de imagen
+fallidas/interrumpidas, navegación y límites editoriales; inspección real de MP4 sin audio.
+Validación completa y resultado remoto se registran al cerrar el pase. Publicación por la misma
+entrada aprobada de PR→CI→CD; reversión al deployment anterior, sin tocar la prueba temporal VPS.
+
 ### Instagram Houston · publicación autorizada4-nov-2026
 
 Luis pide publicar en el sitio oficial la prueba compartida ayer con Karina. Alcance comunicado:

@@ -1,5 +1,38 @@
 # Forma de trabajar y publicar
 
+### Instagram Houston · publicación autorizada4-nov-2026
+
+Luis pide publicar en el sitio oficial la prueba compartida ayer con Karina. Alcance comunicado:
+solo el bloque de ambiente de Houston, ES/EN, con las tres publicaciones y seis imágenes revisadas;
+selección manual, sin sincronización automática. Widget de reservas/Toast es otro frente pendiente
+de accesos y no se activa aquí. No se altera el hero, la agenda, Catering ni el consentimiento.
+
+La selección del preview permanece como snapshot inmutable en
+`scripts/editorial/houston-social-selection.json`. `approved-social-feed.json` vincula sus bytes,
+los medios y el CSS revisados a esta autorización; metadatos de origen y aprobación no se sirven.
+El paquete incorpora solo las seis WebP y la hoja de estilo expresamente allowlisted. La sección
+se proyecta después de la agenda y antes de Catering; no lleva aviso/noindex de la prueba en
+el dominio oficial. Los clics de las imágenes abren sus publicaciones originales.
+
+`public-site.mjs` compone agenda y selección social para el empaquetador y su scheduler. La huella
+de frescura incluye esa composición: un retiro de agenda no puede perder el bloque Instagram.
+Los HTML fuente conservan su baseline histórico; el render reproducible vive en el artefacto.
+Pruebas: paridad exacta con el preview, invariantes del resto de las páginas, negativa a reutilizar
+aprobación sobre bytes distintos y conservación de selección tras los vencimientos de agenda.
+
+Publicar solo por PR→CI→`release:approved`→recibo CD, con verificación ES/EN y seis medios en vivo.
+Rollback: despliegue anterior identificado por el recibo; no detener el sitio oficial ni tocar
+la prueba VPS como parte de este pase. El preview temporal conserva su retiro ya programado.
+Resultado real del release y QA visual se registra en el cierre del cliente; este bloque solo
+documenta alcance y contrato, no afirma que la publicación ya haya terminado.
+
+Validación previa: `npm ci --ignore-scripts`, `npm run check` (414/414) y `npm run build`
+correctos.339archivos; contra el paquete base a la misma hora,330archivos idénticos y solo
+HoustonES/EN cambian, con7activos añadidos. Historial de allowlist conservado mediante dos
+parches explícitos; las guardas previas siguen detectando modificaciones ajenas/ambiguas.
+Brave320/390/768/1440px sin overflow y tres imágenes cargadas; foco visible perfil→post,
+EN768px y destinos originales comprobados. Capturas y QA en `.artifacts/instagram-visual/`.
+
 
 ### Home · cuatro fotos autorizadas29-oct
 

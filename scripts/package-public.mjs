@@ -6,7 +6,7 @@ import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import assert from 'node:assert/strict';
 import { parseQrRedirects } from './qr-redirects.mjs';
-import { projectAllAgendas as projectPublicAgenda } from './editorial/all-agendas.mjs';
+import { projectPublicSite as projectPublicAgenda } from './editorial/public-site.mjs';
 
 export const projectRoot = fileURLToPath(new URL('../', import.meta.url));
 export const forbiddenRoute = /(?:^|\/)(?:dashboard|listings|reputation|requests|reports|review-detail|maricarmen)(?:\.html|\/|$)/i;
@@ -118,6 +118,7 @@ export function packagePublic({ root = projectRoot, destination, metadata, audie
     hashes._headers = createHash('sha256').update(readFileSync(headers)).digest('hex');
   }
   const report = { version: 1, commit, dirty, audience, reviewPages: manifest.reviewPages ?? [], fileCount: files.length, hashes, publicDigest,
+    ...(projection.socialFeed?{socialFeed:projection.socialFeed}:{}),
     ...(projection.metadata?{sourcePublicDigest:publicSourceDigest(sourceHashes),agenda:projection.metadata}:{}),
     ...(approved ? { approval: approved } : {}) };
   if (reportPath) {

@@ -5,8 +5,13 @@ import { createHash } from 'node:crypto';
 import vm from 'node:vm';
 import { homeSelection, restoreHomeSelection } from '../scripts/home-selection-source-contract.mjs';
 import { renderShell } from '../scripts/seo.mjs';
+import {restoreSocialFeedSource} from '../scripts/social-feed-source-contract.mjs';
 
-const read = file => readFileSync(new URL('../' + file, import.meta.url));
+// This historical release guard checks its exact layer beneath the subsequent approved feed.
+const read = file => {
+  const bytes=readFileSync(new URL('../'+file,import.meta.url));
+  return file==='scripts/public-manifest.json'?Buffer.from(restoreSocialFeedSource(file,bytes.toString())):bytes;
+};
 const hash = value => createHash('sha256').update(value).digest('hex');
 
 test('reviewed home selection preserves exact image bytes and every prior file guard', () => {

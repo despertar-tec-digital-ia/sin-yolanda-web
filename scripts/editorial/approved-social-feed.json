@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "selectionFile": "scripts/editorial/houston-social-selection.json",
+  "selectionDigest": "f30ff6fe7fe2c84b10f9504b239f700f267cb355cac0bb121f423e20c9fb8e43",
+  "stylesheet": "assets/css/branch-social-feed.css",
+  "stylesheetVersion": "20261104-instagram-houston",
+  "stylesheetDigest": "a3250724e2331ba0f918940edf98263d65e1b15b07cf7a3ee27a0bf31fa19511",
+  "selectionId": "houston-20261104",
+  "authorizer": "Luis",
+  "approvedAt": "2026-11-05T02:08:21.470Z",
+  "authorization": "Publicar en el sitio oficial la prueba de Instagram compartida con Karina; selección manual de tres publicaciones, sin sincronización automática.",
+  "postIds": [
+    "De2S1RsmNNq",
+    "De7If21xS3t",
+    "DfDHlMMgeCK"
+  ],
+  "automatedFeed": false
+}

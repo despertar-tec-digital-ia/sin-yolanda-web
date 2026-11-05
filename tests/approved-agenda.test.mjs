@@ -5,7 +5,7 @@ import{resolve}from'node:path';
 import{localInstant,resolveProgrammingClock}from'../scripts/editorial/programming-clock.mjs';
 import{loadApprovedAgenda,selectApprovedAgenda,projectPublicAgenda,elementRange}from'../scripts/editorial/public-agenda.mjs';
 import{planAgendaRefresh}from'../scripts/plan-agenda-refresh.mjs';
-import{projectAllAgendas}from'../scripts/editorial/all-agendas.mjs';
+import{projectPublicSite as projectAllAgendas}from'../scripts/editorial/public-site.mjs';
 const root=resolve(import.meta.dirname,'..'),config=loadApprovedAgenda(root),commit='a'.repeat(40);
 test('approval binds the exact sourced projection and cannot authorize unresolved calendar slots',()=>{
  assert.equal(config.approval.records.length,14);

@@ -24,8 +24,8 @@
     "assets/js/october-hours.js": "20261026-approved-update",
     "assets/css/october-update.css": "20261026-event-posters-clean",
     "assets/css/branch-social-feed.css": "20261104-instagram-houston",
-    "assets/css/branch-social-motion.css": "20261104-instagram-motion",
-    "assets/js/branch-social-motion.js": "20261104-instagram-motion"
+    "assets/css/branch-social-motion.css": "20261104-instagram-minimal",
+    "assets/js/branch-social-motion.js": "20261104-instagram-minimal"
   },
   "pages": [
     "index.html",

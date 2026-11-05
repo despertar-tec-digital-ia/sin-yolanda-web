@@ -1,5 +1,23 @@
 # Forma de trabajar y publicar
 
+### Instagram Houston · presentación mínima4-nov-2026
+
+Luis pide retirar etiquetas de formato, flechas de apertura, botones visibles, contador,
+fecha, categoría y descripción de cada publicación. Las tarjetas muestran únicamente los medios;
+se conservan el encabezado/perfil del bloque, los enlaces originales y todos los archivos aprobados.
+No cambian el orden, los encuadres, los dos reels ni las cuatro fotos.
+
+La reproducción silenciosa/en bucle y la rotación cada5s continúan. Los enlaces permiten Espacio
+para pausar/reproducir y, en la galería, Izquierda/Derecha para navegar. La indicación se descubre
+solo al enfocar con teclado, sin botones ni iconos permanentes ni en hover. Enter abre Instagram.
+Movimiento reducido, ahorro de datos, pausa fuera de vista y pestaña oculta se conservan. Si el
+navegador bloquea autoplay, permanece la imagen enlazada y la opción por teclado.
+
+CSS/JS se versionan como `20261104-instagram-minimal`; la aprobación fija sus nuevos hashes y
+los bytes anteriores de medios. Las guardas de fuente retiran solo el delta exacto del manifiesto.
+Pruebas del contrato nuevo exigen ausencia de metadatos/controles en tarjetas y acceso por teclado;
+la comparación del resto de páginas y la actualización futura de agenda siguen vigentes.
+
 ### Instagram Houston · reels y carrusel4-nov-2026
 
 Luis solicita ampliar el bloque recién publicado: los dos reels completos se reproducen dentro

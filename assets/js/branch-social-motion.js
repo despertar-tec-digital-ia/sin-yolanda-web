@@ -27,7 +27,7 @@ export function createMotionController({kind, count = 1, play, pause, loadSlide,
   }
   function reconcile() {
     const next = permitted() && state.visible && !state.hidden &&
-      !(kind === 'carousel' && (state.hovering || state.focused));
+      !(kind === 'carousel' && (state.hovering || state.focused) && !state.optedIn);
     report();
     if (next === wanted) return;
     wanted = next; const token = ++generation; stopTimer();
@@ -67,9 +67,9 @@ export function initializeSocialMotion(root = document) {
   const controllers = new Map();
   const policy = () => ({hidden:doc.hidden, reduced:preference.matches, saveData:!!connection?.saveData});
   for (const card of feed.querySelectorAll('[data-motion-kind]')) {
-    const kind = card.dataset.motionKind, toggle = card.querySelector('[data-motion-toggle]');
+    const kind = card.dataset.motionKind, link = card.querySelector('.sy-social-media-link');
     const video = card.querySelector('video'), images = [...card.querySelectorAll('.sy-social-photo img')];
-    const counter = card.querySelector('[data-motion-count]');
+    const hint = card.querySelector('.sy-motion-keyboard-hint');
     const controller = createMotionController({kind, count:images.length,
       play:async () => {
         if (!video.getAttribute('src')) { video.muted = true; video.defaultMuted = true; video.src = video.dataset.src; }
@@ -84,18 +84,23 @@ export function initializeSocialMotion(root = document) {
       showSlide:index => images.forEach((img,i) => { img.hidden = i !== index; }),
       onState:state => {
         const action = state.enabled ? (en ? 'Pause' : 'Pausar') : (en ? 'Play' : 'Reproducir');
-        toggle.setAttribute('aria-label',action + (kind === 'reel' ? (en ? ' silent video' : ' video sin sonido') : (en ? ' slideshow' : ' fotos')));
-        toggle.dataset.enabled = String(state.enabled);
-        if (counter) counter.textContent = `${state.index + 1} / ${images.length}`;
+        link.dataset.motionEnabled = String(state.enabled);
+        hint.textContent = (en ? 'Space: ' : 'Espacio: ') + action.toLowerCase() +
+          (en ? '. Enter: open on Instagram.' : '. Enter: abrir en Instagram.') +
+          (kind === 'carousel' ? (en ? ' Left/right: change photo.' : ' Izquierda/derecha: cambiar foto.') : '');
       }
     });
     if (video) {
       video.addEventListener('playing',() => card.classList.add('sy-motion-playing'));
       video.addEventListener('error',() => { card.classList.remove('sy-motion-playing'); controller.update({blocked:true}); });
     }
-    toggle.addEventListener('click',() => controller.toggle());
-    card.querySelector('[data-motion-prev]')?.addEventListener('click',() => controller.step(-1));
-    card.querySelector('[data-motion-next]')?.addEventListener('click',() => controller.step(1));
+    link.addEventListener('keydown',event => {
+      if (event.repeat) return;
+      if (event.key === ' ' || event.code === 'Space') { event.preventDefault(); controller.toggle(); }
+      else if (kind === 'carousel' && ['ArrowLeft','ArrowRight'].includes(event.key)) {
+        event.preventDefault(); controller.step(event.key === 'ArrowLeft' ? -1 : 1);
+      }
+    });
     if (kind === 'carousel') {
       card.addEventListener('mouseenter',() => controller.update({hovering:true}));
       card.addEventListener('mouseleave',() => controller.update({hovering:false}));
@@ -103,7 +108,6 @@ export function initializeSocialMotion(root = document) {
       card.addEventListener('focusout',event => { if (!card.contains(event.relatedTarget)) controller.update({focused:false}); });
     }
     controller.update(policy());
-    card.querySelectorAll('.sy-motion-control').forEach(button => { button.hidden = false; });
     controllers.set(card,controller);
   }
   const updatePolicy = () => { for (const controller of controllers.values()) controller.update(policy()); };

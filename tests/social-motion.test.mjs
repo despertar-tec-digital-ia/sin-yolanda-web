@@ -72,6 +72,13 @@ test('failed or stale image loads keep the last complete slide',async()=>{
   assert.equal(h.controller.snapshot().index,0);assert.deepEqual(h.calls.shown,[]);assert.equal(h.jobs.size,0);
 });
 
+test('explicit carousel playback can resume while the media link retains keyboard focus',()=>{
+  const h=harness('carousel'),c=h.controller;c.update({visible:true,focused:true});
+  assert.equal(h.jobs.size,0);
+  c.toggle();assert.equal(c.snapshot().paused,true);
+  c.toggle();assert.equal(c.snapshot().optedIn,true);assert.equal(h.jobs.size,1);
+});
+
 test('motion allowlist peels exactly its approved change, preserving all earlier source guards',()=>{
   const file=socialMotionSource.file,source=readFileSync(resolve(root,file),'utf8');
   assert.equal(hash(source),socialMotionSource.afterSha256);
@@ -80,7 +87,7 @@ test('motion allowlist peels exactly its approved change, preserving all earlier
   assert.throws(()=>restoreSocialMotionSource(file,source+socialMotionSource.patches[0].after),/Social motion manifest patch/);
 });
 
-test('only Houston ES/EN gain two silent native videos and four photos, with real links and separate buttons',()=>{
+test('Houston media stays minimal: native videos and photos, original links and keyboard access without visible chrome',()=>{
   const config=loadApprovedSocialMotion(root),before=projectApprovedSocialFeed(root,new Map());
   const after=projectApprovedSocialMotion(root,before.files);assert.equal(after.metadata.reels,2);
   for(const[file,html]of after.files){
@@ -91,7 +98,9 @@ test('only Houston ES/EN gain two silent native videos and four photos, with rea
     const section=html.match(/<section class="sy-social-feed"[\s\S]*?<\/section>/)[0];
     for(const a of section.matchAll(/<a\b[^>]*>[\s\S]*?<\/a>/g))assert.ok(!a[0].includes('<button'),'Buttons cannot be nested in links');
     assert.ok(!section.includes('fbcdn')&&!section.includes('storage.googleapis')&&!section.includes('accountId'));
-    assert.equal((section.match(/class="sy-motion-control /g)||[]).length,5);
+    for(const removed of ['sy-motion-control','sy-social-format','sy-social-open','sy-social-copy','data-motion-count','<button','<time','<h3'])assert.ok(!section.includes(removed),'Removed card chrome must not be published: '+removed);
+    assert.equal((section.match(/aria-keyshortcuts="Space/g)||[]).length,3);
+    assert.equal((section.match(/class="sy-motion-keyboard-hint"/g)||[]).length,3);
     assert.ok(html.includes(config.script+'?v='+config.assetVersion),file);
   }
 });

@@ -39,16 +39,13 @@ export function loadApprovedSocialMotion(root) {
   return config;
 }
 
-const playPause = '<svg viewBox="0 0 24 24" aria-hidden="true"><path class="sy-motion-play" d="M7 4v16l13-8z"/><path class="sy-motion-pause" d="M6 4h4v16H6zm8 0h4v16h-4z"/></svg>';
-const button = (type,label,icon) => `<button class="sy-motion-control sy-motion-${type}" data-motion-${type} aria-label="${label}" hidden>${icon}</button>`;
 export function enhanceSocialMotionHtml(html,config,language) {
   const en = language === 'en';
   for (const item of config.items) {
     let matches = 0;
-    html = html.replace(/<article class="sy-social-post"><a ([^>]+)><div class="sy-social-photo">([\s\S]*?)<\/div>(<div class="sy-social-copy">[\s\S]*?<\/div>)<\/a><\/article>/g,(whole,attributes,photo,copy) => {
+    html = html.replace(/<article class="sy-social-post"><a ([^>]+)><div class="sy-social-photo">([\s\S]*?)<\/div>(<div class="sy-social-copy">[\s\S]*?<\/div>)<\/a><\/article>/g,(whole,attributes,photo) => {
       if (!attributes.includes('/'+item.id+'/')) return whole;
       matches++;
-      const controls = button('toggle',en ? 'Pause' : 'Pausar',playPause);
       let content = photo;
       if (item.kind === 'reel') {
         const poster = photo.match(/<img src="([^"]+)"/)[1];
@@ -58,13 +55,14 @@ export function enhanceSocialMotionHtml(html,config,language) {
           const [small,large] = image.media;
           return `<img data-src="/${large.file}" data-srcset="/${small.file} ${small.width}w, /${large.file} ${large.width}w" sizes="(max-width: 640px) calc((100vw - 44px)/2), (max-width: 900px) calc((100vw - 88px)/3), 400px" width="${large.width}" height="${large.height}" alt="${escape(image.alt[language])}" decoding="async" hidden>`;
         }).join('');
-        content = content.replace('<span class="sy-social-format">',extras+'<span class="sy-social-format">')
-          .replace(/(<span class="sy-social-format">)[^<]+/,`$1${en ? 'Photos' : 'Fotos'} · <span data-motion-count>1 / 4</span>`);
+        content += extras;
       }
-      const navigation = item.kind === 'carousel' ?
-        button('prev',en ? 'Previous photo' : 'Foto anterior','<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 4-8 8 8 8 2-2-6-6 6-6z"/></svg>')+
-        button('next',en ? 'Next photo' : 'Foto siguiente','<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 4-2 2 6 6-6 6 2 2 8-8z"/></svg>') : '';
-      return `<article class="sy-social-post" data-motion-kind="${item.kind}"><div class="sy-social-photo"><a class="sy-social-media-link" ${attributes}>${content}</a>${controls}${navigation}</div>${copy}</article>`;
+      content = content.replace(/<span class="sy-social-(?:format|open)">[\s\S]*?<\/span>/g,'');
+      const hintId = 'sy-motion-hint-'+item.id;
+      const hint = en ? 'Space: pause or play. Enter: open on Instagram.' : 'Espacio: pausar o reproducir. Enter: abrir en Instagram.';
+      const arrows = item.kind === 'carousel' ? (en ? ' Left/right: change photo.' : ' Izquierda/derecha: cambiar foto.') : '';
+      const shortcuts = item.kind === 'carousel' ? 'Space ArrowLeft ArrowRight' : 'Space';
+      return `<article class="sy-social-post" data-motion-kind="${item.kind}"><div class="sy-social-photo"><a class="sy-social-media-link" ${attributes} aria-keyshortcuts="${shortcuts}" aria-describedby="${hintId}">${content}</a><span class="sy-motion-keyboard-hint" id="${hintId}">${hint}${arrows}</span></div></article>`;
     });
     assert.equal(matches,1,'Expected the exact selected Instagram post once: '+item.id);
   }

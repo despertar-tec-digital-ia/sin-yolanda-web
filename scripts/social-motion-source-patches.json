@@ -2,11 +2,11 @@
   "version": 1,
   "file": "scripts/public-manifest.json",
   "beforeSha256": "7c43c3dedc6c1c738712dc3ab2718e745a3c48629ee87e8affa3897082a754fd",
-  "afterSha256": "24a2e2f59251ba569cea299275f43907099f5a9b6abda83904c6bba07d7e95c3",
+  "afterSha256": "27f760ea0ba66a069c330ce62274cfca18b1b06400f7a30be5da2a8d81623238",
   "patches": [
     {
       "before": "    \"assets/css/branch-social-feed.css\": \"20261104-instagram-houston\"\n",
-      "after": "    \"assets/css/branch-social-feed.css\": \"20261104-instagram-houston\",\n    \"assets/css/branch-social-motion.css\": \"20261104-instagram-motion\",\n    \"assets/js/branch-social-motion.js\": \"20261104-instagram-motion\"\n"
+      "after": "    \"assets/css/branch-social-feed.css\": \"20261104-instagram-houston\",\n    \"assets/css/branch-social-motion.css\": \"20261104-instagram-minimal\",\n    \"assets/js/branch-social-motion.js\": \"20261104-instagram-minimal\"\n"
     },
     {
       "before": "    \"assets/social-feed-houston/De7If21xS3t-800.webp\"\n",

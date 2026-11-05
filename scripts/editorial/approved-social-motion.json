@@ -1,12 +1,12 @@
 {
   "version": 1,
   "authorizer": "Luis",
-  "approvedAt": "2026-11-05T03:40:00Z",
-  "authorization": "Cambio solicitado en el bloque Instagram Houston publicado: reels directos, reproducción automática sin sonido y rotador automático para publicaciones con varias fotos.",
+  "approvedAt": "2026-11-05T04:33:30.078378+00:00",
+  "authorization": "Luis pide simplificar el bloque publicado de Houston: quitar etiquetas, fechas, descripciones, contadores, flechas y controles visibles, conservando reels silenciosos y rotación automática de las cuatro fotos.",
   "selectionDigest": "f30ff6fe7fe2c84b10f9504b239f700f267cb355cac0bb121f423e20c9fb8e43",
   "stylesheet": "assets/css/branch-social-motion.css",
   "script": "assets/js/branch-social-motion.js",
-  "assetVersion": "20261104-instagram-motion",
+  "assetVersion": "20261104-instagram-minimal",
   "items": [
     {
       "id": "DfDHlMMgeCK",
@@ -95,12 +95,12 @@
   ],
   "files": {
     "assets/css/branch-social-motion.css": {
-      "bytes": 1639,
-      "sha256": "edd15c4cce167740a01e64591f9132e28044ab508c0d85557e31b32864ffbac3"
+      "bytes": 931,
+      "sha256": "d6b20d28126d0a74b1595e057873fd822ec3eca7c7265b0ffc4474bf568a27d0"
     },
     "assets/js/branch-social-motion.js": {
-      "bytes": 6564,
-      "sha256": "c016a95b0a4de6d72629b5929a4370c282570f74d05f2b047099a14277ac88e7"
+      "bytes": 6648,
+      "sha256": "91d2d4cc83e1a033343bda7170dcfd2583313366d3affe62931e0507d1067814"
     },
     "assets/social-feed-houston/DfDHlMMgeCK-silent.mp4": {
       "bytes": 2364849,

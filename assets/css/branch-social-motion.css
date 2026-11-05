@@ -1,0 +1,18 @@
+.sy-social-feed[data-social-motion] .sy-social-photo{isolation:isolate}
+.sy-social-media-link{display:block;position:absolute;inset:0}
+.sy-social-media-link:focus-visible{outline-offset:-4px!important;z-index:3}
+.sy-social-feed[data-social-motion] .sy-social-photo img[hidden]{display:none}
+.sy-social-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 0%;opacity:0}
+.sy-motion-playing .sy-social-video{opacity:1}
+.sy-motion-playing .sy-social-photo img{opacity:0}
+.sy-social-feed[data-social-motion] .sy-social-format,.sy-social-feed[data-social-motion] .sy-social-open{z-index:1;pointer-events:none}
+.sy-motion-control{position:absolute;z-index:2;display:grid;place-items:center;width:44px;height:44px;padding:0;border:0;border-radius:0;background:#fff4de;color:#30201c;cursor:pointer;touch-action:manipulation}
+.sy-motion-control[hidden]{display:none}.sy-motion-control:hover{background:#ffe2a8}
+.sy-motion-control:focus-visible{outline:3px solid #fff4de;outline-offset:3px;box-shadow:0 0 0 6px #30201c}
+.sy-motion-control svg{width:19px;height:19px;fill:currentColor;pointer-events:none}
+.sy-social-feed .sy-motion-control svg path{fill:currentColor;stroke:none}
+.sy-motion-toggle{top:12px;right:12px}
+.sy-motion-toggle[data-enabled=true] .sy-motion-play,.sy-motion-toggle[data-enabled=false] .sy-motion-pause{display:none}
+.sy-motion-prev{bottom:12px;left:12px}.sy-motion-next{bottom:12px;left:60px}
+[data-motion-kind=carousel] .sy-social-open{display:none}
+@media(max-width:640px){.sy-motion-toggle{top:8px;right:8px}.sy-motion-prev{bottom:8px;left:8px}.sy-motion-next{bottom:8px;left:56px}}

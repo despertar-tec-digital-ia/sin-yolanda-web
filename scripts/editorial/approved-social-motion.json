@@ -1,0 +1,138 @@
+{
+  "version": 1,
+  "authorizer": "Luis",
+  "approvedAt": "2026-11-05T03:40:00Z",
+  "authorization": "Cambio solicitado en el bloque Instagram Houston publicado: reels directos, reproducción automática sin sonido y rotador automático para publicaciones con varias fotos.",
+  "selectionDigest": "f30ff6fe7fe2c84b10f9504b239f700f267cb355cac0bb121f423e20c9fb8e43",
+  "stylesheet": "assets/css/branch-social-motion.css",
+  "script": "assets/js/branch-social-motion.js",
+  "assetVersion": "20261104-instagram-motion",
+  "items": [
+    {
+      "id": "DfDHlMMgeCK",
+      "kind": "reel",
+      "video": {
+        "file": "assets/social-feed-houston/DfDHlMMgeCK-silent.mp4",
+        "duration": 15.708008,
+        "width": 540,
+        "height": 960,
+        "codec": "h264",
+        "audioTracks": 0
+      }
+    },
+    {
+      "id": "De7If21xS3t",
+      "kind": "reel",
+      "video": {
+        "file": "assets/social-feed-houston/De7If21xS3t-silent.mp4",
+        "duration": 34.416667,
+        "width": 540,
+        "height": 960,
+        "codec": "h264",
+        "audioTracks": 0
+      }
+    },
+    {
+      "id": "De2S1RsmNNq",
+      "kind": "carousel",
+      "photos": [
+        {
+          "alt": {
+            "es": "Invitados celebrando con un marco de Sin Yolanda Houston.",
+            "en": "Guests celebrating with a Sin Yolanda Houston photo frame."
+          },
+          "media": [
+            {
+              "file": "assets/social-feed-houston/De2S1RsmNNq-photo-2-400.webp",
+              "width": 400,
+              "height": 600
+            },
+            {
+              "file": "assets/social-feed-houston/De2S1RsmNNq-photo-2-800.webp",
+              "width": 800,
+              "height": 1200
+            }
+          ]
+        },
+        {
+          "alt": {
+            "es": "Dos amigas con sombreros y micrófonos en Sin Yolanda Houston.",
+            "en": "Two friends with hats and microphones at Sin Yolanda Houston."
+          },
+          "media": [
+            {
+              "file": "assets/social-feed-houston/De2S1RsmNNq-photo-3-400.webp",
+              "width": 400,
+              "height": 612
+            },
+            {
+              "file": "assets/social-feed-houston/De2S1RsmNNq-photo-3-800.webp",
+              "width": 800,
+              "height": 1225
+            }
+          ]
+        },
+        {
+          "alt": {
+            "es": "Invitada cantando con micrófono dorado en Sin Yolanda Houston.",
+            "en": "A guest singing with a gold microphone at Sin Yolanda Houston."
+          },
+          "media": [
+            {
+              "file": "assets/social-feed-houston/De2S1RsmNNq-photo-4-400.webp",
+              "width": 400,
+              "height": 493
+            },
+            {
+              "file": "assets/social-feed-houston/De2S1RsmNNq-photo-4-800.webp",
+              "width": 800,
+              "height": 987
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "files": {
+    "assets/css/branch-social-motion.css": {
+      "bytes": 1639,
+      "sha256": "edd15c4cce167740a01e64591f9132e28044ab508c0d85557e31b32864ffbac3"
+    },
+    "assets/js/branch-social-motion.js": {
+      "bytes": 6564,
+      "sha256": "c016a95b0a4de6d72629b5929a4370c282570f74d05f2b047099a14277ac88e7"
+    },
+    "assets/social-feed-houston/DfDHlMMgeCK-silent.mp4": {
+      "bytes": 2364849,
+      "sha256": "79112dc44c09cefd2c430c2d35f1399372cb8fdf9de10b6749f597becee6a280"
+    },
+    "assets/social-feed-houston/De7If21xS3t-silent.mp4": {
+      "bytes": 5263707,
+      "sha256": "ecc845ea1a2dfac46f118fc6910ca64eb92ee1bb15aa4f2c94bd9bcaa716bf11"
+    },
+    "assets/social-feed-houston/De2S1RsmNNq-photo-2-400.webp": {
+      "bytes": 33000,
+      "sha256": "08ad8a556179038624a2f54ca715c9fa5a85f4fbe2c5a026b8327e50a532c2ce"
+    },
+    "assets/social-feed-houston/De2S1RsmNNq-photo-2-800.webp": {
+      "bytes": 75034,
+      "sha256": "daa816412ba08824e35c57f719e553f8873ab965f5e294cae21db9898c5ca9d4"
+    },
+    "assets/social-feed-houston/De2S1RsmNNq-photo-3-400.webp": {
+      "bytes": 42322,
+      "sha256": "3a0cf71b2af69cc918f0fe478b074850bf2bafe6aeac51d92347a397d51c3a9c"
+    },
+    "assets/social-feed-houston/De2S1RsmNNq-photo-3-800.webp": {
+      "bytes": 101392,
+      "sha256": "f2ce84e43b42219cbb79d03b896edf00be3130de3ee0a4ef376ca3286f079bd4"
+    },
+    "assets/social-feed-houston/De2S1RsmNNq-photo-4-400.webp": {
+      "bytes": 26092,
+      "sha256": "7466197977a461bc333ecf7612c38b510f9ee146599f7c666d93f433bf5f28ec"
+    },
+    "assets/social-feed-houston/De2S1RsmNNq-photo-4-800.webp": {
+      "bytes": 64808,
+      "sha256": "d9f74190d1afb05090460a1490dfa8bc926f742d9b0226d3be2be6a9b9b6f9c2"
+    }
+  }
+}

@@ -14,6 +14,8 @@ con etiquetas visuales ES/EN, valores20px y línea inferior, sin marco blanco co
 calendario usa papel/granate, título propio de SY, días/selección/foco y navegación adaptados.
 Las etiquetas se anotan como atributos de presentación; no se sustituyen controles ni handlers.
 El paso final del proveedor y los selectores nativos del sistema conservan su interfaz.
+En tablet, el calendario se alinea al borde derecho de fecha para permanecer dentro del viewport.
+Comprobarlo abierto y con área visible al verificar los breakpoints.
 
 Se utiliza el formulario oficial en modo `iframe=false`, `theme=wide`, con RID/idioma/origen de
 cada sede. Los campos, calendario, inventario y búsqueda siguen siendo del proveedor. El CSS

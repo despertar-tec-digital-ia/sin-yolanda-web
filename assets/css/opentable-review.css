@@ -58,5 +58,6 @@
 .sy-booking #ot-reservation-widget .picker__day:disabled{opacity:.35;background:transparent}
 .sy-booking #ot-reservation-widget .picker__day{min-height:36px;width:100%;padding:0;line-height:36px}
 @media(max-width:850px){.sy-booking #ot-reservation-widget .ot-dtp-picker-form{grid-template-columns:repeat(2,minmax(0,1fr))}.sy-booking-placeholder{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(min-width:521px) and (max-width:850px){.sy-booking #ot-reservation-widget .ot-date-picker .picker,.sy-booking #ot-reservation-widget .ot-date-picker .picker__holder{left:auto!important;right:0!important}}
 @media(max-width:520px){.sy-booking{padding:32px 20px}.sy-booking-copy{display:block;margin-bottom:20px}.sy-booking-location{margin-top:10px}.sy-booking #ot-reservation-widget .ot-dtp-picker-form,.sy-booking-placeholder{grid-template-columns:1fr}.sy-booking-foot{align-items:flex-start;flex-direction:column;margin-top:16px}.sy-booking-foot p{font-size:14px}.sy-booking-start{width:100%}.sy-booking #ot-reservation-widget .picker__holder{max-width:calc(100vw - 40px)}}
 @media(prefers-reduced-motion:no-preference){.sy-booking-start{transition:background-color 120ms ease}}

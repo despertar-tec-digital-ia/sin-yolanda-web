@@ -1,13 +1,22 @@
-.sy-booking{background:var(--paper,#fff4de);color:#30201c;scroll-margin-top:88px;padding:64px max(24px,calc((100vw - 1120px)/2));border-top:2px solid #b84919}
-.sy-booking-inner{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:48px;align-items:center}
-.sy-booking-kicker{font:700 14px/1.5 HoustonSlab,Georgia,serif;margin:0 0 14px}
-.sy-booking h2{font:400 clamp(42px,5vw,64px)/1.05 HoustonDisplay,Impact,sans-serif;letter-spacing:-.01em;margin:0;max-width:12ch;text-wrap:balance}
-.sy-booking-copy>p:not(.sy-booking-kicker){font:400 16px/1.65 HoustonSlab,Georgia,serif;max-width:39ch;margin:20px 0 0}
-.sy-booking-widget{min-height:305px;display:flex;justify-content:center;align-items:center;background:#fff;border:1px solid #30201c22;padding:20px}
-.sy-booking-fallback{display:inline-flex;align-items:center;min-height:44px;margin-top:18px;font:700 14px/1.5 HoustonSlab,Georgia,serif;text-underline-offset:5px;color:inherit}
-.sy-booking-fallback:focus-visible{outline:3px solid #a83b18;outline-offset:4px}
-@media(max-width:700px){.sy-booking{padding:40px 20px}.sy-booking-inner{grid-template-columns:1fr;gap:24px}.sy-booking h2{max-width:none}.sy-booking-widget{width:100%;padding:16px}.sy-booking-copy>p:not(.sy-booking-kicker){margin-top:16px}}
-
-.sy-booking-widget{flex-direction:column;gap:12px}
-.sy-booking-flow-note{display:none;font:400 13px/1.5 HoustonSlab,Georgia,serif;text-align:center;margin:0;color:#52443e;max-width:30ch}
-@media(max-width:700px){.sy-booking-flow-note{display:block}}
+.sy-booking{background:var(--paper,#fff4de);color:var(--ink,#30201c);scroll-margin-top:96px;border-block:1px solid #30201c22;padding:44px 24px}
+.sy-booking-inner{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,350px);gap:clamp(28px,6vw,72px);align-items:start;max-width:1040px;margin-inline:auto}
+.sy-booking-kicker{font:700 14px/1.5 HoustonSlab,Georgia,serif;margin:0 0 12px}
+.sy-booking h2{font:400 clamp(40px,4.5vw,56px)/1.06 HoustonDisplay,Impact,sans-serif;letter-spacing:-.01em;margin:0;max-width:15ch;text-wrap:balance}
+.sy-booking-copy>p:not(.sy-booking-kicker){font:400 16px/1.6 HoustonSlab,Georgia,serif;max-width:37ch;margin:16px 0 0}
+.sy-booking-panel{min-width:0;max-width:350px;width:100%}
+.sy-booking-start{display:flex;align-items:center;justify-content:center;min-height:52px;padding:12px 20px;background:#a83b18;color:#fff4de;text-decoration:none;font:700 16px/1.5 HoustonSlab,Georgia,serif;border:1px solid transparent}
+.sy-booking-start:hover{background:#863115}
+.sy-booking-start:active{background:#70270f}
+.sy-booking-direct{display:inline-flex;align-items:center;min-height:44px;margin-top:6px;color:inherit;font:700 14px/1.5 HoustonSlab,Georgia,serif;text-underline-offset:5px}
+.sy-booking-contact{font:400 14px/1.6 HoustonSlab,Georgia,serif;margin:12px 0 0}
+.sy-booking-contact a{display:inline-flex;align-items:center;min-height:44px;color:inherit;font-weight:700;text-underline-offset:4px}
+.sy-booking-status{font:400 13px/1.6 HoustonSlab,Georgia,serif;margin:10px 0 0;max-width:42ch}
+.sy-booking-status:empty{display:none}
+.sy-booking-widget{margin:12px 0 0;min-height:290px;display:flex;align-items:center;justify-content:center;max-width:100%}
+.sy-booking-widget iframe{max-width:100%;border:0}
+.sy-booking[data-booking-state="loading"] .sy-booking-widget{min-height:100px}
+.sy-booking[data-booking-state="loading"] .sy-booking-widget iframe{visibility:hidden}
+.sy-booking [hidden]{display:none!important}
+.sy-booking a:focus-visible,.sy-booking h2:focus-visible{outline:3px solid #a83b18;outline-offset:4px}
+@media(max-width:700px){.sy-booking{padding:32px 20px}.sy-booking-inner{grid-template-columns:1fr;gap:24px}.sy-booking h2{max-width:none}.sy-booking-panel{max-width:none}.sy-booking-widget{justify-content:flex-start}.sy-booking-copy>p:not(.sy-booking-kicker){margin-top:14px}.sy-booking-status{font-size:14px}}
+@media(prefers-reduced-motion:no-preference){.sy-booking-start{transition:background-color 120ms ease}}

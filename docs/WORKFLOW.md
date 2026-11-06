@@ -1,32 +1,44 @@
 # Forma de trabajar y publicar
 
-### Reservas OpenTable · piloto local5–6-nov
+### Reservas OpenTable · candidata integral local6-nov
 
 Acceso real a las cuatro sedes USA revalidado5-nov. Los códigos públicos se copiaron del generador
 oficial de cada RID, sin guardar cambios en OpenTable. `scripts/opentable-review.mjs` crea un
-paquete local noindex con las ocho fichas ES/EN: los dos enlaces de reserva de cada ficha bajan
-al widget de su propia sede y se conserva un enlace alternativo al proveedor.
+paquete local noindex con las ocho fichas ES/EN. El bloque editorial va después del hero y antes
+de Comida/bebidas: crema, tipografías SY, dos columnas en escritorio y una en móvil. No cambia
+el hero del home, las otras sedes ni los datos del proveedor.
 
-Se conserva el script oficial en el HTML, con su `newtab=false` y el modal nativo de escritorio.
-El recorrido móvil del proveedor se comprobó en otra pestaña; un aviso breve lo explica en pantallas
-pequeñas. El único controlador propio restaura el foco cuando OpenTable completa su cierre nativo.
-El enlace directo siempre funciona sin depender de JavaScript o de aceptar analítica.
+Los enlaces del hero, bloque y pie conservan destinos OpenTable reales con RID/idioma/origen de
+su sede. Sin JS, con modificadores o clic central siguen siendo enlaces nativos. El JS mejora
+el clic ordinario: enfoca el H2, lleva al bloque y carga una sola vez el script oficial. Visitar
+la ficha no carga OpenTable; entrar explícitamente por `#reservar-<sede>` sí lo activa.
 
-QA6-nov: las cuatro sedes devolvieron horarios reales en consultas de disponibilidad; ES/EN
-conservan RID, fecha, hora y grupo. En móvil se comprobó el traspaso a OpenTable sin bloquear el
-sitio. Un primer diagnóstico confundió una nueva pestaña con falta de modal; corregido al
-inventariar ventanas. No atribuirlo a un fallo de disponibilidad o de idioma.
+Estados: `idle`, `loading`, `embedded` y `external`. `embedded` solo acredita carga de iframe;
+nunca disponibilidad ni confirmación. El enlace directo permanece disponible mientras carga y
+con el formulario visible. Ante error o12s de espera, se oculta el host y la acción principal
+continúa en OpenTable; una llegada tardía no revierte esa salida. El teléfono se reutiliza de la
+propia ficha. La navegación Atrás conserva la mejora si el navegador guarda la página en caché.
 
-En un modal de escritorio redimensionado a390px, el acceso del proveedor a iniciar sesión
-solapa su propio cierre. Se probó y retiró un cierre local porque no sincronizaba correctamente
-el estado del proveedor al reabrir. **No quedan cancelación personalizada, mensajes privados ni
-parches del scroll del proveedor.** Se conserva el flujo móvil del propio proveedor y
-se restaura el foco al formulario solo después del cierre nativo en escritorio.
+Se mantiene el código oficial con `newtab=false`: el proveedor conserva el modal de escritorio
+y su salida móvil a otra pestaña. La única corrección del modal restaura el foco tras su cierre
+nativo. No hay cancelación personalizada, mensajes privados ni parches de scroll del proveedor.
+Las reservas no dependen del consentimiento de analítica. `reservation_click` sigue midiendo
+intención sobre enlaces reales; no se añadió transporte ni evento de confirmación ficticio.
+
+QA6-nov:32vistas iniciales (8fichas ×320/390/768/1440px), sin overflow ni script del proveedor
+antes de intención; las8cargas reales del iframe y la activación con teclado pasan. Se comprobaron
+disponibilidad real sin seleccionar mesa, cierre nativo/retorno del foco y alternativa externa.
+Un servidor de ensayo bloqueó el proveedor con CSP y otro bloqueó JS: ambos conservaron la
+reserva nativa; el segundo abrió San Antonio y devolvió horarios reales. La suite completa pasa.
+
+No certificar un modal de escritorio redimensionado como recorrido móvil: el proveedor puede
+abrir otra pestaña. En esa condición artificial se observó solapamiento de su acceso/cierre;
+no se parchea desde SY ni se atribuye a un fallo de idioma o disponibilidad.
 
 El CSS, JS y configuración del piloto están excluidos del manifiesto productivo. El build normal
-conserva su paquete original; no se publicó el widget. Pruebas de aislamiento, destinos, flujo
-responsive y restauración del foco pasan. No se enviaron datos personales ni completaron reservas.
-Cierre de confirmación/pago, dispositivos físicos y condiciones por sede siguen fuera de esta QA.
+conserva354archivos; la candidata356. No se publicó el widget ni se enviaron datos personales,
+seleccionaron horarios para retener mesa, completaron reservas o pagos. Confirmación/pago,
+dispositivos físicos y reglas operativas por sede requieren validación coordinada.
 Los datos privados, restricciones observadas de grupos y próximos pasos viven en el plan del
 cliente, fuera del repo público. No introducir reservas, importes, identidades o credenciales aquí.
 

@@ -29,17 +29,20 @@ export function refineBooking(html,branch,language){
   assert.ok(!html.includes('data-opentable-pilot='));
   const loader=new URL(branch.loader);loader.searchParams.set('lang',en?'en-US':'es-MX');
   const fallback=new URL(branch.fallback);fallback.searchParams.set('lang',en?'en-US':'es-MX');
+  const contact=html.match(/<a\b[^>]*class="ve-phone"[^>]*href="(tel:\+\d+)"[^>]*>([^<]+)<\/a>/);
+  assert.ok(contact,'A branch needs its own verified phone before booking integration');
   const id='reservar-'+branch.slug;
-  const section=`<section class="sy-booking" id="${id}" data-opentable-pilot="${branch.rid}" aria-labelledby="${id}-title"><div class="sy-booking-inner"><div class="sy-booking-copy"><p class="sy-booking-kicker">Sin Yolanda ${name}</p><h2 id="${id}-title">${en?'Reserve your table.':'Reserva tu mesa.'}</h2><p>${en?'Choose your date, time and party size. Get ready for a toast.':'Elige el día, la hora y cuántos vienen. Prepara el brindis.'}</p><a class="sy-booking-fallback" href="${escape(fallback.href)}" target="_blank" rel="noopener noreferrer">${en?'Reserve directly on OpenTable':'Reservar directamente en OpenTable'} ↗</a></div><div class="sy-booking-widget"><p class="sy-booking-flow-note">${en?'Search continues in a new tab on OpenTable.':'La búsqueda continúa en otra pestaña de OpenTable.'}</p><script type="text/javascript" src="${escape(loader.href)}"></script></div></div></section>`;
+  const section=`<section class="sy-booking" id="${id}" data-opentable-pilot="${branch.rid}" data-booking-loader="${escape(loader.href)}" data-booking-state="idle" aria-labelledby="${id}-title">
+<div class="sy-booking-inner"><div class="sy-booking-copy"><p class="sy-booking-kicker">Sin Yolanda ${name}</p><h2 id="${id}-title" tabindex="-1">${en?'Reserve your table.':'Reserva tu mesa.'}</h2><p>${en?'Choose your date, time and party size on OpenTable.':'Elige el día, la hora y cuántos vienen en OpenTable.'}</p><p class="sy-booking-contact">${en?'Questions? Call us:':'¿Tienes dudas? Llámanos:'} <a href="${escape(contact[1])}">${escape(contact[2])}</a></p></div>
+<div class="sy-booking-panel"><a class="sy-booking-start" data-booking-start data-booking-open href="${escape(fallback.href)}" target="_blank" rel="noopener noreferrer">${en?'Find a table':'Ver disponibilidad'}</a><div class="sy-booking-widget" id="${id}-form" data-booking-host hidden></div><a class="sy-booking-direct" data-booking-direct href="${escape(fallback.href)}" target="_blank" rel="noopener noreferrer" hidden>${en?'Open directly on OpenTable':'Abrir directamente en OpenTable'} ↗</a><p class="sy-booking-status" data-booking-status id="${id}-status" role="status" aria-live="polite" aria-atomic="true"></p></div></div></section>`;
   const marker='<section class="hh-table"';assert.equal(html.split(marker).length,2);
-  // Preserve the existing buttons and their accessible provider labels; only their local destination changes.
+  // Baseline links stay real: analytics, modifiers and JavaScript-free navigation keep working.
   let links=0;
   html=html.replace(/<a\b[^>]*href="https:\/\/www\.opentable\.com\/(?:r\/|restaurant\/profile\/)[^"<>]+"[^>]*>[\s\S]*?<\/a>/g,tag=>{
-    links++;return tag.replace(/href="[^"]+"/,`href="#${id}"`).replace(/ target="_blank"/,'')
-      .replaceAll(' (abre otra pestaña)','').replaceAll(' (opens in a new tab)','');
+    links++;return tag.replace('<a ','<a data-booking-open ').replace(/href="[^"]+"/,`href="${escape(fallback.href)}"`);
   });
   assert.equal(links,2,'Expected the two branch reservation links');
-  return html.replace(marker,section+marker).replace('</head>',`<link rel="stylesheet" href="/${stylesheet}?v=20261105-opentable-pilot"><script type="module" src="/${controller}?v=20261106-focus"></script></head>`);
+  return html.replace(marker,section+marker).replace('</head>',`<link rel="stylesheet" href="/${stylesheet}?v=20261106-booking"><script type="module" src="/${controller}?v=20261106-booking"></script></head>`);
 }
 export function buildOpenTableReview({root,out,now}={}){
   root=resolve(root);out=resolve(out);assert.ok(out.startsWith(resolve(root,'.artifacts')+'/'));assert.ok(!existsSync(out));

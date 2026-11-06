@@ -1,5 +1,28 @@
 # Forma de trabajar y publicar
 
+### Reservas OpenTable · piloto local5-nov
+
+Acceso real a las cuatro sedes USA revalidado. Los códigos públicos se copiaron del generador
+oficial de cada RID, sin guardar cambios en OpenTable. `scripts/opentable-review.mjs` crea un
+paquete local noindex con las ocho fichas ES/EN: los dos enlaces de reserva de cada ficha bajan
+al widget de su propia sede y se conserva un enlace alternativo al proveedor. La variación de
+idioma usa el parámetro oficial lang, comprobado en español e inglés.
+
+El CSS y configuración del piloto están excluidos del manifiesto productivo. No se publica un
+formulario propio, no se capturan datos del huésped y no se reutiliza el RID de Houston en otras
+sedes. Mantiene la disponibilidad, búsqueda y modal nativos de OpenTable. Los cambios publicados
+de navegación siguen por su carril independiente.
+
+434tests pasan; ocho vistas RID/idioma/320–1440 sin overflow y enlaces correctos. Houston muestra
+horarios reales dentro del modal sobre la ficha; El Paso muestra formulario en español y zona
+horaria propia. Sin enviar datos personales ni completar una reserva. El primer iframe quedó
+temporalmente vacío mientras el navegador resolvía su documento; se recuperó y luego se verificó
+la disponibilidad, sin desactivar protecciones. No equivale a QA de confirmación, pago o iOS físico.
+
+Datos, POS, permisos, límites y próxima validación viven en el plan OpenTable del cliente, fuera
+del repo público. No introducir exportes de reservas, importes, identidades ni credenciales aquí.
+No hay todavía colector automático ni medición probada de confirmación del widget.
+
 ### UI general y Catering Texas · publicación autorizada5-nov
 
 Luis aprueba la revisión local completa y confirma «Sí, publicar los ajustes». La misma

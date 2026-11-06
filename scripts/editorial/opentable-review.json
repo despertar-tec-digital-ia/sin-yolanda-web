@@ -7,26 +7,28 @@
     {
       "slug": "houston",
       "rid": 1524058,
-      "loader": "https://www.opentable.com/widget/reservation/loader?rid=1524058&type=standard&theme=standard&color=1&dark=false&iframe=true&domain=com&lang=en-US&newtab=false&ot_source=Restaurant%20website&cfe=true",
+      "loader": "https://www.opentable.com/widget/reservation/loader?rid=1524058&type=standard&theme=wide&color=1&dark=false&iframe=false&domain=com&lang=en-US&newtab=false&ot_source=Restaurant%20website&cfe=true",
       "fallback": "https://www.opentable.com/r/sin-yolanda-houston-reservations-houston?restref=1524058&lang=en-US&ot_source=Restaurant%20website"
     },
     {
       "slug": "the-woodlands",
       "rid": 1503490,
-      "loader": "https://www.opentable.com/widget/reservation/loader?rid=1503490&type=standard&theme=standard&color=1&dark=false&iframe=true&domain=com&lang=en-US&newtab=false&ot_source=Restaurant%20website&cfe=true",
+      "loader": "https://www.opentable.com/widget/reservation/loader?rid=1503490&type=standard&theme=wide&color=1&dark=false&iframe=false&domain=com&lang=en-US&newtab=false&ot_source=Restaurant%20website&cfe=true",
       "fallback": "https://www.opentable.com/r/sin-yolanda-woodlands-reservations-shenandoah?restref=1503490&lang=en-US&ot_source=Restaurant%20website"
     },
     {
       "slug": "el-paso",
       "rid": 1559290,
-      "loader": "https://www.opentable.com/widget/reservation/loader?rid=1559290&type=standard&theme=standard&color=1&dark=false&iframe=true&domain=com&lang=en-US&newtab=false&ot_source=Restaurant%20website&cfe=true",
+      "loader": "https://www.opentable.com/widget/reservation/loader?rid=1559290&type=standard&theme=wide&color=1&dark=false&iframe=false&domain=com&lang=en-US&newtab=false&ot_source=Restaurant%20website&cfe=true",
       "fallback": "https://www.opentable.com/r/sin-yolanda-el-paso-reservations-el-paso?restref=1559290&lang=en-US&ot_source=Restaurant%20website"
     },
     {
       "slug": "san-antonio",
       "rid": 1484191,
-      "loader": "https://www.opentable.com/widget/reservation/loader?rid=1484191&type=standard&theme=standard&color=1&dark=false&iframe=true&domain=com&lang=en-US&newtab=false&ot_source=Restaurant%20website&cfe=true",
+      "loader": "https://www.opentable.com/widget/reservation/loader?rid=1484191&type=standard&theme=wide&color=1&dark=false&iframe=false&domain=com&lang=en-US&newtab=false&ot_source=Restaurant%20website&cfe=true",
       "fallback": "https://www.opentable.com/r/sin-yolanda-reservations-san-antonio?restref=1484191&lang=en-US&ot_source=Restaurant%20website"
     }
-  ]
+  ],
+  "presentationReviewedOn": "2026-11-06",
+  "presentation": "Official wide inline mode (iframe=false); local CSS adaptation only, no provider account settings changed"
 }

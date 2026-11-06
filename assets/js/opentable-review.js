@@ -4,6 +4,19 @@ export function shouldEnhanceBooking(event) {
     && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey;
 }
 
+// Reuse the existing sanitizer and consent-aware adapters; never send form values.
+export async function reportBookingIntent(win, branch, language) {
+  if (typeof win.sySiteAnalyticsSanitize !== 'function') return;
+  try {
+    const safe = await win.sySiteAnalyticsSanitize('event', {name: 'reservation_click', data: {
+      action: 'reservation_click', branch, language, link_location: 'content', destination: 'reservation',
+    }});
+    if (!safe?.data) return;
+    try { await win.syGa4MeasurementObserver?.('reservation_click', Object.freeze({...safe.data})); } catch {}
+    try { await win.umami?.track?.('reservation_click', safe.data); } catch {}
+  } catch { /* Measurement must never interrupt the provider's submission. */ }
+}
+
 export function createBookingLoad({load, render, timers = globalThis, timeout = 12000}) {
   let state = 'idle', started = false, disposed = false, timer;
   const update = next => {
@@ -21,7 +34,7 @@ export function createBookingLoad({load, render, timers = globalThis, timeout = 
       update('loading');
       timer = timers.setTimeout(() => { if (state === 'loading') update('external'); }, timeout);
       try {
-        load({frameLoaded: () => update('embedded'), failed: () => update('external')});
+        load({widgetLoaded: () => update('embedded'), failed: () => update('external')});
       } catch { update('external'); }
       return true;
     },
@@ -35,7 +48,7 @@ export function initializeBooking(doc = document) {
   const win = doc.defaultView, host = section.querySelector('[data-booking-host]');
   const status = section.querySelector('[data-booking-status]');
   const start = section.querySelector('[data-booking-start]');
-  const direct = section.querySelector('[data-booking-direct]');
+  const placeholder = section.querySelector('[data-booking-placeholder]');
   const title = section.querySelector('h2');
   let loader;
   try {
@@ -44,18 +57,18 @@ export function initializeBooking(doc = document) {
       || loader.pathname !== '/widget/reservation/loader'
       || loader.searchParams.get('rid') !== section.getAttribute('data-opentable-pilot')) return null;
   } catch { return null; }
-  if (!host || !status || !start || !direct || !title) return null;
+  if (!host || !status || !start || !placeholder || !title) return null;
   const spanish = doc.documentElement.lang.startsWith('es');
   const messages = spanish ? {
-    loading: 'Consultando OpenTable… Puedes usar el enlace directo cuando quieras.',
-    embedded: 'Si el formulario no aparece, continúa directamente en OpenTable.',
-    external: 'Continúa en OpenTable para consultar los horarios disponibles.',
+    loading: 'Cargando horarios…',
+    embedded: '',
+    external: 'El formulario no cargó. Continúa con tu reserva.',
   } : {
-    loading: 'Connecting to OpenTable… You can use the direct link at any time.',
-    embedded: 'If the form does not appear, continue directly on OpenTable.',
-    external: 'Continue on OpenTable to find available times.',
+    loading: 'Loading available times…',
+    embedded: '',
+    external: 'The form could not load. Continue with your reservation.',
   };
-  let frameObserver;
+  let widgetObserver, viewportObserver;
   const controller = createBookingLoad({
     timers: win,
     render(state) {
@@ -66,30 +79,34 @@ export function initializeBooking(doc = document) {
         else entry.setAttribute('aria-expanded', 'true');
       }
       host.hidden = state === 'external';
-      start.hidden = state === 'embedded';
-      direct.hidden = state === 'external';
-      start.textContent = state === 'external'
-        ? (spanish ? 'Abrir OpenTable' : 'Open OpenTable')
-        : (spanish ? 'Ver disponibilidad' : 'Find a table');
+      start.hidden = state === 'loading' || state === 'embedded';
+      placeholder.hidden = state !== 'loading';
       status.textContent = messages[state];
-      if (state === 'external') frameObserver?.disconnect();
+      if (state === 'external') widgetObserver?.disconnect();
     },
-    load({frameLoaded, failed}) {
-      let observedFrame;
-      const observeFrame = () => {
-        const frame = host.querySelector('iframe[name="opentable-make-reservation-widget"]');
-        if (!frame || frame === observedFrame) return;
-        observedFrame = frame;
-        // Loading an iframe is a display state, never availability or confirmation.
-        frame.addEventListener('load', frameLoaded, {once: true});
+    load({widgetLoaded, failed}) {
+      let observedForm;
+      const observeWidget = () => {
+        const inline = host.querySelector('#ot-reservation-widget');
+        const form = inline?.querySelector('form');
+        if (!form?.querySelector('[type="submit"]') || !form.querySelector('select')) return;
+        const landmark = inline.querySelector('[role="main"]');
+        // The inline widget lives inside this page's main landmark.
+        if (landmark) { landmark.setAttribute('role', 'group'); landmark.setAttribute('aria-labelledby', title.id); }
+        if (form !== observedForm) {
+          observedForm = form;
+          form.addEventListener('submit', () => { void reportBookingIntent(win, section.getAttribute('data-booking-branch'), spanish ? 'es' : 'en'); });
+        }
+        // Visible controls are a display state, never availability or confirmation.
+        widgetLoaded();
       };
-      frameObserver = new win.MutationObserver(observeFrame);
-      frameObserver.observe(host, {childList: true, subtree: true});
+      widgetObserver = new win.MutationObserver(observeWidget);
+      widgetObserver.observe(host, {childList: true, subtree: true});
       const script = doc.createElement('script');
       script.src = loader.href;
       script.async = true;
       script.addEventListener('error', failed, {once: true});
-      script.addEventListener('load', observeFrame, {once: true});
+      script.addEventListener('load', observeWidget, {once: true});
       host.append(script);
     },
   });
@@ -106,17 +123,22 @@ export function initializeBooking(doc = document) {
     entry.setAttribute('aria-expanded', 'false');
   }
   for (const entry of doc.querySelectorAll('[data-booking-open]')) {
-    for (const hint of entry.querySelectorAll('.hh-sr,.bf-sr')) hint.textContent = ' · OpenTable';
+    for (const hint of entry.querySelectorAll('.hh-sr,.bf-sr')) hint.textContent = entry.querySelector('img[alt="OpenTable"]') ? '' : ' · OpenTable';
   }
-  direct.hidden = false;
   section.setAttribute('data-booking-enhanced', '');
   const cleanupFocus = watchBookingModal(doc);
   win.addEventListener('pagehide', event => {
     // A back/forward-cache entry is still live when the visitor returns.
     if (event.persisted) return;
-    controller.dispose(); frameObserver?.disconnect(); cleanupFocus?.disconnect();
+    controller.dispose(); widgetObserver?.disconnect(); viewportObserver?.disconnect(); cleanupFocus?.disconnect();
   });
   if (win.location.hash === '#' + section.id) controller.start();
+  else if (win.IntersectionObserver) {
+    viewportObserver = new win.IntersectionObserver(entries => {
+      if (entries.some(entry => entry.isIntersecting)) { controller.start(); viewportObserver.disconnect(); }
+    }, {rootMargin: '160px 0px', threshold: 0});
+    viewportObserver.observe(section);
+  }
   return controller;
 }
 
@@ -128,7 +150,7 @@ export function watchBookingModal(doc = document, Observer = doc.defaultView?.Mu
   const update = () => {
     const modal = doc.querySelector('dialog[open] iframe[name="cfe-modal-iframe"]')?.closest('dialog') ?? null;
     if (modal) {
-      if (!previousModal) trigger = section.querySelector('iframe[name="opentable-make-reservation-widget"]');
+      if (!previousModal) trigger = section.querySelector('#ot-reservation-widget [type="submit"]');
       previousModal = modal;
     } else if (previousModal) {
       const closedModal = previousModal; previousModal = null;

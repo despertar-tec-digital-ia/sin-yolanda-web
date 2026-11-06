@@ -20,6 +20,8 @@ export function validateWidget(config){
     assert.equal(loader.pathname,'/widget/reservation/loader');
     assert.equal(loader.searchParams.get('rid'),String(b.rid));
     assert.equal(loader.searchParams.get('newtab'),'false');
+    assert.equal(loader.searchParams.get('iframe'),'false');
+    assert.equal(loader.searchParams.get('theme'),'wide');
     assert.equal(loader.searchParams.get('ot_source'),'Restaurant website');
     assert.equal(fallback.origin,loader.origin);assert.equal(fallback.searchParams.get('restref'),String(b.rid));
   }
@@ -32,9 +34,10 @@ export function refineBooking(html,branch,language){
   const contact=html.match(/<a\b[^>]*class="ve-phone"[^>]*href="(tel:\+\d+)"[^>]*>([^<]+)<\/a>/);
   assert.ok(contact,'A branch needs its own verified phone before booking integration');
   const id='reservar-'+branch.slug;
-  const section=`<section class="sy-booking" id="${id}" data-opentable-pilot="${branch.rid}" data-booking-loader="${escape(loader.href)}" data-booking-state="idle" aria-labelledby="${id}-title">
-<div class="sy-booking-inner"><div class="sy-booking-copy"><p class="sy-booking-kicker">Sin Yolanda ${name}</p><h2 id="${id}-title" tabindex="-1">${en?'Reserve your table.':'Reserva tu mesa.'}</h2><p>${en?'Choose your date, time and party size on OpenTable.':'Elige el día, la hora y cuántos vienen en OpenTable.'}</p><p class="sy-booking-contact">${en?'Questions? Call us:':'¿Tienes dudas? Llámanos:'} <a href="${escape(contact[1])}">${escape(contact[2])}</a></p></div>
-<div class="sy-booking-panel"><a class="sy-booking-start" data-booking-start data-booking-open href="${escape(fallback.href)}" target="_blank" rel="noopener noreferrer">${en?'Find a table':'Ver disponibilidad'}</a><div class="sy-booking-widget" id="${id}-form" data-booking-host hidden></div><a class="sy-booking-direct" data-booking-direct href="${escape(fallback.href)}" target="_blank" rel="noopener noreferrer" hidden>${en?'Open directly on OpenTable':'Abrir directamente en OpenTable'} ↗</a><p class="sy-booking-status" data-booking-status id="${id}-status" role="status" aria-live="polite" aria-atomic="true"></p></div></div></section>`;
+  const section=`<section class="sy-booking" id="${id}" data-opentable-pilot="${branch.rid}" data-booking-branch="${branch.slug}" data-booking-loader="${escape(loader.href)}" data-booking-state="idle" aria-labelledby="${id}-title">
+<div class="sy-booking-inner"><div class="sy-booking-copy"><h2 id="${id}-title" tabindex="-1">${en?'Reserve your table.':'Reserva tu mesa.'}</h2><p class="sy-booking-location">Sin Yolanda ${name}</p></div>
+<div class="sy-booking-panel"><a class="sy-booking-start" data-booking-start data-booking-open href="${escape(fallback.href)}" target="_blank" rel="noopener noreferrer">${en?'Find a table':'Ver disponibilidad'}</a><div class="sy-booking-placeholder" data-booking-placeholder hidden aria-hidden="true"><span></span><span></span><span></span><span></span></div><div class="sy-booking-widget" id="${id}-form" data-booking-host hidden></div><p class="sy-booking-status" data-booking-status id="${id}-status" role="status" aria-live="polite" aria-atomic="true"></p></div>
+<div class="sy-booking-foot"><span>${en?'Reservations with OpenTable':'Reservas con OpenTable'}</span><p>${en?'Need help?':'¿Necesitas ayuda?'} <a href="${escape(contact[1])}">${escape(contact[2])}</a></p></div></div></section>`;
   const marker='<section class="hh-table"';assert.equal(html.split(marker).length,2);
   // Baseline links stay real: analytics, modifiers and JavaScript-free navigation keep working.
   let links=0;
@@ -42,7 +45,7 @@ export function refineBooking(html,branch,language){
     links++;return tag.replace('<a ','<a data-booking-open ').replace(/href="[^"]+"/,`href="${escape(fallback.href)}"`);
   });
   assert.equal(links,2,'Expected the two branch reservation links');
-  return html.replace(marker,section+marker).replace('</head>',`<link rel="stylesheet" href="/${stylesheet}?v=20261106-booking"><script type="module" src="/${controller}?v=20261106-booking"></script></head>`);
+  return html.replace(marker,section+marker).replace('</head>',`<link rel="stylesheet" href="/${stylesheet}?v=20261106-unified"><script type="module" src="/${controller}?v=20261106-unified"></script></head>`);
 }
 export function buildOpenTableReview({root,out,now}={}){
   root=resolve(root);out=resolve(out);assert.ok(out.startsWith(resolve(root,'.artifacts')+'/'));assert.ok(!existsSync(out));

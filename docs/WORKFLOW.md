@@ -1,46 +1,53 @@
 # Forma de trabajar y publicar
 
-### Reservas OpenTable · candidata integral local6-nov
+### Reservas OpenTable · revisión UX local6-nov
 
-Acceso real a las cuatro sedes USA revalidado5-nov. Los códigos públicos se copiaron del generador
-oficial de cada RID, sin guardar cambios en OpenTable. `scripts/opentable-review.mjs` crea un
-paquete local noindex con las ocho fichas ES/EN. El bloque editorial va después del hero y antes
-de Comida/bebidas: crema, tipografías SY, dos columnas en escritorio y una en móvil. No cambia
-el hero del home, las otras sedes ni los datos del proveedor.
+Luis rechaza la candidata anterior por las dos rutas de reserva y pide una composición más
+integrada. Esta revisión la sustituye: una fila de campos en escritorio, dos columnas en tablet
+y una en móvil; identidad de sede junto al título, teléfono de ayuda discreto al pie. No hay
+botón previo cuando el bloque entra en pantalla, enlace «Abrir directamente» ni aviso de error
+permanente. La ficha conserva su hero, los datos, las fotos y el resto de su estructura.
 
-Los enlaces del hero, bloque y pie conservan destinos OpenTable reales con RID/idioma/origen de
-su sede. Sin JS, con modificadores o clic central siguen siendo enlaces nativos. El JS mejora
-el clic ordinario: enfoca el H2, lleva al bloque y carga una sola vez el script oficial. Visitar
-la ficha no carga OpenTable; entrar explícitamente por `#reservar-<sede>` sí lo activa.
+Se utiliza el formulario oficial en modo `iframe=false`, `theme=wide`, con RID/idioma/origen de
+cada sede. Los campos, calendario, inventario y búsqueda siguen siendo del proveedor. El CSS
+local solo adapta presentación dentro de `.sy-booking`: tipografía/color/espaciado, controles
+56px, iconos rellenos sin el trazo que añadía el sitio y calendario completo con días más amplios.
+No se recorta un iframe ni se recrea un formulario, horario o regla comercial.
 
-Estados: `idle`, `loading`, `embedded` y `external`. `embedded` solo acredita carga de iframe;
-nunca disponibilidad ni confirmación. El enlace directo permanece disponible mientras carga y
-con el formulario visible. Ante error o12s de espera, se oculta el host y la acción principal
-continúa en OpenTable; una llegada tardía no revierte esa salida. El teléfono se reutiliza de la
-propia ficha. La navegación Atrás conserva la mejora si el navegador guarda la página en caché.
+La carga empieza al acercarse al bloque (IntersectionObserver,160px), al pulsar Reservar o al
+entrar por su ancla. Se conserva una carga por documento. El estado inicial funciona sin JS
+como enlace nativo; carga y éxito ocultan esa acción. Solo un error/espera de12s muestra una
+única acción de continuación con el destino oficial. El estado normal no contiene un segundo
+camino ni mensaje técnico. Un proveedor que insertó controles no acredita disponibilidad ni
+confirmación; el teléfono sigue disponible para dudas o problemas internos del proveedor.
 
-Se mantiene el código oficial con `newtab=false`: el proveedor conserva el modal de escritorio
-y su salida móvil a otra pestaña. La única corrección del modal restaura el foco tras su cierre
-nativo. No hay cancelación personalizada, mensajes privados ni parches de scroll del proveedor.
-Las reservas no dependen del consentimiento de analítica. `reservation_click` sigue midiendo
-intención sobre enlaces reales; no se añadió transporte ni evento de confirmación ficticio.
+La detección de contenido exige formulario, selector y submit nativos. Se corrige únicamente
+su landmark anidado a grupo etiquetado por el título de la sección. Tras el cierre nativo del
+modal se devuelve foco al submit, sin cancelación propia ni mensajes privados. Calendario y
+modal conservan los handlers de OpenTable; la navegación Atrás no inutiliza el controlador.
 
-QA6-nov:32vistas iniciales (8fichas ×320/390/768/1440px), sin overflow ni script del proveedor
-antes de intención; las8cargas reales del iframe y la activación con teclado pasan. Se comprobaron
-disponibilidad real sin seleccionar mesa, cierre nativo/retorno del foco y alternativa externa.
-Un servidor de ensayo bloqueó el proveedor con CSP y otro bloqueó JS: ambos conservaron la
-reserva nativa; el segundo abrió San Antonio y devolvió horarios reales. La suite completa pasa.
+Los enlaces de hero/pie mantienen URLs oficiales reales; clic ordinario mejora el salto y los
+modificadores conservan navegación nativa. La búsqueda del formulario registra solo intención
+`reservation_click` mediante el sanitizador y adaptadores ya existentes. No envía valores del
+formulario, no agrega transporte y nunca registra confirmación por mostrar campos/horarios.
+Los eventos de entrada y búsqueda son acciones, no personas ni reservas únicas.
 
-No certificar un modal de escritorio redimensionado como recorrido móvil: el proveedor puede
-abrir otra pestaña. En esa condición artificial se observó solapamiento de su acceso/cierre;
-no se parchea desde SY ni se atribuye a un fallo de idioma o disponibilidad.
+`opentable-review.mjs` construye8fichas ES/EN aisladas. CSS/JS/config siguen fuera del manifiesto
+productivo:354archivos normales,356en revisión. La integración futura debe aplicar el mismo
+refinamiento a build y scheduler con aprobación independiente; ninguna aprobación UI anterior
+se reutiliza. No hay publicación ni cambios guardados en cuentas del proveedor.
 
-El CSS, JS y configuración del piloto están excluidos del manifiesto productivo. El build normal
-conserva354archivos; la candidata356. No se publicó el widget ni se enviaron datos personales,
-seleccionaron horarios para retener mesa, completaron reservas o pagos. Confirmación/pago,
-dispositivos físicos y reglas operativas por sede requieren validación coordinada.
-Los datos privados, restricciones observadas de grupos y próximos pasos viven en el plan del
-cliente, fuera del repo público. No introducir reservas, importes, identidades o credenciales aquí.
+QA6-nov:40vistas reales (8fichas×320/390/768/1024/1440) sin overflow, controles56px y una sola
+acción de búsqueda;8formularios cargados. Calendario320px completo, Escape y foco, búsqueda
+real sin seleccionar horario, cierre del modal y retorno al submit comprobados. CSP contra el
+proveedor y ausencia de JS conservan un único enlace oficial. Pruebas de configuración,
+isolación, recuperación, caché y medición saneada pasan. Dispositivos físicos, confirmación,
+pagos y políticas por sede requieren validación coordinada; no se crearon reservas.
+
+El modo sin iframe permite integrar la presentación, pero depende del markup público del
+widget. Mantener las reglas CSS acotadas y comprobar los8formularios al actualizar el proveedor;
+si cambia la estructura esperada, conservar la salida nativa. Las referencias, evidencia y
+plan de release/rollback viven en el documento privado del cliente, sin PII en este repositorio.
 
 ### UI general y Catering Texas · publicación autorizada5-nov
 

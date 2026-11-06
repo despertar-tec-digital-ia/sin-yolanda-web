@@ -1,5 +1,24 @@
 # Forma de trabajar y publicar
 
+### UI general y Catering Texas · publicación autorizada5-nov
+
+Luis aprueba la revisión local completa y confirma «Sí, publicar los ajustes». La misma
+composición se integra en `projectPublicSite` después de agenda/Instagram, compartida por el
+build y el scheduler. `approved-ui.json` fija autorización, hashes de tres activos y funciones
+de refinamiento; los datos comerciales, selección de medios y hero conservan su fuente.
+Las fuentes importadas no se reescriben: la proyección aplica los cambios exactos revisados.
+Los dos scripts del home se sirven con una nueva versión de URL para evitar copias en caché.
+
+Los builders locales anteriores siguen como comparación histórica, usando explícitamente
+`presentation: baseline` solo con audience review. Producción siempre aplica la presentación
+aprobada. Una prueba compara todas las páginas/scripts proyectados con la candidata y solo
+normaliza las versiones de caché y el digest derivado. La nueva allowlist tiene un delta reversible
+que conserva todas las guardas históricas. Futuras actualizaciones de agenda conservan la UI.
+
+Validación previa:432tests pasan,354archivos; revisión previa de25páginas/50vistas y4cartas tablet.
+Publicación se realiza por PR→CI→release:approved→recibo; estado y evidencia vigentes en el plan
+operativo del cliente. El widget OpenTable y sus métricas son un frente separado de este release.
+
 ### Revisión sutil de todo el sitio · candidata local5-nov
 
 Luis aclara que la revisión abarca todo el sitio, no solo Catering o The Woodlands. Se revisan

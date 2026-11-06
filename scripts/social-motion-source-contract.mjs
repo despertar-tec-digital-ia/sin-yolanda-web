@@ -1,8 +1,10 @@
 import {readFileSync} from 'node:fs';
 import assert from 'node:assert/strict';
+import {restoreUiSource} from './ui-source-contract.mjs';
 
 export const socialMotionSource = JSON.parse(readFileSync(new URL('./social-motion-source-patches.json',import.meta.url)));
 export function restoreSocialMotionSource(file,source) {
+  source=restoreUiSource(file,source);
   if (file !== socialMotionSource.file || !source.includes('20261104-instagram-minimal')) return source;
   for (const patch of [...socialMotionSource.patches].reverse()) {
     assert.equal(source.split(patch.after).length-1,1,'Social motion manifest patch changed or became ambiguous');

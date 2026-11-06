@@ -6,13 +6,8 @@ import {fileURLToPath} from 'node:url';
 import {createHash} from 'node:crypto';
 import {buildUsaUiReview} from './usa-ui-review.mjs';
 
-export const siteUiAsset = 'assets/css/site-ui-review.css';
-export const cateringCopy = {
-  es: ['Comida mexicana, un brindis y una canción para compartir. Catering para tu celebración en Houston.',
-    'Comida mexicana, un brindis y una canción para compartir. Catering para tu celebración. Consulta disponibilidad según tu ciudad.'],
-  en: ['Mexican food, a toast and a song to share. Catering for your celebration in Houston.',
-    'Mexican food, a toast and a song to share. Catering for your celebration. Ask about availability in your city.']
-};
+import {siteUiAsset,cateringCopy} from './editorial/ui-refinements.mjs';
+export {siteUiAsset,cateringCopy};
 const hash = data => createHash('sha256').update(data).digest('hex');
 
 export function buildSiteUiReview({root,out,now} = {}) {
@@ -39,7 +34,7 @@ export function buildSiteUiReview({root,out,now} = {}) {
   patch('assets/js/i18n.js',...cateringCopy.es);
   patch('assets/js/i18n.js',...cateringCopy.en);
   copyFileSync(resolve(root,siteUiAsset),resolve(publicRoot,siteUiAsset));
-  files.push(siteUiAsset);
+  if (!files.includes(siteUiAsset)) files.push(siteUiAsset);
   report.hashes = Object.fromEntries(files.map(file=>[file,hash(readFileSync(resolve(publicRoot,file)))]));
   report.fileCount = files.length;
   report.publicDigest = hash(JSON.stringify(report.hashes));

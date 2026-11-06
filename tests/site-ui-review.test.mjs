@@ -4,6 +4,7 @@ import {readFileSync,rmSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {createHash} from 'node:crypto';
 import {buildSiteUiReview,siteUiAsset,cateringCopy} from '../scripts/site-ui-review.mjs';
+import {loadApprovedUi} from '../scripts/editorial/ui-approved.mjs';
 
 test('full-site candidate preserves every byte outside declared patches, including hero, artwork and legal copy',t=>{
   const root=resolve(import.meta.dirname,'..'),out=resolve(root,'.artifacts/site-ui-test-'+process.pid);
@@ -31,5 +32,5 @@ test('full-site candidate preserves every byte outside declared patches, includi
   assert.deepEqual(changes['assets/js/site.js'],[{before:cateringCopy.es[0],after:cateringCopy.es[1]}]);
   assert.equal(changes['assets/js/i18n.js'].length,2);
   const manifest=JSON.parse(readFileSync(resolve(root,'scripts/public-manifest.json')));
-  assert.ok(!manifest.assets.includes(siteUiAsset),'Local review cannot silently enter production');
+  assert.ok(manifest.assets.includes(siteUiAsset)&&loadApprovedUi(root).approval.assets[siteUiAsset], 'Publication requires explicit asset approval');
 });

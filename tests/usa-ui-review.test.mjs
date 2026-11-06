@@ -5,6 +5,7 @@ import {resolve} from 'node:path';
 import {createHash} from 'node:crypto';
 import {createHeaderState} from '../assets/js/branch-ui-review.js';
 import {buildUsaUiReview,texasBranches,uiAssets,refineTexasPage} from '../scripts/usa-ui-review.mjs';
+import {loadApprovedUi} from '../scripts/editorial/ui-approved.mjs';
 
 const root=resolve(import.meta.dirname,'..'),hash=b=>createHash('sha256').update(b).digest('hex');
 
@@ -62,7 +63,8 @@ test('review changes only Texas ES/EN and Catering, preserves all other source b
    assert.ok(!html.includes('"areaServed"'),'Do not invent delivery coverage or radius');
  }
  const manifest=JSON.parse(readFileSync(resolve(root,'scripts/public-manifest.json')));
- for(const asset of uiAssets)assert.ok(!manifest.assets.includes(asset),'Review must not silently enter production');
+ const approved=loadApprovedUi(root);
+ for(const asset of uiAssets)assert.ok(manifest.assets.includes(asset)&&approved.approval.assets[asset], 'Published assets require explicit approval');
 });
 
 test('overlay refuses a non-Texas branch and cannot silently apply twice',()=>{

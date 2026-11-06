@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "authorizer": "Luis",
+  "approvedAt": "2026-11-06T01:04:55.334464+00:00",
+  "authorization": "Sí, publicar los ajustes de navegación aprobados en la revisión local completa.",
+  "reviewedCommit": "25bf45d5d880e21e06e9af78b93513ce8978e48f",
+  "scriptVersion": "20261105-ui-refinement",
+  "assets": {
+    "assets/css/branch-ui-review.css": "b370430daeabeaa5522c4d05af74cf474ed5aa33bf465b69df3c9c08bab3314f",
+    "assets/js/branch-ui-review.js": "85934d2132bd67bc4eeae86a9507458183abc19ddbe07db5c55cf06c5c830cbe",
+    "assets/css/site-ui-review.css": "f926b68a6f3009a030c60c413b7f14cbc92e5046138d95e6535435d21ce23f84"
+  },
+  "refinementsDigest": "3f2cdf6d903a34b476ecb99cc5532f911753fe9862def1e9290059392f6e2717"
+}

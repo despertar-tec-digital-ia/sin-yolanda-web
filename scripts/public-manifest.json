@@ -380,7 +380,10 @@
     "assets/social-feed-houston/De2S1RsmNNq-photo-4-400.webp",
     "assets/social-feed-houston/De2S1RsmNNq-photo-4-800.webp",
     "assets/social-feed-houston/De2S1RsmNNq-photo-2-red-hat-400.webp",
-    "assets/social-feed-houston/De2S1RsmNNq-photo-2-red-hat-800.webp"
+    "assets/social-feed-houston/De2S1RsmNNq-photo-2-red-hat-800.webp",
+    "assets/css/branch-ui-review.css",
+    "assets/js/branch-ui-review.js",
+    "assets/css/site-ui-review.css"
   ],
   "assetVersion": "20261008-migration-measurement",
   "reviewPages": []

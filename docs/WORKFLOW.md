@@ -1,5 +1,22 @@
 # Forma de trabajar y publicar
 
+### Movimiento Houston y prueba compartible · 6-nov
+
+Luis autoriza animaciones simples en esta ficha de prueba y publicar un enlace para Karina;
+no extenderlas a otras sedes ni desplegar al dominio oficial. `branch-motion-review.css/js`
+se cargan únicamente en Houston ES/EN mediante el builder de revisión. El navbar conserva su
+lógica de foco/scroll y suaviza sus transiciones; títulos/contenido entran una vez con6px/280ms,
+formulario con fade180ms y calendario con4px/160ms. Botones responden al pulsar sin bloquear
+entrada. No se añade un menú que no existe ni se toca el hero. Movimiento reducido conserva
+contenido estático, controles y navegación inmediata; sin JS todo permanece visible.
+
+`build-booking-share.mjs` exige fuente limpia, mantiene solo Houston ES/EN/404 como HTML,
+quita analítica y envía los demás enlaces al sitio oficial. Nota visible: prueba de diseño,
+disponibilidad real, no confirmar reservas al revisar. Compose/Nginx acotados en
+`deploy/booking-review/`: servicio nuevo aislado, imagen por digest, mount readonly, noindex,
+no-store, sin puertos host/secretos; retiro persistente13-nov. PR de revisión sin merge/main.
+Recepción/URL/QA y rollback pertenecen al runbook privado; no confundir preview con producción.
+
 ### Reservas OpenTable · revisión UX local6-nov
 
 Luis rechaza la candidata anterior por las dos rutas de reserva y pide una composición más

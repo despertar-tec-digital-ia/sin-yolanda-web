@@ -120,7 +120,7 @@ export function initializeBooking(doc = document) {
     event.preventDefault();
     controller.start();
     title.focus({preventScroll: true});
-    section.scrollIntoView({block: 'start', behavior: 'instant'});
+    section.scrollIntoView({block: 'start', behavior: doc.documentElement.hasAttribute?.('data-sy-motion-review') ? 'auto' : 'instant'});
   }
   for (const entry of doc.querySelectorAll('[data-booking-open]')) {
     entry.addEventListener('click', enter);

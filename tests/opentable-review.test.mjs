@@ -26,6 +26,7 @@ test('pilot changes only eight branch pages and adds no captures, guest data or 
     const html=data.toString(),slug=file.startsWith('en/')?file.split('/')[1]:file.replace('.html','');
     assert.equal((html.match(/data-opentable-pilot=/g)||[]).length,1);
     assert.equal((html.match(/data-booking-open/g)||[]).length,3,'Hero, local action and footer all retain real links');
+    assert.equal(html.includes('<body data-sy-motion-review '),slug==='houston','Motion trial remains limited to Houston');
     const destinations=[...html.matchAll(/<a[^>]+(?:data-booking-open|data-booking-direct)[^>]+href="([^"]+)"/g)].map(m=>new URL(m[1].replaceAll('&amp;','&')));
     assert.equal(destinations.length,3);
     for(const url of destinations){assert.equal(url.origin,'https://www.opentable.com');assert.equal(url.searchParams.get('restref'),String(report.bookingPilot.rids[report.bookingPilot.changedPages.indexOf(file)>>1]));}
@@ -46,7 +47,9 @@ test('pilot changes only eight branch pages and adds no captures, guest data or 
   const manifest=JSON.parse(readFileSync(resolve(root,'scripts/public-manifest.json')));
   assert.ok(!manifest.assets.includes('assets/css/opentable-review.css'));
   assert.ok(!manifest.assets.includes('assets/js/opentable-review.js'));
-  for (const file of report.bookingPilot.changedPages) assert.ok(readFileSync(resolve(out,'public',file),'utf8').includes('src="/assets/js/opentable-review.js?v=20261106-composition"'));
+  assert.ok(!manifest.assets.includes('assets/css/branch-motion-review.css'));
+  assert.ok(!manifest.assets.includes('assets/js/branch-motion-review.js'));
+  for (const file of report.bookingPilot.changedPages) assert.ok(readFileSync(resolve(out,'public',file),'utf8').includes('src="/assets/js/opentable-review.js?v=20261106-motion"'));
 });
 
 // Reproduce the provider's close behavior: its iframe disappears and focus falls to body.

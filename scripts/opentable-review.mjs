@@ -8,6 +8,7 @@ import {packagePublic} from './package-public.mjs';
 import {texasBranches} from './editorial/ui-refinements.mjs';
 const stylesheet='assets/css/opentable-review.css';
 const controller='assets/js/opentable-review.js';
+const motionAssets=['assets/css/branch-motion-review.css','assets/js/branch-motion-review.js'];
 const escape=s=>s.replaceAll('&','&amp;').replaceAll('"','&quot;').replaceAll('<','&lt;');
 const hash=s=>createHash('sha256').update(s).digest('hex');
 export function validateWidget(config){
@@ -45,7 +46,8 @@ export function refineBooking(html,branch,language){
     links++;return tag.replace('<a ','<a data-booking-open ').replace(/href="[^"]+"/,`href="${escape(fallback.href)}"`);
   });
   assert.equal(links,2,'Expected the two branch reservation links');
-  return html.replace(marker,section+marker).replace('</head>',`<link rel="stylesheet" href="/${stylesheet}?v=20261106-composition"><script type="module" src="/${controller}?v=20261106-composition"></script></head>`);
+  if(branch.slug==='houston') html=html.replace('<html ','<html data-sy-motion-review ').replace('<body ','<body data-sy-motion-review ').replace('</head>',`<link rel="stylesheet" href="/${motionAssets[0]}?v=20261106-motion"><script type="module" src="/${motionAssets[1]}?v=20261106-motion"></script></head>`);
+  return html.replace(marker,section+marker).replace('</head>',`<link rel="stylesheet" href="/${stylesheet}?v=20261106-motion"><script type="module" src="/${controller}?v=20261106-motion"></script></head>`);
 }
 export function buildOpenTableReview({root,out,now}={}){
   root=resolve(root);out=resolve(out);assert.ok(out.startsWith(resolve(root,'.artifacts')+'/'));assert.ok(!existsSync(out));
@@ -57,8 +59,8 @@ export function buildOpenTableReview({root,out,now}={}){
     const file=language==='es'?branch.slug+'.html':'en/'+branch.slug+'/index.html';
     writeFileSync(resolve(publicRoot,file),refineBooking(readFileSync(resolve(publicRoot,file),'utf8'),branch,language));changed.push(file);
   }
-  for (const file of [stylesheet,controller]) copyFileSync(resolve(root,file),resolve(publicRoot,file));
-  const files=[...Object.keys(baseline.hashes),stylesheet,controller];
+  for (const file of [stylesheet,controller,...motionAssets]) copyFileSync(resolve(root,file),resolve(publicRoot,file));
+  const files=[...Object.keys(baseline.hashes),stylesheet,controller,...motionAssets];
   const hashes=Object.fromEntries(files.map(f=>[f,hash(readFileSync(resolve(publicRoot,f)))]));
   const report={...baseline,fileCount:files.length,hashes,publicDigest:hash(JSON.stringify(hashes)),reviewOnly:true,productionIntegrated:false,bookingPilot:{changedPages:changed,rids:config.branches.map(b=>b.rid)}};
   writeFileSync(resolve(out,'release.json'),JSON.stringify(report,null,2)+'\n');return report;

@@ -1,0 +1,25 @@
+/* Houston motion trial only. No hidden-until-JS content or provider interaction delays. */
+@keyframes sy-detail-enter{from{opacity:.5;transform:translateY(6px)}to{opacity:1;transform:none}}
+@keyframes sy-form-enter{from{opacity:.5}to{opacity:1}}
+@keyframes sy-calendar-enter{from{opacity:.6;transform:translateY(4px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:no-preference){
+ html[data-sy-motion-review]{scroll-behavior:smooth}
+ body[data-sy-motion-review] [data-motion-revealed]{animation:sy-detail-enter 280ms cubic-bezier(.22,1,.36,1)}
+ body.branch-landing[data-usa-ui-review][data-sy-motion-review] .hh-header[data-smart-header]{transition:transform 300ms cubic-bezier(.22,1,.36,1),padding 200ms ease,border-color 180ms ease}
+ body.branch-landing[data-usa-ui-review][data-sy-motion-review] .hh-header::before,body.branch-landing[data-usa-ui-review][data-sy-motion-review] .hh-header::after{transition:opacity 220ms ease}
+ body[data-sy-motion-review] .hh-header nav a{position:relative}
+ body[data-sy-motion-review] .hh-header nav a:not(.hh-language)::after{content:"";position:absolute;left:0;right:0;bottom:5px;height:1px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform 160ms ease}
+ body[data-sy-motion-review] .hh-header nav a:is(:hover,:focus-visible)::after{transform:scaleX(1)}
+ body[data-sy-motion-review] :is(.hh-reserve,.hh-welcome-menu,.bct-action,.sy-booking-start){transition:background-color 160ms ease,color 160ms ease,transform 100ms ease}
+ body[data-sy-motion-review] :is(.hh-reserve,.hh-welcome-menu,.bct-action,.sy-booking-start):active{transform:translateY(1px)}
+ body[data-sy-motion-review] .sy-booking[data-booking-state="embedded"] [data-booking-host]{animation:sy-form-enter 180ms ease-out}
+ body[data-sy-motion-review] .sy-booking #ot-reservation-widget .ot-dtp-picker-button{transition:background-color 160ms ease,transform 100ms ease}
+ body[data-sy-motion-review] .sy-booking #ot-reservation-widget .ot-dtp-picker-button:active{background:#510e14!important;transform:translateY(1px)}
+ body[data-sy-motion-review] .sy-booking #ot-reservation-widget .ot-select-label{transition:border-color 150ms ease}
+ body[data-sy-motion-review] .sy-booking #ot-reservation-widget .picker--opened .picker__box{transform-origin:top center;animation:sy-calendar-enter 160ms ease-out}
+ body[data-sy-motion-review] .sy-booking #ot-reservation-widget :is(.picker__nav,.picker__day){transition:background-color 100ms ease,border-color 100ms ease,color 100ms ease}
+}
+@media(prefers-reduced-motion:reduce){
+ html[data-sy-motion-review]{scroll-behavior:auto}
+ body[data-sy-motion-review] [data-motion-revealed],body[data-sy-motion-review] .sy-booking [data-booking-host],body[data-sy-motion-review] .sy-booking .picker__box{animation:none!important}
+}

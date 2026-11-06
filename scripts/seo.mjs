@@ -43,6 +43,8 @@ export function renderShell(html, now = new Date(), sourceRoot = root) {
 }
 
 export function restoreSeoBaseline(file, html) {
+  // Source contracts store LF fragments; normalize the checkout before matching them.
+  html = html.replaceAll('\r\n', '\n');
   html = restoreSanDiegoOpening(file, html);
   html = restoreGdlFocus(file, html);
   html = restoreUnifiedHours(file, html);
@@ -50,7 +52,6 @@ export function restoreSeoBaseline(file, html) {
   html = restoreHomePhotos(file,html);
   html = restoreMeasurementSource(file,html);
   html = restoreAgendaSource(file,html);
-  html = html.replaceAll('\r\n', '\n');
   const baseline = JSON.parse(read('scripts/seo-baseline.json'))[file];
   if (!baseline) return html;
   if (baseline.source !== undefined) return baseline.source;
@@ -99,7 +100,7 @@ export function applySeo() {
     html = html.replace(/<meta (?:property="og:[^"]+"|name="twitter:[^"]+")[^>]*>/g, '');
     const oldSchemas = schemas(html);
     const restaurant = oldSchemas.find(item => item['@type'] === 'Restaurant');
-    const image = (Array.isArray(restaurant?.image) ? restaurant.image[0] : restaurant?.image) ?? (file.includes('catering') ? origin + '/images/catering-review/table-scene-desktop-1280.webp' : origin + '/assets/media/hero-night.webp');
+    const image = (Array.isArray(restaurant?.image) ? restaurant.image[0] : restaurant?.image) ?? (file === 'ciudad-juarez.html' ? origin + '/assets/media/venues/future/future-crowd-960.webp' : file.includes('catering') ? origin + '/images/catering-review/table-scene-desktop-1280.webp' : origin + '/assets/media/hero-night.webp');
     const page = { '@type': file === 'locations.html' ? 'CollectionPage' : 'WebPage', '@id': url + '#webpage', url, name: title, description, inLanguage: lang, isPartOf: { '@id': origin + '/#website' } };
     const graph = [page];
     if (file === 'index.html') graph.push({ '@type': 'WebSite', '@id': origin + '/#website', url: origin + '/', name: 'Sin Yolanda', alternateName: 'Sin Yolanda Cantina', inLanguage: ['es', 'en'], publisher: { '@id': origin + '/#organization' } }, { '@type': 'Organization', '@id': origin + '/#organization', name: 'Sin Yolanda', url: origin + '/', logo: origin + '/assets/media/brand-logo-gdl.png' });

@@ -92,6 +92,7 @@
 
   function venueShowcase() {
     const branches = data.branches.filter((branch) => ["active", "coming-soon"].includes(branch.status));
+    const nextOpening = branches.find((branch) => branch.status === "coming-soon");
     return `
         <section class="section venue-showcase" id="ubicaciones" tabindex="-1" aria-labelledby="venue-heading">
           <div class="section-heading"><div><h2 id="venue-heading">Cuál te queda</h2><p class="venue-geography">México y Estados Unidos</p></div></div>
@@ -108,15 +109,19 @@
               const name = branch.shortName;
               const hasOpeningDate = branch.status === "coming-soon" && branch.openingDate === "2026-10-09";
               const opening = hasOpeningDate ? branch.statusLabel : "Próximamente";
+              const isNextOpening = branch.id === nextOpening?.id;
+              const venueLocation = branch.id === "ciudad-juarez"
+                ? (branch.venueCity || branch.city)
+                : (branch.country === "México" ? "Jalisco, México" : branch.city);
               return `<li class="venue-item${index === 0 ? " is-open" : ""}" data-venue-item data-region="${branch.region}" data-status="${branch.status}">
               <${tag} class="venue-card${index === 0 ? " is-open" : ""}${branch.status === "coming-soon" ? " venue-card--soon" : ""}${branch.venuePhoto ? "" : " venue-card--announcement"}"${hasPage ? ` href="${branch.page}"` : ""} data-venue data-branch-id="${branch.id}">
                 <span class="venue-frame" aria-hidden="true">${branch.venuePhoto ? `<img src="${branch.venuePhoto}"${branch.venuePhotoSet ? ` srcset="${branch.venuePhotoSet}" sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 60vw"` : ""} alt="" width="${branch.venuePhotoWidth || 1400}" height="${branch.venuePhotoHeight || 1000}" loading="lazy" decoding="async" style="object-position:${branch.venuePosition || "50% 50%"}" />` : `<span class="venue-announcement">Sin Yolanda<span>Próximamente</span></span>`}<span class="venue-shade"></span></span>
-                ${branch.id === "san-diego" && branch.status === "coming-soon" ? `<span class="venue-coming-soon" data-i18n-es="Muy pronto" data-i18n-en="Coming soon">Muy pronto</span>` : ""}
-                <span class="venue-location" aria-hidden="true">${branch.country === "México" ? "Jalisco, México" : branch.city}</span>
+                ${isNextOpening ? `<span class="venue-coming-soon" data-i18n-es="Muy pronto" data-i18n-en="Coming soon">Muy pronto</span>` : ""}
+                <span class="venue-location" aria-hidden="true">${venueLocation}</span>
                 <span class="venue-collapsed" aria-hidden="true">${name}</span>
                 ${hasOpeningDate ? `<span class="venue-opening-date" aria-hidden="true"><span>Apertura</span>9 OCT</span>` : ""}
                 <span class="venue-label">
-                  ${branch.status === "coming-soon" && branch.id !== "san-diego" ? `<span class="venue-badge${hasOpeningDate ? " venue-badge--opening" : ""}">${opening}</span>` : ""}
+                  ${branch.status === "coming-soon" && !isNextOpening ? `<span class="venue-badge${hasOpeningDate ? " venue-badge--opening" : ""}">${opening}</span>` : ""}
                   <strong>${name}</strong>
                   <span class="venue-city">${branch.venueCity || branch.city}</span>
                   ${hasPage ? `<span class="venue-invitation" aria-hidden="true">Ver sucursal <svg viewBox="0 0 20 20" fill="none"><path d="M4 10h12m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.5"></path></svg></span>` : ""}
@@ -130,28 +135,29 @@
   }
 
   function openingAnnouncement() {
-    const upcoming = data.branches.find((item) => item.id === "san-diego");
-    if (upcoming?.status === "coming-soon" && upcoming.address && upcoming.mapsUrl?.startsWith("https://www.google.com/maps/")) {
-      return `<aside class="opening-announcement opening-announcement--san-diego" aria-labelledby="opening-san-diego">
+    const upcoming = data.branches.find((item) => item.status === "coming-soon" && item.page !== "#");
+    if (upcoming) {
+      const name = escapeHtml(upcoming.shortName);
+      const laterOpenings = data.branches
+        .slice(data.branches.indexOf(upcoming) + 1)
+        .filter((item) => item.status === "coming-soon")
+        .map((item) => escapeHtml(item.shortName));
+      const following = laterOpenings.length ? " Después: " + laterOpenings.join(" y ") + "." : "";
+      const followingEn = laterOpenings.length ? " Then: " + laterOpenings.join(" and ") + "." : "";
+      const message = "Sin Yolanda llega muy pronto a " + name + "." + following;
+      const messageEn = "Sin Yolanda is coming to " + name + " soon." + followingEn;
+      return `<aside class="opening-announcement opening-announcement--upcoming" aria-labelledby="opening-${escapeHtml(upcoming.id)}">
         <div class="opening-announcement-inner">
-          <h2 class="opening-announcement-title" id="opening-san-diego"><span>San Diego</span><span class="opening-announcement-status" data-i18n-es="Próximamente" data-i18n-en="Coming soon">Próximamente</span></h2>
-          <div class="opening-announcement-visit"><p class="opening-announcement-address">${escapeHtml(upcoming.address)}</p>
-            <a class="opening-announcement-link" href="${escapeHtml(upcoming.mapsUrl)}" target="_blank" rel="noopener noreferrer"><span data-i18n-es="Ver ubicación" data-i18n-en="View location">Ver ubicación</span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h12m-5-5 5 5-5 5"/></svg></a>
+          <div class="opening-announcement-copy">
+            <p class="opening-announcement-kicker" data-i18n-es="Próxima apertura" data-i18n-en="Coming soon">Próxima apertura</p>
+            <h2 class="opening-announcement-title" id="opening-${escapeHtml(upcoming.id)}">${name}</h2>
+            <p class="opening-announcement-message" data-i18n-es="${message}" data-i18n-en="${messageEn}">${message}</p>
           </div>
+          <a class="opening-announcement-link" href="${escapeHtml(upcoming.page)}"><span data-i18n-es="Conoce la próxima apertura" data-i18n-en="Meet the next location">Conoce la próxima apertura</span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h12m-5-5 5 5-5 5"/></svg></a>
         </div>
       </aside>`;
     }
-    const branch = data.branches.find((item) => item.id === "el-paso");
-    if (!branch || branch.status !== "coming-soon" || branch.openingDate !== "2026-10-09") return "";
-    return `<aside class="opening-announcement" aria-label="${escapeHtml(branch.statusLabel)}">
-      <div class="opening-announcement-inner">
-        <p class="opening-announcement-details"><span>${escapeHtml(branch.statusLabel)}</span>
-          <strong><a href="${branch.page}">El Paso</a></strong>
-          <time datetime="${branch.openingDate}">9 de octubre</time></p>
-        <a class="opening-announcement-link" href="${branch.page}">Conoce la sucursal
-          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h12m-5-5 5 5-5 5"/></svg></a>
-      </div>
-    </aside>`;
+    return "";
   }
 
   function homePage() {
@@ -423,8 +429,8 @@
     return `<div class="quote-card"><span>${"★".repeat(Math.round(branch.rating))}${"☆".repeat(5 - Math.round(branch.rating))}</span><blockquote>Calificación ${branch.rating}★ con ${branch.reviewsTotal} reseñas en Google.</blockquote><p><a href="${branch.gbpUrl}" target="_blank" rel="noopener">Ver reseñas en Google Maps</a></p></div>`;
   }
 
-  function branchPage() {
-    const branch = branchById(branchId) || data.branches[0];
+  function branchPage(branchOverride) {
+    const branch = branchById(branchOverride || branchId) || data.branches[0];
     return `
       ${publicHeader()}
       <main>
@@ -487,7 +493,7 @@
   }
 
   function modalMarkup() {
-    return `<div class="modal" id="demo-modal" aria-hidden="true"><div class="modal-backdrop" data-close-modal></div><section role="dialog" aria-modal="true" aria-labelledby="modal-title"><button class="modal-close" type="button" data-close-modal aria-label="Cerrar">×</button><p class="eyebrow">Próxima apertura</p><h2 id="modal-title">Recibe novedades.</h2><p>Déjanos tu correo y te avisamos cuando abramos en El Paso. Mientras tanto, sigue @sinyolandaelpaso en Instagram.</p><a class="button button-primary" href="https://www.instagram.com/sinyolandaelpaso/" target="_blank" rel="noopener">Seguir @sinyolandaelpaso</a><small>El boletín por correo se activará con la conexión del sistema.</small></section></div>`;
+    return `<div class="modal" id="demo-modal" aria-hidden="true"><div class="modal-backdrop" data-close-modal></div><section role="dialog" aria-modal="true" aria-labelledby="modal-title"><button class="modal-close" type="button" data-close-modal aria-label="Cerrar">×</button><p class="eyebrow">Próxima apertura</p><h2 id="modal-title">Ciudad Juárez</h2><p data-i18n-es="Muy pronto, Sin Yolanda llegará a Ciudad Juárez. La fecha, ubicación y reservaciones se anunciarán por canales oficiales." data-i18n-en="Sin Yolanda is coming to Ciudad Juárez. The date, location, and reservations will be announced through official channels.">Muy pronto, Sin Yolanda llegará a Ciudad Juárez. La fecha, ubicación y reservaciones se anunciarán por canales oficiales.</p><a class="button button-primary" href="ciudad-juarez.html" data-i18n-es="Conoce la próxima apertura" data-i18n-en="Meet the next location">Conoce la próxima apertura</a></section></div>`;
   }
 
   function toastMarkup() {
@@ -774,55 +780,9 @@
   }
 
   function elPasoPage() {
-    const ruta = [
-      ["Guadalajara", "2023 · La casa original"],
-      ["San Antonio", "2025 · El River Walk"],
-      ["Houston", "2026 · Washington Ave"],
-      ["The Woodlands", "2026 · El norte"],
-      ["El Paso", "Próxima parada · El Chuco"],
-    ];
-    return `
-      ${publicHeader()}
-      <main>
-        <section class="page-hero">
-          <img src="assets/media/celebration.webp" alt="Próxima apertura de Sin Yolanda en El Paso" />
-          <div class="hero-overlay"></div>
-          <div class="hero-copy">
-            <p class="eyebrow">El Paso, Texas</p>
-            <h1>El Chuco ya trae el plan</h1>
-            <p>La cantina va en camino y el catering ya está listo.</p>
-            <div class="hero-actions">
-              <a class="button button-primary" href="catering.html">Catering en El Paso</a>
-              <a class="button button-ghost-light" href="https://www.instagram.com/sinyolandaelpaso/" target="_blank" rel="noopener">Avísame cuando abra</a>
-            </div>
-          </div>
-        </section>
-        <section class="section">
-          <div class="section-heading"><div><p class="eyebrow">Ya operando</p><h2 class="reveal">Tu fiesta, con micrófono, desde hoy.</h2></div><p>Nuestro catering mexicano ya trabaja en El Paso y alrededores: cocina en sitio, barra completa y micrófono abierto.</p></div>
-          <div class="event-grid">
-            <article class="reveal-scale"><h3>Cocinamos en sitio</h3><p>Taquiza, cortes, mariscos y botanas montadas en tu casa o salón.</p></article>
-            <article class="reveal-scale" style="animation-delay:0.12s"><h3>Barra completa</h3><p>Tequila, mezcal y cócteles de la casa con cantineros.</p></article>
-            <article class="reveal-scale" style="animation-delay:0.24s"><h3>El micrófono</h3><p>Sonido, karaoke y un anfitrión que hace cantar a tu gente.</p></article>
-          </div>
-        </section>
-        <section class="section split-section">
-          <div>
-            <p class="eyebrow">Próximamente</p><h2 class="reveal">Estamos por abrir en El Paso.</h2>
-            <p>Sin Yolanda es una cantina de micrófono abierto nacida en Guadalajara: tequila, canciones que todos se saben y noches que se recuerdan. La próxima mesa larga será en 340 Vin Rambla Dr.</p>
-            <a class="button button-primary" href="https://www.instagram.com/sinyolandaelpaso/" target="_blank" rel="noopener">Seguir @sinyolandaelpaso</a>
-          </div>
-          <div>
-            <p class="eyebrow">La ruta</p><h2 class="reveal">De Guadalajara a El Paso.</h2>
-            <dl>${ruta.map(([ciudad, nota]) => `<div><dt>${ciudad}</dt><dd>${nota}</dd></div>`).join("")}</dl>
-          </div>
-        </section>
-        <section class="reserve-cta">
-          <div><p class="eyebrow">Nos vemos pronto, El Paso</p><h2 class="reveal">El catering no espera.</h2></div>
-          <div><a class="button button-light" href="catering.html">Catering en El Paso</a></div>
-        </section>
-      </main>
-      ${publicFooter()}
-      ${modalMarkup()}`;
+    // Native El Paso pages own their verified information. Keep this legacy renderer
+    // aligned with that active status if a historical site shell is ever rendered.
+    return branchPage("el-paso");
   }
 
   function initHeroCinema() {

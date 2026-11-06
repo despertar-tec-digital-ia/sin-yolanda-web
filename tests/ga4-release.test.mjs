@@ -33,6 +33,8 @@ test('the served consent bundle matches its current owners and the final notice 
   assert.match(notice, /Rechazar desactiva GA4; Umami continúa/);
   assert.match(notice, /datos de usuarios durante 14 meses/);
   assert.match(notice, /privacidad@sin-yolanda\.com/);
+  assert.match(notice, /Houston y El Paso; las próximas aperturas son Ciudad Juárez, San Diego y Moreno Valley\./);
+  assert.doesNotMatch(notice, /aperturas próximas en El Paso/i);
   assert.doesNotMatch(notice, /Responsable del tratamiento:|razón social responsable/);
   assert.doesNotMatch(read('assets/js/ga4-consent.js'), /sy:site-action|sy:branch-action/);
   assert.doesNotMatch(read('404.html'), /ga4-consent|googletagmanager/);

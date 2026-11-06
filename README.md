@@ -1,7 +1,7 @@
 # SIN YOLANDA® — Sitio oficial (sin-yolanda.com)
 
 Sitio estático multi-página de la cadena de cantinas con micrófono abierto
-(Guadalajara + Texas: San Antonio, The Woodlands, Houston; El Paso próximamente).
+(Guadalajara + Texas: San Antonio, The Woodlands, Houston y El Paso; próxima apertura en Ciudad Juárez).
 
 ## Cómo trabajar aquí
 

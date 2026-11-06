@@ -27,7 +27,7 @@ test('confirmed USA hours agree across visible ES/EN, JSON-LD, registry and disc
     assert.deepEqual(record.openingHoursSpecification, schemas(read(id + '.html'))[0].openingHoursSpecification);
     assert.equal(context.window.SY_DATA.branches.find(branch => branch.id === id).hoursTimezone, zone);
   }
-  for (const id of ['san-diego', 'moreno-valley']) assert.equal(context.window.SY_DATA.branches.find(branch => branch.id === id).hoursTimezone, undefined);
+  for (const id of ['ciudad-juarez', 'san-diego', 'moreno-valley']) assert.equal(context.window.SY_DATA.branches.find(branch => branch.id === id).hoursTimezone, undefined);
 });
 test('El Paso removes the extra reservation section and retains its own native channels; every menu link announces a secure new tab', () => {
   for (const file of ['el-paso.html', 'en/el-paso/index.html']) {

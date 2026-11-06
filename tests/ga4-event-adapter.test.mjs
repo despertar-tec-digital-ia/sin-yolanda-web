@@ -49,7 +49,7 @@ test('the authorized GA4-only integration covers public pages while disabled and
   const manifest = JSON.parse(read('scripts/public-manifest.json'));
   assert.doesNotMatch(JSON.stringify(manifest), /ga4-event|scripts\/analytics/);
   assert.equal(checkGa4Coverage().measuredPages, manifest.pages.length - 1);
-  assert.equal(read('assets/js/site-measurement.js'), projectedSource);
+  assert.equal(read('assets/js/site-measurement.js').replaceAll('\r\n', '\n'), projectedSource);
   const state = fixture({ enabled: false });
   assert.equal(state.adapter.configuration(), null);
   assert.equal(state.adapter.pageView(), false);

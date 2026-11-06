@@ -4,12 +4,13 @@ import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { restoreCentralSeo } from '../scripts/central-seo-source-contract.mjs';
 import { restoreOctober } from '../scripts/october-source-contract.mjs';
+import { restoreCiudadJuarezOpening } from '../scripts/ciudad-juarez-opening-source-contract.mjs';
 import { applyCentralSeoHtml, centralBranchReferences, centralSeoCopy } from '../scripts/central-seo.mjs';
 import { schemas, canonical, renderShell } from '../scripts/seo.mjs';
 
 // Check the unchanged October 25 contract after reversing only the exact,
 // separately tested October 26 authorization. Keep all historical hashes.
-const read = file => restoreOctober(file, readFileSync(new URL('../' + file, import.meta.url), 'utf8'));
+const read = file => restoreOctober(file, restoreCiudadJuarezOpening(file, readFileSync(new URL('../' + file, import.meta.url), 'utf8').replaceAll('\r\n', '\n')));
 const hash = value => createHash('sha256').update(value).digest('hex');
 const contract = JSON.parse(read('scripts/central-seo-source-patches.json'));
 const manifest = JSON.parse(read('scripts/public-manifest.json'));
@@ -31,7 +32,13 @@ test('all menus, QR, home renderer, styles, media and other out-of-scope public 
   assert.deepEqual([...Object.keys(contract.files), ...Object.keys(contract.protected)].sort(), files);
   for (const [file, expected] of Object.entries(contract.protected)) {
     const bytes = readFileSync(new URL('../' + file, import.meta.url));
-    assert.equal(hash(/\.(?:html|js|css|json|txt|xml)$/.test(file) ? restoreOctober(file, bytes.toString()) : bytes), expected, file);
+    const text = /\.(?:html|js|css|json|txt|xml|svg)$/.test(file) || /^_(?:headers|redirects)$/.test(file);
+    const source = text ? bytes.toString() : bytes;
+    const restored = (text ? [source.replaceAll('\r\n', '\n'), source] : [source])
+      .map(candidate => {
+        try { return text ? restoreOctober(file, candidate) : candidate; } catch { return undefined; }
+      });
+    assert.ok(restored.some(candidate => candidate && hash(candidate) === expected), file);
   }
   for (const file of ['assets/js/site.js', 'assets/js/public-data.js', 'styles.css', '_redirects', 'sitemap.xml']) assert.ok(contract.protected[file]);
   assert.ok(files.filter(file => /\/menu\/|\/menus\/|\.pdf$/.test(file)).every(file => contract.protected[file]));

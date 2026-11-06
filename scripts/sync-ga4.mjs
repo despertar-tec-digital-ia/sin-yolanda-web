@@ -3,15 +3,25 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { compileGa4Bundle } from './analytics/ga4-bundle.mjs';
+import { readEmbeddedContract } from './measurement-contract.mjs';
 
 export const ga4Asset = 'assets/js/ga4-consent.js';
 export const ga4Style = 'assets/css/ga4-consent.css';
 const root = fileURLToPath(new URL('../', import.meta.url));
+const normalizeRoot = value => {
+  if (typeof value !== 'string') return value;
+  try { value = decodeURIComponent(value); } catch {}
+  return value.replace(/^\/([A-Za-z]:[\\/])/, '$1');
+};
 
 export function checkGa4Coverage(sourceRoot = root) {
-  const read = path => readFileSync(resolve(sourceRoot, path), 'utf8');
+  const checkedRoot = normalizeRoot(sourceRoot);
+  const read = path => readFileSync(resolve(checkedRoot, path), 'utf8');
   const manifest = JSON.parse(read('scripts/public-manifest.json'));
-  assert.equal(read(ga4Asset), compileGa4Bundle(sourceRoot), 'Regenerate the GA4 bundle after changing its owners.');
+  // GA4 must exactly mirror the published measurement owner. The independent
+  // compiler remains responsible for validating approved editorial data.
+  const measurementContract = readEmbeddedContract(read('assets/js/site-measurement.js'));
+  assert.equal(read(ga4Asset), compileGa4Bundle(checkedRoot, {}, measurementContract), 'Regenerate the GA4 bundle after changing its owners.');
   for (const asset of [ga4Asset, ga4Style]) assert.ok(manifest.assets.includes(asset));
   let measuredPages = 0;
   for (const page of manifest.pages) {

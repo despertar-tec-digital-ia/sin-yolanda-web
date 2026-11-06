@@ -8,6 +8,7 @@ import {buildSiteUiReview} from '../scripts/site-ui-review.mjs';
 import {projectPublicSite} from '../scripts/editorial/public-site.mjs';
 import {loadApprovedUi} from '../scripts/editorial/ui-approved.mjs';
 import {uiSource,restoreUiSource} from '../scripts/ui-source-contract.mjs';
+import {restoreCiudadJuarezOpening} from '../scripts/ciudad-juarez-opening-source-contract.mjs';
 import {packagePublic} from '../scripts/package-public.mjs';
 
 const root=resolve(import.meta.dirname,'..'),now='2026-11-05T12:00:00Z';
@@ -40,7 +41,7 @@ test('UI approval binds exact assets and refuses a changed stylesheet',t=>{
   assert.throws(()=>loadApprovedUi(fixture),/UI asset differs/);
 });
 test('UI source allowance is exact, reversible and cannot hide unrelated manifest changes',()=>{
-  const source=readFileSync(resolve(root,uiSource.file),'utf8');
+  const source=restoreCiudadJuarezOpening(uiSource.file,readFileSync(resolve(root,uiSource.file),'utf8'));
   assert.equal(hash(source),uiSource.afterSha256);
   assert.equal(hash(restoreUiSource(uiSource.file,source)),uiSource.beforeSha256);
   assert.notEqual(hash(restoreUiSource(uiSource.file,source+'unexpected edit')),uiSource.beforeSha256);

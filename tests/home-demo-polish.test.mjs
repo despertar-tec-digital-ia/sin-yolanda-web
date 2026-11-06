@@ -13,7 +13,7 @@ test('group footer gives each open location a real link and separates unlinked f
  assert.match(html,/width="1164" height="312"/);
  assert.equal((html.match(/href="el-paso.html"/g)||[]).length,1);
  const next=html.slice(html.indexOf('class="group-footer-upcoming"'));
- assert.match(next,/Moreno Valley/);assert.match(next,/San Diego/);assert.doesNotMatch(next,/El Paso|href="#"/);
+ assert.match(next,/Ciudad Juárez/);assert.match(next,/Moreno Valley/);assert.match(next,/San Diego/);assert.doesNotMatch(next,/El Paso|href="#"/);
  for(const branch of data.branches.filter(b=>b.status==='active')) assert.ok(html.includes(`href="${branch.page}"`));
  assert.doesNotMatch(html,/OpenTable en Texas|maricarmen|tel:/);
  for(const branch of data.branches.filter(b=>b.status==='active')) {
@@ -24,7 +24,7 @@ test('group footer gives each open location a real link and separates unlinked f
  assert.match(html,/aviso-de-privacidad.html/);
 });
 
-test('future locations have two independent responsive photographs, still illustrative and unlinked',()=>{
+test('later future locations remain illustrative and unlinked while Ciudad Juárez has its own landing',()=>{
  const future=data.branches.filter(b=>['moreno-valley','san-diego'].includes(b.id));
  assert.notEqual(future[0].venuePhoto,future[1].venuePhoto);
  for(const branch of future){
@@ -33,6 +33,9 @@ test('future locations have two independent responsive photographs, still illust
   assert.ok(branch.venuePhotoWidth>0&&branch.venuePhotoHeight>0);
   for(const variant of branch.venuePhotoSet.split(', ')){const file=variant.split(' ')[0];assert.ok(fs.statSync(new URL('../'+file,import.meta.url)).size>0);}
  }
+ const ciudadJuarez=data.branches.find(b=>b.id==='ciudad-juarez');
+ assert.equal(ciudadJuarez.status,'coming-soon');assert.equal(ciudadJuarez.page,'ciudad-juarez.html');
+ assert.equal(ciudadJuarez.venuePhotoKind,'brand-illustrative');
 });
 
 test('agenda keeps a same-photo lightweight background and a bounded advance-load trigger',()=>{

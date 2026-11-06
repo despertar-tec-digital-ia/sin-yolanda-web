@@ -62,3 +62,21 @@
 @media(min-width:521px) and (max-width:850px){.sy-booking #ot-reservation-widget .ot-date-picker .picker,.sy-booking #ot-reservation-widget .ot-date-picker .picker__holder{left:auto!important;right:0!important}}
 @media(max-width:520px){.sy-booking{padding:32px 20px}.sy-booking-copy{display:block;margin-bottom:20px}.sy-booking h2{font-size:40px}.sy-booking-location{margin-top:8px}.sy-booking #ot-reservation-widget .ot-dtp-picker-form,.sy-booking-placeholder{grid-template-columns:1fr}.sy-booking-foot{align-items:flex-start;flex-direction:column;margin-top:16px}.sy-booking-foot p{font-size:14px}.sy-booking-start{width:100%}.sy-booking #ot-reservation-widget .picker__holder{max-width:calc(100vw - 40px)}}
 @media(prefers-reduced-motion:no-preference){.sy-booking-start{transition:background-color 120ms ease}}
+
+/* Houston palette trial: the booking task continues the warm wine scene above it. */
+.sy-booking[data-booking-branch="houston"]{--booking-brand:#fff4de;--booking-active:#e3c79f;--paper:#4c2021;--ink:#fff4de;background:#3b1415;color:#fff4de;border-bottom-color:#fff4de22;color-scheme:dark}
+.sy-booking[data-booking-branch="houston"] .sy-booking-location,.sy-booking[data-booking-branch="houston"] .sy-booking-foot{color:#e4c9bc}
+.sy-booking[data-booking-branch="houston"] .sy-booking-start{color:#3b1415}
+.sy-booking[data-booking-branch="houston"] .sy-booking-start:hover{background:#f1debe}
+.sy-booking[data-booking-branch="houston"] .sy-booking-start:active{background:var(--booking-active)}
+.sy-booking[data-booking-branch="houston"] .sy-booking-placeholder span{background:#fff4de08;border-bottom-color:#fff4de55}
+.sy-booking[data-booking-branch="houston"] .sy-booking-placeholder span:last-child{background:#fff4de24}
+.sy-booking[data-booking-branch="houston"] #ot-reservation-widget .ot-dtp-picker-form>.ot-dtp-picker-selector{color:#fff4de}
+.sy-booking[data-booking-branch="houston"] #ot-reservation-widget .ot-dtp-picker-selector:before{color:#e4c9bc}
+.sy-booking[data-booking-branch="houston"] #ot-reservation-widget .ot-select-label{color:#fff4de;border-bottom-color:#fff4de66!important}
+.sy-booking[data-booking-branch="houston"] #ot-reservation-widget .ot-dtp-picker-selector-link{color:#fff4de}
+.sy-booking[data-booking-branch="houston"] #ot-reservation-widget .ot-dtp-picker-button{color:#3b1415!important}
+.sy-booking[data-booking-branch="houston"] #ot-reservation-widget .ot-dtp-picker-button:hover{background:#f1debe!important}
+.sy-booking[data-booking-branch="houston"] #ot-reservation-widget .picker__box{border-color:#fff4de44;box-shadow:0 8px 24px #16050740}
+.sy-booking[data-booking-branch="houston"] #ot-reservation-widget .picker__day:not(:disabled):not([aria-pressed="true"]):hover{background:#fff4de12}
+.sy-booking[data-booking-branch="houston"] #ot-reservation-widget .picker__day[aria-pressed="true"]{background:var(--booking-brand);color:var(--paper)}

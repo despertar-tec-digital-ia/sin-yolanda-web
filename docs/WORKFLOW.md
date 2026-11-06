@@ -2,6 +2,13 @@
 
 ### Movimiento Houston y prueba compartible · 6-nov
 
+Petición posterior: Luis rechaza el fondo crema del bloque. Solo Houston adopta un granate
+cálido#3b1415, texto#fff4de, secundarios#e4c9bc y calendario#4c2021. La acción clara retoma el
+contraste del botón existente del hero; hover/pressed mantienen texto oscuro legible. La paleta
+se acota por `data-booking-branch="houston"`; no cambia fotografías, composición, funciones,
+medición ni estilo de las otras sedes. El aviso retirado no se repone. Los controles conservan
+56px, foco claro y la animación respeta movimiento reducido.
+
 Luis autoriza animaciones simples en esta ficha de prueba y publicar un enlace para Karina;
 no extenderlas a otras sedes ni desplegar al dominio oficial. `branch-motion-review.css/js`
 se cargan únicamente en Houston ES/EN mediante el builder de revisión. El navbar conserva su

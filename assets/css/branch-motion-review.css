@@ -14,7 +14,7 @@
  body[data-sy-motion-review] :is(.hh-reserve,.hh-welcome-menu,.bct-action,.sy-booking-start):active{transform:translateY(1px)}
  body[data-sy-motion-review] .sy-booking[data-booking-state="embedded"] [data-booking-host]{animation:sy-form-enter 180ms ease-out}
  body[data-sy-motion-review] .sy-booking #ot-reservation-widget .ot-dtp-picker-button{transition:background-color 160ms ease,transform 100ms ease}
- body[data-sy-motion-review] .sy-booking #ot-reservation-widget .ot-dtp-picker-button:active{background:#510e14!important;transform:translateY(1px)}
+ body[data-sy-motion-review] .sy-booking #ot-reservation-widget .ot-dtp-picker-button:active{background:var(--booking-active,#510e14)!important;transform:translateY(1px)}
  body[data-sy-motion-review] .sy-booking #ot-reservation-widget .ot-select-label{transition:border-color 150ms ease}
  body[data-sy-motion-review] .sy-booking #ot-reservation-widget .picker--opened .picker__box{transform-origin:top center;animation:sy-calendar-enter 160ms ease-out}
  body[data-sy-motion-review] .sy-booking #ot-reservation-widget :is(.picker__nav,.picker__day){transition:background-color 100ms ease,border-color 100ms ease,color 100ms ease}

@@ -2,6 +2,14 @@
 
 ### Movimiento Houston y prueba compartible · 6-nov
 
+QA de bugs posterior: Escape desde el campo de fecha no llegaba al handler del calendario,
+que es un hermano del input. Se delega esa tecla al botón de cierre del propio proveedor;
+no se oculta el popup por CSS ni se manipula estado privado. Conserva foco/valor y permite
+reabrir con teclado. Los enlaces de reserva dejan de anunciarse como acordeones (`aria-expanded`),
+y el nombre accesible de cada campo incluye su etiqueta visible sin duplicar prefijos al observar
+cambios. El resto de teclas, fechas, disponibilidad, fallback y medición conserva su contrato.
+
+
 Petición posterior: Luis rechaza el fondo crema del bloque. Solo Houston adopta un granate
 cálido#3b1415, texto#fff4de, secundarios#e4c9bc y calendario#4c2021. La acción clara retoma el
 contraste del botón existente del hero; hover/pressed mantienen texto oscuro legible. La paleta
@@ -76,8 +84,8 @@ se reutiliza. No hay publicación ni cambios guardados en cuentas del proveedor.
 
 QA de composición6-nov:24vistas reales (8fichas×320/768/1440) sin overflow, controles56px y una sola
 acción de búsqueda;8formularios cargados. Diez anchuras con calendario abierto y42días visibles,
-meses adelante/atrás y selección comprobados. Escape desde un día cierra; sobre input no cerró
-en la corrida anterior (IAB/Brave), sin parches privados. Las pruebas anteriores de búsqueda
+meses adelante/atrás y selección comprobados. Escape desde el campo de fecha y desde un día
+cierra mediante el proveedor, tras la corrección posterior de teclado. Las pruebas anteriores de búsqueda
 real sin seleccionar horario, cierre del modal y retorno al submit siguen vigentes. CSP contra el
 proveedor y ausencia de JS conservan un único enlace oficial. Pruebas de configuración,
 isolación, recuperación, caché y medición saneada pasan. Dispositivos físicos, confirmación,

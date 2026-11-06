@@ -49,7 +49,7 @@ test('pilot changes only eight branch pages and adds no captures, guest data or 
   assert.ok(!manifest.assets.includes('assets/js/opentable-review.js'));
   assert.ok(!manifest.assets.includes('assets/css/branch-motion-review.css'));
   assert.ok(!manifest.assets.includes('assets/js/branch-motion-review.js'));
-  for (const file of report.bookingPilot.changedPages) assert.ok(readFileSync(resolve(out,'public',file),'utf8').includes('src="/assets/js/opentable-review.js?v=20261106-motion"'));
+  for (const file of report.bookingPilot.changedPages) assert.ok(readFileSync(resolve(out,'public',file),'utf8').includes('src="/assets/js/opentable-review.js?v=20261106-keyboard"'));
 });
 
 // Reproduce the provider's close behavior: its iframe disappears and focus falls to body.
@@ -142,8 +142,13 @@ test('page adapter stays usable after a cached back navigation and fails open on
   assert.equal(click.defaultPrevented,true);assert.equal(controller.state,'loading');
   assert.equal(f.scripts.length,1);assert.ok(f.title.focused&&f.section.scrolled);
   f.start.dispatchEvent(new Event('click',{cancelable:true}));assert.equal(f.scripts.length,1);
-  const submit=new Node(),form=new Node(),inline=new Node();form.querySelector=()=>submit;inline.querySelector=selector=>selector==='form'?form:null;f.host.querySelector=()=>inline;f.observers[1].notify();
+  const submit=new Node(),form=new Node(),inline=new Node(),party=new Node(),partySelect=new Node();
+  partySelect.setAttribute('aria-label','Party size selector');party.querySelector=()=>partySelect;
+  form.querySelector=()=>submit;inline.querySelector=selector=>selector==='form'?form:selector==='.ot-party-size-picker'?party:null;f.host.querySelector=()=>inline;f.observers[1].notify();
+  assert.equal(partySelect.getAttribute('aria-label'),'Guests. Party size selector','Voice control can use the visible field label');
+  f.observers[1].notify();assert.equal(partySelect.getAttribute('aria-label'),'Guests. Party size selector','Repeated observation does not duplicate the label');
   assert.equal(controller.state,'embedded');assert.equal(f.start.hidden,true);assert.equal(f.host.hidden,false);
+  assert.equal(f.start.getAttribute('aria-expanded'),null,'A booking link is not an accordion');
   f.win.dispatchEvent(new Event('pagehide'));assert.equal(controller.start(),false);
   assert.ok(f.observers.every(o=>o.disconnected));assert.equal(f.timers.pending.size,0);
   const invalid=fixture();invalid.section.setAttribute('data-booking-loader','https://other.example/widget/reservation/loader?rid=1524058');
@@ -173,4 +178,21 @@ test('native search reports only sanitized intention through existing adapters a
   await reportBookingIntent(h.window,'unknown-branch','es');assert.equal(h.calls.length,1);
   await assert.doesNotReject(()=>reportBookingIntent({},'houston','es'));
   await assert.doesNotReject(()=>reportBookingIntent({sySiteAnalyticsSanitize:()=>{throw Error('blocked');}},'houston','es'));
+});
+
+test('Escape on the date trigger uses native dismissal without consuming other keyboard actions',async()=>{
+  const {dismissBookingDatePicker}=await import('../assets/js/opentable-review.js');
+  let open=true,clicks=0,prevented=0,stopped=0;
+  const close={click(){clicks++;open=false;}};
+  const host={querySelector:()=>open?close:null};
+  const event=(key='Escape',date=true)=>({key,defaultPrevented:false,target:{matches:()=>date},preventDefault(){prevented++;},stopPropagation(){stopped++;}});
+  assert.equal(dismissBookingDatePicker(event('Enter'),host),false);
+  assert.equal(dismissBookingDatePicker(event('Escape',false),host),false);
+  assert.equal(dismissBookingDatePicker({...event(),defaultPrevented:true},host),false);
+  assert.equal(clicks,0);assert.equal(prevented,0);
+  assert.equal(dismissBookingDatePicker(event(),host),true);
+  assert.equal(open,false);assert.equal(clicks,1);assert.equal(prevented,1);assert.equal(stopped,1);
+  assert.equal(dismissBookingDatePicker(event(),host),false,'Holding Escape cannot reopen a closed calendar');
+  open=true;close.disabled=true;assert.equal(dismissBookingDatePicker(event(),host),false);assert.equal(clicks,1);
+  assert.equal(dismissBookingDatePicker(event(),{querySelector:()=>null}),false,'Provider markup changes retain native behavior');
 });

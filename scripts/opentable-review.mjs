@@ -47,7 +47,7 @@ export function refineBooking(html,branch,language){
   });
   assert.equal(links,2,'Expected the two branch reservation links');
   if(branch.slug==='houston') html=html.replace('<html ','<html data-sy-motion-review ').replace('<body ','<body data-sy-motion-review ').replace('</head>',`<link rel="stylesheet" href="/${motionAssets[0]}?v=20261106-wine"><script type="module" src="/${motionAssets[1]}?v=20261106-motion"></script></head>`);
-  return html.replace(marker,section+marker).replace('</head>',`<link rel="stylesheet" href="/${stylesheet}?v=20261106-wine"><script type="module" src="/${controller}?v=20261106-motion"></script></head>`);
+  return html.replace(marker,section+marker).replace('</head>',`<link rel="stylesheet" href="/${stylesheet}?v=20261106-wine"><script type="module" src="/${controller}?v=20261106-keyboard"></script></head>`);
 }
 export function buildOpenTableReview({root,out,now}={}){
   root=resolve(root);out=resolve(out);assert.ok(out.startsWith(resolve(root,'.artifacts')+'/'));assert.ok(!existsSync(out));

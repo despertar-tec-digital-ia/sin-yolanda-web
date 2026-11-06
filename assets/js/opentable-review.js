@@ -42,6 +42,17 @@ export function createBookingLoad({load, render, timers = globalThis, timeout = 
   };
 }
 
+// Use the provider's own close button; never hide the popup or alter its internal state.
+export function dismissBookingDatePicker(event, host) {
+  if (event.defaultPrevented || event.key !== 'Escape' || !event.target?.matches?.('.ot-datepicker')) return false;
+  const close = host.querySelector('.picker--opened .picker__close');
+  if (!close || close.disabled || typeof close.click !== 'function') return false;
+  event.preventDefault();
+  event.stopPropagation();
+  close.click();
+  return true;
+}
+
 export function initializeBooking(doc = document) {
   const section = doc.querySelector('[data-opentable-pilot]');
   if (!section || section.hasAttribute('data-booking-enhanced')) return null;
@@ -75,8 +86,7 @@ export function initializeBooking(doc = document) {
       section.setAttribute('data-booking-state', state);
       host.setAttribute('aria-busy', String(state === 'loading'));
       for (const entry of doc.querySelectorAll('[data-booking-open]')) {
-        if (state === 'external') { entry.removeAttribute('aria-controls'); entry.removeAttribute('aria-expanded'); }
-        else entry.setAttribute('aria-expanded', 'true');
+        if (state === 'external') entry.removeAttribute('aria-controls');
       }
       host.hidden = state === 'external';
       start.hidden = state === 'loading' || state === 'embedded';
@@ -94,7 +104,13 @@ export function initializeBooking(doc = document) {
           ['.ot-party-size-picker', spanish ? 'Personas' : 'Guests'],
           ['.ot-date-picker', spanish ? 'Fecha' : 'Date'],
           ['.ot-time-picker', spanish ? 'Hora' : 'Time'],
-        ]) inline.querySelector(selector)?.setAttribute('data-sy-label', label);
+        ]) {
+          const picker = inline.querySelector(selector);
+          picker?.setAttribute('data-sy-label', label);
+          const control = picker?.querySelector('select,input[role="combobox"]');
+          const name = control?.getAttribute('aria-label') || '';
+          if (control && !name.toLowerCase().includes(label.toLowerCase())) control.setAttribute('aria-label', name ? `${label}. ${name}` : label);
+        }
         const landmark = inline.querySelector('[role="main"]');
         // The inline widget lives inside this page's main landmark.
         if (landmark) { landmark.setAttribute('role', 'group'); landmark.setAttribute('aria-labelledby', title.id); }
@@ -125,16 +141,19 @@ export function initializeBooking(doc = document) {
   for (const entry of doc.querySelectorAll('[data-booking-open]')) {
     entry.addEventListener('click', enter);
     entry.setAttribute('aria-controls', host.id);
-    entry.setAttribute('aria-expanded', 'false');
+    entry.removeAttribute('aria-expanded');
   }
   for (const entry of doc.querySelectorAll('[data-booking-open]')) {
     for (const hint of entry.querySelectorAll('.hh-sr,.bf-sr')) hint.textContent = entry.querySelector('img[alt="OpenTable"]') ? '' : ' · OpenTable';
   }
+  const dismissDate = event => { dismissBookingDatePicker(event, host); };
+  host.addEventListener('keydown', dismissDate);
   section.setAttribute('data-booking-enhanced', '');
   const cleanupFocus = watchBookingModal(doc);
   win.addEventListener('pagehide', event => {
     // A back/forward-cache entry is still live when the visitor returns.
     if (event.persisted) return;
+    host.removeEventListener('keydown', dismissDate);
     controller.dispose(); widgetObserver?.disconnect(); viewportObserver?.disconnect(); cleanupFocus?.disconnect();
   });
   if (win.location.hash === '#' + section.id) controller.start();

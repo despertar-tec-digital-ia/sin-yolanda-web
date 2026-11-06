@@ -1,40 +1,61 @@
-.sy-booking{background:var(--paper,#fff4de);color:var(--ink,#30201c);scroll-margin-top:96px;padding:48px 24px;border-block:1px solid #30201c22}
+.sy-booking{--booking-brand:var(--wine,#8b1820);background:var(--paper,#fff4de);color:var(--ink,#30201c);scroll-margin-top:96px;padding:48px 24px;border-block:1px solid #30201c22}
 .sy-booking-inner{max-width:1040px;margin-inline:auto}
-.sy-booking-copy{display:flex;align-items:baseline;justify-content:space-between;gap:24px;margin-bottom:24px}
-.sy-booking h2{font:400 clamp(38px,4.5vw,56px)/1.06 HoustonDisplay,Impact,sans-serif;letter-spacing:-.01em;margin:0;text-wrap:balance}
-.sy-booking-location{font:400 16px/1.5 HoustonSlab,Georgia,serif;margin:0}
+.sy-booking-copy{display:flex;align-items:baseline;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;margin-bottom:32px}
+.sy-booking h2{font:400 clamp(44px,5vw,64px)/1.06 HoustonDisplay,Impact,sans-serif;letter-spacing:-.01em;margin:0;text-wrap:balance}
+.sy-booking-location{font:400 15px/1.5 HoustonSlab,Georgia,serif;margin:0}
 .sy-booking-panel{min-width:0}
-.sy-booking-start{display:inline-flex;align-items:center;justify-content:center;min-height:56px;padding:12px 28px;background:#a83b18;color:#fff4de;text-decoration:none;font:700 16px/1.5 HoustonSlab,Georgia,serif;border:1px solid transparent}
-.sy-booking-start:hover{background:#863115}
-.sy-booking-start:active{background:#70270f}
+.sy-booking-start{display:inline-flex;align-items:center;justify-content:center;min-height:56px;padding:12px 28px;background:var(--booking-brand);color:#fff4de;text-decoration:none;font:400 28px/1.1 HoustonDisplay,Impact,sans-serif;border:1px solid transparent}
+.sy-booking-start:hover{background:#69121a}
+.sy-booking-start:active{background:#510e14}
 .sy-booking-widget{width:100%;min-width:0;overflow:visible}
 .sy-booking-status{font:400 14px/1.6 HoustonSlab,Georgia,serif;margin:12px 0 0}
 .sy-booking-status:empty{display:none}
-.sy-booking-foot{display:flex;align-items:center;justify-content:space-between;gap:8px 24px;flex-wrap:wrap;margin-top:14px;font:400 13px/1.5 HoustonSlab,Georgia,serif}
+.sy-booking-foot{display:flex;align-items:center;justify-content:space-between;gap:8px 24px;flex-wrap:wrap;margin-top:14px;font:400 14px/1.5 HoustonSlab,Georgia,serif}
 .sy-booking-foot p{margin:0}
 .sy-booking-foot a{display:inline-flex;align-items:center;min-height:44px;color:inherit;text-underline-offset:4px}
 .sy-booking-placeholder{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
-.sy-booking-placeholder span{display:block;height:56px;background:#30201c08;border:1px solid #30201c18}
-.sy-booking-placeholder span:last-child{background:#a83b1820}
+.sy-booking-placeholder span{display:block;height:80px;background:#30201c06;border-bottom:1px solid #30201c44}
+.sy-booking-placeholder span:last-child{height:56px;align-self:end;background:#8b182026}
 .sy-booking [hidden]{display:none!important}
-.sy-booking a:focus-visible,.sy-booking h2:focus-visible{outline:3px solid #a83b18;outline-offset:4px}
+.sy-booking a:focus-visible,.sy-booking h2:focus-visible{outline:3px solid var(--booking-brand);outline-offset:4px}
 /* Supported inline mode. Only presentation changes; the provider owns every field and handler. */
 .sy-booking #ot-reservation-widget .ot-dtp-picker{width:100%!important;padding:0!important;margin:0!important;min-height:0;height:auto;background:transparent;font-family:HoustonSlab,Georgia,serif}
 .sy-booking #ot-reservation-widget .ot-title{display:none}
-.sy-booking #ot-reservation-widget .ot-dtp-picker-form{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) minmax(190px,1fr);gap:12px;width:100%!important;margin:0!important;padding:0!important}
+.sy-booking #ot-reservation-widget .ot-dtp-picker-form{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) minmax(220px,1fr);gap:16px;align-items:end;width:100%!important;margin:0!important;padding:0!important;background:transparent!important;border:0!important;border-radius:0;box-shadow:none}
 .sy-booking #ot-reservation-widget .ot-dtp-picker-form>.ot-dtp-picker-selector,.sy-booking #ot-reservation-widget .ot-dtp-picker-form>.ot-button{float:none!important;width:100%!important;min-width:0;margin:0!important;box-sizing:border-box;height:56px!important;border-radius:0}
-.sy-booking #ot-reservation-widget .ot-dtp-picker-selector{border:1px solid #30201c55!important;background:#fffaf0;color:#30201c}
-.sy-booking #ot-reservation-widget .ot-dtp-picker-selector-link{min-width:0;font-family:HoustonSlab,Georgia,serif;font-size:16px!important}
+.sy-booking #ot-reservation-widget .ot-dtp-picker-form>.ot-dtp-picker-selector{height:80px!important;position:relative;border:0!important;background:transparent;color:#30201c}
+.sy-booking #ot-reservation-widget .ot-dtp-picker-selector:before{content:attr(data-sy-label);display:block;font:400 14px/20px HoustonSlab,Georgia,serif;color:var(--ink,#30201c)}
+.sy-booking #ot-reservation-widget .ot-select-label{position:absolute;inset:auto 0 0;box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;height:56px!important;padding:0 2px;border:0!important;border-bottom:1px solid #30201c88!important;background:transparent;pointer-events:none}
+.sy-booking #ot-reservation-widget .ot-dtp-picker-selector select,.sy-booking #ot-reservation-widget .ot-datepicker{position:absolute!important;inset:auto 0 0!important;width:100%!important;height:56px!important;font-size:16px}
+.sy-booking #ot-reservation-widget .ot-dtp-picker-selector:hover .ot-select-label{border-bottom-color:var(--booking-brand)!important}
+.sy-booking #ot-reservation-widget .ot-dtp-picker-selector-link{min-width:0;font-family:HoustonSlab,Georgia,serif;font-size:20px!important}
 .sy-booking #ot-reservation-widget .ot-label-text{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .sy-booking #ot-reservation-widget .icon path[fill]:not([fill="none"]){stroke:none;fill:currentColor}
-.sy-booking #ot-reservation-widget .ot-dtp-picker-selector:focus-within{outline:3px solid #a83b18;outline-offset:3px;z-index:2}
-.sy-booking #ot-reservation-widget .ot-dtp-picker-button{background:#a83b18!important;color:#fff4de!important;border:1px solid transparent!important;box-shadow:none!important;font:700 16px/1.5 HoustonSlab,Georgia,serif!important;text-shadow:none}
-.sy-booking #ot-reservation-widget .ot-dtp-picker-button:hover{background:#863115!important}
-.sy-booking #ot-reservation-widget .ot-dtp-picker-button:focus-visible{outline:3px solid #a83b18;outline-offset:4px}
+.sy-booking #ot-reservation-widget .ot-dtp-picker-selector:focus-within{z-index:2}
+.sy-booking #ot-reservation-widget .ot-dtp-picker-selector:focus-within .ot-select-label{outline:3px solid var(--booking-brand);outline-offset:4px}
+.sy-booking #ot-reservation-widget .ot-dtp-picker-button{background:var(--booking-brand)!important;color:#fff4de!important;border:1px solid transparent!important;box-shadow:none!important;font:400 26px/1.1 HoustonDisplay,Impact,sans-serif!important;text-shadow:none}
+.sy-booking #ot-reservation-widget .ot-dtp-picker-button:hover{background:#69121a!important}
+.sy-booking #ot-reservation-widget .ot-dtp-picker-button:focus-visible{outline:3px solid var(--booking-brand);outline-offset:4px}
 .sy-booking #ot-reservation-widget .picker__holder{width:320px;max-width:calc(100vw - 48px);font-family:HoustonSlab,Georgia,serif}
 .sy-booking #ot-reservation-widget .picker--opened .picker__holder{height:auto!important;max-height:none;overflow:visible}
 .sy-booking #ot-reservation-widget .picker--opened .picker__frame{height:auto!important}
-.sy-booking #ot-reservation-widget .picker__table{width:100%;table-layout:fixed}
+.sy-booking #ot-reservation-widget .picker__box{background:var(--paper,#fff4de);border:1px solid #8b182044;border-radius:0;padding:12px;box-shadow:0 12px 32px #30201c26;color:var(--ink,#30201c)}
+.sy-booking #ot-reservation-widget .picker__frame{border:0;background:transparent}
+.sy-booking #ot-reservation-widget .picker__header{position:relative;display:flex;align-items:center;justify-content:center;min-height:44px;height:44px;margin:0 0 8px}
+.sy-booking #ot-reservation-widget .caption_label{padding-inline:36px;font:400 26px/44px HoustonDisplay,Impact,sans-serif;color:var(--ink,#30201c);text-align:center}
+.sy-booking #ot-reservation-widget .picker__header .nav{position:absolute;inset:0;display:flex;align-items:center;justify-content:space-between;pointer-events:none}
+.sy-booking #ot-reservation-widget .picker__nav{position:relative!important;inset:auto!important;transform:none;float:none;margin:0;width:40px;height:40px;border:1px solid transparent;border-radius:0;background:transparent;color:var(--booking-brand);pointer-events:auto}
+.sy-booking #ot-reservation-widget .picker__nav:hover{border-color:var(--booking-brand);background:transparent}
+.sy-booking #ot-reservation-widget .picker__nav:focus-visible{outline:2px solid var(--booking-brand);outline-offset:2px}
+.sy-booking #ot-reservation-widget .picker__table{width:100%;table-layout:fixed;border-collapse:separate;border-spacing:2px;margin:0}
+.sy-booking #ot-reservation-widget .picker__weekday{font:400 13px/24px HoustonSlab,Georgia,serif;color:var(--ink,#30201c)}
+.sy-booking #ot-reservation-widget .picker__cell{padding:0;border:0;background:transparent}
+.sy-booking #ot-reservation-widget .picker__day{border:1px solid transparent;border-radius:0;font-family:HoustonSlab,Georgia,serif;background:transparent;color:var(--ink,#30201c);box-shadow:none!important}
+.sy-booking #ot-reservation-widget .picker__day:not(:disabled):hover{border-color:var(--booking-brand);background:#8b182012}
+.sy-booking #ot-reservation-widget .picker__day[aria-pressed="true"]{background:var(--booking-brand);color:var(--paper,#fff4de);border-color:var(--booking-brand)!important}
+.sy-booking #ot-reservation-widget .picker__day--highlighted{outline:2px solid var(--booking-brand)!important;outline-offset:0}
+.sy-booking #ot-reservation-widget .picker__day:focus-visible{outline:2px solid var(--booking-brand);outline-offset:1px}
+.sy-booking #ot-reservation-widget .picker__day:disabled{opacity:.35;background:transparent}
 .sy-booking #ot-reservation-widget .picker__day{min-height:36px;width:100%;padding:0;line-height:36px}
 @media(max-width:850px){.sy-booking #ot-reservation-widget .ot-dtp-picker-form{grid-template-columns:repeat(2,minmax(0,1fr))}.sy-booking-placeholder{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:520px){.sy-booking{padding:32px 20px}.sy-booking-copy{display:block;margin-bottom:20px}.sy-booking-location{margin-top:10px}.sy-booking #ot-reservation-widget .ot-dtp-picker-form,.sy-booking-placeholder{grid-template-columns:1fr}.sy-booking-foot{align-items:flex-start;flex-direction:column;margin-top:16px}.sy-booking-foot p{font-size:14px}.sy-booking-start{width:100%}.sy-booking #ot-reservation-widget .picker__holder{max-width:calc(100vw - 40px)}}

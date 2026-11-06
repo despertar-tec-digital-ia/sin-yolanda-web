@@ -45,7 +45,7 @@ export function refineBooking(html,branch,language){
     links++;return tag.replace('<a ','<a data-booking-open ').replace(/href="[^"]+"/,`href="${escape(fallback.href)}"`);
   });
   assert.equal(links,2,'Expected the two branch reservation links');
-  return html.replace(marker,section+marker).replace('</head>',`<link rel="stylesheet" href="/${stylesheet}?v=20261106-unified"><script type="module" src="/${controller}?v=20261106-unified"></script></head>`);
+  return html.replace(marker,section+marker).replace('</head>',`<link rel="stylesheet" href="/${stylesheet}?v=20261106-sy-form"><script type="module" src="/${controller}?v=20261106-sy-form"></script></head>`);
 }
 export function buildOpenTableReview({root,out,now}={}){
   root=resolve(root);out=resolve(out);assert.ok(out.startsWith(resolve(root,'.artifacts')+'/'));assert.ok(!existsSync(out));

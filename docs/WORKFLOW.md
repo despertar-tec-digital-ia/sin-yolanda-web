@@ -8,6 +8,13 @@ y una en móvil; identidad de sede junto al título, teléfono de ayuda discreto
 botón previo cuando el bloque entra en pantalla, enlace «Abrir directamente» ni aviso de error
 permanente. La ficha conserva su hero, los datos, las fotos y el resto de su estructura.
 
+Personalización adicional6-nov: el bloque hereda `--wine` para acciones, foco y selección;
+HoustonDisplay64px para el título y26px para el botón. Los campos conservan56px de interacción
+con etiquetas visuales ES/EN, valores20px y línea inferior, sin marco blanco continuo. El
+calendario usa papel/granate, título propio de SY, días/selección/foco y navegación adaptados.
+Las etiquetas se anotan como atributos de presentación; no se sustituyen controles ni handlers.
+El paso final del proveedor y los selectores nativos del sistema conservan su interfaz.
+
 Se utiliza el formulario oficial en modo `iframe=false`, `theme=wide`, con RID/idioma/origen de
 cada sede. Los campos, calendario, inventario y búsqueda siguen siendo del proveedor. El CSS
 local solo adapta presentación dentro de `.sy-booking`: tipografía/color/espaciado, controles

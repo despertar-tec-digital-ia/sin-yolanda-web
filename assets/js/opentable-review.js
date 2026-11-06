@@ -90,6 +90,11 @@ export function initializeBooking(doc = document) {
         const inline = host.querySelector('#ot-reservation-widget');
         const form = inline?.querySelector('form');
         if (!form?.querySelector('[type="submit"]') || !form.querySelector('select')) return;
+        for (const [selector, label] of [
+          ['.ot-party-size-picker', spanish ? 'Personas' : 'Guests'],
+          ['.ot-date-picker', spanish ? 'Fecha' : 'Date'],
+          ['.ot-time-picker', spanish ? 'Hora' : 'Time'],
+        ]) inline.querySelector(selector)?.setAttribute('data-sy-label', label);
         const landmark = inline.querySelector('[role="main"]');
         // The inline widget lives inside this page's main landmark.
         if (landmark) { landmark.setAttribute('role', 'group'); landmark.setAttribute('aria-labelledby', title.id); }

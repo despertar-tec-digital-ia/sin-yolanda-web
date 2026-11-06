@@ -46,7 +46,7 @@ test('pilot changes only eight branch pages and adds no captures, guest data or 
   const manifest=JSON.parse(readFileSync(resolve(root,'scripts/public-manifest.json')));
   assert.ok(!manifest.assets.includes('assets/css/opentable-review.css'));
   assert.ok(!manifest.assets.includes('assets/js/opentable-review.js'));
-  for (const file of report.bookingPilot.changedPages) assert.ok(readFileSync(resolve(out,'public',file),'utf8').includes('src="/assets/js/opentable-review.js?v=20261106-unified"'));
+  for (const file of report.bookingPilot.changedPages) assert.ok(readFileSync(resolve(out,'public',file),'utf8').includes('src="/assets/js/opentable-review.js?v=20261106-sy-form"'));
 });
 
 // Reproduce the provider's close behavior: its iframe disappears and focus falls to body.

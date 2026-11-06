@@ -1,27 +1,34 @@
 # Forma de trabajar y publicar
 
-### Reservas OpenTable · piloto local5-nov
+### Reservas OpenTable · piloto local5–6-nov
 
-Acceso real a las cuatro sedes USA revalidado. Los códigos públicos se copiaron del generador
+Acceso real a las cuatro sedes USA revalidado5-nov. Los códigos públicos se copiaron del generador
 oficial de cada RID, sin guardar cambios en OpenTable. `scripts/opentable-review.mjs` crea un
 paquete local noindex con las ocho fichas ES/EN: los dos enlaces de reserva de cada ficha bajan
-al widget de su propia sede y se conserva un enlace alternativo al proveedor. La variación de
-idioma usa el parámetro oficial lang, comprobado en español e inglés.
+al widget de su propia sede y se conserva un enlace alternativo al proveedor.
 
-El CSS y configuración del piloto están excluidos del manifiesto productivo. No se publica un
-formulario propio, no se capturan datos del huésped y no se reutiliza el RID de Houston en otras
-sedes. Mantiene la disponibilidad, búsqueda y modal nativos de OpenTable. Los cambios publicados
-de navegación siguen por su carril independiente.
+Se conserva el script oficial en el HTML, con su `newtab=false` y el modal nativo de escritorio.
+El recorrido móvil del proveedor se comprobó en otra pestaña; un aviso breve lo explica en pantallas
+pequeñas. El único controlador propio restaura el foco cuando OpenTable completa su cierre nativo.
+El enlace directo siempre funciona sin depender de JavaScript o de aceptar analítica.
 
-434tests pasan; ocho vistas RID/idioma/320–1440 sin overflow y enlaces correctos. Houston muestra
-horarios reales dentro del modal sobre la ficha; El Paso muestra formulario en español y zona
-horaria propia. Sin enviar datos personales ni completar una reserva. El primer iframe quedó
-temporalmente vacío mientras el navegador resolvía su documento; se recuperó y luego se verificó
-la disponibilidad, sin desactivar protecciones. No equivale a QA de confirmación, pago o iOS físico.
+QA6-nov: las cuatro sedes devolvieron horarios reales en consultas de disponibilidad; ES/EN
+conservan RID, fecha, hora y grupo. En móvil se comprobó el traspaso a OpenTable sin bloquear el
+sitio. Un primer diagnóstico confundió una nueva pestaña con falta de modal; corregido al
+inventariar ventanas. No atribuirlo a un fallo de disponibilidad o de idioma.
 
-Datos, POS, permisos, límites y próxima validación viven en el plan OpenTable del cliente, fuera
-del repo público. No introducir exportes de reservas, importes, identidades ni credenciales aquí.
-No hay todavía colector automático ni medición probada de confirmación del widget.
+En un modal de escritorio redimensionado a390px, el acceso del proveedor a iniciar sesión
+solapa su propio cierre. Se probó y retiró un cierre local porque no sincronizaba correctamente
+el estado del proveedor al reabrir. **No quedan cancelación personalizada, mensajes privados ni
+parches del scroll del proveedor.** Se conserva el flujo móvil del propio proveedor y
+se restaura el foco al formulario solo después del cierre nativo en escritorio.
+
+El CSS, JS y configuración del piloto están excluidos del manifiesto productivo. El build normal
+conserva su paquete original; no se publicó el widget. Pruebas de aislamiento, destinos, flujo
+responsive y restauración del foco pasan. No se enviaron datos personales ni completaron reservas.
+Cierre de confirmación/pago, dispositivos físicos y condiciones por sede siguen fuera de esta QA.
+Los datos privados, restricciones observadas de grupos y próximos pasos viven en el plan del
+cliente, fuera del repo público. No introducir reservas, importes, identidades o credenciales aquí.
 
 ### UI general y Catering Texas · publicación autorizada5-nov
 

@@ -31,4 +31,26 @@ test('pilot changes only eight branch pages and adds no captures, guest data or 
   }
   const manifest=JSON.parse(readFileSync(resolve(root,'scripts/public-manifest.json')));
   assert.ok(!manifest.assets.includes('assets/css/opentable-review.css'));
+  assert.ok(!manifest.assets.includes('assets/js/opentable-review.js'));
+  for (const file of report.bookingPilot.changedPages) assert.ok(readFileSync(resolve(out,'public',file),'utf8').includes('src="/assets/js/opentable-review.js?v=20261106-focus"'));
+});
+
+// Reproduce the provider's close behavior: its iframe disappears and focus falls to body.
+test('closing the provider modal restores the live widget without scrolling or stealing another focus',async()=>{
+  const {watchBookingModal}=await import('../assets/js/opentable-review.js');
+  let currentModal=null,notify;
+  const calls=[];
+  const widget={isConnected:true,focus:opts=>calls.push(opts)};
+  const section={querySelector:()=>widget};
+  const body={isConnected:true};
+  const doc={body,activeElement:body,documentElement:{lang:'en'},createElement:()=>({setAttribute(){},addEventListener(){}}),querySelector:selector=>selector==='[data-opentable-pilot]'?section:currentModal?{closest:()=>currentModal}:null};
+  class Observer{constructor(fn){notify=fn;}observe(){}}
+  watchBookingModal(doc,Observer);
+  notify(); assert.equal(calls.length,0,'No modal means no focus change');
+  currentModal={querySelector:()=>null,setAttribute(){},append(){}};notify();currentModal=null;notify();
+  assert.deepEqual(calls,[{preventScroll:true}]);
+  currentModal={querySelector:()=>null,setAttribute(){},append(){}};notify();doc.activeElement={isConnected:true};currentModal=null;notify();
+  assert.equal(calls.length,1,'Preserve focus explicitly moved by the visitor');
+  currentModal={querySelector:()=>null,setAttribute(){},append(){}};notify();doc.activeElement=body;widget.isConnected=false;currentModal=null;notify();
+  assert.equal(calls.length,1,'Never focus a stale widget after navigation');
 });

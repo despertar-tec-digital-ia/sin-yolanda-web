@@ -34,10 +34,10 @@ export function refineBooking(html,branch,language){
   const contact=html.match(/<a\b[^>]*class="ve-phone"[^>]*href="(tel:\+\d+)"[^>]*>([^<]+)<\/a>/);
   assert.ok(contact,'A branch needs its own verified phone before booking integration');
   const id='reservar-'+branch.slug;
-  const section=`<section class="sy-booking" id="${id}" data-opentable-pilot="${branch.rid}" data-booking-branch="${branch.slug}" data-booking-loader="${escape(loader.href)}" data-booking-state="idle" aria-labelledby="${id}-title">
-<div class="sy-booking-inner"><div class="sy-booking-copy"><h2 id="${id}-title" tabindex="-1">${en?'Reserve your table.':'Reserva tu mesa.'}</h2><p class="sy-booking-location">Sin Yolanda ${name}</p></div>
-<div class="sy-booking-panel"><a class="sy-booking-start" data-booking-start data-booking-open href="${escape(fallback.href)}" target="_blank" rel="noopener noreferrer">${en?'Find a table':'Ver disponibilidad'}</a><div class="sy-booking-placeholder" data-booking-placeholder hidden aria-hidden="true"><span></span><span></span><span></span><span></span></div><div class="sy-booking-widget" id="${id}-form" data-booking-host hidden></div><p class="sy-booking-status" data-booking-status id="${id}-status" role="status" aria-live="polite" aria-atomic="true"></p></div>
-<div class="sy-booking-foot"><span>${en?'Reservations with OpenTable':'Reservas con OpenTable'}</span><p>${en?'Need help?':'¿Necesitas ayuda?'} <a href="${escape(contact[1])}">${escape(contact[2])}</a></p></div></div></section>`;
+  const section=`<section class="sy-booking" id="${id}" data-opentable-pilot="${branch.rid}" data-booking-branch="${branch.slug}" data-booking-loader="${escape(loader.href)}" data-booking-state="idle" aria-labelledby="${id}-title" aria-describedby="${id}-location">
+<div class="sy-booking-inner"><div class="sy-booking-copy"><h2 id="${id}-title" tabindex="-1">${en?'Reserve your table.':'Reserva tu mesa.'}</h2><p class="sy-booking-location" id="${id}-location">${name}</p></div>
+<div class="sy-booking-panel"><a class="sy-booking-start" data-booking-start data-booking-open href="${escape(fallback.href)}" target="_blank" rel="noopener noreferrer">${en?'Find a table':'Ver disponibilidad'}</a><div class="sy-booking-placeholder" data-booking-placeholder hidden aria-hidden="true"><span></span><span></span><span></span><span></span></div><div class="sy-booking-widget" id="${id}-form" data-booking-host hidden></div><p class="sy-booking-status" data-booking-status id="${id}-status" role="status" aria-live="polite" aria-atomic="true"></p>
+<div class="sy-booking-foot"><span>${en?'Reservations with OpenTable':'Reservas con OpenTable'}</span><p>${en?'Need help?':'¿Necesitas ayuda?'} <a href="${escape(contact[1])}">${escape(contact[2])}</a></p></div></div></div></section>`;
   const marker='<section class="hh-table"';assert.equal(html.split(marker).length,2);
   // Baseline links stay real: analytics, modifiers and JavaScript-free navigation keep working.
   let links=0;
@@ -45,7 +45,7 @@ export function refineBooking(html,branch,language){
     links++;return tag.replace('<a ','<a data-booking-open ').replace(/href="[^"]+"/,`href="${escape(fallback.href)}"`);
   });
   assert.equal(links,2,'Expected the two branch reservation links');
-  return html.replace(marker,section+marker).replace('</head>',`<link rel="stylesheet" href="/${stylesheet}?v=20261106-sy-form"><script type="module" src="/${controller}?v=20261106-sy-form"></script></head>`);
+  return html.replace(marker,section+marker).replace('</head>',`<link rel="stylesheet" href="/${stylesheet}?v=20261106-composition"><script type="module" src="/${controller}?v=20261106-composition"></script></head>`);
 }
 export function buildOpenTableReview({root,out,now}={}){
   root=resolve(root);out=resolve(out);assert.ok(out.startsWith(resolve(root,'.artifacts')+'/'));assert.ok(!existsSync(out));

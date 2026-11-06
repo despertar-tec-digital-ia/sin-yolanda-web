@@ -9,11 +9,15 @@ botón previo cuando el bloque entra en pantalla, enlace «Abrir directamente» 
 permanente. La ficha conserva su hero, los datos, las fotos y el resto de su estructura.
 
 Personalización adicional6-nov: el bloque hereda `--wine` para acciones, foco y selección;
-HoustonDisplay64px para el título y26px para el botón. Los campos conservan56px de interacción
+HoustonDisplay42px para el título (40px móvil) y24px para el botón. Los campos conservan56px de interacción
 con etiquetas visuales ES/EN, valores20px y línea inferior, sin marco blanco continuo. El
 calendario usa papel/granate, título propio de SY, días/selección/foco y navegación adaptados.
 Las etiquetas se anotan como atributos de presentación; no se sustituyen controles ni handlers.
 El paso final del proveedor y los selectores nativos del sistema conservan su interfaz.
+La composición agrupa título y sede a la izquierda desde1180px, formulario y ayuda a la derecha.
+El contenedor llega a1240px, con220px para el título y48px de separación; por debajo se apila,
+sin alejar el nombre de la sede. El pie de atribución/ayuda pertenece al panel del formulario.
+El calendario agrupa ambas flechas a la derecha de una cabecera22px y conserva hitboxes40px.
 En tablet, el calendario se alinea al borde derecho de fecha para permanecer dentro del viewport.
 Comprobarlo abierto y con área visible al verificar los breakpoints.
 
@@ -46,9 +50,11 @@ productivo:354archivos normales,356en revisión. La integración futura debe apl
 refinamiento a build y scheduler con aprobación independiente; ninguna aprobación UI anterior
 se reutiliza. No hay publicación ni cambios guardados en cuentas del proveedor.
 
-QA6-nov:40vistas reales (8fichas×320/390/768/1024/1440) sin overflow, controles56px y una sola
-acción de búsqueda;8formularios cargados. Calendario320px completo, Escape y foco, búsqueda
-real sin seleccionar horario, cierre del modal y retorno al submit comprobados. CSP contra el
+QA de composición6-nov:24vistas reales (8fichas×320/768/1440) sin overflow, controles56px y una sola
+acción de búsqueda;8formularios cargados. Diez anchuras con calendario abierto y42días visibles,
+meses adelante/atrás y selección comprobados. Escape desde un día cierra; sobre input no cerró
+en la corrida anterior (IAB/Brave), sin parches privados. Las pruebas anteriores de búsqueda
+real sin seleccionar horario, cierre del modal y retorno al submit siguen vigentes. CSP contra el
 proveedor y ausencia de JS conservan un único enlace oficial. Pruebas de configuración,
 isolación, recuperación, caché y medición saneada pasan. Dispositivos físicos, confirmación,
 pagos y políticas por sede requieren validación coordinada; no se crearon reservas.

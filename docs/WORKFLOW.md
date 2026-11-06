@@ -11,8 +11,8 @@ entrada. No se añade un menú que no existe ni se toca el hero. Movimiento redu
 contenido estático, controles y navegación inmediata; sin JS todo permanece visible.
 
 `build-booking-share.mjs` exige fuente limpia, mantiene solo Houston ES/EN/404 como HTML,
-quita analítica y envía los demás enlaces al sitio oficial. Nota visible: prueba de diseño,
-disponibilidad real, no confirmar reservas al revisar. Compose/Nginx acotados en
+quita analítica y envía los demás enlaces al sitio oficial. Por petición posterior de Luis se
+retira el aviso visible completo y su enlace «Sitio oficial», en ES/EN. Compose/Nginx acotados en
 `deploy/booking-review/`: servicio nuevo aislado, imagen por digest, mount readonly, noindex,
 no-store, sin puertos host/secretos; retiro persistente13-nov. PR de revisión sin merge/main.
 Recepción/URL/QA y rollback pertenecen al runbook privado; no confundir preview con producción.

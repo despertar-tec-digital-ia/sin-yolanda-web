@@ -25,8 +25,8 @@ test('the exact allowlist addition preserves historical hashes and rejects ambig
  assert.throws(()=>restoreSocialFeedSource(file,source+socialFeedSource.patches[0].after),/Social feed manifest patch/);
 });
 
-test('public projection preserves every reviewed photo and all existing page content',()=>{
- const options={now:'2026-11-05T02:08:21Z',commit};
+test('isolated social projection preserves every reviewed photo and all existing page content',()=>{
+ const options={now:'2026-11-05T02:08:21Z',commit,ui:false};
  const before=projectAllAgendas(root,options),after=projectPublicSite(root,options);
  assert.equal(after.socialFeed.postCount,3);assert.equal(after.socialFeed.automatedFeed,false);
  assert.deepEqual([...after.files.keys()],[...before.files.keys()]);

@@ -8,6 +8,7 @@ import {createMotionController} from '../assets/js/branch-social-motion.js';
 import {loadApprovedSocialMotion,projectApprovedSocialMotion} from '../scripts/editorial/social-motion-approved.mjs';
 import {projectApprovedSocialFeed} from '../scripts/editorial/social-feed-approved.mjs';
 import {socialMotionSource,restoreSocialMotionSource} from '../scripts/social-motion-source-contract.mjs';
+import {restoreUiSource} from '../scripts/ui-source-contract.mjs';
 
 const root=resolve(import.meta.dirname,'..'),hash=value=>createHash('sha256').update(value).digest('hex');
 const settle=()=>new Promise(resolve=>setImmediate(resolve));
@@ -81,7 +82,7 @@ test('explicit carousel playback can resume while the media link retains keyboar
 
 test('motion allowlist peels exactly its approved change, preserving all earlier source guards',()=>{
   const file=socialMotionSource.file,source=readFileSync(resolve(root,file),'utf8');
-  assert.equal(hash(source),socialMotionSource.afterSha256);
+  assert.equal(hash(restoreUiSource(file,source)),socialMotionSource.afterSha256);
   assert.equal(hash(restoreSocialMotionSource(file,source)),socialMotionSource.beforeSha256);
   assert.notEqual(hash(restoreSocialMotionSource(file,source+'unknown edit')),socialMotionSource.beforeSha256);
   assert.throws(()=>restoreSocialMotionSource(file,source+socialMotionSource.patches[0].after),/Social motion manifest patch/);

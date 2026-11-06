@@ -1,5 +1,70 @@
 # Forma de trabajar y publicar
 
+### UI general y Catering Texas · publicación autorizada5-nov
+
+Luis aprueba la revisión local completa y confirma «Sí, publicar los ajustes». La misma
+composición se integra en `projectPublicSite` después de agenda/Instagram, compartida por el
+build y el scheduler. `approved-ui.json` fija autorización, hashes de tres activos y funciones
+de refinamiento; los datos comerciales, selección de medios y hero conservan su fuente.
+Las fuentes importadas no se reescriben: la proyección aplica los cambios exactos revisados.
+Los dos scripts del home se sirven con una nueva versión de URL para evitar copias en caché.
+
+Los builders locales anteriores siguen como comparación histórica, usando explícitamente
+`presentation: baseline` solo con audience review. Producción siempre aplica la presentación
+aprobada. Una prueba compara todas las páginas/scripts proyectados con la candidata y solo
+normaliza las versiones de caché y el digest derivado. La nueva allowlist tiene un delta reversible
+que conserva todas las guardas históricas. Futuras actualizaciones de agenda conservan la UI.
+
+Validación previa:432tests pasan,354archivos; revisión previa de25páginas/50vistas y4cartas tablet.
+Publicación se realiza por PR→CI→release:approved→recibo; estado y evidencia vigentes en el plan
+operativo del cliente. El widget OpenTable y sus métricas son un frente separado de este release.
+
+### Revisión sutil de todo el sitio · candidata local5-nov
+
+Luis aclara que la revisión abarca todo el sitio, no solo Catering o The Woodlands. Se revisan
+las25páginas publicables en móvil/escritorio: home, directorio, fichas ES/EN, cartas, páginas
+generales, privacidad y concurso. Se conserva la composición existente y se corrigen hallazgos
+concretos: búsqueda de carta con44px/16px en móvil, categorías desplegables con altura acotada y
+scroll, accesos de44px en categorías y pies secundarios, foco visible en esos pies y accesos del
+menú original GDL. No se digitaliza Guadalajara ni se toca el contenido del PDF o sus imágenes.
+
+`scripts/site-ui-review.mjs <directorio-nuevo-en-.artifacts>` compone el pase Texas siguiente y
+añade una hoja opt-in a las25páginas. Solo la candidata cambia el párrafo Catering del home y
+su traducción para consultar disponibilidad por ciudad; el hero, sus medios y textos permanecen.
+Las cartas, datos comerciales y aviso legal conservan sus bytes fuera de los marcadores CSS.
+La prueba de restauración compara cada archivo contra el paquete base, incluidos todos los medios.
+
+Esta ampliación sigue aislada del build/scheduler y manifiesto productivos. El artefacto tiene
+354archivos y noindex; no es una alternativa de deploy. Antes de publicar: revisión de Luis,
+integración de lo aprobado al carril productivo y release:approved con autorización explícita.
+QA local:429tests;50vistas(25×320/1440) sin overflow, búsqueda/limpiar/última categoría, idioma
+ES/EN, menú móvil/Escape y ampliación GDL/retorno del foco comprobados en Brave. Evidencia y
+estado actual → bloque Revisión UI del plan del cliente. No afirmar certificación de iOS físico.
+
+### Revisión UI USA y Catering Texas · candidata local
+
+Luis pide revisar detalles menores de UI/completitud y añadir Catering al menos en Texas.
+`scripts/usa-ui-review.mjs <directorio-nuevo-en-.artifacts>` genera una revisión local reproducible:
+parte del paquete actual, conserva sus hashes base y aplica cambios declarados únicamente a
+Houston/The Woodlands/San Antonio/El Paso ES/EN y a la página central Catering ES/EN.
+No está integrado al empaquetado productivo ni al scheduler; no hay aprobación de publicación.
+
+La candidata unifica el scroll/foco del header, separa umbrales de entrada/salida para evitar
+oscilación, desvanece las capas del fondo y suaviza el cambio de altura. Menú permanece accesible
+en móvil con objetivos de44px; Sucursales usa icono de selector con nombre accesible. Catering
+se integra después de la agenda y tiene acceso directo en el navbar de escritorio. Se reutiliza
+el mismo medio aprobado y destino central, sin duplicar la oferta en nuevas páginas por ciudad.
+La central consulta disponibilidad por ciudad; no inventa radio de entrega, paquetes o contactos.
+
+Guadalajara, home, cartas, datos de operación y selección de Instagram se conservan. Las nuevas
+CSS/JS deliberadamente no están en el manifiesto productivo. Para publicar habrá que integrar
+la composición aprobada al build/scheduler, versionar/allowlistar activos, pasar CI y usar la
+entrada de release vigente, con la autorización de Luis; este builder no es un deploy alternativo.
+
+Pruebas: estado del navbar (histeresis/foco/overscroll), aislamiento del artefacto y restauración
+exacta de cada parche. QA Brave de las ocho fichas a320/1440px, encuadres móviles y navegación.
+Resultado y captura de revisión → cierre del cliente/plan operativo. No afirmar que estén publicados.
+
 ### Instagram Houston · presentación mínima4-nov-2026
 
 Luis pide retirar etiquetas de formato, flechas de apertura, botones visibles, contador,

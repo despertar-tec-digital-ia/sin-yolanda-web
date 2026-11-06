@@ -1,0 +1,11 @@
+{
+  "file": "scripts/public-manifest.json",
+  "beforeSha256": "27f760ea0ba66a069c330ce62274cfca18b1b06400f7a30be5da2a8d81623238",
+  "afterSha256": "1b2055b77d398f20c0b1b086009eefb5918d45aa359dfc504f92b63752b0ed8d",
+  "patches": [
+    {
+      "before": "\n    \"assets/social-feed-houston/De2S1RsmNNq-photo-2-red-hat-800.webp\"\n",
+      "after": "\n    \"assets/social-feed-houston/De2S1RsmNNq-photo-2-red-hat-800.webp\",\n    \"assets/css/branch-ui-review.css\",\n    \"assets/js/branch-ui-review.js\",\n    \"assets/css/site-ui-review.css\"\n"
+    }
+  ]
+}

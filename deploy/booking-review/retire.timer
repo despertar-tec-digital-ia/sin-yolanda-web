@@ -1,0 +1,8 @@
+[Unit]
+Description=Expire Sin Yolanda booking preview on 13 November 2026
+[Timer]
+OnCalendar=2026-11-13 23:59:00 UTC
+Persistent=true
+Unit=sy-booking-review-retire-20261106.service
+[Install]
+WantedBy=timers.target

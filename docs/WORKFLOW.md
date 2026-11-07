@@ -1,5 +1,101 @@
 # Forma de trabajar y publicar
 
+### Movimiento Houston y prueba compartible · 6-nov
+
+QA de bugs posterior: Escape desde el campo de fecha no llegaba al handler del calendario,
+que es un hermano del input. Se delega esa tecla al botón de cierre del propio proveedor;
+no se oculta el popup por CSS ni se manipula estado privado. Conserva foco/valor y permite
+reabrir con teclado. Los enlaces de reserva dejan de anunciarse como acordeones (`aria-expanded`),
+y el nombre accesible de cada campo incluye su etiqueta visible sin duplicar prefijos al observar
+cambios. El resto de teclas, fechas, disponibilidad, fallback y medición conserva su contrato.
+
+
+Petición posterior: Luis rechaza el fondo crema del bloque. Solo Houston adopta un granate
+cálido#3b1415, texto#fff4de, secundarios#e4c9bc y calendario#4c2021. La acción clara retoma el
+contraste del botón existente del hero; hover/pressed mantienen texto oscuro legible. La paleta
+se acota por `data-booking-branch="houston"`; no cambia fotografías, composición, funciones,
+medición ni estilo de las otras sedes. El aviso retirado no se repone. Los controles conservan
+56px, foco claro y la animación respeta movimiento reducido.
+
+Luis autoriza animaciones simples en esta ficha de prueba y publicar un enlace para Karina;
+no extenderlas a otras sedes ni desplegar al dominio oficial. `branch-motion-review.css/js`
+se cargan únicamente en Houston ES/EN mediante el builder de revisión. El navbar conserva su
+lógica de foco/scroll y suaviza sus transiciones; títulos/contenido entran una vez con6px/280ms,
+formulario con fade180ms y calendario con4px/160ms. Botones responden al pulsar sin bloquear
+entrada. No se añade un menú que no existe ni se toca el hero. Movimiento reducido conserva
+contenido estático, controles y navegación inmediata; sin JS todo permanece visible.
+
+`build-booking-share.mjs` exige fuente limpia, mantiene solo Houston ES/EN/404 como HTML,
+quita analítica y envía los demás enlaces al sitio oficial. Por petición posterior de Luis se
+retira el aviso visible completo y su enlace «Sitio oficial», en ES/EN. Compose/Nginx acotados en
+`deploy/booking-review/`: servicio nuevo aislado, imagen por digest, mount readonly, noindex,
+no-store, sin puertos host/secretos; retiro persistente13-nov. PR de revisión sin merge/main.
+Recepción/URL/QA y rollback pertenecen al runbook privado; no confundir preview con producción.
+
+### Reservas OpenTable · revisión UX local6-nov
+
+Luis rechaza la candidata anterior por las dos rutas de reserva y pide una composición más
+integrada. Esta revisión la sustituye: una fila de campos en escritorio, dos columnas en tablet
+y una en móvil; identidad de sede junto al título, teléfono de ayuda discreto al pie. No hay
+botón previo cuando el bloque entra en pantalla, enlace «Abrir directamente» ni aviso de error
+permanente. La ficha conserva su hero, los datos, las fotos y el resto de su estructura.
+
+Personalización adicional6-nov: el bloque hereda `--wine` para acciones, foco y selección;
+HoustonDisplay42px para el título (40px móvil) y24px para el botón. Los campos conservan56px de interacción
+con etiquetas visuales ES/EN, valores20px y línea inferior, sin marco blanco continuo. El
+calendario usa papel/granate, título propio de SY, días/selección/foco y navegación adaptados.
+Las etiquetas se anotan como atributos de presentación; no se sustituyen controles ni handlers.
+El paso final del proveedor y los selectores nativos del sistema conservan su interfaz.
+La composición agrupa título y sede a la izquierda desde1180px, formulario y ayuda a la derecha.
+El contenedor llega a1240px, con220px para el título y48px de separación; por debajo se apila,
+sin alejar el nombre de la sede. El pie de atribución/ayuda pertenece al panel del formulario.
+El calendario agrupa ambas flechas a la derecha de una cabecera22px y conserva hitboxes40px.
+En tablet, el calendario se alinea al borde derecho de fecha para permanecer dentro del viewport.
+Comprobarlo abierto y con área visible al verificar los breakpoints.
+
+Se utiliza el formulario oficial en modo `iframe=false`, `theme=wide`, con RID/idioma/origen de
+cada sede. Los campos, calendario, inventario y búsqueda siguen siendo del proveedor. El CSS
+local solo adapta presentación dentro de `.sy-booking`: tipografía/color/espaciado, controles
+56px, iconos rellenos sin el trazo que añadía el sitio y calendario completo con días más amplios.
+No se recorta un iframe ni se recrea un formulario, horario o regla comercial.
+
+La carga empieza al acercarse al bloque (IntersectionObserver,160px), al pulsar Reservar o al
+entrar por su ancla. Se conserva una carga por documento. El estado inicial funciona sin JS
+como enlace nativo; carga y éxito ocultan esa acción. Solo un error/espera de12s muestra una
+única acción de continuación con el destino oficial. El estado normal no contiene un segundo
+camino ni mensaje técnico. Un proveedor que insertó controles no acredita disponibilidad ni
+confirmación; el teléfono sigue disponible para dudas o problemas internos del proveedor.
+
+La detección de contenido exige formulario, selector y submit nativos. Se corrige únicamente
+su landmark anidado a grupo etiquetado por el título de la sección. Tras el cierre nativo del
+modal se devuelve foco al submit, sin cancelación propia ni mensajes privados. Calendario y
+modal conservan los handlers de OpenTable; la navegación Atrás no inutiliza el controlador.
+
+Los enlaces de hero/pie mantienen URLs oficiales reales; clic ordinario mejora el salto y los
+modificadores conservan navegación nativa. La búsqueda del formulario registra solo intención
+`reservation_click` mediante el sanitizador y adaptadores ya existentes. No envía valores del
+formulario, no agrega transporte y nunca registra confirmación por mostrar campos/horarios.
+Los eventos de entrada y búsqueda son acciones, no personas ni reservas únicas.
+
+`opentable-review.mjs` construye8fichas ES/EN aisladas. CSS/JS/config siguen fuera del manifiesto
+productivo:354archivos normales,356en revisión. La integración futura debe aplicar el mismo
+refinamiento a build y scheduler con aprobación independiente; ninguna aprobación UI anterior
+se reutiliza. No hay publicación ni cambios guardados en cuentas del proveedor.
+
+QA de composición6-nov:24vistas reales (8fichas×320/768/1440) sin overflow, controles56px y una sola
+acción de búsqueda;8formularios cargados. Diez anchuras con calendario abierto y42días visibles,
+meses adelante/atrás y selección comprobados. Escape desde el campo de fecha y desde un día
+cierra mediante el proveedor, tras la corrección posterior de teclado. Las pruebas anteriores de búsqueda
+real sin seleccionar horario, cierre del modal y retorno al submit siguen vigentes. CSP contra el
+proveedor y ausencia de JS conservan un único enlace oficial. Pruebas de configuración,
+isolación, recuperación, caché y medición saneada pasan. Dispositivos físicos, confirmación,
+pagos y políticas por sede requieren validación coordinada; no se crearon reservas.
+
+El modo sin iframe permite integrar la presentación, pero depende del markup público del
+widget. Mantener las reglas CSS acotadas y comprobar los8formularios al actualizar el proveedor;
+si cambia la estructura esperada, conservar la salida nativa. Las referencias, evidencia y
+plan de release/rollback viven en el documento privado del cliente, sin PII en este repositorio.
+
 ### UI general y Catering Texas · publicación autorizada5-nov
 
 Luis aprueba la revisión local completa y confirma «Sí, publicar los ajustes». La misma

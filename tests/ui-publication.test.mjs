@@ -23,7 +23,8 @@ test('approved production UI matches the complete reviewed candidate; only scrip
   for(const[file,actual]of live.files){
     assert.equal(normalize(actual),normalize(readFileSync(resolve(out,'public',file),'utf8')),file);
   }
-  assert.equal(live.ui.pages,25);
+  assert.equal(live.ui.pages,26);
+  assert.ok(live.files.get('ciudad-juarez.html')?.includes('data-site-ui-review="subtle"'));
   const later=projectPublicSite(root,{now:'2026-11-24T12:00:00Z',commit:reviewed.commit});
   for(const file of ['houston.html','en/houston/index.html','guadalajara.html']){
     assert.ok(later.files.get(file).includes('data-site-ui-review="subtle"'));

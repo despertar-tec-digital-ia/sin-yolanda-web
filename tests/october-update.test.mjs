@@ -10,8 +10,10 @@ import { restoreOctober } from '../scripts/october-source-contract.mjs';
 import { schemas, renderShell } from '../scripts/seo.mjs';
 import { applyOctoberSiteHtml, photoExports } from '../scripts/october-site.mjs';
 import { restoreHomeSelection } from '../scripts/home-selection-source-contract.mjs';
+import { restoreCiudadJuarezOpening } from '../scripts/ciudad-juarez-opening-source-contract.mjs';
 const root = resolve(import.meta.dirname, '..');
-const read = file => restoreHomeSelection(file, readFileSync(resolve(root, file), 'utf8'));
+const read = file => restoreHomeSelection(file, restoreCiudadJuarezOpening(file,
+  readFileSync(resolve(root, file), 'utf8').replaceAll('\r\n', '\n')));
 const hash = value => createHash('sha256').update(value).digest('hex');
 const project = now => projectAllAgendas(root, { now, commit: 'a'.repeat(40) });
 const plain = value => JSON.parse(JSON.stringify(value));
@@ -44,7 +46,10 @@ test('home hero, menus, QR and Woodlands/Moreno Valley photography retain their 
   assert.ok(hero(home)); assert.equal(hero(home), hero(prior));
   const protectedFiles = JSON.parse(read('scripts/central-seo-source-patches.json')).protected;
   for (const [file, expected] of Object.entries(protectedFiles).filter(([f]) => /\/menu\/|\/menus\/|\.pdf$|_redirects|images\/branch-review\/the-woodlands|future-crowd/.test(f))) {
-    assert.equal(hash(readFileSync(resolve(root,file))), expected, file);
+    const bytes = readFileSync(resolve(root,file));
+    const source = /\.(?:pdf|webp)$/i.test(file) ? bytes : restoreCiudadJuarezOpening(file,
+      bytes.toString('utf8').replaceAll('\r\n', '\n'));
+    assert.equal(hash(source), expected, file);
   }
   const context = { window: {} }; vm.runInNewContext(read('assets/js/public-data.js'),context);
   assert.deepEqual(Array.from(context.window.SY_DATA.branches.slice(-2), b => b.id), ['san-diego','moreno-valley']);

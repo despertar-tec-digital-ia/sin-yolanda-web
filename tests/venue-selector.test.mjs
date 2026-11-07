@@ -98,6 +98,26 @@ test('future photos are illustrative brand media, and Ciudad Juárez has no inve
   assert.doesNotMatch(render('venueShowcase', opened), /venue-badge--opening|venue-opening-date/);
 });
 
+test('Ciudad Juárez is the next opening without a territory label on its card', () => {
+  const html = render('venueShowcase');
+  const ciudadJuarezCard = html.match(/data-branch-id="ciudad-juarez"[\s\S]*?<\/a>/)?.[0];
+  const sanDiegoCard = html.match(/data-branch-id="san-diego"[\s\S]*?<\/div>/)?.[0];
+  const morenoValleyCard = html.match(/data-branch-id="moreno-valley"[\s\S]*?<\/div>/)?.[0];
+  assert.ok(ciudadJuarezCard);
+  assert.match(ciudadJuarezCard, /venue-coming-soon[\s\S]*Muy pronto/);
+  assert.match(ciudadJuarezCard, /venue-city">Ciudad Juárez, Chihuahua<\/span>/);
+  assert.doesNotMatch(ciudadJuarezCard, /venue-location|México|Estados Unidos/);
+  assert.match(sanDiegoCard, /venue-badge">Próximamente<\/span>/);
+  assert.match(morenoValleyCard, /venue-badge">Próximamente<\/span>/);
+  assert.doesNotMatch(sanDiegoCard, /venue-coming-soon|Muy pronto/);
+  assert.doesNotMatch(morenoValleyCard, /venue-coming-soon|Muy pronto/);
+  for (const file of ['index.html', 'locations.html']) {
+    const fallbackCard = read(file).match(/data-branch-id="ciudad-juarez"[\s\S]*?<\/a>/)?.[0];
+    assert.ok(fallbackCard, file);
+    assert.doesNotMatch(fallbackCard, /venue-location|México|Estados Unidos/, file);
+  }
+});
+
 test('hero refinement keeps one accessible rotulo H1 and replaces the still-image video with responsive source photos', () => {
   const hash = s => createHash('sha256').update(s).digest('hex');
   const hero = source.match(/<section class="home-hero home-hero-cinema"[\s\S]*?<\/section>/)[0];

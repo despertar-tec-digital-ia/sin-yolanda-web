@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { restoreCiudadJuarezOpening } from '../scripts/ciudad-juarez-opening-source-contract.mjs';
+import { ciudadJuarezPriority, restoreCiudadJuarezPriority } from '../scripts/ciudad-juarez-priority-source-contract.mjs';
 
 const read = file => readFileSync(new URL('../' + file, import.meta.url), 'utf8');
 const hash = value => createHash('sha256').update(value).digest('hex');
@@ -11,7 +12,14 @@ test('Ciudad Juárez opening changes restore the exact earlier source and reject
   const contract = JSON.parse(read('scripts/ciudad-juarez-opening-source-patches.json'));
   for (const [file, entry] of Object.entries(contract.files)) {
     const source = read(file);
-    assert.equal(hash(source.replaceAll('\r\n', '\n')), entry.afterSha256, file);
+    const priority = ciudadJuarezPriority.files[file];
+    assert.equal(hash(source.replaceAll('\r\n', '\n')), priority?.afterSha256 || entry.afterSha256, file);
+    if (priority) {
+      const beforePriority = restoreCiudadJuarezPriority(file, source);
+      assert.equal(hash(beforePriority), priority.beforeSha256, file + ': priority restores the opening release');
+      assert.equal(restoreCiudadJuarezPriority(file, beforePriority), beforePriority, file + ': priority idempotent');
+      assert.throws(() => restoreCiudadJuarezPriority(file, source + priority.patches.at(-1).after), /Ciudad Juárez priority patch/);
+    }
     const restored = restoreCiudadJuarezOpening(file, source);
     assert.equal(hash(restored), entry.beforeSha256, file);
     assert.equal(restoreCiudadJuarezOpening(file, restored), restored, file + ': idempotent');

@@ -1,6 +1,7 @@
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import assert from 'node:assert/strict';
+import { restoreCiudadJuarezPriority } from './ciudad-juarez-priority-source-contract.mjs';
 
 const contract = JSON.parse(readFileSync(new URL('./ciudad-juarez-opening-source-patches.json', import.meta.url)));
 const hash = value => createHash('sha256').update(value).digest('hex');
@@ -10,7 +11,7 @@ const hash = value => createHash('sha256').update(value).digest('hex');
 export function restoreCiudadJuarezOpening(file, source) {
   const entry = contract.files[file];
   if (!entry) return source;
-  source = source.replaceAll('\r\n', '\n');
+  source = restoreCiudadJuarezPriority(file, source.replaceAll('\r\n', '\n'));
   if (hash(source) === entry.beforeSha256) return source;
   const hasCurrentPatch = entry.patches.some(patch => source.split(patch.after).length - 1 > 0);
   // Historical callers can pass a source already restored below this release.

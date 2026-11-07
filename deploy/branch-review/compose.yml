@@ -1,0 +1,35 @@
+services:
+  sy-booking-review:
+    image: nginx@sha256:8b1e78743a03dbb2c95171cc58639fef29abc8816598e27fb910ed2e621e589a
+    container_name: sy-booking-review-20261106
+    user: "101:101"
+    restart: unless-stopped
+    read_only: true
+    mem_limit: 64m
+    cpus: 0.25
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    tmpfs: [/var/cache/nginx:mode=1777, /var/run:mode=1777, /tmp:mode=1777]
+    volumes:
+      - ../../.artifacts/${SY_PREVIEW_ARTIFACT:?Set reviewed artifact name}/public:/usr/share/nginx/html:ro
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    networks: [ddtia-net]
+    healthcheck:
+      test: [CMD, wget, -q, -O, /dev/null, http://127.0.0.1:8080/health]
+      interval: 20s
+      timeout: 3s
+      retries: 3
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=ddtia-net
+      - traefik.http.routers.sy-booking-review.rule=Host(`reservas.sin-yolanda.com`) || Host(`reservas-sy.187.77.220.209.sslip.io`)
+      - traefik.http.routers.sy-booking-review.entrypoints=websecure
+      - traefik.http.routers.sy-booking-review.tls.certresolver=letsencrypt
+      - traefik.http.services.sy-booking-review.loadbalancer.server.port=8080
+      - traefik.http.routers.sy-booking-review-http.rule=Host(`reservas.sin-yolanda.com`) || Host(`reservas-sy.187.77.220.209.sslip.io`)
+      - traefik.http.routers.sy-booking-review-http.entrypoints=web
+      - traefik.http.routers.sy-booking-review-http.middlewares=sy-booking-review-https
+      - traefik.http.middlewares.sy-booking-review-https.redirectscheme.scheme=https
+networks:
+  ddtia-net:
+    external: true

@@ -1,5 +1,39 @@
 # Forma de trabajar y publicar
 
+### Ficha Ciudad Juárez · revisión local6-nov
+
+**Revisión completa y prueba compartible autorizadas después:** Luis pide QA integral y publicar
+en un host de prueba existente, sin llevar este rediseño al oficial. Se corrige contraste del
+texto pequeño del footer (3.19→4.63:1) y se retira la flecha de menú de un enlace directo.
+Seis tamaños320–1440, incluido landscape, conservan enlaces dentro del viewport y áreas44px;
+la emulación temporal de movimiento reducido desactiva transiciones y se restaura al terminar.
+La ficha no necesita una cartelera, mapa, carta o reservas vacías. Esas capacidades, redes de
+Ciudad Juárez y un aviso de apertura requieren datos/contactos propios y autorización de captura.
+
+`scripts/build-ciudad-juarez-share.mjs` añade solo esta página y su CSS al artefacto inmutable
+de reservas de Houston. Exige Git limpio, digest/hashes exactos del baseline y todas las
+dependencias; rechaza sobrescrituras, archivos adicionales y bytes alterados. Quita scripts de
+analítica, impone noindex y envía los enlaces de otras páginas al oficial. Houston conserva todos
+sus bytes y el CSS nuevo recibe query por hash. Receta de host compartido en `deploy/branch-review`:
+solo el contenedor de prueba existente, sin DNS, secretos, puertos ni cambios en Pages/main.
+Publicación autorizada para revisión, no autorización del diseño en el dominio oficial.
+
+Luis rechaza la presentación genérica publicada y pide la misma estructura visual de las fichas
+existentes, únicamente en local. Se reutilizan los estilos inmutables de hero/BranchLanding/
+BranchFooter, sus tipografías y el logotipo blanco. La variante queda acotada a
+`ciudad-juarez.html` y `assets/css/ciudad-juarez-opening.css`: foto ilustrativa de Karina a todo
+el ancho, composición lateral en escritorio, encuadre propio móvil y footer de sucursal.
+No se cambia el home ni se crea otra identidad El Paso. Sin dirección, fecha, mapa, menú,
+teléfono, formulario o reserva; el CTA abre el directorio y la navegación interna lleva al aviso
+de apertura. San Diego/Moreno Valley permanecen como próximas después de Ciudad Juárez.
+
+El marcado conserva `data-page` y usa `data-opening-branch`, sin cambiar por diseño la atribución
+vigente de la landing ni regenerar medición/consentimiento compartidos. Sin JavaScript nuevo.
+Validación: check completo, paquete review, anclas/foco y tamaños320/390/768/1440 sin overflow;
+hero/encuadre móvil/footer observados y viewport temporal restaurado. No publicación, push ni PR.
+Antes de publicar una candidata aprobada, renovar el identificador de caché de su CSS y comprobar
+los contratos de fuente/manifiesto; no reutilizar la aprobación del diseño anterior.
+
 ### UI general y Catering Texas · publicación autorizada5-nov
 
 Luis aprueba la revisión local completa y confirma «Sí, publicar los ajustes». La misma

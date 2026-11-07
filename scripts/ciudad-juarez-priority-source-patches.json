@@ -1,0 +1,88 @@
+{
+  "version": 1,
+  "authorization": "Karina clarified the Ciudad Juárez card on 2026-11-06: it is the next opening, retains Ciudad Juárez, Chihuahua in the detail line, and omits the upper territory label.",
+  "files": {
+    "assets/js/site.js": {
+      "beforeSha256": "6fcf27d600f5f52790f1d40044feaf05251e81a35d08df586f17e09a92d8af28",
+      "afterSha256": "bb27c40859f9109fcc8e02bd949478611e8e091f0df9a5a1948d129ff3204c2e",
+      "patches": [
+        {
+          "before": "              const venueLocation = branch.id === \"ciudad-juarez\"\n                ? (branch.venueCity || branch.city)\n                : (branch.country === \"México\" ? \"Jalisco, México\" : branch.city);",
+          "after": "              const showVenueLocation = branch.id !== \"ciudad-juarez\";\n              const venueLocation = branch.country === \"México\" ? \"Jalisco, México\" : branch.city;"
+        },
+        {
+          "before": "                ${isNextOpening ? `<span class=\"venue-coming-soon\" data-i18n-es=\"Muy pronto\" data-i18n-en=\"Coming soon\">Muy pronto</span>` : \"\"}\n                <span class=\"venue-location\" aria-hidden=\"true\">${venueLocation}</span>",
+          "after": "                ${isNextOpening ? `<span class=\"venue-coming-soon\" data-i18n-es=\"Muy pronto\" data-i18n-en=\"Coming soon\">Muy pronto</span>` : \"\"}\n                ${showVenueLocation ? `<span class=\"venue-location\" aria-hidden=\"true\">${venueLocation}</span>` : \"\"}"
+        }
+      ]
+    },
+    "index.html": {
+      "beforeSha256": "f8f96ebdcbc4a8ac70ac07b506715bf86f86784392007b3c405109fe3c17a9d7",
+      "afterSha256": "0d162ecc63f53d67c90a4e1744e472f2fe2eeccbd4e626d16af047d8c2a1b427",
+      "patches": [
+        {
+          "before": "                <span class=\"venue-coming-soon\" data-i18n-es=\"Muy pronto\" data-i18n-en=\"Coming soon\">Muy pronto</span>\n                <span class=\"venue-location\" aria-hidden=\"true\">Ciudad Juárez, Chihuahua</span>\n                <span class=\"venue-collapsed\" aria-hidden=\"true\">Ciudad Juárez</span>",
+          "after": "                <span class=\"venue-coming-soon\" data-i18n-es=\"Muy pronto\" data-i18n-en=\"Coming soon\">Muy pronto</span>\n                <span class=\"venue-collapsed\" aria-hidden=\"true\">Ciudad Juárez</span>"
+        },
+        {
+          "before": "    <script src=\"assets/js/site.js?v=20261106-ciudad-juarez-opening\"></script>",
+          "after": "    <script src=\"assets/js/site.js?v=20261106-ciudad-juarez-card-location\"></script>"
+        }
+      ]
+    },
+    "locations.html": {
+      "beforeSha256": "84247b135ab805d8e5a7b83e104cc401196993ab35795d13d983381fd9971dca",
+      "afterSha256": "e8f383708f2d0cf7c1715e363a8dae646d11edfc397efd12cef46649af7d5323",
+      "patches": [
+        {
+          "before": "                <span class=\"venue-coming-soon\" data-i18n-es=\"Muy pronto\" data-i18n-en=\"Coming soon\">Muy pronto</span>\n                <span class=\"venue-location\" aria-hidden=\"true\">Ciudad Juárez, Chihuahua</span>\n                <span class=\"venue-collapsed\" aria-hidden=\"true\">Ciudad Juárez</span>",
+          "after": "                <span class=\"venue-coming-soon\" data-i18n-es=\"Muy pronto\" data-i18n-en=\"Coming soon\">Muy pronto</span>\n                <span class=\"venue-collapsed\" aria-hidden=\"true\">Ciudad Juárez</span>"
+        },
+        {
+          "before": "    <script src=\"assets/js/site.js?v=20261106-ciudad-juarez-opening\"></script>",
+          "after": "    <script src=\"assets/js/site.js?v=20261106-ciudad-juarez-card-location\"></script>"
+        }
+      ]
+    },
+    "scripts/public-manifest.json": {
+      "beforeSha256": "7f2bf701ed623d3c7a7e3ca793e6f7548805d2efc86e31f2347a02558b71ec4f",
+      "afterSha256": "0451051e9c908153d508fdcc4956cfb3a745b04454eef490a248dc8fe2b78e16",
+      "patches": [
+        {
+          "before": "    \"assets/js/site.js\": \"20261106-ciudad-juarez-opening\",",
+          "after": "    \"assets/js/site.js\": \"20261106-ciudad-juarez-card-location\","
+        }
+      ]
+    },
+    "eventos.html": {
+      "beforeSha256": "c1c6b068a010716a09164b394cb9e0ec5b34d6291e372ae73d686798fbd1b318",
+      "afterSha256": "59cd5284a22df5eb42584211b9b0aea1070587e3c12377ff2778d8b72250d414",
+      "patches": [
+        {
+          "before": "    <script src=\"assets/js/site.js?v=20261106-ciudad-juarez-opening\"></script>",
+          "after": "    <script src=\"assets/js/site.js?v=20261106-ciudad-juarez-card-location\"></script>"
+        }
+      ]
+    },
+    "la-cantina.html": {
+      "beforeSha256": "c340874148b6a740a9981b6fb6294fc4d142d5136c3d4533c277b8d371a038d0",
+      "afterSha256": "3dcab2a04e9b6a75112dab4a033616df409339bd4264ef4e0aea4efdc8d8631f",
+      "patches": [
+        {
+          "before": "    <script src=\"assets/js/site.js?v=20261106-ciudad-juarez-opening\"></script>",
+          "after": "    <script src=\"assets/js/site.js?v=20261106-ciudad-juarez-card-location\"></script>"
+        }
+      ]
+    },
+    "tienda.html": {
+      "beforeSha256": "e71a6a6fa67e54092d9621f621a787780d3a2ee855092fb370f0e022e62c77e5",
+      "afterSha256": "a57b6b30f7bfbe9ab2dff3532ee744d8cd9be992de593a75a9471c47db457b53",
+      "patches": [
+        {
+          "before": "    <script src=\"assets/js/site.js?v=20261106-ciudad-juarez-opening\"></script>",
+          "after": "    <script src=\"assets/js/site.js?v=20261106-ciudad-juarez-card-location\"></script>"
+        }
+      ]
+    }
+  }
+}

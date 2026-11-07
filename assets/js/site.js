@@ -110,14 +110,13 @@
               const hasOpeningDate = branch.status === "coming-soon" && branch.openingDate === "2026-10-09";
               const opening = hasOpeningDate ? branch.statusLabel : "Próximamente";
               const isNextOpening = branch.id === nextOpening?.id;
-              const venueLocation = branch.id === "ciudad-juarez"
-                ? (branch.venueCity || branch.city)
-                : (branch.country === "México" ? "Jalisco, México" : branch.city);
+              const showVenueLocation = branch.id !== "ciudad-juarez";
+              const venueLocation = branch.country === "México" ? "Jalisco, México" : branch.city;
               return `<li class="venue-item${index === 0 ? " is-open" : ""}" data-venue-item data-region="${branch.region}" data-status="${branch.status}">
               <${tag} class="venue-card${index === 0 ? " is-open" : ""}${branch.status === "coming-soon" ? " venue-card--soon" : ""}${branch.venuePhoto ? "" : " venue-card--announcement"}"${hasPage ? ` href="${branch.page}"` : ""} data-venue data-branch-id="${branch.id}">
                 <span class="venue-frame" aria-hidden="true">${branch.venuePhoto ? `<img src="${branch.venuePhoto}"${branch.venuePhotoSet ? ` srcset="${branch.venuePhotoSet}" sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 60vw"` : ""} alt="" width="${branch.venuePhotoWidth || 1400}" height="${branch.venuePhotoHeight || 1000}" loading="lazy" decoding="async" style="object-position:${branch.venuePosition || "50% 50%"}" />` : `<span class="venue-announcement">Sin Yolanda<span>Próximamente</span></span>`}<span class="venue-shade"></span></span>
                 ${isNextOpening ? `<span class="venue-coming-soon" data-i18n-es="Muy pronto" data-i18n-en="Coming soon">Muy pronto</span>` : ""}
-                <span class="venue-location" aria-hidden="true">${venueLocation}</span>
+                ${showVenueLocation ? `<span class="venue-location" aria-hidden="true">${venueLocation}</span>` : ""}
                 <span class="venue-collapsed" aria-hidden="true">${name}</span>
                 ${hasOpeningDate ? `<span class="venue-opening-date" aria-hidden="true"><span>Apertura</span>9 OCT</span>` : ""}
                 <span class="venue-label">

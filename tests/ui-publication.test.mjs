@@ -25,6 +25,11 @@ test('approved production UI matches the complete reviewed candidate; only scrip
   }
   assert.equal(live.ui.pages,26);
   assert.ok(live.files.get('ciudad-juarez.html')?.includes('data-site-ui-review="subtle"'));
+  const siteScriptVersion=JSON.parse(readFileSync(resolve(root,'scripts/public-manifest.json'),'utf8')).assetVersions['assets/js/site.js'];
+  for(const[file,html]of live.files){
+    const match=html.match(/assets\/js\/site\.js\?v=([^"\s]+)/);
+    if(match)assert.equal(match[1],siteScriptVersion,file+' must use the current shared renderer version');
+  }
   const later=projectPublicSite(root,{now:'2026-11-24T12:00:00Z',commit:reviewed.commit});
   for(const file of ['houston.html','en/houston/index.html','guadalajara.html']){
     assert.ok(later.files.get(file).includes('data-site-ui-review="subtle"'));

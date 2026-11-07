@@ -24,6 +24,8 @@ export function loadApprovedUi(root) {
 export function projectApprovedUi(root,inputFiles) {
   const config=loadApprovedUi(root),files=new Map(inputFiles);
   if(!config)return {files};
+  const siteScriptVersion=config.manifest.assetVersions['assets/js/site.js'];
+  assert.ok(siteScriptVersion,'The public manifest must version the shared site renderer');
   const read=file=>files.get(file)??readFileSync(resolve(root,file),'utf8');
   const teasers={};
   for(const language of ['es','en'])teasers[language]=read(language==='es'?'houston.html':'en/houston/index.html')
@@ -38,8 +40,11 @@ export function projectApprovedUi(root,inputFiles) {
     let html=read(file);assert.ok(!html.includes('data-site-ui-review='),'UI must be projected once');
     html=html.replace(/<body\b[^>]*>/,body=>body.replace('>',' data-site-ui-review="subtle">'));
     html=html.replace('</head>',`<link rel="stylesheet" href="/${siteUiAsset}?v=20261105-site-ui"></head>`);
-    // These two scripts keep their historical sources; the approved projection also versions their URLs.
-    html=html.replace(/((?:src|href)="\/?assets\/js\/(?:site|i18n)\.js)\?v=[^"\s]+/g,'$1?v='+config.approval.scriptVersion);
+    // UI approval is independent from the shared renderer release. Keep site.js on
+    // the manifest version so a later renderer correction cannot be hidden by a
+    // long-lived UI cache key; i18n.js remains on the reviewed UI version.
+    html=html.replace(/((?:src|href)="\/?assets\/js\/(site|i18n)\.js)\?v=[^"\s]+/g,
+      (_match,src,asset)=>src+'?v='+(asset==='site'?siteScriptVersion:config.approval.scriptVersion));
     files.set(file,html);
   }
   for(const[file,pairs]of [['assets/js/site.js',[cateringCopy.es]],['assets/js/i18n.js',[cateringCopy.es,cateringCopy.en]]]){

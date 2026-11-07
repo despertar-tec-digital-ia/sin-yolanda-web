@@ -22,11 +22,11 @@ services:
     labels:
       - traefik.enable=true
       - traefik.docker.network=ddtia-net
-      - traefik.http.routers.sy-booking-review.rule=Host(`reservas-sy.187.77.220.209.sslip.io`)
+      - traefik.http.routers.sy-booking-review.rule=Host(`reservas.sin-yolanda.com`) || Host(`reservas-sy.187.77.220.209.sslip.io`)
       - traefik.http.routers.sy-booking-review.entrypoints=websecure
       - traefik.http.routers.sy-booking-review.tls.certresolver=letsencrypt
       - traefik.http.services.sy-booking-review.loadbalancer.server.port=8080
-      - traefik.http.routers.sy-booking-review-http.rule=Host(`reservas-sy.187.77.220.209.sslip.io`)
+      - traefik.http.routers.sy-booking-review-http.rule=Host(`reservas.sin-yolanda.com`) || Host(`reservas-sy.187.77.220.209.sslip.io`)
       - traefik.http.routers.sy-booking-review-http.entrypoints=web
       - traefik.http.routers.sy-booking-review-http.middlewares=sy-booking-review-https
       - traefik.http.middlewares.sy-booking-review-https.redirectscheme.scheme=https

@@ -17,6 +17,14 @@ test('all allowed public pages use exactly one versioned shared tracker; 404 is 
   assert.equal(checkAnalyticsCoverage().measuredPages, manifest.pages.length - 1);
 });
 
+test('Ciudad Juárez uses the bounded group measurement route before operating facts are confirmed', () => {
+  const catalog = readEmbeddedContract(source);
+  const consent = JSON.parse(read('assets/js/ga4-consent.js').match(/window\.SY_GA4_CONTRACT = ([^\n]+);\n/)[1]);
+  assert.equal(catalog.routes['/ciudad-juarez'], 'group');
+  assert.deepEqual(consent.routes, catalog.routes);
+  assert.ok(!catalog.branches.includes('ciudad-juarez'));
+});
+
 test('the current public graph has exactly one shared click emitter and no competing native emitter', () => {
   for (const page of manifest.pages) {
     const html = read(page);

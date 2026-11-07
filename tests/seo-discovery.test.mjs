@@ -10,8 +10,8 @@ const discovery = JSON.parse(read('discovery.json'));
 const sitemap = [...read('sitemap.xml').matchAll(/<loc>([^<]+)<\/loc>/g)].map(([, url]) => url);
 
 test('all public destinations are indexable, canonical, unique and in the sitemap; missing pages remain excluded', () => {
-  assert.equal(pages.length, 24);
-  assert.equal(sitemap.length, 24);
+  assert.equal(pages.length, 25);
+  assert.equal(sitemap.length, 25);
   assert.deepEqual(sitemap.sort(), pages.map(page => canonical(read(page))).sort());
   const titles = new Set();
   for (const file of pages) {
@@ -35,6 +35,19 @@ test('all public destinations are indexable, canonical, unique and in the sitema
   assert.doesNotMatch(read('_headers'), /X-Robots-Tag:\s*noindex/);
   assert.match(read('robots.txt'), /Sitemap: https:\/\/sin-yolanda\.com\/sitemap\.xml/);
   assert.doesNotMatch(read('robots.txt'), /Disallow:\s*\/\s*$/m);
+});
+
+test('Ciudad Juárez is an indexable pre-opening page, not an operating location profile', () => {
+  const file = 'ciudad-juarez.html';
+  assert.ok(pages.includes(file));
+  const html = read(file);
+  assert.equal(canonical(html), 'https://sin-yolanda.com/ciudad-juarez');
+  assert.ok(sitemap.includes('https://sin-yolanda.com/ciudad-juarez'));
+  const nodes = schemas(html).flatMap(item => item['@graph'] ?? [item]);
+  assert.equal(nodes.filter(node => node['@type'] === 'WebPage').length, 1);
+  assert.ok(!nodes.some(node => ['Restaurant', 'Menu', 'Service', 'LocalBusiness'].includes(node['@type'])));
+  assert.doesNotMatch(html, /(?:tel:|wa\.me|opentable|google\.com\/maps|<iframe\b|hasMenu|acceptsReservations)/i);
+  assert.match(html, /Después de Ciudad Juárez[\s\S]*San Diego y Moreno Valley/);
 });
 
 test('real bilingual editions have reciprocal hreflang and never invent menu translations', () => {
@@ -64,6 +77,7 @@ test('the five public shell templates provide crawlable native content and prese
 
 test('discovery publishes five own-location records and only the visible Houston catering service', () => {
   assert.deepEqual(discovery.locations.map(location => location.id).sort(), ['el-paso', 'houston', 'san-antonio', 'san-ignacio', 'the-woodlands']);
+  assert.doesNotMatch(JSON.stringify(discovery), /Ciudad Juárez|ciudad-juarez/i);
   for (const location of discovery.locations) {
     const file = pages.find(page => canonical(read(page)) === location.url);
     const restaurant = schemas(read(file)).find(item => item['@type'] === 'Restaurant');

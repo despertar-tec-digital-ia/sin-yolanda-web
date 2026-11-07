@@ -25,7 +25,7 @@ const expectedIndexable = [
   'the-woodlands.html', 'en/the-woodlands/index.html', 'the-woodlands/menu/index.html',
   'guadalajara.html', 'san-ignacio/menu/index.html',
 ];
-const protectedPages = ['catering.html', 'el-paso.html', 'el-paso/menu/index.html', 'en/catering/index.html', 'en/el-paso/index.html'];
+const protectedPages = ['catering.html', 'el-paso.html', 'el-paso/menu/index.html', 'en/catering/index.html', 'en/el-paso/index.html', 'ciudad-juarez.html'];
 
 test('technical indexation is limited to the 12 pinned branch/menu pages and does not grant commercial approval', () => {
   assert.equal(policy.version, 1);
@@ -52,10 +52,10 @@ test('technical indexation is limited to the 12 pinned branch/menu pages and doe
   }
 });
 
-test('the subsequent explicit SEO authorization promotes the five existing El Paso and Catering pages', () => {
+test('the explicit SEO authorization retains the five existing pages and adds the Ciudad Juárez pre-opening page', () => {
   assert.equal(seoPolicy.authorizer, 'Karina');
-  assert.equal(seoPolicy.authorizedOn, '2026-10-12');
-  assert.deepEqual([...seoPolicy.pages].sort(), protectedPages);
+  assert.equal(seoPolicy.authorizedOn, '2026-11-06');
+  assert.deepEqual([...seoPolicy.pages].sort(), [...protectedPages].sort());
   assert.deepEqual(manifest.reviewPages, []);
   for (const page of protectedPages) {
     assert.ok(manifest.pages.includes(page));
@@ -68,6 +68,9 @@ test('the subsequent explicit SEO authorization promotes the five existing El Pa
     assert.equal(imports[id].publicationApproved, false);
     assert.ok(imports[id].blockingReasons.length > 0);
   }
+  const ciudadJuarez = read('ciudad-juarez.html');
+  assert.doesNotMatch(ciudadJuarez, /(?:data-import-source-ref|data-import-audience|@type":"Restaurant|tel:|wa\.me|opentable|google\.com\/maps|<iframe\b)/i);
+  assert.match(ciudadJuarez, /@type":"WebPage"/);
 });
 
 test('all 16 legacy rules land directly on existing indexable canonicals and real fragment anchors', () => {

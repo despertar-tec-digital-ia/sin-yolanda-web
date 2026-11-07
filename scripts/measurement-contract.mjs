@@ -7,8 +7,15 @@ import {loadApprovedAgenda} from './editorial/public-agenda.mjs';
 import {loadGdlApproval} from './editorial/gdl-approved.mjs';
 import {contestPath,contestRecord,registrationWhatsapp,registrationPhone} from './editorial/gdl-contest-config.mjs';
 
+const normalizeRoot = root => {
+  if (typeof root !== 'string') return root;
+  try { root = decodeURIComponent(root); } catch {}
+  return root.replace(/^\/([A-Za-z]:[\\/])/, '$1');
+};
+
 export function compileMeasurementContract(root) {
-  const read=file=>readFileSync(resolve(root,file),'utf8');
+  const sourceRoot = normalizeRoot(root);
+  const read=file=>readFileSync(resolve(sourceRoot,file),'utf8');
   const manifest=JSON.parse(read('scripts/public-manifest.json'));
   const context={window:{}};vm.runInNewContext(read('assets/js/public-data.js'),context);
   const publicData=context.window.SY_DATA;
@@ -17,11 +24,11 @@ export function compileMeasurementContract(root) {
     if(file==='404.html')continue;
     const html=read(file),branch=html.match(/<body\b[^>]*\bdata-branch="([^"]+)"/)?.[1];
     const route=file==='index.html'?'/':'/'+file.replace(/\/index\.html$/,'').replace(/\.html$/,'');
-    const inferred=publicData.branches.find(branch=>branch.page!=='#'&&[('/'+branch.id),('/en/'+branch.id),('/'+branch.id+'/menu'),('/en/'+branch.id+'/menu')].includes(route))?.id;
+    const inferred=publicData.branches.find(branch=>branch.status==='active'&&branch.page!=='#'&&[('/'+branch.id),('/en/'+branch.id),('/'+branch.id+'/menu'),('/en/'+branch.id+'/menu')].includes(route))?.id;
     routes[route]=branch||inferred||(route.endsWith('/catering')?'catering':'group');
   }
   routes['/guadalajara']='san-ignacio';
-  const approved=loadApprovedAgenda(root),events={};
+  const approved=loadApprovedAgenda(sourceRoot),events={};
   const posts=new Map(approved.registry.posts.map(post=>[post.id,post.url]));
   const tickets=new Map(approved.registry.tickets.map(ticket=>[ticket.id,ticket]));
   for(const record of approved.approval.records){
@@ -32,7 +39,7 @@ export function compileMeasurementContract(root) {
     events[unit.id]={branch:branchId,kind:unit.semanticKind,post:posts.get(postId),...(verified?{tickets:ticket.url}:{})};
   }
   const series={};
-  const gdl = loadGdlApproval(root);
+  const gdl = loadGdlApproval(sourceRoot);
   for (const record of gdl?.records ?? []) events[record.id] = {
     branch: 'san-ignacio', kind: record.kind, post: record.postUrl,
     ...(record.detailsUrl ? { additionalPosts: [record.detailsUrl] } : {}),

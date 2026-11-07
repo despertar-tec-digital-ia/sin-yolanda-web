@@ -1,0 +1,46 @@
+/* Ciudad Juárez is a pre-opening page, not an operating branch profile. */
+.ciudad-juarez-opening .opening-skip-link {
+  position: fixed;
+  z-index: 100;
+  top: 12px;
+  left: 12px;
+  padding: 10px 14px;
+  background: var(--cream);
+  color: var(--ink);
+  transform: translateY(-160%);
+}
+.ciudad-juarez-opening .opening-skip-link:focus { transform: translateY(0); }
+.ciudad-juarez-opening .opening-page-header { grid-template-columns: minmax(0, 1fr) auto; }
+.ciudad-juarez-opening .opening-page-nav { display: flex; align-items: center; gap: 1.2rem; font-size: .82rem; font-weight: 700; }
+.ciudad-juarez-opening .opening-page-nav > a:not(.nav-cta) { color: var(--muted); }
+.ciudad-juarez-opening .opening-page-nav > a:not(.nav-cta):hover { color: var(--cream); }
+.ciudad-juarez-opening .opening-page-hero { min-height: min(760px, calc(100svh - 76px)); }
+.ciudad-juarez-opening .opening-page-hero > img { object-position: 50% 48%; }
+.ciudad-juarez-opening .opening-page-hero-copy {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  min-height: min(760px, calc(100svh - 76px));
+  max-width: 920px;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: clamp(7rem, 14vw, 12rem) clamp(1.3rem, 5vw, 5rem) clamp(4rem, 7vw, 7rem);
+}
+.ciudad-juarez-opening .opening-page-hero-copy h1 { margin-bottom: 1rem; font-size: clamp(3.2rem, 7vw, 7rem); }
+.ciudad-juarez-opening .opening-page-hero-copy > p:not(.eyebrow) { max-width: 620px; color: #e5d9cb; font-size: clamp(1rem, 1.6vw, 1.25rem); }
+.ciudad-juarez-opening .opening-page-introduction { display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, .72fr); gap: clamp(2rem, 8vw, 9rem); align-items: end; }
+.ciudad-juarez-opening .opening-page-introduction h2 { margin: 0; }
+.ciudad-juarez-opening .opening-page-introduction > div:last-child { color: var(--muted); }
+.ciudad-juarez-opening .opening-page-introduction > div:last-child > p { margin-top: 0; max-width: 38ch; }
+.ciudad-juarez-opening .opening-page-following { align-items: center; }
+.ciudad-juarez-opening .opening-page-following > p { max-width: 34ch; color: rgba(10, 8, 7, .78); }
+@media (max-width: 700px) {
+  .ciudad-juarez-opening .opening-page-header { min-height: 68px; }
+  .ciudad-juarez-opening .opening-page-nav { gap: .75rem; font-size: .75rem; }
+  .ciudad-juarez-opening .opening-page-hero,
+  .ciudad-juarez-opening .opening-page-hero-copy { min-height: min(680px, calc(100svh - 68px)); }
+  .ciudad-juarez-opening .opening-page-introduction { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ciudad-juarez-opening .opening-skip-link { transition: none; }
+}

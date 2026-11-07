@@ -15,7 +15,9 @@ con producción por WhatsApp/teléfono; no captura altas. Tras final2-dic conser
 edición con inscripción oculta y regreso a agenda. `/san-ignacio/menu/` mantiene su canonical
 con carta original v82, zoom/PDF y `#cocktails` en página8. QR y WordPress GDL no cambian.
 
-**Última actualización:** 2026-10-09 · **Dueño:** Luis, con aprobación de producto/contenido de Karina.
+**Actualización Ciudad Juárez, candidata local6-nov:** `/ciudad-juarez` es la landing canónica e indexable de la próxima apertura, solicitada por Karina. Es una `WebPage` informativa: no declara dirección, fecha, horario, teléfono, carta, reservaciones, mapa ni datos `Restaurant`. El Paso conserva su ficha operativa. Después de Ciudad Juárez, San Diego y Moreno Valley siguen como próximas aperturas sin ficha propia hasta confirmar sus datos. No fija redirects ni autoriza publicación.
+
+**Última actualización:** 2026-11-06 · **Dueño:** Luis, con aprobación de producto/contenido de Karina.
 **Estado:** inventario de fuentes versionadas y destinos propuestos; no es un crawl HTTP completo.
 No aplicar redirects ni crear páginas solo por figurar en esta tabla.
 
@@ -124,7 +126,8 @@ y ruta inexistente dan 404 real. Panel demo/archivos de desarrollo siguen públi
 | `/el-paso` | `el-paso.html` | Candidata 11-oct: reservas OpenTable 1559290 y teléfono confirmado por Karina; horarios omitidos |
 | `/en/el-paso/` | `en/el-paso/index.html` | Misma reserva propia y enlace explícito a carta EN |
 | `/el-paso/menu/` | `el-paso/menu/index.html` | Carta inglesa V6 suministrada por Karina, imagen completa y PDF original; noindex hasta aprobación específica |
-| Moreno Valley / San Diego | Anuncios en datos del home, sin HTML propio | Próximamente USA, sin fechas. No inventar href hacia una ficha inexistente ni usar Houston |
+| `/ciudad-juarez` | `ciudad-juarez.html` | Landing de próxima apertura, indexable como `WebPage`; sin fecha ni datos operativos hasta confirmación |
+| Moreno Valley / San Diego | Anuncios en datos del home, sin HTML propio | Próximamente después de Ciudad Juárez, sin fechas. No inventar href hacia una ficha inexistente ni usar Houston |
 | `/catering` | `catering.html` | Integrar página aprobada con cobertura/contacto reales |
 | `/en/catering/` | `en/catering/index.html` | Composición Fiesta EN, misma cobertura y gates; candidata noindex |
 | `/eventos` | `eventos.html` | Auditar propósito actual antes de confundir contratación privada con cartelera pública |

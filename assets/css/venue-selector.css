@@ -332,14 +332,21 @@
   }
 }
 
-/* San Diego: the opening state stays visible on the resting card, outside the hover label. */
-.opening-announcement--san-diego .opening-announcement-inner {
+/* The next opening is explicit in the resting card, without a date or operating claims. */
+.opening-announcement--upcoming .opening-announcement-inner {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(240px, 370px);
   gap: 24px 48px;
   padding-block: 26px;
 }
-.opening-announcement--san-diego .opening-announcement-title {
+.opening-announcement--upcoming .opening-announcement-kicker {
+  margin: 0 0 8px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.opening-announcement--upcoming .opening-announcement-title {
   display: flex;
   align-items: baseline;
   flex-wrap: wrap;
@@ -348,13 +355,7 @@
   font: 400 clamp(44px, 5vw, 64px)/1 "SY Venue Display", Impact, sans-serif;
   letter-spacing: .01em;
 }
-.opening-announcement--san-diego .opening-announcement-status {
-  font: 600 16px/1.4 Inter, sans-serif;
-  letter-spacing: 0;
-  text-transform: none;
-}
-.opening-announcement--san-diego .opening-announcement-visit { display: grid; justify-items: start; gap: 8px; }
-.opening-announcement--san-diego .opening-announcement-address { margin: 0; max-width: 32ch; font-size: 14px; line-height: 1.55; }
+.opening-announcement--upcoming .opening-announcement-message { margin: 10px 0 0; max-width: 38ch; font-size: 15px; line-height: 1.55; }
 .venue-showcase .venue-coming-soon {
   position: absolute;
   inset: 18px auto auto 18px;
@@ -369,7 +370,7 @@
   text-align: center;
   pointer-events: none;
 }
-.venue-showcase [data-branch-id="san-diego"] .venue-location { top: 62px; }
+.venue-showcase .venue-coming-soon + .venue-location { top: 62px; }
 @media (min-width: 1100px) and (hover: hover) and (pointer: fine) {
   .venue-showcase .venue-gallery:not(.venue-gallery--many) .venue-item:not(.is-open) .venue-coming-soon {
     inset: 18px auto auto 10px;
@@ -380,6 +381,6 @@
   }
 }
 @media (max-width: 700px) {
-  .opening-announcement--san-diego .opening-announcement-inner { grid-template-columns: minmax(0, 1fr); gap: 14px; padding-block: 24px; }
-  .opening-announcement--san-diego .opening-announcement-title { font-size: 48px; gap: 8px 18px; }
+  .opening-announcement--upcoming .opening-announcement-inner { grid-template-columns: minmax(0, 1fr); gap: 14px; padding-block: 24px; }
+  .opening-announcement--upcoming .opening-announcement-title { font-size: 48px; gap: 8px 18px; }
 }

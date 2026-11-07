@@ -29,6 +29,7 @@ export function projectGa4EventBridge(source) {
 }
 
 export function restoreGa4EventBridge(source) {
+  source = source.replaceAll('\r\n', '\n');
   for (const [before, after] of [...edits].reverse()) {
     assert.equal(source.split(after).length - 1, 1, 'Review the current measurement owner before restoring GA4');
     source = source.replace(after, before);

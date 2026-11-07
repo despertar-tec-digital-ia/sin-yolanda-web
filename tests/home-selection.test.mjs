@@ -6,11 +6,15 @@ import vm from 'node:vm';
 import { homeSelection, restoreHomeSelection } from '../scripts/home-selection-source-contract.mjs';
 import { renderShell } from '../scripts/seo.mjs';
 import {restoreSocialFeedSource} from '../scripts/social-feed-source-contract.mjs';
+import {restoreCiudadJuarezOpening} from '../scripts/ciudad-juarez-opening-source-contract.mjs';
 
 // This historical release guard checks its exact layer beneath the subsequent approved feed.
 const read = file => {
   const bytes=readFileSync(new URL('../'+file,import.meta.url));
-  return file==='scripts/public-manifest.json'?Buffer.from(restoreSocialFeedSource(file,bytes.toString())):bytes;
+  if (file==='scripts/public-manifest.json') return Buffer.from(restoreSocialFeedSource(file,bytes.toString()));
+  return /\.(?:html|js|css|json|txt|xml)$/.test(file)
+    ? Buffer.from(restoreCiudadJuarezOpening(file,bytes.toString()))
+    : bytes;
 };
 const hash = value => createHash('sha256').update(value).digest('hex');
 

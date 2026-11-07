@@ -204,9 +204,10 @@ test('El Paso keeps verified reservations, phone and original menu; A01 supplies
   assert.ok(!publicManifest.pages.includes('en/el-paso/menu/index.html'));
   const pdf = readFileSync(new URL('menus/el-paso-menu-en-v6.pdf', root));
   assert.equal(createHash('sha256').update(pdf).digest('hex'), 'a63cc8d8b31743d377de6e4bb9fa1dc9c19203fcf4d9c5439c085ac96854aa29');
+  assert.match(read('assets/js/site.js'), /function elPasoPage\(\) \{[\s\S]*?return branchPage\("el-paso"\);/);
 });
 
-test('future branches are announcements only, and Maricarmen does not return through imported navigation', () => {
+test('Ciudad Juárez is the next opening with a safe landing; later branches stay announcement-only', () => {
   for (const id of ['moreno-valley', 'san-diego']) {
     const record = registry.find(branch => branch.id === id);
     assert.equal(record.page, '#');
@@ -214,6 +215,21 @@ test('future branches are announcements only, and Maricarmen does not return thr
     assert.ok(!Object.hasOwn(importManifest, id));
     assert.ok(!publicManifest.pages.some(page => page === id + '.html' || page.includes('/' + id + '/')));
   }
+  const ciudadJuarez = registry.find(branch => branch.id === 'ciudad-juarez');
+  assert.ok(ciudadJuarez);
+  assert.equal(ciudadJuarez.status, 'coming-soon');
+  assert.equal(ciudadJuarez.page, 'ciudad-juarez.html');
+  assert.equal(ciudadJuarez.address, '');
+  assert.equal(ciudadJuarez.phone, '');
+  assert.equal(ciudadJuarez.reserveUrl, '');
+  assert.ok(publicManifest.pages.includes('ciudad-juarez.html'));
+  assert.ok(!Object.hasOwn(importManifest, 'ciudad-juarez'));
+  const cityHtml = read('ciudad-juarez.html');
+  const cityNodes = schemas(cityHtml).flatMap(schema => schema['@graph'] ?? [schema]);
+  assert.equal(cityNodes.filter(schema => schema['@type'] === 'WebPage').length, 1);
+  assert.ok(!cityNodes.some(schema => ['Restaurant', 'Menu', 'Service', 'LocalBusiness'].includes(schema['@type'])));
+  assert.doesNotMatch(cityHtml, /(?:tel:|wa\.me|opentable|google\.com\/maps|<iframe\b|hasMenu|acceptsReservations)/i);
+  assert.match(cityHtml, /Después de Ciudad Juárez[\s\S]*San Diego y Moreno Valley/);
   assert.ok(!registry.some(branch => branch.id === 'maricarmen'));
   assert.ok(!Object.hasOwn(importManifest, 'maricarmen'));
   for (const route of allRoutes) {

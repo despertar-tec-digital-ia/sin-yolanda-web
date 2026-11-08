@@ -386,7 +386,11 @@
     "assets/social-feed-houston/De2S1RsmNNq-photo-2-red-hat-800.webp",
     "assets/css/branch-ui-review.css",
     "assets/js/branch-ui-review.js",
-    "assets/css/site-ui-review.css"
+    "assets/css/site-ui-review.css",
+    "assets/css/opentable-review.css",
+    "assets/js/opentable-review.js",
+    "assets/css/branch-motion-review.css",
+    "assets/js/branch-motion-review.js"
   ],
   "assetVersion": "20261008-migration-measurement",
   "reviewPages": []

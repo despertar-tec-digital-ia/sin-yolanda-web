@@ -1,16 +1,21 @@
 {
   "version": 1,
   "authorizer": "Luis",
-  "approvedAt": "2026-11-08T01:23:44.006062+00:00",
-  "authorization": "Publicar el selector de ocho sucursales revisado en local. El ejemplo de once y el nuevo aviso de apertura quedan en local hasta otra autorización.",
-  "reviewedBase": "24eb5a32ab4df6aadb6b64d961635ebb6767743d",
-  "assetVersion": "20261107-selector-capacity",
+  "approvedAt": "2026-11-08T01:40:11.373550+00:00",
+  "authorization": "Publicar también la etiqueta Próxima apertura de Ciudad Juárez; ejemplo de once solo local.",
+  "reviewedBase": "5dd19d6b84d5561c50197cabe20f90b2eb52db13",
+  "assetVersion": "20261107-selector-opening",
   "assets": {
-    "assets/css/venue-selector-capacity-review.css": "b2411f1f313bb9625b2b843d9a851370599b906967dee615d3300a76dc479109",
+    "assets/css/venue-selector-capacity-review.css": "d6c734c337c733846607d05f20955e35a2233f7d5a1f03a116a25b51a5cb8018",
     "assets/js/venue-selector-capacity-review.js": "89a01d92e2ee14d4c32e091d781c263a0d546baf2e10b97d2842e2e26697f2dd"
   },
   "baseline": {
     "assets/css/venue-selector.css": "b908a33e4b3746d11169dcb5b75817e3d646299cc1d67c6d4733774d2823590b",
     "assets/js/venue-selector.js": "68d6c867b712a26fd52338dea9ec2fe80e732dbc9cf8adaffc6f0fd2fb347b8a"
+  },
+  "openingLabel": {
+    "scriptVersion": "20261107-opening-label",
+    "es": "Próxima apertura",
+    "en": "Opening soon"
   }
 }

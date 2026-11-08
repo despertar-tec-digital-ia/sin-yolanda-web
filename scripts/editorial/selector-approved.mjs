@@ -32,12 +32,23 @@ export function projectApprovedSelector(root,inputFiles) {
   files.set('assets/js/venue-selector.js','(function () {\n"use strict";\n'+controller+'\n})();\n');
   files.set('assets/css/venue-selector.css',read('assets/css/venue-selector.css')+'\n'+
     readFileSync(resolve(root,'assets/css/venue-selector-capacity-review.css'),'utf8'));
+  const labelBefore='<span class="venue-coming-soon" data-i18n-es="Muy pronto" data-i18n-en="Coming soon">Muy pronto</span>';
+  const labelAfter='<span class="venue-coming-soon" data-i18n-es="Próxima apertura" data-i18n-en="Opening soon">Próxima apertura</span>';
+  if(approval.openingLabel) {
+    let js=read('assets/js/site.js');
+    assert.equal(js.split(labelBefore).length,2,'Expected the reviewed opening label in the shared renderer');
+    files.set('assets/js/site.js',js.replace(labelBefore,labelAfter));
+  }
   for(const file of ['index.html','locations.html']) {
     let html=read(file);
     for(const asset of ['assets/js/venue-selector.js','assets/css/venue-selector.css']) {
       const pattern=new RegExp('((?:src|href)="\\/?'+asset.replaceAll('.','\\.')+')\\?v=[^"\\s]+','g');
       assert.equal([...html.matchAll(pattern)].length,1,'Expected one selector dependency in '+file);
       html=html.replace(pattern,'$1?v='+approval.assetVersion);
+    }
+    if(approval.openingLabel) {
+      assert.equal(html.split(labelBefore).length,2,'Expected one pre-opening badge in '+file);
+      html=html.replace(labelBefore,labelAfter).replace(/(src="\/?assets\/js\/site\.js)\?v=[^"\s]+/,'$1?v='+approval.openingLabel.scriptVersion);
     }
     files.set(file,html);
   }

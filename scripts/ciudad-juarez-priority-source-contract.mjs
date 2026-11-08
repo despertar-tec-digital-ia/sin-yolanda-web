@@ -1,6 +1,7 @@
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import assert from 'node:assert/strict';
+import {restoreApprovedPreviewsSource} from './approved-previews-source-contract.mjs';
 
 export const ciudadJuarezPriority = JSON.parse(readFileSync(new URL('./ciudad-juarez-priority-source-patches.json', import.meta.url)));
 const hash = value => createHash('sha256').update(value).digest('hex');
@@ -8,6 +9,7 @@ const hash = value => createHash('sha256').update(value).digest('hex');
 // This small correction is layered over the opening release. It restores the
 // exact prior opening source before the historical guards inspect it.
 export function restoreCiudadJuarezPriority(file, source) {
+  source = restoreApprovedPreviewsSource(file, source);
   const entry = ciudadJuarezPriority.files[file];
   if (!entry) return source;
   source = source.replaceAll('\r\n', '\n');

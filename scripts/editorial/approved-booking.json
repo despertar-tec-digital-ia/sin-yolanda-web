@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "authorizer": "Luis",
+  "approvedAt": "2026-11-08T01:40:11.373550+00:00",
+  "authorization": "Publicar en el sitio oficial las reservas integradas de Houston del preview compartido, en español e inglés.",
+  "reviewedCommit": "c987ca016fd50522ed38ed244001a7cedcab73b5",
+  "branches": [
+    "houston"
+  ],
+  "assets": {
+    "assets/css/opentable-review.css": "29e488d817aef36f4e0e8de728eadad0adbc7081319a515233c4632a5f104223",
+    "assets/js/opentable-review.js": "5d13b718d182ded03d71dc7e08d02b06d3adc55b0d36236271ff06d2dc54e141",
+    "assets/css/branch-motion-review.css": "cc0822a203dacffd63cb2e9643ad99286e3984043f7e9c1bcf23db35f4caa76b",
+    "assets/js/branch-motion-review.js": "831b16e45dd65d6bac7c276f0a31d33e25af6d1a1f85fee827b8eaf4ef061b4d"
+  },
+  "inputs": {
+    "scripts/editorial/opentable-review.json": "d3ad2e1cab0eaaf57bcc386d19825c44569de2ad6ef61304a34cbcc32eb84f36",
+    "scripts/editorial/booking-refinements.mjs": "63282bd91515033330b37f0298a62d9f9d069102e2cb8ef577720c5abd0ccb9b"
+  }
+}

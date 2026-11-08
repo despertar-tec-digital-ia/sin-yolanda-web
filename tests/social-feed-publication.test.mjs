@@ -28,7 +28,7 @@ test('the exact allowlist addition preserves historical hashes and rejects ambig
 test('isolated social projection preserves every reviewed photo and all existing page content',()=>{
  // Isolate the social layer; the independently approved selector has its own
  // full-composition and scheduler regression checks in selector-publication.
- const options={now:'2026-11-05T02:08:21Z',commit,ui:false,selector:false};
+ const options={now:'2026-11-05T02:08:21Z',commit,ui:false,selector:false,booking:false};
  const before=projectAllAgendas(root,options),after=projectPublicSite(root,options);
  assert.equal(after.socialFeed.postCount,3);assert.equal(after.socialFeed.automatedFeed,false);
  assert.deepEqual([...after.files.keys()],[...before.files.keys()]);

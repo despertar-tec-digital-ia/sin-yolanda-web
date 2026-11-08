@@ -1,5 +1,32 @@
 # Forma de trabajar y publicar
 
+### Houston reservas, Ciudad Juárez y etiqueta · publicación autorizada7-nov
+
+Luis aclara que desea publicar también lo nuevo del preview: ficha CJ y reservas en Houston.
+Se importa el HTML/CSS de Ciudad Juárez desde5468326, conservando metadatos indexables y sin
+inventar fecha, dirección, teléfono, menú ni reservas. El HTML usa las fuentes, hero y footer del
+shell de sucursales; cuatro activos existentes proveen sus estilos. Solo renueva la URL de CSS.
+
+Houston ES/EN incorpora los cuatro activos exactos de OpenTable/movimiento del previewc987ca0,
+con rid1524058 y el refiner revisado. El build/scheduler proyecta solo Houston. Los enlaces reales
+sirven como respaldo sin JS o tras error; el loader nativo abre disponibilidad dentro del modal
+del proveedor. Solo se mide intención, nunca reservas confirmadas ni valores del formulario.
+La composición del widget precede la UI compartida para conservar paridad de sus builders.
+`approved-booking.json` fija hashes, inputs y el alcance Houston; no activa las otras tres sedes.
+
+La etiqueta de CJ pasa a «Próxima apertura / Opening soon»: texto sin recuadro y línea discreta;
+en el carril cerrado se orienta verticalmente. Fallback HTML y renderer mantienen el mismo texto.
+El controlador del acordeón no cambia; renueva las URLs del selector y renderer en home/directorio.
+El ejemplo de once sigue solo en el artefacto local y no se añade al registro ni al manifiesto.
+
+El delta explícito/reversible de fuentes conserva las guardas históricas de manifiesto y CJ.
+Validación:456tests, paquete360archivos; disponibilidad real para6personas/20nov/20:30 muestra
+horarios de Houston y vuelve al botón al cerrar. No se selecciona horario ni se crea una reserva.
+CJMóvil390 y HoustonEN390/desktop revisados; sin overflow. No certificación de dispositivo físico.
+Publicar por PR→CI→release:approved→recibo; rollback al deployment previo del recibo. Los previews
+VPS y su retiro13nov permanecen aparte; no se cambia DNS ni se extiende el widget a otras sedes.
+
+
 ### Selector con ocho sedes · publicación autorizada7-nov
 
 Luis autoriza publicar el acordeón de ocho revisado. `selector-approved.mjs` integra exactamente

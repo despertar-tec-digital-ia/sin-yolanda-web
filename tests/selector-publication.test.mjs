@@ -18,13 +18,14 @@ test('approved selector changes only home, directory and their existing two reso
     const after=live.files.get(file)??readFileSync(resolve(root,file),'utf8');
     if(strip(before)!==strip(after))changed.push(file);
   }
-  assert.deepEqual(changed.sort(),['assets/css/venue-selector.css','assets/js/venue-selector.js','index.html','locations.html']);
+  assert.deepEqual(changed.sort(),['assets/css/venue-selector.css','assets/js/site.js','assets/js/venue-selector.js','index.html','locations.html']);
   for(const file of ['index.html','locations.html']) {
     const html=live.files.get(file);
-    assert.match(html,/venue-selector\.js\?v=20261107-selector-capacity/);
-    assert.match(html,/venue-selector\.css\?v=20261107-selector-capacity/);
+    assert.match(html,/venue-selector\.js\?v=20261107-selector-opening/);
+    assert.match(html,/venue-selector\.css\?v=20261107-selector-opening/);
     assert.doesNotMatch(html,/ejemplo-11|opening-label-local|selector-capacity-review\.js/);
-    assert.match(html,/venue-coming-soon[\s\S]*Muy pronto/,'The new opening label is not authorized yet');
+    assert.match(html,/venue-coming-soon" data-i18n-es="Próxima apertura" data-i18n-en="Opening soon">Próxima apertura/);
+    assert.doesNotMatch(html,/data-i18n-es="Muy pronto"/);
   }
   const js=live.files.get('assets/js/venue-selector.js');
   assert.doesNotMatch(js,/^export /m);
@@ -38,7 +39,7 @@ test('future scheduled agenda refresh keeps the same approved selector without c
   const scheduled=projectPublicSite(root,{now:'2026-11-24T12:00:00Z',commit});
   for(const file of ['assets/js/venue-selector.js','assets/css/venue-selector.css'])
     assert.equal(readFileSync(resolve(out,file),'utf8'),scheduled.files.get(file));
-  assert.equal(build.fileCount,356);
+  assert.equal(build.fileCount,360);
   assert.ok(!Object.keys(build.hashes).some(file=>/ejemplo-11|opening-label-local|capacity-review/.test(file)));
 });
 test('selector approval cannot be reused after changing reviewed sizing or baseline resources',t=>{

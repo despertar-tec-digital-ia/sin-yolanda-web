@@ -1,5 +1,42 @@
 # Forma de trabajar y publicar
 
+### Selector con ocho sedes · publicación autorizada7-nov
+
+Luis autoriza publicar el acordeón de ocho revisado. `selector-approved.mjs` integra exactamente
+el controlador y CSS aprobados sobre los dos recursos del selector ya allowlisted; renueva sus
+URLs en home/directorio, sin añadir páginas ni activos de ensayo al paquete oficial. La aprobación
+vincula hashes de la candidata y del baseline. Build y scheduler comparten la misma proyección.
+La duración y curva se conservan; el ancho se calcula según espacio disponible. Cambios de agenda
+no revierten el selector. El aviso nuevo de apertura y ejemplo de once siguen solo locales,
+fuera de fuentes/allowlist/proyección. Publicación por PR, CI y `release:approved`, con rollback
+al deployment anterior del recibo. El bloque siguiente conserva la evidencia de revisión previa.
+
+### Selector con ocho sedes · candidata local7-nov
+
+Luis pide recuperar el acordeón sin comprimir la composición. Se coteja la fuente exacta de
+[AccordionGallery](https://github.com/DavidHDev/react-bits/tree/5c73f3d065d4c074ae3c5fa66b4918e07fc999fa/src/ts-default/Components/AccordionGallery):
+calcula expansión desde `count` y `expandRatio`; no introduce el límite de siete. La adaptación
+mantiene las fotos, tipografías, orden, enlaces y filtros existentes y conserva el acceso nativo.
+
+`selector-capacity-review.mjs` compone un paquete solo local: cambia el controlador del selector
+en home/directorio por un módulo opt-in y añade su CSS. No modifica fuentes aprobadas, allowlist,
+builder productivo ni scheduler. La comparación de hashes permite solo esas dos páginas y los dos
+activos nuevos; analítica desactivada en las páginas de prueba. Sin commit/push/PR ni publicación.
+
+El dimensionado depende del espacio real: tarjeta abierta de al menos340px, carriles de72px
+como mínimo. Las ocho caben en una fila desde1100px con ratón; a1440, la abierta ocupa484px y
+las otras104px. No necesita desplazamiento horizontal. Para una colección futura que no quepa,
+el mismo cálculo conserva carriles y scroll nativo, en lugar de cambiar de patrón por cantidad.
+Escritorio hover/foco responde con una sola selección; no se interceptan clic/Enter/touch.
+Móvil/tablet conserva la presentación existente con nombres visibles. Resize/filtros aplican
+medidas sin transición; el hover sí anima. Esto evita una barra transitoria al reacomodar anchos.
+
+Validación:443tests, siete tamaños320–1920 sin overflow; ocho selecciones reales con ratón,
+filtros, Tab y reduced-motion0s comprobados. El viewport/emulación se restauran tras QA.
+La fuente original permite parallax/tilt y otros parámetros, pero no se incorporan efectos nuevos.
+Antes de publicar: revisión de Luis, integrar al carril de aprobación/caché/contratos y autorización
+expresa; nunca publicar el overlay como sustituto del artefacto oficial.
+
 ### UI general y Catering Texas · publicación autorizada5-nov
 
 Luis aprueba la revisión local completa y confirma «Sí, publicar los ajustes». La misma

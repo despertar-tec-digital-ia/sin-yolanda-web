@@ -4,6 +4,7 @@ import {projectAllAgendas} from './all-agendas.mjs';
 import {projectApprovedSocialFeed} from './social-feed-approved.mjs';
 import {projectApprovedSocialMotion} from './social-motion-approved.mjs';
 import {projectApprovedUi} from './ui-approved.mjs';
+import {projectApprovedSelector} from './selector-approved.mjs';
 
 export function projectPublicSite(root,options) {
   const agenda=projectAllAgendas(root,options);
@@ -11,7 +12,8 @@ export function projectPublicSite(root,options) {
   if(!social.metadata)return agenda;
   const motion=projectApprovedSocialMotion(root,social.files);
   const ui=options?.ui===false?{files:motion.files}:projectApprovedUi(root,motion.files);
-  const files=ui.files;
+  const selector=options?.selector===false?{files:ui.files}:projectApprovedSelector(root,ui.files);
+  const files=selector.files;
   const strip=value=>value.replace(/ data-agenda-render-digest="[a-f0-9]+"/,'');
   files.set('houston.html',strip(files.get('houston.html')));
   const hash=value=>createHash('sha256').update(value).digest('hex');
@@ -19,5 +21,5 @@ export function projectPublicSite(root,options) {
   files.set('houston.html',files.get('houston.html').replace('class="sy-agenda"',
     'class="sy-agenda" data-agenda-render-digest="'+renderDigest+'"'));
   return {...agenda,files,metadata:{...agenda.metadata,renderDigest},socialFeed:social.metadata,socialMotion:motion.metadata,
-    ...(ui.metadata?{ui:ui.metadata}:{})};
+    ...(ui.metadata?{ui:ui.metadata}:{}),...(selector.metadata?{selector:selector.metadata}:{})};
 }

@@ -8,6 +8,7 @@ import {projectPublicSite} from '../scripts/editorial/public-site.mjs';
 import {refineBooking} from '../scripts/editorial/booking-refinements.mjs';
 import {loadApprovedBooking} from '../scripts/editorial/booking-approved.mjs';
 import {approvedPreviewsSource,restoreApprovedPreviewsSource} from '../scripts/approved-previews-source-contract.mjs';
+import {restoreNovemberSource} from '../scripts/november-source-contract.mjs';
 const root=resolve(import.meta.dirname,'..'),options={now:'2026-11-08T02:00:00Z',commit:'a'.repeat(40)};
 const read=file=>readFileSync(resolve(root,file),'utf8'),hash=value=>createHash('sha256').update(value).digest('hex');
 const strip=html=>html.replace(/ data-agenda-render-digest="[a-f0-9]+"/g,'');
@@ -34,7 +35,7 @@ test('Houston alone receives the reviewed native booking and motion in both lang
 });
 test('the approved Ciudad Juárez source and allowlist delta restore exactly, with unrelated edits still visible',()=>{
   for(const[file,entry]of Object.entries(approvedPreviewsSource.files)){
-    const actual=read(file);assert.equal(hash(actual),entry.afterSha256,file);
+    const actual=restoreNovemberSource(file,read(file));assert.equal(hash(actual),entry.afterSha256,file);
     assert.equal(hash(restoreApprovedPreviewsSource(file,actual)),entry.beforeSha256,file);
     assert.notEqual(hash(restoreApprovedPreviewsSource(file,actual+'unapproved edit')),entry.beforeSha256,file);
     assert.throws(()=>restoreApprovedPreviewsSource(file,actual+entry.patches[0].after),/ambiguous/);

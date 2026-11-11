@@ -1,5 +1,35 @@
 # Forma de trabajar y publicar
 
+### Agenda noviembre · publicación autorizada10-nov-2026
+
+Luis autoriza «Sí, publicar la actualización» de las cuatro sedes, con Ex’s Night13 e imagen original
+y retiro automático. Intake en `scripts/editorial/november-2026-review.json`, activado y vinculado
+por digest al contenido exacto revisado. No se reutilizan aprobaciones anteriores.
+Ex’s Night San Antonio va el **13nov**, por Luis y cartel oficial
+`https://www.instagram.com/p/DflCmDVhNcn/`: imagen original1136×1408 completa y clic al post.
+El calendario viejo JungleFever13/Ex14 queda superado. Jorge14 permanece en su sede externa K.O.P.
+23 registros nuevos ES/EN; concursos agrupados, paquetes mensuales separados, Jorge/Jets aprobados
+conservados. No se inventan horarios, premios ni condiciones. Ambigüedades en `withheld`.
+
+Expiración editorial por zona: Chicago paraHouston/TW/SA y Denver paraElPaso. Cierre conocido
+de la sede o fin de fecha para especiales sin cierre confirmado; no son horarios anunciados del
+espectáculo. Próximas fechas visibles desde su ventana editorial, incluida final3dic, sin límite7días.
+Proyección compartida con scheduler; reloj browser oculta vencidos sin red/storage. El intake de
+calendarios sigue revisado manualmente: no hay sincronización automática de Sheets.
+
+Revisión original con builder aislado y `serve-review.mjs` en8871; artefacto noindex conservado.
+El build habitual proyecta ahora el lote aprobado y añade únicamente tres activos. El contrato
+`november-source-patches.json` revierte exactamente esa adición antes de los guardas históricos,
+sin cambiar sus hashes ni ocultar ediciones ajenas. El contenido editado después de aprobación se rechaza.
+465tests/integridad/build pasaron antes de la activación; QA cuatro agendas, SAEN, imagen cargada y móvil390/desktop1280
+sin overflow. Comparación exacta fuera de agenda en ocho fichas preserva hero/reservas.
+
+**Validación activada:**466tests/integridad/build correctos; ochoHTML equivalentes a la candidata
+revisada, conservando la cascada de estilos. Tablet768 comprobada sin overflow.
+**Siguiente:** commit/PR/CI/release con recibo y comprobación pública.
+No cambiar DNS, accesos, GHL, fuentes remotas, Guadalajara ni el host de pruebas. Rollback: conservar
+el deployment inmediatamente anterior del mismo proyecto Pages, registrado por el gate de release.
+
 ### Houston reservas, Ciudad Juárez y etiqueta · publicación autorizada7-nov
 
 Luis aclara que desea publicar también lo nuevo del preview: ficha CJ y reservas en Houston.

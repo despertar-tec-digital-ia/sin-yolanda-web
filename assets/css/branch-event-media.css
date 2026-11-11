@@ -1,0 +1,8 @@
+.sy-event-feed[hidden],.sy-event-feed [hidden]{display:none!important}
+.sy-event-feed[data-visible-posts="2"] .sy-social-grid{grid-template-columns:repeat(2,minmax(0,400px))}
+.sy-event-feed[data-visible-posts="1"] .sy-social-grid{grid-template-columns:minmax(0,420px)}
+.sy-event-media .sy-social-photo{position:relative;aspect-ratio:16/9;overflow:hidden}
+.sy-event-media .sy-social-photo img{display:block;width:100%;height:100%;object-fit:contain}
+.sy-event-media .sy-social-media-link{color:inherit}
+.sy-event-media .sy-social-video{object-fit:contain}
+.sy-november-series:has(.sy-event-poster){border-top:0;padding-top:0}

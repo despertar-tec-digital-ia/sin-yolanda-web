@@ -61,8 +61,9 @@ export function renderNovemberCard(record, language) {
   const date = promo ? `<p class="sy-agenda-weekday">${isEnglish(language) ? 'Throughout November' : 'Durante noviembre'}</p>` : `<time datetime="${record.date}">${dateLabel(record.date, language)}</time>`;
   return `<article class="sy-agenda-event sy-november-event${record.artwork ? '' : ' sy-agenda-text-event'}" ${recordAttributes(record)}>${poster(record, language)}<div class="sy-agenda-copy">${date}<h4>${escapeHtml(record.title[language])}</h4>${record.description[language] ? `<p>${escapeHtml(record.description[language])}</p>` : ''}</div></article>`;
 }
-function renderSeries(records, language) {
-  return `<article class="sy-agenda-event sy-agenda-text-event sy-november-series" data-agenda-series><div class="sy-agenda-copy"><h4>${escapeHtml(records[0].title[language])}</h4><div class="sy-agenda-functions">${records.map(record => `<div ${recordAttributes(record)}><time datetime="${record.date}">${dateLabel(record.date, language)}</time>${record.description[language] ? `<p>${escapeHtml(record.description[language])}</p>` : ''}</div>`).join('')}</div></div></article>`;
+function renderSeries(records, language, seriesArtwork) {
+  const artwork=records.find(record=>record.artwork)||seriesArtwork;
+  return `<article class="sy-agenda-event${artwork?'':' sy-agenda-text-event'} sy-november-series" data-agenda-series>${artwork?poster(artwork,language):''}<div class="sy-agenda-copy"><h4>${escapeHtml(records[0].title[language])}</h4><div class="sy-agenda-functions">${records.map(record => `<div ${recordAttributes(record)}><time datetime="${record.date}">${dateLabel(record.date, language)}</time>${record.description[language] ? `<p>${escapeHtml(record.description[language])}</p>` : ''}</div>`).join('')}</div></div></article>`;
 }
 
 export function classRange(html, tag, className) {
@@ -96,7 +97,7 @@ export function applyNovemberHtml(html, branch, language, now, data = config) {
     if (record.series) {if (!groups.has(record.series)) groups.set(record.series, []); groups.get(record.series).push(record);}
     else additions.push({date: record.date, html: renderNovemberCard(record, language)});
   }
-  for (const group of groups.values()) additions.push({date: group[0].date, html: renderSeries(group, language)});
+  for (const group of groups.values()) additions.push({date: group[0].date, html: renderSeries(group, language, data.records.find(record=>record.series===group[0].series&&record.artwork))});
   const cards = [...oldCards.map(card => ({date: /<time datetime="([^"]+)"/.exec(card)?.[1] || '', html: card})), ...additions].sort((a,b) => a.date.localeCompare(b.date));
   const dated = cards.length ? `<section class="sy-agenda-dates" data-agenda-group aria-labelledby="agenda-${branch}-dates"><h3 id="agenda-${branch}-dates">${isEnglish(language) ? 'Upcoming dates' : 'Próximas fechas'}</h3><div class="sy-agenda-grid">${cards.map(card => card.html).join('')}</div></section>` : '';
   if (dates) agenda = agenda.slice(0, dates.start) + dated + agenda.slice(dates.end);

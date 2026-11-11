@@ -1,0 +1,590 @@
+{
+  "version": 1,
+  "publicationEnabled": true,
+  "automatedFeed": false,
+  "observedOn": "2026-11-10",
+  "profiles": {
+    "houston": {
+      "name": "Houston",
+      "username": "sinyolandahouston"
+    },
+    "the-woodlands": {
+      "name": "The Woodlands",
+      "username": "sinyolanda.tw"
+    },
+    "san-antonio": {
+      "name": "San Antonio",
+      "username": "sinyolanda.sa"
+    },
+    "el-paso": {
+      "name": "El Paso",
+      "username": "sinyolandaelpaso"
+    }
+  },
+  "overrides": [
+    {
+      "id": "the-woodlands-concurso-canto-20261112",
+      "series": null,
+      "title": {
+        "es": "Concurso de canto · Palomazo con Federica Quijano",
+        "en": "Singing contest · Federica Quijano guest appearance"
+      },
+      "description": {
+        "es": "Con Federica Quijano, integrante de Kabah, como invitada especial.",
+        "en": "With special guest Federica Quijano of Kabah."
+      },
+      "artwork": {
+        "file": "assets/agenda/woodlands-federica-20261112-Dfj-I3tt-ls.jpg",
+        "width": 1136,
+        "height": 1408,
+        "alt": {
+          "es": "Federica Quijano, integrante de Kabah, invitada especial de The Woodlands este jueves.",
+          "en": "Federica Quijano of Kabah, The Woodlands special guest this Thursday."
+        }
+      },
+      "postUrl": "https://www.instagram.com/p/Dfj_I3tt_ls/",
+      "sourceRef": "instagram-Dfj_I3tt_ls"
+    }
+  ],
+  "additions": [
+    {
+      "id": "houston-ahogo-desahogo-20261114",
+      "branchId": "houston",
+      "date": "2026-11-14",
+      "kind": "dated-event",
+      "title": {
+        "es": "Ahogo y Desahogo",
+        "en": "Ahogo y Desahogo"
+      },
+      "description": {
+        "es": "Una noche para cantar y desahogarte.",
+        "en": "A night to sing it out."
+      },
+      "timeZone": "America/Chicago",
+      "publishFrom": "2026-11-11T02:00:00.000Z",
+      "sourceRef": "instagram-DflCdPIun9T",
+      "sourceEndTime": null,
+      "postUrl": "https://www.instagram.com/p/DflCdPIun9T/",
+      "artwork": {
+        "file": "assets/agenda/houston-weekly-20261112-DflCdPIun9T.jpg",
+        "width": 1136,
+        "height": 1408,
+        "alt": {
+          "es": "Cartelera oficial de Houston del 12 al 15 de noviembre.",
+          "en": "Official Houston November 12–15 lineup."
+        }
+      }
+    },
+    {
+      "id": "the-woodlands-ahogo-desahogo-20261113",
+      "branchId": "the-woodlands",
+      "date": "2026-11-13",
+      "kind": "dated-event",
+      "title": {
+        "es": "Ahogo y Desahogo",
+        "en": "Ahogo y Desahogo"
+      },
+      "description": {
+        "es": "",
+        "en": ""
+      },
+      "timeZone": "America/Chicago",
+      "publishFrom": "2026-11-11T02:00:00.000Z",
+      "sourceRef": "instagram-DflCxOyt5Gk",
+      "sourceEndTime": null,
+      "postUrl": "https://www.instagram.com/p/DflCxOyt5Gk/",
+      "series": "the-woodlands-ahogo-noviembre"
+    },
+    {
+      "id": "the-woodlands-ahogo-desahogo-20261114",
+      "branchId": "the-woodlands",
+      "date": "2026-11-14",
+      "kind": "dated-event",
+      "title": {
+        "es": "Ahogo y Desahogo",
+        "en": "Ahogo y Desahogo"
+      },
+      "description": {
+        "es": "",
+        "en": ""
+      },
+      "timeZone": "America/Chicago",
+      "publishFrom": "2026-11-11T02:00:00.000Z",
+      "sourceRef": "instagram-DflCxOyt5Gk",
+      "sourceEndTime": null,
+      "postUrl": "https://www.instagram.com/p/DflCxOyt5Gk/",
+      "series": "the-woodlands-ahogo-noviembre"
+    },
+    {
+      "id": "el-paso-ahogo-desahogo-20261113",
+      "branchId": "el-paso",
+      "date": "2026-11-13",
+      "kind": "dated-event",
+      "title": {
+        "es": "Ahogo y Desahogo",
+        "en": "Ahogo y Desahogo"
+      },
+      "description": {
+        "es": "",
+        "en": ""
+      },
+      "timeZone": "America/Denver",
+      "publishFrom": "2026-11-11T02:00:00.000Z",
+      "sourceRef": "instagram-DflCr0SuqwH",
+      "sourceEndTime": null,
+      "postUrl": "https://www.instagram.com/p/DflCr0SuqwH/",
+      "series": "el-paso-ahogo-noviembre",
+      "artwork": {
+        "file": "assets/agenda/el-paso-weekly-20261112-DflCr0SuqwH.jpg",
+        "width": 1136,
+        "height": 1408,
+        "alt": {
+          "es": "Cartelera oficial de El Paso del 12 al 15 de noviembre.",
+          "en": "Official El Paso November 12–15 lineup."
+        }
+      }
+    },
+    {
+      "id": "el-paso-ahogo-desahogo-20261114",
+      "branchId": "el-paso",
+      "date": "2026-11-14",
+      "kind": "dated-event",
+      "title": {
+        "es": "Ahogo y Desahogo",
+        "en": "Ahogo y Desahogo"
+      },
+      "description": {
+        "es": "",
+        "en": ""
+      },
+      "timeZone": "America/Denver",
+      "publishFrom": "2026-11-11T02:00:00.000Z",
+      "sourceRef": "instagram-DflCr0SuqwH",
+      "sourceEndTime": null,
+      "postUrl": "https://www.instagram.com/p/DflCr0SuqwH/",
+      "series": "el-paso-ahogo-noviembre"
+    }
+  ],
+  "legacy": [
+    {
+      "branchId": "houston",
+      "recordId": "houston-jorge-mariana-20261113",
+      "id": "DfkAfDSxETr",
+      "kind": "image",
+      "permalink": "https://www.instagram.com/p/DfkAfDSxETr/",
+      "poster": {
+        "file": "assets/agenda/houston-jorge-20261113-DfkAfDSxETr.jpg",
+        "width": 2400,
+        "height": 3200
+      },
+      "title": {
+        "es": "Jorge Guevara · Houston · 13 de noviembre",
+        "en": "Jorge Guevara · Houston · November 13"
+      },
+      "alt": {
+        "es": "Cartel del concierto de Jorge Guevara en Houston el 13 de noviembre, con Mariana Ochoa y Federica Quijano.",
+        "en": "Jorge Guevara Houston November 13 concert poster with Mariana Ochoa and Federica Quijano."
+      },
+      "expiresAt": "2026-11-14T05:00:00.000Z",
+      "copy": {
+        "es": {
+          "before": "Con Mariana Ochoa como invitada especial.",
+          "after": "Con Mariana Ochoa y Federica Quijano como invitadas especiales."
+        },
+        "en": {
+          "before": "With special guest Mariana Ochoa.",
+          "after": "With special guests Mariana Ochoa and Federica Quijano."
+        }
+      }
+    },
+    {
+      "branchId": "san-antonio",
+      "recordId": "san-antonio-jorge-20261114",
+      "id": "Dfk1XaZNfGf",
+      "kind": "reel",
+      "permalink": "https://www.instagram.com/reel/Dfk1XaZNfGf/",
+      "poster": {
+        "file": "assets/event-media-20261110/Dfk1XaZNfGf-800.webp",
+        "width": 800,
+        "height": 451
+      },
+      "video": {
+        "file": "assets/event-media-20261110/Dfk1XaZNfGf.mp4",
+        "width": 1280,
+        "height": 722,
+        "codec": "h264",
+        "duration": 34.041667,
+        "audioTracks": 0
+      },
+      "title": {
+        "es": "Jorge Guevara · K.O.P. San Antonio · 14 de noviembre",
+        "en": "Jorge Guevara · K.O.P. San Antonio · November 14"
+      },
+      "alt": {
+        "es": "Jorge Guevara invita al concierto del 14 de noviembre en K.O.P. San Antonio.",
+        "en": "Jorge Guevara invites guests to his November 14 show at K.O.P. San Antonio."
+      },
+      "expiresAt": "2026-11-15T05:30:00.000Z"
+    }
+  ],
+  "feeds": [
+    {
+      "branchId": "the-woodlands",
+      "items": [
+        {
+          "branchId": "the-woodlands",
+          "id": "DflCxOyt5Gk",
+          "kind": "image",
+          "sourceProfile": "sinyolanda.tw",
+          "permalink": "https://www.instagram.com/p/DflCxOyt5Gk/",
+          "title": {
+            "es": "Cartelera del 12 al 15 de noviembre",
+            "en": "November 12–15 lineup"
+          },
+          "alt": {
+            "es": "Cartelera de The Woodlands del 12 al 15 de noviembre: palomazo con Federica, Ahogo y Desahogo y Recovery Brunch.",
+            "en": "The Woodlands November 12–15 lineup: Federica guest appearance, Ahogo y Desahogo and Recovery Brunch."
+          },
+          "category": "dated-event",
+          "poster": {
+            "file": "assets/event-media-20261110/DflCxOyt5Gk-800.webp",
+            "width": 800,
+            "height": 992
+          },
+          "expiresAt": "2026-11-16T08:00:00.000Z"
+        },
+        {
+          "branchId": "the-woodlands",
+          "id": "DfaOrnHNPb6",
+          "kind": "reel",
+          "sourceProfile": "sinyolanda.tw",
+          "permalink": "https://www.instagram.com/reel/DfaOrnHNPb6/",
+          "title": {
+            "es": "Recovery Brunch + NFL",
+            "en": "Recovery Brunch + NFL"
+          },
+          "alt": {
+            "es": "Promoción de Recovery Brunch y los partidos del domingo.",
+            "en": "Recovery Brunch and Sunday football promotion."
+          },
+          "category": "recurring-event",
+          "poster": {
+            "file": "assets/event-media-20261110/DfaOrnHNPb6-800.webp",
+            "width": 720,
+            "height": 1280
+          },
+          "publishedAt": 1793989014,
+          "video": {
+            "file": "assets/event-media-20261110/DfaOrnHNPb6.mp4",
+            "width": 720,
+            "height": 1280,
+            "codec": "h264",
+            "duration": 17.791667,
+            "audioTracks": 0
+          }
+        },
+        {
+          "branchId": "the-woodlands",
+          "id": "DfVB1J8tqXU",
+          "kind": "reel",
+          "sourceProfile": "sinyolanda.tw",
+          "permalink": "https://www.instagram.com/reel/DfVB1J8tqXU/",
+          "title": {
+            "es": "Ahogo y Desahogo",
+            "en": "Ahogo y Desahogo"
+          },
+          "alt": {
+            "es": "Grupo de invitados canta junto a un personaje con disfraz de rana durante Ahogo y Desahogo.",
+            "en": "Guests sing beside a frog character during Ahogo y Desahogo."
+          },
+          "category": "recurring-event",
+          "poster": {
+            "file": "assets/event-media-20261110/DfVB1J8tqXU-800.webp",
+            "width": 720,
+            "height": 1280
+          },
+          "publishedAt": 1793814502,
+          "video": {
+            "file": "assets/event-media-20261110/DfVB1J8tqXU.mp4",
+            "width": 720,
+            "height": 1280,
+            "codec": "h264",
+            "duration": 13.416667,
+            "audioTracks": 0
+          }
+        }
+      ]
+    },
+    {
+      "branchId": "san-antonio",
+      "items": [
+        {
+          "branchId": "san-antonio",
+          "id": "DflD5i0BdOf",
+          "kind": "image",
+          "sourceProfile": "sinyolanda.sa",
+          "permalink": "https://www.instagram.com/p/DflD5i0BdOf/",
+          "title": {
+            "es": "Don’t Cry · Karaoke open mic",
+            "en": "Don’t Cry · Karaoke open mic"
+          },
+          "alt": {
+            "es": "Cartel de Don’t Cry: karaoke en español e inglés cada jueves.",
+            "en": "Don’t Cry poster: English and Spanish karaoke every Thursday."
+          },
+          "category": "recurring-event",
+          "poster": {
+            "file": "assets/event-media-20261110/DflD5i0BdOf-800.webp",
+            "width": 800,
+            "height": 1064
+          }
+        },
+        {
+          "branchId": "san-antonio",
+          "id": "DfaOlNSh_Fk",
+          "kind": "reel",
+          "sourceProfile": "sinyolanda.sa",
+          "permalink": "https://www.instagram.com/reel/DfaOlNSh_Fk/",
+          "title": {
+            "es": "Recovery Brunch + NFL",
+            "en": "Recovery Brunch + NFL"
+          },
+          "alt": {
+            "es": "Promoción de Recovery Brunch y los partidos del domingo.",
+            "en": "Recovery Brunch and Sunday football promotion."
+          },
+          "category": "recurring-event",
+          "poster": {
+            "file": "assets/event-media-20261110/DfaOlNSh_Fk-800.webp",
+            "width": 720,
+            "height": 1280
+          },
+          "publishedAt": 1793988953,
+          "video": {
+            "file": "assets/event-media-20261110/DfaOlNSh_Fk.mp4",
+            "width": 720,
+            "height": 1280,
+            "codec": "h264",
+            "duration": 17.791667,
+            "audioTracks": 0
+          }
+        }
+      ]
+    },
+    {
+      "branchId": "el-paso",
+      "items": [
+        {
+          "branchId": "el-paso",
+          "id": "DflD9EbOY_x",
+          "kind": "image",
+          "sourceProfile": "sinyolandaelpaso",
+          "permalink": "https://www.instagram.com/p/DflD9EbOY_x/",
+          "title": {
+            "es": "Don’t Cry · Karaoke open mic",
+            "en": "Don’t Cry · Karaoke open mic"
+          },
+          "alt": {
+            "es": "Cartel de Don’t Cry: karaoke en español e inglés cada jueves.",
+            "en": "Don’t Cry poster: English and Spanish karaoke every Thursday."
+          },
+          "category": "recurring-event",
+          "poster": {
+            "file": "assets/event-media-20261110/DflD9EbOY_x-800.webp",
+            "width": 800,
+            "height": 1064
+          }
+        },
+        {
+          "branchId": "el-paso",
+          "id": "DfaOfapumB7",
+          "kind": "reel",
+          "sourceProfile": "sinyolandaelpaso",
+          "permalink": "https://www.instagram.com/reel/DfaOfapumB7/",
+          "title": {
+            "es": "Recovery Brunch + NFL",
+            "en": "Recovery Brunch + NFL"
+          },
+          "alt": {
+            "es": "Promoción de Recovery Brunch y los partidos del domingo.",
+            "en": "Recovery Brunch and Sunday football promotion."
+          },
+          "category": "recurring-event",
+          "poster": {
+            "file": "assets/event-media-20261110/DfaOfapumB7-800.webp",
+            "width": 720,
+            "height": 1280
+          },
+          "publishedAt": 1793988915,
+          "video": {
+            "file": "assets/event-media-20261110/DfaOfapumB7.mp4",
+            "width": 720,
+            "height": 1280,
+            "codec": "h264",
+            "duration": 17.791667,
+            "audioTracks": 0
+          }
+        },
+        {
+          "branchId": "el-paso",
+          "id": "DfVBoFEOlTL",
+          "kind": "reel",
+          "sourceProfile": "sinyolandaelpaso",
+          "permalink": "https://www.instagram.com/reel/DfVBoFEOlTL/",
+          "title": {
+            "es": "Ahogo y Desahogo",
+            "en": "Ahogo y Desahogo"
+          },
+          "alt": {
+            "es": "Grupo de invitados canta junto a un personaje con disfraz de rana durante Ahogo y Desahogo.",
+            "en": "Guests sing beside a frog character during Ahogo y Desahogo."
+          },
+          "category": "recurring-event",
+          "poster": {
+            "file": "assets/event-media-20261110/DfVBoFEOlTL-800.webp",
+            "width": 720,
+            "height": 1280
+          },
+          "publishedAt": 1793814387,
+          "video": {
+            "file": "assets/event-media-20261110/DfVBoFEOlTL.mp4",
+            "width": 720,
+            "height": 1280,
+            "codec": "h264",
+            "duration": 13.416667,
+            "audioTracks": 0
+          }
+        }
+      ]
+    }
+  ],
+  "resolvedReviewIds": [
+    "the-woodlands-federica-20261112"
+  ],
+  "files": {
+    "assets/event-media-20261110/DfaOfapumB7.mp4": {
+      "bytes": 1629067,
+      "sha256": "fb9a66f65f7b0ee6ff08df43d016db952611ddb64559b8840d39944848ee831c"
+    },
+    "assets/event-media-20261110/DfVBoFEOlTL.mp4": {
+      "bytes": 1460866,
+      "sha256": "e462a922381e2db9d61ac8850452687e41b9a19c877d02983cc5fb5c039b9a1b"
+    },
+    "assets/event-media-20261110/DflD9EbOY_x-400.webp": {
+      "bytes": 30384,
+      "sha256": "d955f0b7f213c9b998e346a6e0d18537c3fb1122d03559c1f519ef4d7d7648db"
+    },
+    "assets/event-media-20261110/DflD9EbOY_x-800.webp": {
+      "bytes": 98856,
+      "sha256": "b32e23f2b77acd65459c0ed2622138114b740bbec92c8d3f62bf4901c699685a"
+    },
+    "assets/event-media-20261110/DflCxOyt5Gk-800.webp": {
+      "bytes": 107742,
+      "sha256": "28e7ddfeb9fd02039616810fcbf3f17f325f6d49f436fd1f46f216cca678baae"
+    },
+    "assets/event-media-20261110/DflCxOyt5Gk-400.webp": {
+      "bytes": 42070,
+      "sha256": "f0047a416ec6cff288fde6de1a3e76dfd390f58d4065f4d65fb44f6d6d1c3d3b"
+    },
+    "assets/event-media-20261110/DflD5i0BdOf-400.webp": {
+      "bytes": 30384,
+      "sha256": "d955f0b7f213c9b998e346a6e0d18537c3fb1122d03559c1f519ef4d7d7648db"
+    },
+    "assets/event-media-20261110/Dfk1XaZNfGf-400.webp": {
+      "bytes": 18530,
+      "sha256": "9b614e690576f5f50bfea5a895fca8464185f6c449000fbaff2d697874f8fc84"
+    },
+    "assets/event-media-20261110/Dfk1XaZNfGf-800.webp": {
+      "bytes": 53122,
+      "sha256": "2342dadf13d28e33403aea1465c8f8c0cd58fbbdf792980d4f31adce78df940b"
+    },
+    "assets/event-media-20261110/DflD5i0BdOf-800.webp": {
+      "bytes": 98856,
+      "sha256": "b32e23f2b77acd65459c0ed2622138114b740bbec92c8d3f62bf4901c699685a"
+    },
+    "assets/event-media-20261110/DfVB1J8tqXU.mp4": {
+      "bytes": 1460744,
+      "sha256": "606940b8d8b11aa5250d75cfd6980d16acead3eb9bd627b0e9678a4bd62e010e"
+    },
+    "assets/event-media-20261110/DfaOrnHNPb6-800.webp": {
+      "bytes": 69676,
+      "sha256": "a393f8174fd808c3c8798654cad357b66c5cd2b7fd41fb8f248cc9736e0c36b7"
+    },
+    "assets/event-media-20261110/DfaOrnHNPb6-400.webp": {
+      "bytes": 35970,
+      "sha256": "ea411cec164cdfb70a21b329f955afb54ff29dda4189f961d61c40887f8e5d62"
+    },
+    "assets/event-media-20261110/DfaOfapumB7-400.webp": {
+      "bytes": 35946,
+      "sha256": "7ff7b2361de547d2b2d44608c9b294086bf60098372209ca497543e478b2df35"
+    },
+    "assets/event-media-20261110/DfaOfapumB7-800.webp": {
+      "bytes": 71310,
+      "sha256": "2f617f7bcdbc4c5a0fef43849e8af88caa30bddffc87bb145e5c880347b2077b"
+    },
+    "assets/event-media-20261110/DfaOlNSh_Fk-400.webp": {
+      "bytes": 35946,
+      "sha256": "7ff7b2361de547d2b2d44608c9b294086bf60098372209ca497543e478b2df35"
+    },
+    "assets/event-media-20261110/DfaOlNSh_Fk-800.webp": {
+      "bytes": 71310,
+      "sha256": "2f617f7bcdbc4c5a0fef43849e8af88caa30bddffc87bb145e5c880347b2077b"
+    },
+    "assets/event-media-20261110/DfVBoFEOlTL-800.webp": {
+      "bytes": 75180,
+      "sha256": "078a2b73868a66ebdc22dd9be41d20a29aca2fd1508765f5c690ebfed9b51a9d"
+    },
+    "assets/event-media-20261110/DfVBoFEOlTL-400.webp": {
+      "bytes": 37620,
+      "sha256": "ce21f9dcc85072e7906dac08d2d4ae4c8b63ae958f9b251fcd4d50a000b51ebe"
+    },
+    "assets/event-media-20261110/Dfk1XaZNfGf.mp4": {
+      "bytes": 3209635,
+      "sha256": "16b2000393ce22252a58a652f0b0646215d16e7d6f51ce28062ded37757564f5"
+    },
+    "assets/event-media-20261110/DfaOlNSh_Fk.mp4": {
+      "bytes": 1630655,
+      "sha256": "01e8b7f570edc095f891cd1352f465d8310f4736b292ef53d01666abbc9e7020"
+    },
+    "assets/event-media-20261110/DfaOrnHNPb6.mp4": {
+      "bytes": 1632081,
+      "sha256": "823dc289c028b4ff18016033fd8f6a43902dae0a5065151915d60aa29cc26b26"
+    },
+    "assets/event-media-20261110/DfVB1J8tqXU-400.webp": {
+      "bytes": 37656,
+      "sha256": "7cebb32bb2990faf18ef58879a77ea76226919470b3e98c120904ac7206fd669"
+    },
+    "assets/event-media-20261110/DfVB1J8tqXU-800.webp": {
+      "bytes": 75636,
+      "sha256": "4975dc44bd9677208dd5099395d0918047d767b06eb4a07d28a873437a799053"
+    },
+    "assets/agenda/houston-jorge-20261113-DfkAfDSxETr.jpg": {
+      "bytes": 1269784,
+      "sha256": "bbab24f8a50805e5840f072649e944f4a57c7cdae1dcee2f934193e5b6b517a1"
+    },
+    "assets/agenda/woodlands-federica-20261112-Dfj-I3tt-ls.jpg": {
+      "bytes": 272401,
+      "sha256": "d76be7344c597dfb91619c6fd003635955ddf5535924ff007f6db68878daadb4"
+    },
+    "assets/agenda/houston-weekly-20261112-DflCdPIun9T.jpg": {
+      "bytes": 347653,
+      "sha256": "c888a9f73c37008cd520c371391943e02a196894b8a354b94826c49e15a570c8"
+    },
+    "assets/agenda/el-paso-weekly-20261112-DflCr0SuqwH.jpg": {
+      "bytes": 312826,
+      "sha256": "281ef146ad93c82f5fdaaa383fca677d4d3f359c6e33d2828cd3ba27cf381dc4"
+    },
+    "assets/js/branch-event-media.js": {
+      "bytes": 3337,
+      "sha256": "2d944f9f99c03995738ff2232f318a5142987294f65a67954221ddfab9160a5f"
+    },
+    "assets/css/branch-event-media.css": {
+      "bytes": 625,
+      "sha256": "1425f6e9a53f479734509bf28a25f5dd5ecd7a373c7b668aec23758c5ad285ea"
+    }
+  },
+  "authorizer": "Luis",
+  "approvedAt": "2026-11-11T03:07:18.000Z",
+  "authorization": "Va, publica así los eventos y los bloques de Instagram.",
+  "approvedDigest": "5df9a16b54d459dfc8ef637dba131ca284cfa4e9635b50054e352922bfeb8a75"
+}

@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "file": "scripts/public-manifest.json",
+  "beforeSha256": "fe98c2cdd07d6e2886cd0ae1673492e76a247bc27d9fd5e5ba557efb4657bd56",
+  "afterSha256": "029eca36eb0b070dc5c2ce4bf62e1ebbbdfb6b1f5a7d9db4569b7f2d012582ac",
+  "patches": [
+    {
+      "before": "    \"assets/css/november-agenda.css\": \"20261110-november-agenda\"\n  },",
+      "after": "    \"assets/css/november-agenda.css\": \"20261110-november-agenda\",\n    \"assets/css/branch-event-media.css\": \"20261110-event-media\",\n    \"assets/js/branch-event-media.js\": \"20261110-event-media\"\n  },"
+    },
+    {
+      "before": "    \"assets/agenda/sa-exs-night-20261113-DflCmDVhNcn.jpg\"\n  ],",
+      "after": "    \"assets/agenda/sa-exs-night-20261113-DflCmDVhNcn.jpg\",\n    \"assets/event-media-20261110/DfaOfapumB7.mp4\",\n    \"assets/event-media-20261110/DfVBoFEOlTL.mp4\",\n    \"assets/event-media-20261110/DflD9EbOY_x-400.webp\",\n    \"assets/event-media-20261110/DflD9EbOY_x-800.webp\",\n    \"assets/event-media-20261110/DflCxOyt5Gk-800.webp\",\n    \"assets/event-media-20261110/DflCxOyt5Gk-400.webp\",\n    \"assets/event-media-20261110/DflD5i0BdOf-400.webp\",\n    \"assets/event-media-20261110/Dfk1XaZNfGf-400.webp\",\n    \"assets/event-media-20261110/Dfk1XaZNfGf-800.webp\",\n    \"assets/event-media-20261110/DflD5i0BdOf-800.webp\",\n    \"assets/event-media-20261110/DfVB1J8tqXU.mp4\",\n    \"assets/event-media-20261110/DfaOrnHNPb6-800.webp\",\n    \"assets/event-media-20261110/DfaOrnHNPb6-400.webp\",\n    \"assets/event-media-20261110/DfaOfapumB7-400.webp\",\n    \"assets/event-media-20261110/DfaOfapumB7-800.webp\",\n    \"assets/event-media-20261110/DfaOlNSh_Fk-400.webp\",\n    \"assets/event-media-20261110/DfaOlNSh_Fk-800.webp\",\n    \"assets/event-media-20261110/DfVBoFEOlTL-800.webp\",\n    \"assets/event-media-20261110/DfVBoFEOlTL-400.webp\",\n    \"assets/event-media-20261110/Dfk1XaZNfGf.mp4\",\n    \"assets/event-media-20261110/DfaOlNSh_Fk.mp4\",\n    \"assets/event-media-20261110/DfaOrnHNPb6.mp4\",\n    \"assets/event-media-20261110/DfVB1J8tqXU-400.webp\",\n    \"assets/event-media-20261110/DfVB1J8tqXU-800.webp\",\n    \"assets/agenda/houston-jorge-20261113-DfkAfDSxETr.jpg\",\n    \"assets/agenda/woodlands-federica-20261112-Dfj-I3tt-ls.jpg\",\n    \"assets/agenda/houston-weekly-20261112-DflCdPIun9T.jpg\",\n    \"assets/agenda/el-paso-weekly-20261112-DflCr0SuqwH.jpg\",\n    \"assets/js/branch-event-media.js\",\n    \"assets/css/branch-event-media.css\"\n  ],"
+    }
+  ],
+  "assets": {
+    "assets/event-media-20261110/DfaOfapumB7.mp4": "fb9a66f65f7b0ee6ff08df43d016db952611ddb64559b8840d39944848ee831c",
+    "assets/event-media-20261110/DfVBoFEOlTL.mp4": "e462a922381e2db9d61ac8850452687e41b9a19c877d02983cc5fb5c039b9a1b",
+    "assets/event-media-20261110/DflD9EbOY_x-400.webp": "d955f0b7f213c9b998e346a6e0d18537c3fb1122d03559c1f519ef4d7d7648db",
+    "assets/event-media-20261110/DflD9EbOY_x-800.webp": "b32e23f2b77acd65459c0ed2622138114b740bbec92c8d3f62bf4901c699685a",
+    "assets/event-media-20261110/DflCxOyt5Gk-800.webp": "28e7ddfeb9fd02039616810fcbf3f17f325f6d49f436fd1f46f216cca678baae",
+    "assets/event-media-20261110/DflCxOyt5Gk-400.webp": "f0047a416ec6cff288fde6de1a3e76dfd390f58d4065f4d65fb44f6d6d1c3d3b",
+    "assets/event-media-20261110/DflD5i0BdOf-400.webp": "d955f0b7f213c9b998e346a6e0d18537c3fb1122d03559c1f519ef4d7d7648db",
+    "assets/event-media-20261110/Dfk1XaZNfGf-400.webp": "9b614e690576f5f50bfea5a895fca8464185f6c449000fbaff2d697874f8fc84",
+    "assets/event-media-20261110/Dfk1XaZNfGf-800.webp": "2342dadf13d28e33403aea1465c8f8c0cd58fbbdf792980d4f31adce78df940b",
+    "assets/event-media-20261110/DflD5i0BdOf-800.webp": "b32e23f2b77acd65459c0ed2622138114b740bbec92c8d3f62bf4901c699685a",
+    "assets/event-media-20261110/DfVB1J8tqXU.mp4": "606940b8d8b11aa5250d75cfd6980d16acead3eb9bd627b0e9678a4bd62e010e",
+    "assets/event-media-20261110/DfaOrnHNPb6-800.webp": "a393f8174fd808c3c8798654cad357b66c5cd2b7fd41fb8f248cc9736e0c36b7",
+    "assets/event-media-20261110/DfaOrnHNPb6-400.webp": "ea411cec164cdfb70a21b329f955afb54ff29dda4189f961d61c40887f8e5d62",
+    "assets/event-media-20261110/DfaOfapumB7-400.webp": "7ff7b2361de547d2b2d44608c9b294086bf60098372209ca497543e478b2df35",
+    "assets/event-media-20261110/DfaOfapumB7-800.webp": "2f617f7bcdbc4c5a0fef43849e8af88caa30bddffc87bb145e5c880347b2077b",
+    "assets/event-media-20261110/DfaOlNSh_Fk-400.webp": "7ff7b2361de547d2b2d44608c9b294086bf60098372209ca497543e478b2df35",
+    "assets/event-media-20261110/DfaOlNSh_Fk-800.webp": "2f617f7bcdbc4c5a0fef43849e8af88caa30bddffc87bb145e5c880347b2077b",
+    "assets/event-media-20261110/DfVBoFEOlTL-800.webp": "078a2b73868a66ebdc22dd9be41d20a29aca2fd1508765f5c690ebfed9b51a9d",
+    "assets/event-media-20261110/DfVBoFEOlTL-400.webp": "ce21f9dcc85072e7906dac08d2d4ae4c8b63ae958f9b251fcd4d50a000b51ebe",
+    "assets/event-media-20261110/Dfk1XaZNfGf.mp4": "16b2000393ce22252a58a652f0b0646215d16e7d6f51ce28062ded37757564f5",
+    "assets/event-media-20261110/DfaOlNSh_Fk.mp4": "01e8b7f570edc095f891cd1352f465d8310f4736b292ef53d01666abbc9e7020",
+    "assets/event-media-20261110/DfaOrnHNPb6.mp4": "823dc289c028b4ff18016033fd8f6a43902dae0a5065151915d60aa29cc26b26",
+    "assets/event-media-20261110/DfVB1J8tqXU-400.webp": "7cebb32bb2990faf18ef58879a77ea76226919470b3e98c120904ac7206fd669",
+    "assets/event-media-20261110/DfVB1J8tqXU-800.webp": "4975dc44bd9677208dd5099395d0918047d767b06eb4a07d28a873437a799053",
+    "assets/agenda/houston-jorge-20261113-DfkAfDSxETr.jpg": "bbab24f8a50805e5840f072649e944f4a57c7cdae1dcee2f934193e5b6b517a1",
+    "assets/agenda/woodlands-federica-20261112-Dfj-I3tt-ls.jpg": "d76be7344c597dfb91619c6fd003635955ddf5535924ff007f6db68878daadb4",
+    "assets/agenda/houston-weekly-20261112-DflCdPIun9T.jpg": "c888a9f73c37008cd520c371391943e02a196894b8a354b94826c49e15a570c8",
+    "assets/agenda/el-paso-weekly-20261112-DflCr0SuqwH.jpg": "281ef146ad93c82f5fdaaa383fca677d4d3f359c6e33d2828cd3ba27cf381dc4",
+    "assets/js/branch-event-media.js": "2d944f9f99c03995738ff2232f318a5142987294f65a67954221ddfab9160a5f",
+    "assets/css/branch-event-media.css": "1425f6e9a53f479734509bf28a25f5dd5ecd7a373c7b668aec23758c5ad285ea"
+  }
+}

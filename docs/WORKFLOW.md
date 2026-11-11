@@ -1,5 +1,54 @@
 # Forma de trabajar y publicar
 
+### Medios de eventos · publicación autorizada10-nov-2026
+
+Luis autoriza «Va, publica así los eventos y los bloques de Instagram.» después de la revisión
+localv6. Se activa `event-media-review.json` con aprobación propia/digest exacto y únicamente30
+activos nuevos en la allowlist, para393archivos públicos. Ocho fichas ES/EN; Houston conserva
+su bloque Instagram exacto y se actualizan sus medios en agenda. TW3/SA2/EP3 publicaciones de eventos.
+La proyección es común a build y scheduler, con retiros individuales por fecha y sin API en cliente.
+El contrato `event-media-source-patches.json` revierte solo este delta antes de los guardas
+históricos; los hashes y aprobaciones anteriores siguen inalterados. Fechas anteriores al OK no
+requieren los assets nuevos. La prueba de noviembre normaliza exclusivamente este delta posterior.
+Validación activada:475tests, integridad393archivos y build correctos. OchoHTML productivos
+equivalentes a la revisiónv6, normalizando solo robots de preview y digest de proyección.
+Publicación/recibo: siguiente paso. Rollback al deployment previo del mismo sitio,
+registrado por `release:approved`. No DNS, formularios, GHL, otras aperturas ni Guadalajara.
+
+### Medios de eventos e Instagram por sede · revisión local10-nov-2026
+
+Seguimiento posterior al PR63: Luis entrega los carteles semanales HOU/EP/TW y pide revisar los
+posts próximos de las cuatro cuentas; integrar sus fotos/videos y el bloqueInstagram en las otras
+fichas. Prioridad eventos; donde no hay post se conserva la ficha de texto. Investigación directa
+de doce publicaciones recientes por cuenta, sin cambiar fuentes remotas ni incluir Halloween/fechas
+ya pasadas como próximos. Selección manual, sin prometer sincronización de Instagram.
+
+Se prepara en rama/worktree aislados sobre main8765a55. Contenido y assets nuevos con flagfalse,
+fuera de la allowlist productiva. La publicación del PR63 ya está concluida; este seguimiento
+requiere revisión y autorización propia antes de incorporarse al paquete oficial.
+
+Candidata final en `http://127.0.0.1:8875/the-woodlands#instagram-the-woodlands`;
+artefacto aislado `.artifacts/event-media-v6/public`,393archivos,30 activos nuevos. Reentrada:
+`node scripts/serve-review.mjs .artifacts/event-media-v6/public 8875`.
+Ocho publicaciones de eventos en los bloques nuevos: TW3, SA2 y EP3. Se retira el clip de ambiente
+no relacionado, conforme a la aclaración de Luis. Houston conserva su bloque existente exacto.
+Agenda: cartel JorgeHouston13 con Mariana/Federica; palomazoTW12 con Federica; AhogoHOU14,
+TW13/14 y EP13/14. Un cartel por serie y vencimiento independiente de cada función.
+JorgeSA14 incorpora video, conservando sede externaK.O.P./314Nolan y horario publicados.
+Seis clips H264 sin audio, carga diferida al entrar en pantalla, pausa fuera de ella/teclado y
+respeto a movimiento reducido. Los posts fechados expiran también dentro del bloque social.
+Más adelante en noviembre, donde no se encontró post, se mantienen fichas de texto.
+
+QA:474tests/integridad correctos; build productivo continúa363archivos y no incluye este lote.
+Los30activos responden HTTP con bytes/hashes/MIME correctos. CUA: móvil390, tablet768 y
+escritorio1280, ES/EN; posters cargados, reproducción silenciosa, pausa fuera de viewport,
+teclado y movimiento reducido comprobados; cero overflow/error de consola observado.
+Capturas `.artifacts/event-media-v6/{woodlands-desktop,san-antonio-desktop,el-paso-mobile}.jpg`.
+Sin commit, PR, cambio de manifest ni nuevo despliegue. La autorización anterior es del PR63;
+activar este lote requiere aprobación de la candidata y un contrato de delta propio, sin resignar
+hashes históricos ni modificar el recibo publicado. Intake manual; no sincronización automática.
+
+
 ### Agenda noviembre · publicación autorizada10-nov-2026
 
 Luis autoriza «Sí, publicar la actualización» de las cuatro sedes, con Ex’s Night13 e imagen original

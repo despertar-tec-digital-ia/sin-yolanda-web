@@ -4,6 +4,7 @@ import {resolve} from 'node:path';
 import {readFileSync} from 'node:fs';
 import vm from 'node:vm';
 import {createHash} from 'node:crypto';
+import {restoreEventMediaSource} from '../scripts/event-media-source-contract.mjs';
 import {novemberSource, restoreNovemberSource} from '../scripts/november-source-contract.mjs';
 import {config, contentDigest, validateNovember, selectNovember, visibilityWindow, applyNovemberHtml, projectNovemberProgramming} from '../scripts/editorial/november-2026-programming.mjs';
 import {projectPublicSite} from '../scripts/editorial/public-site.mjs';
@@ -12,7 +13,7 @@ const root = resolve(import.meta.dirname, '..'), commit = 'a'.repeat(40), now = 
 
 test('the November allowlist restores the exact preceding bytes while detecting unrelated edits and changed media', () => {
   const hash = value => createHash('sha256').update(value).digest('hex');
-  const file = novemberSource.file, source = readFileSync(resolve(root, file), 'utf8');
+  const file = novemberSource.file, source = restoreEventMediaSource(file, readFileSync(resolve(root, file), 'utf8'));
   assert.equal(hash(source), novemberSource.afterSha256);
   const restored = restoreNovemberSource(file, source);
   assert.equal(hash(restored), novemberSource.beforeSha256);

@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "file": "scripts/public-manifest.json",
+  "beforeSha256": "1a0da80a9c27777b8f1d17a858a472adfebb4da8c658e5f199c5f3acd818f8fe",
+  "afterSha256": "fe98c2cdd07d6e2886cd0ae1673492e76a247bc27d9fd5e5ba557efb4657bd56",
+  "patches": [
+    {
+      "before": "    \"assets/css/branch-social-motion.css\": \"20261104-instagram-minimal\",\n    \"assets/js/branch-social-motion.js\": \"20261104-instagram-minimal\"\n  },\n",
+      "after": "    \"assets/css/branch-social-motion.css\": \"20261104-instagram-minimal\",\n    \"assets/js/branch-social-motion.js\": \"20261104-instagram-minimal\",\n    \"assets/js/agenda-visibility.js\": \"20261110-november-agenda\",\n    \"assets/css/november-agenda.css\": \"20261110-november-agenda\"\n  },\n"
+    },
+    {
+      "before": "    \"assets/css/branch-motion-review.css\",\n    \"assets/js/branch-motion-review.js\"\n  ],\n",
+      "after": "    \"assets/css/branch-motion-review.css\",\n    \"assets/js/branch-motion-review.js\",\n    \"assets/js/agenda-visibility.js\",\n    \"assets/css/november-agenda.css\",\n    \"assets/agenda/sa-exs-night-20261113-DflCmDVhNcn.jpg\"\n  ],\n"
+    }
+  ],
+  "assets": {
+    "assets/js/agenda-visibility.js": "6982357e607fc8e51f871cd5ac6881df825fbc3a1fba15802e4f996f38f75425",
+    "assets/css/november-agenda.css": "d07bb6f49bb163e7bad3fcf77767c16d8570c93014d5ef8dc6f0da908a0bc8c3",
+    "assets/agenda/sa-exs-night-20261113-DflCmDVhNcn.jpg": "6e5d31f0c2ee3e904da5dd0d1954d7a392f1fdb92138eb331b7904d743cd010e"
+  }
+}

@@ -39,7 +39,8 @@ test('future scheduled agenda refresh keeps the same approved selector without c
   const scheduled=projectPublicSite(root,{now:'2026-11-24T12:00:00Z',commit});
   for(const file of ['assets/js/venue-selector.js','assets/css/venue-selector.css'])
     assert.equal(readFileSync(resolve(out,file),'utf8'),scheduled.files.get(file));
-  assert.equal(build.fileCount,360);
+  const manifest=JSON.parse(readFileSync(resolve(root,'scripts/public-manifest.json'),'utf8'));
+  assert.equal(build.fileCount,manifest.pages.length+manifest.assets.length);
   assert.ok(!Object.keys(build.hashes).some(file=>/ejemplo-11|opening-label-local|capacity-review/.test(file)));
 });
 test('selector approval cannot be reused after changing reviewed sizing or baseline resources',t=>{

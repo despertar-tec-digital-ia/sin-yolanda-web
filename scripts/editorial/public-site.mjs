@@ -16,6 +16,11 @@ export function projectPublicSite(root,options) {
   const ui=options?.ui===false?{files:booking.files}:projectApprovedUi(root,booking.files);
   const selector=options?.selector===false?{files:ui.files}:projectApprovedSelector(root,ui.files);
   const files=selector.files;
+  // Preserve the reviewed cascade: the scoped November sheet follows shared UI.
+  for (const [file,html] of files) if (html.includes('href="/assets/css/november-agenda.css')) {
+    const sheet=html.match(/<link rel="stylesheet" href="\/assets\/css\/november-agenda\.css[^>]*>/)?.[0];
+    if (sheet) files.set(file,html.replace(sheet,'').replace('</head>',sheet+'</head>'));
+  }
   const strip=value=>value.replace(/ data-agenda-render-digest="[a-f0-9]+"/,'');
   files.set('houston.html',strip(files.get('houston.html')));
   const hash=value=>createHash('sha256').update(value).digest('hex');

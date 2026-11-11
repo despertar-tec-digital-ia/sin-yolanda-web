@@ -1,0 +1,473 @@
+{
+  "version": 1,
+  "observedOn": "2026-11-10",
+  "publicationEnabled": true,
+  "status": "approved",
+  "records": [
+    {
+      "id": "houston-concurso-canto-20261112",
+      "branchId": "houston",
+      "date": "2026-11-12",
+      "kind": "dated-event",
+      "title": {
+        "es": "Concurso de canto",
+        "en": "Singing contest"
+      },
+      "description": {
+        "es": "Karaoke para cantar a todo pulmón.",
+        "en": "A karaoke night to sing your heart out."
+      },
+      "timeZone": "America/Chicago",
+      "publishFrom": "2026-11-10T07:00:00.000Z",
+      "sourceRef": "calendar-houston-20261110",
+      "sourceEndTime": null,
+      "series": "houston-concurso-noviembre"
+    },
+    {
+      "id": "houston-concurso-canto-20261119",
+      "branchId": "houston",
+      "date": "2026-11-19",
+      "kind": "dated-event",
+      "title": {
+        "es": "Concurso de canto",
+        "en": "Singing contest"
+      },
+      "description": {
+        "es": "Karaoke para cantar a todo pulmón.",
+        "en": "A karaoke night to sing your heart out."
+      },
+      "timeZone": "America/Chicago",
+      "publishFrom": "2026-11-10T07:00:00.000Z",
+      "sourceRef": "calendar-houston-20261110",
+      "sourceEndTime": null,
+      "series": "houston-concurso-noviembre"
+    },
+    {
+      "id": "houston-retro-20261120",
+      "branchId": "houston",
+      "date": "2026-11-20",
+      "kind": "dated-event",
+      "title": {
+        "es": "Noche ochentera",
+        "en": "80s Night"
+      },
+      "description": {
+        "es": "Ven con tu look de los 80 y disfruta la música retro.",
+        "en": "Bring your 80s look and enjoy the retro music."
+      },
+      "timeZone": "America/Chicago",
+      "publishFrom": "2026-11-10T07:00:00.000Z",
+      "sourceRef": "calendar-houston-20261110",
+      "sourceEndTime": null
+    },
+    {
+      "id": "houston-pelucas-20261121",
+      "branchId": "houston",
+      "date": "2026-11-21",
+      "kind": "dated-event",
+      "title": {
+        "es": "Noche de Pelucas",
+        "en": "Wig Night"
+      },
+      "description": {
+        "es": "Elige tu peluca y arma el plan.",
+        "en": "Pick your wig and make a night of it."
+      },
+      "timeZone": "America/Chicago",
+      "publishFrom": "2026-11-10T07:00:00.000Z",
+      "sourceRef": "calendar-houston-20261110",
+      "sourceEndTime": null
+    },
+    {
+      "id": "houston-final-canto-20261203",
+      "branchId": "houston",
+      "date": "2026-12-03",
+      "kind": "dated-event",
+      "title": {
+        "es": "Gran final del concurso de canto",
+        "en": "Singing contest grand final"
+      },
+      "description": {
+        "es": "",
+        "en": ""
+      },
+      "timeZone": "America/Chicago",
+      "publishFrom": "2026-11-10T07:00:00.000Z",
+      "sourceRef": "calendar-the-woodlands-20261110",
+      "sourceEndTime": null,
+      "sourceVenue": "Houston"
+    },
+    {
+      "id": "the-woodlands-concurso-canto-20261112",
+      "branchId": "the-woodlands",
+      "date": "2026-11-12",
+      "kind": "dated-event",
+      "title": {
+        "es": "Concurso de canto",
+        "en": "Singing contest"
+      },
+      "description": {
+        "es": "Noche Entre Amigas con un especial de Yuri y Lucero.",
+        "en": "Entre Amigas night with a Yuri and Lucero music special."
+      },
+      "timeZone": "America/Chicago",
+      "publishFrom": "2026-11-10T07:00:00.000Z",
+      "sourceRef": "calendar-the-woodlands-20261110",
+      "sourceEndTime": null,
+      "series": "the-woodlands-concurso-noviembre"
+    },
+    {
+      "id": "the-woodlands-concurso-canto-20261119",
+      "branchId": "the-woodlands",
+      "date": "2026-11-19",
+      "kind": "dated-event",
+      "title": {
+        "es": "Concurso de canto",
+        "en": "Singing contest"
+      },
+      "description": {
+        "es": "Noche Entre Amigas con un especial de Yuri y Lucero.",
+        "en": "Entre Amigas night with a Yuri and Lucero music special."
+      },
+      "timeZone": "America/Chicago",
+      "publishFrom": "2026-11-10T07:00:00.000Z",
+      "sourceRef": "calendar-the-woodlands-20261110",
+      "sourceEndTime": null,
+      "series": "the-woodlands-concurso-noviembre"
+    },
+    {
+      "id": "the-woodlands-concurso-canto-20261125",
+      "branchId": "the-woodlands",
+      "date": "2026-11-25",
+      "kind": "dated-event",
+      "title": {
+        "es": "Concurso de canto",
+        "en": "Singing contest"
+      },
+      "description": {
+        "es": "Una nueva fecha del concurso de canto.",
+        "en": "Another night of the singing contest."
+      },
+      "timeZone": "America/Chicago",
+      "publishFrom": "2026-11-10T07:00:00.000Z",
+      "sourceRef": "calendar-the-woodlands-20261110",
+      "sourceEndTime": null,
+      "series": "the-woodlands-concurso-noviembre"
+    },
+    {
+      "id": "the-woodlands-friendsgiving-20261120",
+      "branchId": "the-woodlands",
+      "date": "2026-11-20",
+      "kind": "dated-event",
+      "title": {
+        "es": "Friendsgiving",
+        "en": "Friendsgiving"
+      },
+      "description": {
+        "es": "Una noche para reunirte con tus amigos.",
+        "en": "A night to gather with your friends."
+      },
+      "timeZone": "America/Chicago",
+      "publishFrom": "2026-11-10T07:00:00.000Z",
+      "sourceRef": "calendar-the-woodlands-20261110",
+      "sourceEndTime": null
+    },
+    {
+      "id": "the-woodlands-pelucas-20261121",
+      "branchId": "the-woodlands",
+      "date": "2026-11-21",
+      "kind": "dated-event",
+      "title": {
+        "es": "Noche de Pelucas",
+        "en": "Wig Night"
+      },
+      "description": {
+        "es": "Ven con tu peluca favorita.",
+        "en": "Bring your favorite wig."
+      },
+      "timeZone": "America/Chicago",
+      "publishFrom": "2026-11-10T07:00:00.000Z",
+      "sourceRef": "calendar-the-woodlands-20261110",
+      "sourceEndTime": null
+    },
+    {
+      "id": "the-woodlands-black-friday-20261127",
+      "branchId": "the-woodlands",
+      "date": "2026-11-27",
+      "kind": "dated-event",
+      "title": {
+        "es": "Black Friday",
+        "en": "Black Friday"
+      },
+      "description": {
+        "es": "Consulta los detalles de la noche con la sucursal.",
+        "en": "Ask the location about the evening’s details."
+      },
+      "timeZone": "America/Chicago",
+      "publishFrom": "2026-11-10T07:00:00.000Z",
+      "sourceRef": "calendar-the-woodlands-20261110",
+      "sourceEndTime": null
+    },
+    {
+      "id": "the-woodlands-brunch-agradecimiento-20261129",
+      "branchId": "the-woodlands",
+      "date": "2026-11-29",
+      "kind": "dated-event",
+      "title": {
+        "es": "Brunch de agradecimiento",
+        "en": "Thanksgiving Brunch"
+      },
+      "description": {
+        "es": "Un domingo para compartir en la cantina.",
+        "en": "A Sunday to share at the cantina."
+      },
+      "timeZone": "America/Chicago",
+      "publishFrom": "2026-11-10T07:00:00.000Z",
+      "sourceRef": "calendar-the-woodlands-20261110",
+      "sourceEndTime": null
+    },
+    {
+      "id": "san-antonio-concurso-canto-20261112",
+      "branchId": "san-antonio",
+      "date": "2026-11-12",
+      "kind": "dated-event",
+      "title": {
+        "es": "Concurso de canto · Don’t Cry",
+        "en": "Singing contest · Don’t Cry"
+      },
+      "description": {
+        "es": "Karaoke open mic en español e inglés.",
+        "en": "Open-mic karaoke in Spanish and English."
+      },
+      "timeZone": "America/Chicago",
+      "publishFrom": "2026-11-10T07:00:00.000Z",
+      "sourceRef": "instagram-DflCmDVhNcn",
+      "sourceEndTime": null
+    },
+    {
+      "id": "san-antonio-exs-night-20261113",
+      "branchId": "san-antonio",
+      "date": "2026-11-13",
+      "kind": "dated-event",
+      "title": {
+        "es": "Ex’s Night",
+        "en": "Ex’s Night"
+      },
+      "description": {
+        "es": "Canta a todo pulmón y dedícale una canción a tu ex.",
+        "en": "Sing your heart out and dedicate a song to your ex."
+      },
+      "timeZone": "America/Chicago",
+      "publishFrom": "2026-11-10T07:00:00.000Z",
+      "sourceRef": "instagram-DflCmDVhNcn",
+      "sourceEndTime": null,
+      "postUrl": "https://www.instagram.com/p/DflCmDVhNcn/",
+      "artwork": {
+        "file": "assets/agenda/sa-exs-night-20261113-DflCmDVhNcn.jpg",
+        "width": 1136,
+        "height": 1408,
+        "alt": {
+          "es": "Cartelera oficial de Sin Yolanda San Antonio del 12 al 15 de noviembre: Ex’s Night el viernes 13.",
+          "en": "Official Sin Yolanda San Antonio November 12–15 lineup: Ex’s Night on Friday the 13th."
+        }
+      }
+    },
+    {
+      "id": "san-antonio-entre-amigas-20261119",
+      "branchId": "san-antonio",
+      "date": "2026-11-19",
+      "kind": "dated-event",
+      "title": {
+        "es": "Entre Amigas · Lucero y Yuri",
+        "en": "Entre Amigas · Lucero & Yuri"
+      },
+      "description": {
+        "es": "Especial de Lucero y Yuri con bebidas temáticas y dinámicas para ganar boletos.",
+        "en": "Lucero and Yuri music special with themed drinks and ticket giveaways."
+      },
+      "timeZone": "America/Chicago",
+      "publishFrom": "2026-11-10T07:00:00.000Z",
+      "sourceRef": "calendar-san-antonio-20261110",
+      "sourceEndTime": null
+    },
+    {
+      "id": "san-antonio-intocable-20261119",
+      "branchId": "san-antonio",
+      "date": "2026-11-19",
+      "kind": "dated-event",
+      "title": {
+        "es": "Giveaway de Intocable",
+        "en": "Intocable Ticket Giveaway"
+      },
+      "description": {
+        "es": "Dinámica de boletos anunciada con Live Nation. Consulta la participación con la sucursal.",
+        "en": "Ticket giveaway announced with Live Nation. Ask the location how to take part."
+      },
+      "timeZone": "America/Chicago",
+      "publishFrom": "2026-11-10T07:00:00.000Z",
+      "sourceRef": "calendar-san-antonio-20261110",
+      "sourceEndTime": null
+    },
+    {
+      "id": "san-antonio-friendsgiving-20261120",
+      "branchId": "san-antonio",
+      "date": "2026-11-20",
+      "kind": "dated-event",
+      "title": {
+        "es": "Friendsgiving",
+        "en": "Friendsgiving"
+      },
+      "description": {
+        "es": "Una noche de desahogo para compartir con tus amigos.",
+        "en": "A night to sing it out and get together with your friends."
+      },
+      "timeZone": "America/Chicago",
+      "publishFrom": "2026-11-10T07:00:00.000Z",
+      "sourceRef": "calendar-san-antonio-20261110",
+      "sourceEndTime": null
+    },
+    {
+      "id": "san-antonio-pelucas-20261121",
+      "branchId": "san-antonio",
+      "date": "2026-11-21",
+      "kind": "dated-event",
+      "title": {
+        "es": "Noche de Pelucas",
+        "en": "Wig Night"
+      },
+      "description": {
+        "es": "Atrévete a probar ese color de pelo por una noche.",
+        "en": "Try that hair color for one night."
+      },
+      "timeZone": "America/Chicago",
+      "publishFrom": "2026-11-10T07:00:00.000Z",
+      "sourceRef": "calendar-san-antonio-20261110",
+      "sourceEndTime": null
+    },
+    {
+      "id": "san-antonio-black-friday-20261127",
+      "branchId": "san-antonio",
+      "date": "2026-11-27",
+      "kind": "dated-event",
+      "title": {
+        "es": "Black Friday",
+        "en": "Black Friday"
+      },
+      "description": {
+        "es": "20% de descuento anunciado para el menú. Consulta las condiciones con la sucursal.",
+        "en": "20% off the menu announced for the night. Ask the location about the terms."
+      },
+      "timeZone": "America/Chicago",
+      "publishFrom": "2026-11-10T07:00:00.000Z",
+      "sourceRef": "calendar-san-antonio-20261110",
+      "sourceEndTime": null
+    },
+    {
+      "id": "san-antonio-colombia-puerto-rico-20261128",
+      "branchId": "san-antonio",
+      "date": "2026-11-28",
+      "kind": "dated-event",
+      "title": {
+        "es": "Colombia vs. Puerto Rico",
+        "en": "Colombia vs. Puerto Rico"
+      },
+      "description": {
+        "es": "Bachata, salsa, merengue y vallenato para bailar.",
+        "en": "Dance to bachata, salsa, merengue and vallenato."
+      },
+      "timeZone": "America/Chicago",
+      "publishFrom": "2026-11-10T07:00:00.000Z",
+      "sourceRef": "calendar-san-antonio-20261110",
+      "sourceEndTime": null
+    },
+    {
+      "id": "el-paso-friendsgiving-paquetes-20261101",
+      "branchId": "el-paso",
+      "date": "2026-11-01",
+      "kind": "dated-promotion",
+      "title": {
+        "es": "Paquetes Friendsgiving",
+        "en": "Friendsgiving Packages"
+      },
+      "description": {
+        "es": "Opciones de comida y bebidas durante noviembre. Consulta paquetes y precios con la sucursal.",
+        "en": "Food and drink options throughout November. Ask the location about packages and prices."
+      },
+      "timeZone": "America/Denver",
+      "publishFrom": "2026-11-10T07:00:00.000Z",
+      "sourceRef": "calendar-el-paso-20261110",
+      "sourceEndTime": null,
+      "validThrough": "2026-11-30"
+    },
+    {
+      "id": "el-paso-friendsgiving-20261125",
+      "branchId": "el-paso",
+      "date": "2026-11-25",
+      "kind": "dated-event",
+      "title": {
+        "es": "Día de dar tragos",
+        "en": "Friendsgiving"
+      },
+      "description": {
+        "es": "Comparte una noche de Friendsgiving en Sin Yolanda.",
+        "en": "Share a Friendsgiving night at Sin Yolanda."
+      },
+      "timeZone": "America/Denver",
+      "publishFrom": "2026-11-10T07:00:00.000Z",
+      "sourceRef": "calendar-el-paso-20261110",
+      "sourceEndTime": null
+    },
+    {
+      "id": "el-paso-black-friday-20261127",
+      "branchId": "el-paso",
+      "date": "2026-11-27",
+      "kind": "dated-event",
+      "title": {
+        "es": "Black Friday",
+        "en": "Black Friday"
+      },
+      "description": {
+        "es": "Dress code: negro.",
+        "en": "Dress code: black."
+      },
+      "timeZone": "America/Denver",
+      "publishFrom": "2026-11-10T07:00:00.000Z",
+      "sourceRef": "calendar-el-paso-20261110",
+      "sourceEndTime": null
+    }
+  ],
+  "withheld": [
+    {
+      "id": "san-antonio-jungle-fever-20261113",
+      "reason": "The new official Instagram lineup and Luis place Ex’s Night on Nov 13; the older calendar theme is not duplicated."
+    },
+    {
+      "id": "el-paso-brunch-influencers",
+      "reason": "No date or public invitation specified."
+    },
+    {
+      "id": "the-woodlands-golf-20261110",
+      "reason": "External sponsorship activity, not a restaurant event listing."
+    },
+    {
+      "id": "the-woodlands-federica-20261112",
+      "reason": "Guest and giveaway mechanics are not corroborated by a public announcement; do not claim live artist attendance."
+    },
+    {
+      "id": "houston-friendsgiving-20261120",
+      "reason": "Only mentioned in another branch calendar while Houston specifies 80s Night; no cross-branch extrapolation."
+    },
+    {
+      "id": "the-woodlands-giveaway-quantities",
+      "reason": "Staff allocation instructions and ticket distribution are not public terms."
+    },
+    {
+      "id": "houston-concurso-travel-prize",
+      "reason": "Prize terms and contest rules not supplied; show the singing contest without promising a trip."
+    }
+  ],
+  "approvedBy": "Luis",
+  "approvedAt": "2026-11-11T01:48:45.000Z",
+  "authorization": "Sí, publicar la actualización de noviembre de las cuatro sedes; incluye Ex’s Night San Antonio el 13 con imagen original y retiro automático por fecha.",
+  "approvedContentDigest": "0e2475d1444619f91bd58395f9c650bb9195ce402bd9f9eb04aafb256bf2b54b"
+}

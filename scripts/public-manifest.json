@@ -26,7 +26,9 @@
     "assets/css/october-update.css": "20261026-event-posters-clean",
     "assets/css/branch-social-feed.css": "20261104-instagram-houston",
     "assets/css/branch-social-motion.css": "20261104-instagram-minimal",
-    "assets/js/branch-social-motion.js": "20261104-instagram-minimal"
+    "assets/js/branch-social-motion.js": "20261104-instagram-minimal",
+    "assets/js/agenda-visibility.js": "20261110-november-agenda",
+    "assets/css/november-agenda.css": "20261110-november-agenda"
   },
   "pages": [
     "index.html",
@@ -390,7 +392,10 @@
     "assets/css/opentable-review.css",
     "assets/js/opentable-review.js",
     "assets/css/branch-motion-review.css",
-    "assets/js/branch-motion-review.js"
+    "assets/js/branch-motion-review.js",
+    "assets/js/agenda-visibility.js",
+    "assets/css/november-agenda.css",
+    "assets/agenda/sa-exs-night-20261113-DflCmDVhNcn.jpg"
   ],
   "assetVersion": "20261008-migration-measurement",
   "reviewPages": []

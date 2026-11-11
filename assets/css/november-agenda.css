@@ -1,0 +1,7 @@
+.sy-agenda [hidden]{display:none!important}
+.sy-november-event.sy-agenda-text-event,.sy-november-series{border-top:1px solid #bba998;padding-top:4px}
+.sy-november-series .sy-agenda-functions{margin-top:18px}
+.sy-november-offers{margin-top:42px;padding-top:36px;border-top:1px solid #bba998}
+.sy-november-offers .sy-agenda-copy{padding-top:0}
+.sy-november-series .sy-agenda-functions>div>p{margin-top:12px}
+@media(max-width:700px){.sy-november-series .sy-agenda-functions{grid-template-columns:1fr}.sy-november-offers{margin-top:30px;padding-top:28px}}

@@ -1,5 +1,11 @@
 # Registro de rutas y cambios
 
+**Posadas GDL12-nov, preview autorizado:** `/guadalajara/posadas/` es una candidata fuera del manifiesto,
+con invitación desde `/guadalajara#posadas`. Sin alias, redirect, sitemap ni cambio WordPress.
+La candidata local se genera con `build-gdl-posadas-expanded.mjs`; `build-gdl-posadas-share.mjs`
+permite compartir ambas vistas en el host de prueba. Contacto inactivo; no es una ruta del oficial.
+
+
 **Decisión final25-oct para SEO del central:** selector/directorio y pies del grupo conservan
 Guadalajara→`/guadalajara`. WordPress sigue independiente en `sinyolandagdl.com` para sus accesos
 externos. La candidata previa que enviaba enlaces internos al WordPress fue una interpretación

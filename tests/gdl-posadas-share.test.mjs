@@ -17,3 +17,12 @@ test('the shared preview excludes analytics and sends unrelated navigation to th
 test('a share artifact cannot escape its named, isolated output location',()=>{
   for(const name of [undefined,'../public','public','posadas-share-../public','/tmp/posadas-share-x'])assert.throws(()=>buildPosadasShare(name));
 });
+test('the expanded preview keeps both reviewed pages on the preview host and does not admit other local routes',()=>{
+  const source='<html><head><title>Posadas</title></head><body><a href="/guadalajara/posadas/">Details</a><a href="/guadalajara/posadas/#cotizar">Quote</a><a href="/guadalajara#posadas">Back</a><a href="/guadalajara/canta-por-tu-cuenta-2026/">Contest</a><script defer src="/assets/review-gdl/gdl-posadas-ui.js"></script></body></html>';
+  const html=preparePosadasShareHtml(source,'/guadalajara/posadas/');
+  for(const href of ['/guadalajara/posadas/','/guadalajara/posadas/#cotizar','/guadalajara#posadas'])assert.ok(html.includes(`href="${href}"`));
+  assert.match(html,/href="https:\/\/sin-yolanda\.com\/guadalajara\/canta-por-tu-cuenta-2026\/"/);
+  assert.match(html,/og:url" content="https:\/\/posadas-sy\.187\.77\.220\.209\.sslip\.io\/guadalajara\/posadas\//);
+  assert.match(html,/gdl-posadas-ui\.js/);
+  assert.throws(()=>preparePosadasShareHtml(source,'/revision-posadas'));
+});

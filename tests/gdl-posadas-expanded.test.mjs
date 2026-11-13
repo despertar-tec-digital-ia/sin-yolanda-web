@@ -37,3 +37,15 @@ test('the local detail includes the supplied commercial information without acti
 test('the expanded builder retains the fresh local artifact boundary',()=>{
  assert.throws(()=>buildExpandedPosadas());assert.throws(()=>buildExpandedPosadas(root));
 });
+test('the local campaign art opens detail from the branch and contact from the detail, while social photos stay separate',()=>{
+ const invitation=renderPosadasInvitation(),page=renderExpandedPosadasPage();
+ assert.match(invitation,/class="pd-campaign-link" href="\/guadalajara\/posadas\/"/);
+ assert.match(page,/class="pd-campaign-link" href="#cotizar"/);
+ assert.match(invitation,/gdl-posadas-campaign-capture\.webp/);
+ assert.match(page,/class="pd-gallery"/);
+ for(const name of ['amigas','dueto']){
+  assert.match(page,new RegExp(`gdl-posadas-${name}-gallery-600\\.webp`));
+  assert.ok(readFileSync(resolve(root,`scripts/review/assets/gdl-posadas-${name}-gallery-1200.webp`)).length>0);
+ }
+ assert.doesNotMatch(page,/wa\.me/);
+});

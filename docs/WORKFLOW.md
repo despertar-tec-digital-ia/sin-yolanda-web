@@ -1,5 +1,26 @@
 # Forma de trabajar y publicar
 
+### Posadas Guadalajara · cartel y fotografías autorizados en preview · 12-nov-2026
+
+Luis responde «va sube» tras revisar la propuesta local con cartel/piñata y dos fotos. Se actualiza
+únicamente el mismo preview compartible, ambas vistas incluidas. No integrar a main ni Pages,
+no publicar en el sitio oficial ni activar WhatsApp. Se conserva el arte completo en presentación,
+los enlaces cartel→detalle→contacto, fotos responsivas/diferidas y el timer de retiro existente.
+Paquete desde fuente limpia/commiteada, CI verde y fidelidad al corte localcampaign-v3; receta y
+rollback del servicio propio sin cambios. Estado real y evidencia en el plan operativo del cliente.
+
+### Posadas Guadalajara · cartel y fotografías posteriores, SOLO LOCAL · 12-nov-2026
+
+Tras autorizar el previewUI/UX, Luis aporta el cartel de piñata y pide más fotografías en local.
+Candidata `gdl-posadas-campaign-v3/public` en8882: cartel entero a borde derecho, clic desde ficha
+abre Posadas y desde detalle lleva a cotizar; dos fotos del banco GDL con srcset/lazyload. Arte PNG
+se codifica a WebP sin retoque/redibujo; cropCSS excluye los marcos del teléfono. Fuente y huellas
+privadas en el plan del cliente. Mantener intacto el hero de bienvenida de Guadalajara.
+485tests/10focales/QA320–1440/HTTP correctos. Envío inactivo. Este delta NO se commiteó ni publicó;
+el preview compartido quedó en05e9ea8 con la versiónUI/UX autorizada. No reutilizar su autorización
+para incorporar estos nuevos medios sin revisión. Reentrada: `node scripts/serve-review.mjs
+.artifacts/gdl-posadas-campaign-v3/public 8882`.
+
 ### Posadas Guadalajara · actualización del preview autorizada · 12-nov-2026
 
 Luis autoriza actualizar el mismo enlace de prueba con la versión UI/UX y página detallada;

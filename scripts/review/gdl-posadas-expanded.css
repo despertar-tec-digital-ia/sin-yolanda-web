@@ -60,10 +60,19 @@ html:has(.pd-page){scroll-behavior:smooth}
 .pd-group{font-size:14px;margin-top:14px!important}
 .pd-hero-actions{display:flex;flex-direction:column;align-items:flex-start;gap:14px}
 .pd-text-link{display:inline-flex;align-items:center;min-height:44px;font-size:13px}
-.pd-intro{display:grid;grid-template-columns:1fr 1.05fr;gap:80px;align-items:start}
+.pd-intro{display:grid;grid-template-columns:1fr 1.05fr;column-gap:80px;row-gap:36px;align-items:start}
 .pd-intro h2{max-width:8em}
-.pd-intro>div{max-width:39em;padding-top:3px}
+.pd-intro-copy{max-width:39em;padding-top:3px}
 .pd-intro p+p{margin-top:19px}
+.pd-campaign{background:var(--gp-ink);container-type:size}
+.pd-campaign-link{width:min(100%,75.474cqh);height:100%;margin-left:auto;display:flex;align-items:center;justify-content:center;min-height:44px}
+.pd-campaign-link:focus-visible{outline:3px solid var(--gp-ink)!important;outline-offset:-6px!important}
+.pd-poster-window{display:block;position:relative;overflow:hidden;aspect-ratio:717/950;width:100%}
+.pd-campaign .pd-poster-window img{position:absolute;inset:auto;top:-34.21053%;left:0;display:block;width:100%;height:auto;max-width:none;object-fit:initial}
+.pd-gallery{grid-column:1/-1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.pd-gallery figure{min-width:0;aspect-ratio:4/3;overflow:hidden}
+.pd-gallery img{width:100%;height:100%;object-fit:cover;object-position:50% 31%}
+.pd-gallery figure:last-child img{object-position:50% 22%}
 .pd-audience{background:var(--gp-orange);color:var(--gp-paper)}
 .pd-audience .pd-inner{padding-block:44px 49px}
 .pd-audience h2{font-size:48px}
@@ -143,6 +152,8 @@ html:has(.pd-page){scroll-behavior:smooth}
  .gp-posadas .gp-lead{font-size:17px;max-width:26em}
  .gp-photo{aspect-ratio:4/3;min-height:0}
  .gp-photo img{object-position:50% 31%}
+ .gp-photo.pd-campaign{aspect-ratio:717/950}
+ .pd-gallery{grid-template-columns:minmax(0,1fr);gap:18px}
  .gp-action{font-size:14px;min-height:54px;padding:14px 20px;margin-top:23px}
  .gp-eyebrow{font-size:12px}
  .pd-header{padding:10px 20px;gap:14px;min-height:70px}

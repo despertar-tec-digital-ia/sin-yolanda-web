@@ -1,5 +1,37 @@
 # Forma de trabajar y publicar
 
+### Posadas Guadalajara · promoción a producción autorizada · 13-nov-2026
+
+Luis solicita revisar y publicar la versión aprobada de Posadas en el sitio oficial. Se promueven
+la invitación de Guadalajara y `/guadalajara/posadas/`, con el cartel y las dos fotos ya revisados.
+El cartel de la ficha abre el detalle; el detalle lleva al contacto. Cotización por WhatsApp al
+33 2231 9636, aportado en el documento y el cartel, con mensaje inicial editable. Sin formulario,
+captura simulada ni confirmación automática de reservaciones. El apartado se explica como anticipo
+a cuenta de consumo y el equipo confirma disponibilidad, acomodo y condiciones de cada grupo.
+
+La página nueva recibe canonical, sitemap, datos WebPage/Breadcrumb y los mismos propietarios de
+medición/consentimiento del sitio. Solo se amplía su ruta y se renuevan las claves de caché; no se
+activa GA4 ni se cambian decisiones de consentimiento. Los archivos de revisión quedan fuera del
+manifiesto. La composición compartida alimenta el render productivo con acciones reales; los
+builders antiguos conservan su aislamiento y sus acciones desactivadas.
+
+La campaña deja de mostrarse al terminar diciembre, a medianoche de Guadalajara el1-ene-2027.
+La proyección compartida con el scheduler y el script para páginas abiertas retiran invitación y
+enlaces de campaña; la URL detallada conserva un archivo con regreso a Guadalajara. Esa fecha es
+el retiro editorial de la temporada noviembre/diciembre, no una promesa de disponibilidad.
+
+Luis confirma Google Business Profile como fuente correcta de horarios. Google Maps se revisa
+el13-nov: miércoles19–03, jueves/viernes/sábado19–04; domingo/lunes/martes cerrado. Fuente específica
+en `scripts/gdl-operating-hours.json`; HTML, Restaurant, resumen público y discovery se alinean.
+La página de Posadas usa ese horario en lugar de trasladar la ventana17–20:30 de la política general.
+Los horarios de USA conservan su fuente y aprobación anteriores. El contrato nuevo restaura solo
+estos deltas antes de verificar los hashes históricos; ninguna aprobación antigua se vuelve a firmar.
+
+Publicación mediante PR65 y el carril `release:approved`, con CI y recibo de producción verificados.
+Estado real de la publicación y rollback en el plan operativo del cliente; este párrafo documenta
+el alcance autorizado, no acredita por sí solo el despliegue.
+
+
 ### Posadas Guadalajara · cartel y fotografías autorizados en preview · 12-nov-2026
 
 Luis responde «va sube» tras revisar la propuesta local con cartel/piñata y dos fotos. Se actualiza

@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "authorizer": "Luis",
+  "approvedAt": "2026-11-13T00:00:00-06:00",
+  "publicationEnabled": true,
+  "authorization": "Revisar que Posadas Guadalajara esté listo y publicarlo en producción, con el diseño y medios revisados.",
+  "expiresAt": "2027-01-01T06:00:00.000Z",
+  "sourceDigest": "d56b67a3f30d72dc3dccb68ac50413873cc10bbf6df83a11a2049f7f4d22fb2d"
+}

@@ -9,7 +9,7 @@ import {projectPublicSite} from '../scripts/editorial/public-site.mjs';
 
 const root=resolve(import.meta.dirname,'..');
 test('the local design changes only the new section and its explicit navigation entries',()=>{
-  const source=projectPublicSite(root,{now:'2026-11-12T19:00:00Z',commit:'a'.repeat(40)}).files.get('guadalajara.html');
+  const source=projectPublicSite(root,{now:'2026-11-12T19:00:00Z',posadas:false,commit:'a'.repeat(40)}).files.get('guadalajara.html');
   let candidate=projectPosadasDesign(source);
   const range=elementRange(candidate,'section','posadas');assert.ok(range);
   assert.ok(candidate.indexOf('id="san-ignacio"')<range.start);
@@ -27,8 +27,8 @@ test('the proposal cannot publish unconfirmed prices, capacity or active contact
   assert.doesNotMatch(html,/a tu medida|san-ignacio-footer/iu);
   for(const width of [800,1600])assert.ok(readFileSync(resolve(root,`scripts/review/assets/gdl-posadas-amigas-${width}.webp`)).length>0);
   const manifest=readFileSync(resolve(root,'scripts/public-manifest.json'),'utf8');
-  assert.doesNotMatch(manifest,/gdl-posadas|revision-posadas/);
-  assert.doesNotMatch(readFileSync(resolve(root,'scripts/editorial/public-site.mjs'),'utf8'),/posadas/);
+  assert.doesNotMatch(manifest,/assets\/review-gdl|revision-posadas/);
+  assert.doesNotMatch(manifest,/scripts\/review\//);
 });
 test('review packaging refuses production locations and never replaces a previous candidate',t=>{
   mkdirSync(resolve(root,'.artifacts'),{recursive:true});

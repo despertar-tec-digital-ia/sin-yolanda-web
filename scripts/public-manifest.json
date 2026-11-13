@@ -4,14 +4,14 @@
     "assets/js/site.js": "20261106-ciudad-juarez-card-location",
     "assets/js/i18n.js": "20261026-approved-update",
     "assets/css/visual-pilot.css": "20261015-blue-hat-mobile",
-    "assets/js/public-data.js": "20261106-ciudad-juarez-opening",
+    "assets/js/public-data.js": "20261113-gdl-hours",
     "assets/js/site-analytics.js": "20261012-root-routing",
     "assets/css/houston-header.css": "20261012-overlay",
     "assets/js/agenda-clock.js": "20261013-approved-agenda",
     "assets/css/branch-agenda.css": "20261013-approved-agenda",
-    "assets/js/site-measurement.js": "20261106-ciudad-juarez-opening",
+    "assets/js/site-measurement.js": "20261113-posadas-route",
     "assets/js/branch-language.js": "20261013-measurement-v2",
-    "assets/js/ga4-consent.js": "20261106-ciudad-juarez-opening",
+    "assets/js/ga4-consent.js": "20261113-posadas-route",
     "assets/css/ga4-consent.css": "20261016-ga4-simple-choice",
     "assets/css/gdl-agenda.css": "20261016-gdl-agenda",
     "assets/js/gdl-agenda-video.js": "20261016-gdl-agenda",
@@ -30,7 +30,9 @@
     "assets/js/agenda-visibility.js": "20261110-november-agenda",
     "assets/css/november-agenda.css": "20261110-november-agenda",
     "assets/css/branch-event-media.css": "20261110-event-media",
-    "assets/js/branch-event-media.js": "20261110-event-media"
+    "assets/js/branch-event-media.js": "20261110-event-media",
+    "assets/css/gdl-posadas.css": "20261113-posadas",
+    "assets/js/gdl-posadas.js": "20261113-posadas"
   },
   "pages": [
     "index.html",
@@ -58,7 +60,8 @@
     "en/catering/index.html",
     "el-paso/menu/index.html",
     "ciudad-juarez.html",
-    "guadalajara/canta-por-tu-cuenta-2026/index.html"
+    "guadalajara/canta-por-tu-cuenta-2026/index.html",
+    "guadalajara/posadas/index.html"
   ],
   "assets": [
     "styles.css",
@@ -427,7 +430,14 @@
     "assets/agenda/houston-weekly-20261112-DflCdPIun9T.jpg",
     "assets/agenda/el-paso-weekly-20261112-DflCr0SuqwH.jpg",
     "assets/js/branch-event-media.js",
-    "assets/css/branch-event-media.css"
+    "assets/css/branch-event-media.css",
+    "assets/css/gdl-posadas.css",
+    "assets/js/gdl-posadas.js",
+    "images/posadas-gdl/gdl-posadas-amigas-gallery-1200.webp",
+    "images/posadas-gdl/gdl-posadas-amigas-gallery-600.webp",
+    "images/posadas-gdl/gdl-posadas-campaign-capture.webp",
+    "images/posadas-gdl/gdl-posadas-dueto-gallery-1200.webp",
+    "images/posadas-gdl/gdl-posadas-dueto-gallery-600.webp"
   ],
   "assetVersion": "20261008-migration-measurement",
   "reviewPages": []

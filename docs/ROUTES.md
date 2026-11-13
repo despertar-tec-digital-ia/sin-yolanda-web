@@ -1,5 +1,12 @@
 # Registro de rutas y cambios
 
+**Posadas Guadalajara · 13-nov-2026:** `/guadalajara/posadas/` es la página canónica de la temporada
+noviembre/diciembre2026, enlazada desde `/guadalajara#posadas` y el sitemap. El cartel de la ficha
+abre el detalle; el detalle dirige a cotización por el WhatsApp específico de Posadas. No crea un
+formulario ni un QR nuevo. Al terminar diciembre se retira la invitación y se conserva un archivo
+con regreso a Guadalajara. WordPress independiente y otros destinos permanecen intactos.
+
+
 **Posadas GDL12-nov, preview autorizado:** `/guadalajara/posadas/` es una candidata fuera del manifiesto,
 con invitación desde `/guadalajara#posadas`. Sin alias, redirect, sitemap ni cambio WordPress.
 La candidata local se genera con `build-gdl-posadas-expanded.mjs`; `build-gdl-posadas-share.mjs`

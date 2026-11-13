@@ -13,7 +13,7 @@ export function buildPosadasDesign(destination) {
   assert.ok(destination);const out=resolve(destination),where=relative(resolve(root,'.artifacts'),out);
   assert.ok(where&&!where.startsWith('..')&&!isAbsolute(where),'Only a fresh local .artifacts destination');
   assert.ok(!existsSync(out),'Refuse to overwrite an earlier candidate');
-  const baseline=packagePublic({root,destination:out,audience:'review'});
+  const baseline=packagePublic({root,destination:out,audience:'review',posadas:false});
   const page=resolve(out,'guadalajara.html'),original=readFileSync(page,'utf8');
   writeFileSync(page,projectPosadasDesign(original));
   mkdirSync(dirname(resolve(out,stylePath)),{recursive:true});

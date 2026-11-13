@@ -2,6 +2,7 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import vm from 'node:vm';
 import assert from 'node:assert/strict';
+import {gdlHours,gdlHoursHtml,gdlHoursSpecification} from './gdl-operating-hours.mjs';
 
 const root = resolve(import.meta.dirname, '..');
 export const hours = JSON.parse(readFileSync(resolve(root, 'scripts/usa-operating-hours.json')));
@@ -32,11 +33,11 @@ export function syncHours() {
       const updateSchema = text => text.replace(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/, (tag, content) => {
         const schema = JSON.parse(content);
         assert.equal(schema['@type'], 'Restaurant');
-        schema.openingHoursSpecification = specification();
+        schema.openingHoursSpecification = id === 'san-ignacio' ? gdlHoursSpecification() : specification();
         return '<script type="application/ld+json">' + JSON.stringify(schema) + '</script>';
       });
       source = updateSchema(source);
-      const block = hoursHtml(language, zone);
+      const block = id === 'san-ignacio' ? gdlHoursHtml() : hoursHtml(language, zone);
       if (source.includes('class="ve-hours"')) source = source.replace(/<div class="ve-hours"[^>]*>[\s\S]*?<\/dl>(?:<p[^>]*>[\s\S]*?<\/p>)?<\/div>/, block);
       else {
         const contact = source.match(/<a class="ve-phone"[^>]*>[\s\S]*?<\/a>/)?.[0];
@@ -50,7 +51,7 @@ export function syncHours() {
   const dataPath = resolve(root, 'assets/js/public-data.js');
   const context = { window: {} }; vm.runInNewContext(readFileSync(dataPath, 'utf8'), context);
   for (const branch of context.window.SY_DATA.branches) if (hours.zones[branch.id]) {
-    branch.hours = summary; branch.hoursTimezone = hours.zones[branch.id];
+    branch.hours = branch.id === 'san-ignacio' ? gdlHours.summary : summary; branch.hoursTimezone = hours.zones[branch.id];
   }
   writeFileSync(dataPath, 'window.SY_DATA = ' + JSON.stringify(context.window.SY_DATA, null, 2) + ';\n');
 }

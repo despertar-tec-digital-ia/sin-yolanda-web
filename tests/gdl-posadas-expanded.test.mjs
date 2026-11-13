@@ -10,7 +10,7 @@ import {buildExpandedPosadas} from '../scripts/build-gdl-posadas-expanded.mjs';
 
 const root=resolve(import.meta.dirname,'..');
 test('the expanded invitation preserves Guadalajara outside the authorized module and navigation',()=>{
- const original=projectPublicSite(root,{now:'2026-11-12T19:00:00Z',commit:'a'.repeat(40)}).files.get('guadalajara.html');
+ const original=projectPublicSite(root,{now:'2026-11-12T19:00:00Z',posadas:false,commit:'a'.repeat(40)}).files.get('guadalajara.html');
  let candidate=projectExpandedInvitation(projectPosadasDesign(original));
  const range=elementRange(candidate,'section','posadas');assert.ok(range);
  candidate=candidate.slice(0,range.start)+candidate.slice(range.end);
@@ -32,7 +32,7 @@ test('the local detail includes the supplied commercial information without acti
  assert.equal((page.match(/<details[^>]* open>/g)||[]).length,1);
  const ids=[...page.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);assert.equal(ids.length,new Set(ids).size);
  for(const [,id] of page.matchAll(/href="#([^"]+)"/g))assert.ok(ids.includes(id),id);
- const manifest=readFileSync(resolve(root,'scripts/public-manifest.json'),'utf8');assert.doesNotMatch(manifest,/gdl-posadas|guadalajara\/posadas/);
+ const manifest=readFileSync(resolve(root,'scripts/public-manifest.json'),'utf8');assert.doesNotMatch(manifest,/assets\/review-gdl/);
 });
 test('the expanded builder retains the fresh local artifact boundary',()=>{
  assert.throws(()=>buildExpandedPosadas());assert.throws(()=>buildExpandedPosadas(root));

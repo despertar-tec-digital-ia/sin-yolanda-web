@@ -9,6 +9,7 @@ import {elementRange} from '../scripts/editorial/public-agenda.mjs';
 import {createHash} from 'node:crypto';
 import {eventMediaSource,restoreEventMediaSource} from '../scripts/event-media-source-contract.mjs';
 import {visibilityWindow} from '../scripts/editorial/november-2026-programming.mjs';
+import {restorePosadasSource} from '../scripts/posadas-source-contract.mjs';
 
 const root=resolve(import.meta.dirname,'..'), now='2026-11-11T03:30:00Z',commit='a'.repeat(40);
 const candidate=time=>{
@@ -18,7 +19,7 @@ const candidate=time=>{
 
 test('the media allowlist adds only reviewed files and reverses exactly before historical guards',()=>{
   const hash=value=>createHash('sha256').update(value).digest('hex');
-  const file=eventMediaSource.file,source=readFileSync(resolve(root,file),'utf8');
+  const file=eventMediaSource.file,source=restorePosadasSource(file,readFileSync(resolve(root,file),'utf8'));
   assert.equal(hash(source),eventMediaSource.afterSha256);
   const restored=restoreEventMediaSource(file,source);
   assert.equal(hash(restored),eventMediaSource.beforeSha256);

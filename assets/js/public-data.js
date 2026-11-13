@@ -13,7 +13,7 @@ window.SY_DATA = {
       "statusLabel": "Abierta",
       "concept": "Cantina · Karaoke · Coctelería",
       "address": "Av. San Ignacio 78, Jardín de San Ignacio, 45040 Zapopan, Jal.",
-      "hours": "Lun–Mar cerrado · Mié–Jue 4 pm–12 am · Vie 4 pm–2 am · Sáb–Dom 10 am–2 am",
+      "hours": "Dom–Mar cerrado · Mié 7 pm–3 am · Jue–Sáb 7 pm–4 am",
       "phone": "+52 33 1018 6159",
       "phoneIntl": "+523310186159",
       "whatsapp": "523310186159",

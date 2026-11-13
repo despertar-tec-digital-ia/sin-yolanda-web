@@ -11,8 +11,10 @@ import { restoreSanDiegoOpening } from '../scripts/san-diego-opening-source-cont
 import { projectAllAgendas } from '../scripts/editorial/all-agendas.mjs';
 import { restoreOctober } from '../scripts/october-source-contract.mjs';
 import { fileURLToPath } from 'node:url';
+import {restorePosadasSource} from '../scripts/posadas-source-contract.mjs';
 const root = fileURLToPath(new URL('../', import.meta.url));
-const read = file => readFileSync(new URL('../' + file, import.meta.url), 'utf8').replaceAll('\r\n', '\n');
+// This suite verifies the historical October approval, before the separately confirmed GDL hours.
+const read = file => restorePosadasSource(file,readFileSync(new URL('../' + file, import.meta.url), 'utf8').replaceAll('\r\n', '\n'));
 const hash = value => createHash('sha256').update(value).digest('hex');
 
 test('the October 19 schedule covers all five current branches and keeps midnight and overnight closes distinct', () => {
@@ -40,7 +42,7 @@ test('the October 19 schedule covers all five current branches and keeps midnigh
   }
   assert.ok(read('assets/js/i18n.js').includes(JSON.stringify(summary) + ': ' + JSON.stringify(summaryEn)));
   assert.doesNotMatch(read('locations.html'), /Mié 4–11 pm|Dom 10 am–11 pm|Mié–Sáb · 7:00 pm/);
-  const projected = projectAllAgendas(root, { now: '2026-10-31T18:00:00Z', commit: 'a'.repeat(40) }).files.get('guadalajara.html');
+  const projected = restorePosadasSource('guadalajara.html',projectAllAgendas(root, { now: '2026-10-31T18:00:00Z', commit: 'a'.repeat(40) }).files.get('guadalajara.html'));
   assert.match(projected, /Horario de la sucursal: 10:00 a\. m\.–2:00 a\. m\. del día siguiente\./);
   assert.ok(projected.includes(hoursHtml('es', 'America/Mexico_City')));
 });

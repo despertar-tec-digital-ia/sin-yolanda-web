@@ -1,5 +1,35 @@
 # Forma de trabajar y publicar
 
+### Posadas Guadalajara · campaña de prueba y revisión de diseño · 12-nov-2026
+
+Luis autoriza una dirección más libre y una URL compartible para Karina, sin modificar producción.
+Se aplica `frontend-design`: comparar composición, justificar decisiones con el negocio, revisar
+arquetipos genéricos, quitar exceso y verificar el resultado real en móvil/escritorio.
+
+| Decisión | Fundamento y revisión |
+| --- | --- |
+| Alfa Slab One + Roboto Slab | Fuentes ya usadas por SY; rótulo protagonista y texto legible. Se retira la tercera familia/cursiva decorativa. |
+| Café oscuro, crema, naranja y amarillo | Valores GDL existentes: #30201c/#fff4de/#bd4a15/#ffc44f. Luis descarta el vino/rosa inventado en el ensayo. |
+| Foto de amigas cantando y brindando | Biblioteca GDL #4, no salón vacío ni imagen generada. Recorte sin texto sobre caras. |
+| Composición de cartel | Tipografía grande y foto más presente; se retiran arco ornamental y botón pastilla. |
+| Cotización | Una sola acción, inactiva hasta confirmar el canal; no confirma reservas ni anuncia precio/aforo no verificado. |
+| Apoyo | Tres pasos reales; se retiran las FAQ repetitivas. Su conteo incidental deja de ser un requisito del test de seguridad. |
+
+Local 8882/guadalajara#posadas. Builder `build-gdl-posadas-design.mjs` solo añade proyección/CSS/
+medios a un artefacto nuevo dentro de `.artifacts`; no modifica fuente pública ni manifiesto.
+`build-gdl-posadas-share.mjs posadas-share-<corte>` exige fuente limpia y commiteada, deja solo
+Guadalajara/404 como HTML, excluye las notas internas y desactiva medición/consentimiento/webmcp.
+Navegación a otras rutas va al sitio oficial; anclas de Guadalajara permanecen en el preview.
+
+Destino autorizado: `https://posadas-sy.187.77.220.209.sslip.io/guadalajara#posadas`.
+Receta versionada `deploy/posadas-review/compose.yml`: contenedor propio `sy-posadas-review-20261112`,
+Nginx por digest existente, mount readonly, sin secretos ni puertos host, límites 64 MB/0.25 CPU,
+Traefik/red existente. No usar release de Pages, no integrar a main, no reiniciar otros servicios.
+Build con Node22 local; transferir únicamente el artefacto y validar commit/set/SHA256 antes de activar.
+TTL operativo siete días, con timer persistente que detiene solo este contenedor. Rollback: detenerlo.
+Procedimiento y gates → `deploy/posadas-review/README.md`. El build por sí solo no acredita publicación:
+recibo de runtime, capturas, expiración y estado vivo se conservan en el plan operativo del cliente.
+
 ### Medios de eventos · publicación autorizada10-nov-2026
 
 Luis autoriza «Va, publica así los eventos y los bloques de Instagram.» después de la revisión

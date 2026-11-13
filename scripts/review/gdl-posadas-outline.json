@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "stage": "content-structure",
+  "publicationEnabled": false,
+  "branchId": "san-ignacio",
+  "intendedRoute": "/guadalajara#posadas",
+  "source": {
+    "file": "textos-posadas-sin-yolanda-gdl.docx",
+    "receivedOn": "2026-11-12"
+  },
+  "pageOrder": [
+    {"label": "Navegación de Guadalajara", "change": "Añadir Posadas, con enlace a la sección."},
+    {"label": "Hero actual", "change": "Conservar A cantar, bailar y brindar, el concurso y los accesos actuales. Añadir solo un acceso a Posadas."},
+    {"label": "Posadas", "change": "Insertar la sección desarrollada abajo, inmediatamente después del hero."},
+    {"label": "Agenda", "change": "Conservar el concurso y Jueves de Solteras, con sus propios contactos y vigencias."},
+    {"label": "Comida y bebidas", "change": "Conservar el acceso al menú."},
+    {"label": "Visítanos y pie de página", "change": "Conservar dirección, mapa, horarios y reservas generales."}
+  ],
+  "section": {
+    "id": "posadas",
+    "title": "Posadas en Sin Yolanda",
+    "lead": "Canta, baila y brinda con tu equipo o tus amigos.",
+    "description": "Dinos la fecha y cuántas personas vienen. Te compartimos opciones y disponibilidad para tu grupo.",
+    "action": {
+      "label": "Cotizar mi posada",
+      "enabled": false,
+      "intent": "Solicitar información y cotización, sin confirmar disponibilidad ni reservar.",
+      "draftMessage": "Hola, quiero cotizar una posada en Sin Yolanda Guadalajara. ¿Me comparten disponibilidad y qué información necesitan de mi grupo?"
+    },
+    "qualification": "Sujeto a disponibilidad. Cotizar no confirma una reservación.",
+    "stepsTitle": "Vamos armando el plan.",
+    "steps": [
+      {"title": "Cuéntanos tu plan", "text": "Escríbenos por WhatsApp con tu fecha tentativa y cuántas personas vienen."},
+      {"title": "Recibe tu cotización", "text": "El equipo te comparte una propuesta para tu grupo y la disponibilidad de tu fecha."},
+      {"title": "Confirma cómo apartar", "text": "Revisa con el equipo las condiciones y los pasos necesarios para confirmar tu posada."}
+    ],
+    "faqTitle": "Antes de cotizar",
+    "faq": [
+      {"question": "¿Cuánto cuesta una posada?", "answer": "La cotización depende de la fecha y del número de personas. Consulta una propuesta para tu grupo por WhatsApp."},
+      {"question": "¿Para cuántas personas puedo organizarla?", "answer": "Cuéntanos cuántas personas son para revisar las opciones y la disponibilidad para tu grupo."},
+      {"question": "¿Qué necesito para apartar?", "answer": "Al cotizar, el equipo te indicará los requisitos de apartado y cuándo queda confirmada tu fecha."}
+    ],
+    "contactTitle": "Cotiza tu posada",
+    "contactText": "Consulta las opciones para tu grupo por WhatsApp.",
+    "locationLink": {"label": "Ver ubicación de Guadalajara", "target": "/guadalajara#visita-san-ignacio"}
+  },
+  "mediaSlot": {
+    "status": "local-candidate",
+    "purpose": "Mostrar convivencia, canto y brindis; evitar el salón vacío según la corrección de Luis y Karina.",
+    "preferredSource": "Candidata local: tres amigas cantando y brindando, biblioteca del negocio Guadalajara #4. No se presenta como una posada ya realizada.",
+    "placement": "Invitación con café oscuro, crema, naranja y amarillo de las piezas GDL, tipografía de rótulo ya usada por la marca y foto sin máscara decorativa: derecha en escritorio, entre título e invitación en móvil. Sin texto sobre las caras."
+  },
+  "pending": [
+    {"id": "contact", "value": "Canal exclusivo de posadas por confirmar", "source": "DOCX y directorio histórico; número conservado en la documentación privada del cliente", "decision": "Confirmar atención de cotizaciones. Después mostrar el número aprobado y activar el enlace al canal exclusivo."},
+    {"id": "group-range", "value": "De 5 a 200 personas", "source": "DOCX; publicación social aún no corroborada", "decision": "Confirmar condiciones para grupos. Mientras tanto el texto no anuncia un aforo ni rechaza tamaños automáticamente."},
+    {"id": "terms", "value": "Apartado, condiciones de consumo, acomodo y horarios", "source": "Las políticas generales no prueban condiciones específicas de posadas", "decision": "Añadir solo condiciones confirmadas, sin publicar $500 como precio de paquete ni prometer mesas juntas o exclusividad."},
+    {"id": "season", "value": "Noviembre y diciembre de 2026", "source": "DOCX", "decision": "Confirmar el último día de campaña y preparar su retiro en America/Mexico_City. No extender automáticamente a 2027."},
+    {"id": "photo", "value": "Aprobar la foto social propuesta", "source": "Biblioteca del negocio Guadalajara #4, fuente y derivados documentados", "decision": "Revisar la candidata con gente. Si se aprueba esta alternativa, no exigir además el original del post de campaña; no usar fotos de otras sucursales ni una posada ficticia."}
+  ],
+  "deferred": [
+    "Diseño visual: fuentes, colores, composición, fotos, iconos y animaciones.",
+    "Formulario de precalificación, si el equipo lo necesita después; esta primera estructura usa un contacto directo.",
+    "Integración en la ficha y navegación real, medición y retiro estacional.",
+    "Cambios en WordPress, Google, redes sociales, GHL o cualquier publicación."
+  ]
+}

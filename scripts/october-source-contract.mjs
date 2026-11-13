@@ -1,8 +1,10 @@
 import { readFileSync } from 'node:fs';
 import assert from 'node:assert/strict';
 import { restoreHomeSelection } from './home-selection-source-contract.mjs';
+import {restorePosadasSource} from './posadas-source-contract.mjs';
 const contract = JSON.parse(readFileSync(new URL('./october-source-patches.json', import.meta.url)));
 export function restoreOctober(file, source) {
+  source = restorePosadasSource(file, source);
   source = restoreHomeSelection(file, source);
   for (const patch of [...(contract.files[file]?.patches ?? [])].reverse()) {
     const count = source.split(patch.after).length - 1;

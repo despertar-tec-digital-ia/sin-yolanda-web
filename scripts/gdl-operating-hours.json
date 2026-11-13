@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "confirmedOn": "2026-11-13",
+  "authorizer": "Luis",
+  "source": "Google Business Profile, corroborado en Google Maps y confirmado por Luis en el chat.",
+  "sourceUrl": "https://www.google.com/maps/search/?api=1&query=Sin%20Yolanda%20Guadalajara&query_place_id=ChIJiZJ8IgCvKIQRJNyh6WMwRg4",
+  "branchId": "san-ignacio",
+  "timeZone": "America/Mexico_City",
+  "summary": "Dom–Mar cerrado · Mié 7 pm–3 am · Jue–Sáb 7 pm–4 am",
+  "periods": [
+    {"days": ["Sunday", "Monday", "Tuesday"], "closed": true, "es": "Domingo a martes"},
+    {"days": ["Wednesday"], "opens": "19:00", "closes": "03:00", "es": "Miércoles"},
+    {"days": ["Thursday", "Friday", "Saturday"], "opens": "19:00", "closes": "04:00", "es": "Jueves a sábado"}
+  ]
+}

@@ -1,5 +1,148 @@
 # Forma de trabajar y publicar
 
+### Posadas Guadalajara · promoción a producción autorizada · 13-nov-2026
+
+Luis solicita revisar y publicar la versión aprobada de Posadas en el sitio oficial. Se promueven
+la invitación de Guadalajara y `/guadalajara/posadas/`, con el cartel y las dos fotos ya revisados.
+El cartel de la ficha abre el detalle; el detalle lleva al contacto. Cotización por WhatsApp al
+33 2231 9636, aportado en el documento y el cartel, con mensaje inicial editable. Sin formulario,
+captura simulada ni confirmación automática de reservaciones. El apartado se explica como anticipo
+a cuenta de consumo y el equipo confirma disponibilidad, acomodo y condiciones de cada grupo.
+
+La página nueva recibe canonical, sitemap, datos WebPage/Breadcrumb y los mismos propietarios de
+medición/consentimiento del sitio. Solo se amplía su ruta y se renuevan las claves de caché; no se
+activa GA4 ni se cambian decisiones de consentimiento. Los archivos de revisión quedan fuera del
+manifiesto. La composición compartida alimenta el render productivo con acciones reales; los
+builders antiguos conservan su aislamiento y sus acciones desactivadas.
+
+La campaña deja de mostrarse al terminar diciembre, a medianoche de Guadalajara el1-ene-2027.
+La proyección compartida con el scheduler y el script para páginas abiertas retiran invitación y
+enlaces de campaña; la URL detallada conserva un archivo con regreso a Guadalajara. Esa fecha es
+el retiro editorial de la temporada noviembre/diciembre, no una promesa de disponibilidad.
+
+Luis confirma Google Business Profile como fuente correcta de horarios. Google Maps se revisa
+el13-nov: miércoles19–03, jueves/viernes/sábado19–04; domingo/lunes/martes cerrado. Fuente específica
+en `scripts/gdl-operating-hours.json`; HTML, Restaurant, resumen público y discovery se alinean.
+La página de Posadas usa ese horario en lugar de trasladar la ventana17–20:30 de la política general.
+Los horarios de USA conservan su fuente y aprobación anteriores. El contrato nuevo restaura solo
+estos deltas antes de verificar los hashes históricos; ninguna aprobación antigua se vuelve a firmar.
+
+Publicación mediante PR65 y el carril `release:approved`, con CI y recibo de producción verificados.
+Estado real de la publicación y rollback en el plan operativo del cliente; este párrafo documenta
+el alcance autorizado, no acredita por sí solo el despliegue.
+
+
+### Posadas Guadalajara · cartel y fotografías autorizados en preview · 12-nov-2026
+
+Luis responde «va sube» tras revisar la propuesta local con cartel/piñata y dos fotos. Se actualiza
+únicamente el mismo preview compartible, ambas vistas incluidas. No integrar a main ni Pages,
+no publicar en el sitio oficial ni activar WhatsApp. Se conserva el arte completo en presentación,
+los enlaces cartel→detalle→contacto, fotos responsivas/diferidas y el timer de retiro existente.
+Paquete desde fuente limpia/commiteada, CI verde y fidelidad al corte localcampaign-v3; receta y
+rollback del servicio propio sin cambios. Estado real y evidencia en el plan operativo del cliente.
+
+### Posadas Guadalajara · cartel y fotografías posteriores, SOLO LOCAL · 12-nov-2026
+
+Tras autorizar el previewUI/UX, Luis aporta el cartel de piñata y pide más fotografías en local.
+Candidata `gdl-posadas-campaign-v3/public` en8882: cartel entero a borde derecho, clic desde ficha
+abre Posadas y desde detalle lleva a cotizar; dos fotos del banco GDL con srcset/lazyload. Arte PNG
+se codifica a WebP sin retoque/redibujo; cropCSS excluye los marcos del teléfono. Fuente y huellas
+privadas en el plan del cliente. Mantener intacto el hero de bienvenida de Guadalajara.
+485tests/10focales/QA320–1440/HTTP correctos. Envío inactivo. Este delta NO se commiteó ni publicó;
+el preview compartido quedó en05e9ea8 con la versiónUI/UX autorizada. No reutilizar su autorización
+para incorporar estos nuevos medios sin revisión. Reentrada: `node scripts/serve-review.mjs
+.artifacts/gdl-posadas-campaign-v3/public 8882`.
+
+### Posadas Guadalajara · actualización del preview autorizada · 12-nov-2026
+
+Luis autoriza actualizar el mismo enlace de prueba con la versión UI/UX y página detallada;
+prohíbe publicarla en el oficial. El builder compartible usa ahora la proyección ampliada y conserva
+solo ficha, `/guadalajara/posadas/` y404 como HTML. Enlaces entre ambas páginas permanecen en el
+host de prueba; el resto dirige al oficial. Se excluyen notas, sitemap/discovery y medición propia.
+Cotización sigue inactiva y los datos del DOCX se presentan para revisión, no como oferta oficial.
+
+Despliegue al servicio propio ya existente, con artefacto inmutable desde fuente limpia/commiteada,
+CI verde y validación de rutas/hashes. Mantener draftPR65 sin merge ni Pages. Conservar el artefacto
+anterior y el timer de retiro existente; no extender vigencia ni cambiar DNS/otrosservicios.
+Receta en `deploy/posadas-review/README.md`; comprobantes y estado real en el plan operativo privado.
+
+### Posadas Guadalajara · refinamiento UI/UX, solo local · 12-nov-2026
+
+Luis acepta la dirección y solicita mejorar UI/UX. Se conserva contenido/foto/paleta/tipografía.
+Candidata `.artifacts/gdl-posadas-ux-v2/public` en8882: en móvil la foto pasa justo después del
+rótulo (377px desde el inicio a390), cabecera con Cotizar persistente, orientación de sección con
+aria-current, condiciones del apartado separadas de los cuatro pasos, teléfono sin cortes y FAQ
+nativo exclusivo con precio visible al llegar. La respuesta de ubicación enlaza a la ficha real.
+
+Interacción guiada por frontend-design/apple-design: botones con feedback discreto, scroll de
+anclas, apertura nativa animada cuando el navegador lo admite, foco visible y movimiento reducido.
+Script local `gdl-posadas-ui.js` solo actualiza aria-current por scroll; no red/storage/tracking.
+HTML y navegación no dependen del script. Estado visible de envío inactivo en la prueba: no
+se simulan capturas ni se envía a WhatsApp. Contacto/condiciones conservan gates antes de publicar.
+
+483pruebas/integridad pasan; artefacto399archivos con hashes HTTP verificados. QA320/390/768/1024/
+1440 sin overflow, FAQ/teclado, foco, estado de navegación, reduced-motion y consola correctos.
+Capturas/recibo en el plan privado del cliente. Fuente/producción y previewcompartido no publicados;
+sin commit/push/PRnuevo. Reentrada: `node scripts/serve-review.mjs .artifacts/gdl-posadas-ux-v2/public 8882`.
+
+### Posadas Guadalajara · ficha y página ampliada, solo local · 12-nov-2026
+
+Luis rechaza la tipografía del ensayo y pide integrar la información extensa del DOCX. Se comparan
+módulo largo único y ficha breve con landing propia; se adopta la segunda para conservar lectura de
+la ficha y explicar las condiciones en un destino. Se retira Alfa Slab One de la candidata y se usa
+Bebas Neue + Roboto Slab, propias de los titulares/textos actuales de Guadalajara. Paleta GDL y foto
+social conservadas, con borde derecho y altura completos. Sin máscaras ni elementos navideños genéricos.
+
+Builder `scripts/build-gdl-posadas-expanded.mjs` añade únicamente al artefacto local una invitación
+nueva en Guadalajara, `/guadalajara/posadas/`, CSS y notas aparte. Reentrada:
+`node scripts/serve-review.mjs .artifacts/gdl-posadas-expanded-v3/public 8882`.
+Datos del DOCX cargados para revisar: grupos5–200, proceso de cotización/apartado,500MXN/persona
+para10+, a cuenta de consumo;5–9consultar; reservas17:00–20:30/tolerancia15min; teléfono exclusivo,
+ubicación, públicos y cincoFAQ. No se presenta el apartado como precio de paquete. Sin «a tu medida»,
+sin menú/inclusiones inventadas, escasez artificial ni formulario opcional. Condiciones/canal siguen
+pendientes de validación operativa antes de un release, pero son visibles en esta revisión local.
+Contacto externo inactivo; la navegación interna y acordeones nativos sí funcionan sinJS.
+
+483pruebas/integridad y build productivo393archivos pasan; nueva ruta/estilos fuera del manifiesto.
+QA de320/390/768/1024/1440, links, teclado/foco naranja sobre crema, imagen, fuente y ausencia de
+overflow/errores observados. Proyección comparada fuera del módulo conserva Guadalajara exacta.
+El preview compartido anterior permanece en f2b9f89; esta expansión no se commitea, sube ni publica.
+Recibo/capturas y revisión de contenido en el plan operativo privado del cliente.
+
+### Posadas Guadalajara · campaña de prueba y revisión de diseño · 12-nov-2026
+
+Luis autoriza una dirección más libre y una URL compartible para Karina, sin modificar producción.
+Se aplica `frontend-design`: comparar composición, justificar decisiones con el negocio, revisar
+arquetipos genéricos, quitar exceso y verificar el resultado real en móvil/escritorio.
+
+| Decisión | Fundamento y revisión |
+| --- | --- |
+| Alfa Slab One + Roboto Slab | Fuentes ya usadas por SY; rótulo protagonista y texto legible. Se retira la tercera familia/cursiva decorativa. |
+| Café oscuro, crema, naranja y amarillo | Valores GDL existentes: #30201c/#fff4de/#bd4a15/#ffc44f. Luis descarta el vino/rosa inventado en el ensayo. |
+| Foto de amigas cantando y brindando | Biblioteca GDL #4, no salón vacío ni imagen generada. Recorte sin texto sobre caras. |
+| Composición de cartel | Tipografía grande; foto a toda la altura del bloque y hasta el borde derecho, sin márgenes. En móvil ocupa todo el ancho. Se retiran arco ornamental y botón pastilla. |
+| Cotización | Una sola acción, inactiva hasta confirmar el canal; no confirma reservas ni anuncia precio/aforo no verificado. |
+| Apoyo | Tres pasos reales; se retiran las FAQ repetitivas. Su conteo incidental deja de ser un requisito del test de seguridad. |
+
+El contenido se resume para la ficha: invitación, cotización y pasos. No equivale a publicar el DOCX
+completo: rango de grupo, apartado/horarios y canal siguen pendientes según el plan del cliente.
+Se excluye «a tu medida» por petición de Luis; Google/WordPress/listings no se modifican.
+
+Local 8882/guadalajara#posadas. Builder `build-gdl-posadas-design.mjs` solo añade proyección/CSS/
+medios a un artefacto nuevo dentro de `.artifacts`; no modifica fuente pública ni manifiesto.
+`build-gdl-posadas-share.mjs posadas-share-<corte>` exige fuente limpia y commiteada, deja solo
+Guadalajara/404 como HTML, excluye las notas internas y desactiva medición/consentimiento/webmcp.
+Navegación a otras rutas va al sitio oficial; anclas de Guadalajara permanecen en el preview.
+
+Destino autorizado: `https://posadas-sy.187.77.220.209.sslip.io/guadalajara#posadas`.
+Receta versionada `deploy/posadas-review/compose.yml`: contenedor propio `sy-posadas-review-20261112`,
+Nginx por digest existente, mount readonly, sin secretos ni puertos host, límites 64 MB/0.25 CPU,
+Traefik/red existente. No usar release de Pages, no integrar a main, no reiniciar otros servicios.
+Build con Node22 local; transferir únicamente el artefacto y validar commit/set/SHA256 antes de activar.
+TTL operativo siete días, con timer persistente que detiene solo este contenedor. Rollback: detenerlo.
+Procedimiento y gates → `deploy/posadas-review/README.md`. El build por sí solo no acredita publicación:
+recibo de runtime, capturas, expiración y estado vivo se conservan en el plan operativo del cliente.
+
 ### Medios de eventos · publicación autorizada10-nov-2026
 
 Luis autoriza «Va, publica así los eventos y los bloques de Instagram.» después de la revisión

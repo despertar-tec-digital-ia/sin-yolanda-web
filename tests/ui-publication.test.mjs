@@ -24,7 +24,7 @@ test('approved production UI matches the complete reviewed candidate; only scrip
   for(const[file,actual]of live.files){
     assert.equal(normalize(actual),normalize(readFileSync(resolve(out,'public',file),'utf8')),file);
   }
-  assert.equal(live.ui.pages,26);
+  assert.equal(live.ui.pages,27);
   assert.ok(live.files.get('ciudad-juarez.html')?.includes('data-site-ui-review="subtle"'));
   const siteScriptVersion=JSON.parse(readFileSync(resolve(root,'scripts/public-manifest.json'),'utf8')).assetVersions['assets/js/site.js'];
   for(const[file,html]of live.files){

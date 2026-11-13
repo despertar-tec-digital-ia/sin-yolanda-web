@@ -81,9 +81,10 @@ function inspectLimitedApproval({ root, approval, commit, dirty, publicDigest, o
     sourceCommit: record.sourceCommit, publicDigest: record.publicDigest, authorization: record.authorization };
 }
 
-export function packagePublic({ root = projectRoot, destination, metadata, audience = 'production', approval, now, presentation = 'approved' } = {}) {
+export function packagePublic({ root = projectRoot, destination, metadata, audience = 'production', approval, now, presentation = 'approved', posadas = true } = {}) {
   assert.ok(['production', 'review', 'limited-production'].includes(audience), 'Unknown package audience');
   assert.ok(presentation === 'approved' || (presentation === 'baseline' && audience === 'review'), 'Only local review can omit approved presentation');
+  assert.ok(posadas === true || (posadas === false && audience === 'review'), 'Only local review can omit the approved Posadas campaign');
   assert.ok(approval === undefined || audience === 'limited-production', 'Approval applies only to the explicit limited-production audience');
   assert.ok(destination, 'Provide a fresh artifact directory');
   const out = resolve(destination);
@@ -101,7 +102,7 @@ export function packagePublic({ root = projectRoot, destination, metadata, audie
   let commit = null;
   try { commit = execFileSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }).trim(); } catch {}
   const dirty = commit ? Boolean(execFileSync('git', ['status', '--porcelain'], { cwd: root, encoding: 'utf8' }).trim()) : true;
-  const projection=projectPublicAgenda(root,{now,commit,ui:presentation!=='baseline'});
+  const projection=projectPublicAgenda(root,{now,commit,ui:presentation!=='baseline',posadas});
   for(const path of projection.files.keys())assert.ok(files.includes(path),'Projected page outside manifest');
   const hashes=Object.fromEntries(files.map(path=>[path,projection.files.has(path)?createHash('sha256').update(projection.files.get(path)).digest('hex'):sourceHashes[path]]));
   const publicDigest=publicSourceDigest(hashes); // Exact current projection, before the preview header.

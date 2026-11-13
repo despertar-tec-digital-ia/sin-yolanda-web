@@ -7,6 +7,7 @@ import {projectApprovedUi} from './ui-approved.mjs';
 import {projectApprovedSelector} from './selector-approved.mjs';
 import {projectApprovedBooking} from './booking-approved.mjs';
 import {projectEventMedia} from './event-media.mjs';
+import {projectApprovedPosadas} from './gdl-posadas.mjs';
 
 export function projectPublicSite(root,options) {
   const agenda=projectAllAgendas(root,options);
@@ -16,7 +17,8 @@ export function projectPublicSite(root,options) {
   const booking=options?.booking===false?{files:motion.files}:projectApprovedBooking(root,motion.files);
   const ui=options?.ui===false?{files:booking.files}:projectApprovedUi(root,booking.files);
   const selector=options?.selector===false?{files:ui.files}:projectApprovedSelector(root,ui.files);
-  const files=selector.files;
+  const posadas=options?.posadas===false?{files:selector.files}:projectApprovedPosadas(root,selector.files,options?.now);
+  const files=posadas.files;
   // Preserve the reviewed cascade: the scoped November sheet follows shared UI.
   for (const [file,html] of files) if (html.includes('href="/assets/css/november-agenda.css')) {
     const sheet=html.match(/<link rel="stylesheet" href="\/assets\/css\/november-agenda\.css[^>]*>/)?.[0];
@@ -29,10 +31,10 @@ export function projectPublicSite(root,options) {
   const renderDigest=hash(JSON.stringify([...files].map(([file,value])=>[file,hash(value)])));
   files.set('houston.html',files.get('houston.html').replace('class="sy-agenda"',
     'class="sy-agenda" data-agenda-render-digest="'+renderDigest+'"'));
-  const transitions=[agenda.metadata?.nextTransitionAt,eventMedia.metadata?.nextTransitionAt].filter(Boolean).sort();
-  return {...agenda,files,metadata:{...agenda.metadata,renderDigest,
+  const transitions=[agenda.metadata?.nextTransitionAt,eventMedia.metadata?.nextTransitionAt,posadas.metadata?.nextTransitionAt].filter(Boolean).sort();
+  return {...agenda,files,metadata:{...agenda.metadata,renderDigest,nextTransitionAt:transitions[0]||null,
     ...(eventMedia.metadata?{eventMediaDigest:eventMedia.metadata.digest,
       visibleIds:[...new Set([...(agenda.metadata.visibleIds||[]),...eventMedia.metadata.visibleIds])],nextTransitionAt:transitions[0]||null}: {})},
-    ...(eventMedia.metadata?{eventMedia:eventMedia.metadata}:{}),socialFeed:social.metadata,socialMotion:motion.metadata,
+    ...(eventMedia.metadata?{eventMedia:eventMedia.metadata}:{}),...(posadas.metadata?{posadas:posadas.metadata}:{}),socialFeed:social.metadata,socialMotion:motion.metadata,
     ...(ui.metadata?{ui:ui.metadata}:{}),...(selector.metadata?{selector:selector.metadata}:{}),...(booking.metadata?{booking:booking.metadata}:{})};
 }

@@ -21,12 +21,12 @@ export function renderPosadasDesign(data=outline) {
   return `<section class="gp-posadas" id="posadas" aria-labelledby="gp-title" tabindex="-1" data-local-posadas-review>
 <div class="gp-feature"><h2 class="gp-title" id="gp-title">${titleHtml}</h2>
 <div class="gp-invitation"><p class="gp-lead">${esc(s.lead)}</p>${action(s.action.label)}<p class="gp-qualification">${esc(s.qualification)}</p></div>
-<figure class="gp-photo"><img src="/${photoPath(photoFiles[1])}" srcset="/${photoPath(photoFiles[0])} 800w, /${photoPath(photoFiles[1])} 1600w" sizes="(max-width: 700px) calc(100vw - 48px), (max-width: 1440px) calc((100vw - 184px) * .587), 737px" width="1600" height="2400" alt="Tres amigas cantan y brindan con un micrófono de Sin Yolanda." loading="lazy" decoding="async"></figure>
+<figure class="gp-photo"><img src="/${photoPath(photoFiles[1])}" srcset="/${photoPath(photoFiles[0])} 800w, /${photoPath(photoFiles[1])} 1600w" sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 55vw" width="1600" height="2400" alt="Tres amigas cantan y brindan con un micrófono de Sin Yolanda." loading="lazy" decoding="async"></figure>
 </div>
 <div class="gp-support"><div class="gp-support-inner"><section aria-labelledby="gp-steps-title"><h3 class="gp-heading" id="gp-steps-title">${esc(s.stepsTitle)}</h3><ol class="gp-steps">${s.steps.map(item=>`<li><div><h4>${esc(item.title)}</h4><p>${esc(item.text)}</p></div></li>`).join('')}</ol></section>
 <a class="gp-location" href="#visita-san-ignacio">${esc(s.locationLink.label)}</a>
 </div></div>
-<p class="gp-sr" id="gp-review-status">Revisión local de diseño. El botón permanece inactivo mientras se confirma el canal de posadas; no envía solicitudes ni confirma reservas.</p>
+<p class="gp-sr" id="gp-review-status">Vista previa de diseño. El botón permanece inactivo mientras se confirma el canal de posadas; no envía solicitudes ni confirma reservas.</p>
 </section>`;
 }
 

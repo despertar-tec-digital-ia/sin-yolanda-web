@@ -11,9 +11,13 @@ arquetipos genéricos, quitar exceso y verificar el resultado real en móvil/esc
 | Alfa Slab One + Roboto Slab | Fuentes ya usadas por SY; rótulo protagonista y texto legible. Se retira la tercera familia/cursiva decorativa. |
 | Café oscuro, crema, naranja y amarillo | Valores GDL existentes: #30201c/#fff4de/#bd4a15/#ffc44f. Luis descarta el vino/rosa inventado en el ensayo. |
 | Foto de amigas cantando y brindando | Biblioteca GDL #4, no salón vacío ni imagen generada. Recorte sin texto sobre caras. |
-| Composición de cartel | Tipografía grande y foto más presente; se retiran arco ornamental y botón pastilla. |
+| Composición de cartel | Tipografía grande; foto a toda la altura del bloque y hasta el borde derecho, sin márgenes. En móvil ocupa todo el ancho. Se retiran arco ornamental y botón pastilla. |
 | Cotización | Una sola acción, inactiva hasta confirmar el canal; no confirma reservas ni anuncia precio/aforo no verificado. |
 | Apoyo | Tres pasos reales; se retiran las FAQ repetitivas. Su conteo incidental deja de ser un requisito del test de seguridad. |
+
+El contenido se resume para la ficha: invitación, cotización y pasos. No equivale a publicar el DOCX
+completo: rango de grupo, apartado/horarios y canal siguen pendientes según el plan del cliente.
+Se excluye «a tu medida» por petición de Luis; Google/WordPress/listings no se modifican.
 
 Local 8882/guadalajara#posadas. Builder `build-gdl-posadas-design.mjs` solo añade proyección/CSS/
 medios a un artefacto nuevo dentro de `.artifacts`; no modifica fuente pública ni manifiesto.

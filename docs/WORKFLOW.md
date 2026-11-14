@@ -1,5 +1,17 @@
 # Forma de trabajar y publicar
 
+### Guadalajara · calendario de horarios especiales · 14-nov-2026
+
+Karina solicita reflejar en la web los cinco horarios especiales de su captura de Google:
+16 y 20 de noviembre de 2026, 19:00–04:00 del día siguiente; 24 y 25 de diciembre de 2026
+y 1 de enero de 2027, cerrado. Se conserva la apertura del 15 de noviembre ya confirmada.
+La sección «Horarios especiales» acompaña al horario habitual de Guadalajara y al detalle
+de Posadas mientras esa campaña sigue activa. Cada fila y su excepción de Restaurant/discovery
+vencen individualmente: los abiertos al cierre de madrugada y los cerrados al terminar su fecha
+local. El archivo de Posadas no recupera horarios cuando termina la temporada el 1 de enero.
+Fuente editorial: captura y solicitud de Karina; no se modifica Google ni otras sedes.
+Publicar por PR, CI y `release:approved`, verificando el recibo y la información servida.
+
 ### Guadalajara · apertura especial del domingo 15 de noviembre de 2026
 
 Karina solicita anunciar y publicar la apertura excepcional del domingo 15 de noviembre,

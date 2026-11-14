@@ -1,5 +1,15 @@
 # Forma de trabajar y publicar
 
+### Guadalajara · apertura especial del domingo 15 de noviembre de 2026
+
+Karina solicita anunciar y publicar la apertura excepcional del domingo 15 de noviembre,
+de 19:00 a 04:00 del lunes 16, hora de Guadalajara. El horario semanal permanece intacto.
+La proyección compartida de build y scheduler añade el aviso junto al horario de Guadalajara
+y Posadas, y la excepción fechada al Restaurant y al registro público de Guadalajara.
+El aviso se retira al cierre, también en una pestaña abierta; el scheduler elimina la proyección
+vencida del artefacto servido. No se anuncia un festivo legal ni se modifican otras sedes.
+Publicación mediante PR, CI y `release:approved`; verificar el recibo y la página pública.
+
 ### Posadas Guadalajara · promoción a producción autorizada · 13-nov-2026
 
 Luis solicita revisar y publicar la versión aprobada de Posadas en el sitio oficial. Se promueven

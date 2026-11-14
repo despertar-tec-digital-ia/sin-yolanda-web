@@ -5,5 +5,10 @@
   "publicationEnabled": true,
   "authorization": "Revisar que Posadas Guadalajara esté listo y publicarlo en producción, con el diseño y medios revisados.",
   "expiresAt": "2027-01-01T06:00:00.000Z",
-  "sourceDigest": "d56b67a3f30d72dc3dccb68ac50413873cc10bbf6df83a11a2049f7f4d22fb2d"
+  "sourceDigest": "027510501cc0def4684bec8e19df9d03ec37491c2d2ed13f17cce321247bccbb",
+  "copyAmendment": {
+    "date": "2026-11-13",
+    "authorizer": "Luis",
+    "request": "Publicar el cambio solicitado en el subtítulo de Posadas: cantar, bailar y brindar con tu grupo."
+  }
 }

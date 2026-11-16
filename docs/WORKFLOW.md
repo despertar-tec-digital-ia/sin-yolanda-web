@@ -1,5 +1,40 @@
 # Forma de trabajar y publicar
 
+### Selector de reservas por sede · candidato local 16-nov-2026
+
+Se preparó `/reservar` como acceso común: elección de país y sede, formulario oficial de
+OpenTable en San Antonio, The Woodlands, Houston y El Paso, y solicitud por WhatsApp en
+Guadalajara. El RID y enlace externo de Texas salen del registro editorial
+`scripts/editorial/opentable-review.json`; el teléfono de Guadalajara se conserva de la ficha
+publicada. Ninguna fecha/hora del widget se presenta como disponibilidad confirmada por nosotros.
+La navegación de una sede a otra carga un documento nuevo, para que el widget de una sede no
+herede el estado de otra. Cada formulario mantiene su enlace directo al proveedor; Guadalajara
+no simula un motor de reservas. Sin JavaScript, las cinco tarjetas enlazan directamente a su
+proveedor; con JavaScript, sus enlaces abren la vista integrada de esa sede.
+
+El constructor `node scripts/build-reservas-review.mjs <destino-en-.artifacts>` valida los cinco
+canales y compone un paquete de revisión separado. Solo ese paquete añade `/reservar` y cambia
+el CTA «Reservar mesa» del home/directorio para llegar al selector. La fuente de esas páginas,
+el manifiesto productivo, sitemap, redirects y el sitio servido no cambian. En el paquete de
+revisión también registra `/reservar` como ruta de grupo en las copias de los contratos Umami y
+GA4; la fuente generada vigente sigue intacta. La nueva página está en `noindex,nofollow` mientras
+se revisa; no se publica por existir este script. Antes de promover, decidir el CTA definitivo
+con Karina, integrar la ruta en el contrato de publicación y confirmar el release concreto.
+
+QA local: `npm run check` pasó 496 pruebas; el constructor generó 404 archivos y rechaza RIDs/URLs
+distintos a los registrados. En Chrome headless, las cuatro URLs de sede cargaron el formulario
+(`data-booking-state=embedded`) con su RID correspondiente; se inspeccionaron capturas escritorio
+1280 y móvil 390 de selector, Houston y Guadalajara. Falta una prueba manual del paso final al
+proveedor en dispositivo real, sin enviar una reserva. No se cambió ninguna configuración de la
+cuenta OpenTable.
+
+En la prueba interactiva de Chrome a 390 px, México mostró una sede, Estados Unidos cuatro, el
+idioma EN cambió el texto visible y ninguna de las cinco vistas generó desbordamiento horizontal.
+El documento llegó arriba (`scrollY=0`) incluso al abrir Guadalajara; el desplazamiento observado
+en una captura con iframe de previsualización era propio del wrapper, no de la página directa.
+Los contratos Umami/GA4 del paquete contienen la ruta de grupo y el aviso de consentimiento
+aparece en la captura local; no se enviaron eventos de prueba a la cuenta oficial.
+
 ### Guadalajara · calendario de horarios especiales · 14-nov-2026
 
 Karina solicita reflejar en la web los cinco horarios especiales de su captura de Google:

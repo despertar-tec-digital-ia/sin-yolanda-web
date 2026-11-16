@@ -56,7 +56,7 @@ async function renderOpenTable(choice, language) {
   // section, and we initialize exactly once after building this branch.
   let module;
   try { module = await import('/assets/js/opentable-review.js?v=20261106-keyboard'); } catch { /* The direct link remains usable. */ }
-  content.innerHTML = `<section class="sy-booking" id="${id}" data-opentable-pilot="${rid}" data-booking-branch="${escapeHtml(slug)}" data-booking-loader="${escapeHtml(loader.href)}" data-booking-state="idle" aria-labelledby="${id}-title" aria-describedby="${id}-location"><div class="sy-booking-inner"><div class="sy-booking-copy"><h2 id="${id}-title" tabindex="-1">${language === 'en' ? 'Reserve your table.' : 'Reserva tu mesa.'}</h2><p class="sy-booking-location" id="${id}-location">${escapeHtml(name)}</p></div><div class="sy-booking-panel"><a class="sy-booking-start" data-booking-start data-booking-open href="${escapeHtml(fallback.href)}" target="_blank" rel="noopener noreferrer">${language === 'en' ? 'Find a table' : 'Ver disponibilidad'}</a><div class="sy-booking-placeholder" data-booking-placeholder hidden aria-hidden="true"><span></span><span></span><span></span><span></span></div><div class="sy-booking-widget" id="${id}-form" data-booking-host hidden></div><p class="sy-booking-status" data-booking-status role="status" aria-live="polite" aria-atomic="true"></p><div class="sy-booking-foot"><span>${language === 'en' ? 'Reservations with OpenTable' : 'Reservas con OpenTable'}</span><p>${language === 'en' ? 'Need help?' : '¿Necesitas ayuda?'} <a href="${escapeHtml(choice.dataset.phoneUrl)}">${escapeHtml(choice.dataset.phone)}</a></p></div></div></div></section>${branchDetails(choice, language, fallback.href)}`;
+  content.innerHTML = `<section class="sy-booking" id="${id}" data-opentable-pilot="${rid}" data-booking-branch="${escapeHtml(slug)}" data-booking-loader="${escapeHtml(loader.href)}" data-booking-state="idle" aria-labelledby="${id}-title" aria-describedby="${id}-location"><div class="sy-booking-inner"><div class="sy-booking-copy"><h2 id="${id}-title" tabindex="-1">${escapeHtml(name)}</h2><p class="sy-booking-location" id="${id}-location">${language === 'en' ? 'Find a table with OpenTable' : 'Consulta disponibilidad con OpenTable'}</p></div><div class="sy-booking-panel"><a class="sy-booking-start" data-booking-start data-booking-open href="${escapeHtml(fallback.href)}" target="_blank" rel="noopener noreferrer">${language === 'en' ? 'Find a table' : 'Ver disponibilidad'}</a><div class="sy-booking-placeholder" data-booking-placeholder hidden aria-hidden="true"><span></span><span></span><span></span><span></span></div><div class="sy-booking-widget" id="${id}-form" data-booking-host hidden></div><p class="sy-booking-status" data-booking-status role="status" aria-live="polite" aria-atomic="true"></p><div class="sy-booking-foot"><span>${language === 'en' ? 'Reservations with OpenTable' : 'Reservas con OpenTable'}</span><p>${language === 'en' ? 'Need help?' : '¿Necesitas ayuda?'} <a href="${escapeHtml(choice.dataset.phoneUrl)}">${escapeHtml(choice.dataset.phone)}</a></p></div></div></div></section>${branchDetails(choice, language, fallback.href)}`;
   result.hidden = false;
   if (module) module.initializeBooking()?.start();
 }
@@ -90,13 +90,17 @@ async function init() {
     const link = choice.querySelector('[data-venue]');
     if (link) link.href = `/reservar?sucursal=${encodeURIComponent(choice.dataset.bookingChoice)}`;
   }
-  const slug = new URLSearchParams(location.search).get('sucursal');
+  const params = new URLSearchParams(location.search);
+  const slug = params.get('sucursal');
   const selected = choices.find(choice => choice.dataset.bookingChoice === slug);
-  selectCountry(selected?.dataset.country ?? null);
+  const requestedCountry = params.get('pais');
+  selectCountry(selected?.dataset.country ?? (countries.some(button => button.dataset.bookingCountry === requestedCountry) ? requestedCountry : null));
   for (const button of countries) button.addEventListener('click', () => selectCountry(button.dataset.bookingCountry, true));
   if (!selected) return;
   document.body.dataset.bookingSelected = 'true';
   const language = currentLanguage();
+  const name = selected.querySelector('h4')?.textContent?.trim() ?? '';
+  document.querySelector('[data-booking-result-title]').textContent = `${language === 'en' ? 'Your table at' : 'Tu mesa en'} ${name}`;
   if (selected.dataset.channel === 'whatsapp') renderWhatsApp(selected, language);
   else if (selected.dataset.channel === 'opentable') await renderOpenTable(selected, language);
   document.addEventListener('click', event => {

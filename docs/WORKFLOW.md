@@ -7,6 +7,12 @@ OpenTable en San Antonio, The Woodlands, Houston y El Paso, y solicitud por What
 Guadalajara. El RID y enlace externo de Texas salen del registro editorial
 `scripts/editorial/opentable-review.json`; el teléfono de Guadalajara se conserva de la ficha
 publicada. Ninguna fecha/hora del widget se presenta como disponibilidad confirmada por nosotros.
+El selector tiene portada y tarjetas con fotografía aprobada, tipografía y colores de Sin Yolanda;
+una URL de sede muestra el formulario al inicio y deja el selector disponible más abajo.
+Houston ya tenía un formulario individual en su ficha: esta ruta agrega la elección común,
+pero reutiliza el mecanismo de cada RID. El [widget multirrestaurante de OpenTable](https://support.opentable.com/s/article/How-do-I-install-the-reservation-widget-to-take-reservations-on-my-website-and-Facebook?language=en_US) es
+una opción aparte que requiere configurarse y generar código en la cuenta; no se atribuye
+a esta candidata ni se simula para Guadalajara, que sigue atendiendo por WhatsApp.
 La navegación de una sede a otra carga un documento nuevo, para que el widget de una sede no
 herede el estado de otra. Cada formulario mantiene su enlace directo al proveedor; Guadalajara
 no simula un motor de reservas. Sin JavaScript, las cinco tarjetas enlazan directamente a su
@@ -24,7 +30,8 @@ con Karina, integrar la ruta en el contrato de publicación y confirmar el relea
 QA local: `npm run check` pasó 496 pruebas; el constructor generó 404 archivos y rechaza RIDs/URLs
 distintos a los registrados. En Chrome headless, las cuatro URLs de sede cargaron el formulario
 (`data-booking-state=embedded`) con su RID correspondiente; se inspeccionaron capturas escritorio
-1280 y móvil 390 de selector, Houston y Guadalajara. Falta una prueba manual del paso final al
+1280 y móvil 390 de selector, Houston y Guadalajara, incluida la composición refinada con formulario
+prioritario al entrar a una sede. Falta una prueba manual del paso final al
 proveedor en dispositivo real, sin enviar una reserva. No se cambió ninguna configuración de la
 cuenta OpenTable.
 

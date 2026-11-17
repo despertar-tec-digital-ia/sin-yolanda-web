@@ -1,5 +1,230 @@
 # Forma de trabajar y publicar
 
+### Reservas multisucursal · ajuste final de portada y filtros · 17-nov-2026
+
+La portada de `/reservar` separa la fotografía y el texto en móvil para mantener
+visibles a las personas y el título desde 320 px; en escritorio equilibra el
+encuadre de grupo con un bloque oscuro de lectura. El filtro opcional de país
+usa pestañas tipográficas con subrayado activo y áreas táctiles de 48 px, en vez
+de tres botones rellenos. Se retiró la línea redundante «Houston · OpenTable»
+(y su equivalente de las otras tres sedes de Texas) bajo «Reserva tu mesa».
+La región de reserva conserva un nombre accesible con la ciudad seleccionada.
+El logo de cabecera es el PNG de marca `brand-logo-gdl.png`, no un SVG.
+
+El corte fuente `e8d7c2d` permanece en el PR #69 borrador y se publicó solo en
+el [preview aislado](https://reservas-demo-sy.187.77.220.209.sslip.io/reservar)
+el 17-nov-2026. El paquete de 22 archivos coincide por SHA-256 con el servidor;
+21 recursos accesibles y el widget Houston se comprobaron en HTTPS. Sin
+analítica ni schema, con `noindex` y `no-store`. El artefacto anterior `c7a4edc`
+sigue íntegro para volver a él. La ruta oficial continúa en 404; inicio y
+Houston oficiales conservaron sus bytes, y los otros 45 contenedores sus IDs.
+Los detalles de operación están en
+`deploy/reservas-visual-preview/README.md`.
+
+### Reservas multisucursal · selector de marca y reserva enfocada · 17-nov-2026
+
+La revisión local de `/reservar` toma del [selector grupal de Sala de Despecho](https://www.covermanager.com/reservation/module_group/sala-de-despecho/spanish)
+la secuencia país → sede → reserva, adaptada a las cinco sucursales y los dos
+proveedores reales de Sin Yolanda. Todas las sedes abiertas siguen visibles al
+entrar desde una futura cuenta social unificada; el país es un filtro opcional.
+La portada y el paso «Elige tu sucursal» usan la tipografía, naranja y fotografías
+de marca. La cabecera, su CTA y el pie reutilizan los estilos públicos del sitio.
+Las tarjetas abiertas crecen a dos columnas en escritorio para leer mejor los
+nombres, fotos y acciones. Se quitaron las etiquetas de proveedor de cada tarjeta
+y el texto explicativo pedido por Luis.
+
+Ciudad Juárez, San Diego y Moreno Valley recuperan fotografías de ambiente ya
+versionadas en el sitio; una nota visible aclara que no representan las sedes
+futuras y que aún no aceptan reservas. Ciudad Juárez conserva solo su enlace
+informativo. Al elegir una sucursal, la vista muestra su fotografía y su canal
+oficial, y oculta el selector para concentrar la acción; «Cambiar sucursal» vuelve
+a la entrada común. OpenTable conserva sus cuatro RID y Guadalajara su WhatsApp
+oficial. Sin JavaScript, los enlaces de las cinco tarjetas siguen abriendo sus
+proveedores directamente.
+
+La ruta permanece `noindex,nofollow` y fuera del manifiesto productivo. El paquete
+mínimo de preview incluye ahora las tres fotos de ambiente utilizadas. Es una
+candidata local en PR #69; no cambia el preview público ni el sitio oficial.
+QA en navegador a 320, 390, 768 y 1440 px: fotografías decodificadas, sin
+desbordamiento, filtros 5+3 correctos, cambio de sucursal, idioma inglés, enlace
+WhatsApp y SVG correctos, fallback sin JavaScript y widget Houston `embedded`.
+No se envió una reserva. `npm run check` pasó 496 pruebas y `npm run build`
+conservó los 401 archivos productivos existentes.
+
+### Reservas multisucursal · nueva portada de Drive · 17-nov-2026
+
+Luis pidió otra fotografía de Drive para la portada local de `/reservar`. Se eligió
+`IMG13846-Enhanced-NR.jpg` de [Sin Yolanda Content / Carrete general / Lunes 9](https://drive.google.com/file/d/1vkFwCAQazSYpeVxgrTFJKS8mkIGhnVwp/view):
+grupo real, sombreros y micrófonos de la marca frente al neón del local. El original
+de 1619 × 1080 px (SHA-256 `760b2d3ca470d77b58f04e97ca2d93988a69d5f8e26fa88f90686a9cec0e6910`)
+permanece en Drive; la versión web `assets/media/reservas-group.webp` mide 1600 × 1067 px
+y pesa aproximadamente 152 KiB. El archivo anterior `karaoke.webp` sigue en el sitio
+porque lo usan otras páginas, pero ya no carga en esta portada.
+
+El paquete aislado de revisión incluye explícitamente la foto nueva y actualiza
+su imagen Open Graph al host de prueba. La ruta sigue fuera del manifiesto
+productivo; al promoverla hará falta incorporar el medio al manifiesto. QA visual
+a 320, 390, 768 y 1440 px: sujetos y título visibles, sin desbordamiento. La
+imagen decodifica en los cuatro tamaños. `npm run check` pasó 496 pruebas,
+`npm run build` generó los 401 archivos productivos existentes y el paquete
+aislado de revisión incluyó el WebP con su SHA-256 exacto. Esta sustitución es
+candidata local y en el PR, sin deploy público.
+
+### Reservas multisucursal · pulido de jerarquía local · 16-nov-2026 (Mazatlán)
+
+La entrada única de las futuras redes unificadas conserva primero las cinco
+sedes con canal real. La explicación junto a «Elige tu sucursal» ahora aclara
+la diferencia entre reservar en OpenTable (Texas) y solicitar mesa por WhatsApp
+(Guadalajara). Las próximas aperturas siguen visibles y filtrables, pero se
+presentan como tarjetas editoriales sobrias sin fotografías: las imágenes de
+ambiente les daban el mismo peso que a las sedes reservables y podían confundirse
+con fotos de locales aún no abiertos. Ciudad Juárez conserva su enlace a la ficha
+oficial; San Diego y Moreno Valley no ofrecen enlace ni reserva.
+
+En móvil, la cabecera de la sucursal elegida se compactó sin quitar su fotografía
+ni el enlace para cambiar de sede. A 390 px, el botón WhatsApp de Guadalajara
+sube de aproximadamente 637 a 542 px desde el borde superior, y la sección de
+próximas aperturas pasa de unos 930 a 576 px de alto. En tablet, las tres sedes
+futuras comparten una fila; sus títulos, enlaces y áreas táctiles se ajustaron
+para no cortar nombres ni dejar una tarjeta aislada. La fotografía de portada,
+las cinco tarjetas activas y los cuatro canales OpenTable conservan su diseño.
+
+QA local a 320, 390, 768, 900 y 1440 px en español e inglés: sin desbordamiento;
+filtros y estados de sucursales correctos. Auditoría WCAG 2/2.1 A/AA con axe-core
+sin violaciones en entrada y Guadalajara. `npm ci --ignore-scripts`,
+`npm run check` (496 pruebas) y `npm run build` (401 archivos) pasaron. La página
+continúa fuera del manifiesto productivo; esta iteración permanece en PR borrador
+y localhost, sin actualizar preview público ni sitio oficial.
+
+### Reservas multisucursal · foto de portada y WhatsApp local · 16-nov-2026 (Mazatlán)
+
+En el candidato de `/reservar`, la portada usa `assets/media/karaoke.webp`,
+fotografía existente de Sin Yolanda con tres personas y micrófonos de la marca.
+El encuadre y el degradado se ajustaron para leer el título y conservar a las
+personas visibles en móvil y escritorio. La selección de Guadalajara conserva
+su canal y número oficial, y presenta una tarjeta de solicitud más clara con
+el ícono SVG de WhatsApp, contraste alto y explicación de que el equipo confirma
+la disponibilidad. No se agregó formulario ni se promete mesa confirmada.
+
+La preferencia de idioma guardada ahora se lee antes de crear el bloque de la
+sucursal elegida; de otro modo, el traductor general podía mostrar navegación
+en inglés con el bloque dinámico de Guadalajara todavía en español. Se verificó
+el cambio ES→EN→ES, el enlace `wa.me` y el SVG decorativo accesible. QA visual
+de portada y selección Guadalajara a 320, 390, 768 y 1440 px; sin desbordamiento
+horizontal. Los filtros y las cinco sedes con reserva, las tres próximas y el
+widget de Houston siguen operativos. `npm ci --ignore-scripts` y `npm run check`
+(496 pruebas) pasaron. El build del sitio existente se comprobó en salida nueva
+con 401 archivos; ese manifiesto aún excluye `/reservar`.
+
+El cambio está en la fuente del PR #69 y en un preview **solo local**. No se
+actualizó el preview público ni se publicó la ruta oficial. El paquete aislado
+de demostración se construye desde un commit limpio con
+`scripts/build-reservas-share.mjs`; su foto de portada está incluida explícitamente
+y la imagen OG del preview apunta al mismo host aislado.
+
+### Reservas multisucursal · próximas aperturas y QA UX/UI · 17-nov-2026
+
+El selector mantiene primero las cinco sucursales que sí tienen canal de reserva.
+Después presenta Ciudad Juárez, San Diego y Moreno Valley bajo «Próximas aperturas»,
+sin botones ni parámetros de reserva. Ciudad Juárez enlaza a su ficha publicada;
+San Diego y Moreno Valley no tienen páginas propias confirmadas. Las fotos de esta
+sección son imágenes de ambiente y se identifican como tales: no representan los
+locales futuros. Los filtros de país muestran Guadalajara + Ciudad Juárez para
+México, y las cuatro sedes de Texas + San Diego + Moreno Valley para Estados Unidos.
+Se eliminó el enlace de portada redundante y se compactó el hero para que la
+primera tarjeta reservable aparezca antes en móvil.
+
+QA local con navegador aislado a 320, 390, 768 y 1440 px: sin desbordamiento
+horizontal, sin titulares cortados lateralmente, las ocho fotografías decodifican,
+filtros operativos, cinco tarjetas reservables y tres futuras sin canal. Un
+parámetro `?sucursal=ciudad-juarez` tampoco abre resultado de reserva. Capturas
+móvil/escritorio inspeccionadas, sin enviar reserva. El paquete del PR y el
+preview público son estados distintos: el preview sigue en el corte anterior
+hasta una aprobación explícita para actualizarlo; `/reservar` oficial sigue 404.
+
+### Reservas multisucursal · refinamiento visual local 17-nov-2026
+
+Referencia principal: [home](https://sin-yolanda.com/),
+[directorio](https://sin-yolanda.com/locations) y
+[Houston](https://sin-yolanda.com/houston) publicados. Se contrastó el orden
+«elegir sede → reservar» con [Benihana](https://www.benihana.com/reservations/),
+las tarjetas fotográficas con
+[Tap 42](https://tap42.com/reservations/) y el filtro de país con el
+[selector de Sala de Despecho](https://www.covermanager.com/reservation/module_group/sala-de-despecho/spanish).
+La candidata adopta el fondo oscuro, titulares de Sin Yolanda, fotografía real de
+las sedes y botones claros del sitio publicado. Las cinco sedes aparecen al cargar
+`/reservar`; México y Estados Unidos son filtros opcionales. Así una sola URL de las
+futuras redes unificadas no obliga a elegir país antes de ver sucursales. Al elegir
+una sede, su fotografía identifica la reserva y el canal oficial sigue siendo
+OpenTable o WhatsApp según corresponda. La página no promete disponibilidad en
+Guadalajara ni incorpora un motor combinado.
+
+QA del refinamiento: `npm ci`, `npm run check` (496 pruebas) y `npm run build`
+(401 archivos publicables ajenos a `/reservar`) pasaron. Se inspeccionó la página
+completa a 320/390/1440 px, además de las vistas elegidas de Houston y Guadalajara.
+Chrome headless verificó los tres estados de filtro (todas/México/Estados Unidos),
+la fotografía de la sede elegida, los cuatro widgets de OpenTable en estado
+`embedded` y el canal WhatsApp de Guadalajara. Los filtros se ocultan sin JavaScript;
+las cinco tarjetas conservan enlace directo al proveedor. No se envió ninguna reserva.
+
+Este refinamiento es fuente de PR; el preview público sigue sirviendo el corte
+anterior hasta aprobar y verificar una actualización aislada. El sitio oficial,
+CTA, manifiesto productivo, sitemap y medición no cambian por este trabajo.
+
+### Selector de reservas por sede · candidato local 16-nov-2026
+
+Karina aclara que las cuentas sociales de las sucursales se unificarán y necesita
+un solo enlace de bio para reservar en cualquiera: `/reservar` es la entrada
+propuesta, sin país/sede preseleccionados. «Pool» significa acceso común, no
+disponibilidad combinada. Para enseñarle la interfaz antes de publicarla en el
+oficial, `build-reservas-share.mjs` prepara un paquete mínimo sin analítica ni
+schema para un preview aislado en el VPS; su receta y retiro a siete días viven
+en `deploy/reservas-visual-preview/README.md`. Los canales oficiales de reserva
+siguen activos en esa prueba. Publicar el preview requiere el gate de despliegue.
+
+Se preparó `/reservar` como acceso común: elección de país y sede, formulario oficial de
+OpenTable en San Antonio, The Woodlands, Houston y El Paso, y solicitud por WhatsApp en
+Guadalajara. El RID y enlace externo de Texas salen del registro editorial
+`scripts/editorial/opentable-review.json`; el teléfono de Guadalajara se conserva de la ficha
+publicada. Ninguna fecha/hora del widget se presenta como disponibilidad confirmada por nosotros.
+El selector tiene portada y tarjetas con fotografía aprobada, tipografía y colores de Sin Yolanda;
+una URL de sede muestra el formulario al inicio y deja el selector disponible más abajo.
+La portada compacta y el filtro de país fueron la primera iteración; el refinamiento
+del 17-nov muestra todas las sedes desde el inicio. El desplazamiento al filtrar
+respeta movimiento reducido.
+Houston ya tenía un formulario individual en su ficha: esta ruta agrega la elección común,
+pero reutiliza el mecanismo de cada RID. El [widget multirrestaurante de OpenTable](https://support.opentable.com/s/article/How-do-I-install-the-reservation-widget-to-take-reservations-on-my-website-and-Facebook?language=en_US) es
+una opción aparte que requiere configurarse y generar código en la cuenta; no se atribuye
+a esta candidata ni se simula para Guadalajara, que sigue atendiendo por WhatsApp.
+La navegación de una sede a otra carga un documento nuevo, para que el widget de una sede no
+herede el estado de otra. Cada formulario mantiene su enlace directo al proveedor; Guadalajara
+no simula un motor de reservas. Sin JavaScript, las cinco tarjetas enlazan directamente a su
+proveedor; con JavaScript, sus enlaces abren la vista integrada de esa sede.
+
+El constructor `node scripts/build-reservas-review.mjs <destino-en-.artifacts>` valida los cinco
+canales y compone un paquete de revisión separado. Solo ese paquete añade `/reservar` y cambia
+el CTA «Reservar mesa» del home/directorio para llegar al selector. La fuente de esas páginas,
+el manifiesto productivo, sitemap, redirects y el sitio servido no cambian. En el paquete de
+revisión también registra `/reservar` como ruta de grupo en las copias de los contratos Umami y
+GA4; la fuente generada vigente sigue intacta. La nueva página está en `noindex,nofollow` mientras
+se revisa; no se publica por existir este script. Antes de promover, decidir el CTA definitivo
+con Karina, integrar la ruta en el contrato de publicación y confirmar el release concreto.
+
+QA local: `npm run check` pasó 496 pruebas; el constructor generó 404 archivos y rechaza RIDs/URLs
+distintos a los registrados. En Chrome headless, las cuatro URLs de sede cargaron el formulario
+(`data-booking-state=embedded`) con su RID correspondiente; se inspeccionaron capturas escritorio
+1280 y móvil 390 de selector, Houston y Guadalajara, incluida la composición refinada con formulario
+prioritario al entrar a una sede. Falta una prueba manual del paso final al
+proveedor en dispositivo real, sin enviar una reserva. No se cambió ninguna configuración de la
+cuenta OpenTable.
+
+En la prueba interactiva de Chrome a 390 px, México mostró una sede, Estados Unidos cuatro, el
+idioma EN cambió el texto visible y ninguna de las cinco vistas generó desbordamiento horizontal.
+El documento llegó arriba (`scrollY=0`) incluso al abrir Guadalajara; el desplazamiento observado
+en una captura con iframe de previsualización era propio del wrapper, no de la página directa.
+Los contratos Umami/GA4 del paquete contienen la ruta de grupo y el aviso de consentimiento
+aparece en la captura local; no se enviaron eventos de prueba a la cuenta oficial.
+
 ### Guadalajara · calendario de horarios especiales · 14-nov-2026
 
 Karina solicita reflejar en la web los cinco horarios especiales de su captura de Google:

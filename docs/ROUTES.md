@@ -1,5 +1,24 @@
 # Registro de rutas y cambios
 
+**Selector de reservas · candidato en PR 17-nov-2026:** `/reservar` muestra las cinco
+sedes operativas al cargar; México/Estados Unidos son filtros opcionales.
+Debajo aparecen tres próximas aperturas sin canal de reservas: Ciudad Juárez en
+México, San Diego y Moreno Valley en Estados Unidos. El filtro de país también
+incluye estas tarjetas. Ciudad Juárez dirige a su ficha informativa; las otras dos
+no enlazan a páginas inexistentes. Sus imágenes son de ambiente, no de las sedes.
+`?sucursal=guadalajara`
+solicita mesa mediante el WhatsApp oficial de la ficha; los parámetros `?sucursal=` de
+San Antonio, The Woodlands, Houston y El Paso abren el formulario oficial de OpenTable de
+esa sede, con enlace directo si el widget falla. Con una sede elegida, el selector
+se oculta y «Cambiar sucursal» regresa a `/reservar`; sin JavaScript, los enlaces
+de las tarjetas conducen directamente al proveedor. Los parámetros no crean rutas canónicas
+adicionales. La ruta sin parámetros es el enlace único propuesto para las futuras
+cuentas sociales unificadas; `?pais=mx|us` solo filtra inicialmente el país. La página es
+`noindex,nofollow`, conserva canonical `/reservar` y no entra en
+el sitemap ni en el manifiesto productivo durante revisión. `build-reservas-review.mjs`
+incorpora página y enlaces desde home/directorio solamente al paquete local de revisión;
+el preview temporal aislado sirve el corte previo y la ruta oficial aún no está publicada.
+
 **Posadas Guadalajara · 13-nov-2026:** `/guadalajara/posadas/` es la página canónica de la temporada
 noviembre/diciembre2026, enlazada desde `/guadalajara#posadas` y el sitemap. El cartel de la ficha
 abre el detalle; el detalle dirige a cotización por el WhatsApp específico de Posadas. No crea un

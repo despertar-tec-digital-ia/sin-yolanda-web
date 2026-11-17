@@ -1,5 +1,31 @@
 # Forma de trabajar y publicar
 
+### Reservas multisucursal · pulido de jerarquía local · 16-nov-2026 (Mazatlán)
+
+La entrada única de las futuras redes unificadas conserva primero las cinco
+sedes con canal real. La explicación junto a «Elige tu sucursal» ahora aclara
+la diferencia entre reservar en OpenTable (Texas) y solicitar mesa por WhatsApp
+(Guadalajara). Las próximas aperturas siguen visibles y filtrables, pero se
+presentan como tarjetas editoriales sobrias sin fotografías: las imágenes de
+ambiente les daban el mismo peso que a las sedes reservables y podían confundirse
+con fotos de locales aún no abiertos. Ciudad Juárez conserva su enlace a la ficha
+oficial; San Diego y Moreno Valley no ofrecen enlace ni reserva.
+
+En móvil, la cabecera de la sucursal elegida se compactó sin quitar su fotografía
+ni el enlace para cambiar de sede. A 390 px, el botón WhatsApp de Guadalajara
+sube de aproximadamente 637 a 542 px desde el borde superior, y la sección de
+próximas aperturas pasa de unos 930 a 576 px de alto. En tablet, las tres sedes
+futuras comparten una fila; sus títulos, enlaces y áreas táctiles se ajustaron
+para no cortar nombres ni dejar una tarjeta aislada. La fotografía de portada,
+las cinco tarjetas activas y los cuatro canales OpenTable conservan su diseño.
+
+QA local a 320, 390, 768, 900 y 1440 px en español e inglés: sin desbordamiento;
+filtros y estados de sucursales correctos. Auditoría WCAG 2/2.1 A/AA con axe-core
+sin violaciones en entrada y Guadalajara. `npm ci --ignore-scripts`,
+`npm run check` (496 pruebas) y `npm run build` (401 archivos) pasaron. La página
+continúa fuera del manifiesto productivo; esta iteración permanece en PR borrador
+y localhost, sin actualizar preview público ni sitio oficial.
+
 ### Reservas multisucursal · foto de portada y WhatsApp local · 16-nov-2026 (Mazatlán)
 
 En el candidato de `/reservar`, la portada usa `assets/media/karaoke.webp`,

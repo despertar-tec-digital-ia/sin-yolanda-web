@@ -1,5 +1,31 @@
 # Forma de trabajar y publicar
 
+### Reservas multisucursal · foto de portada y WhatsApp local · 16-nov-2026 (Mazatlán)
+
+En el candidato de `/reservar`, la portada usa `assets/media/karaoke.webp`,
+fotografía existente de Sin Yolanda con tres personas y micrófonos de la marca.
+El encuadre y el degradado se ajustaron para leer el título y conservar a las
+personas visibles en móvil y escritorio. La selección de Guadalajara conserva
+su canal y número oficial, y presenta una tarjeta de solicitud más clara con
+el ícono SVG de WhatsApp, contraste alto y explicación de que el equipo confirma
+la disponibilidad. No se agregó formulario ni se promete mesa confirmada.
+
+La preferencia de idioma guardada ahora se lee antes de crear el bloque de la
+sucursal elegida; de otro modo, el traductor general podía mostrar navegación
+en inglés con el bloque dinámico de Guadalajara todavía en español. Se verificó
+el cambio ES→EN→ES, el enlace `wa.me` y el SVG decorativo accesible. QA visual
+de portada y selección Guadalajara a 320, 390, 768 y 1440 px; sin desbordamiento
+horizontal. Los filtros y las cinco sedes con reserva, las tres próximas y el
+widget de Houston siguen operativos. `npm ci --ignore-scripts` y `npm run check`
+(496 pruebas) pasaron. El build del sitio existente se comprobó en salida nueva
+con 401 archivos; ese manifiesto aún excluye `/reservar`.
+
+El cambio está en la fuente del PR #69 y en un preview **solo local**. No se
+actualizó el preview público ni se publicó la ruta oficial. El paquete aislado
+de demostración se construye desde un commit limpio con
+`scripts/build-reservas-share.mjs`; su foto de portada está incluida explícitamente
+y la imagen OG del preview apunta al mismo host aislado.
+
 ### Reservas multisucursal · próximas aperturas y QA UX/UI · 17-nov-2026
 
 El selector mantiene primero las cinco sucursales que sí tienen canal de reserva.

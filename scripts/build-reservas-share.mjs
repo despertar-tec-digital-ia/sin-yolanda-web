@@ -27,7 +27,7 @@ const assets = [
   'assets/media/apple-touch-gdl.png',
   'assets/media/favicon-gdl-32.png',
   'assets/media/brand-logo-gdl.png',
-  'assets/media/hero-fiesta-real-poster.webp',
+  'assets/media/karaoke.webp',
   'assets/media/venues/san-ignacio.webp',
   'assets/media/venues/the-woodlands.webp',
   'assets/media/venues/future/future-crowd-640.webp',
@@ -60,6 +60,8 @@ function replaceOnce(input, before, after) {
 let page = source;
 page = replaceOnce(page, '<meta property="og:url" content="https://sin-yolanda.com/reservar" />',
   `<meta property="og:url" content="${host}/reservar" />`);
+page = replaceOnce(page, '<meta property="og:image" content="https://sin-yolanda.com/assets/media/karaoke.webp" />',
+  `<meta property="og:image" content="${host}/assets/media/karaoke.webp" />`);
 page = page.replace(/\s*<script defer src="\/assets\/js\/site-measurement\.js[^\"]*"><\/script>/, '');
 page = page.replace(/\s*<link rel="stylesheet" href="\/assets\/css\/ga4-consent\.css[^\"]*" \/>/, '');
 page = page.replace(/\s*<script defer src="\/assets\/js\/ga4-consent\.js[^\"]*"><\/script>/, '');

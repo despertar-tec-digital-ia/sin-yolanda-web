@@ -84,7 +84,7 @@ const files = ['reservar.html', 'robots.txt', '404.html', ...assets].sort();
 const hashes = Object.fromEntries(files.map(path => [path,
   createHash('sha256').update(readFileSync(resolve(publicRoot, path))).digest('hex')]));
 writeFileSync(resolve(artifact, 'release.json'), JSON.stringify({
-  commit, dirty: false, audience: 'visual-preview', host, route: '/reservar',
+  version: 1, commit, dirty: false, audience: 'visual-preview', host, route: '/reservar',
   officialPublicationEnabled: false, analyticsEnabled: false, fileCount: files.length, hashes,
 }, null, 2) + '\n');
 console.log(JSON.stringify({artifact, commit, fileCount: files.length, host, route: '/reservar'}));

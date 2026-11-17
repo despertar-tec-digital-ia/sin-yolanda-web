@@ -34,7 +34,7 @@ assert.match(page, /data-booking-choice="guadalajara"[\s\S]*?<a href="https:\/\/
 
 const report = packagePublic({root, destination: output, audience: 'review', metadata: resolve(dirname(output), 'release.json')});
 const files = new Set(Object.keys(report.hashes));
-for (const file of ['reservar.html', 'assets/css/reservar.css', 'assets/js/reservar.js']) {
+for (const file of ['reservar.html', 'assets/css/reservar.css', 'assets/js/reservar.js', 'assets/media/reservas-group.webp']) {
   mkdirSync(dirname(resolve(output, file)), {recursive: true});
   copyFileSync(resolve(root, file), resolve(output, file));
   files.add(file);

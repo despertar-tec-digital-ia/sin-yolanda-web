@@ -1,5 +1,24 @@
 # Forma de trabajar y publicar
 
+### Reservas multisucursal · nueva portada de Drive · 17-nov-2026
+
+Luis pidió otra fotografía de Drive para la portada local de `/reservar`. Se eligió
+`IMG13846-Enhanced-NR.jpg` de [Sin Yolanda Content / Carrete general / Lunes 9](https://drive.google.com/file/d/1vkFwCAQazSYpeVxgrTFJKS8mkIGhnVwp/view):
+grupo real, sombreros y micrófonos de la marca frente al neón del local. El original
+de 1619 × 1080 px (SHA-256 `760b2d3ca470d77b58f04e97ca2d93988a69d5f8e26fa88f90686a9cec0e6910`)
+permanece en Drive; la versión web `assets/media/reservas-group.webp` mide 1600 × 1067 px
+y pesa aproximadamente 152 KiB. El archivo anterior `karaoke.webp` sigue en el sitio
+porque lo usan otras páginas, pero ya no carga en esta portada.
+
+El paquete aislado de revisión incluye explícitamente la foto nueva y actualiza
+su imagen Open Graph al host de prueba. La ruta sigue fuera del manifiesto
+productivo; al promoverla hará falta incorporar el medio al manifiesto. QA visual
+a 320, 390, 768 y 1440 px: sujetos y título visibles, sin desbordamiento. La
+imagen decodifica en los cuatro tamaños. `npm run check` pasó 496 pruebas,
+`npm run build` generó los 401 archivos productivos existentes y el paquete
+aislado de revisión incluyó el WebP con su SHA-256 exacto. Esta sustitución es
+candidata local y en el PR, sin deploy público.
+
 ### Reservas multisucursal · pulido de jerarquía local · 16-nov-2026 (Mazatlán)
 
 La entrada única de las futuras redes unificadas conserva primero las cinco

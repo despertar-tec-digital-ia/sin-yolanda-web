@@ -6,6 +6,15 @@ El preview no publica `/reservar` en `sin-yolanda.com`, no modifica cuentas soci
 OpenTable, WhatsApp, DNS propio ni otros servicios. Host único:
 `https://reservas-demo-sy.187.77.220.209.sslip.io/reservar`.
 
+**Estado verificado 17-nov-2026:** servicio `sy-reservas-demo-20261116`
+actualizado desde el commit `e8d7c2df5226af6b46131353180584d3fc4cddc6`
+con el artefacto `reservas-share-e8d7c2d` (22 archivos, todos cotejados por
+SHA-256). HTTPS 200; 21 recursos públicos idénticos al manifiesto; OpenTable
+Houston en estado `embedded`, WhatsApp Guadalajara, `noindex` y `no-store`.
+El artefacto previo `reservas-share-c7a4edc` (19 archivos) permanece verificado
+para rollback. El timer detiene este contenedor el 24-nov-2026 01:39:24 UTC;
+los otros 45 contenedores y el sitio oficial se verificaron sin cambios.
+
 1. Desde la rama limpia y commiteada, con Node 22 y CI verde, ejecutar
    `node scripts/build-reservas-share.mjs reservas-share-<corte>`. El paquete
    incluye solo la página, sus recursos, robots y 404; retira analítica y schema

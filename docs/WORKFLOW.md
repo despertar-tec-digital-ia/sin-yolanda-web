@@ -11,10 +11,14 @@ de tres botones rellenos. Se retiró la línea redundante «Houston · OpenTable
 La región de reserva conserva un nombre accesible con la ciudad seleccionada.
 El logo de cabecera es el PNG de marca `brand-logo-gdl.png`, no un SVG.
 
-Estos cambios permanecen en el PR #69 hasta su pase al preview aislado y no
-habilitan la ruta en el sitio oficial. La prueba pública usa el paquete mínimo
-versionado, sin analítica ni schema, y se revierte seleccionando el artefacto
-anterior. Los detalles de operación están en
+El corte fuente `e8d7c2d` permanece en el PR #69 borrador y se publicó solo en
+el [preview aislado](https://reservas-demo-sy.187.77.220.209.sslip.io/reservar)
+el 17-nov-2026. El paquete de 22 archivos coincide por SHA-256 con el servidor;
+21 recursos accesibles y el widget Houston se comprobaron en HTTPS. Sin
+analítica ni schema, con `noindex` y `no-store`. El artefacto anterior `c7a4edc`
+sigue íntegro para volver a él. La ruta oficial continúa en 404; inicio y
+Houston oficiales conservaron sus bytes, y los otros 45 contenedores sus IDs.
+Los detalles de operación están en
 `deploy/reservas-visual-preview/README.md`.
 
 ### Reservas multisucursal · selector de marca y reserva enfocada · 17-nov-2026

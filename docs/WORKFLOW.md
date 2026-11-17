@@ -1,5 +1,22 @@
 # Forma de trabajar y publicar
 
+### Reservas multisucursal · ajuste final de portada y filtros · 17-nov-2026
+
+La portada de `/reservar` separa la fotografía y el texto en móvil para mantener
+visibles a las personas y el título desde 320 px; en escritorio equilibra el
+encuadre de grupo con un bloque oscuro de lectura. El filtro opcional de país
+usa pestañas tipográficas con subrayado activo y áreas táctiles de 48 px, en vez
+de tres botones rellenos. Se retiró la línea redundante «Houston · OpenTable»
+(y su equivalente de las otras tres sedes de Texas) bajo «Reserva tu mesa».
+La región de reserva conserva un nombre accesible con la ciudad seleccionada.
+El logo de cabecera es el PNG de marca `brand-logo-gdl.png`, no un SVG.
+
+Estos cambios permanecen en el PR #69 hasta su pase al preview aislado y no
+habilitan la ruta en el sitio oficial. La prueba pública usa el paquete mínimo
+versionado, sin analítica ni schema, y se revierte seleccionando el artefacto
+anterior. Los detalles de operación están en
+`deploy/reservas-visual-preview/README.md`.
+
 ### Reservas multisucursal · selector de marca y reserva enfocada · 17-nov-2026
 
 La revisión local de `/reservar` toma del [selector grupal de Sala de Despecho](https://www.covermanager.com/reservation/module_group/sala-de-despecho/spanish)

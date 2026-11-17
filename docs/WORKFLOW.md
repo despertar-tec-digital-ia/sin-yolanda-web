@@ -1,5 +1,34 @@
 # Forma de trabajar y publicar
 
+### Reservas multisucursal · refinamiento visual local 17-nov-2026
+
+Referencia principal: [home](https://sin-yolanda.com/),
+[directorio](https://sin-yolanda.com/locations) y
+[Houston](https://sin-yolanda.com/houston) publicados. Se contrastó el orden
+«elegir sede → reservar» con [Benihana](https://www.benihana.com/reservations/),
+las tarjetas fotográficas con
+[Tap 42](https://tap42.com/reservations/) y el filtro de país con el
+[selector de Sala de Despecho](https://www.covermanager.com/reservation/module_group/sala-de-despecho/spanish).
+La candidata adopta el fondo oscuro, titulares de Sin Yolanda, fotografía real de
+las sedes y botones claros del sitio publicado. Las cinco sedes aparecen al cargar
+`/reservar`; México y Estados Unidos son filtros opcionales. Así una sola URL de las
+futuras redes unificadas no obliga a elegir país antes de ver sucursales. Al elegir
+una sede, su fotografía identifica la reserva y el canal oficial sigue siendo
+OpenTable o WhatsApp según corresponda. La página no promete disponibilidad en
+Guadalajara ni incorpora un motor combinado.
+
+QA del refinamiento: `npm ci`, `npm run check` (496 pruebas) y `npm run build`
+(401 archivos publicables ajenos a `/reservar`) pasaron. Se inspeccionó la página
+completa a 320/390/1440 px, además de las vistas elegidas de Houston y Guadalajara.
+Chrome headless verificó los tres estados de filtro (todas/México/Estados Unidos),
+la fotografía de la sede elegida, los cuatro widgets de OpenTable en estado
+`embedded` y el canal WhatsApp de Guadalajara. Los filtros se ocultan sin JavaScript;
+las cinco tarjetas conservan enlace directo al proveedor. No se envió ninguna reserva.
+
+Este refinamiento es fuente de PR; el preview público sigue sirviendo el corte
+anterior hasta aprobar y verificar una actualización aislada. El sitio oficial,
+CTA, manifiesto productivo, sitemap y medición no cambian por este trabajo.
+
 ### Selector de reservas por sede · candidato local 16-nov-2026
 
 Karina aclara que las cuentas sociales de las sucursales se unificarán y necesita
@@ -18,9 +47,9 @@ Guadalajara. El RID y enlace externo de Texas salen del registro editorial
 publicada. Ninguna fecha/hora del widget se presenta como disponibilidad confirmada por nosotros.
 El selector tiene portada y tarjetas con fotografía aprobada, tipografía y colores de Sin Yolanda;
 una URL de sede muestra el formulario al inicio y deja el selector disponible más abajo.
-La portada compacta coloca el país cerca del primer vistazo en móvil; a 320 px los países
-se apilan para conservar texto y áreas táctiles legibles, y en tablet el titular queda
-fuera de los rostros. El desplazamiento tras elegir país respeta movimiento reducido.
+La portada compacta y el filtro de país fueron la primera iteración; el refinamiento
+del 17-nov muestra todas las sedes desde el inicio. El desplazamiento al filtrar
+respeta movimiento reducido.
 Houston ya tenía un formulario individual en su ficha: esta ruta agrega la elección común,
 pero reutiliza el mecanismo de cada RID. El [widget multirrestaurante de OpenTable](https://support.opentable.com/s/article/How-do-I-install-the-reservation-widget-to-take-reservations-on-my-website-and-Facebook?language=en_US) es
 una opción aparte que requiere configurarse y generar código en la cuenta; no se atribuye

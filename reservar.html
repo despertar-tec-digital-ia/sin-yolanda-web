@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/styles.css?v=20261008-migration-measurement" />
     <link rel="stylesheet" href="/assets/css/opentable-review.css?v=20261106-wine" />
-    <link rel="stylesheet" href="/assets/css/reservar.css?v=20261116-experience" />
+    <link rel="stylesheet" href="/assets/css/reservar.css?v=20261116-production-look" />
     <link rel="icon" type="image/png" href="/assets/media/favicon-gdl-32.png" />
     <link rel="apple-touch-icon" href="/assets/media/apple-touch-gdl.png?v=2" />
     <meta property="og:type" content="website" />
@@ -44,27 +44,34 @@
       <section class="booking-intro" aria-labelledby="booking-title">
         <div class="booking-intro-image" aria-hidden="true"><img src="/assets/media/hero-fiesta-real-poster.webp" alt="" width="1600" height="900" fetchpriority="high" decoding="async" /></div>
         <div class="booking-intro-inner">
-          <h1 id="booking-title" data-i18n-es="Tu noche empieza aquí." data-i18n-en="Your night starts here.">Tu noche empieza aquí.</h1>
-          <p class="booking-intro-copy" data-i18n-es="Elige país y sucursal para consultar una mesa." data-i18n-en="Choose a country and location to find a table.">Elige país y sucursal para consultar una mesa.</p>
-          <a class="booking-intro-action" href="#elegir-sede" data-i18n-es="Elegir sucursal" data-i18n-en="Choose a location">Elegir sucursal</a>
+          <h1 id="booking-title" data-i18n-es="Reserva tu mesa." data-i18n-en="Book your table.">Reserva tu mesa.</h1>
+          <p class="booking-intro-copy" data-i18n-es="Elige el Sin Yolanda donde nos vemos." data-i18n-en="Choose the Sin Yolanda where we'll meet.">Elige el Sin Yolanda donde nos vemos.</p>
+          <a class="booking-intro-action" href="#elegir-sede" data-i18n-es="Ver sucursales" data-i18n-en="See locations">Ver sucursales</a>
         </div>
       </section>
 
       <section class="booking-result" id="reserva" aria-label="Reserva de la sucursal elegida" hidden>
-        <div class="booking-result-top"><h1 data-booking-result-title>Tu mesa en</h1><a href="/reservar#elegir-sede" data-i18n-es="Cambiar sucursal" data-i18n-en="Choose another location">Cambiar sucursal</a></div>
+        <div class="booking-result-top">
+          <div class="booking-result-photo" data-booking-result-photo aria-hidden="true"></div>
+          <div class="booking-result-heading"><p data-i18n-es="Reserva en" data-i18n-en="Book at">Reserva en</p><h1 data-booking-result-title>Sucursal</h1><a href="/reservar#elegir-sede" data-i18n-es="Cambiar sucursal" data-i18n-en="Choose another location">Cambiar sucursal</a></div>
+        </div>
         <div class="booking-result-content" data-booking-result-content></div>
       </section>
 
       <section class="booking-picker" id="elegir-sede" aria-labelledby="booking-picker-title">
         <div class="booking-picker-heading">
-          <h2 id="booking-picker-title" data-i18n-es="¿Dónde nos vemos?" data-i18n-en="Where should we meet?">¿Dónde nos vemos?</h2>
+          <h2 id="booking-picker-title" data-i18n-es="Elige tu sucursal." data-i18n-en="Choose your location.">Elige tu sucursal.</h2>
+          <p data-i18n-es="Elige una sede para ver cómo reservar." data-i18n-en="Choose a location to see how to book.">Elige una sede para ver cómo reservar.</p>
         </div>
-        <div class="booking-countries" role="group" aria-label="Elegir país">
-          <button class="booking-country" type="button" data-booking-country="mx" aria-controls="booking-mx" aria-expanded="false">
-            <span data-i18n-es="México" data-i18n-en="Mexico">México</span><small data-i18n-es="1 sucursal" data-i18n-en="1 location">1 sucursal</small><span class="booking-country-arrow" aria-hidden="true">↗</span>
+        <div class="booking-countries" role="group" aria-label="Filtrar sucursales por país">
+          <button class="booking-country" type="button" data-booking-country="all" aria-controls="booking-mx booking-us" aria-pressed="true">
+            <span data-i18n-es="Todas" data-i18n-en="All">Todas</span><small>5</small>
           </button>
-          <button class="booking-country" type="button" data-booking-country="us" aria-controls="booking-us" aria-expanded="false">
-            <span data-i18n-es="Estados Unidos" data-i18n-en="United States">Estados Unidos</span><small data-i18n-es="4 sucursales" data-i18n-en="4 locations">4 sucursales</small><span class="booking-country-arrow" aria-hidden="true">↗</span>
+          <button class="booking-country" type="button" data-booking-country="mx" aria-controls="booking-mx" aria-pressed="false">
+            <span data-i18n-es="México" data-i18n-en="Mexico">México</span><small>1</small>
+          </button>
+          <button class="booking-country" type="button" data-booking-country="us" aria-controls="booking-us" aria-pressed="false">
+            <span data-i18n-es="Estados Unidos" data-i18n-en="United States">Estados Unidos</span><small>4</small>
           </button>
         </div>
 
@@ -106,7 +113,7 @@
 
     <footer class="booking-footer"><a href="/" aria-label="Sin Yolanda, inicio"><img src="/assets/media/brand-logo-gdl.png" alt="Sin Yolanda" width="240" height="64" loading="lazy" /></a><div><a href="/locations" data-i18n-es="Todas las sucursales" data-i18n-en="All locations">Todas las sucursales</a><a href="/aviso-de-privacidad" data-i18n-es="Privacidad" data-i18n-en="Privacy">Privacidad</a></div><p data-i18n-es="OpenTable en Texas · Solicitud por WhatsApp en Guadalajara" data-i18n-en="OpenTable in Texas · WhatsApp requests in Guadalajara">OpenTable en Texas · Solicitud por WhatsApp en Guadalajara</p></footer>
     <script src="/assets/js/i18n.js?v=20261026-approved-update"></script>
-    <script type="module" src="/assets/js/reservar.js?v=20261116-experience"></script>
+    <script type="module" src="/assets/js/reservar.js?v=20261116-production-look"></script>
     <script defer src="/assets/js/ga4-consent.js?v=20261116-reservas-review"></script>
   </body>
 </html>

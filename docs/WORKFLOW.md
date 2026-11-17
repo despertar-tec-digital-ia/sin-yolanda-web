@@ -9,6 +9,9 @@ Guadalajara. El RID y enlace externo de Texas salen del registro editorial
 publicada. Ninguna fecha/hora del widget se presenta como disponibilidad confirmada por nosotros.
 El selector tiene portada y tarjetas con fotografía aprobada, tipografía y colores de Sin Yolanda;
 una URL de sede muestra el formulario al inicio y deja el selector disponible más abajo.
+La portada compacta coloca el país cerca del primer vistazo en móvil; a 320 px los países
+se apilan para conservar texto y áreas táctiles legibles, y en tablet el titular queda
+fuera de los rostros. El desplazamiento tras elegir país respeta movimiento reducido.
 Houston ya tenía un formulario individual en su ficha: esta ruta agrega la elección común,
 pero reutiliza el mecanismo de cada RID. El [widget multirrestaurante de OpenTable](https://support.opentable.com/s/article/How-do-I-install-the-reservation-widget-to-take-reservations-on-my-website-and-Facebook?language=en_US) es
 una opción aparte que requiere configurarse y generar código en la cuenta; no se atribuye

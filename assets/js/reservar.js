@@ -15,7 +15,7 @@ function selectCountry(country, focusRegion = false) {
     const heading = regions.find(region => region.dataset.bookingRegion === country)?.querySelector('h3');
     heading?.setAttribute('tabindex', '-1');
     heading?.focus({preventScroll: true});
-    heading?.scrollIntoView({block: 'start', behavior: 'smooth'});
+    heading?.scrollIntoView({block: 'start', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
   }
 }
 
@@ -84,6 +84,10 @@ function initNavigation() {
 
 async function init() {
   initNavigation();
+  if (currentLanguage() === 'en') {
+    document.querySelector('.booking-countries')?.setAttribute('aria-label', 'Choose a country');
+    result?.setAttribute('aria-label', 'Booking for the selected location');
+  }
   // Card links point to the providers in the HTML, so they also work without JS.
   // Once enhanced, a fresh page loads the selected branch's inline channel.
   for (const choice of choices) {

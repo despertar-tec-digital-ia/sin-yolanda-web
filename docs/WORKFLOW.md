@@ -1,5 +1,35 @@
 # Forma de trabajar y publicar
 
+### Reservas multisucursal · selector de marca y reserva enfocada · 17-nov-2026
+
+La revisión local de `/reservar` toma del [selector grupal de Sala de Despecho](https://www.covermanager.com/reservation/module_group/sala-de-despecho/spanish)
+la secuencia país → sede → reserva, adaptada a las cinco sucursales y los dos
+proveedores reales de Sin Yolanda. Todas las sedes abiertas siguen visibles al
+entrar desde una futura cuenta social unificada; el país es un filtro opcional.
+La portada y el paso «Elige tu sucursal» usan la tipografía, naranja y fotografías
+de marca. La cabecera, su CTA y el pie reutilizan los estilos públicos del sitio.
+Las tarjetas abiertas crecen a dos columnas en escritorio para leer mejor los
+nombres, fotos y acciones. Se quitaron las etiquetas de proveedor de cada tarjeta
+y el texto explicativo pedido por Luis.
+
+Ciudad Juárez, San Diego y Moreno Valley recuperan fotografías de ambiente ya
+versionadas en el sitio; una nota visible aclara que no representan las sedes
+futuras y que aún no aceptan reservas. Ciudad Juárez conserva solo su enlace
+informativo. Al elegir una sucursal, la vista muestra su fotografía y su canal
+oficial, y oculta el selector para concentrar la acción; «Cambiar sucursal» vuelve
+a la entrada común. OpenTable conserva sus cuatro RID y Guadalajara su WhatsApp
+oficial. Sin JavaScript, los enlaces de las cinco tarjetas siguen abriendo sus
+proveedores directamente.
+
+La ruta permanece `noindex,nofollow` y fuera del manifiesto productivo. El paquete
+mínimo de preview incluye ahora las tres fotos de ambiente utilizadas. Es una
+candidata local en PR #69; no cambia el preview público ni el sitio oficial.
+QA en navegador a 320, 390, 768 y 1440 px: fotografías decodificadas, sin
+desbordamiento, filtros 5+3 correctos, cambio de sucursal, idioma inglés, enlace
+WhatsApp y SVG correctos, fallback sin JavaScript y widget Houston `embedded`.
+No se envió una reserva. `npm run check` pasó 496 pruebas y `npm run build`
+conservó los 401 archivos productivos existentes.
+
 ### Reservas multisucursal · nueva portada de Drive · 17-nov-2026
 
 Luis pidió otra fotografía de Drive para la portada local de `/reservar`. Se eligió

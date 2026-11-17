@@ -9,7 +9,9 @@ no enlazan a páginas inexistentes. Sus imágenes son de ambiente, no de las sed
 `?sucursal=guadalajara`
 solicita mesa mediante el WhatsApp oficial de la ficha; los parámetros `?sucursal=` de
 San Antonio, The Woodlands, Houston y El Paso abren el formulario oficial de OpenTable de
-esa sede, con enlace directo si el widget falla. Los parámetros no crean rutas canónicas
+esa sede, con enlace directo si el widget falla. Con una sede elegida, el selector
+se oculta y «Cambiar sucursal» regresa a `/reservar`; sin JavaScript, los enlaces
+de las tarjetas conducen directamente al proveedor. Los parámetros no crean rutas canónicas
 adicionales. La ruta sin parámetros es el enlace único propuesto para las futuras
 cuentas sociales unificadas; `?pais=mx|us` solo filtra inicialmente el país. La página es
 `noindex,nofollow`, conserva canonical `/reservar` y no entra en

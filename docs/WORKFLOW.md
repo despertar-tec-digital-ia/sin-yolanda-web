@@ -1,5 +1,25 @@
 # Forma de trabajar y publicar
 
+### Reservas multisucursal · próximas aperturas y QA UX/UI · 17-nov-2026
+
+El selector mantiene primero las cinco sucursales que sí tienen canal de reserva.
+Después presenta Ciudad Juárez, San Diego y Moreno Valley bajo «Próximas aperturas»,
+sin botones ni parámetros de reserva. Ciudad Juárez enlaza a su ficha publicada;
+San Diego y Moreno Valley no tienen páginas propias confirmadas. Las fotos de esta
+sección son imágenes de ambiente y se identifican como tales: no representan los
+locales futuros. Los filtros de país muestran Guadalajara + Ciudad Juárez para
+México, y las cuatro sedes de Texas + San Diego + Moreno Valley para Estados Unidos.
+Se eliminó el enlace de portada redundante y se compactó el hero para que la
+primera tarjeta reservable aparezca antes en móvil.
+
+QA local con navegador aislado a 320, 390, 768 y 1440 px: sin desbordamiento
+horizontal, sin titulares cortados lateralmente, las ocho fotografías decodifican,
+filtros operativos, cinco tarjetas reservables y tres futuras sin canal. Un
+parámetro `?sucursal=ciudad-juarez` tampoco abre resultado de reserva. Capturas
+móvil/escritorio inspeccionadas, sin enviar reserva. El paquete del PR y el
+preview público son estados distintos: el preview sigue en el corte anterior
+hasta una aprobación explícita para actualizarlo; `/reservar` oficial sigue 404.
+
 ### Reservas multisucursal · refinamiento visual local 17-nov-2026
 
 Referencia principal: [home](https://sin-yolanda.com/),

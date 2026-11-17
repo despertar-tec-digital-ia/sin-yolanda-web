@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/styles.css?v=20261008-migration-measurement" />
     <link rel="stylesheet" href="/assets/css/opentable-review.css?v=20261106-wine" />
-    <link rel="stylesheet" href="/assets/css/reservar.css?v=20261116-production-look" />
+    <link rel="stylesheet" href="/assets/css/reservar.css?v=20261117-future-locations" />
     <link rel="icon" type="image/png" href="/assets/media/favicon-gdl-32.png" />
     <link rel="apple-touch-icon" href="/assets/media/apple-touch-gdl.png?v=2" />
     <meta property="og:type" content="website" />
@@ -46,7 +46,6 @@
         <div class="booking-intro-inner">
           <h1 id="booking-title" data-i18n-es="Reserva tu mesa." data-i18n-en="Book your table.">Reserva tu mesa.</h1>
           <p class="booking-intro-copy" data-i18n-es="Elige el Sin Yolanda donde nos vemos." data-i18n-en="Choose the Sin Yolanda where we'll meet.">Elige el Sin Yolanda donde nos vemos.</p>
-          <a class="booking-intro-action" href="#elegir-sede" data-i18n-es="Ver sucursales" data-i18n-en="See locations">Ver sucursales</a>
         </div>
       </section>
 
@@ -64,14 +63,14 @@
           <p data-i18n-es="Elige una sede para ver cómo reservar." data-i18n-en="Choose a location to see how to book.">Elige una sede para ver cómo reservar.</p>
         </div>
         <div class="booking-countries" role="group" aria-label="Filtrar sucursales por país">
-          <button class="booking-country" type="button" data-booking-country="all" aria-controls="booking-mx booking-us" aria-pressed="true">
-            <span data-i18n-es="Todas" data-i18n-en="All">Todas</span><small>5</small>
+          <button class="booking-country" type="button" data-booking-country="all" aria-pressed="true">
+            <span data-i18n-es="Todas" data-i18n-en="All">Todas</span>
           </button>
-          <button class="booking-country" type="button" data-booking-country="mx" aria-controls="booking-mx" aria-pressed="false">
-            <span data-i18n-es="México" data-i18n-en="Mexico">México</span><small>1</small>
+          <button class="booking-country" type="button" data-booking-country="mx" aria-pressed="false">
+            <span data-i18n-es="México" data-i18n-en="Mexico">México</span>
           </button>
-          <button class="booking-country" type="button" data-booking-country="us" aria-controls="booking-us" aria-pressed="false">
-            <span data-i18n-es="Estados Unidos" data-i18n-en="United States">Estados Unidos</span><small>4</small>
+          <button class="booking-country" type="button" data-booking-country="us" aria-pressed="false">
+            <span data-i18n-es="Estados Unidos" data-i18n-en="United States">Estados Unidos</span>
           </button>
         </div>
 
@@ -106,6 +105,28 @@
             </article>
           </div>
         </div>
+
+        <section class="booking-upcoming" id="booking-upcoming" aria-labelledby="booking-upcoming-title">
+          <div class="booking-upcoming-heading">
+            <h2 id="booking-upcoming-title" data-i18n-es="Próximas aperturas." data-i18n-en="Coming soon.">Próximas aperturas.</h2>
+            <p data-i18n-es="Estas sedes todavía no aceptan reservas. Compartiremos los detalles cuando estén disponibles." data-i18n-en="These locations are not taking reservations yet. We'll share details when they're available.">Estas sedes todavía no aceptan reservas. Compartiremos los detalles cuando estén disponibles.</p>
+          </div>
+          <div class="booking-upcoming-grid">
+            <article class="booking-upcoming-card" data-booking-upcoming data-country="mx">
+              <img src="/assets/media/venues/future/future-crowd-960.webp" srcset="/assets/media/venues/future/future-crowd-640.webp 640w, /assets/media/venues/future/future-crowd-960.webp 960w" sizes="(max-width: 700px) 100vw, 33vw" alt="" width="960" height="1237" loading="lazy" decoding="async" />
+              <div class="booking-upcoming-copy"><span class="booking-upcoming-status" data-i18n-es="Próximamente" data-i18n-en="Coming soon">Próximamente</span><h3>Ciudad Juárez</h3><p>Ciudad Juárez, Chihuahua</p><span class="booking-upcoming-unavailable" data-i18n-es="Reservas aún no disponibles" data-i18n-en="Reservations not available yet">Reservas aún no disponibles</span><a href="https://sin-yolanda.com/ciudad-juarez" data-i18n-es="Conoce la próxima sede" data-i18n-en="Explore this future location">Conoce la próxima sede</a></div>
+            </article>
+            <article class="booking-upcoming-card" data-booking-upcoming data-country="us">
+              <img src="/assets/media/venues/future/future-singalong-960.webp" srcset="/assets/media/venues/future/future-singalong-640.webp 640w, /assets/media/venues/future/future-singalong-960.webp 960w" sizes="(max-width: 700px) 100vw, 33vw" alt="" width="960" height="1305" loading="lazy" decoding="async" />
+              <div class="booking-upcoming-copy"><span class="booking-upcoming-status" data-i18n-es="Próximamente" data-i18n-en="Coming soon">Próximamente</span><h3>San Diego</h3><p>San Diego, California</p><span class="booking-upcoming-unavailable" data-i18n-es="Reservas aún no disponibles" data-i18n-en="Reservations not available yet">Reservas aún no disponibles</span></div>
+            </article>
+            <article class="booking-upcoming-card" data-booking-upcoming data-country="us">
+              <img src="/assets/media/venues/future/future-crowd-960.webp" srcset="/assets/media/venues/future/future-crowd-640.webp 640w, /assets/media/venues/future/future-crowd-960.webp 960w" sizes="(max-width: 700px) 100vw, 33vw" alt="" width="960" height="1237" loading="lazy" decoding="async" />
+              <div class="booking-upcoming-copy"><span class="booking-upcoming-status" data-i18n-es="Próximamente" data-i18n-en="Coming soon">Próximamente</span><h3>Moreno Valley</h3><p>Moreno Valley, California</p><span class="booking-upcoming-unavailable" data-i18n-es="Reservas aún no disponibles" data-i18n-en="Reservations not available yet">Reservas aún no disponibles</span></div>
+            </article>
+          </div>
+          <p class="booking-upcoming-note" data-i18n-es="Imágenes de ambiente de Sin Yolanda; no representan las próximas sedes." data-i18n-en="Sin Yolanda atmosphere photos; they do not show the future locations.">Imágenes de ambiente de Sin Yolanda; no representan las próximas sedes.</p>
+        </section>
         <noscript><p class="booking-no-js">Los enlaces de cada tarjeta abren su canal oficial. También puedes visitar la <a href="/locations">página de tu sucursal</a>.</p></noscript>
       </section>
 
@@ -113,7 +134,7 @@
 
     <footer class="booking-footer"><a href="/" aria-label="Sin Yolanda, inicio"><img src="/assets/media/brand-logo-gdl.png" alt="Sin Yolanda" width="240" height="64" loading="lazy" /></a><div><a href="/locations" data-i18n-es="Todas las sucursales" data-i18n-en="All locations">Todas las sucursales</a><a href="/aviso-de-privacidad" data-i18n-es="Privacidad" data-i18n-en="Privacy">Privacidad</a></div><p data-i18n-es="OpenTable en Texas · Solicitud por WhatsApp en Guadalajara" data-i18n-en="OpenTable in Texas · WhatsApp requests in Guadalajara">OpenTable en Texas · Solicitud por WhatsApp en Guadalajara</p></footer>
     <script src="/assets/js/i18n.js?v=20261026-approved-update"></script>
-    <script type="module" src="/assets/js/reservar.js?v=20261116-production-look"></script>
+    <script type="module" src="/assets/js/reservar.js?v=20261117-future-locations"></script>
     <script defer src="/assets/js/ga4-consent.js?v=20261116-reservas-review"></script>
   </body>
 </html>

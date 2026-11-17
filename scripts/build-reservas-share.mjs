@@ -30,6 +30,10 @@ const assets = [
   'assets/media/hero-fiesta-real-poster.webp',
   'assets/media/venues/san-ignacio.webp',
   'assets/media/venues/the-woodlands.webp',
+  'assets/media/venues/future/future-crowd-640.webp',
+  'assets/media/venues/future/future-crowd-960.webp',
+  'assets/media/venues/future/future-singalong-640.webp',
+  'assets/media/venues/future/future-singalong-960.webp',
   'images/approved-20261026/houston-neon-800.webp',
   'images/branch-review/san-antonio-hero-800.webp',
   'images/home-20261029/el-paso.webp',
@@ -44,6 +48,9 @@ for (const branch of editorial.branches) {
 }
 assert.match(source, /data-booking-choice="guadalajara"[^>]+data-provider-url="https:\/\/wa\.me\/5213310186159"/);
 assert.equal([...source.matchAll(/data-booking-choice="/g)].length, 5);
+assert.deepEqual([...source.matchAll(/data-booking-upcoming data-country="(mx|us)"/g)].map(match => match[1]), ['mx', 'us', 'us']);
+for (const name of ['Ciudad Juárez', 'San Diego', 'Moreno Valley']) assert.ok(source.includes(`<h3>${name}</h3>`), `Missing future location ${name}`);
+assert.ok(!/sucursal=(?:ciudad-juarez|san-diego|moreno-valley)/.test(source), 'Future locations cannot open a booking channel');
 
 function replaceOnce(input, before, after) {
   assert.equal(input.split(before).length, 2, `Expected one occurrence of ${before}`);

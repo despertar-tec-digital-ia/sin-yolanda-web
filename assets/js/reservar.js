@@ -3,6 +3,7 @@
 const choices = [...document.querySelectorAll('[data-booking-choice]')];
 const countries = [...document.querySelectorAll('[data-booking-country]')];
 const regions = [...document.querySelectorAll('[data-booking-region]')];
+const upcoming = [...document.querySelectorAll('[data-booking-upcoming]')];
 const result = document.querySelector('.booking-result');
 const content = document.querySelector('[data-booking-result-content]');
 const escapeHtml = value => String(value).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;');
@@ -11,6 +12,7 @@ const currentLanguage = () => document.documentElement.lang === 'en' ? 'en' : 'e
 function selectCountry(country = 'all', focusRegion = false) {
   for (const button of countries) button.setAttribute('aria-pressed', String(button.dataset.bookingCountry === country));
   for (const region of regions) region.hidden = country !== 'all' && region.dataset.bookingRegion !== country;
+  for (const card of upcoming) card.hidden = country !== 'all' && card.dataset.country !== country;
   if (focusRegion) {
     const heading = country === 'all'
       ? document.getElementById('booking-picker-title')

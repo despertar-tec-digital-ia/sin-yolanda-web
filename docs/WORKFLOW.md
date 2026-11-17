@@ -2,6 +2,15 @@
 
 ### Selector de reservas por sede · candidato local 16-nov-2026
 
+Karina aclara que las cuentas sociales de las sucursales se unificarán y necesita
+un solo enlace de bio para reservar en cualquiera: `/reservar` es la entrada
+propuesta, sin país/sede preseleccionados. «Pool» significa acceso común, no
+disponibilidad combinada. Para enseñarle la interfaz antes de publicarla en el
+oficial, `build-reservas-share.mjs` prepara un paquete mínimo sin analítica ni
+schema para un preview aislado en el VPS; su receta y retiro a siete días viven
+en `deploy/reservas-visual-preview/README.md`. Los canales oficiales de reserva
+siguen activos en esa prueba. Publicar el preview requiere el gate de despliegue.
+
 Se preparó `/reservar` como acceso común: elección de país y sede, formulario oficial de
 OpenTable en San Antonio, The Woodlands, Houston y El Paso, y solicitud por WhatsApp en
 Guadalajara. El RID y enlace externo de Texas salen del registro editorial

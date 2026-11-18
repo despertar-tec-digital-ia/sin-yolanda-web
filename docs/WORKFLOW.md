@@ -1,5 +1,19 @@
 # Forma de trabajar y publicar
 
+### USA · horarios por sucursal confirmados por Karina · 18-nov-2026
+
+Karina solicita establecer en la página el horario actual de Houston, The Woodlands,
+San Antonio y El Paso: lunes/martes cerrado; miércoles16:00 hasta el cierre, sin hora
+final confirmada; jueves/viernes16:00–02:00; domingo12:00–21:00. Sábado12:00–02:00
+en Houston/Woodlands y16:00–02:00 en San Antonio/El Paso, siempre en hora local.
+La proyección compartida de build/scheduler y el controlador público reflejan las ocho
+ediciones ES/EN y discovery. El miércoles se muestra como «Hasta el cierre»/«Closing»;
+se omite de OpeningHoursSpecification para no inventar una hora. La invitación dominical
+indica mediodía y la caducidad editorial sigue los cierres conocidos. Se renuevan solo
+las claves de caché de horarios/i18n en el artefacto, conservando los contratos históricos.
+Guadalajara y sus excepciones permanecen intactos. Publicar mediante PR, CI y
+`release:approved`, verificando recibo y sitio servido. Google/OpenTable no se modifican.
+
 ### Guadalajara · calendario de horarios especiales · 14-nov-2026
 
 Karina solicita reflejar en la web los cinco horarios especiales de su captura de Google:

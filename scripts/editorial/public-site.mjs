@@ -9,6 +9,7 @@ import {projectApprovedBooking} from './booking-approved.mjs';
 import {projectEventMedia} from './event-media.mjs';
 import {projectApprovedPosadas} from './gdl-posadas.mjs';
 import {projectGdlSpecialHours} from './gdl-special-hours.mjs';
+import {projectCurrentUsaHours} from './current-usa-hours.mjs';
 
 export function projectPublicSite(root,options) {
   const agenda=projectAllAgendas(root,options);
@@ -21,6 +22,7 @@ export function projectPublicSite(root,options) {
   const posadas=options?.posadas===false?{files:selector.files}:projectApprovedPosadas(root,selector.files,options?.now);
   const specialHours=projectGdlSpecialHours(root,posadas.files,options?.now);
   const files=specialHours.files;
+  projectCurrentUsaHours(root,files,options?.now??new Date().toISOString());
   // Preserve the reviewed cascade: the scoped November sheet follows shared UI.
   for (const [file,html] of files) if (html.includes('href="/assets/css/november-agenda.css')) {
     const sheet=html.match(/<link rel="stylesheet" href="\/assets\/css\/november-agenda\.css[^>]*>/)?.[0];

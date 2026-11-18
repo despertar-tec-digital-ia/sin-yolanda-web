@@ -91,8 +91,8 @@ test('series group repeated contest dates, expired cards disappear, and El Paso 
   const houston = applyNovemberHtml(baseline.get('houston.html'), 'houston', 'es', now).html;
   assert.equal((houston.match(/data-agenda-series/g) || []).length, 1);
   assert.doesNotMatch(houston, /el-paso-friendsgiving-paquetes/);
-  const after = projectPublicSite(root, {now:'2026-12-04T06:00:00Z',commit}).files;
-  projectNovemberProgramming(root, after, '2026-12-04T06:00:00Z', {review:true});
+  const after = projectPublicSite(root, {now:'2026-12-04T09:00:00Z',commit}).files;
+  projectNovemberProgramming(root, after, '2026-12-04T09:00:00Z', {review:true});
   for (const [file, html] of after) if (/^(?:en\/)?(?:houston|san-antonio|the-woodlands|el-paso)/.test(file)) assert.doesNotMatch(html, /sy-november-event|sy-november-series/);
 });
 test('an already-open page reveals a scheduled card and hides it at expiry without losing the future DOM node', () => {

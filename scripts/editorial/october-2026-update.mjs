@@ -41,7 +41,8 @@ export function renderOctoberProgramming(id, language, now) {
   ];
   const nflExpiresAt = expiration(eventArtwork.nflLastDate, id);
   const nflPoster = Date.parse(now) < Date.parse(nflExpiresAt) ? `<div class="sy-nfl-poster" data-record="${id}-nfl-poster-202611" data-expires-at="${nflExpiresAt}">${renderEventPoster('nfl', language)}</div>` : '';
-  const sunday = `<article class="sy-agenda-night sy-sunday-programming" data-record="${id}-recovery-brunch-october-update">${nflPoster}<div class="sy-agenda-night-copy"><p class="sy-agenda-weekday">${english ? 'Sundays · from 11 AM' : 'Domingos · desde las 11 AM'}</p><h4>Recovery Brunch + NFL</h4><p>${english ? 'Your Sunday plan.' : 'El plan del domingo.'}</p></div></article>`;
+  const sundayTime = octoberHours.updated(id, now) ? (english ? 'Sundays · from 12 PM' : 'Domingos · desde las 12 PM') : (english ? 'Sundays · from 11 AM' : 'Domingos · desde las 11 AM');
+  const sunday = `<article class="sy-agenda-night sy-sunday-programming" data-record="${id}-recovery-brunch-october-update">${nflPoster}<div class="sy-agenda-night-copy"><p class="sy-agenda-weekday">${sundayTime}</p><h4>Recovery Brunch + NFL</h4><p>${english ? 'Your Sunday plan.' : 'El plan del domingo.'}</p></div></article>`;
   return `<section class="sy-october-programming" data-october-approval="${approvalDigest}">${dates.length ? `<section class="sy-october-dates"><h3>${english ? 'Halloween & Catrinas' : 'Halloween y Catrinas'}</h3><div class="sy-agenda-grid">${dates.join('')}</div></section>` : ''}<h3>${english ? 'Every week · from October 29' : 'Cada semana · desde el 29 de octubre'}</h3><div class="sy-agenda-weekly-grid">${weekly.map(([day, title, detail]) => `<article class="sy-agenda-night"><div><p class="sy-agenda-weekday">${day}</p><h4>${title}</h4><p>${detail}</p></div></article>`).join('')}${sunday}</div></section>`;
 }
 
@@ -68,11 +69,11 @@ export function applyOctoberHtml(html, id, language, now) {
   html = html.replace(/<p class="sy-hours-notice"[^>]*>[\s\S]*?<\/p>/g, '');
   const hoursPattern = /<div class="ve-hours"[^>]*>[\s\S]*?<\/dl>(?:<p[^>]*>[\s\S]*?<\/p>)?<\/div>/;
   const active = octoberHours.active(id, now);
-  html = html.replace(hoursPattern, block => active ? octoberHours.html(language, octoberHours.zones[id]) : block + octoberHours.notice(language));
+  html = html.replace(hoursPattern, block => active ? octoberHours.html(language, octoberHours.zones[id], id, now) : block + octoberHours.notice(language));
   if (active) html = html.replace(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g, (tag, content) => {
     const schema = JSON.parse(content);
     if (schema['@type'] !== 'Restaurant') return tag;
-    schema.openingHoursSpecification = octoberHours.specification();
+    schema.openingHoursSpecification = octoberHours.specification(id, now);
     return '<script type="application/ld+json">' + JSON.stringify(schema) + '</script>';
   });
   return html;
@@ -86,10 +87,10 @@ export function projectOctoberUpdate(root, files, now) {
       const file = language === 'es' ? id + '.html' : 'en/' + id + '/index.html';
       files.set(file, applyOctoberHtml(files.get(file) ?? readFileSync(resolve(root, file), 'utf8'), id, language, now));
     }
-    transitions.push(localInstant(approval.effectiveDate, '00:00', zone), expiration(approval.catrinas[id], id), expiration(approval.halloween.date, id), expiration(eventArtwork.nflLastDate, id));
+    transitions.push(localInstant(approval.effectiveDate, '00:00', zone), localInstant(octoberHours.updatedDate, '00:00', zone), expiration(approval.catrinas[id], id), expiration(approval.halloween.date, id), expiration(eventArtwork.nflLastDate, id));
   }
   const discovery = JSON.parse(readFileSync(resolve(root, 'discovery.json'), 'utf8'));
-  for (const branch of discovery.locations) if (octoberHours.active(branch.id, now)) branch.openingHoursSpecification = octoberHours.specification();
+  for (const branch of discovery.locations) if (octoberHours.active(branch.id, now)) branch.openingHoursSpecification = octoberHours.specification(branch.id, now);
   files.set('discovery.json', JSON.stringify(discovery, null, 2) + '\n');
   return { nextTransitionAt: transitions.filter(value => Date.parse(value) > Date.parse(now)).sort()[0] ?? null, approvalDigest };
 }

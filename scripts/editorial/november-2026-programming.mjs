@@ -6,6 +6,7 @@ import {createHash} from 'node:crypto';
 import {localInstant, nextLocalDay, resolveProgrammingClock} from './programming-clock.mjs';
 import {elementRange} from './public-agenda.mjs';
 import {escapeHtml} from './branch-agenda.mjs';
+import {octoberHours} from './october-2026-update.mjs';
 
 export const branchIds = ['houston', 'the-woodlands', 'san-antonio', 'el-paso'];
 export const config = JSON.parse(readFileSync(new URL('./november-2026-review.json', import.meta.url), 'utf8'));
@@ -17,6 +18,14 @@ const dateLabel = (date, language) => new Intl.DateTimeFormat(isEnglish(language
 export function visibilityWindow(record) {
   const endDate = record.validThrough || record.date;
   const weekday = new Date(endDate + 'T12:00:00Z').getUTCDay();
+  if (record.kind !== 'dated-promotion' && octoberHours.updated(record.branchId, localInstant(endDate, '12:00', record.timeZone))) {
+    const day = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][weekday];
+    const period = octoberHours.specification(record.branchId, localInstant(endDate, '12:00', record.timeZone))
+      .find(period => period.dayOfWeek.includes('https://schema.org/' + day) && period.opens !== period.closes);
+    if (period) return {publishFrom: resolveProgrammingClock(record.publishFrom),
+      expiresAt: localInstant(period.closes <= period.opens ? nextLocalDay(endDate) : endDate, period.closes, record.timeZone),
+      expiryBasis: 'editorial-branch-closing'};
+  }
   // Editorial expiry uses known branch closing hours, not a claimed event end time.
   // Specials on normally closed days have no inferred closing hour: use date-end.
   const clock = record.kind === 'dated-promotion' ? '00:00' : [0,5,6].includes(weekday) ? '02:00' : '00:00';

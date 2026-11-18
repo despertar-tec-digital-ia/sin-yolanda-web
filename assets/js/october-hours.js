@@ -17,21 +17,43 @@
     return ["year", "month", "day"].map(type => parts.find(p => p.type === type).value).join("-");
   }
   const active = (id, now = new Date()) => Boolean(zones[id]) && localDay(now, zones[id]) >= effectiveDate;
-  const specification = () => periods.map(p => ({ "@type": "OpeningHoursSpecification", dayOfWeek: p.days.map(day => "https://schema.org/" + day), opens: p.opens || "00:00", closes: p.closes || "00:00" }));
-  function html(language, zone) {
+  // Karina confirmed these branch-specific hours on November 18. Keep the
+  // October schedule available for historical projections and their approvals.
+  const updatedDate = "2026-11-18";
+  const updated = (id, now = new Date()) => Boolean(zones[id]) && localDay(now, zones[id]) >= updatedDate;
+  function currentPeriods(id) {
+    return [
+      { days: ["Monday", "Tuesday"], es: "Lunes y martes", en: "Monday and Tuesday", closed: true },
+      { days: ["Wednesday"], es: "Miércoles", en: "Wednesday", opens: "16:00", closes: null },
+      { days: ["Thursday", "Friday"], es: "Jueves y viernes", en: "Thursday and Friday", opens: "16:00", closes: "02:00" },
+      { days: ["Saturday"], es: "Sábado", en: "Saturday", opens: ["houston", "the-woodlands"].includes(id) ? "12:00" : "16:00", closes: "02:00" },
+      { days: ["Sunday"], es: "Domingo", en: "Sunday", opens: "12:00", closes: "21:00" }
+    ];
+  }
+  const periodsFor = (id, now) => updated(id, now) ? currentPeriods(id) : periods;
+  function summaryFor(id, language = "es", now = new Date()) {
+    if (!updated(id, now)) return summaries[language];
+    const saturday = ["houston", "the-woodlands"].includes(id) ? "12 pm" : "4 pm";
+    return language === "en"
+      ? `Mon–Tue closed · Wed 4 pm–close · Thu–Fri 4 pm–2 am · Sat ${saturday}–2 am · Sun 12 pm–9 pm`
+      : `Lun–Mar cerrado · Mié 4 pm–cierre · Jue–Vie 4 pm–2 am · Sáb ${saturday}–2 am · Dom 12 pm–9 pm`;
+  }
+  // A variable Wednesday close cannot be represented as a confirmed Time.
+  const specification = (id, now) => periodsFor(id, now).filter(p => p.closed || p.closes).map(p => ({ "@type": "OpeningHoursSpecification", dayOfWeek: p.days.map(day => "https://schema.org/" + day), opens: p.opens || "00:00", closes: p.closes || "00:00" }));
+  function html(language, zone, id, now) {
     const en = language === "en", label = clock => {
       const [h, m] = clock.split(":").map(Number);
       return `${h % 12 || 12}:${String(m).padStart(2, "0")} ${en ? (h < 12 ? "AM" : "PM") : (h < 12 ? "a. m." : "p. m.")}`;
     };
-    return `<div class="ve-hours" data-hours-zone="${zone}"><h3>${en ? "Hours" : "Horario"}</h3><dl>${periods.map(p => `<div><dt>${p[language]}</dt><dd>${p.closed ? (en ? "Closed" : "Cerrado") : `<time datetime="${p.opens}">${label(p.opens)}</time><span aria-hidden="true"> – </span><span class="ve-sr"> ${en ? "to" : "a"} </span><time datetime="${p.closes}">${label(p.closes)}</time>`}</dd></div>`).join("")}</dl><p class="ve-sr">${en ? "Local time. A 2:00 AM closing is on the following day." : "Hora local. El cierre a las 2:00 a. m. corresponde al día siguiente."}</p></div>`;
+    return `<div class="ve-hours" data-hours-zone="${zone}"><h3>${en ? "Hours" : "Horario"}</h3><dl>${periodsFor(id, now).map(p => `<div><dt>${p[language]}</dt><dd>${p.closed ? (en ? "Closed" : "Cerrado") : `<time datetime="${p.opens}">${label(p.opens)}</time><span aria-hidden="true"> – </span>${p.closes ? `<span class="ve-sr"> ${en ? "to" : "a"} </span><time datetime="${p.closes}">${label(p.closes)}</time>` : `<span>${en ? "Closing" : "Hasta el cierre"}</span>`}`}</dd></div>`).join("")}</dl><p class="ve-sr">${en ? "Local time. A 2:00 AM closing is on the following day." : "Hora local. El cierre a las 2:00 a. m. corresponde al día siguiente."}</p></div>`;
   }
   function notice(language) {
     return `<p class="sy-hours-notice" data-october-hours-notice>${language === "en" ? "New hours from October 29: " : "Nuevo horario desde el 29 de octubre: "}${summaries[language]}.</p>`;
   }
   function applyToData(data, now = new Date()) {
-    for (const branch of data.branches) if (active(branch.id, now)) branch.hours = summaries.es;
+    for (const branch of data.branches) if (active(branch.id, now)) branch.hours = summaryFor(branch.id, "es", now);
   }
-  scope.SY_OCTOBER_HOURS = { zones, effectiveDate, summaries, periods, active, specification, html, notice, applyToData };
+  scope.SY_OCTOBER_HOURS = { zones, effectiveDate, summaries, periods, active, specification, html, notice, applyToData, updatedDate, updated, summaryFor };
   if (!scope.document) return;
   function refresh() {
     scope.document.querySelectorAll("[data-october-approval] [data-expires-at]").forEach(node => {
@@ -43,14 +65,15 @@
     const id = scope.document.body.dataset.branch;
     if (active(id)) {
       const hours = scope.document.querySelector(".ve-hours");
-      if (hours && !hours.hasAttribute("data-october-active")) {
-        const wrapper = scope.document.createElement("div"); wrapper.innerHTML = html(scope.document.documentElement.lang === "en" ? "en" : "es", zones[id]);
-        wrapper.firstElementChild.setAttribute("data-october-active", ""); hours.replaceWith(wrapper.firstElementChild);
+      const version = updated(id) ? updatedDate : effectiveDate;
+      if (hours && hours.getAttribute("data-october-active") !== version) {
+        const wrapper = scope.document.createElement("div"); wrapper.innerHTML = html(scope.document.documentElement.lang === "en" ? "en" : "es", zones[id], id);
+        wrapper.firstElementChild.setAttribute("data-october-active", version); hours.replaceWith(wrapper.firstElementChild);
       }
       scope.document.querySelectorAll("[data-october-hours-notice]").forEach(node => node.remove());
       scope.document.querySelectorAll('script[type="application/ld+json"]').forEach(node => {
         const value = JSON.parse(node.textContent);
-        if (value["@type"] === "Restaurant") { value.openingHoursSpecification = specification(); node.textContent = JSON.stringify(value); }
+        if (value["@type"] === "Restaurant") { value.openingHoursSpecification = specification(id); node.textContent = JSON.stringify(value); }
       });
     }
     if (scope.SY_DATA) applyToData(scope.SY_DATA);

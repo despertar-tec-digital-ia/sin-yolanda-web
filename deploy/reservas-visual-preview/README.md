@@ -6,7 +6,35 @@ El preview no publica `/reservar` en `sin-yolanda.com`, no modifica cuentas soci
 OpenTable, WhatsApp, DNS propio ni otros servicios. Host único:
 `https://reservas-demo-sy.187.77.220.209.sslip.io/reservar`.
 
-**Estado vigente · identidad de producción, 19-nov-2026:** Luis pide rehacer la entrada
+**Estado vigente · base oscura recuperada, 19-nov-2026:** Luis aprueba el header y footer,
+pero pide partir del diseño anterior para el contenido. Fuente
+`a9983789333b656fb042c54f119d7f03b86c90ed`, paquete26archivos
+`reservas-share-dark-final-20261119`. CSS del contenido recuperado del corte2349455:
+fondo#1c1c1b, tarjetas redondeadas, CTA naranja y subrayado animado de país. Se conserva la
+tipografía Roboto Slab/Bebas; el subrayado respeta movimiento reducido también en pseudoelementos.
+La ficha vuelve a su composición de foto y título unidos, con contorno18px, foto más amplia y
+mayor altura móvil para evitar el recorte anterior. El cambio de sucursal conserva el país.
+Header/footer tienen marcado idéntico al corteef3d8ba y sus estilos compartidos no cambian;
+se mantiene el mismo fondo de cabecera independientemente del nuevo fondo del contenido.
+JS, cuatro RIDs, WhatsApp/SVG, fotos futuras, «Reserva ya», sin portada y ordenUS/MX/Todas intactos.
+
+496pruebas/build401 y [CI44638660613](https://github.com/despertar-tec-digital-ia/sin-yolanda-web/actions/runs/44638660613)
+correctos. Brave aislado local320/390/768/1024/1440 y público390/1440, fondos computados,
+ES/EN, filtros, subrayado animado/movimiento reducido, vuelta aMX y enlaces sinJS comprobados.
+Houston `embedded` y calendario278px dentro de320px; sin reserva enviada.
+Preflight con Nginx real aislado:25hashesHTTP200 antes de activar. No se repitió la prueba
+negativa de rutas ya acreditada en el corteef3d8ba: configuración y preflight sin cambios.
+Después,26hashesHTTPS, healthy/Nginx/TLS/noindex/no-store/POST405 correctos;49otrosIDs y timer
+24-nov01:39:24UTC intactos. Tres respuestas oficiales403idénticas desde VPS: sin contenido
+revalidado ni release al dominio oficial.
+
+Respaldo `.artifacts/before-dark-refinement.bak-20261119T233447Z/`, con antes/después,
+Compose/configuración anteriores y preflight. Rollback inmediato `reservas-share-production-current-20261119`
+(ef3d8ba) comprobado íntegro antes de activar. Evidencia/paquetes con manifiesto en
+`clientes-assets/sin-yolanda/reservas-dark-refinement-2026-11-19/` del workspace DDTIA.
+PR69 sigue borrador en conflicto con main; conciliar antes de promover al dominio oficial.
+
+**Antecedente · identidad de producción, 19-nov-2026:** Luis pide rehacer la entrada
 con el diseño de las páginas actuales de sucursal, incluido header y footer. Fuente
 `ef3d8ba28bd9488edc8df9bfa9e7759800210b37`, artefacto
 `reservas-share-production-current-20261119` (26 archivos). Se reutilizan sin modificar el

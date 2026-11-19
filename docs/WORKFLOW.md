@@ -1,5 +1,18 @@
 # Forma de trabajar y publicar
 
+### Reservas19-nov · partir de la base oscura y conservar el shell aprobado
+
+Fuentea998378/PR69, paquete26archivos `reservas-share-dark-final-20261119`. Contenido restaurado
+sobre2349455: fondo oscuro, tarjetas redondeadas y país con subrayado naranja animado. Conservar
+header/footer actuales, Roboto Slab/Bebas, «Reserva ya», sin portada, US/MX/Todas y canales reales.
+Ficha con foto/título unidos, bordes suaves y mejor altura de imagen móvil. Movimiento reducido
+aplicado también al subrayado. JS, RIDs, fotos y fundamentos compartidos sin cambios.
+
+496pruebas/build/CI44638660613, QA local320–1440 y público390/1440, filtros, ES/EN, vuelta al país,
+WhatsApp y calendarioHouston320px pasan sin enviar reservas. PreflightNginx25hashes200 y
+smokeHTTPS26hashes/health/Nginx/noindex/no-store correctos;49otrosIDs/timer intactos. Oficial403
+sin contenido revalidado ni publicación. Operación/rollback/evidencia: runbook del preview.
+
 ### Reservas19-nov · header, footer e identidad de las sucursales actuales
 
 Luis pide reemplazar el shell antiguo por el diseño compartido de las fichas de producción.

@@ -1,5 +1,20 @@
 # Forma de trabajar y publicar
 
+### Reservas19-nov · header, footer e identidad de las sucursales actuales
+
+Luis pide reemplazar el shell antiguo por el diseño compartido de las fichas de producción.
+Fuenteef3d8ba, paquete26archivos `reservas-share-production-current-20261119`, PR69 borrador.
+Reutilizar CSS de hh-header/BranchFooter, logo blanco, Roboto Slab/Bebas y manos del footer;
+siete recursos coinciden con producción. Conservar tarjetas, «Reserva ya», entrada sin
+portada, US/MX/Todas y los cinco canales reales. Footer adaptado al grupo, sin datos de Houston.
+
+496pruebas/build/CI44607063079; QA local320–1440px, público390/1440px, ES/EN, filtros, WhatsApp
+y calendario Houston320px correctos. Sin reserva enviada. Tras detectar y revertir el primer
+ensayo con CSS bloqueado por Nginx, se añadió un preflight con el mismo servidor aislado:
+rechaza el fixture anterior y coteja25recursos200 antes de activar. Smoke público26hashes,
+salud/Nginx/noindex/no-store,49otrosIDs y timer intactos. Oficial403desdeVPS: contenido no
+revalidado, sin release oficial. Runbook y recibo: `deploy/reservas-visual-preview/README.md`.
+
 ### Reservas19-nov · diseño anterior restaurado por Luis
 
 Fuente2349455/PR69. Se recuperan las tarjetas fotográficas y el diseño del18-nov; se conservan

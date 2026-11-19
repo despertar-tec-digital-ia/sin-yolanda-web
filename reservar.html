@@ -3,17 +3,17 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#1c1c1b" />
+    <meta name="theme-color" content="#8b1820" />
     <title>Reserva tu mesa | Sin Yolanda</title>
     <meta name="description" content="Elige tu sucursal Sin Yolanda para reservar en Texas con OpenTable o solicitar mesa en Guadalajara por WhatsApp." />
     <meta name="robots" content="noindex,nofollow">
     <link rel="canonical" href="https://sin-yolanda.com/reservar" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/styles.css?v=20261008-migration-measurement" />
+    <link rel="preload" href="/fonts/bebas-neue-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/roboto-slab-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/_astro/houston-hero-study.JylKseCc.css" />
+    <link rel="stylesheet" href="/_astro/BranchFooter.4SmD_LYs.css" />
     <link rel="stylesheet" href="/assets/css/opentable-review.css?v=20261106-wine" />
-    <link rel="stylesheet" href="/assets/css/reservar.css?v=20261119-restore-cards" />
+    <link rel="stylesheet" href="/assets/css/reservar.css?v=20261119-production-shell" />
     <link rel="icon" type="image/png" href="/assets/media/favicon-gdl-32.png" />
     <link rel="apple-touch-icon" href="/assets/media/apple-touch-gdl.png?v=2" />
     <meta property="og:type" content="website" />
@@ -21,22 +21,22 @@
     <meta property="og:title" content="Reserva tu mesa | Sin Yolanda" />
     <meta property="og:description" content="Elige tu sucursal para reservar en Texas o solicitar mesa en Guadalajara." />
     <meta property="og:url" content="https://sin-yolanda.com/reservar" />
-    <meta property="og:image" content="https://sin-yolanda.com/assets/media/brand-logo-gdl.png" />
+    <meta property="og:image" content="https://sin-yolanda.com/images/sin-yolanda-logo.png" />
     <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://sin-yolanda.com/reservar#webpage","url":"https://sin-yolanda.com/reservar","name":"Reserva tu mesa | Sin Yolanda","description":"Elige tu sucursal para reservar en Texas o solicitar mesa en Guadalajara.","inLanguage":"es","isPartOf":{"@id":"https://sin-yolanda.com/#website"},"breadcrumb":{"@id":"https://sin-yolanda.com/reservar#breadcrumb"}},{"@type":"BreadcrumbList","@id":"https://sin-yolanda.com/reservar#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Sin Yolanda","item":"https://sin-yolanda.com/"},{"@type":"ListItem","position":2,"name":"Reservar","item":"https://sin-yolanda.com/reservar"}]}]}</script>
     <script defer src="/assets/js/site-measurement.js?v=20261116-reservas-review"></script>
     <link rel="stylesheet" href="/assets/css/ga4-consent.css?v=20261016-ga4-simple-choice" />
   </head>
-  <body class="booking-hub" data-page="reservar">
+  <body class="houston-hero-study direction-cantina booking-hub" data-page="reservar">
     <a class="booking-skip" href="#contenido" data-i18n-es="Saltar al contenido" data-i18n-en="Skip to content">Saltar al contenido</a>
-    <header class="public-header booking-header">
-      <a class="brand" href="/" aria-label="Sin Yolanda, inicio"><img src="/assets/media/brand-logo-gdl.png" alt="Sin Yolanda" width="240" height="64" /></a>
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="public-nav">Menú</button>
-      <nav id="public-nav" class="public-nav" aria-label="Navegación principal">
-        <a href="/locations" data-i18n-es="Ubicaciones" data-i18n-en="Locations">Ubicaciones</a>
-        <a href="/catering">Catering</a>
-        <a href="/la-cantina" data-i18n-es="La Cantina" data-i18n-en="The Cantina">La Cantina</a>
-        <a href="/eventos" data-i18n-es="Eventos" data-i18n-en="Events">Eventos</a>
-        <a class="nav-cta" href="/reservar" aria-current="page" data-i18n-es="Reservar mesa" data-i18n-en="Book a table">Reservar mesa</a>
+    <header class="hh-header booking-header">
+      <a class="hh-brand" href="/" aria-label="Sin Yolanda, inicio"><img src="/images/sin-yolanda-logo.png" width="220" height="66" alt="Sin Yolanda" /></a>
+      <nav aria-label="Navegación principal">
+        <a class="booking-nav-secondary" href="/catering" data-i18n-href-es="/catering" data-i18n-href-en="/en/catering/">Catering</a>
+        <a class="booking-nav-secondary" href="/la-cantina" data-i18n-es="La Cantina" data-i18n-en="The Cantina">La Cantina</a>
+        <a class="booking-nav-secondary" href="/eventos" data-i18n-es="Eventos" data-i18n-en="Events">Eventos</a>
+        <a class="hh-nav-locations" href="/locations"><span data-i18n-es="Sucursales" data-i18n-en="Locations">Sucursales</span><svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M2 2h5v5H2zM13 2h5v5h-5zM2 13h5v5H2zM13 13h5v5h-5z" /></svg></a>
+        <a class="booking-nav-current" href="/reservar" aria-current="page" data-i18n-es="Reservas" data-i18n-en="Reservations">Reservas</a>
+        <div class="lang-toggle booking-language" role="group" aria-label="Language / Idioma"><button type="button" data-lang-btn="en" aria-label="View in English">EN</button><button type="button" data-lang-btn="es" aria-label="Ver en español">ES</button></div>
       </nav>
     </header>
 
@@ -44,18 +44,17 @@
       <section class="booking-result" id="reserva" aria-label="Reserva de la sucursal elegida" hidden>
         <div class="booking-result-top">
           <div class="booking-result-photo" data-booking-result-photo aria-hidden="true"></div>
-          <div class="booking-result-heading"><p data-i18n-es="TU SIN YOLANDA" data-i18n-en="YOUR SIN YOLANDA">TU SIN YOLANDA</p><h1 id="booking-result-title" data-booking-result-title>Sucursal</h1><a href="/reservar#elegir-sede" data-i18n-es="Cambiar sucursal" data-i18n-en="Choose another location">Cambiar sucursal</a></div>
+          <div class="booking-result-heading"><h1 id="booking-result-title" data-booking-result-title>Sucursal</h1><a href="/reservar#elegir-sede" data-i18n-es="Cambiar sucursal" data-i18n-en="Choose another location">Cambiar sucursal</a></div>
         </div>
         <div class="booking-result-content" data-booking-result-content></div>
       </section>
 
       <section class="booking-picker" id="elegir-sede" aria-labelledby="booking-picker-title">
         <div class="booking-picker-heading">
-          <span class="booking-step" aria-hidden="true">01</span>
-          <div><p class="booking-eyebrow" data-i18n-es="DONDE NOS VEMOS" data-i18n-en="WHERE WE'LL MEET">DONDE NOS VEMOS</p><h1 id="booking-picker-title" data-i18n-es="Elige tu sucursal." data-i18n-en="Choose your location.">Elige tu sucursal.</h1></div>
+          <div><h1 id="booking-picker-title" data-i18n-es="Elige tu sucursal." data-i18n-en="Choose your location.">Elige tu sucursal.</h1></div>
         </div>
         <div class="booking-filter-block">
-          <p class="booking-country-label" data-i18n-es="Explora por país" data-i18n-en="Explore by country">Explora por país</p>
+          <p class="booking-country-label" data-i18n-es="Elige país" data-i18n-en="Choose a country">Elige país</p>
           <div class="booking-countries" role="group" aria-label="Filtrar sucursales por país">
             <button class="booking-country" type="button" data-booking-country="us" aria-pressed="false">
               <span data-i18n-es="Estados Unidos" data-i18n-en="United States">Estados Unidos</span>
@@ -126,9 +125,17 @@
 
     </main>
 
-    <footer class="public-footer booking-footer"><div><a href="/" aria-label="Sin Yolanda, inicio"><img src="/assets/media/brand-logo-gdl.png" alt="Sin Yolanda" width="240" height="64" loading="lazy" /></a><p data-i18n-es="Una marca que vive en cada ciudad: México y Estados Unidos." data-i18n-en="One brand across cities in Mexico and the United States.">Una marca que vive en cada ciudad: México y Estados Unidos.</p></div><div><strong data-i18n-es="Explora" data-i18n-en="Explore">Explora</strong><a href="/locations" data-i18n-es="Todas las sucursales" data-i18n-en="All locations">Todas las sucursales</a><a href="/la-cantina" data-i18n-es="La Cantina" data-i18n-en="The Cantina">La Cantina</a><a href="/eventos" data-i18n-es="Eventos" data-i18n-en="Events">Eventos</a></div><div><strong data-i18n-es="Tu visita" data-i18n-en="Your visit">Tu visita</strong><a href="/reservar#elegir-sede" data-i18n-es="Elegir sucursal" data-i18n-en="Choose a location">Elegir sucursal</a><a href="/aviso-de-privacidad" data-i18n-es="Aviso de privacidad" data-i18n-en="Privacy notice">Aviso de privacidad</a></div></footer>
+    <footer class="branch-footer branch-footer--with-art branch-footer--with-ambience booking-footer" style="--local-brand:#8b1820;--local-accent:#ead3d6;--local-surface:#fff4de;--local-ink:#30201c;--local-onBrand:#fff4de">
+      <img class="bf-ambience" src="/assets/media/karaoke.webp" width="1200" height="800" loading="lazy" alt="" aria-hidden="true" />
+      <div class="bf-main">
+        <div class="bf-identity"><a class="bf-logo" href="/" aria-label="Sin Yolanda, inicio"><img src="/images/sin-yolanda-logo.png" width="300" height="75" alt="Sin Yolanda" loading="lazy" /></a><p class="bf-place" data-i18n-es="Nos vemos." data-i18n-en="See you.">Nos vemos.</p><p class="booking-footer-countries" data-i18n-es="México y Estados Unidos" data-i18n-en="Mexico and the United States">México y Estados Unidos</p></div>
+        <img class="bf-artwork" src="/images/houston-hands.webp" width="720" height="926" loading="lazy" alt="" aria-hidden="true" />
+        <div class="bf-navigation"><a class="bf-book" href="/reservar#elegir-sede"><span data-i18n-es="Elegir sucursal" data-i18n-en="Choose a location">Elegir sucursal</span><svg viewBox="0 0 24 24" width="25" height="25" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" /></svg></a><nav aria-label="Explora Sin Yolanda"><a href="/locations"><span data-i18n-es="Todas las sucursales" data-i18n-en="All locations">Todas las sucursales</span><span aria-hidden="true">›</span></a><a href="/catering" data-i18n-href-es="/catering" data-i18n-href-en="/en/catering/"><span>Catering</span><span aria-hidden="true">›</span></a><a href="/eventos"><span data-i18n-es="Eventos" data-i18n-en="Events">Eventos</span><span aria-hidden="true">›</span></a></nav></div>
+      </div>
+      <div class="bf-bottom"><div class="bf-bottom-meta"><span>© 2026 Sin Yolanda</span><a href="/aviso-de-privacidad" data-i18n-es="Aviso de privacidad" data-i18n-en="Privacy notice">Aviso de privacidad</a></div><a href="/la-cantina" data-i18n-es="La Cantina" data-i18n-en="The Cantina">La Cantina</a></div>
+    </footer>
     <script src="/assets/js/i18n.js?v=20261026-approved-update"></script>
-    <script type="module" src="/assets/js/reservar.js?v=20261119-restore-cards"></script>
+    <script type="module" src="/assets/js/reservar.js?v=20261119-production-shell"></script>
     <script defer src="/assets/js/ga4-consent.js?v=20261116-reservas-review"></script>
   </body>
 </html>

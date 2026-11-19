@@ -18,7 +18,13 @@ const host = 'https://reservas-demo-sy.187.77.220.209.sslip.io';
 const publicRoot = resolve(artifact, 'public');
 
 const assets = [
-  'styles.css',
+  '_astro/houston-hero-study.JylKseCc.css',
+  '_astro/BranchFooter.4SmD_LYs.css',
+  'fonts/roboto-slab-400.woff2',
+  'fonts/roboto-slab-700.woff2',
+  'images/sin-yolanda-logo.png',
+  'images/houston-hands.webp',
+  'images/houston-entry-study/toast-600.webp',
   'assets/css/opentable-review.css',
   'assets/css/reservar.css',
   'assets/js/i18n.js',
@@ -26,7 +32,6 @@ const assets = [
   'assets/js/opentable-review.js',
   'assets/media/apple-touch-gdl.png',
   'assets/media/favicon-gdl-32.png',
-  'assets/media/brand-logo-gdl.png',
   'assets/media/karaoke.webp',
   'assets/media/venues/san-ignacio.webp',
   'assets/media/venues/future/future-crowd-640.webp',
@@ -58,8 +63,8 @@ function replaceOnce(input, before, after) {
 let page = source;
 page = replaceOnce(page, '<meta property="og:url" content="https://sin-yolanda.com/reservar" />',
   `<meta property="og:url" content="${host}/reservar" />`);
-page = replaceOnce(page, '<meta property="og:image" content="https://sin-yolanda.com/assets/media/brand-logo-gdl.png" />',
-  `<meta property="og:image" content="${host}/assets/media/brand-logo-gdl.png" />`);
+page = replaceOnce(page, '<meta property="og:image" content="https://sin-yolanda.com/images/sin-yolanda-logo.png" />',
+  `<meta property="og:image" content="${host}/images/sin-yolanda-logo.png" />`);
 page = page.replace(/\s*<script defer src="\/assets\/js\/site-measurement\.js[^\"]*"><\/script>/, '');
 page = page.replace(/\s*<link rel="stylesheet" href="\/assets\/css\/ga4-consent\.css[^\"]*" \/>/, '');
 page = page.replace(/\s*<script defer src="\/assets\/js\/ga4-consent\.js[^\"]*"><\/script>/, '');
@@ -68,7 +73,11 @@ for (const path of ['/locations', '/catering', '/la-cantina', '/eventos', '/avis
   assert.ok(page.includes(`href="${path}"`), `Missing navigation link ${path}`);
   page = page.replaceAll(`href="${path}"`, `href="https://sin-yolanda.com${path}"`);
 }
-page = page.replaceAll('href="/"', 'href="/reservar"');
+for (const path of ['/catering', '/en/catering/']) {
+  for (const attribute of ['data-i18n-href-es', 'data-i18n-href-en']) page = page.replaceAll(`${attribute}="${path}"`, `${attribute}="https://sin-yolanda.com${path}"`);
+}
+// The current shared brand always links home, including on the isolated review host.
+page = page.replaceAll('href="/"', 'href="https://sin-yolanda.com/"');
 page = page.replace(/data-branch-page="\/(guadalajara|san-antonio|the-woodlands|houston|el-paso)"/g,
   (_, slug) => `data-branch-page="https://sin-yolanda.com/${slug}"`);
 assert.equal([...page.matchAll(/data-branch-page="https:\/\/sin-yolanda\.com\//g)].length, 5);

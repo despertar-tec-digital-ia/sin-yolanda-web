@@ -72,23 +72,9 @@ async function renderOpenTable(choice, language) {
 }
 
 function initNavigation() {
-  const toggle = document.querySelector('.booking-header .menu-toggle');
-  const nav = document.getElementById('public-nav');
-  toggle?.addEventListener('click', () => {
-    const opened = toggle.getAttribute('aria-expanded') !== 'true';
-    toggle.setAttribute('aria-expanded', String(opened));
-    nav?.classList.toggle('open', opened);
-  });
-  nav?.addEventListener('click', event => {
-    if (!event.target.closest('a')) return;
-    nav.classList.remove('open');
-    toggle?.setAttribute('aria-expanded', 'false');
-  });
-  document.addEventListener('keydown', event => {
-    if (event.key !== 'Escape' || toggle?.getAttribute('aria-expanded') !== 'true') return;
-    nav?.classList.remove('open');
-    toggle.setAttribute('aria-expanded', 'false');
-    toggle.focus();
+  document.querySelector('.booking-language')?.addEventListener('click', event => {
+    const button = event.target.closest('[data-lang-btn]');
+    if (button) window.SY_I18N?.apply(button.dataset.langBtn);
   });
 }
 
@@ -122,6 +108,8 @@ async function init() {
     document.querySelector('[data-booking-result-photo]')?.replaceChildren(photo);
   }
   document.querySelector('[data-booking-result-title]').textContent = name;
+  const changeLink = document.querySelector('.booking-result-heading a');
+  if (changeLink) changeLink.href = `/reservar?pais=${encodeURIComponent(selected.dataset.country)}#elegir-sede`;
   if (selected.dataset.channel === 'whatsapp') renderWhatsApp(selected, language);
   else if (selected.dataset.channel === 'opentable') await renderOpenTable(selected, language);
   document.addEventListener('click', event => {

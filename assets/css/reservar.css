@@ -1,175 +1,155 @@
-@font-face {
-  font-family: SinYolandaDisplay;
-  src: url('/fonts/bebas-neue-400.woff2') format('woff2');
-  font-display: swap;
-}
-
-.booking-hub {
-  --booking-night: #1c1c1b;
-  --booking-deep: #151514;
-  --booking-wine: #3b1415;
-  --booking-orange: #e75b2b;
-  --booking-paper: #fff4de;
-  --booking-muted: #cbc5bd;
-  background: var(--booking-night);
-  color: var(--booking-paper);
-  font-family: Inter, Arial, sans-serif;
+/* Reservation entrance using the same shell, type and controls as the live branch pages.
+   Shared production foundations: houston-hero-study.JylKseCc.css / BranchFooter.4SmD_LYs.css. */
+body.booking-hub {
+  --wine: #8b1820;
+  --paper: #fff4de;
+  --rose: #ead3d6;
+  --ink: #30201c;
+  --booking-night: #240b0e;
+  --site-gutter: clamp(20px, 3.5vw, 72px);
+  background: var(--wine);
+  color: var(--paper);
+  font: 400 16px/1.5 HoustonSlab, Georgia, serif;
 }
 .booking-hub [hidden] { display: none !important; }
-.booking-hub a:focus-visible, .booking-hub button:focus-visible { outline: 3px solid var(--booking-orange); outline-offset: 4px; }
-.booking-skip { position: absolute; left: 12px; top: -80px; z-index: 100; background: var(--booking-paper); color: var(--booking-night); padding: 12px; }
+.booking-hub :is(a, button, input, select):focus-visible { outline: 3px solid currentColor; outline-offset: 5px; }
+.booking-hub :is(button, input, select) { font: inherit; }
+.booking-hub button { cursor: pointer; }
+.booking-skip { position: fixed; left: 16px; top: -100px; z-index: 100; padding: 12px 18px; background: var(--paper); color: var(--wine); }
 .booking-skip:focus { top: 12px; }
 
-.booking-hub[data-booking-selected=true] .booking-result:not([hidden]) + .booking-picker { display: none; }
+/* Use the settled navigation state of the live branch header on a page without a hero. */
+.booking-hub .booking-header { position: sticky; inset: 0 0 auto; z-index: 40; max-width: none; min-height: 70px; padding: 12px var(--site-gutter); background: var(--booking-night); color: var(--paper); border-bottom: 1px solid #fff4de33; }
+.booking-header .hh-brand { width: 182px; }
+.booking-hub .booking-header .hh-brand img { filter: brightness(0) invert(1); }
+.booking-header nav { align-items: center; }
+.booking-header nav .hh-nav-locations { gap: 10px; }
+.booking-header .hh-nav-locations svg { flex: none; }
+.booking-header .booking-nav-current { text-decoration: underline; text-underline-offset: 7px; }
+.booking-language { display: none; }
+.booking-hub[data-booking-enhanced=true] .booking-language { display: flex; }
+.booking-language button { display: inline-flex; align-items: center; justify-content: center; width: 44px; min-height: 44px; padding: 0; border: 1px solid #fff4de8c; border-radius: 0; background: none; color: inherit; font: 700 13px/1 HoustonSlab, Georgia, serif; }
+html[lang=es] .booking-language [data-lang-btn=es], html[lang=en] .booking-language [data-lang-btn=en] { display: none; }
+.booking-language button:hover { background: var(--paper); color: var(--wine); }
 
-.booking-result { background: linear-gradient(180deg, #271817, var(--booking-night) 72%); padding: 28px clamp(24px, 5vw, 80px) 60px; }
-.booking-result > * { max-width: 1288px; margin-inline: auto; }
-.booking-result-top { display: grid; grid-template-columns: minmax(240px, 42%) 1fr; min-height: 250px; overflow: hidden; border-top: 4px solid var(--booking-orange); border-radius: 12px; background: var(--booking-deep); }
-.booking-result-photo { position: relative; min-height: 250px; background: #2b2320; }
-.booking-result-photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent 60%, #15151490); }
-.booking-result-photo img { display: block; width: 100%; height: 100%; position: absolute; inset: 0; object-fit: cover; object-position: center 42%; }
-.booking-result-heading { align-self: center; padding: 30px clamp(28px, 4vw, 65px); }
-.booking-result-heading p { margin: 0 0 11px; color: #ffb78f; font-size: 11px; font-weight: 800; letter-spacing: .18em; }
-.booking-result-heading h1 { margin: 0 0 15px; font: 400 clamp(58px, 7vw, 100px)/.86 SinYolandaDisplay, Impact, sans-serif; text-transform: uppercase; text-wrap: balance; }
-.booking-result-heading a { display: inline-flex; align-items: center; min-height: 44px; padding: 8px 16px; border: 1px solid #a58c81; border-radius: 999px; color: var(--booking-paper); text-decoration: none; font-size: 13px; font-weight: 700; }
-.booking-result-heading a:hover { border-color: var(--booking-paper); background: #ffffff18; }
-.booking-result-content { margin-top: 20px; }
-.booking-result .sy-booking { border: 0; min-height: 210px; }
-.booking-result .sy-booking h2 { font: 400 clamp(48px, 5vw, 72px)/.9 SinYolandaDisplay, Impact, sans-serif; text-transform: uppercase; }
-.booking-result .sy-booking-foot, .booking-result .sy-booking-status { font-family: Inter, Arial, sans-serif; }
-.booking-result .sy-booking-start { font-family: SinYolandaDisplay, Impact, sans-serif; }
-.booking-result .sy-booking[data-booking-branch=houston] { --paper: var(--booking-wine); }
-.booking-wa { display: grid; grid-template-columns: minmax(0, 1fr) minmax(240px, 290px); align-items: center; gap: clamp(28px, 5vw, 72px); padding: clamp(28px, 4vw, 55px); border-top: 4px solid var(--booking-orange); border-radius: 10px; background: var(--booking-paper); color: #251c18; }
-.booking-wa h2 { margin: 0 0 12px; font: 400 clamp(48px, 5vw, 74px)/.9 SinYolandaDisplay, Impact, sans-serif; text-transform: uppercase; }
-.booking-wa p { max-width: 580px; margin: 0; color: #55443d; line-height: 1.55; }
-.booking-wa .booking-wa-action { display: inline-flex; align-items: center; justify-content: center; gap: 12px; width: 100%; min-height: 62px; padding: 12px 20px; border-radius: 5px; background: #075e54; color: #fff; text-decoration: none; font-size: 15px; font-weight: 800; white-space: nowrap; transition: background-color .18s ease; }
-.booking-wa .booking-wa-action:hover { background: #054b43; }
-.booking-wa-icon { display: block; flex: none; width: 27px; height: 27px; }
-.booking-detail { display: flex; align-items: center; flex-wrap: wrap; gap: 18px 24px; padding: 22px 0 0; color: var(--booking-muted); font-size: 13px; }
-.booking-detail a { color: var(--booking-paper); text-underline-offset: 4px; }
-
-.booking-picker { padding: 47px clamp(24px, 5vw, 80px) 90px; background: var(--booking-night); color: #fff; scroll-margin-top: 80px; }
-.booking-picker > * { max-width: 1288px; margin-left: auto; margin-right: auto; }
-.booking-picker-heading { display: flex; align-items: start; gap: 19px; margin-bottom: 27px; }
-.booking-step { flex: none; display: grid; place-items: center; width: 46px; height: 46px; margin-top: 6px; border: 1px solid var(--booking-orange); border-radius: 50%; color: var(--booking-orange); font: 400 26px/1 SinYolandaDisplay, Impact, sans-serif; }
-.booking-eyebrow { margin: 0 0 9px; color: #ffb78f; font-size: 11px; font-weight: 800; letter-spacing: .18em; }
-.booking-picker-heading h1 { margin: 0; font: 400 clamp(56px, 6vw, 82px)/.88 SinYolandaDisplay, Impact, sans-serif; text-transform: uppercase; }
-.booking-country-label { display: none; margin-top: 0; margin-bottom: 5px; color: var(--booking-muted); font-size: 12px; font-weight: 700; }
-.booking-hub[data-booking-enhanced=true] .booking-country-label { display: block; }
-.booking-countries { display: none; width: max-content; max-width: 100%; gap: clamp(18px, 2.7vw, 32px); border-bottom: 1px solid #6b5b52; }
+.booking-picker, .booking-result { padding: clamp(38px, 5vw, 72px) var(--site-gutter) clamp(60px, 6vw, 96px); }
+.booking-picker > *, .booking-result > * { width: 100%; max-width: 1340px; margin-inline: auto; }
+.booking-picker { scroll-margin-top: 86px; }
+.booking-picker-heading { margin-bottom: 28px; }
+.booking-picker-heading h1 { max-width: 100%; margin: 0; font: 400 clamp(54px, 5.4vw, 78px)/1 HoustonDisplay, Impact, sans-serif; letter-spacing: -.01em; text-wrap: balance; }
+.booking-filter-block { margin-bottom: 38px; }
+.booking-country-label { display: none; }
+.booking-hub[data-booking-enhanced=true] .booking-country-label { display: block; margin: 0 0 5px; color: #f0d9d3; font-size: 13px; }
+.booking-countries { display: none; align-items: center; flex-wrap: wrap; gap: 8px clamp(20px, 3vw, 36px); }
 .booking-hub[data-booking-enhanced=true] .booking-countries { display: flex; }
-.booking-country { position: relative; appearance: none; display: inline-flex; align-items: center; min-height: 48px; padding: 5px 0 12px; border: 0; border-radius: 0; background: transparent; color: #b8aca4; text-align: left; cursor: pointer; white-space: nowrap; text-transform: uppercase; font: 400 clamp(21px, 2.2vw, 27px)/1 SinYolandaDisplay, Impact, sans-serif; transition: color .18s ease; }
-.booking-country::after { content: ''; position: absolute; right: 0; bottom: -1px; left: 0; height: 3px; background: var(--booking-orange); transform: scaleX(0); transform-origin: left center; transition: transform .18s ease; }
-.booking-country:hover, .booking-country[aria-pressed=true] { color: var(--booking-paper); }
-.booking-country[aria-pressed=true]::after { transform: scaleX(1); }
-.booking-region { margin-top: 42px; }
-.booking-region-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid #696660; }
-.booking-region-heading h2 { margin: 0; font: 400 39px/.9 SinYolandaDisplay, Impact, sans-serif; text-transform: uppercase; }
-.booking-region-heading p { margin: 0; color: var(--booking-muted); font-size: 13px; }
-.booking-venues { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
-.booking-venue { position: relative; isolation: isolate; min-width: 0; min-height: 320px; overflow: hidden; border-radius: 12px; background: #2e2825; color: #fff; }
-.booking-venue::after { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(0deg, #090807ee 0%, #09080799 36%, #0908070c 76%); }
-.booking-venue > img { position: absolute; inset: 0; z-index: -2; display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 42%; transition: transform .25s ease; }
-.booking-venue:hover > img, .booking-venue:has(a:focus-visible) > img { transform: scale(1.025); }
-.booking-venue:has(a:focus-visible) { outline: 3px solid var(--booking-orange); outline-offset: 4px; }
-.booking-venue[data-booking-choice=houston] > img { object-position: center 34%; }
-.booking-venue-copy { position: relative; display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-end; min-height: inherit; padding: 28px; }
-.booking-venue-copy p { margin: 0 0 7px; color: #f1e8df; font-size: 12px; line-height: 1.35; }
-.booking-venue-copy h3 { margin: 0 0 19px; font: 400 clamp(48px, 4.7vw, 70px)/.87 SinYolandaDisplay, Impact, sans-serif; text-transform: uppercase; text-wrap: balance; }
-.booking-venue-copy > a { display: inline-flex; align-items: center; justify-content: center; gap: 20px; min-height: 48px; padding: 11px 18px; border-radius: 999px; background: var(--booking-orange); color: var(--booking-night); text-decoration: none; font-size: 13px; font-weight: 800; }
-.booking-venue-copy > a::after { content: '→'; font-size: 18px; line-height: 1; }
-.booking-venue-copy > a:hover { background: var(--booking-paper); color: var(--booking-night); }
+.booking-country { position: relative; display: inline-flex; align-items: center; min-height: 48px; padding: 6px 0 10px; border: 0; border-bottom: 1px solid transparent; border-radius: 0; background: none; color: #e4c6c5; font: 400 15px/1.5 HoustonSlab, Georgia, serif; }
+.booking-country[aria-pressed=true] { color: var(--paper); border-bottom-color: var(--paper); }
+.booking-country:hover { color: #fff; }
+.booking-region { margin-top: 38px; scroll-margin-top: 94px; }
+.booking-region-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 18px; margin: 0 0 20px; padding: 0 0 14px; border-bottom: 1px solid #fff4de59; }
+.booking-region-heading h2 { margin: 0; font: 400 clamp(31px, 3.2vw, 42px)/1.05 HoustonDisplay, Impact, sans-serif; }
+.booking-region-heading p { margin: 0; font-size: 13px; color: var(--rose); }
+.booking-venues { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.booking-venue { position: relative; isolation: isolate; min-width: 0; min-height: clamp(330px, 28vw, 410px); overflow: hidden; background: #210c0e; }
+.booking-venue::after { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(0deg, #18090cf2, #18090c73 48%, #18090c08 85%); pointer-events: none; }
+.booking-venue > img { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; object-position: center 42%; }
+.booking-venue[data-booking-choice=houston] > img { object-position: center 35%; }
+.booking-venue-copy { display: flex; flex-direction: column; align-items: start; justify-content: end; min-height: inherit; padding: clamp(24px, 3vw, 38px); }
+.booking-venue-copy p { margin: 0 0 8px; color: var(--paper); font-size: 13px; line-height: 1.5; }
+.booking-venue-copy h3 { margin: 0 0 24px; max-width: 100%; font: 400 clamp(42px, 4.4vw, 64px)/1 HoustonDisplay, Impact, sans-serif; text-wrap: balance; }
+.booking-venue-copy > a { display: inline-flex; align-items: center; justify-content: space-between; gap: 30px; min-height: 54px; padding: 13px 19px; background: var(--paper); color: var(--wine); text-decoration: none; font: 700 14px/1.5 HoustonSlab, Georgia, serif; }
 .booking-venue-copy > a::before { content: ''; position: absolute; inset: 0; }
-.booking-region[data-booking-region=mx] .booking-venue { grid-column: 1 / -1; min-height: 350px; }
-.booking-region[data-booking-region=mx] .booking-venue-copy { padding: 34px; }
-.booking-region[data-booking-region=mx] .booking-venue-copy h3 { font-size: clamp(58px, 5vw, 76px); }
+.booking-venue-copy > a::after { content: '→'; font: 400 22px/1 HoustonSlab, Georgia, serif; }
+.booking-venue-copy > a:hover { background: var(--rose); }
+.booking-venue:has(a:focus-visible) { outline: 3px solid var(--paper); outline-offset: 5px; }
+.booking-region[data-booking-region=mx] .booking-venue { grid-column: 1 / -1; min-height: 380px; }
 .booking-region[data-booking-region=mx] .booking-venue > img { object-position: center 53%; }
-.booking-upcoming { margin-top: 76px; padding-top: 35px; border-top: 1px solid #696660; }
-.booking-upcoming-heading { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 22px; }
-.booking-upcoming-heading h2 { max-width: 720px; margin: 0; font: 400 clamp(54px, 5.4vw, 72px)/.9 SinYolandaDisplay, Impact, sans-serif; text-transform: uppercase; }
-.booking-upcoming-heading p { max-width: 345px; margin: 0 0 4px; color: var(--booking-muted); font-size: 14px; line-height: 1.5; }
-.booking-upcoming-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
-.booking-upcoming-card { position: relative; isolation: isolate; min-width: 0; min-height: 260px; overflow: hidden; border: 1px solid #765f52; border-radius: 12px; background: #282321; color: #fff; }
-.booking-upcoming-card::after { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(0deg, #100d0cf2 0%, #100d0c7a 50%, #100d0c45 100%); }
-.booking-upcoming-card > img { position: absolute; inset: 0; z-index: -2; display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 46%; filter: saturate(.85); }
-.booking-upcoming-card:has(a:focus-visible) { outline: 3px solid var(--booking-orange); outline-offset: 4px; }
-.booking-upcoming-copy { position: relative; display: flex; flex-direction: column; justify-content: space-between; min-height: inherit; padding: 20px 22px; }
-.booking-upcoming-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
-.booking-upcoming-status { display: inline-block; padding: 7px 10px; border: 1px solid #e7c6b1; border-radius: 3px; background: #1c1515c9; color: var(--booking-paper); font-size: 11px; font-weight: 800; white-space: nowrap; }
-.booking-upcoming-place h3 { margin: 0 0 4px; font: 400 clamp(42px, 3.7vw, 55px)/.88 SinYolandaDisplay, Impact, sans-serif; text-transform: uppercase; text-wrap: balance; }
-.booking-upcoming-place p { margin: 0; color: #d4c8c0; font-size: 13px; }
-.booking-upcoming-top a { display: inline-flex; align-items: center; min-height: 44px; color: #fff; font-size: 12px; font-weight: 700; text-align: right; text-underline-offset: 4px; }
-.booking-upcoming-top a:hover { color: #ffd5b4; }
-.booking-no-js { padding: 18px 20px; background: #fff8eb; color: #241b19; }
-.booking-no-js a { color: #5d251b; }
+.booking-upcoming { margin-top: 68px; padding-top: 34px; border-top: 1px solid #fff4de59; }
+.booking-upcoming-heading { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 24px; }
+.booking-upcoming-heading h2 { margin: 0; font: 400 clamp(42px, 4.5vw, 62px)/1 HoustonDisplay, Impact, sans-serif; }
+.booking-upcoming-heading p { max-width: 38ch; margin: 0; color: var(--rose); font-size: 13px; line-height: 1.6; }
+.booking-upcoming-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.booking-upcoming-card { position: relative; isolation: isolate; min-width: 0; min-height: 280px; overflow: hidden; background: #210c0e; }
+.booking-upcoming-card::after { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(0deg, #18090cf0, #18090c59 75%, #18090c60); }
+.booking-upcoming-card > img { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.booking-upcoming-copy { display: flex; flex-direction: column; justify-content: space-between; min-height: inherit; padding: 24px; }
+.booking-upcoming-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.booking-upcoming-status { color: var(--paper); font-size: 12px; }
+.booking-upcoming-top a { color: var(--paper); min-height: 44px; display: inline-flex; align-items: center; text-underline-offset: 5px; font-size: 12px; }
+.booking-upcoming-place h3 { margin: 0 0 9px; font: 400 clamp(34px, 3.8vw, 52px)/1 HoustonDisplay, Impact, sans-serif; }
+.booking-upcoming-place p { margin: 0; color: var(--rose); font-size: 12px; }
+.booking-no-js { padding: 18px; margin-top: 24px; background: var(--paper); color: var(--ink); }
+.booking-no-js a { color: var(--wine); }
 
-.booking-footer { background: var(--booking-deep); }
-.booking-footer img { display: block; }
-.booking-footer a { color: var(--booking-paper); }
+/* Keep the real branch booking module, including its original cream/wine controls. */
+.booking-hub[data-booking-selected=true] .booking-result:not([hidden]) + .booking-picker { display: none; }
+.booking-result-top { display: grid; grid-template-columns: minmax(220px, 35%) minmax(0, 1fr); background: #fff4de0a; }
+.booking-result-photo { position: relative; min-height: 220px; }
+.booking-result-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 42%; }
+.booking-result-heading { align-self: center; padding: 28px clamp(24px, 4vw, 58px); }
+.booking-result-heading h1 { margin: 0 0 16px; font: 400 clamp(48px, 6vw, 82px)/1 HoustonDisplay, Impact, sans-serif; text-wrap: balance; }
+.booking-result-heading a { display: inline-flex; align-items: center; min-height: 44px; color: var(--paper); font-size: 14px; text-underline-offset: 6px; }
+.booking-result-content { margin-top: 28px; }
+.booking-result .sy-booking { border: 0; padding: 32px; }
+.booking-result .sy-booking h2 { font: 400 clamp(40px, 4vw, 56px)/1.05 HoustonDisplay, Impact, sans-serif; }
+.booking-result .sy-booking-foot, .booking-result .sy-booking-status { font-family: HoustonSlab, Georgia, serif; }
+.booking-wa { display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 290px); align-items: center; gap: 36px; padding: 36px; background: var(--paper); color: var(--ink); }
+.booking-wa h2 { margin: 0 0 16px; font: 400 clamp(40px, 4vw, 56px)/1 HoustonDisplay, Impact, sans-serif; }
+.booking-wa p { margin: 0; max-width: 53ch; font-size: 15px; line-height: 1.65; }
+.booking-wa-action { display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 58px; padding: 14px 20px; background: #075e54; color: #fff; text-decoration: none; font-size: 14px; font-weight: 700; }
+.booking-wa-action:hover { background: #054b43; }
+.booking-wa-icon { width: 26px; height: 26px; flex: none; }
+.booking-detail { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 26px; padding: 24px 0 0; font-size: 13px; }
+.booking-detail a { display: inline-flex; align-items: center; min-height: 44px; color: var(--paper); text-underline-offset: 5px; }
+.booking-footer .bf-place { font-family: HoustonDisplay, Impact, sans-serif; text-wrap: balance; }
+.booking-footer-countries { margin: 0 0 32px; font-size: 15px; }
+.booking-footer .bf-navigation > nav > a > span:first-child { font-size: 14px; line-height: 1.5; }
 
+@media (max-width: 1100px) {
+  .booking-hub .booking-header nav { gap: 18px; }
+  .booking-header .booking-nav-secondary { display: none; }
+}
 @media (max-width: 900px) {
-  .booking-wa { grid-template-columns: 1fr; }
-  .booking-upcoming-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .booking-upcoming-card { min-height: 250px; }
-  .booking-upcoming-place h3 { font-size: clamp(34px, 4.5vw, 40px); }
+  .booking-venues, .booking-upcoming-grid { gap: 18px; }
   .booking-upcoming-heading { display: block; }
-  .booking-upcoming-heading p { max-width: 480px; margin-top: 9px; }
+  .booking-upcoming-heading p { margin-top: 16px; max-width: 50ch; }
+  .booking-upcoming-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .booking-wa { grid-template-columns: 1fr; gap: 24px; }
+  .booking-wa-action { justify-self: start; }
 }
 @media (max-width: 700px) {
-  .booking-picker { padding: 32px 24px 74px; }
-  .booking-picker-heading { gap: 13px; margin-bottom: 25px; }
-  .booking-step { width: 38px; height: 38px; margin-top: 4px; font-size: 22px; }
-  .booking-picker-heading h1 { font-size: clamp(49px, 9vw, 65px); }
-  .booking-venues { grid-template-columns: 1fr; }
-  .booking-venue { min-height: 285px; }
-  .booking-region[data-booking-region=mx] .booking-venue { min-height: 285px; }
-  .booking-upcoming { margin-top: 55px; padding-top: 27px; }
-  .booking-upcoming-grid { grid-template-columns: 1fr; }
-  .booking-upcoming-top { display: flex; }
-  .booking-upcoming-top a { min-height: 44px; text-align: right; }
-  .booking-upcoming-place h3 { font-size: 46px; }
-  .booking-upcoming-card { min-height: 230px; }
-  .booking-result { padding: 16px 24px 48px; }
-  .booking-result-top { grid-template-columns: 1fr; }
-  .booking-result-photo { min-height: 145px; }
-  .booking-result-photo::after { background: linear-gradient(0deg, #15151470, transparent 68%); }
-  .booking-result-heading { padding: 20px 28px 21px; }
-  .booking-result-heading h1 { font-size: clamp(57px, 10vw, 75px); }
-}
-@media (max-width: 480px) {
-  .booking-intro-inner { padding: 18px 20px 25px; }
-  .booking-intro h1 { font-size: clamp(57px, 11.2vw, 68px); }
-  .booking-intro-copy { font-size: 15px; }
-  .booking-picker { padding: 27px 20px 60px; }
-  .booking-picker-heading h1 { font-size: clamp(47px, 9vw, 56px); }
-  .booking-countries { gap: clamp(14px, 4vw, 20px); }
-  .booking-country { font-size: clamp(19px, 5.6vw, 22px); }
-  .booking-region { margin-top: 28px; }
-  .booking-region-heading { align-items: start; flex-direction: column; gap: 7px; }
-  .booking-region-heading h2 { font-size: 36px; }
-  .booking-venue { min-height: 265px; }
-  .booking-region[data-booking-region=mx] .booking-venue { min-height: 265px; }
-  .booking-upcoming-heading h2 { font-size: clamp(49px, 9vw, 56px); }
-  .booking-upcoming-card { min-height: 225px; }
-  .booking-upcoming-copy { padding: 17px 19px; }
+  .booking-hub .booking-header { position: sticky; min-height: 68px; padding: 10px 20px; }
+  .booking-hub .booking-header .hh-brand { width: 132px; }
+  .booking-hub .booking-header nav { gap: 14px; }
+  .booking-header .hh-nav-locations span { display: none; }
+  .booking-header nav .hh-nav-locations { justify-content: center; width: 44px; }
+  .booking-picker, .booking-result { padding-top: 34px; }
+  .booking-picker-heading { margin-bottom: 22px; }
+  .booking-picker-heading h1 { font-size: clamp(48px, 10vw, 66px); }
+  .booking-filter-block { margin-bottom: 26px; }
+  .booking-country { font-size: 14px; }
+  .booking-countries { column-gap: clamp(16px, 5vw, 24px); }
+  .booking-region { margin-top: 30px; }
+  .booking-region-heading { margin-bottom: 18px; }
+  .booking-venues, .booking-upcoming-grid { grid-template-columns: 1fr; gap: 18px; }
+  .booking-venue, .booking-region[data-booking-region=mx] .booking-venue { min-height: 330px; }
+  .booking-venue-copy { padding: 26px; }
+  .booking-venue-copy h3 { font-size: clamp(44px, 10vw, 60px); }
+  .booking-upcoming { margin-top: 48px; padding-top: 28px; }
+  .booking-upcoming-card { min-height: 260px; }
   .booking-upcoming-place h3 { font-size: 44px; }
-  .booking-venue-copy, .booking-region[data-booking-region=mx] .booking-venue-copy { padding: 20px; }
-  .booking-venue-copy h3 { font-size: 49px; }
-  .booking-region[data-booking-region=mx] .booking-venue-copy h3 { font-size: 55px; }
-  .booking-result { padding-inline: 20px; }
-  .booking-result-photo { min-height: 125px; }
-  .booking-result-heading { padding: 19px 24px 20px; }
-  .booking-result-heading p { margin-bottom: 8px; }
-  .booking-result-heading h1 { margin-bottom: 6px; font-size: 52px; }
-  .booking-result-heading a { min-height: 36px; }
-  .booking-wa { gap: 22px; padding: 24px; }
-  .booking-wa h2 { font-size: 48px; }
+  .booking-result-top { grid-template-columns: 1fr; }
+  .booking-result-photo { min-height: 170px; }
+  .booking-result-heading { padding: 24px; }
+  .booking-result-heading h1 { font-size: 56px; }
+  .booking-result .sy-booking, .booking-wa { padding: 26px 24px; }
+  .booking-wa-action { justify-self: stretch; }
 }
-@media (max-width: 360px) {
-  .booking-intro h1 { font-size: 58px; }
-  .booking-venue-copy h3 { font-size: 44px; }
-  .booking-upcoming-place h3 { font-size: 42px; }
+@media (max-width: 400px) {
+  .booking-hub .booking-header { padding-inline: 16px; }
+  .booking-hub .booking-header .hh-brand { width: 108px; }
+  .booking-hub .booking-header nav { gap: 6px; }
+  .booking-header .booking-nav-current { font-size: 12px; }
+  .booking-venue, .booking-region[data-booking-region=mx] .booking-venue { min-height: 310px; }
 }
-@media (prefers-reduced-motion: reduce) {
-  .booking-hub * { scroll-behavior: auto !important; transition: none !important; }
-}
+@media (prefers-reduced-motion: reduce) { .booking-hub * { scroll-behavior: auto !important; transition: none !important; } }

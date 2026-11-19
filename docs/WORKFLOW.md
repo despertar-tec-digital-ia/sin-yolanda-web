@@ -1,5 +1,14 @@
 # Forma de trabajar y publicar
 
+### Reservas19-nov · diseño anterior restaurado por Luis
+
+Fuente2349455/PR69. Se recuperan las tarjetas fotográficas y el diseño del18-nov; se conservan
+«Reserva ya»/Book now, entrada sin portada, controlesUS/MX/Todas, sedesUSA primero, cinco canales
+reales y próximas aperturas. CSS idéntico ae5e5cf0; no se conserva la lista con foto lateral.
+496tests/build/CI44589368487,21hashesHTTPS, salud,QA390/1440/filtros/WA y49otrosIDs correctos.
+Solo preview autorizado, timerintacto y rollback verificado; sin publicación oficial ni reservas
+enviadas. Recibo/operación dueños: `deploy/reservas-visual-preview/README.md`.
+
 ### Reservas multisucursal · diseño y «Reserva ya»19-nov · preview actualizado
 
 Fuente `a8104c6`, paquete21archivos `reservas-share-design-final-20261119`, PR69 borrador.

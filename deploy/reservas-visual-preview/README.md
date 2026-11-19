@@ -15,7 +15,23 @@ El artefacto previo `reservas-share-c7a4edc` (19 archivos) permanece verificado
 para rollback. El timer detiene este contenedor el 24-nov-2026 01:39:24 UTC;
 los otros 45 contenedores y el sitio oficial se verificaron sin cambios.
 
-**Actualización vigente 19-nov-2026:** fuente `a8104c6319a346e644362595f897bb5e6c39e362`,
+**Estado vigente · restauración19-nov-2026:** Luis descarta la lista con fotografía lateral y
+solicita volver al diseño anterior conservando los demás ajustes. Fuente
+`2349455dcaf9ab4feaa536d74471d61719c0a135`, paquete `reservas-share-restored-20261119`.
+CSS idéntico al corte18-nov `e5e5cf0`; HTML/JS restaurados de ese corte con CTA «Reserva ya»
+(EN «Book now»), orden de controles Estados Unidos/México/Todas y versiones de caché nuevas.
+Conservar entrada sin portada ni foto inicial, cinco canales reales, fotos de próximas
+aperturas, WhatsApp/SVG, navegación y texto de solicitud GDL. AraVe no cambia en este pase.
+
+496 pruebas/build/CI44589368487 correctos.21 hashes públicos, salud,49 otros IDs y timer
+24-nov01:39:24UTC cotejados. Respuestas oficiales403 idénticas desde VPS; no revalida contenido.
+QA móvil390/escritorio1440 con Brave instalado aislado: tarjetas, CTA, filtros y WA correctos,
+sin reserva enviada. Respaldo `.artifacts/before-restore.bak-20261119T183620Z/`, con antes/después
+ y Compose anterior; rollback inmediato `reservas-share-design-final-20261119`, íntegro antes
+ de activar. Evidencia local: `clientes-assets/sin-yolanda/reservas-restored-2026-11-19/`.
+PR69 sigue borrador en conflicto con main; no hubo release oficial.
+
+**Diseño descartado 19-nov-2026 (antecedente):** fuente `a8104c6319a346e644362595f897bb5e6c39e362`,
 paquete `reservas-share-design-final-20261119` de 21 archivos. CTA «Reserva ya», lista de sedes
 con fotografías y una imagen contextual amplia en escritorio que sigue hover/foco. En móvil,
 filas completas con foto y CTA; países en orden Estados Unidos, México, Todas. El recorrido

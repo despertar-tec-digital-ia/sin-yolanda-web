@@ -167,7 +167,7 @@ body.booking-hub {
   .booking-upcoming-place h3 { font-size: 42px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .booking-hub * { scroll-behavior: auto !important; transition: none !important; }
+  .booking-hub *, .booking-hub *::before, .booking-hub *::after { scroll-behavior: auto !important; transition: none !important; }
 }
 
 /* Use the settled navigation state of the live branch header on a page without a hero. */

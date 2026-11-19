@@ -28,7 +28,6 @@ const assets = [
   'assets/media/favicon-gdl-32.png',
   'assets/media/brand-logo-gdl.png',
   'assets/media/karaoke.webp',
-  'assets/media/reservas-group.webp',
   'assets/media/venues/san-ignacio.webp',
   'assets/media/venues/future/future-crowd-640.webp',
   'assets/media/venues/future/future-singalong-640.webp',
@@ -47,7 +46,7 @@ for (const branch of editorial.branches) {
 }
 assert.match(source, /data-booking-choice="guadalajara"[^>]+data-provider-url="https:\/\/wa\.me\/5213310186159"/);
 assert.equal([...source.matchAll(/data-booking-choice="/g)].length, 5);
-assert.deepEqual([...source.matchAll(/data-booking-upcoming data-country="(mx|us)"/g)].map(match => match[1]), ['mx', 'us', 'us']);
+assert.deepEqual([...source.matchAll(/data-booking-upcoming data-country="(mx|us)"/g)].map(match => match[1]), ['us', 'us', 'mx']);
 for (const name of ['Ciudad Juárez', 'San Diego', 'Moreno Valley']) assert.ok(source.includes(`<h3>${name}</h3>`), `Missing future location ${name}`);
 assert.ok(!/sucursal=(?:ciudad-juarez|san-diego|moreno-valley)/.test(source), 'Future locations cannot open a booking channel');
 
@@ -59,8 +58,8 @@ function replaceOnce(input, before, after) {
 let page = source;
 page = replaceOnce(page, '<meta property="og:url" content="https://sin-yolanda.com/reservar" />',
   `<meta property="og:url" content="${host}/reservar" />`);
-page = replaceOnce(page, '<meta property="og:image" content="https://sin-yolanda.com/assets/media/reservas-group.webp" />',
-  `<meta property="og:image" content="${host}/assets/media/reservas-group.webp" />`);
+page = replaceOnce(page, '<meta property="og:image" content="https://sin-yolanda.com/assets/media/brand-logo-gdl.png" />',
+  `<meta property="og:image" content="${host}/assets/media/brand-logo-gdl.png" />`);
 page = page.replace(/\s*<script defer src="\/assets\/js\/site-measurement\.js[^\"]*"><\/script>/, '');
 page = page.replace(/\s*<link rel="stylesheet" href="\/assets\/css\/ga4-consent\.css[^\"]*" \/>/, '');
 page = page.replace(/\s*<script defer src="\/assets\/js\/ga4-consent\.js[^\"]*"><\/script>/, '');

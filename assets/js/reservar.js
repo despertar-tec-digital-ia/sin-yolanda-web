@@ -23,7 +23,7 @@ function selectCountry(country = 'all', focusRegion = false) {
   if (focusRegion) {
     const heading = country === 'all'
       ? document.getElementById('booking-picker-title')
-      : regions.find(region => region.dataset.bookingRegion === country)?.querySelector('h3');
+      : regions.find(region => region.dataset.bookingRegion === country)?.querySelector('h2');
     heading?.setAttribute('tabindex', '-1');
     heading?.focus({preventScroll: true});
     heading?.scrollIntoView({block: 'start', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
@@ -114,7 +114,7 @@ async function init() {
   if (!selected) return;
   document.body.dataset.bookingSelected = 'true';
   const language = currentLanguage();
-  const name = selected.querySelector('h4')?.textContent?.trim() ?? '';
+  const name = selected.querySelector('h3')?.textContent?.trim() ?? '';
   const photo = selected.querySelector(':scope > img')?.cloneNode();
   if (photo) {
     photo.loading = 'eager';

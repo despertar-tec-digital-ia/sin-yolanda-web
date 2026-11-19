@@ -16,35 +16,17 @@ const currentLanguage = () => {
 // WhatsApp mark from Simple Icons: https://github.com/simple-icons/simple-icons/blob/develop/icons/whatsapp.svg
 const whatsappIcon = '<svg class="booking-wa-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>';
 
-function previewChoice(choice) {
-  if (!choice) return;
-  const image = choice.querySelector(':scope > img');
-  const target = document.querySelector('[data-booking-feature-image]');
-  if (image && target) {
-    target.src = image.getAttribute('src');
-    target.style.objectPosition = getComputedStyle(image).objectPosition;
-  }
-  const name = choice.querySelector('h3')?.textContent?.trim() || '';
-  const zone = choice.querySelector('.booking-venue-copy p')?.textContent?.trim() || '';
-  const country = choice.dataset.country === 'mx' ? (currentLanguage() === 'en' ? 'Mexico' : 'México') : (currentLanguage() === 'en' ? 'United States' : 'Estados Unidos');
-  const title = document.querySelector('[data-booking-feature-title]');
-  const place = document.querySelector('[data-booking-feature-zone]');
-  const label = document.querySelector('[data-booking-feature-country]');
-  if (title) title.textContent = name;
-  if (place) place.textContent = zone;
-  if (label) label.textContent = country;
-  for (const item of choices) item.dataset.bookingPreviewed = String(item === choice);
-}
-
 function selectCountry(country = 'all', focusRegion = false) {
   for (const button of countries) button.setAttribute('aria-pressed', String(button.dataset.bookingCountry === country));
   for (const region of regions) region.hidden = country !== 'all' && region.dataset.bookingRegion !== country;
   for (const card of upcoming) card.hidden = country !== 'all' && card.dataset.country !== country;
-  previewChoice(choices.find(choice => country === 'all' || choice.dataset.country === country));
   if (focusRegion) {
-    const count = choices.filter(choice => country === 'all' || choice.dataset.country === country).length;
-    const status = document.querySelector('[data-booking-filter-status]');
-    if (status) status.textContent = currentLanguage() === 'en' ? `${count} ${count === 1 ? 'location' : 'locations'} taking reservations` : `${count} ${count === 1 ? 'sucursal' : 'sucursales'} para reservar`;
+    const heading = country === 'all'
+      ? document.getElementById('booking-picker-title')
+      : regions.find(region => region.dataset.bookingRegion === country)?.querySelector('h2');
+    heading?.setAttribute('tabindex', '-1');
+    heading?.focus({preventScroll: true});
+    heading?.scrollIntoView({block: 'start', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
   }
 }
 
@@ -84,16 +66,9 @@ async function renderOpenTable(choice, language) {
   // section, and we initialize exactly once after building this branch.
   let module;
   try { module = await import('/assets/js/opentable-review.js?v=20261106-keyboard'); } catch { /* The direct link remains usable. */ }
-  content.innerHTML = `<section class="sy-booking" id="${id}" data-opentable-pilot="${rid}" data-booking-branch="${escapeHtml(slug)}" data-booking-loader="${escapeHtml(loader.href)}" data-booking-state="idle" aria-labelledby="booking-result-title ${id}-title"><div class="sy-booking-inner"><div class="sy-booking-copy"><h2 id="${id}-title" tabindex="-1">${language === 'en' ? 'Choose your date and time.' : 'Elige fecha y hora.'}</h2></div><div class="sy-booking-panel"><a class="sy-booking-start" data-booking-start data-booking-open href="${escapeHtml(fallback.href)}" target="_blank" rel="noopener noreferrer">${language === 'en' ? 'Book now' : 'Reserva ya'}</a><div class="sy-booking-placeholder" data-booking-placeholder hidden aria-hidden="true"><span></span><span></span><span></span><span></span></div><div class="sy-booking-widget" id="${id}-form" data-booking-host hidden></div><p class="sy-booking-status" data-booking-status role="status" aria-live="polite" aria-atomic="true"></p><div class="sy-booking-foot"><span>${language === 'en' ? 'Reservations with OpenTable' : 'Reservas con OpenTable'}</span><p>${language === 'en' ? 'Need help?' : '¿Necesitas ayuda?'} <a href="${escapeHtml(choice.dataset.phoneUrl)}">${escapeHtml(choice.dataset.phone)}</a></p></div></div></div></section>${branchDetails(choice, language, fallback.href)}`;
+  content.innerHTML = `<section class="sy-booking" id="${id}" data-opentable-pilot="${rid}" data-booking-branch="${escapeHtml(slug)}" data-booking-loader="${escapeHtml(loader.href)}" data-booking-state="idle" aria-labelledby="booking-result-title ${id}-title"><div class="sy-booking-inner"><div class="sy-booking-copy"><h2 id="${id}-title" tabindex="-1">${language === 'en' ? 'Book a table.' : 'Reserva tu mesa.'}</h2></div><div class="sy-booking-panel"><a class="sy-booking-start" data-booking-start data-booking-open href="${escapeHtml(fallback.href)}" target="_blank" rel="noopener noreferrer">${language === 'en' ? 'Book now' : 'Reserva ya'}</a><div class="sy-booking-placeholder" data-booking-placeholder hidden aria-hidden="true"><span></span><span></span><span></span><span></span></div><div class="sy-booking-widget" id="${id}-form" data-booking-host hidden></div><p class="sy-booking-status" data-booking-status role="status" aria-live="polite" aria-atomic="true"></p><div class="sy-booking-foot"><span>${language === 'en' ? 'Reservations with OpenTable' : 'Reservas con OpenTable'}</span><p>${language === 'en' ? 'Need help?' : '¿Necesitas ayuda?'} <a href="${escapeHtml(choice.dataset.phoneUrl)}">${escapeHtml(choice.dataset.phone)}</a></p></div></div></div></section>${branchDetails(choice, language, fallback.href)}`;
   result.hidden = false;
   if (module) module.initializeBooking()?.start();
-}
-
-function labelChoices() {
-  for (const choice of choices) {
-    const name = choice.querySelector('h3')?.textContent?.trim() || '';
-    choice.querySelector('[data-venue]')?.setAttribute('aria-label', `${currentLanguage() === 'en' ? 'Book now at' : 'Reserva ya en'} ${name}`);
-  }
 }
 
 function initNavigation() {
@@ -119,17 +94,6 @@ function initNavigation() {
 
 async function init() {
   initNavigation();
-  document.addEventListener('click', event => {
-    if (!event.target.closest('[data-lang-btn]')) return;
-    queueMicrotask(() => {
-      if (document.body.dataset.bookingSelected === 'true') location.reload();
-      else {
-        previewChoice(choices.find(choice => choice.dataset.bookingPreviewed === 'true'));
-        labelChoices();
-        document.querySelector('.booking-countries')?.setAttribute('aria-label', currentLanguage() === 'en' ? 'Filter locations by country' : 'Filtrar sucursales por país');
-      }
-    });
-  });
   document.body.dataset.bookingEnhanced = 'true';
   if (currentLanguage() === 'en') {
     document.querySelector('.booking-countries')?.setAttribute('aria-label', 'Filter locations by country');
@@ -138,12 +102,9 @@ async function init() {
   // Card links point to the providers in the HTML, so they also work without JS.
   // Once enhanced, a fresh page loads the selected branch's inline channel.
   for (const choice of choices) {
-    choice.addEventListener('pointerenter', () => previewChoice(choice));
-    choice.addEventListener('focusin', () => previewChoice(choice));
     const link = choice.querySelector('[data-venue]');
     if (link) link.href = `/reservar?sucursal=${encodeURIComponent(choice.dataset.bookingChoice)}`;
   }
-  labelChoices();
   const params = new URLSearchParams(location.search);
   const slug = params.get('sucursal');
   const selected = choices.find(choice => choice.dataset.bookingChoice === slug);
@@ -161,11 +122,11 @@ async function init() {
     document.querySelector('[data-booking-result-photo]')?.replaceChildren(photo);
   }
   document.querySelector('[data-booking-result-title]').textContent = name;
-  const country = selected.dataset.country === 'mx' ? (language === 'en' ? 'Mexico' : 'México') : (language === 'en' ? 'United States' : 'Estados Unidos');
-  document.querySelector('[data-booking-result-country]').textContent = country;
-  result.querySelector('.booking-result-heading a').href = `/reservar?pais=${selected.dataset.country}#elegir-sede`;
   if (selected.dataset.channel === 'whatsapp') renderWhatsApp(selected, language);
   else if (selected.dataset.channel === 'opentable') await renderOpenTable(selected, language);
+  document.addEventListener('click', event => {
+    if (event.target.closest('[data-lang-btn]')) queueMicrotask(() => location.reload());
+  });
 }
 
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, {once: true});

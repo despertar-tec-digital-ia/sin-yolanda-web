@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/styles.css?v=20261008-migration-measurement" />
     <link rel="stylesheet" href="/assets/css/opentable-review.css?v=20261106-wine" />
-    <link rel="stylesheet" href="/assets/css/reservar.css?v=20261119-location-list" />
+    <link rel="stylesheet" href="/assets/css/reservar.css?v=20261119-restore-cards" />
     <link rel="icon" type="image/png" href="/assets/media/favicon-gdl-32.png" />
     <link rel="apple-touch-icon" href="/assets/media/apple-touch-gdl.png?v=2" />
     <meta property="og:type" content="website" />
@@ -44,17 +44,18 @@
       <section class="booking-result" id="reserva" aria-label="Reserva de la sucursal elegida" hidden>
         <div class="booking-result-top">
           <div class="booking-result-photo" data-booking-result-photo aria-hidden="true"></div>
-          <div class="booking-result-heading"><p data-booking-result-country></p><h1 id="booking-result-title" data-booking-result-title>Sucursal</h1><a href="/reservar#elegir-sede" data-i18n-es="Cambiar sucursal" data-i18n-en="Choose another location">Cambiar sucursal</a></div>
+          <div class="booking-result-heading"><p data-i18n-es="TU SIN YOLANDA" data-i18n-en="YOUR SIN YOLANDA">TU SIN YOLANDA</p><h1 id="booking-result-title" data-booking-result-title>Sucursal</h1><a href="/reservar#elegir-sede" data-i18n-es="Cambiar sucursal" data-i18n-en="Choose another location">Cambiar sucursal</a></div>
         </div>
         <div class="booking-result-content" data-booking-result-content></div>
       </section>
 
       <section class="booking-picker" id="elegir-sede" aria-labelledby="booking-picker-title">
         <div class="booking-picker-heading">
-          <div><h1 id="booking-picker-title" data-i18n-es="Elige tu sucursal." data-i18n-en="Choose your location.">Elige tu sucursal.</h1></div>
+          <span class="booking-step" aria-hidden="true">01</span>
+          <div><p class="booking-eyebrow" data-i18n-es="DONDE NOS VEMOS" data-i18n-en="WHERE WE'LL MEET">DONDE NOS VEMOS</p><h1 id="booking-picker-title" data-i18n-es="Elige tu sucursal." data-i18n-en="Choose your location.">Elige tu sucursal.</h1></div>
         </div>
         <div class="booking-filter-block">
-          <p class="booking-country-label" data-i18n-es="Elige país" data-i18n-en="Choose a country">Elige país</p>
+          <p class="booking-country-label" data-i18n-es="Explora por país" data-i18n-en="Explore by country">Explora por país</p>
           <div class="booking-countries" role="group" aria-label="Filtrar sucursales por país">
             <button class="booking-country" type="button" data-booking-country="us" aria-pressed="false">
               <span data-i18n-es="Estados Unidos" data-i18n-en="United States">Estados Unidos</span>
@@ -68,9 +69,6 @@
           </div>
         </div>
 
-        <p class="booking-filter-status" data-booking-filter-status role="status" aria-live="polite"></p>
-        <div class="booking-picker-grid">
-          <div class="booking-location-groups">
         <div class="booking-region" id="booking-us" data-booking-region="us" aria-labelledby="booking-us-title">
           <div class="booking-region-heading"><h2 id="booking-us-title" data-i18n-es="Estados Unidos" data-i18n-en="United States">Estados Unidos</h2></div>
           <div class="booking-venues">
@@ -98,16 +96,9 @@
           <div class="booking-venues">
             <article class="booking-venue" data-booking-choice="guadalajara" data-country="mx" data-channel="whatsapp" data-provider-url="https://wa.me/5213310186159" data-branch-page="/guadalajara" data-phone="33 1018 6159" data-phone-url="tel:+523310186159">
               <img src="/assets/media/venues/san-ignacio.webp" alt="" width="1400" height="1000" loading="lazy" decoding="async" />
-              <div class="booking-venue-copy"><p data-i18n-es="Zona Chapalita · Zapopan" data-i18n-en="Chapalita area · Zapopan">Zona Chapalita · Zapopan</p><h3>Guadalajara</h3><a href="https://wa.me/5213310186159" data-venue data-branch-id="san-ignacio" data-i18n-es="Reserva ya" data-i18n-en="Book now">Reserva ya</a></div>
+              <div class="booking-venue-copy"><p data-i18n-es="Zona Chapalita · Zapopan" data-i18n-en="Chapalita area · Zapopan">Zona Chapalita · Zapopan</p><h3>Guadalajara</h3><a href="https://wa.me/5213310186159" data-venue data-branch-id="san-ignacio" data-i18n-es="Solicitar mesa" data-i18n-en="Request a table">Solicitar mesa</a></div>
             </article>
           </div>
-        </div>
-
-          </div>
-          <aside class="booking-feature" aria-hidden="true">
-            <img data-booking-feature-image src="/images/branch-review/san-antonio-hero-800.webp" alt="" width="800" height="1200" decoding="async" />
-            <div class="booking-feature-caption"><span data-booking-feature-country>Estados Unidos</span><h2 data-booking-feature-title>San Antonio</h2><p data-booking-feature-zone>River Walk · Texas</p></div>
-          </aside>
         </div>
 
         <section class="booking-upcoming" id="booking-upcoming" aria-labelledby="booking-upcoming-title">
@@ -137,7 +128,7 @@
 
     <footer class="public-footer booking-footer"><div><a href="/" aria-label="Sin Yolanda, inicio"><img src="/assets/media/brand-logo-gdl.png" alt="Sin Yolanda" width="240" height="64" loading="lazy" /></a><p data-i18n-es="Una marca que vive en cada ciudad: México y Estados Unidos." data-i18n-en="One brand across cities in Mexico and the United States.">Una marca que vive en cada ciudad: México y Estados Unidos.</p></div><div><strong data-i18n-es="Explora" data-i18n-en="Explore">Explora</strong><a href="/locations" data-i18n-es="Todas las sucursales" data-i18n-en="All locations">Todas las sucursales</a><a href="/la-cantina" data-i18n-es="La Cantina" data-i18n-en="The Cantina">La Cantina</a><a href="/eventos" data-i18n-es="Eventos" data-i18n-en="Events">Eventos</a></div><div><strong data-i18n-es="Tu visita" data-i18n-en="Your visit">Tu visita</strong><a href="/reservar#elegir-sede" data-i18n-es="Elegir sucursal" data-i18n-en="Choose a location">Elegir sucursal</a><a href="/aviso-de-privacidad" data-i18n-es="Aviso de privacidad" data-i18n-en="Privacy notice">Aviso de privacidad</a></div></footer>
     <script src="/assets/js/i18n.js?v=20261026-approved-update"></script>
-    <script type="module" src="/assets/js/reservar.js?v=20261119-location-list"></script>
+    <script type="module" src="/assets/js/reservar.js?v=20261119-restore-cards"></script>
     <script defer src="/assets/js/ga4-consent.js?v=20261116-reservas-review"></script>
   </body>
 </html>

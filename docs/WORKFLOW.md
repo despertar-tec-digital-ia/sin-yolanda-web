@@ -1,5 +1,19 @@
 # Forma de trabajar y publicar
 
+### Reservas multisucursal · diseño y «Reserva ya»19-nov · preview actualizado
+
+Fuente `a8104c6`, paquete21archivos `reservas-share-design-final-20261119`, PR69 borrador.
+Lista fotográfica de sedes con imagen contextual en escritorio y filas completas en móvil;
+CTA «Reserva ya». Países Estados Unidos/México/Todas, todas las sedes abiertas al entrar.
+Jerarquía país → sede → reserva inspirada en la referencia real de Sala de Despecho, con
+marca, fotos y navegación propias; formulario real OpenTable y WhatsApp GDL conservados.
+
+496 pruebas/build/CI44586084987, QA320/390/768/1440, idioma, teclado, filtros, calendario y
+fallback sin JS correctos.21hashesHTTPS, salud y49otrosIDs cotejados. Las respuestas oficiales
+no cambiaron, pero todas devolvieron403 desde VPS; no se revalidó su contenido. Sin release
+oficial ni reservas enviadas. Preview público, timer y rollback → `deploy/reservas-visual-preview/README.md`.
+Conflictos con main pendientes antes de promover. Evidencia única conservada con manifiesto.
+
 ### Reservas multisucursal · entrada directa y países18-nov · preview actualizado
 
 Luis pide retirar la portada «Reserva tu mesa» con su foto y poner Estados Unidos antes de

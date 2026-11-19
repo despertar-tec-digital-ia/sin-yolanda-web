@@ -15,7 +15,31 @@ El artefacto previo `reservas-share-c7a4edc` (19 archivos) permanece verificado
 para rollback. El timer detiene este contenedor el 24-nov-2026 01:39:24 UTC;
 los otros 45 contenedores y el sitio oficial se verificaron sin cambios.
 
-**Actualización vigente 18-nov-2026:** fuente `e5e5cf045edfea2379205039cc894942e47592d3`,
+**Actualización vigente 19-nov-2026:** fuente `a8104c6319a346e644362595f897bb5e6c39e362`,
+paquete `reservas-share-design-final-20261119` de 21 archivos. CTA «Reserva ya», lista de sedes
+con fotografías y una imagen contextual amplia en escritorio que sigue hover/foco. En móvil,
+filas completas con foto y CTA; países en orden Estados Unidos, México, Todas. El recorrido
+país → sede → reserva toma como referencia el módulo real de Sala de Despecho y conserva
+los canales reales de Sin Yolanda, la cabecera, tipografía, naranja y fotos existentes.
+La reserva elegida tiene cabecera compacta y formulario de OpenTable con estilos propios;
+Guadalajara mantiene WhatsApp/SVG y texto de solicitud, sin simular confirmación.
+
+496 pruebas, build y [CI44586084987](https://github.com/despertar-tec-digital-ia/sin-yolanda-web/actions/runs/44586084987)
+correctos. QA local320/390/768/1440, ES/EN, teclado/foco, filtros, vuelta al país elegido,
+calendario móvil y acceso directo a los cinco canales sin JavaScript comprobados. No se envió
+reserva. HTTPS: 21 hashes iguales al manifiesto, health/Nginx/noindex/no-store correctos;
+QA público390/1440 en navegador integrado, sin Chrome for Testing.
+Los otros49 IDs de contenedores se conservan. Las tres respuestas oficiales mantienen
+status/bytes, pero este corte recibió403 en las tres desde el VPS: esa comparación no demuestra
+el contenido ni permite revalidar su404 anterior. No hubo release al dominio oficial.
+
+Respaldo `.artifacts/before-design.bak-20261119T182215Z/` con antes/después y Compose anterior.
+Rollback inmediato `reservas-share-direct-20261118`, cotejado íntegro antes de activar; artefactos
+anteriores conservados. Timer24-nov01:39:24UTC intacto. Evidencia local conservada en
+`clientes-assets/sin-yolanda/reservas-design-2026-11-19/` con manifiesto SHA-256; fuentes y
+recibos versionados en PR69. Sigue en conflicto con main; conciliar antes de promover.
+
+**Antecedente 18-nov-2026:** fuente `e5e5cf045edfea2379205039cc894942e47592d3`,
 paquete `reservas-share-direct-20261118` de 21 archivos. Se retiró la portada con su frase
 y fotografía: la entrada empieza directamente en «Elige tu sucursal». Estados Unidos aparece
 antes de México en filtros, sedes y próximas aperturas; Todas conserva la vista completa.

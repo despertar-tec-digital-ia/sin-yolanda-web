@@ -15,6 +15,26 @@ El artefacto previo `reservas-share-c7a4edc` (19 archivos) permanece verificado
 para rollback. El timer detiene este contenedor el 24-nov-2026 01:39:24 UTC;
 los otros 45 contenedores y el sitio oficial se verificaron sin cambios.
 
+**Actualización vigente 18-nov-2026:** fuente `e5e5cf045edfea2379205039cc894942e47592d3`,
+paquete `reservas-share-direct-20261118` de 21 archivos. Se retiró la portada con su frase
+y fotografía: la entrada empieza directamente en «Elige tu sucursal». Estados Unidos aparece
+antes de México en filtros, sedes y próximas aperturas; Todas conserva la vista completa.
+Se retiró la foto de portada del paquete y se usa el logo existente como imagen social.
+Jerarquía de títulos y selección de nombre de sucursal ajustadas conjuntamente.
+
+496 pruebas, build y CI manual `44466602804` correctos. Se utilizó workflow_dispatch porque
+PR69 está en conflicto con main y no generaba CI al actualizarse; no se integró main ni se
+publicó la ruta oficial. Antes de promover a producción hay que conciliar ese PR.
+Los 21 hashes coinciden en HTTPS; salud, Nginx, noindex y no-store correctos. Revisión móvil390
+y escritorio1280, filtros US/MX, cambio de sucursal, Guadalajara/WhatsApp y Houston `embedded`
+comprobados sin enviar una reserva. Los otros 49 IDs de contenedores y los bytes/status de
+home, Houston y `/reservar` oficiales permanecen idénticos; `/reservar` oficial sigue404.
+
+Respaldo de esta actualización:
+`.artifacts/before-direct.bak-20261119T054141Z/`, con IDs, hashes/status oficiales y Compose
+anterior. Rollback inmediato `reservas-share-e8d7c2d`, íntegro por SHA-256 antes de activar;
+se conservan los artefactos previos. El timer existente del24-nov01:39:24UTC no cambió.
+
 1. Desde la rama limpia y commiteada, con Node 22 y CI verde, ejecutar
    `node scripts/build-reservas-share.mjs reservas-share-<corte>`. El paquete
    incluye solo la página, sus recursos, robots y 404; retira analítica y schema

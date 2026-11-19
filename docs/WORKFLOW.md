@@ -1,5 +1,19 @@
 # Forma de trabajar y publicar
 
+### Reservas multisucursal · entrada directa y países18-nov · preview actualizado
+
+Luis pide retirar la portada «Reserva tu mesa» con su foto y poner Estados Unidos antes de
+México. Fuente `e5e5cf0` en PR69; vista de prueba actualizada, sin integrar `/reservar` en el
+dominio oficial. La entrada muestra el selector directamente, Todos/US/MX y sedes US antes
+de MX; próximas aperturas siguen el mismo orden. Datos/canales de cada sede conservados.
+
+496 pruebas, build y CI manual44466602804 correctos; 21 archivos cotejados en VPS/HTTPS,
+QA móvil390/escritorio1280, filtros y WhatsApp/Houston comprobados sin enviar reservas.
+PR69 está en conflicto con main; conciliar antes de promover. No se autorizó ni ejecutó el
+release oficial por este pase. Operación, evidencia y rollback actualizados en
+`deploy/reservas-visual-preview/README.md`. Los otros49contenedores y tres rutas oficiales
+conservan sus IDs/bytes/status; el timer de retiro del preview permanece.
+
 ### Reservas multisucursal · ajuste final de portada y filtros · 17-nov-2026
 
 La portada de `/reservar` separa la fotografía y el texto en móvil para mantener

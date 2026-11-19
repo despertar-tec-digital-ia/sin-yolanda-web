@@ -49,14 +49,14 @@
 .booking-venue-copy { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-rows: auto 1fr; align-items: center; gap: 4px 15px; padding: 5px 0; }
 .booking-venue-copy p { grid-column: 1 / -1; grid-row: 2; align-self: start; margin: 0; color: var(--booking-muted); font-size: 12px; line-height: 1.4; }
 .booking-venue-copy h3 { grid-row: 1; margin: 0; color: var(--booking-paper); font: 400 clamp(33px, 3.3vw, 48px)/1 SinYolandaDisplay, Impact, sans-serif; text-wrap: balance; }
-.booking-venue-copy > a { grid-row: 1; display: inline-flex; align-items: center; gap: 12px; min-height: 44px; color: var(--booking-orange); font-size: 12px; font-weight: 700; text-decoration: none; white-space: nowrap; }
+.booking-venue-copy > a { grid-row: 1; display: inline-flex; align-items: center; gap: 12px; min-height: 44px; color: var(--booking-orange); font-size: 14px; font-weight: 700; text-decoration: none; white-space: nowrap; }
 .booking-venue-copy > a::after { content: '↗'; display: grid; place-items: center; width: 30px; height: 30px; border: 1px solid #e75b2b70; border-radius: 50%; color: var(--booking-orange); font-size: 18px; font-weight: 400; transition: background-color .15s ease, color .15s ease; }
 .booking-venue-copy > a::before { content: ''; position: absolute; inset: 0; }
 .booking-venue:hover h3, .booking-venue:has(a:focus-visible) h3 { color: #ffc4a2; }
 .booking-venue:hover a::after, .booking-venue:has(a:focus-visible) a::after { background: var(--booking-orange); color: var(--booking-night); }
 .booking-venue:has(a:focus-visible) { outline: 2px solid var(--booking-orange); outline-offset: 5px; }
 .booking-feature { position: sticky; top: 110px; min-width: 0; margin-top: 29px; overflow: hidden; border-bottom: 5px solid var(--booking-orange); background: var(--booking-deep); }
-.booking-feature > img { display: block; width: 100%; height: clamp(440px, 43vw, 620px); object-fit: cover; object-position: center 42%; }
+.booking-feature > img { display: block; width: 100%; height: clamp(340px, calc(100svh - 345px), 560px); object-fit: cover; object-position: center 42%; }
 .booking-feature::after { content: ''; position: absolute; inset: 42% 0 0; background: linear-gradient(transparent, #151514e8); pointer-events: none; }
 .booking-feature-caption { position: absolute; right: 28px; bottom: 28px; left: 28px; z-index: 1; color: var(--booking-paper); }
 .booking-feature-caption span { display: inline-block; margin-bottom: 12px; font-size: 12px; }
@@ -94,7 +94,7 @@
 .booking-result .sy-booking-inner { display: block; max-width: none; }
 .booking-result .sy-booking-copy { display: block; margin: 0 0 18px; }
 .booking-result .sy-booking h2 { font: 400 38px/1 SinYolandaDisplay, Impact, sans-serif; }
-.booking-result .sy-booking-foot, .booking-result .sy-booking-status { font-family: Inter, Arial, sans-serif; color: #65534a; }
+.booking-result .sy-booking .sy-booking-foot, .booking-result .sy-booking .sy-booking-status { font-family: Inter, Arial, sans-serif; color: #65534a; }
 .booking-result .sy-booking-start { background: var(--booking-orange); color: var(--booking-night); font: 600 16px/1.3 Inter, Arial, sans-serif; }
 .booking-result .sy-booking #ot-reservation-widget .ot-dtp-picker { font-family: Inter, Arial, sans-serif; }
 .booking-result .sy-booking #ot-reservation-widget .ot-dtp-picker-selector:before { font: 500 12px/20px Inter, Arial, sans-serif; color: #65534a; }

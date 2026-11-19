@@ -44,7 +44,7 @@ function selectCountry(country = 'all', focusRegion = false) {
   if (focusRegion) {
     const count = choices.filter(choice => country === 'all' || choice.dataset.country === country).length;
     const status = document.querySelector('[data-booking-filter-status]');
-    if (status) status.textContent = currentLanguage() === 'en' ? `${count} locations taking reservations` : `${count} sucursales para reservar`;
+    if (status) status.textContent = currentLanguage() === 'en' ? `${count} ${count === 1 ? 'location' : 'locations'} taking reservations` : `${count} ${count === 1 ? 'sucursal' : 'sucursales'} para reservar`;
   }
 }
 

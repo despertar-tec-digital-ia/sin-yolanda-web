@@ -100,7 +100,7 @@
 .booking-result .sy-booking #ot-reservation-widget .ot-dtp-picker-selector:before { font: 500 12px/20px Inter, Arial, sans-serif; color: #65534a; }
 .booking-result .sy-booking #ot-reservation-widget .ot-select-label { color: #30201c; border-bottom-color: #30201c80 !important; font-family: Inter, Arial, sans-serif; }
 .booking-result .sy-booking #ot-reservation-widget .ot-dtp-picker-selector-link { color: #30201c; font: 500 16px/1.3 Inter, Arial, sans-serif; }
-.booking-result .sy-booking #ot-reservation-widget .ot-dtp-picker-button { background: var(--booking-orange) !important; color: var(--booking-night) !important; font: 700 15px/1 Inter, Arial, sans-serif; }
+.booking-result .sy-booking #ot-reservation-widget .ot-dtp-picker-button { background: var(--booking-orange) !important; color: var(--booking-night) !important; font: 700 15px/1 Inter, Arial, sans-serif !important; }
 .booking-result .sy-booking #ot-reservation-widget .picker__box { border-color: #30201c55; background: var(--booking-paper); color: #30201c; }
 .booking-result .sy-booking #ot-reservation-widget .picker__day { color: #30201c; font-family: Inter, Arial, sans-serif; }
 .booking-result .sy-booking #ot-reservation-widget .picker__day[aria-pressed=true] { background: var(--booking-orange); color: #151514; border-color: var(--booking-orange) !important; }

@@ -8,18 +8,14 @@ Sitio estático multi-página de la cadena de cantinas con micrófono abierto
 Leer [AGENTS.md](AGENTS.md) y [el flujo compartido](docs/WORKFLOW.md) antes de modificar el sitio.
 Las decisiones, responsabilidades, requisitos de CI/accesos y bloqueos están en ese flujo;
 [rutas y migraciones](docs/ROUTES.md) tiene su contrato propio. Usar la plantilla de PR del repo.
-**7-oct: CI de PR y paquete público verificados; sin nuevo despliegue ni CD activo.** El hero del home
-queda bajo responsabilidad de Karina. Las instrucciones no sustituyen protecciones de GitHub.
-**Automatización11-oct:** operador TXT aditivo y workflow manual `Approved Pages release` preparados;
-credenciales DNS/Pages separadas, custodia selectiva Doppler, entornos GitHub por `main` y producción
-con revisión humana. Estado remoto y pruebas vigentes → «Automatización Cloudflare11-oct» en
-`docs/WORKFLOW.md`. No confundir configuración con primera publicación oficial comprobada.
-**Candidata local posterior:** fuente reciente reconciliada dentro del primer lote, selector
-responsive, franja El Paso y Houston ES/EN/carta recuperados. Excepción D09: rótulo como H1 sobre
-el video original y retirada del bloque duplicado. Cartelera con campañas fechadas de los calendarios
-vivos de Karina, sin directorio Instagram. QA: 35 tests y once combinaciones de navegador;
-pretextos/cumpleaños conectados al selector. Alcance/evidencia/límites en
-`docs/WORKFLOW.md` §7. Sin merge ni despliegue.
+Estado y recibos de publicación vigentes → `docs/WORKFLOW.md`; operación → runbooks de cada
+destino. Los antecedentes fechados de ese archivo no sustituyen comprobar la rama y lo servido.
+
+La mejora incremental de diseño/QA, SEO y datos sigue `docs/SITE-QUALITY.md`. La candidata de
+calidad es local y opt-in: `npm run build:quality-review -- .artifacts/<nombre-nuevo>`. No cambia
+el build normal ni autoriza publicación. El auditor offline `npm run audit:quality -- .artifacts/<nombre>/public` observa el artefacto; `--hours <snapshot-sanitizado>` añade comparación
+GBP y `--fail-on-findings` convierte hallazgos en fallo explícito. No pide indexación ni hace
+llamadas a Google. Los permisos y la consulta real de Search Console se verifican por separado.
 
 ## Stack
 - HTML/CSS/JS vanilla; validación/empaquetado determinista con Node, sin dependencias npm.
@@ -29,17 +25,18 @@ pretextos/cumpleaños conectados al selector. Alcance/evidencia/límites en
 - Dominio activo: `sin-yolanda.com` (Cloudflare Pages, HTTPS verificado)
 
 ## Estructura
-- 15 archivos HTML publicables: home, locations, la-cantina, catering, eventos, tienda,
-  el-paso, y 4 sucursales (san-ignacio, san-antonio, the-woodlands, houston), más privacidad,
-  Houston EN, carta Houston y fallback 404. Maricarmen está archivada, fuera del artefacto público.
+- Inventario publicable y exclusiones: `scripts/public-manifest.json`; `npm run check` informa
+  el conteo actual. Incluye páginas generales, fichas, idiomas/cartas disponibles, campañas y
+  fallback404. Maricarmen está retirada; no agregarla desde catálogos históricos.
 - Panel demo y `mock-data.js`: antecedentes conservados en Git, excluidos del paquete publicable;
   navegación/JS público ya no incluyen el panel. Retirada en dominio pendiente de despliegue.
 - Datos públicos: `assets/js/public-data.js`; sucursales y dos campañas compartidas con fechas/sedes
   explícitas, sin métricas internas. La cartelera enlaza las fichas locales y retira fechas vencidas
   al renderizar según la zona del evento. Promos/condiciones locales no se generalizan.
   El contenido comercial heredado no queda certificado por pasar CI.
-- SEO: JSON-LD Restaurant por sucursal (con horarios + geo reales), canonicals,
-  sitemap.xml (12 URLs), robots.txt, OG tags
+- SEO: JSON-LD por tipo de página, canonicals, pares de idioma, sitemap/robots y catálogos de
+  descubrimiento. El mapa exacto y su coherencia se verifican con los contratos del repo; no
+  mantener conteos manuales de URLs en esta guía. La indexación efectiva requiere Search Console.
 
 ## Deploy
 Con alcance autorizado: `npm run release:approved -- --pr <N> --head <SHA-revisado> --publish`.

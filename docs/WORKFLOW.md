@@ -1,5 +1,20 @@
 # Forma de trabajar y publicar
 
+### Indexación20-nov · consulta real completada, sin publicación
+
+Se verificaron las26canónicas mediante Search Console:23indexadas y3cartas descubiertas,
+actualmente sin indexar (`/san-antonio/menu/`, `/en/san-antonio/menu/`, `/san-ignacio/menu/`).
+Las tres pasan la prueba publicada de Google, permiten rastreo/indexación y declaran canonical
+propio. No se solicitó indexación. Posadas está indexada, con último rastreo17nov y canonical
+correcto. Sitemap leído20nov, estado Correcto y26URL detectadas. El reporte agregado fechado15nov
+incluye9varianteswww con canonical adecuado y8redirecciones; sus destinos actuales son válidos.
+No hay acciones manuales, problemas de seguridad o retiradas recientes observadas.
+
+La consulta manual no habilita al colector: su API conserva403 hasta resolver su propio acceso.
+La captura periódica permanece sin activar y el build normal conserva sus aprobaciones. Falta
+priorizar el rastreo de las tres cartas y la consolidaciónwww, sin cambios a producción. Alcance,
+criterios y límites de futuras revisiones en SITE-QUALITY; evidencia privada en su plan dueño.
+
 ### Datos Google19-nov · colector conectado, sin activación ni publicación
 
 El colector privado ya lee las cinco fichas consumidoras, genera snapshot público y conecta

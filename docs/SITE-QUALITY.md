@@ -272,3 +272,34 @@ este repo conserva sólo el formato público, su validación y las herramientas 
 Fuentes oficiales consultadas de forma acotadaN0:
 [GBP consumidor](https://developers.google.com/my-business/reference/businessinformation/rest/v1/locations/getGoogleUpdated) y
 [URL Inspection](https://developers.google.com/webmaster-tools/v1/urlInspection.index/inspect).
+
+
+## Quinto lote20nov · estado real del índice comprobado
+
+Inspección individual de las26URL canónicas del sitemap:23indexadas con canonical de Google
+igual a la URL y3descubiertas, actualmente sin indexar. Las pendientes son las cartas de
+San Antonio ES/EN y Guadalajara (`/san-ignacio/menu/`). Las tres responden200, permitenindexación,
+están enlazadas en el HTML inicial de sus sucursales y pasan la prueba publicada de Google
+(canonical propio y BreadcrumbList válido). No se hicieron solicitudes de indexación. La prueba
+publicada acredita acceso actual, sin convertir una URL en indexada ni predecir cuándo ocurrirá.
+
+Posadas sí está indexada: último rastreo17nov2026, obtención correcta, canonical propio y sitemap
+conocido. Sitemap correcto, última lectura20nov y26páginas detectadas. El agregado de GSC se
+actualizó15nov e incluye20exclusiones:9varianteswww canonicalizadas,8redirecciones y las3cartas.
+Las17variantes comprobadas terminan en200/canonical correcto. No tratar20exclusiones como20
+fallos del sitio. WWW→sinwww sigue como mejora de consolidación; no se modificó hosting/DNS.
+
+No se detectan acciones manuales, problemas de seguridad ni solicitudes de retirada en los
+últimos seis meses. El acceso UI de esta revisión no concede acceso al colector, cuya API sigue
+403. La programación y publicación permanecen desactivadas. No hubo cambio de contenido,
+estructura, menús, reservas, permisosGoogle o envío de sitemap.
+
+Para futuras altas, usar el sitemap canónico como inventario; comparar inspección por URL y
+fecha, y separar `not-indexed`, `unknown` por acceso y errores técnicos del artefacto. Las nuevas
+páginas pueden esperar rastreo; no bloquear un release sólo por no estar aún indexadas ni cambiar
+canonical/noindex sin diagnóstico. La CI valida el artefacto; el observador con permiso válido
+registra el estado externo. No fijar23/26 como conteo permanente ni usar esta consulta manual
+para adelantar el último éxito de un job que aún no está activo.
+
+Verificación documentalN0: [reporte de indexación](https://support.google.com/webmasters/answer/7440203?hl=es)
+y [inspección/prueba publicada](https://support.google.com/webmasters/answer/9012289?hl=es).

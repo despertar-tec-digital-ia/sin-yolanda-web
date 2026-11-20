@@ -1,5 +1,14 @@
 # Forma de trabajar y publicar
 
+### WWW20-nov · revisión de propuesta, bloqueada sólo la operación remota
+
+Propuesta301existente revalidada con la documentación actual; conservar ruta/query y sólo host
+exactowww. DNSCNAMEproxied existente, sin necesidad acreditada de sustituirlo. GETde reglas de
+cuenta/zona ylistas sigue403 con accesosDNS/Pages. Parámetros preparados, ítem y matriz esperada
+156casos locales; no acreditan comportamiento desplegado. Antes de activar: acceso adecuado,
+inventario/conflictos y respaldo exacto; luego autorización y comprobación pública. Sin ampliar
+permisos ni cambiar DNS/reglas. Detalle y límites en SITE-QUALITY.
+
 ### Indexación20-nov · consulta real completada, sin publicación
 
 Se verificaron las26canónicas mediante Search Console:23indexadas y3cartas descubiertas,

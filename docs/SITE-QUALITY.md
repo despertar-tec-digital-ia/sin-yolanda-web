@@ -303,3 +303,21 @@ para adelantar el último éxito de un job que aún no está activo.
 
 Verificación documentalN0: [reporte de indexación](https://support.google.com/webmasters/answer/7440203?hl=es)
 y [inspección/prueba publicada](https://support.google.com/webmasters/answer/9012289?hl=es).
+
+
+## Consolidaciónwww20nov · propuesta revisada, sin activar
+
+Se conserva la propuesta existente en `scripts/central-www-redirect-proposal.json`: Bulk Redirect
+301del host exactowww haciaapex, sin incluir subdominios adicionales y preservando ruta/query.
+La guía de Pages vigente sigue ese mecanismo. El DNSwww ya es CNAMEproxied; no se propone
+reemplazarlo. La inspección actual de reglas/listas devuelve403 con ambos accesos existentes;
+no crear otra lista/regla raíz sin comprobar inventario, conflictos y rollback del estado previo.
+
+Se prepararon el ítem de lista y156casos esperados (26rutas×3queries×HTTP/HTTPS, GET/HEAD) en
+`.artifacts/www-consolidation-20261120/`. Son expectativas de aceptación, no una redirección
+servida ni un ensayo del proveedor. La comprobación posterior debe validar saltos, destinos,
+query, rutas desconocidas y ausencia de vuelta awww. HTTP puede tener un upgrade previo; no
+inventar un único salto.301puede cambiar POSTaGET: revisar callbacks/formularios antes de activar.
+Sin reglas, DNS, permisos, WordPress o producción modificados. ReferenciasN0:
+[Pageswww](https://developers.cloudflare.com/pages/how-to/www-redirect/) y
+[parámetros Bulk Redirects](https://developers.cloudflare.com/rules/url-forwarding/bulk-redirects/reference/parameters/).

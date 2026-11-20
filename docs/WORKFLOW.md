@@ -1,5 +1,31 @@
 # Forma de trabajar y publicar
 
+### Calidad incremental19-nov · auditoría completa y primera candidata local
+
+Encargo deLuis: adaptar el sitio actual, sin página ni diseño nuevo y sin publicación. Base
+main9590028; rama feat/site-quality-roadmap-20261119/PR71 borrador. Plan/criterios dueños:
+`docs/SITE-QUALITY.md`. Fases0/1:27rutas a390/1440 y ancho320,26canónicas200,404real,
+sin overflow ni erroresJS reproducidos. Catering ya está en4Texas ES/EN; no duplicarlo.
+
+Fuente funcional0a7fb83: piloto opt-in de agenda8fichasTexas con cenefa existente, superficies
+por tema, filas semanales alineadas y póster entero/contenido. Inicio/GDL/cartas/hero/headers/
+proveedores intactos por hash. SEO opt-in repara ItemList/directorio, logos yauxiliaresCatering;
+el inspector valida410referencias JSON-LD y pasa. Build normal401 no incorporaelpiloto;
+paquete local402 sin publicación.527pruebas/24focales/build yCI44644606813 pasan.
+Brave final16vistas8fichas390/1440+320, tarjetas alineadas, contraste mínimo del día12.85:1,
+afiches íntegros420/360, unCatering porficha ysin formularios enviados.
+
+GBPconsumer5/5 leído; GDL coincide y4USA difieren, incluyendospecial25/26nov. Comparadorpuro
+con snapshot sanitario:0errores deentrada,48observaciones por superficie (no48problemas
+independientes). **Horas aún sin aplicar.** No llamadasGoogle ni secreto enCI; revisión de
+propuesta antes de actualizar HTML/schema/cliente. Colectoractualnoextraehoras, su registro
+no se reutiliza indiscriminadamente. GSCcentral403 concredencialexistente: índice real
+no verificado, sin solicitudes. UTM/campañas, www/aliases yrestodejerarquía quedanporlotes.
+
+Evidencia local `.artifacts/audit-design/`, `audit-seo/`, `audit-gbp/`,
+`qa-quality-reviewed/` y `site-quality-audit-reviewed.json`. Preview solo127.0.0.1:8917;
+no deploypúblico, merge, DNS, GBPwrite, nuevojob ni cambio OpenTable/WhatsApp.
+
 ### USA · horarios por sucursal confirmados por Karina · 18-nov-2026
 
 Karina solicita establecer en la página el horario actual de Houston, The Woodlands,

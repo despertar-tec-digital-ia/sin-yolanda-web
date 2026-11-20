@@ -10,8 +10,7 @@ no hay lectura periódica activa ni publicación del sitio. Recibo operativo en 
 
 Las26URL del sitemap público responden200 y son elegibles según canonical/robots/noindex de
 esta consulta HTTP. No equivale a indexadas. URL Inspection de Posadas devuelve403 en dominio
-yprefijo central; sigue unknown hasta acceso. El usuario autorizó usar la cuenta propietaria,
-pero el control del navegador aún requiere resolver el permiso local. No hubo cambio Google.
+yprefijo central; sigue unknown hasta contar con acceso verificable. No hubo cambio Google.
 
 ### Continuidad del plan19-nov · candidata local, sin producción
 

@@ -167,7 +167,7 @@ a320px, además de las ocho fichas Texas a390/1440 y el componente a320/768/1024
 estático también funciona sin JS. La revisión de inicio no justifica eliminar bloques aprobados:
 su longitud procede del contenido y no se presenta como un error de funcionamiento.
 
-CI añade la construcción e inspección de la candidata en PR/push manual, separada del artefacto
+CI añade la construcción e inspección de la candidata en PR/push y ejecución manual, separada del artefacto
 normal que se conserva para publicación. El reporte local bloquea referencias/rutas/idiomas/
 metadata incoherentes; las pruebas negativas cubren esas regresiones. Sin snapshot fresco ni
 permisos Google, CI no certifica horarios GBP actuales ni indexación. No crea cron ni publica.
@@ -177,3 +177,11 @@ proyectores aceptados en construcción/scheduler y los controles finales en el a
 Un PR verde del piloto no realiza esa integración ni autoriza producción. Quedan decisiones de
 campañas, acceso Search Console, consolidación www y datos comerciales observados; ninguna se
 resuelve con valores inventados o cambios remotos silenciosos.
+
+
+Verificación del segundo lote: fuente `6343eff`,553pruebas y CI
+[44649427416](https://github.com/despertar-tec-digital-ia/sin-yolanda-web/actions/runs/44649427416)
+correctos, incluido «Inspect the incremental quality candidate». Paquete limpio404 y auditoría
+local:5sedes coincidentes con snapshot fresco,0diferencias;410referencias schema,26rutas sitemap/
+medición y39alternativas. Brave final también comprueba320/768/1024 y horario sin JS. No acredita
+Safari/iOS físico, accesibilidad completa o indexación real; producción sigue sin autorización.

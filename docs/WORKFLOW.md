@@ -23,7 +23,8 @@ Fuente pública revisada versionada, sin IDs privados ni credenciales; ningún c
 con `publicationEnabled:false`. Brave aislado:16vistas Texas390/1440, siete rutas de controles
 320 y reloj real de ambas zonas pasan; se revisan también320/768/1024 y alternativa sin JS.
 CI añade inspección de la candidata sin subirla como artefacto normal ni activar publicación;
-el recibo exacto de ejecución se registra al cerrar la verificación remota.
+CI44649427416 verde sobre6343eff, incluido «Inspect the incremental quality candidate».
+Paquete final limpio404; Brave adicional320/768/1024 y horario sin JS también pasan.
 
 GSC central403 con la credencial existente: indexación real no verificada. Campañas necesitan
 catálogo aprobado. www, colector GBP y promoción al scheduler/build normal siguen separados;

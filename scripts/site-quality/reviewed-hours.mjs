@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import reviewedData from './reviewed-hours-20261119.json' with {type: 'json'};
 import {createGbpHoursModel, REVIEWED_USA_BRANCHES} from '../../assets/js/gbp-hours-model.js';
+import {GBP_HOURS_BRANCHES} from './gbp-hours.mjs';
 
 export const reviewedHoursAssets = Object.freeze(['assets/js/gbp-hours-model.js', 'assets/js/gbp-hours-client.js']);
 export const reviewedHoursData = reviewedData;
@@ -61,6 +62,19 @@ export function projectReviewedHours({pages, read, now = new Date().toISOString(
   assert.equal(typeof read, 'function', 'Provide a reader for the final artifact');
   assert.ok(Number.isFinite(Date.parse(now)), 'Invalid reviewed hours projection time');
   const model = createGbpHoursModel(hoursData), files = new Map(), changes = [];
+  const inventory = new Set();
+  for (const source of pages.values()) for (const [, attrs, text] of source.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)) {
+    if (attributes(attrs).type !== 'application/ld+json') continue;
+    const document = JSON.parse(text);
+    for (const node of document['@graph'] ?? [document]) {
+      if ([].concat(node['@type'] ?? []).includes('Restaurant') && node.url) {
+        assert.equal(typeof node['@id'], 'string', 'Operating branch requires a stable Restaurant identity');
+        inventory.add(node['@id'].split('#')[0]);
+      }
+    }
+  }
+  assert.deepEqual([...inventory].sort(), GBP_HOURS_BRANCHES.map(branch => branch.url).sort(),
+    'Reconcile operating branch inventory with GBP before adding or retiring a location');
   const current = file => files.get(file) ?? pages.get(file) ?? read(file);
   const save = (file, value, kind) => {if (value !== current(file)) {files.set(file, value); changes.push({file, kind});}};
   const revision = encodeURIComponent(model.data.revision);

@@ -4,6 +4,7 @@ import { createRequire } from 'node:module';
 import { resolve } from 'node:path';
 import { existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
+import {localQaBrowserPath} from './local-qa-browser.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const origin = new URL(process.env.SY_QA_ORIGIN || 'http://127.0.0.1:8797/');
@@ -15,7 +16,7 @@ assert.ok(output.startsWith(resolve(root, '.artifacts') + '/') && !existsSync(ou
 mkdirSync(output, { recursive: true });
 const require = createRequire(resolve(process.env.SY_QA_PACKAGE_ROOT, '../package.json'));
 const { chromium } = require('playwright');
-const browser = await chromium.launch({ headless: true });
+const browser = await chromium.launch({ headless: true, executablePath: localQaBrowserPath() });
 const report = { version: 5, origin: origin.origin, capturedAt: new Date().toISOString(),
   scope: 'Local home corrections and retained navigation, not whole-site launch approval',
   viewports: [], interactions: {}, remainingFindings: [] };

@@ -1,4 +1,11 @@
 /* Opt-in review of existing Texas agenda components. No global theme or page replacement. */
+/* Short home sections share a calmer rhythm; media, content and hero keep their sizes. */
+body[data-site-quality-continuity][data-page="home"] main > :is(.pretextos-section, #botaneo, #cumple) {
+  padding-block: clamp(48px, 5vw, 80px);
+}
+body[data-site-quality-continuity][data-page="home"] :is(.pretextos-section, #botaneo) .section-heading {
+  margin-bottom: 28px;
+}
 body[data-site-quality-pilot="agenda"] .sy-agenda {
   background: color-mix(in srgb, var(--wine) 6%, var(--paper));
 }

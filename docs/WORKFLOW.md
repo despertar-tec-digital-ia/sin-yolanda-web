@@ -1,5 +1,23 @@
 # Forma de trabajar y publicar
 
+### Continuidad del plan19-nov · candidata local, sin producción
+
+Tercer lote sobre la candidata anterior: espacio vertical de tres bloques cortos del home,
+contador del selector sincronizado con filtro/idioma y fallback404 bilingüe. No cambian portada,
+contenido comercial, fotografías, cartas ni reservas. El build normal conserva sus aprobaciones.
+El paquete de revisión añade un controlador propio y queda en405archivos.
+
+Se implementa `prepare:gbp-hours`: snapshot público → normalización validada → diff/propuesta
+revisable → build local opcional. Rechaza lecturas incompletas/viejas, sedes desconocidas,
+tampering o baseline distinto; no modifica la fuente revisada ni lee/escribe Google. Si GDL
+cambia, bloquea el carril Texas hasta conciliar sus campañas. Un Restaurant nuevo no puede
+quedar fuera del mapa GBP sin bloquear la revisión. Colector/cron siguen pendientes.
+
+QA canónico `qa:quality`: servidor local efímero y Brave instalado aislado, sin solicitudes
+externas ni envíos; cubre27rutas ×320/390/1440, filtros/idioma/teclado,404 y sinJS. Los runners
+anteriores también pasan a Brave explícito. Comandos, alcance y límites en SITE-QUALITY.
+Recibo de pruebas y commit exacto al cerrar la candidata. Ningún merge o deploy autorizado.
+
 ### Calidad incremental19-nov · horarios GBP y adaptaciones locales
 
 Encargo de Luis: adaptar el sitio actual por fases, sin página/diseño nuevo ni publicación.

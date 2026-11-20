@@ -17,6 +17,8 @@
     "qa:visual-refinement": "node scripts/qa-visual-refinement.mjs",
     "import:branch": "node scripts/import-branches.mjs",
     "audit:quality": "node scripts/audit-site-quality.mjs",
-    "build:quality-review": "node scripts/site-quality-review.mjs"
+    "build:quality-review": "node scripts/site-quality-review.mjs",
+    "prepare:gbp-hours": "node scripts/prepare-gbp-hours.mjs",
+    "qa:quality": "node scripts/qa-site-quality.mjs"
   }
 }

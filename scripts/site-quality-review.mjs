@@ -9,14 +9,17 @@ import {projectQualitySeo} from './site-quality/seo-projection.mjs';
 import {projectReviewedHours, reviewedHoursAssets} from './site-quality/reviewed-hours.mjs';
 import {projectReviewedEventClock} from './site-quality/event-clock.mjs';
 import {projectQualityNavigation} from './site-quality/navigation.mjs';
+import {projectQualityContinuity, continuityAssets} from './site-quality/continuity.mjs';
+import {hoursDataForReview} from './site-quality/hours-proposal.mjs';
 
 const hash = value => createHash('sha256').update(value).digest('hex');
 const asset = 'assets/css/site-quality-pilot.css';
 const branches = new Set(['houston', 'san-antonio', 'the-woodlands', 'el-paso']);
-export function buildSiteQualityReview({root, out, now = new Date().toISOString()} = {}) {
+export function buildSiteQualityReview({root, out, now = new Date().toISOString(), hoursProposal} = {}) {
   root = resolve(root); out = resolve(out);
   assert.ok(out.startsWith(resolve(root, '.artifacts') + '/'), 'Review must stay in ignored local artifacts');
   assert.ok(!existsSync(out), 'Use a fresh review directory');
+  const hoursData = hoursProposal ? hoursDataForReview(hoursProposal, {now}) : undefined;
   const publicRoot = resolve(out, 'public');
   const baseline = packagePublic({root, destination: publicRoot, metadata: resolve(out, 'baseline-release.json'), audience: 'review', now});
   const read = file => readFileSync(resolve(publicRoot, file), 'utf8');
@@ -24,12 +27,14 @@ export function buildSiteQualityReview({root, out, now = new Date().toISOString(
   const seo = projectQualitySeo({pages, read});
   const changed = new Map(seo.files);
   const currentPages = () => new Map([...pages].map(([file, source]) => [file, changed.get(file) ?? source]));
-  const hours = projectReviewedHours({pages: currentPages(), read: file => changed.get(file) ?? read(file), now});
+  const hours = projectReviewedHours({pages: currentPages(), read: file => changed.get(file) ?? read(file), now, hoursData});
   for (const pair of hours.files) changed.set(...pair);
-  const eventClock = projectReviewedEventClock({pages: currentPages(), now});
+  const eventClock = projectReviewedEventClock({pages: currentPages(), now, hoursData});
   for (const pair of eventClock.files) changed.set(...pair);
   const navigation = projectQualityNavigation({pages: currentPages()});
   for (const pair of navigation.files) changed.set(...pair);
+  const continuity = projectQualityContinuity({pages: currentPages()});
+  for (const pair of continuity.files) changed.set(...pair);
   const pilotPages = [], controlPages = [];
   for (const [file, source] of currentPages()) {
     const body = source.match(/<body\b[^>]*>/)?.[0] ?? '';
@@ -49,18 +54,23 @@ export function buildSiteQualityReview({root, out, now = new Date().toISOString(
     writeFileSync(resolve(publicRoot, file), text);
   }
   assert.ok(Object.hasOwn(baseline.hashes, 'images/catering-review/pattern-band.webp'), 'Use only an existing published brand illustration');
-  for (const file of [asset, ...reviewedHoursAssets]) copyFileSync(resolve(root, file), resolve(publicRoot, file));
-  const files = [...new Set([...Object.keys(baseline.hashes), asset, ...reviewedHoursAssets])].sort();
+  for (const file of [asset, ...reviewedHoursAssets, ...continuityAssets]) copyFileSync(resolve(root, file), resolve(publicRoot, file));
+  const files = [...new Set([...Object.keys(baseline.hashes), asset, ...reviewedHoursAssets, ...continuityAssets])].sort();
   const hashes = Object.fromEntries(files.map(file => [file, hash(readFileSync(resolve(publicRoot, file)))]));
   const report = {...baseline, fileCount: files.length, hashes, publicDigest: hash(JSON.stringify(hashes)),
-    publicationEnabled: false, productionIntegrated: false, qualityReview: {version: 2, base: baseline.commit, asOf: now, pilotPages, controlPages,
+    publicationEnabled: false, productionIntegrated: false, qualityReview: {version: 3, base: baseline.commit, asOf: now, pilotPages, controlPages,
       seo: seo.metadata, hours: {...hours.metadata, eventEditorialExpiryReconciled: true}, eventClock: eventClock.metadata,
-      navigation: navigation.metadata, changes: [...seo.changes, ...hours.changes, ...eventClock.changes, ...navigation.changes]}};
+      navigation: navigation.metadata, continuity: continuity.metadata, hoursProposalUsed: !!hoursProposal,
+      changes: [...seo.changes, ...hours.changes, ...eventClock.changes, ...navigation.changes, ...continuity.changes]}};
   writeFileSync(resolve(out, 'release.json'), JSON.stringify(report, null, 2) + '\n');
   return report;
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  const report = buildSiteQualityReview({root: resolve(import.meta.dirname, '..'), out: process.argv[2], now: process.argv[3]});
+  const arg = name => {const i = process.argv.indexOf(name); return i < 0 ? undefined : process.argv[i + 1];};
+  const proposal = arg('--hours-proposal');
+  const report = buildSiteQualityReview({root: resolve(import.meta.dirname, '..'), out: process.argv[2],
+    now: arg('--at') ?? (process.argv[3]?.startsWith('--') ? undefined : process.argv[3]),
+    hoursProposal: proposal ? JSON.parse(readFileSync(resolve(proposal), 'utf8')) : undefined});
   console.log(JSON.stringify({audience: report.audience, fileCount: report.fileCount, publicationEnabled: false, pilotPages: report.qualityReview.pilotPages, seo: report.qualityReview.seo}));
 }

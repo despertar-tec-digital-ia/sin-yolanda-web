@@ -26,6 +26,11 @@ function candidate(at = now) {
   const input = base(at), result = projectReviewedHours(input);
   return {...result, input, pages: new Map([...input.pages, ...[...result.files].filter(([file]) => file.endsWith('.html'))]), read: file => result.files.get(file) ?? input.read(file)};
 }
+test('a new operating Restaurant cannot be omitted from the GBP identity map', () => {
+  const input = base();
+  input.pages.set('future.html', '<script type="application/ld+json">{"@type":"Restaurant","@id":"https://sin-yolanda.com/future#restaurant","url":"https://sin-yolanda.com/future"}</script>');
+  assert.throws(() => projectReviewedHours(input), /Reconcile operating branch inventory/);
+});
 function snapshot() {
   const period = (openDay, open, closeDay, close) => ({openDay, openTime: open ? {hours: open} : {}, closeDay, closeTime: close ? {hours: close} : {}});
   const common = [period('SUNDAY', 0, 'SUNDAY', 2), period('SUNDAY', 11, 'SUNDAY', 21), period('WEDNESDAY', 16, 'WEDNESDAY', 24), period('THURSDAY', 16, 'THURSDAY', 24), period('FRIDAY', 16, 'FRIDAY', 24), period('SATURDAY', 0, 'SATURDAY', 2), period('SATURDAY', 11, 'SATURDAY', 24)];

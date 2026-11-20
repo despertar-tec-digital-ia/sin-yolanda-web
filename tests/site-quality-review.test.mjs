@@ -21,8 +21,11 @@ test('quality pilot stays opt-in, preserves the existing site and cannot introdu
   for (const [file, expected] of Object.entries(baseline.hashes)) {
     if (!allowed.has(file)) assert.equal(hash(readFileSync(resolve(out, 'public', file))), expected, file + ' must remain unchanged');
   }
-  assert.equal(report.fileCount, baseline.fileCount + 3);
+  assert.equal(report.fileCount, baseline.fileCount + 4);
   const projectedBaseline = projectPublicSite(root, {now: report.qualityReview.asOf, commit: report.commit}).files;
+  const home = readFileSync(resolve(out, 'public/index.html'), 'utf8');
+  const originalHome = projectedBaseline.get('index.html') ?? readFileSync(resolve(root, 'index.html'), 'utf8');
+  assert.equal(elementRange(home, 'section', 'inicio').html, elementRange(originalHome, 'section', 'inicio').html, 'Preserve the reserved home hero');
   for (const file of report.qualityReview.pilotPages) {
     const html = readFileSync(resolve(out, 'public', file), 'utf8');
     assert.equal((html.match(/data-catering-teaser=/g) ?? []).length, 1);

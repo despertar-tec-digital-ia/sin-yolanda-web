@@ -125,8 +125,8 @@ responden200 y tienen metadata/canonical/H1; la indexación efectiva no está ce
 | Fechas y enlaces pequeños en fichas/cartas | Jerarquía de fechas Texas; áreas táctiles de siete cartas/privacidad, sin alterar contenido | Mantener el display responsive y revisar cada ancho; el inicio conserva composición |
 
 `npm run build:quality-review -- .artifacts/<nombre-nuevo>` genera el lote sobre el
-artefacto actual, con `publicationEnabled:false`: una hoja acotada a fichas/controles y dos
-módulos compartidos de horarios. Son 404 archivos frente a 401 de la construcción ordinaria,
+artefacto actual, con `publicationEnabled:false`: una hoja acotada a fichas/controles, dos
+módulos compartidos de horarios y el controlador de estado/idioma. Son 405 archivos frente a 401 de la construcción ordinaria,
 que conserva sus aprobaciones. Los tests protegen contenido, hero, cartas, contactos y reservas;
 sólo se normalizan enlaces internos conocidos y se aplican los deltas declarados.
 
@@ -185,3 +185,53 @@ correctos, incluido «Inspect the incremental quality candidate». Paquete limpi
 local:5sedes coincidentes con snapshot fresco,0diferencias;410referencias schema,26rutas sitemap/
 medición y39alternativas. Brave final también comprueba320/768/1024 y horario sin JS. No acredita
 Safari/iOS físico, accesibilidad completa o indexación real; producción sigue sin autorización.
+
+
+## Tercer lote local · continuidad y propuestas de GBP
+
+Se ajusta sólo el espacio vertical de los bloques cortos del inicio («Pretextos», «Botaneo» y
+«Cumpleaños»). Paleta, familias, contenido, orden, fotografías y portada se conservan. El cambio
+no intenta acortar el sitio eliminando sedes o argumentos. Comparar en390/1440 y probar768/1024.
+
+Se corrige un estado reproducido: tras filtrar sedes en español y cambiar a inglés, el contador
+seguía en español. El controlador adicional calcula la cantidad visible y mantiene las dos
+variantes explícitas para el traductor existente. Conservar el filtro al alternar idioma y
+recuperar opciones abiertas al entrar a reservar desde «Nuevas y próximas».
+
+La página404 conserva su composición, HTTP404 y noindex. Título, explicación y salidas siguen
+el idioma guardado; sin JS conserva su fallback español completo. No añadir otra ruta indexable.
+El ajuste no modifica la navegación de las fichas ni crea destinos para próximas aperturas.
+
+### Proceso de horarios repetible, sin escrituras remotas
+
+`npm run prepare:gbp-hours -- <snapshot-publico.json> --out .artifacts/<propuesta-nueva>.json`
+valida identidad de las cinco sedes, frescura48h, zona y lectura completa. Deriva regulares y
+excepciones de los campos raw, sin confiar en resúmenes precalculados ni copiar account IDs,
+contactos o credenciales. Usa los normalizadores del comparador; rechaza lecturas parciales,
+solapamientos y fechas/horas no soportadas. Produce datos públicos, diff por sede y estado
+`unchanged` o `review-required`; ambos conservan `publicationEnabled:false` y revisión requerida.
+
+`npm run build:quality-review -- .artifacts/<salida-nueva> --hours-proposal .artifacts/<propuesta>.json`
+permite comprobar una propuesta en la candidata. Valida digest, baseline, forma pública y
+frescura antes de escribir el paquete. Un cambio GDL aparece en el diff y bloquea ese carril
+Texas: hay que conciliar sus proyectores de horario/campañas, nunca omitirlo silenciosamente.
+Ninguno de estos comandos cambia el JSON revisado, hace llamadas a Google, crea PR o publica.
+La captura periódica autenticada sigue pendiente en el colector privado y no se activa aquí.
+
+El inventario de Restaurant se contrasta con el mapa GBP por identidad estable, compartida por
+sus idiomas. Una futura sede abierta añadida/retirada sin reconciliar ese mapa bloquea el build
+de revisión. Altas y cierres necesitan ese cambio explícito; no se deducen de una ficha incompleta.
+
+### QA repetible con Brave
+
+`npm run qa:quality -- .artifacts/<paquete>/public .artifacts/<evidencia-nueva>` verifica el paquete
+y crea su servidor efímero local. Requiere `SY_QA_PACKAGE_ROOT` apuntando al Playwright instalado
+y Brave instalado; en otros sistemas, indicar `SY_QA_BROWSER_PATH`. No instala navegadores.
+Los otros dos runners locales también usan ese resolvedor; se rechaza Chrome for Testing.
+
+Recorre las27páginas en320/390/1440, estado HTTP, anchura, imágenes visibles y errores JS.
+Comprueba filtros/idiomas repetidos, Escape/foco, reserva tras filtro de próximas,404 ES/EN,
+fallback sinJS y captura los bloques adaptados en390/768/1024/1440. Usa fecha del artefacto,
+contextos aislados y bloquea solicitudes externas/escrituras; por ello no certifica mapas,
+OpenTable o WhatsApp externos, Safari/iOS físico o métricas de rendimiento. El servidor se cierra
+al terminar incluso si falla una comprobación. Conservar el reporte de fallos, no sobrescribirlo.

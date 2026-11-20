@@ -14,7 +14,7 @@ export function auditSiteQuality({artifact, hoursSnapshot, now = new Date().toIS
     return readFileSync(resolve(root, file), 'utf8');
   };
   const pages = new Map(files.filter(file => file.endsWith('.html')).map(file => [file, read(file)]));
-  const seo = inspectProjectedSeo({pages, read, publicFiles: new Set(files)});
+  const seo = inspectProjectedSeo({pages, read, publicFiles: new Set(files), reviewFiles: metadata.reviewPages ?? []});
   const hours = hoursSnapshot ? compareGbpHours({snapshot: hoursSnapshot, pages,
     discovery: JSON.parse(read('discovery.json')), now}) : null;
   return {version: 1, observedAt: now, artifactCommit: metadata.commit,

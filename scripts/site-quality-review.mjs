@@ -6,6 +6,9 @@ import {fileURLToPath} from 'node:url';
 import {createHash} from 'node:crypto';
 import {packagePublic} from './package-public.mjs';
 import {projectQualitySeo} from './site-quality/seo-projection.mjs';
+import {projectReviewedHours, reviewedHoursAssets} from './site-quality/reviewed-hours.mjs';
+import {projectReviewedEventClock} from './site-quality/event-clock.mjs';
+import {projectQualityNavigation} from './site-quality/navigation.mjs';
 
 const hash = value => createHash('sha256').update(value).digest('hex');
 const asset = 'assets/css/site-quality-pilot.css';
@@ -20,17 +23,25 @@ export function buildSiteQualityReview({root, out, now = new Date().toISOString(
   const pages = new Map(Object.keys(baseline.hashes).filter(file => file.endsWith('.html')).map(file => [file, read(file)]));
   const seo = projectQualitySeo({pages, read});
   const changed = new Map(seo.files);
-  const pilotPages = [];
-  for (const [file, source] of pages) {
+  const currentPages = () => new Map([...pages].map(([file, source]) => [file, changed.get(file) ?? source]));
+  const hours = projectReviewedHours({pages: currentPages(), read: file => changed.get(file) ?? read(file), now});
+  for (const pair of hours.files) changed.set(...pair);
+  const eventClock = projectReviewedEventClock({pages: currentPages(), now});
+  for (const pair of eventClock.files) changed.set(...pair);
+  const navigation = projectQualityNavigation({pages: currentPages()});
+  for (const pair of navigation.files) changed.set(...pair);
+  const pilotPages = [], controlPages = [];
+  for (const [file, source] of currentPages()) {
     const body = source.match(/<body\b[^>]*>/)?.[0] ?? '';
-    if (!/class="[^"]*\bbranch-landing\b/.test(body)) continue;
     const branch = body.match(/data-branch="([^"]+)"/)?.[1];
-    if (!branches.has(branch)) continue;
+    const agenda = /class="[^"]*\bbranch-landing\b/.test(body) && branches.has(branch);
+    const controls = /class="[^"]*\b(?:digital-menu-page|gdl-original-menu|ep-menu-page)\b/.test(body) || file === 'aviso-de-privacidad.html';
+    if (!agenda && !controls) continue;
     assert.ok(!source.includes('data-site-quality-pilot='), 'Do not apply the pilot twice');
-    const current = changed.get(file) ?? source;
-    const html = current.replace(/<body\b[^>]*>/, tag => tag.replace('>', ' data-site-quality-pilot="agenda">'))
+    const flag = agenda ? ' data-site-quality-pilot="agenda"' : ' data-site-quality-controls="targets"';
+    const html = source.replace(/<body\b[^>]*>/, tag => tag.replace('>', flag + '>'))
       .replace('</head>', `<link rel="stylesheet" href="/${asset}?v=20261119-agenda-pilot"></head>`);
-    changed.set(file, html); pilotPages.push(file);
+    changed.set(file, html); (agenda ? pilotPages : controlPages).push(file);
   }
   assert.equal(pilotPages.length, 8, 'Expected the four existing Texas locations in ES/EN');
   for (const [file, text] of changed) {
@@ -38,11 +49,13 @@ export function buildSiteQualityReview({root, out, now = new Date().toISOString(
     writeFileSync(resolve(publicRoot, file), text);
   }
   assert.ok(Object.hasOwn(baseline.hashes, 'images/catering-review/pattern-band.webp'), 'Use only an existing published brand illustration');
-  copyFileSync(resolve(root, asset), resolve(publicRoot, asset));
-  const files = [...Object.keys(baseline.hashes), asset].sort();
+  for (const file of [asset, ...reviewedHoursAssets]) copyFileSync(resolve(root, file), resolve(publicRoot, file));
+  const files = [...new Set([...Object.keys(baseline.hashes), asset, ...reviewedHoursAssets])].sort();
   const hashes = Object.fromEntries(files.map(file => [file, hash(readFileSync(resolve(publicRoot, file)))]));
   const report = {...baseline, fileCount: files.length, hashes, publicDigest: hash(JSON.stringify(hashes)),
-    publicationEnabled: false, productionIntegrated: false, qualityReview: {version: 1, base: baseline.commit, asOf: now, pilotPages, seo: seo.metadata, changes: seo.changes}};
+    publicationEnabled: false, productionIntegrated: false, qualityReview: {version: 2, base: baseline.commit, asOf: now, pilotPages, controlPages,
+      seo: seo.metadata, hours: {...hours.metadata, eventEditorialExpiryReconciled: true}, eventClock: eventClock.metadata,
+      navigation: navigation.metadata, changes: [...seo.changes, ...hours.changes, ...eventClock.changes, ...navigation.changes]}};
   writeFileSync(resolve(out, 'release.json'), JSON.stringify(report, null, 2) + '\n');
   return report;
 }

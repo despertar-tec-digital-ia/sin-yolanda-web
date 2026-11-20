@@ -1,30 +1,35 @@
 # Forma de trabajar y publicar
 
-### Calidad incremental19-nov · auditoría completa y primera candidata local
+### Calidad incremental19-nov · horarios GBP y adaptaciones locales
 
-Encargo deLuis: adaptar el sitio actual, sin página ni diseño nuevo y sin publicación. Base
-main9590028; rama feat/site-quality-roadmap-20261119/PR71 borrador. Plan/criterios dueños:
-`docs/SITE-QUALITY.md`. Fases0/1:27rutas a390/1440 y ancho320,26canónicas200,404real,
-sin overflow ni erroresJS reproducidos. Catering ya está en4Texas ES/EN; no duplicarlo.
+Encargo de Luis: adaptar el sitio actual por fases, sin página/diseño nuevo ni publicación.
+Base main9590028; rama `feat/site-quality-roadmap-20261119`, PR71 borrador. Plan y criterios
+dueños: `docs/SITE-QUALITY.md`. Auditoría de27rutas a390/1440 y ancho320,26canónicas200;
+Catering ya está en4Texas ES/EN por proyección, sin duplicarlo.
 
-Fuente funcional0a7fb83: piloto opt-in de agenda8fichasTexas con cenefa existente, superficies
-por tema, filas semanales alineadas y póster entero/contenido. Inicio/GDL/cartas/hero/headers/
-proveedores intactos por hash. SEO opt-in repara ItemList/directorio, logos yauxiliaresCatering;
-el inspector valida410referencias JSON-LD y pasa. Build normal401 no incorporaelpiloto;
-paquete local402 sin publicación.527pruebas/24focales/build yCI44644606813 pasan.
-Brave final16vistas8fichas390/1440+320, tarjetas alineadas, contraste mínimo del día12.85:1,
-afiches íntegros420/360, unCatering porficha ysin formularios enviados.
+La candidata opt-in incorpora frontera menú–agenda, filas semanales alineadas, afiche íntegro
+contenido420/360 y fecha funcional distinta del título. Amplía áreas táctiles de cartas y
+privacidad, conservando controles ocultos en móvil. Normaliza20enlaces nativos a canónicas.
+SEO corrige directorio ItemList, dos logos y auxiliares Catering; el inspector final comprueba
+410referencias JSON-LD,26rutas de sitemap/medición y39alternativas hreflang, sin hallazgos.
 
-GBPconsumer5/5 leído; GDL coincide y4USA difieren, incluyendospecial25/26nov. Comparadorpuro
-con snapshot sanitario:0errores deentrada,48observaciones por superficie (no48problemas
-independientes). **Horas aún sin aplicar.** No llamadasGoogle ni secreto enCI; revisión de
-propuesta antes de actualizar HTML/schema/cliente. Colectoractualnoextraehoras, su registro
-no se reutiliza indiscriminadamente. GSCcentral403 concredencialexistente: índice real
-no verificado, sin solicitudes. UTM/campañas, www/aliases yrestodejerarquía quedanporlotes.
+GBP consumidor5/5 verificado. Horarios USA aplicados sólo en la candidata a HTML/schema/
+discovery/datos/cliente, con un modelo único; cinco sedes coinciden, cero diferencias. Texas:
+25nov16:00–02:00 del26 y26cerrado; caducidad Chicago/Denver. Los anuncios25 de TW/EP siguen
+visibles hasta ese cierre, sin cambiar horas anunciadas. GDL/Posadas conservan sus horarios.
+Fuente pública revisada versionada, sin IDs privados ni credenciales; ningún cambio en Google.
 
-Evidencia local `.artifacts/audit-design/`, `audit-seo/`, `audit-gbp/`,
-`qa-quality-reviewed/` y `site-quality-audit-reviewed.json`. Preview solo127.0.0.1:8917;
-no deploypúblico, merge, DNS, GBPwrite, nuevojob ni cambio OpenTable/WhatsApp.
+553pruebas y construcción normal401 pasan. La candidata404 permanece fuera del build normal,
+con `publicationEnabled:false`. Brave aislado:16vistas Texas390/1440, siete rutas de controles
+320 y reloj real de ambas zonas pasan; se revisan también320/768/1024 y alternativa sin JS.
+CI añade inspección de la candidata sin subirla como artefacto normal ni activar publicación;
+el recibo exacto de ejecución se registra al cerrar la verificación remota.
+
+GSC central403 con la credencial existente: indexación real no verificada. Campañas necesitan
+catálogo aprobado. www, colector GBP y promoción al scheduler/build normal siguen separados;
+no activar jobs, permisos o writes por este registro. Preview sólo127.0.0.1:8917.
+Evidencia local en `.artifacts/audit-design/`, `audit-seo/`, `audit-gbp/`, `qa-hours-final/` y
+los reportes auditados. Sin deploy público, merge, DNS ni cambios OpenTable/WhatsApp.
 
 ### USA · horarios por sucursal confirmados por Karina · 18-nov-2026
 

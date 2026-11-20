@@ -11,6 +11,31 @@ body[data-site-quality-pilot="agenda"] .sy-agenda::before {
 body[data-site-quality-pilot="agenda"] .sy-agenda-inner {
   padding-top: clamp(40px, 4.5vw, 64px);
 }
+/* Keep the established display face for the plan's name; dates are functional labels. */
+body[data-site-quality-pilot="agenda"] .sy-agenda-dates .sy-agenda-copy > time,
+body[data-site-quality-pilot="agenda"] .sy-agenda-functions time {
+  font: 700 14px/1.5 HoustonSlab, Georgia, serif;
+  margin: 0 0 12px;
+  color: inherit;
+}
+/* Enlarge isolated targets without replacing their labels, type or destinations. */
+body[data-site-quality-pilot] .bf-bottom a,
+body[data-site-quality-controls] .bf-bottom a,
+body[data-site-quality-controls] .gm-footer a,
+body[data-site-quality-controls] footer > a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+/* Header links already participate in flex layouts; retain responsive display:none. */
+body[data-site-quality-controls] .local-header nav a,
+body[data-site-quality-controls] .gm-header > a {
+  align-items: center;
+  min-height: 44px;
+}
+body[data-site-quality-pilot] [data-gbp-special-hours] dt {
+  width: auto;
+}
 body[data-site-quality-pilot="agenda"] .sy-october-programming .sy-agenda-weekly-grid {
   align-items: stretch;
 }

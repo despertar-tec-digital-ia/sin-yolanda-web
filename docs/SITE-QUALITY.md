@@ -20,7 +20,7 @@ en una rama de prueba independiente: este plan no lo incorpora ni reemplaza Open
 | --- | --- | --- |
 | 0. Línea base | Commit, inventario de rutas/idiomas, fuentes editables, componentes y medios | Construcción reproducible; distinguir HTML fuente de la proyección servida |
 | 1. Diagnóstico completo | Matriz de las 27 páginas publicables, capturas móvil/escritorio, hallazgos y cobertura SEO/GBP | Separar error reproducido, recomendación de diseño y dato pendiente |
-| 2. Primer lote local | Transición menú–agenda, ritmo de tarjetas Texas; correcciones SEO y propuesta de horarios comprobados | Antes/después; mantener contenido y comportamiento; pruebas en 320–1440px |
+| 2. Primer lote local | Transición menú–agenda, ritmo de tarjetas Texas; correcciones SEO y horarios GBP comprobados | Antes/después; mantener contenido y comportamiento; pruebas en 320–1440px |
 | 3. Consistencia de recorridos | Inicio, ubicaciones, fichas, Catering, eventos y páginas informativas | Resolver hallazgos por prioridad; completar secciones sólo cuando hay contenido/destino confirmado |
 | 4. Cartas y Guadalajara | Legibilidad, navegación, fotos, accesibilidad y SEO de las cartas existentes y páginas GDL | No cartas nuevas; preservar diseño original, precios, orden, moneda y excepciones de GDL |
 | 5. Prevención de deriva | Controles de rutas/SEO/datos en artefacto final; propuesta de importación GBP y reporte de cambios | Pruebas negativas; distinguir preparación, ejecución real y aprobación; sin secretos en CI público |
@@ -120,17 +120,19 @@ responden200 y tienen metadata/canonical/H1; la indexación efectiva no está ce
 | Afiche dominical domina la composición | Proporción contenida; afiche íntegro y enlace de ampliación conservados | Verificar con y sin afiche al caducar |
 | Directorio JSON-LD obsoleto y logos inexistentes en dos páginas | Proyección SEO opt-in derivada de las fichas y logo vigentes | Promover sólo después de aprobación; no reescribir aprobaciones anteriores |
 | Auxiliares Catering describen un alcance distinto del Service proyectado | Misma proyección local; no inventar cobertura | Revisar también catálogos de descubrimiento al tocar un servicio |
-| Horarios Texas y excepciones GBP difieren del sitio | Comparador readonly, informe por sede/superficie; datos aún sin aplicar | Migrar la misma fuente a HTML/schema/cliente con pruebas antes de publicación |
-| UTM de campañas sin catálogo admitido y aliases internos | Diagnosticados; no cambiar la atribución a ciegas | Definir campañas/sedes/canales públicos y probar contrato/consentimiento |
-| Consistencia del resto del sitio | Auditoría completa; sin rediseño ni cambios masivos | Lotes siguientes de lectura/ritmo/áreas táctiles sobre bloques existentes |
+| Horarios Texas y excepciones GBP difieren del sitio | Aplicados en la candidata local a HTML/schema/discovery/datos/cliente; cinco sedes coinciden | Conservar fuente revisada y comprobar reloj/zonas antes de promover |
+| Aliases internos y UTM de campañas sin catálogo admitido | Veinte enlaces nativos normalizados a sus canónicas; parámetros y proveedores conservados | Definir catálogo de campañas aprobado antes de activar atribución |
+| Fechas y enlaces pequeños en fichas/cartas | Jerarquía de fechas Texas; áreas táctiles de siete cartas/privacidad, sin alterar contenido | Mantener el display responsive y revisar cada ancho; el inicio conserva composición |
 
-`npm run build:quality-review -- .artifacts/<nombre-nuevo>` genera el primer lote sobre el
-artefacto actual, con `publicationEnabled:false` y una sola hoja adicional acotada a las fichas
-Texas. La construcción ordinaria conserva sus archivos y aprobaciones. Los tests comprueban
-que inicio, Guadalajara, cartas, proveedores y secciones fuera del lote no cambian.
+`npm run build:quality-review -- .artifacts/<nombre-nuevo>` genera el lote sobre el
+artefacto actual, con `publicationEnabled:false`: una hoja acotada a fichas/controles y dos
+módulos compartidos de horarios. Son 404 archivos frente a 401 de la construcción ordinaria,
+que conserva sus aprobaciones. Los tests protegen contenido, hero, cartas, contactos y reservas;
+sólo se normalizan enlaces internos conocidos y se aplican los deltas declarados.
 
 `npm run audit:quality -- .artifacts/<nombre>/public` valida el paquete y observa el cierre de
-entidades, catálogos y recursos JSON-LD finales. `--hours <snapshot-sanitizado>` añade la
+entidades, catálogos y recursos JSON-LD finales, title/description/H1, idioma, canonical,
+sitemap, reciprocidad hreflang y pertenencia de las rutas al mapa de medición. `--hours <snapshot-sanitizado>` añade la
 comparación GBP; `--fail-on-findings` permite exigir fallo explícito. Sin snapshot no se
 presume que GBP esté actualizado. El comparador rechaza fuentes parciales, viejas o identidades
 desconocidas; no hace llamadas de red, modifica datos ni concede permisos.
@@ -139,3 +141,39 @@ El mapa de identidades GBP es explícito para evitar reactivar sedes retiradas u
 Una alta futura debe reconciliar ese mapa con el inventario canónico; fallar ante una identidad
 desconocida es preferible a omitirla. Unificar ese registro y conectar la lectura periódica al
 colector existente queda en fase5; no se activó ningún cron, secreto o job remoto nuevo.
+
+
+## Segundo lote local · horarios y prevención
+
+La fuente revisada pública es `scripts/site-quality/reviewed-hours-20261119.json`, procedente
+de la vista de consumidor GBP leída el 19 de noviembre. No contiene IDs de cuenta, tokens ni
+contactos. Un solo modelo genera las ocho fichas USA ES/EN, Restaurant/discovery y resúmenes
+públicos; el módulo del navegador reemplaza al controlador anterior en esta candidata.
+Guadalajara y Posadas conservan su horario y sus excepciones ya coincidentes con GBP.
+
+En las cuatro sedes Texas: 25 de noviembre16:00–02:00 del día26 y día26 cerrado. Cada aviso
+vence según Chicago o Denver; el dato semanal revisado permanece después de48h: la frescura
+se audita, no se usa para restaurar horarios viejos. Las excepciones sólo se retiran al terminar
+su ventana local. Se verifican también idioma, visibilidad y retorno a una pestaña abierta.
+
+La caducidad editorial de los eventos usa el mismo horario revisado como límite de visibilidad.
+Esto conserva los anuncios del25 de Woodlands y El Paso hasta02:00, sin afirmar que sus eventos
+terminen a esa hora ni cambiar copy, carteles o promociones con vigencia propia. El renderer
+normal mantiene su contrato histórico; el proveedor de horas sólo se utiliza en la candidata.
+
+La hoja conserva el comportamiento responsive de cabeceras: ampliar áreas táctiles no debe
+hacer visibles controles que la carta oculta en móvil. Se probaron las siete rutas de controles
+a320px, además de las ocho fichas Texas a390/1440 y el componente a320/768/1024. El horario
+estático también funciona sin JS. La revisión de inicio no justifica eliminar bloques aprobados:
+su longitud procede del contenido y no se presenta como un error de funcionamiento.
+
+CI añade la construcción e inspección de la candidata en PR/push manual, separada del artefacto
+normal que se conserva para publicación. El reporte local bloquea referencias/rutas/idiomas/
+metadata incoherentes; las pruebas negativas cubren esas regresiones. Sin snapshot fresco ni
+permisos Google, CI no certifica horarios GBP actuales ni indexación. No crea cron ni publica.
+
+Antes de promover este lote hay que revisar su aspecto con Luis e integrar explícitamente los
+proyectores aceptados en construcción/scheduler y los controles finales en el artefacto normal.
+Un PR verde del piloto no realiza esa integración ni autoriza producción. Quedan decisiones de
+campañas, acceso Search Console, consolidación www y datos comerciales observados; ninguna se
+resuelve con valores inventados o cambios remotos silenciosos.

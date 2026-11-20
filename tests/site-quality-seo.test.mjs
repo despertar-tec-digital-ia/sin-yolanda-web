@@ -16,6 +16,25 @@ const nodes = html => documents(html).flatMap(document => document['@graph'] ?? 
 const rewriteNodes = (html, transform) => html.replace(/(<script\b[^>]*type="application\/ld\+json"[^>]*>)([\s\S]*?)(<\/script>)/g,
   (_tag, start, value, end) => {const document = JSON.parse(value); for (const node of document['@graph'] ?? [document]) transform(node); return start + JSON.stringify(document) + end;});
 const fixture = (pages = finalPages(), read = finalRead) => ({pages, read});
+const candidateFixture = () => {
+  const projected = projectQualitySeo(fixture()), pages = finalPages();
+  for (const [file, html] of projected.files) if (file.endsWith('.html')) pages.set(file, html);
+  return {pages, read: file => projected.files.get(file) ?? finalRead(file), publicFiles: new Set([...manifest.pages, ...manifest.assets])};
+};
+const replaceContract = (source, transform) => source.replace(/(\/\* BEGIN GENERATED MEASUREMENT CONTRACT \*\/)([\s\S]*?)(\/\* END GENERATED MEASUREMENT CONTRACT \*\/)/,
+  (_whole, start, json, end) => {const contract = JSON.parse(json.trim()); transform(contract); return start + '\n' + JSON.stringify(contract) + '\n' + end;});
+function addEditorialFixture(input, {mapped = true, inSitemap = true, branch = 'group'} = {}) {
+  const file = 'a-future-editorial-route.html', url = 'https://sin-yolanda.com/a-future-editorial-route';
+  const html = `<!doctype html><html lang="es"><head><title>Una historia nueva</title><meta name="description" content="Descripción propia de esta historia."><link rel="canonical" href="${url}"><script type="application/ld+json">${JSON.stringify({'@context': 'https://schema.org', '@type': 'WebPage', '@id': url + '#webpage', url, inLanguage: 'es'})}</script></head><body data-branch="${branch}"><h1>Una historia nueva</h1></body></html>`;
+  const read = input.read;
+  input.pages.set(file, html); input.publicFiles.add(file);
+  input.read = path => {
+    if (path === 'sitemap.xml' && inSitemap) return read(path).replace('</urlset>', `<url><loc>${url}</loc></url></urlset>`);
+    if (path === 'assets/js/site-measurement.js' && mapped) return replaceContract(read(path), contract => {contract.routes['/a-future-editorial-route'] = branch;});
+    return read(path);
+  };
+  return {file, url};
+}
 
 test('candidate SEO derives the directory from published Restaurant identities and repairs only broken logos', () => {
   const input = fixture(), before = [...input.pages], result = projectQualitySeo(input);
@@ -131,4 +150,90 @@ test('the final candidate passes the artifact inspector without a fixed page cou
     publicFiles: [...manifest.pages, ...manifest.assets]});
   assert.equal(partial.passed, false);
   assert.ok(partial.errors.some(error => error.code === 'public-page-not-inspected' && error.file === 'el-paso.html'));
+});
+
+test('final metadata rejects absent or empty title/description and a missing HTML language', () => {
+  for (const [transform, code] of [
+    [html => html.replace(/<title>[^<]*<\/title>/, ''), 'title-missing-or-ambiguous'],
+    [html => html.replace(/<title>[^<]*<\/title>/, '<title> &nbsp; </title>'), 'title-missing-or-ambiguous'],
+    [html => html.replace(/<meta name="description"[^>]*>/, ''), 'description-missing-or-ambiguous'],
+    [html => html.replace(/<html lang="[^"]+"/, '<html'), 'html-language-invalid'],
+  ]) {
+    const input = candidateFixture(); input.pages.set('tienda.html', transform(input.pages.get('tienda.html')));
+    const report = inspectProjectedSeo(input);
+    assert.equal(report.passed, false);
+    assert.ok(report.errors.some(error => error.code === code && error.file === 'tienda.html'), code);
+  }
+});
+
+test('H1s inside nested templates, scripts, styles and comments never satisfy active document metadata', () => {
+  const input = candidateFixture();
+  input.pages.set('tienda.html', input.pages.get('tienda.html').replace(/<h1\b[^>]*>[\s\S]*?<\/h1>/,
+    '<template><template><h1>Nested template</h1></template><h1>Outer template</h1></template>'
+    + '<script>const fake = "<h1>Script literal</h1>";</script>'
+    + '<style>.fake::before { content: "<h1>Style literal</h1>"; }</style><!-- <h1>Comment</h1> -->'));
+  const report = inspectProjectedSeo(input);
+  assert.ok(report.errors.some(error => error.code === 'active-h1-missing-or-ambiguous' && error.file === 'tienda.html'));
+  const positive = candidateFixture();
+  positive.pages.set('tienda.html', positive.pages.get('tienda.html').replace('</body>', '<template><h1>Archived heading</h1><link rel="canonical" href="https://unpublished.example/"></template></body>'));
+  assert.deepEqual(inspectProjectedSeo(positive).errors, []);
+});
+
+test('the canonical sitemap covers additions and excludes review files and the 404', () => {
+  const missing = candidateFixture(), {url} = addEditorialFixture(missing, {inSitemap: false});
+  assert.ok(inspectProjectedSeo(missing).errors.some(error => error.code === 'sitemap-canonical-missing' && error.url === url));
+  const extra = candidateFixture(), read = extra.read;
+  extra.read = file => file === 'sitemap.xml' ? read(file).replace('</urlset>', '<url><loc>https://sin-yolanda.com/404</loc></url></urlset>') : read(file);
+  assert.ok(inspectProjectedSeo(extra).errors.some(error => error.code === 'sitemap-unexpected-url' && error.url.endsWith('/404')));
+  const review = candidateFixture(), addition = addEditorialFixture(review, {mapped: false, inSitemap: false});
+  review.reviewFiles = new Set([addition.file]);
+  review.pages.set(addition.file, review.pages.get(addition.file).replace('<meta name="description"', '<meta name="robots" content="noindex,nofollow"><meta name="description"'));
+  assert.deepEqual(inspectProjectedSeo(review).errors, []);
+});
+
+test('a future route passes when its own metadata, sitemap and measurement mapping are complete', () => {
+  const input = candidateFixture(); addEditorialFixture(input);
+  const report = inspectProjectedSeo(input);
+  assert.deepEqual(report.errors, []);
+  assert.equal(report.summary.pages, manifest.pages.length + 1);
+  assert.equal(report.summary.sitemap.expectedCanonicals, manifest.pages.length);
+  assert.equal(report.summary.measurement.status, 'checked');
+  assert.equal(report.summary.measurement.checkedRoutes, report.summary.sitemap.expectedCanonicals);
+});
+
+test('measurement coverage rejects an unmapped new canonical and wrong or unknown branch identities', () => {
+  const missing = candidateFixture(), {file} = addEditorialFixture(missing, {mapped: false});
+  assert.ok(inspectProjectedSeo(missing).errors.some(error => error.code === 'measurement-route-unmapped' && error.file === file));
+  for (const [branch, code] of [['san-antonio', 'measurement-identity-mismatch'], ['unregistered-fixture', 'measurement-identity-unknown']]) {
+    const input = candidateFixture(), read = input.read;
+    input.read = file => file === 'assets/js/site-measurement.js'
+      ? replaceContract(read(file), contract => {contract.routes['/houston'] = branch;}) : read(file);
+    assert.ok(inspectProjectedSeo(input).errors.some(error => error.code === code && error.file === 'houston.html'));
+  }
+});
+
+test('compiled measurement extraction accepts JSON only and never evaluates JavaScript', () => {
+  const input = candidateFixture(), read = input.read;
+  input.read = file => file === 'assets/js/site-measurement.js'
+    ? read(file).replace('/* END GENERATED MEASUREMENT CONTRACT */', '; globalThis.__seoInspectorExecuted = true; /* END GENERATED MEASUREMENT CONTRACT */') : read(file);
+  assert.ok(inspectProjectedSeo(input).errors.some(error => error.code === 'measurement-contract-invalid'));
+  assert.equal(globalThis.__seoInspectorExecuted, undefined);
+});
+
+test('hreflang requires real targets, matching document language and a reciprocal return link', () => {
+  const orphan = candidateFixture();
+  orphan.pages.set('tienda.html', orphan.pages.get('tienda.html').replace('</head>', '<link rel="alternate" hreflang="en" href="https://sin-yolanda.com/unpublished-english-edition"></head>'));
+  assert.ok(inspectProjectedSeo(orphan).errors.some(error => error.code === 'hreflang-target-unpublished'));
+  const wrongLanguage = candidateFixture();
+  wrongLanguage.pages.set('houston.html', wrongLanguage.pages.get('houston.html').replace('hreflang="es" href="https://sin-yolanda.com/houston"', 'hreflang="fr" href="https://sin-yolanda.com/houston"'));
+  assert.ok(inspectProjectedSeo(wrongLanguage).errors.some(error => error.code === 'hreflang-language-mismatch'));
+  const missingReturn = candidateFixture();
+  missingReturn.pages.set('en/houston/index.html', missingReturn.pages.get('en/houston/index.html').replace('<link rel="alternate" hreflang="es" href="https://sin-yolanda.com/houston">', ''));
+  assert.ok(inspectProjectedSeo(missingReturn).errors.some(error => error.code === 'hreflang-return-link-missing'));
+});
+
+test('review noindex headers do not claim effective indexation or fail the intended canonical inventory', () => {
+  const input = candidateFixture(), read = input.read;
+  input.read = file => file === '_headers' ? read(file) + '\n/*\n  X-Robots-Tag: noindex, nofollow\n' : read(file);
+  assert.deepEqual(inspectProjectedSeo(input).errors, []);
 });

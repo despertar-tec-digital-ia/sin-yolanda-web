@@ -39,6 +39,56 @@ function replaceSchemaNodes(html, file, transform) {
   });
 }
 
+// Keep active JSON-LD, but discard comments and nested template contents before
+// inspecting the document. Raw script/style contents cannot create HTML nodes.
+function activeDocument(html) {
+  const tokens = /<!--[\s\S]*?-->|<(script|style)\b[^>]*>[\s\S]*?<\/\1\s*>|<\/?template\b[^>]*>/gi;
+  let depth = 0, cursor = 0, active = '';
+  for (const match of html.matchAll(tokens)) {
+    if (!depth) active += html.slice(cursor, match.index);
+    const token = match[0];
+    if (/^<template\b/i.test(token)) depth++;
+    else if (/^<\/template\b/i.test(token)) depth = Math.max(0, depth - 1);
+    else if (!depth && !token.startsWith('<!--')) active += token;
+    cursor = match.index + token.length;
+  }
+  if (!depth) active += html.slice(cursor);
+  return active;
+}
+
+function decodedText(value) {
+  const named = {amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: ' '};
+  return value.replace(/&(#x[\da-f]+|#\d+|amp|lt|gt|quot|apos|nbsp);/gi, (entity, name) => {
+    if (!name.startsWith('#')) return named[name.toLowerCase()];
+    const code = /^#x/i.test(name) ? parseInt(name.slice(2), 16) : Number(name.slice(1));
+    return code > 0 && code <= 0x10ffff ? String.fromCodePoint(code) : entity;
+  });
+}
+
+const languageTag = value => typeof value === 'string' && /^[a-z]{2,8}(?:-[a-z\d]{1,8})*$/i.test(value);
+const plainText = value => decodedText(value.replace(/<[^>]*>/g, ' ')).replace(/\s+/g, ' ').trim();
+const normalizedRoute = path => path.replace(/\/index(?:\.html)?\/?$/, '/').replace(/\.html$/, '').replace(/\/+$/, '') || '/';
+
+function pageMetadata(document) {
+  const markup = document.replace(/<(script|style)\b[^>]*>[\s\S]*?<\/\1\s*>/gi, ' ');
+  const head = markup.match(/<head\b[^>]*>([\s\S]*?)<\/head\s*>/i)?.[1] ?? '';
+  const descriptions = [...head.matchAll(/<meta\b((?:[^"'<>]|"[^"]*"|'[^']*')*)>/gi)]
+    .filter(([, attributes]) => attribute(attributes, 'name')?.toLowerCase() === 'description')
+    .map(([, attributes]) => decodedText(attribute(attributes, 'content') ?? '').trim());
+  const alternateLinks = [...head.matchAll(/<link\b([^>]*)>/gi)]
+    .filter(([, attributes]) => attribute(attributes, 'rel')?.toLowerCase().split(/\s+/).includes('alternate')
+      && attribute(attributes, 'hreflang') !== undefined)
+    .map(([, attributes]) => ({lang: attribute(attributes, 'hreflang').toLowerCase(), url: decodedText(attribute(attributes, 'href') ?? '')}));
+  return {
+    titles: [...head.matchAll(/<title\b[^>]*>([\s\S]*?)<\/title\s*>/gi)].map(([, text]) => plainText(text)),
+    descriptions,
+    headings: [...markup.matchAll(/<h1\b[^>]*>([\s\S]*?)<\/h1\s*>/gi)].map(([, text]) => plainText(text)),
+    lang: attribute(markup.match(/<html\b([^>]*)>/i)?.[1] ?? '', 'lang')?.toLowerCase(),
+    branch: attribute(markup.match(/<body\b([^>]*)>/i)?.[1] ?? '', 'data-branch'),
+    alternateLinks,
+  };
+}
+
 /**
  * Read final, already projected HTML and auxiliary assets from an isolated package.
  * Return changed files only. Neither the inputs nor the filesystem are mutated.
@@ -189,42 +239,65 @@ export function projectQualitySeo({pages, read} = {}) {
 }
 
 /** Inspect the final artifact by invariants, including URLs inside JSON-LD. */
-export function inspectProjectedSeo({pages, read, publicFiles} = {}) {
+export function inspectProjectedSeo({pages, read, publicFiles, reviewFiles = []} = {}) {
   assert.ok(pages instanceof Map && pages.size, 'Provide the final HTML page map');
   assert.equal(typeof read, 'function', 'Provide a reader for final package files');
   assert.ok(Array.isArray(publicFiles) || publicFiles instanceof Set, 'Provide the final public file inventory');
+  assert.ok(Array.isArray(reviewFiles) || reviewFiles instanceof Set, 'Review files must be an array or set');
   const allowed = new Set(publicFiles), errors = [], inventory = [], canonicals = new Map();
+  const review = new Set(reviewFiles);
   const problem = (code, file, message, details = {}) => errors.push({code, file, message, ...details});
+  for (const file of review) if (!allowed.has(file) || !file.endsWith('.html')) {
+    problem('review-page-outside-artifact', file, 'Review exclusions must identify HTML files in this artifact');
+  }
   for (const file of allowed) if (file.endsWith('.html') && !pages.has(file)) {
     problem('public-page-not-inspected', file, 'The public HTML file is missing from the inspected page map');
   }
   for (const [file, html] of pages) {
     if (!allowed.has(file)) problem('page-outside-artifact', file, 'The inspected page is absent from the public inventory');
     try {
-      const url = canonical(html, file), schema = schemaDocuments(html, file).flatMap(nodes);
-      inventory.push({file, url, nodes: schema});
+      const document = activeDocument(html), metadata = pageMetadata(document);
+      const url = canonical(document.replace(/<(script|style)\b[^>]*>[\s\S]*?<\/\1\s*>/gi, ' '), file);
+      const schema = schemaDocuments(document, file).flatMap(nodes);
+      inventory.push({file, url, nodes: schema, ...metadata});
+      for (const [values, code, label] of [
+        [metadata.titles, 'title-missing-or-ambiguous', 'title'],
+        [metadata.descriptions, 'description-missing-or-ambiguous', 'meta description'],
+        [metadata.headings, 'active-h1-missing-or-ambiguous', 'active H1'],
+      ]) {
+        if (file === '404.html' && code === 'description-missing-or-ambiguous') continue;
+        if (values.length !== 1 || !values[0]) problem(code, file, `The final document must contain one non-empty ${label}`);
+      }
+      if (!languageTag(metadata.lang)) problem('html-language-invalid', file, 'The final HTML must declare its document language');
       if (url) {
         if (canonicals.has(url)) problem('duplicate-canonical', file, 'Two pages declare the same canonical', {url});
         canonicals.set(url, file);
-      } else if (file !== '404.html') problem('canonical-missing', file, 'A public destination lacks its canonical');
+      } else if (file !== '404.html' && !review.has(file)) problem('canonical-missing', file, 'A public destination lacks its canonical');
     } catch (error) { problem('invalid-seo-document', file, error.message); }
   }
   const home = inventory.find(page => page.file === 'index.html');
   let origin;
   try {
     const url = new URL(home?.url);
-    assert.ok(url.protocol === 'https:' && url.pathname === '/' && !url.search && !url.hash);
+    assert.ok(url.protocol === 'https:' && url.pathname === '/' && !url.search && !url.hash && !url.username && !url.password && !url.port);
     origin = url.origin;
   } catch { problem('public-origin-missing', 'index.html', 'The home must identify the HTTPS public origin'); }
   if (!origin) return {passed: false, errors, summary: {pages: pages.size, canonicals: canonicals.size, checkedSchemaReferences: 0}};
   for (const [url, file] of canonicals) {
     try {
       const parsed = new URL(url);
-      if (parsed.origin !== origin || parsed.hash || parsed.search) {
+      if (parsed.origin !== origin || parsed.hash || parsed.search || parsed.username || parsed.password || parsed.port) {
         problem('canonical-outside-site', file, 'The canonical must use this public origin without query or fragment', {url});
       }
+      const expectedPath = file === 'index.html' ? '/' : '/' + file.replace(/index\.html$/, '').replace(/\.html$/, '');
+      if (parsed.pathname !== expectedPath) problem('canonical-route-mismatch', file, 'The canonical must identify the route served by this artifact file', {url});
     } catch { problem('canonical-invalid', file, 'The canonical is not a valid URL', {url}); }
   }
+  // Preview headers intentionally prevent indexing. This is a contract check of
+  // the release's intended canonical inventory, never proof of Google indexing.
+  const sitemap = inspectSitemap({read, inventory, review, origin, problem});
+  const alternateLinks = inspectAlternateLinks({inventory, review, origin, problem});
+  const measurement = inspectMeasurement({read, allowed, inventory, review, problem});
 
   let checkedSchemaReferences = 0;
   const linkFields = new Set(['@id', 'logo', 'image', 'url', 'hasMenu', 'menu', 'item', 'contentUrl', 'thumbnailUrl']);
@@ -307,5 +380,116 @@ export function inspectProjectedSeo({pages, read, publicFiles} = {}) {
     }
   } catch { problem('catering-discovery-invalid', 'discovery.json', 'The Catering auxiliary contract is missing or invalid'); }
   return {passed: errors.length === 0, errors,
-    summary: {pages: pages.size, canonicals: canonicals.size, restaurants: restaurants.size, checkedSchemaReferences}};
+    summary: {pages: pages.size, canonicals: canonicals.size, restaurants: restaurants.size, checkedSchemaReferences,
+      sitemap, alternateLinks, measurement}};
+}
+
+function inspectSitemap({read, inventory, review, origin, problem}) {
+  const expected = new Set(inventory.filter(page => page.url && page.file !== '404.html' && !review.has(page.file)).map(page => page.url));
+  const actual = new Set();
+  try {
+    const xml = read('sitemap.xml');
+    assert.equal(typeof xml, 'string');
+    assert.ok(!/<!DOCTYPE|<!ENTITY/i.test(xml), 'External declarations are not part of the public sitemap contract');
+    assert.match(xml, /<urlset\b[^>]*>[\s\S]*<\/urlset\s*>/i);
+    const entries = [...xml.matchAll(/<url\b[^>]*>([\s\S]*?)<\/url\s*>/gi)];
+    const locations = [...xml.matchAll(/<loc\b[^>]*>([\s\S]*?)<\/loc\s*>/gi)];
+    assert.equal(entries.length, locations.length, 'Each sitemap URL must provide exactly one loc');
+    for (const [, entry] of entries) {
+      const values = [...entry.matchAll(/<loc\b[^>]*>([\s\S]*?)<\/loc\s*>/gi)];
+      assert.equal(values.length, 1, 'Each sitemap URL must provide exactly one loc');
+      const value = decodedText(values[0][1].trim());
+      const url = new URL(value);
+      assert.ok(url.origin === origin && !url.search && !url.hash && !url.username && !url.password && !url.port);
+      if (actual.has(value)) problem('sitemap-duplicate-url', 'sitemap.xml', 'A canonical must appear only once in the sitemap', {url: value});
+      actual.add(value);
+      if (!expected.has(value)) problem('sitemap-unexpected-url', 'sitemap.xml', 'The sitemap must exclude aliases, 404, review files and unpublished destinations', {url: value});
+    }
+  } catch { problem('sitemap-invalid-or-missing', 'sitemap.xml', 'The final artifact must provide its valid canonical URL sitemap'); }
+  for (const url of expected) if (!actual.has(url)) problem('sitemap-canonical-missing', 'sitemap.xml', 'The public canonical is absent from the final sitemap', {url});
+  return {expectedCanonicals: expected.size, listedCanonicals: actual.size, excludedReviewFiles: review.size};
+}
+
+function inspectAlternateLinks({inventory, review, origin, problem}) {
+  const published = new Map(inventory.filter(page => page.url && page.file !== '404.html' && !review.has(page.file)).map(page => [page.url, page]));
+  let checked = 0;
+  for (const page of published.values()) {
+    if (!page.alternateLinks.length) continue;
+    const languages = new Set();
+    if (!page.alternateLinks.some(link => link.url === page.url && link.lang !== 'x-default')) {
+      problem('hreflang-self-missing', page.file, 'An alternate-language cluster must include its own edition');
+    }
+    for (const link of page.alternateLinks) {
+      checked++;
+      if (languages.has(link.lang)) problem('hreflang-duplicate-language', page.file, 'A language must identify one edition in a cluster', {url: link.url});
+      languages.add(link.lang);
+      if (link.lang !== 'x-default' && !languageTag(link.lang)) {
+        problem('hreflang-language-invalid', page.file, 'The alternate edition must use a valid language tag', {url: link.url});
+      }
+      let target;
+      try {
+        const url = new URL(link.url);
+        if (url.origin === origin && !url.search && !url.hash && !url.username && !url.password) target = published.get(link.url);
+      } catch { /* The structured failure below includes relative/malformed targets. */ }
+      if (!target) {
+        problem('hreflang-target-unpublished', page.file, 'An alternate edition must resolve to a real public canonical outside review exclusions', {url: link.url});
+        continue;
+      }
+      if (link.lang !== 'x-default' && link.lang.split('-')[0] !== target.lang?.split('-')[0]) {
+        problem('hreflang-language-mismatch', page.file, 'The alternate language must agree with the destination HTML language', {url: link.url});
+      }
+      if (!target.alternateLinks.some(back => back.url === page.url && back.lang !== 'x-default'
+          && back.lang.split('-')[0] === page.lang?.split('-')[0])) {
+        problem('hreflang-return-link-missing', page.file, 'The alternate edition must link back to this language edition', {url: link.url});
+      }
+    }
+  }
+  return {checked};
+}
+
+function inspectMeasurement({read, allowed, inventory, review, problem}) {
+  const file = 'assets/js/site-measurement.js';
+  if (!allowed.has(file)) return {status: 'not-present', checkedRoutes: 0};
+  const start = '/* BEGIN GENERATED MEASUREMENT CONTRACT */', end = '/* END GENERATED MEASUREMENT CONTRACT */';
+  let source;
+  try { source = read(file); assert.equal(typeof source, 'string'); }
+  catch {
+    problem('measurement-contract-unavailable', file, 'The public measurement source cannot be read from the final artifact');
+    return {status: 'unavailable', checkedRoutes: 0};
+  }
+  if (!source.includes(start) && !source.includes(end)) return {status: 'not-extractable', checkedRoutes: 0};
+  let contract;
+  try {
+    assert.equal(source.split(start).length, 2); assert.equal(source.split(end).length, 2);
+    const first = source.indexOf(start) + start.length, last = source.indexOf(end);
+    assert.ok(last > first);
+    contract = JSON.parse(source.slice(first, last).trim());
+    assert.ok(contract.version === 2 && contract.routes && typeof contract.routes === 'object' && !Array.isArray(contract.routes));
+    assert.ok(Array.isArray(contract.branches) && contract.branches.every(branch => typeof branch === 'string' && branch));
+  } catch {
+    problem('measurement-contract-invalid', file, 'The embedded public contract must be one valid JSON object; scripts are never evaluated');
+    return {status: 'invalid', checkedRoutes: 0};
+  }
+  let checkedRoutes = 0;
+  for (const page of inventory) {
+    if (!page.url || page.file === '404.html' || review.has(page.file)) continue;
+    let route;
+    try { route = normalizedRoute(new URL(page.url).pathname); } catch { continue; }
+    checkedRoutes++;
+    if (!Object.hasOwn(contract.routes, route)) {
+      problem('measurement-route-unmapped', page.file, 'The canonical route is missing from the compiled public measurement contract', {url: page.url});
+      continue;
+    }
+    const identity = contract.routes[route];
+    if (typeof identity !== 'string' || !contract.branches.includes(identity)) {
+      problem('measurement-identity-unknown', page.file, 'The compiled route must identify a registered measurement branch', {url: page.url});
+    }
+    if (page.branch && page.branch !== identity) {
+      problem('measurement-identity-mismatch', page.file, 'The compiled route must retain the explicit branch identity of the final document', {url: page.url});
+    }
+    if (page.branch && !contract.branches.includes(page.branch)) {
+      problem('measurement-page-identity-unknown', page.file, 'The document branch must be registered in the compiled contract', {url: page.url});
+    }
+  }
+  return {status: 'checked', checkedRoutes};
 }

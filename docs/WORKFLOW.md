@@ -1,5 +1,18 @@
 # Forma de trabajar y publicar
 
+### Datos Google19-nov · colector conectado, sin activación ni publicación
+
+El colector privado ya lee las cinco fichas consumidoras, genera snapshot público y conecta
+propuesta/candidata/auditor web. Prueba real limpia:405archivos,5sedes coincidentes/0diferencias,
+SEO correcto y propuesta unchanged. No modificar fuente revisada por sólo cambiar la observación.
+Programación preparada pero desactivada, con controles de fuente/runtime/imagen y salidas privadas;
+no hay lectura periódica activa ni publicación del sitio. Recibo operativo en el plan privado.
+
+Las26URL del sitemap público responden200 y son elegibles según canonical/robots/noindex de
+esta consulta HTTP. No equivale a indexadas. URL Inspection de Posadas devuelve403 en dominio
+yprefijo central; sigue unknown hasta acceso. El usuario autorizó usar la cuenta propietaria,
+pero el control del navegador aún requiere resolver el permiso local. No hubo cambio Google.
+
 ### Continuidad del plan19-nov · candidata local, sin producción
 
 Tercer lote sobre la candidata anterior: espacio vertical de tres bloques cortos del home,

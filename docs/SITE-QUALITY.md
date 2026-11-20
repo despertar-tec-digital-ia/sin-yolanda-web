@@ -245,3 +245,30 @@ comparador5sedes/0diferencias e inspector SEO sin hallazgos. QA local sobre ese 
 Escape/foco, reserva tras próximas y fallback sin JS correctos. Portada idéntica por geometría,
 texto y encuadres en390/1440 frente a la candidata anterior. Evidencia única local conservada;
 el commit no respalda por sí solo capturas ignoradas. No publicación ni integración productiva.
+
+
+## Cuarto lote · lectura de GBP conectada e inspección de índice
+
+El colector privado ya produce un snapshot público de las cinco fichas consumidoras y lo
+conecta al generador de propuestas y al auditor local. Se probó con lecturas autenticadas
+reales:5sedes completas, propuesta `unchanged`, candidata405 y auditor5coincidentes/0diferencias.
+No se modifica la fuente revisada cuando no hay cambios ni se publica un snapshot sin validar.
+El origen privado mantiene sus IDs/credenciales fuera del repo web y del paquete público.
+
+La captura periódica se prepara separada de la publicación. El runner falla ante versiones,
+fuentes o imágenes sin revisar; conserva el último éxito y evita builds repetidos cuando no
+cambia el horario. Los archivos de programación están preparados, sin instalarlos o activarlos.
+Antes de activación hay que provisionar runtime aislado compatible y checkout de herramientas,
+verificar el contenedor y autorizar el cambio operativo. Esto no autoriza publicar el sitio.
+
+La revisión HTTP del sitemap público del19nov comprobó26URL con respuesta200, canonical propio,
+robots permitido y sin noindex. Esto es indexabilidad técnica, no prueba de inclusión en Google.
+La consulta real de URL Inspection para Posadas devolvió403 en las propiedades dominio/prefijo;
+esas URL quedan `unknown` hasta tener acceso. El nuevo inspector separa denegaciones, fallos,
+resultados no indexados y canonical de Google; no solicita indexación o cambios de permisos.
+
+El contrato del colector y sus recibos quedan en su repositorio privado y el plan operativo;
+este repo conserva sólo el formato público, su validación y las herramientas de candidata.
+Fuentes oficiales consultadas de forma acotadaN0:
+[GBP consumidor](https://developers.google.com/my-business/reference/businessinformation/rest/v1/locations/getGoogleUpdated) y
+[URL Inspection](https://developers.google.com/webmaster-tools/v1/urlInspection.index/inspect).

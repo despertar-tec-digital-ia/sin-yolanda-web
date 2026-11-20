@@ -16,7 +16,9 @@ quedar fuera del mapa GBP sin bloquear la revisión. Colector/cron siguen pendie
 QA canónico `qa:quality`: servidor local efímero y Brave instalado aislado, sin solicitudes
 externas ni envíos; cubre27rutas ×320/390/1440, filtros/idioma/teclado,404 y sinJS. Los runners
 anteriores también pasan a Brave explícito. Comandos, alcance y límites en SITE-QUALITY.
-Recibo de pruebas y commit exacto al cerrar la candidata. Ningún merge o deploy autorizado.
+Fuente f4a9fed,561pruebas y CI44653775873 correctos. Paquete405 limpio; auditor5sedes/0diferencias
+y SEO pasan. Brave:81vistas/40combinaciones/179imágenes visibles, sin errores JS/envíos; portada
+idéntica390/1440. Evidencia local preservada. Ningún merge o deploy autorizado.
 
 ### Calidad incremental19-nov · horarios GBP y adaptaciones locales
 

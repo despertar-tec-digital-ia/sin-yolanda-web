@@ -235,3 +235,13 @@ fallback sinJS y captura los bloques adaptados en390/768/1024/1440. Usa fecha de
 contextos aislados y bloquea solicitudes externas/escrituras; por ello no certifica mapas,
 OpenTable o WhatsApp externos, Safari/iOS físico o métricas de rendimiento. El servidor se cierra
 al terminar incluso si falla una comprobación. Conservar el reporte de fallos, no sobrescribirlo.
+
+
+Recibo del tercer lote: fuente `f4a9fed`,561pruebas y CI
+[44653775873](https://github.com/despertar-tec-digital-ia/sin-yolanda-web/actions/runs/44653775873)
+correctos. Paquete405 limpio, propuesta real `unchanged` (sin diferencias nuevas de horario),
+comparador5sedes/0diferencias e inspector SEO sin hallazgos. QA local sobre ese paquete:81vistas,
+40combinaciones filtro/idioma,179imágenes visibles cargadas,0errores JS/escrituras;404 ES/EN,
+Escape/foco, reserva tras próximas y fallback sin JS correctos. Portada idéntica por geometría,
+texto y encuadres en390/1440 frente a la candidata anterior. Evidencia única local conservada;
+el commit no respalda por sí solo capturas ignoradas. No publicación ni integración productiva.

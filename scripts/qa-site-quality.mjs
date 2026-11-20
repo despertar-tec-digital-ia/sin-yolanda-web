@@ -86,8 +86,10 @@ try {
     }
     // Switch language while a non-default filter stays selected.
     await page.locator('[data-venue-filter="mx"]').click();
+    const mexicoCount = await page.locator('[data-venue-item]:not([hidden])').count();
     await page.locator('.menu-toggle').click(); await page.locator('[data-lang-btn="es"]').click(); await page.keyboard.press('Escape');
-    await page.waitForFunction(() => document.querySelector('[data-venue-status]').textContent === '2 sucursales');
+    await page.waitForFunction(text => document.querySelector('[data-venue-status]').textContent === text,
+      `${mexicoCount} ${mexicoCount === 1 ? 'sucursal' : 'sucursales'}`);
     assert.equal(await page.locator('[data-venue-filter="mx"]').getAttribute('aria-pressed'), 'true');
     // Reservation entry restores real choices when the visitor had selected coming-soon.
     await page.locator('[data-venue-filter="soon"]').click();

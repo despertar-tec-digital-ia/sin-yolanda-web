@@ -274,7 +274,7 @@ Fuentes oficiales consultadas de forma acotadaN0:
 [URL Inspection](https://developers.google.com/webmaster-tools/v1/urlInspection.index/inspect).
 
 
-## Quinto lote20nov · estado real del índice comprobado
+## Quinto lote20nov · corte inicial del índice
 
 Inspección individual de las26URL canónicas del sitemap:23indexadas con canonical de Google
 igual a la URL y3descubiertas, actualmente sin indexar. Las pendientes son las cartas de
@@ -304,6 +304,22 @@ para adelantar el último éxito de un job que aún no está activo.
 Verificación documentalN0: [reporte de indexación](https://support.google.com/webmasters/answer/7440203?hl=es)
 y [inspección/prueba publicada](https://support.google.com/webmasters/answer/9012289?hl=es).
 
+
+## Cierre20nov ·26/26 indexadas y observador probado sin programar
+
+Una consulta posterior completa de URL Inspection API a las23:28 America/Mazatlan confirma
+**26/26URL del sitemap indexadas,26canonical propios y0estados desconocidos**. Las tres cartas
+antes pendientes ya están indexadas; Posadas continúa indexada. Las tres solicitudes previas
+se aceptaron una sola vez con autorización expresa; esta consulta no reenvía solicitudes ni
+sitemap. El corte23/26 y la denegación de acceso anteriores son históricos.
+
+El acceso del colector fue autorizado, concedido y comprobado desde un entorno privado aislado
+del VPS. Fuentes por SHA, imagen específica y Node22 aislado probados; horarios GBP de cinco
+sedes producen propuesta `unchanged`, con excepciones25/26 coincidentes y sin build duplicado.
+La guardia manual de frescura pasa para horarios e índice. No modifica la fuente revisada ni
+el build normal; cron, promoción al release y publicación web siguen desactivados.
+Contratos, permisos y recibos privados permanecen en su repositorio dueño; no copiarlos aquí.
+La CI del sitio valida artefactos, sin sustituir esa observación externa fechada.
 
 ## Consolidaciónwww20nov · propuesta revisada, sin activar
 

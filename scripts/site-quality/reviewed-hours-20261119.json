@@ -1,0 +1,312 @@
+{
+  "version": 1,
+  "revision": "20261119-gbp-reviewed",
+  "observedAt": "2026-11-19T23:58:23.246801+00:00",
+  "source": {
+    "provider": "Google Business Profile Business Information API v1",
+    "method": "locations.getGoogleUpdated",
+    "documentationUrl": "https://developers.google.com/my-business/reference/businessinformation/rest/v1/locations/getGoogleUpdated"
+  },
+  "policy": "Last reviewed operating schedule persists; freshness is audited separately. Only dated exceptions expire.",
+  "locations": [
+    {
+      "branchId": "san-ignacio",
+      "timeZone": "America/Mexico_City",
+      "regularPeriods": [
+        {
+          "openDay": "WEDNESDAY",
+          "openTime": "19:00",
+          "closeDay": "THURSDAY",
+          "closeTime": "03:00",
+          "closeDayOffset": 1
+        },
+        {
+          "openDay": "THURSDAY",
+          "openTime": "19:00",
+          "closeDay": "FRIDAY",
+          "closeTime": "04:00",
+          "closeDayOffset": 1
+        },
+        {
+          "openDay": "FRIDAY",
+          "openTime": "19:00",
+          "closeDay": "SATURDAY",
+          "closeTime": "04:00",
+          "closeDayOffset": 1
+        },
+        {
+          "openDay": "SATURDAY",
+          "openTime": "19:00",
+          "closeDay": "SUNDAY",
+          "closeTime": "04:00",
+          "closeDayOffset": 1
+        }
+      ],
+      "closedOpeningDays": [
+        "MONDAY",
+        "TUESDAY",
+        "SUNDAY"
+      ],
+      "specialDates": [
+        {
+          "date": "2026-11-16",
+          "closed": false,
+          "opens": "19:00",
+          "closeDate": "2026-11-17",
+          "closes": "04:00"
+        },
+        {
+          "date": "2026-11-20",
+          "closed": false,
+          "opens": "19:00",
+          "closeDate": "2026-11-21",
+          "closes": "04:00"
+        },
+        {
+          "date": "2026-12-24",
+          "closed": true
+        },
+        {
+          "date": "2026-12-25",
+          "closed": true
+        },
+        {
+          "date": "2027-01-01",
+          "closed": true
+        }
+      ]
+    },
+    {
+      "branchId": "houston",
+      "timeZone": "America/Chicago",
+      "regularPeriods": [
+        {
+          "openDay": "WEDNESDAY",
+          "openTime": "16:00",
+          "closeDay": "THURSDAY",
+          "closeTime": "00:00",
+          "closeDayOffset": 1
+        },
+        {
+          "openDay": "THURSDAY",
+          "openTime": "16:00",
+          "closeDay": "FRIDAY",
+          "closeTime": "00:00",
+          "closeDayOffset": 1
+        },
+        {
+          "openDay": "FRIDAY",
+          "openTime": "16:00",
+          "closeDay": "SATURDAY",
+          "closeTime": "02:00",
+          "closeDayOffset": 1
+        },
+        {
+          "openDay": "SATURDAY",
+          "openTime": "11:00",
+          "closeDay": "SUNDAY",
+          "closeTime": "02:00",
+          "closeDayOffset": 1
+        },
+        {
+          "openDay": "SUNDAY",
+          "openTime": "11:00",
+          "closeDay": "SUNDAY",
+          "closeTime": "21:00",
+          "closeDayOffset": 0
+        }
+      ],
+      "closedOpeningDays": [
+        "MONDAY",
+        "TUESDAY"
+      ],
+      "specialDates": [
+        {
+          "date": "2026-11-25",
+          "closed": false,
+          "opens": "16:00",
+          "closeDate": "2026-11-26",
+          "closes": "02:00"
+        },
+        {
+          "date": "2026-11-26",
+          "closed": true
+        }
+      ]
+    },
+    {
+      "branchId": "the-woodlands",
+      "timeZone": "America/Chicago",
+      "regularPeriods": [
+        {
+          "openDay": "WEDNESDAY",
+          "openTime": "16:00",
+          "closeDay": "THURSDAY",
+          "closeTime": "00:00",
+          "closeDayOffset": 1
+        },
+        {
+          "openDay": "THURSDAY",
+          "openTime": "16:00",
+          "closeDay": "FRIDAY",
+          "closeTime": "00:00",
+          "closeDayOffset": 1
+        },
+        {
+          "openDay": "FRIDAY",
+          "openTime": "16:00",
+          "closeDay": "SATURDAY",
+          "closeTime": "02:00",
+          "closeDayOffset": 1
+        },
+        {
+          "openDay": "SATURDAY",
+          "openTime": "11:00",
+          "closeDay": "SUNDAY",
+          "closeTime": "02:00",
+          "closeDayOffset": 1
+        },
+        {
+          "openDay": "SUNDAY",
+          "openTime": "11:00",
+          "closeDay": "SUNDAY",
+          "closeTime": "21:00",
+          "closeDayOffset": 0
+        }
+      ],
+      "closedOpeningDays": [
+        "MONDAY",
+        "TUESDAY"
+      ],
+      "specialDates": [
+        {
+          "date": "2026-11-25",
+          "closed": false,
+          "opens": "16:00",
+          "closeDate": "2026-11-26",
+          "closes": "02:00"
+        },
+        {
+          "date": "2026-11-26",
+          "closed": true
+        }
+      ]
+    },
+    {
+      "branchId": "san-antonio",
+      "timeZone": "America/Chicago",
+      "regularPeriods": [
+        {
+          "openDay": "WEDNESDAY",
+          "openTime": "16:00",
+          "closeDay": "THURSDAY",
+          "closeTime": "00:00",
+          "closeDayOffset": 1
+        },
+        {
+          "openDay": "THURSDAY",
+          "openTime": "16:00",
+          "closeDay": "FRIDAY",
+          "closeTime": "00:00",
+          "closeDayOffset": 1
+        },
+        {
+          "openDay": "FRIDAY",
+          "openTime": "16:00",
+          "closeDay": "SATURDAY",
+          "closeTime": "02:00",
+          "closeDayOffset": 1
+        },
+        {
+          "openDay": "SATURDAY",
+          "openTime": "11:00",
+          "closeDay": "SUNDAY",
+          "closeTime": "02:00",
+          "closeDayOffset": 1
+        },
+        {
+          "openDay": "SUNDAY",
+          "openTime": "11:00",
+          "closeDay": "SUNDAY",
+          "closeTime": "21:00",
+          "closeDayOffset": 0
+        }
+      ],
+      "closedOpeningDays": [
+        "MONDAY",
+        "TUESDAY"
+      ],
+      "specialDates": [
+        {
+          "date": "2026-11-25",
+          "closed": false,
+          "opens": "16:00",
+          "closeDate": "2026-11-26",
+          "closes": "02:00"
+        },
+        {
+          "date": "2026-11-26",
+          "closed": true
+        }
+      ]
+    },
+    {
+      "branchId": "el-paso",
+      "timeZone": "America/Denver",
+      "regularPeriods": [
+        {
+          "openDay": "WEDNESDAY",
+          "openTime": "16:00",
+          "closeDay": "WEDNESDAY",
+          "closeTime": "23:00",
+          "closeDayOffset": 0
+        },
+        {
+          "openDay": "THURSDAY",
+          "openTime": "16:00",
+          "closeDay": "FRIDAY",
+          "closeTime": "02:00",
+          "closeDayOffset": 1
+        },
+        {
+          "openDay": "FRIDAY",
+          "openTime": "16:00",
+          "closeDay": "SATURDAY",
+          "closeTime": "02:00",
+          "closeDayOffset": 1
+        },
+        {
+          "openDay": "SATURDAY",
+          "openTime": "10:00",
+          "closeDay": "SUNDAY",
+          "closeTime": "02:00",
+          "closeDayOffset": 1
+        },
+        {
+          "openDay": "SUNDAY",
+          "openTime": "10:00",
+          "closeDay": "SUNDAY",
+          "closeTime": "23:00",
+          "closeDayOffset": 0
+        }
+      ],
+      "closedOpeningDays": [
+        "MONDAY",
+        "TUESDAY"
+      ],
+      "specialDates": [
+        {
+          "date": "2026-11-25",
+          "closed": false,
+          "opens": "16:00",
+          "closeDate": "2026-11-26",
+          "closes": "02:00"
+        },
+        {
+          "date": "2026-11-26",
+          "closed": true
+        }
+      ]
+    }
+  ]
+}

@@ -35,6 +35,8 @@ carpetas privadas de una computadora. Última actualización: 2026-10-07.
 - Node en `.node-version`; ejecutar `npm ci --ignore-scripts`, `npm run check` y `npm run build`.
   El sitio estático y sus pruebas no requieren el donante. El build exige `.artifacts/public` nuevo;
   no borrar un release previo a ciegas. Para otra salida: `node scripts/package-public.mjs <ruta-nueva>`.
+- Para cambios visuales, nuevas rutas/sedes o datos estructurados, leer `docs/SITE-QUALITY.md`.
+  Auditar el artefacto final: los proyectores modifican agenda, Catering y horarios después del HTML fuente.
 - Solo `scripts/public-manifest.json` determina archivos publicables. Agregar una página/asset exige
   revisión del manifiesto y pruebas. Nunca publicar el checkout ni directorios por extensión.
 - No omitir, marcar como aprobada ni debilitar una prueba para ocultar una discrepancia. Explicar

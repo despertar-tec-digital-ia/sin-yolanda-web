@@ -1,0 +1,129 @@
+/* Opt-in review of existing Texas agenda components. No global theme or page replacement. */
+/* Short home sections share a calmer rhythm; media, content and hero keep their sizes. */
+body[data-site-quality-continuity][data-page="home"] main > :is(.pretextos-section, #botaneo, #cumple) {
+  padding-block: clamp(48px, 5vw, 80px);
+}
+body[data-site-quality-continuity][data-page="home"] :is(.pretextos-section, #botaneo) .section-heading {
+  margin-bottom: 28px;
+}
+body[data-site-quality-pilot="agenda"] .sy-agenda {
+  background: color-mix(in srgb, var(--wine) 6%, var(--paper));
+}
+body[data-site-quality-pilot="agenda"] .sy-agenda::before {
+  content: "";
+  display: block;
+  height: clamp(28px, 3vw, 40px);
+  background: #b74719 url('/images/catering-review/pattern-band.webp') center 49% / 600px auto repeat-x;
+}
+body[data-site-quality-pilot="agenda"] .sy-agenda-inner {
+  padding-top: clamp(40px, 4.5vw, 64px);
+}
+/* Keep the established display face for the plan's name; dates are functional labels. */
+body[data-site-quality-pilot="agenda"] .sy-agenda-dates .sy-agenda-copy > time,
+body[data-site-quality-pilot="agenda"] .sy-agenda-functions time {
+  font: 700 14px/1.5 HoustonSlab, Georgia, serif;
+  margin: 0 0 12px;
+  color: inherit;
+}
+/* Enlarge isolated targets without replacing their labels, type or destinations. */
+body[data-site-quality-pilot] .bf-bottom a,
+body[data-site-quality-controls] .bf-bottom a,
+body[data-site-quality-controls] .gm-footer a,
+body[data-site-quality-controls] footer > a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+/* Header links already participate in flex layouts; retain responsive display:none. */
+body[data-site-quality-controls] .local-header nav a,
+body[data-site-quality-controls] .gm-header > a {
+  align-items: center;
+  min-height: 44px;
+}
+body[data-site-quality-pilot] [data-gbp-special-hours] dt {
+  width: auto;
+}
+body[data-site-quality-pilot="agenda"] .sy-october-programming .sy-agenda-weekly-grid {
+  align-items: stretch;
+}
+body[data-site-quality-pilot="agenda"] .sy-october-programming .sy-agenda-night:not(.sy-sunday-programming) {
+  display: flex;
+  flex-direction: column;
+  min-height: 212px;
+  padding: 24px 0;
+  border-top: 2px solid var(--agenda-brand);
+  border-bottom: 1px solid color-mix(in srgb, var(--agenda-brand) 35%, transparent);
+  background: transparent;
+  color: var(--ink);
+}
+body[data-site-quality-pilot="agenda"] .sy-october-programming .sy-agenda-night:not(.sy-sunday-programming) > div {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+}
+body[data-site-quality-pilot="agenda"] .sy-october-programming .sy-agenda-night:not(.sy-sunday-programming) .sy-agenda-weekday {
+  margin: 0 0 14px;
+  color: var(--ink);
+}
+body[data-site-quality-pilot="agenda"] .sy-october-programming .sy-agenda-night:not(.sy-sunday-programming) h4 {
+  margin: 0 0 22px;
+  font-size: clamp(32px, 2.9vw, 40px);
+  line-height: 1.06;
+  overflow-wrap: normal;
+}
+body[data-site-quality-pilot="agenda"] .sy-october-programming .sy-agenda-night:not(.sy-sunday-programming) p:last-child {
+  margin-top: auto;
+  margin-bottom: 0;
+}
+body[data-site-quality-pilot="agenda"] .sy-october-programming .sy-sunday-programming {
+  max-width: 900px;
+  grid-template-columns: minmax(220px, 28%) minmax(0, 1fr);
+  background: #1d1d1b;
+  color: var(--paper);
+}
+body[data-site-quality-pilot="agenda"] .sy-october-programming .sy-sunday-programming:not(:has(.sy-event-poster)) {
+  grid-template-columns: 1fr;
+}
+body[data-site-quality-pilot="agenda"] .sy-sunday-programming .sy-agenda-night-copy {
+  padding: clamp(24px, 4vw, 52px);
+}
+body[data-site-quality-pilot="agenda"] .sy-sunday-programming h4 {
+  font-size: clamp(40px, 4vw, 58px);
+  line-height: 1.05;
+}
+body[data-site-quality-pilot="agenda"] .sy-sunday-programming .sy-event-poster a {
+  display: grid;
+  height: 100%;
+  place-items: center;
+}
+body[data-site-quality-pilot="agenda"] .sy-sunday-programming .sy-event-poster img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 420px;
+  object-fit: contain;
+}
+@media (max-width: 900px) {
+  body[data-site-quality-pilot="agenda"] .sy-october-programming .sy-agenda-night:not(.sy-sunday-programming) {
+    min-height: 0;
+    padding-block: 24px;
+    border-bottom: 0;
+  }
+  body[data-site-quality-pilot="agenda"] .sy-october-programming .sy-agenda-night:not(.sy-sunday-programming) p:last-child {
+    margin-top: 0;
+  }
+}
+@media (max-width: 600px) {
+  body[data-site-quality-pilot="agenda"] .sy-october-programming .sy-sunday-programming {
+    grid-template-columns: 1fr;
+  }
+  body[data-site-quality-pilot="agenda"] .sy-sunday-programming .sy-event-poster img {
+    max-height: 360px;
+  }
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  body[data-site-quality-pilot="agenda"] .sy-agenda-action {
+    transition: background-color 140ms ease, color 140ms ease;
+  }
+}

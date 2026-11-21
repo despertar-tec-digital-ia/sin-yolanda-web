@@ -12,12 +12,27 @@
   "before_activation": [
     "Read existing rules and www DNS; back up the exact settings without changing DNS by default",
     "Check for overlapping rules and confirm apex cannot redirect back to www",
-    "Obtain explicit production approval"
+    "Obtain explicit production approval",
+    "Revalidate permissions, current rules/list inventory and conflicts; current denial403 is not approval to create a second root ruleset",
+    "Keep the existing proxied www CNAME; do not replace DNS merely to copy a documentation example",
+    "Check GET/HEAD for every canonical route and preserved queries; inspect POST/callback behavior separately because301 may change its method"
   ],
   "acceptance": [
     "https://www.sin-yolanda.com/ ->301 https://sin-yolanda.com/",
     "https://www.sin-yolanda.com/guadalajara?utm_source=test ->301 https://sin-yolanda.com/guadalajara?utm_source=test",
     "Guadalajara WordPress and QR destinations remain unchanged"
   ],
-  "rollback": "Disable only the new rule and restore its prior settings. Do not alter unrelated redirect lists or DNS."
+  "rollback": "Disable only the new rule and restore its prior settings. Do not alter unrelated redirect lists or DNS.",
+  "reviewed_at": "2026-11-20",
+  "review_status": "parameters-validated; remote-conflict-check-blocked",
+  "read_only_observation": {
+    "www_dns": "Proxied CNAME already present; preserve existing DNS",
+    "rules_access": "DNS and Pages credentials deny account/zone ruleset and redirect-list reads with403; no permissions changed",
+    "canonical_urls_checked": 26,
+    "all_www_variants_checked": "200 with canonical to apex; no host redirect currently"
+  },
+  "verification_limits": [
+    "Local expected-target matrix is not proof of deployed Cloudflare behavior",
+    "No remote rule/list was created or changed, and no existing rule backup could be read with current permissions"
+  ]
 }

@@ -76,6 +76,11 @@ fecha/zona del calendario: contenido que caduca no es una regresión visual. Reg
 probó realmente; no afirmar rendimiento móvil real, compatibilidad Safari/iOS o accesibilidad
 completa sólo por una captura de Chromium.
 
+Para componentes con caducidad, comprobar también el estado posterior: HTML recién construido
+sin la pieza y HTML anterior que el navegador oculta al vencer. El contenido retirado no debe
+reservar columnas, altura o accesos vacíos. Una captura con fecha fija anterior al vencimiento
+no verifica esos estados.
+
 El lote local debe demostrar que los archivos fuera del alcance conservan sus bytes, que
 hero/cartas/reservas no cambian y que el paquete normal sigue usando sólo aprobaciones vigentes.
 `noindex` protege la revisión local; no sustituye autenticación para datos privados.
@@ -337,3 +342,23 @@ inventar un único salto.301puede cambiar POSTaGET: revisar callbacks/formulario
 Sin reglas, DNS, permisos, WordPress o producción modificados. ReferenciasN0:
 [Pageswww](https://developers.cloudflare.com/pages/how-to/www-redirect/) y
 [parámetros Bulk Redirects](https://developers.cloudflare.com/rules/url-forwarding/bulk-redirects/reference/parameters/).
+
+## Agenda23nov · distribución al vencer un cartel
+
+Se reprodujo una regresión local en la candidata anterior: el reloj ocultaba el contenedor del
+cartel NFL vencido, pero la regla de distribución seguía detectando su imagen en el DOM.
+En escritorio quedaba una columna vacía y el título de Recovery Brunch se estrechaba. La regla
+ahora reserva dos columnas sólo para un cartel cuya ascendencia no esté oculta. Se mantienen
+la actividad recurrente, sus textos, el cartel íntegro mientras esté vigente y el diseño existente.
+
+Brave/CUA, con reloj real del23nov y un artefacto fechado antes del vencimiento: ocho fichas
+Texas ES/EN a390/1440 y San Antonio a320,17vistas. Cartel oculto, una columna, texto al ancho
+interior disponible y cero desbordamientos. Son comprobaciones adicionales; no una repetición
+de toda la matriz anterior de81vistas. `npm run check`:561pruebas correctas.
+
+El QA versionado añade la transición antes/después del vencimiento y una exigencia opcional
+`--require-expiry-scenarios` de ocho casos. Requiere una candidata construida antes de caducar
+el cartel; una candidata actual sin cartel no cuenta como transición ejercitada. Este nuevo
+recorrido con reloj virtual sólo tiene comprobación sintáctica en esta sesión; no se ejecutó
+el lanzador externo de Playwright. La evidencia ejecutada es la revisión CUA descrita arriba.
+La corrección sigue opt-in; ni el paquete normal ni producción cambian.

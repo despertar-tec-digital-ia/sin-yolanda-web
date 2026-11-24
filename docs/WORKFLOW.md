@@ -1,5 +1,14 @@
 # Forma de trabajar y publicar
 
+### Agenda23nov · corrección local de caducidad
+
+La candidata de calidad conserva una columna vacía al ocultarse el cartel NFL vencido.
+Se corrige sólo su distribución cuando el cartel o su contenedor están ocultos, manteniendo
+actividad/copy y las dos columnas mientras la imagen sea visible. Brave/CUA comprueba17vistas
+de Texas ES/EN a320/390/1440, sin desbordamiento;561pruebas correctas. El nuevo escenario
+versionado de transición temporal tiene comprobación sintáctica, aún sin ejecución automatizada.
+Método y límites en SITE-QUALITY. Continúa como PR71 en borrador, sin integración ni publicación.
+
 ### WWW20-nov · revisión de propuesta, bloqueada sólo la operación remota
 
 Propuesta301existente revalidada con la documentación actual; conservar ruta/query y sólo host

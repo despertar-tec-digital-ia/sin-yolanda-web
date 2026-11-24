@@ -20,7 +20,7 @@ let server, origin, browser;
 const report = {version: 1, passed: false, artifactCommit: artifact.metadata.commit,
   artifactDirty: artifact.metadata.dirty, publicDigest: artifact.metadata.publicDigest,
   asOf: artifact.metadata.qualityReview.asOf, browser: 'Installed Brave, isolated contexts',
-  externalRequestsBlocked: 0, unexpectedWriteRequests: 0, views: [], interactions: [], submitted: false};
+  externalRequestsBlocked: 0, unexpectedWriteRequests: 0, views: [], interactions: [], expiryChecks: [], submitted: false};
 const contexts = [];
 async function visit(path, width = 390, language = 'es', javaScriptEnabled = true) {
   const context = await browser.newContext({viewport: {width, height: 1000},
@@ -64,6 +64,32 @@ try {
     assert.deepEqual(errors, [], path + ': browser errors');
     report.views.push({path, ...dimensions, status, errors, images});
     await close(context);
+  }
+  // A cached page must adapt after a poster expires, without requiring a rebuild.
+  // Use a pre-expiry build to exercise this path; a current post-expiry build has no poster markup.
+  for (const path of paths.filter(path => /(?:^|\/)(?:houston|san-antonio|the-woodlands|el-paso)\.html$/.test(path))) {
+    const {context, page} = await visit(path, 1440);
+    const poster = page.locator('.sy-sunday-programming .sy-nfl-poster[data-expires-at]');
+    if (await poster.count() !== 1) {await close(context); continue;}
+    const expiry = Date.parse(await poster.getAttribute('data-expires-at'));
+    if (!Number.isFinite(expiry) || expiry <= Date.parse(report.asOf)) {await close(context); continue;}
+    assert.ok(await poster.isVisible(), path + ': poster must be visible before its expiry');
+    await page.clock.fastForward(expiry - Date.parse(report.asOf) + 1100);
+    assert.equal(await poster.isVisible(), false, path + ': expired poster must disappear');
+    const layout = await page.locator('.sy-sunday-programming').evaluate(card => {
+      const copy = card.querySelector('.sy-agenda-night-copy');
+      const style = getComputedStyle(card);
+      return {columns: style.gridTemplateColumns, cardWidth: card.getBoundingClientRect().width,
+        contentWidth: card.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight),
+        copyWidth: copy.getBoundingClientRect().width};
+    });
+    assert.ok(Math.abs(layout.copyWidth - layout.contentWidth) <= 2,
+      path + ': hidden poster must not reserve a narrow text column');
+    report.expiryChecks.push({path, expiry: new Date(expiry).toISOString(), ...layout});
+    await close(context);
+  }
+  if (process.argv.includes('--require-expiry-scenarios')) {
+    assert.equal(report.expiryChecks.length, 8, 'Use a pre-expiry candidate covering four Texas branches in ES/EN');
   }
   for (const path of ['/index.html', '/locations.html']) {
     const {context, page, errors} = await visit(path);

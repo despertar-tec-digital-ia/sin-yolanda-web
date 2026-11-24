@@ -82,7 +82,8 @@ body[data-site-quality-pilot="agenda"] .sy-october-programming .sy-sunday-progra
   background: #1d1d1b;
   color: var(--paper);
 }
-body[data-site-quality-pilot="agenda"] .sy-october-programming .sy-sunday-programming:not(:has(.sy-event-poster)) {
+/* Cached pages keep expired poster markup hidden. Only visible poster ancestry reserves a column. */
+body[data-site-quality-pilot="agenda"] .sy-october-programming .sy-sunday-programming:not(:has(.sy-event-poster:not([hidden], [hidden] *))) {
   grid-template-columns: 1fr;
 }
 body[data-site-quality-pilot="agenda"] .sy-sunday-programming .sy-agenda-night-copy {

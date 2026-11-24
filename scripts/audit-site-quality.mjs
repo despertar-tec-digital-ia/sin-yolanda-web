@@ -6,6 +6,8 @@ import {fileURLToPath} from 'node:url';
 import {loadReviewPackage} from './serve-review.mjs';
 import {inspectProjectedSeo} from './site-quality/seo-projection.mjs';
 import {compareGbpHours} from './site-quality/gbp-hours.mjs';
+import {inspectReviewAttribution} from './site-quality/attribution.mjs';
+import {inspectCommercialData} from './site-quality/commercial-data.mjs';
 
 export function auditSiteQuality({artifact, hoursSnapshot, now = new Date().toISOString()} = {}) {
   const {root, files, metadata} = loadReviewPackage(artifact);
@@ -19,7 +21,9 @@ export function auditSiteQuality({artifact, hoursSnapshot, now = new Date().toIS
     discovery: JSON.parse(read('discovery.json')), now}) : null;
   return {version: 1, observedAt: now, artifactCommit: metadata.commit,
     artifactDirty: metadata.dirty, audience: metadata.audience, fileCount: files.length,
-    indexationVerified: false, seo, hours, publicationEnabled: false};
+    indexationVerified: false, seo, hours,
+    commercial: metadata.qualityReview?.commercial ? inspectCommercialData({pages, read}) : {applicable: false, passed: true},
+    attribution: inspectReviewAttribution({read, pages, metadata: metadata.qualityReview?.attribution}), publicationEnabled: false};
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
@@ -36,5 +40,5 @@ if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.ur
   }
   console.log(JSON.stringify(report));
   // Observation is useful with documented existing debt; enforcement is explicit and testable.
-  if (process.argv.includes('--fail-on-findings') && (!report.seo.passed || (report.hours && !report.hours.ok))) process.exitCode = 1;
+  if (process.argv.includes('--fail-on-findings') && (!report.seo.passed || !report.attribution.passed || !report.commercial.passed || (report.hours && !report.hours.ok))) process.exitCode = 1;
 }

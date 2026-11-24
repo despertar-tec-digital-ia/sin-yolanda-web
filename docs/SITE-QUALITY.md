@@ -113,6 +113,43 @@ proyecta en las ocho fichas Texas ES/EN: revisar presencia/destinos, no añadir 
 Se han reproducido continuidad de fondo menú–agenda y alturas semanales desiguales. Los
 resultados detallados, límites de acceso y propuestas se consolidan al cerrar el diagnóstico.
 
+## Lote de datos comerciales y atribución · 23 de noviembre
+
+`site-quality-review.mjs` añade dos proyecciones **exclusivas de la candidata**. El paquete
+normal conserva su catálogo de campañas vacío y sus aprobaciones actuales. La candidata
+no escribe en Google ni cambia perfiles sociales, anuncios, QR o proveedores de reservas.
+
+- Directorio: derivar `website` de las cinco sedes abiertas desde sus identidades Restaurant
+  publicadas, sustituyendo dominios históricos o valores vacíos. Conservar teléfonos,
+  direcciones, Maps, WhatsApp, OpenTable y sedes aún no abiertas.
+- Comprobación comercial: exigir consistencia entre teléfonos visibles, fichas ES/EN,
+  Restaurant, discovery y `phoneIntl`. Las direcciones estructuradas y las identidades del
+  directorio deben coincidir. Esto detecta deriva interna; no certifica que Google esté actualizado.
+- Atribución: `scripts/site-quality/traffic-proposal.json` contiene siete colocaciones
+  propuestas y tres combinaciones permitidas de source/medium/campaign. Instagram y Facebook
+  unificados llevan al selector existente `/#ubicaciones`; cada ficha Google lleva a su sede.
+  `/reservar` sigue en una prueba independiente y no es destino de estas ligas.
+- `sy_social_profiles` y `sy_google_profiles` son códigos técnicos propuestos para perfiles
+  permanentes, no campañas publicitarias contratadas o ya distribuidas. Usar source, medium
+  y campaign juntos; no aceptar campañas editoriales por inferencia ni texto arbitrario.
+- Generar los contratos de Umami y GA4 con las mismas combinaciones, respetando consentimiento,
+  DNT/GPC y vencimiento de sesión existentes. Versionar loaders con el hash de sus bytes.
+  Las pruebas usan transporte simulado: no son conversiones reales ni acreditan entrega a Google.
+
+La auditoría final incluye comprobaciones comerciales y de atribución; CI las exige sobre la
+candidata sin subirla como artefacto de producción. Para futuras colocaciones: declarar una
+entrada en el registro, comprobar ruta/sede/ancla, probar parámetros y persistencia, revisar
+la liga y autorizar por separado su integración y distribución. No añadir UTM a enlaces internos.
+
+Decisiones comerciales comprobadas: Houston conserva **+1 346 879 1675**, confirmado por Luis
+el 2 de octubre; el número distinto en GBP no autoriza reemplazarlo. The Woodlands conserva
+**Suite 180**, corroborado en [OpenTable](https://www.opentable.com/r/sin-yolanda-woodlands-shenandoah)
+y en el [documento municipal de Shenandoah](https://www.shenandoahtx.us/AgendaCenter/ViewFile/Agenda/_03032026-599).
+Las diferencias externas quedan en el expediente privado: requieren aprobación antes de editar GBP.
+
+Referencias: [Google Analytics: campañas con URL](https://support.google.com/analytics/answer/10917952?hl=en)
+y [GBP: websiteUri de la ubicación individual](https://developers.google.com/my-business/reference/businessinformation/rest/v1/locations#Location).
+
 ## Corte de diagnóstico y primera candidata
 
 Fases 0 y 1 completadas sobre la línea base. Se observaron las 27 rutas a390/1440px y se

@@ -6,6 +6,8 @@ import {createHash} from 'node:crypto';
 import {buildSiteQualityReview} from '../scripts/site-quality-review.mjs';
 import {projectPublicSite} from '../scripts/editorial/public-site.mjs';
 import {elementRange} from '../scripts/editorial/public-agenda.mjs';
+import {inspectCommercialData} from '../scripts/site-quality/commercial-data.mjs';
+import {inspectReviewAttribution} from '../scripts/site-quality/attribution.mjs';
 
 const root = resolve(import.meta.dirname, '..');
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
@@ -22,6 +24,11 @@ test('quality pilot stays opt-in, preserves the existing site and cannot introdu
     if (!allowed.has(file)) assert.equal(hash(readFileSync(resolve(out, 'public', file))), expected, file + ' must remain unchanged');
   }
   assert.equal(report.fileCount, baseline.fileCount + 4);
+  const readFinal = file => readFileSync(resolve(out, 'public', file), 'utf8');
+  const finalPages = new Map(Object.keys(report.hashes).filter(file => file.endsWith('.html')).map(file => [file, readFinal(file)]));
+  const commercial = inspectCommercialData({pages: finalPages, read: readFinal});
+  assert.equal(commercial.passed, true, commercial.error);
+  assert.equal(inspectReviewAttribution({read: readFinal, metadata: report.qualityReview.attribution}).passed, true);
   const projectedBaseline = projectPublicSite(root, {now: report.qualityReview.asOf, commit: report.commit}).files;
   const home = readFileSync(resolve(out, 'public/index.html'), 'utf8');
   const originalHome = projectedBaseline.get('index.html') ?? readFileSync(resolve(root, 'index.html'), 'utf8');

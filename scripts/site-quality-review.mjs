@@ -11,6 +11,8 @@ import {projectReviewedEventClock} from './site-quality/event-clock.mjs';
 import {projectQualityNavigation} from './site-quality/navigation.mjs';
 import {projectQualityContinuity, continuityAssets} from './site-quality/continuity.mjs';
 import {hoursDataForReview} from './site-quality/hours-proposal.mjs';
+import {projectReviewAttribution} from './site-quality/attribution.mjs';
+import {projectCommercialData} from './site-quality/commercial-data.mjs';
 
 const hash = value => createHash('sha256').update(value).digest('hex');
 const asset = 'assets/css/site-quality-pilot.css';
@@ -35,6 +37,10 @@ export function buildSiteQualityReview({root, out, now = new Date().toISOString(
   for (const pair of navigation.files) changed.set(...pair);
   const continuity = projectQualityContinuity({pages: currentPages()});
   for (const pair of continuity.files) changed.set(...pair);
+  const commercial = projectCommercialData({pages: currentPages(), read: file => changed.get(file) ?? read(file)});
+  for (const pair of commercial.files) changed.set(...pair);
+  const attribution = projectReviewAttribution({root, read: file => changed.get(file) ?? read(file), pages: currentPages()});
+  for (const pair of attribution.files) changed.set(...pair);
   const pilotPages = [], controlPages = [];
   for (const [file, source] of currentPages()) {
     const body = source.match(/<body\b[^>]*>/)?.[0] ?? '';
@@ -58,10 +64,12 @@ export function buildSiteQualityReview({root, out, now = new Date().toISOString(
   const files = [...new Set([...Object.keys(baseline.hashes), asset, ...reviewedHoursAssets, ...continuityAssets])].sort();
   const hashes = Object.fromEntries(files.map(file => [file, hash(readFileSync(resolve(publicRoot, file)))]));
   const report = {...baseline, fileCount: files.length, hashes, publicDigest: hash(JSON.stringify(hashes)),
-    publicationEnabled: false, productionIntegrated: false, qualityReview: {version: 3, base: baseline.commit, asOf: now, pilotPages, controlPages,
+    publicationEnabled: false, productionIntegrated: false, qualityReview: {version: 4, base: baseline.commit, asOf: now, pilotPages, controlPages,
       seo: seo.metadata, hours: {...hours.metadata, eventEditorialExpiryReconciled: true}, eventClock: eventClock.metadata,
       navigation: navigation.metadata, continuity: continuity.metadata, hoursProposalUsed: !!hoursProposal,
-      changes: [...seo.changes, ...hours.changes, ...eventClock.changes, ...navigation.changes, ...continuity.changes]}};
+      attribution: attribution.metadata,
+      commercial: commercial.metadata,
+      changes: [...seo.changes, ...hours.changes, ...eventClock.changes, ...navigation.changes, ...continuity.changes, ...commercial.changes, ...attribution.changes]}};
   writeFileSync(resolve(out, 'release.json'), JSON.stringify(report, null, 2) + '\n');
   return report;
 }

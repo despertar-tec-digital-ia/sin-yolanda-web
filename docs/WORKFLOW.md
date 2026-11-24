@@ -1,5 +1,14 @@
 # Forma de trabajar y publicar
 
+### Datos comerciales y UTM23nov · lote local para revisión
+
+La candidata añade directorio canónico derivado de las cinco identidades Restaurant y controles
+de consistencia de teléfonos/direcciones entre fichas, discovery y datos públicos. Conserva
+teléfonos confirmados y proveedores. Siete ligas externas propuestas comparten un registro y
+contratos Umami/GA4; loaders versionados por contenido y pruebas de parámetros/persistencia.
+Normal build y perfiles remotos intactos. Especificación y decisiones en SITE-QUALITY,
+«Lote de datos comerciales y atribución»; no usar estas ligas como campañas activadas.
+
 ### Agenda23nov · corrección local de caducidad
 
 La candidata de calidad conserva una columna vacía al ocultarse el cartel NFL vencido.

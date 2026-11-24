@@ -115,6 +115,12 @@ no sustituirlos silenciosamente por Eventbrite. Evidencia en la reconciliación 
 
 ### Campañas · enlaces propuestos, ninguno activado
 
+**Vigencia23nov:** la tabla siguiente conserva propuestas editoriales históricas de octubre,
+sin activación. No distribuir campañas caducadas. El lote vigente de perfiles permanentes
+(Instagram/Facebook unificados y cinco GBP) está definido en `scripts/site-quality/traffic-proposal.json`
+y explicado en SITE-QUALITY. Sólo la candidata local acepta esas tres combinaciones; el build
+normal mantiene su catálogo vacío. Revisar e integrar antes de cambiar cualquier enlace remoto.
+
 Cinco candidatos derivados de anuncios reales, `utm_source=instagram`/`utm_medium=social`;
 GET sin JavaScript confirma200 de sus fichas. Son códigos **nuevos propuestos**, no prueba de
 campañas distribuidas ni de atribución ya recibida. El catálogo activo sigue vacío. Antes de uso:

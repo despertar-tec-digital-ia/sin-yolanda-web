@@ -67,7 +67,8 @@ try {
   }
   // A cached page must adapt after a poster expires, without requiring a rebuild.
   // Use a pre-expiry build to exercise this path; a current post-expiry build has no poster markup.
-  for (const path of paths.filter(path => /(?:^|\/)(?:houston|san-antonio|the-woodlands|el-paso)\.html$/.test(path))) {
+  for (const file of artifact.metadata.qualityReview.pilotPages) {
+    const path = '/' + file;
     const {context, page} = await visit(path, 1440);
     const poster = page.locator('.sy-sunday-programming .sy-nfl-poster[data-expires-at]');
     if (await poster.count() !== 1) {await close(context); continue;}

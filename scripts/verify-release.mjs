@@ -4,6 +4,7 @@ import { createHash, randomUUID } from 'node:crypto';
 import { existsSync, lstatSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, relative, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { cloudflareRumPolicy, inspectCloudflareRum, validateRumPolicy } from './provider-transforms.mjs';
 
 const repositoryRoot = fileURLToPath(new URL('../', import.meta.url));
 const cloudflareControlFiles = new Set(['_headers', '_redirects']);
@@ -73,12 +74,21 @@ function validate(origin, metadata) {
   return { url, files, reviewPages: new Set(reviewPages) };
 }
 
-export async function verifyRelease({ origin, metadata, fetchImpl = globalThis.fetch } = {}) {
+// Injectable policy is for deterministic offline fixtures. CLI and release operators
+// always use the reviewed source policy; metadata and arguments cannot replace it.
+export async function verifyRelease({ origin, metadata, fetchImpl = globalThis.fetch,
+  providerPolicy = cloudflareRumPolicy } = {}) {
   const { url: base, files, reviewPages } = validate(origin, metadata);
+  validateRumPolicy(providerPolicy);
   const run = randomUUID(), startedAt = new Date().toISOString();
   const servedFiles = files.filter(file => !cloudflareControlFiles.has(file));
-  const tasks = servedFiles.flatMap(file => aliases(file).map((path, index) => ({ file, path, kind: index === 0 ? 'file' : 'alias' })));
-  tasks.push(...excludedPaths.map(path => ({ path, kind: 'excluded' })));
+  const tasks = servedFiles.flatMap(file => aliases(file).map((path, index) => ({ file, path,
+    kind: index === 0 ? 'file' : 'alias', profile: 'baseline' })));
+  tasks.push(...excludedPaths.map(path => ({ path, kind: 'excluded', profile: 'baseline' })));
+  // A second HTTP negotiation catches additions absent from Node's default reply.
+  // It is not a browser run and never executes downloaded JavaScript.
+  tasks.push(...servedFiles.filter(file => file.endsWith('.html')).map(file => ({ file,
+    path: aliases(file)[1] ?? aliases(file)[0], kind: 'visitor-html', profile: 'visitor-html' })));
   let cursor = 0;
   const observations = new Array(tasks.length);
 
@@ -93,7 +103,11 @@ export async function verifyRelease({ origin, metadata, fetchImpl = globalThis.f
         current.search = ''; // Never propagate arbitrary redirect query parameters.
         current.searchParams.set('sy-release-check', run);
         const response = await fetchImpl(current, { method: 'GET', redirect: 'manual', cache: 'no-store',
-          headers: { 'Cache-Control': 'no-cache', 'Accept-Encoding': 'identity' }, signal: AbortSignal.timeout(30000) });
+          headers: { 'Cache-Control': 'no-cache', 'Accept-Encoding': 'identity',
+            ...(task.profile === 'visitor-html' ? {
+              Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+              'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0',
+            } : {}) }, signal: AbortSignal.timeout(30000) });
         observation.status = response.status;
         observation.finalPath = current.pathname;
         observation.robotsHeader = safeHeader(response.headers.get('x-robots-tag'));
@@ -129,8 +143,27 @@ export async function verifyRelease({ origin, metadata, fetchImpl = globalThis.f
           if (observation.bytes > 8 * 1024 * 1024) observation.problems.push('html-too-large-to-inspect');
           const source = Buffer.concat(html).toString('utf8'), robots = robotsMeta(source);
           if(!observation.exactHash){
-            const restored=restoreCloudflarePrivacyEmail(source,task.file,base.hostname);
-            if(restored!==null){
+            let restored = source;
+            observation.providerTransformations = [];
+            // Reverse the already-supported email decoder first: the platform may
+            // append it after RUM. Both orders still require the same FULL source hash.
+            const email = restoreCloudflarePrivacyEmail(restored, task.file, base.hostname);
+            if (email !== null) {
+              restored = email;
+              observation.providerTransformations.push({ type: 'cloudflare-privacy-email' });
+            }
+            const rum = inspectCloudflareRum(restored, task.file, base.hostname, providerPolicy);
+            if (rum.detected) {
+              observation.cloudflareRum = { detected: true, recognized: rum.recognized,
+                blockSha256: rum.blockSha256 ?? null };
+              observation.problems.push(...rum.problems);
+            }
+            if (rum.restored !== null) {
+              restored = rum.restored;
+              observation.providerTransformations.push({ type: 'cloudflare-rum', policy: rum.policy,
+                blockSha256: rum.blockSha256, scriptSrc: rum.scriptSrc, integrity: rum.integrity });
+            }
+            if(observation.providerTransformations.length){
               observation.restoredProviderHash=sha256(restored);
               observation.verifiedProviderTransformation=observation.restoredProviderHash===expectedHash;
             }
@@ -160,11 +193,15 @@ export async function verifyRelease({ origin, metadata, fetchImpl = globalThis.f
   return { version: 1, startedAt, completedAt: new Date().toISOString(), origin: base.origin,
     commit: metadata.commit, audience: metadata.audience, publicDigest: metadata.publicDigest ?? null,
     releaseMetadataDigest: sha256(JSON.stringify(metadata)), getOnly: true, concurrency: 5,
+    providerPolicy: { id: providerPolicy.id, digest: sha256(JSON.stringify(providerPolicy)) },
+    requestProfiles: ['baseline', 'visitor-html'],
     skippedFiles: files.filter(file => cloudflareControlFiles.has(file))
       .map(file => ({ file, reason: 'Cloudflare control file, not a served asset' })),
     passed: failed.length === 0,
     summary: { files: servedFiles.length, aliases: observations.filter(item => item.kind === 'alias').length,
       excludedRoutes: excludedPaths.length, exactFiles: observations.filter(item => item.kind === 'file' && item.exactHash).length,
+      visitorHtmlChecks: observations.filter(item => item.kind === 'visitor-html').length,
+      providerTransformedResponses: observations.filter(item => item.verifiedProviderTransformation).length,
       hashMismatches: observations.filter(item => item.exactHash === false&&!item.verifiedProviderTransformation).length, failedChecks: failed.length },
     observations };
 }

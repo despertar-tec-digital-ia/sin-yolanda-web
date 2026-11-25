@@ -11,9 +11,10 @@ Las decisiones, responsabilidades, requisitos de CI/accesos y bloqueos están en
 Estado y recibos de publicación vigentes → `docs/WORKFLOW.md`; operación → runbooks de cada
 destino. Los antecedentes fechados de ese archivo no sustituyen comprobar la rama y lo servido.
 
-La mejora incremental de diseño/QA, SEO y datos sigue `docs/SITE-QUALITY.md`. La candidata de
-calidad es local y opt-in: `npm run build:quality-review -- .artifacts/<nombre-nuevo>`. No cambia
-el build normal ni autoriza publicación. El auditor offline `npm run audit:quality -- .artifacts/<nombre>/public` observa el artefacto; `--hours <snapshot-sanitizado>` añade comparación
+La mejora incremental de diseño/QA, SEO y datos sigue `docs/SITE-QUALITY.md`. El build normal y
+la revisión comparten la proyección de `editorial/public-release.mjs`; la revisión añade su
+cabecera noindex: `npm run build:quality-review -- .artifacts/<nombre-nuevo>`. Preparar un
+paquete no autoriza publicarlo. El auditor offline `npm run audit:quality -- .artifacts/<nombre>/public` observa el artefacto; `--hours <snapshot-sanitizado>` añade comparación
 GBP y `--fail-on-findings` convierte hallazgos en fallo explícito. Para futuras lecturas, `npm run prepare:gbp-hours` produce una propuesta
 revisable; el flujo y el QA repetible con Brave están en `docs/SITE-QUALITY.md`. No pide indexación ni hace
 llamadas a Google. Los permisos y la consulta real de Search Console se verifican por separado.

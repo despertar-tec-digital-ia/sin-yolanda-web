@@ -22,7 +22,8 @@ test('persistent mismatch exhausts the bounded attempts and remains failed', asy
     assertCurrent: async () => {}, sleep: async () => {} });
   assert.equal(calls, 4); assert.equal(report.passed, false);
 });
-for (const problem of ['excluded-route-not-404', 'home-is-noindex', 'redirect-outside-file-aliases', 'html-content-type-mismatch'])
+for (const problem of ['excluded-route-not-404', 'home-is-noindex', 'redirect-outside-file-aliases', 'html-content-type-mismatch',
+  'unapproved-provider-addition', 'duplicate-provider-addition', 'provider-addition-outside-official-domain'])
   test('real contract failure stops immediately: ' + problem, async () => {
     let calls = 0;
     const report = await verifyWithPropagation({ verify: async () => { calls++; return fixture([problem]); },

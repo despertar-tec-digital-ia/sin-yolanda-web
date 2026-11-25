@@ -8,6 +8,7 @@ import {posadasExpiry,posadasStyle,posadasScript,posadasMedia,posadasContact,pos
 import {packagePublic} from '../scripts/package-public.mjs';
 import {gdlHours,gdlHoursHtml,gdlHoursSpecification} from '../scripts/gdl-operating-hours.mjs';
 import {posadasSource,restorePosadasSource} from '../scripts/posadas-source-contract.mjs';
+import {restoreQualitySource} from '../scripts/site-quality/source-contract.mjs';
 import vm from 'node:vm';
 import {createHash} from 'node:crypto';
 const root=resolve(import.meta.dirname,'..'),commit='a'.repeat(40),now='2026-11-13T20:00:00Z';
@@ -58,10 +59,10 @@ test('Guadalajara follows its confirmed Google hours without rewriting any USA s
  assert.equal(context.window.SY_DATA.branches.find(b=>b.id==='san-ignacio').hours,gdlHours.summary);
  assert.equal(gdlHours.timeZone,'America/Mexico_City');
 });
-test('the new additive source contract preserves complete historical byte guards and refuses unknown or ambiguous changes',()=>{
+test('the Posadas source contract preserves historical byte guards after peeling the exact later quality delta',()=>{
  const hash=value=>createHash('sha256').update(value).digest('hex');
  for(const[file,entry]of Object.entries(posadasSource.files)){
-  const source=readFileSync(resolve(root,file),'utf8');assert.equal(hash(source),entry.afterSha256,file);
+  const source=restoreQualitySource(file,readFileSync(resolve(root,file),'utf8'));assert.equal(hash(source),entry.afterSha256,file);
   const restored=restorePosadasSource(file,source);assert.equal(hash(restored),entry.beforeSha256,file);
   assert.equal(restorePosadasSource(file,restored),restored);
   assert.notEqual(hash(restorePosadasSource(file,source+'unknown edit')),entry.beforeSha256);

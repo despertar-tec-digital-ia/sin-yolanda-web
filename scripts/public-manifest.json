@@ -437,7 +437,11 @@
     "images/posadas-gdl/gdl-posadas-amigas-gallery-600.webp",
     "images/posadas-gdl/gdl-posadas-campaign-capture.webp",
     "images/posadas-gdl/gdl-posadas-dueto-gallery-1200.webp",
-    "images/posadas-gdl/gdl-posadas-dueto-gallery-600.webp"
+    "images/posadas-gdl/gdl-posadas-dueto-gallery-600.webp",
+    "assets/css/site-quality-pilot.css",
+    "assets/js/gbp-hours-model.js",
+    "assets/js/gbp-hours-client.js",
+    "assets/js/site-quality-controls.js"
   ],
   "assetVersion": "20261008-migration-measurement",
   "reviewPages": []

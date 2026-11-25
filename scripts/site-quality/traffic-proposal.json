@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "status": "proposed",
+  "placements": [
+    {"id": "instagram-group-profile", "branch": "group", "destination": "/#ubicaciones", "source": "instagram", "medium": "social", "campaign": "sy_social_profiles"},
+    {"id": "facebook-group-profile", "branch": "group", "destination": "/#ubicaciones", "source": "facebook", "medium": "social", "campaign": "sy_social_profiles"},
+    {"id": "google-guadalajara-profile", "branch": "san-ignacio", "destination": "/guadalajara", "source": "google", "medium": "organic", "campaign": "sy_google_profiles"},
+    {"id": "google-houston-profile", "branch": "houston", "destination": "/houston", "source": "google", "medium": "organic", "campaign": "sy_google_profiles"},
+    {"id": "google-the-woodlands-profile", "branch": "the-woodlands", "destination": "/the-woodlands", "source": "google", "medium": "organic", "campaign": "sy_google_profiles"},
+    {"id": "google-san-antonio-profile", "branch": "san-antonio", "destination": "/san-antonio", "source": "google", "medium": "organic", "campaign": "sy_google_profiles"},
+    {"id": "google-el-paso-profile", "branch": "el-paso", "destination": "/el-paso", "source": "google", "medium": "organic", "campaign": "sy_google_profiles"}
+  ]
+}

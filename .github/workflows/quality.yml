@@ -51,8 +51,18 @@ jobs:
       - run: npm run check
       # CI validates a non-indexable review artifact; it never authorizes publication.
       - run: node scripts/package-public.mjs .artifacts/public --audience review
+      # Enforce final SEO/commercial/attribution checks on the actual build, including scheduled runs.
+      # This is offline validation; Google freshness and publication retain their separate gates.
+      - name: Inspect the final normal package
+        run: npm run audit:quality -- .artifacts/public --out .artifacts/normal-quality-audit.json --fail-on-findings
       - name: Require a clean, traceable artifact
         run: node -e "const r=require('./.artifacts/release.json'); if(r.dirty || r.commit!==process.env.GITHUB_SHA) process.exit(1)"
+      # Keep the protected review entry point checked as well. No Google credentials enter CI.
+      - name: Inspect the incremental quality candidate
+        if: github.event_name != 'schedule'
+        run: |
+          npm run build:quality-review -- .artifacts/quality-ci
+          npm run audit:quality -- .artifacts/quality-ci/public --out .artifacts/quality-ci/audit.json --fail-on-findings
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: public-site-${{ github.sha }}

@@ -1,5 +1,126 @@
 # Forma de trabajar y publicar
 
+### Integración local24nov · build y actualización programada con la misma proyección
+
+Por encargo de continuar sin publicar, el lote incremental se integra en esta rama al build
+normal. `editorial/public-release.mjs` compone las aprobaciones anteriores y la adaptación
+actual; empaquetador y planificador editorial consumen esa misma función. Los cuatro assets
+incrementales entran explícitamente al manifiesto; no cambian rutas, medios ni proveedores.
+CI inspecciona el artefacto normal también en ejecuciones programadas. La revisión protegida
+usa los mismos bytes y sólo añade su cabecera global noindex; no publicar ese paquete directamente.
+
+La integración local no equivale a aceptación visual, aprobación de ligas, merge o publicación.
+La web servida conserva main; Google, redes, DNS y gasto intactos. El catálogo del contrato
+fuente histórico continúa vacío; la proyección final incluye las tres combinaciones propuestas.
+No modificar aprobaciones históricas para hacer pasar estos cambios. Estado y pruebas en SITE-QUALITY.
+Los bloques fechados anteriores describen su corte, no el estado actual de esta rama.
+
+### Datos comerciales y UTM23nov · lote local para revisión
+
+La candidata añade directorio canónico derivado de las cinco identidades Restaurant y controles
+de consistencia de teléfonos/direcciones entre fichas, discovery y datos públicos. Conserva
+teléfonos confirmados y proveedores. Siete ligas externas propuestas comparten un registro y
+contratos Umami/GA4; loaders versionados por contenido y pruebas de parámetros/persistencia.
+Normal build y perfiles remotos intactos. Especificación y decisiones en SITE-QUALITY,
+«Lote de datos comerciales y atribución»; no usar estas ligas como campañas activadas.
+
+### Agenda23nov · corrección local de caducidad
+
+La candidata de calidad conserva una columna vacía al ocultarse el cartel NFL vencido.
+Se corrige sólo su distribución cuando el cartel o su contenedor están ocultos, manteniendo
+actividad/copy y las dos columnas mientras la imagen sea visible. Brave/CUA comprueba17vistas
+de Texas ES/EN a320/390/1440, sin desbordamiento;561pruebas correctas. El nuevo escenario
+versionado de transición temporal tiene comprobación sintáctica, aún sin ejecución automatizada.
+Método y límites en SITE-QUALITY. Continúa como PR71 en borrador, sin integración ni publicación.
+
+### WWW20-nov · revisión de propuesta, bloqueada sólo la operación remota
+
+Propuesta301existente revalidada con la documentación actual; conservar ruta/query y sólo host
+exactowww. DNSCNAMEproxied existente, sin necesidad acreditada de sustituirlo. GETde reglas de
+cuenta/zona ylistas sigue403 con accesosDNS/Pages. Parámetros preparados, ítem y matriz esperada
+156casos locales; no acreditan comportamiento desplegado. Antes de activar: acceso adecuado,
+inventario/conflictos y respaldo exacto; luego autorización y comprobación pública. Sin ampliar
+permisos ni cambiar DNS/reglas. Detalle y límites en SITE-QUALITY.
+
+### Indexación20-nov · consulta real completada, sin publicación
+
+Se verificaron las26canónicas mediante Search Console:23indexadas y3cartas descubiertas,
+actualmente sin indexar (`/san-antonio/menu/`, `/en/san-antonio/menu/`, `/san-ignacio/menu/`).
+Las tres pasan la prueba publicada de Google, permiten rastreo/indexación y declaran canonical
+propio. No se solicitó indexación. Posadas está indexada, con último rastreo17nov y canonical
+correcto. Sitemap leído20nov, estado Correcto y26URL detectadas. El reporte agregado fechado15nov
+incluye9varianteswww con canonical adecuado y8redirecciones; sus destinos actuales son válidos.
+No hay acciones manuales, problemas de seguridad o retiradas recientes observadas.
+
+La consulta manual no habilita al colector: su API conserva403 hasta resolver su propio acceso.
+La captura periódica permanece sin activar y el build normal conserva sus aprobaciones. Falta
+priorizar el rastreo de las tres cartas y la consolidaciónwww, sin cambios a producción. Alcance,
+criterios y límites de futuras revisiones en SITE-QUALITY; evidencia privada en su plan dueño.
+
+### Datos Google19-nov · colector conectado, sin activación ni publicación
+
+El colector privado ya lee las cinco fichas consumidoras, genera snapshot público y conecta
+propuesta/candidata/auditor web. Prueba real limpia:405archivos,5sedes coincidentes/0diferencias,
+SEO correcto y propuesta unchanged. No modificar fuente revisada por sólo cambiar la observación.
+Programación preparada pero desactivada, con controles de fuente/runtime/imagen y salidas privadas;
+no hay lectura periódica activa ni publicación del sitio. Recibo operativo en el plan privado.
+
+Las26URL del sitemap público responden200 y son elegibles según canonical/robots/noindex de
+esta consulta HTTP. No equivale a indexadas. URL Inspection de Posadas devuelve403 en dominio
+yprefijo central; sigue unknown hasta contar con acceso verificable. No hubo cambio Google.
+
+### Continuidad del plan19-nov · candidata local, sin producción
+
+Tercer lote sobre la candidata anterior: espacio vertical de tres bloques cortos del home,
+contador del selector sincronizado con filtro/idioma y fallback404 bilingüe. No cambian portada,
+contenido comercial, fotografías, cartas ni reservas. El build normal conserva sus aprobaciones.
+El paquete de revisión añade un controlador propio y queda en405archivos.
+
+Se implementa `prepare:gbp-hours`: snapshot público → normalización validada → diff/propuesta
+revisable → build local opcional. Rechaza lecturas incompletas/viejas, sedes desconocidas,
+tampering o baseline distinto; no modifica la fuente revisada ni lee/escribe Google. Si GDL
+cambia, bloquea el carril Texas hasta conciliar sus campañas. Un Restaurant nuevo no puede
+quedar fuera del mapa GBP sin bloquear la revisión. Colector/cron siguen pendientes.
+
+QA canónico `qa:quality`: servidor local efímero y Brave instalado aislado, sin solicitudes
+externas ni envíos; cubre27rutas ×320/390/1440, filtros/idioma/teclado,404 y sinJS. Los runners
+anteriores también pasan a Brave explícito. Comandos, alcance y límites en SITE-QUALITY.
+Fuente f4a9fed,561pruebas y CI44653775873 correctos. Paquete405 limpio; auditor5sedes/0diferencias
+y SEO pasan. Brave:81vistas/40combinaciones/179imágenes visibles, sin errores JS/envíos; portada
+idéntica390/1440. Evidencia local preservada. Ningún merge o deploy autorizado.
+
+### Calidad incremental19-nov · horarios GBP y adaptaciones locales
+
+Encargo de Luis: adaptar el sitio actual por fases, sin página/diseño nuevo ni publicación.
+Base main9590028; rama `feat/site-quality-roadmap-20261119`, PR71 borrador. Plan y criterios
+dueños: `docs/SITE-QUALITY.md`. Auditoría de27rutas a390/1440 y ancho320,26canónicas200;
+Catering ya está en4Texas ES/EN por proyección, sin duplicarlo.
+
+La candidata opt-in incorpora frontera menú–agenda, filas semanales alineadas, afiche íntegro
+contenido420/360 y fecha funcional distinta del título. Amplía áreas táctiles de cartas y
+privacidad, conservando controles ocultos en móvil. Normaliza20enlaces nativos a canónicas.
+SEO corrige directorio ItemList, dos logos y auxiliares Catering; el inspector final comprueba
+410referencias JSON-LD,26rutas de sitemap/medición y39alternativas hreflang, sin hallazgos.
+
+GBP consumidor5/5 verificado. Horarios USA aplicados sólo en la candidata a HTML/schema/
+discovery/datos/cliente, con un modelo único; cinco sedes coinciden, cero diferencias. Texas:
+25nov16:00–02:00 del26 y26cerrado; caducidad Chicago/Denver. Los anuncios25 de TW/EP siguen
+visibles hasta ese cierre, sin cambiar horas anunciadas. GDL/Posadas conservan sus horarios.
+Fuente pública revisada versionada, sin IDs privados ni credenciales; ningún cambio en Google.
+
+553pruebas y construcción normal401 pasan. La candidata404 permanece fuera del build normal,
+con `publicationEnabled:false`. Brave aislado:16vistas Texas390/1440, siete rutas de controles
+320 y reloj real de ambas zonas pasan; se revisan también320/768/1024 y alternativa sin JS.
+CI añade inspección de la candidata sin subirla como artefacto normal ni activar publicación;
+CI44649427416 verde sobre6343eff, incluido «Inspect the incremental quality candidate».
+Paquete final limpio404; Brave adicional320/768/1024 y horario sin JS también pasan.
+
+GSC central403 con la credencial existente: indexación real no verificada. Campañas necesitan
+catálogo aprobado. www, colector GBP y promoción al scheduler/build normal siguen separados;
+no activar jobs, permisos o writes por este registro. Preview sólo127.0.0.1:8917.
+Evidencia local en `.artifacts/audit-design/`, `audit-seo/`, `audit-gbp/`, `qa-hours-final/` y
+los reportes auditados. Sin deploy público, merge, DNS ni cambios OpenTable/WhatsApp.
+
 ### USA · horarios por sucursal confirmados por Karina · 18-nov-2026
 
 Karina solicita establecer en la página el horario actual de Houston, The Woodlands,

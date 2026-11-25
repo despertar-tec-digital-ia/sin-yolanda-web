@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "status": "prepared-not-published",
+  "file": "scripts/public-manifest.json",
+  "beforeSha256": "fa545802459e5f7aa57cf32f8d3c4c257e0cf4a28925ceeed7695349419aa32f",
+  "afterSha256": "98d265f68b74b786b1498ee083c23e02c46fe37ed42bf1a6191477b196b5a528",
+  "patches": [
+    {
+      "before": "    \"images/posadas-gdl/gdl-posadas-dueto-gallery-1200.webp\",\n    \"images/posadas-gdl/gdl-posadas-dueto-gallery-600.webp\"\n  ],\n",
+      "after": "    \"images/posadas-gdl/gdl-posadas-dueto-gallery-1200.webp\",\n    \"images/posadas-gdl/gdl-posadas-dueto-gallery-600.webp\",\n    \"assets/css/site-quality-pilot.css\",\n    \"assets/js/gbp-hours-model.js\",\n    \"assets/js/gbp-hours-client.js\",\n    \"assets/js/site-quality-controls.js\"\n  ],\n"
+    }
+  ]
+}

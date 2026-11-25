@@ -8,11 +8,11 @@ import {projectSiteQuality, qualityAssets} from '../site-quality/projection.mjs'
 
 const hash = value => createHash('sha256').update(value).digest('hex');
 export function projectPublicRelease(root, options = {}) {
-  const base = projectPublicSite(root, options);
+  const now = options.now ?? new Date().toISOString();
+  const base = projectPublicSite(root, {...options, now});
   // Historical presentation fixtures and explicitly isolated review baselines keep their contracts.
   // A standalone fixture without editorial approvals remains a plain static package.
   if (options.quality === false || options.ui === false || !base.socialFeed) return base;
-  const now = options.now ?? new Date().toISOString();
   const manifest = JSON.parse(readFileSync(resolve(root, 'scripts/public-manifest.json'), 'utf8'));
   for (const file of qualityAssets) assert.ok(manifest.assets.includes(file), 'Incremental release asset missing from manifest: ' + file);
   const read = file => base.files.get(file) ?? readFileSync(resolve(root, file), 'utf8');

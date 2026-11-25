@@ -13,6 +13,12 @@ import {qualitySource, restoreQualitySource} from '../scripts/site-quality/sourc
 const root = resolve(import.meta.dirname, '..');
 const hash = text => createHash('sha256').update(text).digest('hex');
 
+test('a build without an explicit clock uses one instant for the base and final projection', () => {
+  const projection = projectPublicRelease(root, {commit: 'a'.repeat(40)});
+  assert.equal(projection.metadata.evaluatedAt, projection.quality.asOf,
+    'A closing or midnight boundary must not be evaluated at two different instants');
+});
+
 test('the manifest delta restores historical bytes exactly and never hides an unrelated or ambiguous change', () => {
   const file = qualitySource.file, source = readFileSync(resolve(root, file), 'utf8');
   assert.equal(hash(source), qualitySource.afterSha256);

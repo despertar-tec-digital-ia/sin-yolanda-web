@@ -1,5 +1,36 @@
 # Forma de trabajar y publicar
 
+### Verificación del proveedor · candidata técnica del 24-nov
+
+El verificador GET conserva la comprobación completa del paquete y añade una segunda lectura
+de cada HTML con negociación de visitante (`visitor-html`). Es una sonda HTTP con cabeceras
+fijas, no un navegador: no ejecuta JavaScript, no envía eventos y no prueba consentimiento.
+El perfil base sigue recorriendo archivos, aliases y exclusiones; ambos perfiles deben pasar.
+
+`provider-transforms.mjs` fija por SHA-256 los 367 caracteres del bloque RUM observado en el
+dominio oficial, incluida su configuración pública y salto final. También identifica la URL
+exacta y la integridad SHA-512 declarada. No guarda credenciales ni permite una política desde
+metadatos o argumentos CLI; la inyección del argumento programático se usa para fixtures offline.
+No descarga ni ejecuta el beacon: verifica su etiqueta fijada, no su tráfico o comportamiento.
+
+Sólo se reconstruye ese bloque en el final de un HTML del dominio oficial; preview y assets
+no reciben la excepción. La protección de correo existente puede componerse en ambos órdenes.
+En todos los casos el documento reconstruido COMPLETO debe coincidir con el SHA aprobado.
+Un script extra, duplicado, nueva versión/configuración/atributo o cambio de contenido falla.
+No se limpian espacios ni scripts genéricos. Una rotación legítima del proveedor exige revisar
+la observación y actualizar el pin por PR, sin apagar RUM ni relajar las comparaciones.
+
+Los recibos distinguen hash recibido, hash reconstruido, política, transformaciones y perfil.
+`summary.visitorHtmlChecks` y `providerTransformedResponses` son adicionales a los conteos
+anteriores. Los fallos de proveedor desconocido paran la verificación sin repetir uploads.
+Un fallo posterior a publicar requiere inspeccionar la producción; no implica rollback automático.
+Los controles de origen, redirects, robots, MIME, exclusiones y hashes continúan activos.
+
+Este ajuste está en revisión: no cambia HTML/CSS/JS públicos, DNS, RUM, reservas o medición.
+Integrarlo en main requiere autorización: el CI/CD normal sigue publicando automáticamente
+el artefacto de main cuando sus controles pasan. Las publicaciones y decisiones externas del
+24-nov tienen recibos propios; los bloques fechados siguientes conservan su estado histórico.
+
 ### Integración local24nov · build y actualización programada con la misma proyección
 
 Por encargo de continuar sin publicar, el lote incremental se integra en esta rama al build

@@ -1,5 +1,20 @@
 # Forma de trabajar y publicar
 
+### Integración local24nov · build y actualización programada con la misma proyección
+
+Por encargo de continuar sin publicar, el lote incremental se integra en esta rama al build
+normal. `editorial/public-release.mjs` compone las aprobaciones anteriores y la adaptación
+actual; empaquetador y planificador editorial consumen esa misma función. Los cuatro assets
+incrementales entran explícitamente al manifiesto; no cambian rutas, medios ni proveedores.
+CI inspecciona el artefacto normal también en ejecuciones programadas. La revisión protegida
+usa los mismos bytes y sólo añade su cabecera global noindex; no publicar ese paquete directamente.
+
+La integración local no equivale a aceptación visual, aprobación de ligas, merge o publicación.
+La web servida conserva main; Google, redes, DNS y gasto intactos. El catálogo del contrato
+fuente histórico continúa vacío; la proyección final incluye las tres combinaciones propuestas.
+No modificar aprobaciones históricas para hacer pasar estos cambios. Estado y pruebas en SITE-QUALITY.
+Los bloques fechados anteriores describen su corte, no el estado actual de esta rama.
+
 ### Datos comerciales y UTM23nov · lote local para revisión
 
 La candidata añade directorio canónico derivado de las cinco identidades Restaurant y controles

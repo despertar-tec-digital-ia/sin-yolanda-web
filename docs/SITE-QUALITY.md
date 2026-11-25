@@ -3,6 +3,13 @@
 Estado: diagnóstico y candidatas locales. Base: `9590028` (19 de noviembre de 2026).
 Este plan no autoriza publicación, cambios de GBP ni activación de nuevos servicios.
 
+**Corte24nov:** integración local en la rama de revisión. Build normal y planificador comparten
+`editorial/public-release.mjs`; revisión y paquete indexable conservan los mismos bytes salvo
+la cabecera noindex del preview. El paquete normal contiene405archivos, incluidos los cuatro
+assets declarados de la adaptación. CI audita sus datos comerciales, atribución y SEO incluso
+al refrescar por horario. Nada de esto habilita merge, CD o cambios externos sin autorización.
+Los cortes fechados siguientes conservan el contexto histórico de cada fase.
+
 ## Alcance y límites
 
 Mejorar el sitio existente por componentes y recorridos; no sustituir su diseño, arquitectura
@@ -115,9 +122,10 @@ resultados detallados, límites de acceso y propuestas se consolidan al cerrar e
 
 ## Lote de datos comerciales y atribución · 23 de noviembre
 
-`site-quality-review.mjs` añade dos proyecciones **exclusivas de la candidata**. El paquete
-normal conserva su catálogo de campañas vacío y sus aprobaciones actuales. La candidata
-no escribe en Google ni cambia perfiles sociales, anuncios, QR o proveedores de reservas.
+La proyección final compartida añade coherencia comercial y atribución. Desde la integración
+local24nov, el build normal de esta rama y la revisión usan el mismo código. El contrato fuente
+histórico conserva su catálogo vacío; la proyección final añade las tres combinaciones propuestas.
+No escribe en Google ni cambia perfiles sociales, anuncios, QR o proveedores de reservas.
 
 - Directorio: derivar `website` de las cinco sedes abiertas desde sus identidades Restaurant
   publicadas, sustituyendo dominios históricos o valores vacíos. Conservar teléfonos,
@@ -136,8 +144,8 @@ no escribe en Google ni cambia perfiles sociales, anuncios, QR o proveedores de 
   DNT/GPC y vencimiento de sesión existentes. Versionar loaders con el hash de sus bytes.
   Las pruebas usan transporte simulado: no son conversiones reales ni acreditan entrega a Google.
 
-La auditoría final incluye comprobaciones comerciales y de atribución; CI las exige sobre la
-candidata sin subirla como artefacto de producción. Para futuras colocaciones: declarar una
+La auditoría final incluye comprobaciones comerciales y de atribución; CI las exige sobre el
+artefacto normal y la revisión protegida. Para futuras colocaciones: declarar una
 entrada en el registro, comprobar ruta/sede/ancla, probar parámetros y persistencia, revisar
 la liga y autorizar por separado su integración y distribución. No añadir UTM a enlaces internos.
 

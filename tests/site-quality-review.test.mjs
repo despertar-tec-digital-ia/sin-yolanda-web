@@ -11,7 +11,7 @@ import {inspectReviewAttribution} from '../scripts/site-quality/attribution.mjs'
 
 const root = resolve(import.meta.dirname, '..');
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
-test('quality pilot stays opt-in, preserves the existing site and cannot introduce new public routes', t => {
+test('quality review preserves existing content and uses the final build projection without adding routes', t => {
   const out = resolve(root, '.artifacts/quality-review-test-' + process.pid);
   t.after(() => rmSync(out, {recursive: true, force: true}));
   const report = buildSiteQualityReview({root, out, now: '2026-11-19T23:00:00Z'});
@@ -23,7 +23,8 @@ test('quality pilot stays opt-in, preserves the existing site and cannot introdu
   for (const [file, expected] of Object.entries(baseline.hashes)) {
     if (!allowed.has(file)) assert.equal(hash(readFileSync(resolve(out, 'public', file))), expected, file + ' must remain unchanged');
   }
-  assert.equal(report.fileCount, baseline.fileCount + 4);
+  assert.equal(report.fileCount, baseline.fileCount);
+  assert.equal(report.qualityBuildIntegrated, true);
   const readFinal = file => readFileSync(resolve(out, 'public', file), 'utf8');
   const finalPages = new Map(Object.keys(report.hashes).filter(file => file.endsWith('.html')).map(file => [file, readFinal(file)]));
   const commercial = inspectCommercialData({pages: finalPages, read: readFinal});
@@ -50,8 +51,8 @@ test('quality pilot stays opt-in, preserves the existing site and cannot introdu
   assert.equal(report.qualityReview.controlPages.length, 7);
   assert.ok(report.qualityReview.hours.eventEditorialExpiryReconciled);
   const manifest = JSON.parse(readFileSync(resolve(root, 'scripts/public-manifest.json')));
-  assert.ok(!manifest.assets.includes('assets/css/site-quality-pilot.css'));
-  assert.ok(!readFileSync(resolve(root, 'scripts/editorial/public-site.mjs'), 'utf8').includes('site-quality/'));
+  assert.ok(manifest.assets.includes('assets/css/site-quality-pilot.css'));
+  assert.ok(readFileSync(resolve(root, 'scripts/package-public.mjs'), 'utf8').includes('./editorial/public-release.mjs'));
   assert.throws(() => buildSiteQualityReview({root, out: resolve(root, 'published-quality')}), /ignored local/);
   assert.throws(() => buildSiteQualityReview({root, out}), /fresh/);
 });

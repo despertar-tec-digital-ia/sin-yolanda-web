@@ -1,4 +1,4 @@
-// Proposed external placements are opt-in review data, never an activation of social/GBP links.
+// Proposed external placements prepare attribution; they never activate social/GBP links.
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
@@ -43,7 +43,7 @@ export function compileTrafficProposal({root, proposal, approvedContract = compi
   });
   for (const tuple of tuples.values()) if (!contract.trafficCampaigns.some(item => JSON.stringify(item) === JSON.stringify(tuple))) contract.trafficCampaigns.push(tuple);
   contract.utmValues.utm_campaign = [...new Set([...contract.utmValues.utm_campaign, ...links.map(item => item.campaign)])];
-  return {contract, metadata: {version: 1, status: 'proposed', reviewOnly: true, externalChangesApplied: false, links, tuples: [...tuples.values()]}};
+  return {contract, metadata: {version: 1, status: 'proposed', distributionApproved: false, externalChangesApplied: false, links, tuples: [...tuples.values()]}};
 }
 
 export function projectReviewAttribution({root, read, pages} = {}) {
@@ -75,6 +75,7 @@ export function inspectReviewAttribution({read, metadata, pages} = {}) {
     const ga4 = JSON.parse(read(ga4Asset).match(/window\.SY_GA4_CONTRACT = ([^\n]+);/)[1]);
     assert.deepEqual(ga4, umami, 'Both providers must use the same acquisition contract');
     assert.equal(metadata.status, 'proposed');
+    assert.equal(metadata.distributionApproved, false);
     assert.equal(metadata.externalChangesApplied, false);
     for (const [file, version] of Object.entries(metadata.assetVersions)) {
       assert.equal(createHash('sha256').update(read(file)).digest('hex').slice(0, 12), version, 'Loader version must match packaged asset bytes');

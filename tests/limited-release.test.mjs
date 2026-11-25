@@ -6,7 +6,7 @@ import { existsSync, mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { inspectPublic, packagePublic, projectRoot, publicSourceDigest } from '../scripts/package-public.mjs';
-import { projectPublicSite as projectPublicAgenda } from '../scripts/editorial/public-site.mjs';
+import { projectPublicRelease as projectPublicAgenda } from '../scripts/editorial/public-release.mjs';
 
 function fixture(t) {
   const temporary = mkdtempSync(join(tmpdir(), 'sy-limited-release-'));

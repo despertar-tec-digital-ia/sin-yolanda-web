@@ -6,7 +6,7 @@ import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import assert from 'node:assert/strict';
 import { parseQrRedirects } from './qr-redirects.mjs';
-import { projectPublicSite as projectPublicAgenda } from './editorial/public-site.mjs';
+import { projectPublicRelease as projectPublicAgenda } from './editorial/public-release.mjs';
 
 export const projectRoot = fileURLToPath(new URL('../', import.meta.url));
 export const forbiddenRoute = /(?:^|\/)(?:dashboard|listings|reputation|requests|reports|review-detail|maricarmen)(?:\.html|\/|$)/i;
@@ -81,10 +81,11 @@ function inspectLimitedApproval({ root, approval, commit, dirty, publicDigest, o
     sourceCommit: record.sourceCommit, publicDigest: record.publicDigest, authorization: record.authorization };
 }
 
-export function packagePublic({ root = projectRoot, destination, metadata, audience = 'production', approval, now, presentation = 'approved', posadas = true } = {}) {
+export function packagePublic({ root = projectRoot, destination, metadata, audience = 'production', approval, now, presentation = 'approved', posadas = true, quality = true } = {}) {
   assert.ok(['production', 'review', 'limited-production'].includes(audience), 'Unknown package audience');
   assert.ok(presentation === 'approved' || (presentation === 'baseline' && audience === 'review'), 'Only local review can omit approved presentation');
   assert.ok(posadas === true || (posadas === false && audience === 'review'), 'Only local review can omit the approved Posadas campaign');
+  assert.ok(quality === true || (quality === false && audience === 'review'), 'Only local review can omit incremental quality');
   assert.ok(approval === undefined || audience === 'limited-production', 'Approval applies only to the explicit limited-production audience');
   assert.ok(destination, 'Provide a fresh artifact directory');
   const out = resolve(destination);
@@ -102,7 +103,7 @@ export function packagePublic({ root = projectRoot, destination, metadata, audie
   let commit = null;
   try { commit = execFileSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }).trim(); } catch {}
   const dirty = commit ? Boolean(execFileSync('git', ['status', '--porcelain'], { cwd: root, encoding: 'utf8' }).trim()) : true;
-  const projection=projectPublicAgenda(root,{now,commit,ui:presentation!=='baseline',posadas});
+  const projection=projectPublicAgenda(root,{now,commit,ui:presentation!=='baseline',posadas,quality});
   for(const path of projection.files.keys())assert.ok(files.includes(path),'Projected page outside manifest');
   const hashes=Object.fromEntries(files.map(path=>[path,projection.files.has(path)?createHash('sha256').update(projection.files.get(path)).digest('hex'):sourceHashes[path]]));
   const publicDigest=publicSourceDigest(hashes); // Exact current projection, before the preview header.
@@ -122,6 +123,7 @@ export function packagePublic({ root = projectRoot, destination, metadata, audie
   const report = { version: 1, commit, dirty, audience, reviewPages: manifest.reviewPages ?? [], fileCount: files.length, hashes, publicDigest,
     ...(projection.socialFeed?{socialFeed:projection.socialFeed}:{}),
     ...(projection.metadata?{sourcePublicDigest:publicSourceDigest(sourceHashes),agenda:projection.metadata}:{}),
+    ...(projection.quality ? {qualityReview: projection.quality, qualityBuildIntegrated: true, publicationEnabled: false} : {}),
     ...(approved ? { approval: approved } : {}) };
   if (reportPath) {
     mkdirSync(dirname(reportPath), { recursive: true });

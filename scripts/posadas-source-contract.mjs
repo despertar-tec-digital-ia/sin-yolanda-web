@@ -1,8 +1,10 @@
 import {readFileSync} from 'node:fs';
 import assert from 'node:assert/strict';
+import {restoreQualitySource} from './site-quality/source-contract.mjs';
 export const posadasSource=JSON.parse(readFileSync(new URL('./posadas-source-patches.json',import.meta.url)));
 // Peel only the new production route, assets and cache versions before historical guards.
 export function restorePosadasSource(file,source){
+  source=restoreQualitySource(file,source);
   const entry=posadasSource.files[file];
   if(!entry||!source.includes(entry.marker))return source;
   for(const patch of [...entry.patches].reverse()){

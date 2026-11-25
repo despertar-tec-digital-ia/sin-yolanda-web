@@ -16,7 +16,7 @@ export function projectPublicRelease(root, options = {}) {
   const manifest = JSON.parse(readFileSync(resolve(root, 'scripts/public-manifest.json'), 'utf8'));
   for (const file of qualityAssets) assert.ok(manifest.assets.includes(file), 'Incremental release asset missing from manifest: ' + file);
   const read = file => base.files.get(file) ?? readFileSync(resolve(root, file), 'utf8');
-  const pages = new Map(manifest.pages.map(file => [file, read(file)]));
+  const pages = new Map([...manifest.pages].sort().map(file => [file, read(file)]));
   const quality = projectSiteQuality({root, pages, read, now, hoursData: options.hoursData});
   const files = new Map([...base.files, ...quality.files]);
   files.set('houston.html', files.get('houston.html').replace(/ data-agenda-render-digest="[a-f0-9]+"/, ''));

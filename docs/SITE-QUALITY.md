@@ -9,6 +9,10 @@ la cabecera noindex del preview. El paquete normal contiene405archivos, incluido
 assets declarados de la adaptación. CI audita sus datos comerciales, atribución y SEO incluso
 al refrescar por horario. Nada de esto habilita merge, CD o cambios externos sin autorización.
 Los cortes fechados siguientes conservan el contexto histórico de cada fase.
+La adición de cuatro assets tiene un contrato reversible exacto antes de verificar hashes de
+aprobaciones históricas; no modifica sus recibos ni oculta cambios ajenos. Se prueban adiciones
+parciales, alteradas y ambiguas. La comparación con la candidata presentada conserva404archivos
+en el mismo instante/commit; sólo se normaliza el digest interno de Houston y la cabecera de preview.
 
 ## Alcance y límites
 

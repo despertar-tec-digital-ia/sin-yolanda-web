@@ -8,9 +8,23 @@ import {projectPublicRelease} from '../scripts/editorial/public-release.mjs';
 import {buildSiteQualityReview} from '../scripts/site-quality-review.mjs';
 import {auditSiteQuality} from '../scripts/audit-site-quality.mjs';
 import {planAgendaRefresh} from '../scripts/plan-agenda-refresh.mjs';
+import {qualitySource, restoreQualitySource} from '../scripts/site-quality/source-contract.mjs';
 
 const root = resolve(import.meta.dirname, '..');
 const hash = text => createHash('sha256').update(text).digest('hex');
+
+test('the manifest delta restores historical bytes exactly and never hides an unrelated or ambiguous change', () => {
+  const file = qualitySource.file, source = readFileSync(resolve(root, file), 'utf8');
+  assert.equal(hash(source), qualitySource.afterSha256);
+  const restored = restoreQualitySource(file, source);
+  assert.equal(hash(restored), qualitySource.beforeSha256);
+  assert.equal(restoreQualitySource(file, restored), restored);
+  assert.notEqual(hash(restoreQualitySource(file, source + 'unrelated edit')), qualitySource.beforeSha256);
+  assert.throws(() => restoreQualitySource(file, source + qualitySource.patches[0].after), /ambiguous/);
+  for (const asset of ['site-quality-pilot.css', 'gbp-hours-model.js', 'gbp-hours-client.js', 'site-quality-controls.js']) {
+    assert.throws(() => restoreQualitySource(file, source.replace(asset, 'unreviewed.js')), /changed/);
+  }
+});
 
 test('normal package and protected review use the same final bytes with only preview headers differing', t => {
   const out = mkdtempSync(resolve(root, '.artifacts/release-parity-'));

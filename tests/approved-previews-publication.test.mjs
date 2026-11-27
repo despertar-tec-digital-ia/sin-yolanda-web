@@ -42,7 +42,7 @@ test('the approved Ciudad Juárez source and allowlist delta restore exactly, wi
   }
   const cj=projectPublicSite(root,options).files.get('ciudad-juarez.html');
   assert.match(cj,/hh-hero/);assert.match(cj,/branch-footer cj-footer/);assert.match(cj,/index,follow/);
-  assert.doesNotMatch(cj,/data-opentable-pilot|tel:|wa\.me|@type":"Restaurant|google\.com\/maps/);
+  assert.doesNotMatch(cj,/data-opentable-pilot|tel:|wa\.me|@type":"Restaurant/);// 26-nov inauguration adds only the supplied address map
   const manifest=JSON.parse(read('scripts/public-manifest.json'));
   assert.ok(![...manifest.pages,...manifest.assets].some(f=>/ejemplo-11|opening-label-local/.test(f)));
 });

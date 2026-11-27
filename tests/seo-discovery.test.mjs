@@ -37,7 +37,7 @@ test('all public destinations are indexable, canonical, unique and in the sitema
   assert.doesNotMatch(read('robots.txt'), /Disallow:\s*\/\s*$/m);
 });
 
-test('Ciudad Juárez is an indexable pre-opening page, not an operating location profile', () => {
+test('Ciudad Juárez is an indexable opening page, not an operating location profile', () => {
   const file = 'ciudad-juarez.html';
   assert.ok(pages.includes(file));
   const html = read(file);
@@ -46,7 +46,8 @@ test('Ciudad Juárez is an indexable pre-opening page, not an operating location
   const nodes = schemas(html).flatMap(item => item['@graph'] ?? [item]);
   assert.equal(nodes.filter(node => node['@type'] === 'WebPage').length, 1);
   assert.ok(!nodes.some(node => ['Restaurant', 'Menu', 'Service', 'LocalBusiness'].includes(node['@type'])));
-  assert.doesNotMatch(html, /(?:tel:|wa\.me|opentable|google\.com\/maps|<iframe\b|hasMenu|acceptsReservations)/i);
+  // The 26-nov inauguration layer adds only the branch-supplied address and its map; no booking or contact claims.
+  assert.doesNotMatch(html, /(?:tel:|wa\.me|opentable|hasMenu|acceptsReservations)/i);
   assert.match(html, /Después de Ciudad Juárez[\s\S]*San Diego y Moreno Valley/);
 });
 

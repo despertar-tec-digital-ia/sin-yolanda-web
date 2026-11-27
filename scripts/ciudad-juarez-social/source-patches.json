@@ -1,0 +1,171 @@
+{
+  "version": 1,
+  "authorization": "Luis requested on 2026-11-26 the Ciudad Juárez Instagram (@sinyolanda.cdjuarez) as the DM reservation channel and branch social link, plus updated branch data, opening notice and llms.txt with the confirmed short address. The approved selector badge stays 'Próxima apertura' until Luis confirms the opening dates; only its shared script cache version advances.",
+  "baselineCommit": "7764d342c827184fd239de568164d391fb856c5c",
+  "files": {
+    "ciudad-juarez.html": {
+      "marker": "20261126-ciudad-juarez-social",
+      "beforeSha256": "7163ee9d0fea5eba0ff30de28b6c22ea22ddd091e5db30bb92dd4d1b14cb09b8",
+      "afterSha256": "779b819deb5a99c0b27f700e7484ae551d5983e018e2efa8a1f6177a78131317",
+      "patches": [
+        {
+          "before": "    <link rel=\"stylesheet\" href=\"/_astro/BranchFooter.4SmD_LYs.css\">\n    <link rel=\"stylesheet\" href=\"/assets/css/ciudad-juarez-opening.css?v=20261126-ciudad-juarez-inauguration\">\n    <link rel=\"stylesheet\" href=\"/assets/css/ga4-consent.css?v=20261016-ga4-simple-choice\">\n",
+          "after": "    <link rel=\"stylesheet\" href=\"/_astro/BranchFooter.4SmD_LYs.css\">\n    <link rel=\"stylesheet\" href=\"/assets/css/ciudad-juarez-opening.css?v=20261126-ciudad-juarez-social\">\n    <link rel=\"stylesheet\" href=\"/assets/css/ga4-consent.css?v=20261016-ga4-simple-choice\">\n"
+        },
+        {
+          "before": "            <div class=\"hh-welcome-actions\">\n              <a class=\"hh-reserve\" href=\"#inauguracion\">Ver la inauguración <svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 12h16m-6-6 6 6-6 6\"></path></svg></a>\n            </div>\n",
+          "after": "            <div class=\"hh-welcome-actions\">\n              <a class=\"hh-reserve\" href=\"https://ig.me/m/sinyolanda.cdjuarez\" target=\"_blank\" rel=\"noopener noreferrer\">Reserva por DM <svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 19 19 5M6 5h13v13\"></path></svg><span class=\"hh-sr\"> en Instagram (abre otra pestaña)</span></a>\n            </div>\n"
+        },
+        {
+          "before": "          </div>\n          <a class=\"cj-text-link\" href=\"#visita-ciudad-juarez\">Cómo llegar <svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 12h16m-6-6 6 6-6 6\"></path></svg></a>\n        </div>\n",
+          "after": "          </div>\n          <div class=\"cj-launch-actions\"><a class=\"cj-dm\" href=\"https://ig.me/m/sinyolanda.cdjuarez\" target=\"_blank\" rel=\"noopener noreferrer\">Reserva por DM en Instagram <svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 19 19 5M6 5h13v13\"></path></svg><span class=\"hh-sr\"> (abre otra pestaña)</span></a>\n          <a class=\"cj-text-link\" href=\"#visita-ciudad-juarez\">Cómo llegar <svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 12h16m-6-6 6 6-6 6\"></path></svg></a></div>\n        </div>\n"
+        },
+        {
+          "before": "      </div>\n      <div class=\"bf-bottom\"><p>© 2026 Sin Yolanda</p><div class=\"bf-bottom-meta\"><a href=\"/aviso-de-privacidad\">Privacidad</a></div></div>\n    </footer>\n",
+          "after": "      </div>\n      <div class=\"bf-bottom\"><p>© 2026 Sin Yolanda</p><div class=\"bf-bottom-meta\"><a href=\"/aviso-de-privacidad\">Privacidad</a></div><nav class=\"bf-social\" aria-label=\"Redes de Ciudad Juárez\"><span class=\"bf-social-label\" aria-hidden=\"true\">Síguenos</span><span class=\"bf-social-links\"><a href=\"https://www.instagram.com/sinyolanda.cdjuarez/\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"Instagram · Ciudad Juárez (abre otra pestaña)\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"currentColor\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077\"></path></svg></a></span></nav></div>\n    </footer>\n"
+        }
+      ]
+    },
+    "assets/css/ciudad-juarez-opening.css": {
+      "marker": ".cj-dm {",
+      "beforeSha256": "c1923eba27fc8ec0c29027d2278c459ce8e87eec4c4ac48e9fd4d710b025a16a",
+      "afterSha256": "3a3a2cf16a779f321a2b612c1fec7843dddb304dfad02093c0909a3aee329df4",
+      "patches": [
+        {
+          "before": ".cj-visit { scroll-margin-top: 40px; outline: none; }\n.cj-text-link { display: inline-flex; align-items: center; gap: 24px; min-height: 48px; margin-top: 22px; color: var(--wine); font-size: 14px; font-weight: 700; }\n",
+          "after": ".cj-visit { scroll-margin-top: 40px; outline: none; }\n.cj-launch-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 28px; margin-top: 28px; }\n.cj-launch-actions .cj-text-link { margin-top: 0; }\n.cj-dm { display: inline-flex; align-items: center; gap: 16px; min-height: 52px; padding: 14px 22px; background: var(--wine); color: var(--paper); font-size: 15px; font-weight: 700; text-decoration: none; transition: background-color 160ms ease; }\n.cj-dm:hover { background: #9c3c10; }\n.cj-dm:focus-visible { outline: 3px solid var(--wine); outline-offset: 4px; }\n.cj-dm svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; }\n.cj-text-link { display: inline-flex; align-items: center; gap: 24px; min-height: 48px; margin-top: 22px; color: var(--wine); font-size: 14px; font-weight: 700; }\n"
+        },
+        {
+          "before": "  .cj-launch-lede { font-size: 16px; }\n  .cj-launch-media { grid-template-columns: 1fr; gap: 30px; }\n",
+          "after": "  .cj-launch-lede { font-size: 16px; }\n  .cj-dm { width: 100%; justify-content: space-between; }\n  .cj-launch-media { grid-template-columns: 1fr; gap: 30px; }\n"
+        },
+        {
+          "before": "@media (prefers-reduced-motion: reduce) {\n  .ciudad-juarez-opening :is(.hh-header a, .hh-welcome a, .cj-text-link, .bf-navigation a) { transition: none; }\n",
+          "after": "@media (prefers-reduced-motion: reduce) {\n  .cj-dm { transition: none; }\n  .ciudad-juarez-opening :is(.hh-header a, .hh-welcome a, .cj-text-link, .bf-navigation a) { transition: none; }\n"
+        }
+      ]
+    },
+    "assets/js/public-data.js": {
+      "marker": "sinyolanda.cdjuarez",
+      "beforeSha256": "84587c4d4ee49c3e93696a0341234a918b0ba5ee4bffb93d22bb144a5d4003a8",
+      "afterSha256": "8a25df3f4a5300586231d387e4dc628d9b1b8be1fc317aede1a6cf72b6af00fd",
+      "patches": [
+        {
+          "before": "      \"statusLabel\": \"Próxima apertura\",\n      \"concept\": \"Próxima apertura\",\n      \"address\": \"\",\n      \"hours\": \"\",\n",
+          "after": "      \"statusLabel\": \"Próxima apertura\",\n      \"concept\": \"Gran inauguración\",\n      \"address\": \"Av. Paseo Triunfo de la República 5617, Ciudad Juárez, Chih.\",\n      \"hours\": \"\",\n"
+        },
+        {
+          "before": "      \"whatsapp\": \"\",\n      \"mapsUrl\": \"\",\n      \"website\": \"\",\n",
+          "after": "      \"whatsapp\": \"\",\n      \"mapsUrl\": \"https://www.google.com/maps/dir/?api=1&destination=Av.+Paseo+Triunfo+de+la+Rep%C3%BAblica+5617%2C+Ciudad+Ju%C3%A1rez%2C+Chih.\",\n      \"website\": \"\",\n"
+        },
+        {
+          "before": "      \"gallery\": [],\n      \"summary\": \"Sin Yolanda llega muy pronto a Ciudad Juárez.\",\n      \"tagline\": \"Próximamente\",\n      \"socialUrl\": \"\",\n      \"menuUrl\": \"\",\n",
+          "after": "      \"gallery\": [],\n      \"summary\": \"Gran inauguración de Sin Yolanda en Ciudad Juárez. Reservaciones por mensaje directo en Instagram.\",\n      \"tagline\": \"Gran inauguración\",\n      \"socialUrl\": \"https://www.instagram.com/sinyolanda.cdjuarez/\",\n      \"menuUrl\": \"\",\n"
+        }
+      ]
+    },
+    "assets/js/site.js": {
+      "marker": "Conoce la inauguración",
+      "beforeSha256": "bb27c40859f9109fcc8e02bd949478611e8e091f0df9a5a1948d129ff3204c2e",
+      "afterSha256": "68eb430ffc9e7c9491138bc437a99b905ad4ef08744f4e489e43f55fdb63cf12",
+      "patches": [
+        {
+          "before": "  function modalMarkup() {\n    return `<div class=\"modal\" id=\"demo-modal\" aria-hidden=\"true\"><div class=\"modal-backdrop\" data-close-modal></div><section role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"modal-title\"><button class=\"modal-close\" type=\"button\" data-close-modal aria-label=\"Cerrar\">×</button><p class=\"eyebrow\">Próxima apertura</p><h2 id=\"modal-title\">Ciudad Juárez</h2><p data-i18n-es=\"Muy pronto, Sin Yolanda llegará a Ciudad Juárez. La fecha, ubicación y reservaciones se anunciarán por canales oficiales.\" data-i18n-en=\"Sin Yolanda is coming to Ciudad Juárez. The date, location, and reservations will be announced through official channels.\">Muy pronto, Sin Yolanda llegará a Ciudad Juárez. La fecha, ubicación y reservaciones se anunciarán por canales oficiales.</p><a class=\"button button-primary\" href=\"ciudad-juarez.html\" data-i18n-es=\"Conoce la próxima apertura\" data-i18n-en=\"Meet the next location\">Conoce la próxima apertura</a></section></div>`;\n  }\n",
+          "after": "  function modalMarkup() {\n    return `<div class=\"modal\" id=\"demo-modal\" aria-hidden=\"true\"><div class=\"modal-backdrop\" data-close-modal></div><section role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"modal-title\"><button class=\"modal-close\" type=\"button\" data-close-modal aria-label=\"Cerrar\">×</button><p class=\"eyebrow\" data-i18n-es=\"Gran inauguración\" data-i18n-en=\"Grand opening\">Gran inauguración</p><h2 id=\"modal-title\">Ciudad Juárez</h2><p data-i18n-es=\"Sin Yolanda llega a Ciudad Juárez en Av. Paseo Triunfo de la República 5617. Reservaciones por mensaje directo en Instagram.\" data-i18n-en=\"Sin Yolanda opens in Ciudad Juárez at Av. Paseo Triunfo de la República 5617. Book through an Instagram direct message.\">Sin Yolanda llega a Ciudad Juárez en Av. Paseo Triunfo de la República 5617. Reservaciones por mensaje directo en Instagram.</p><a class=\"button button-primary\" href=\"ciudad-juarez.html\" data-i18n-es=\"Conoce la inauguración\" data-i18n-en=\"See the grand opening\">Conoce la inauguración</a></section></div>`;\n  }\n"
+        }
+      ]
+    },
+    "eventos.html": {
+      "marker": "20261126-ciudad-juarez-social",
+      "beforeSha256": "9b820554d0b82365e3353359afed38fa8e303d78868bb1326f02b25425e948d2",
+      "afterSha256": "9dba3f794ea6ae43c4c29d671774abbc8715c49b401dc3adfe1f1521582bd374",
+      "patches": [
+        {
+          "before": "      </footer>\n      <div class=\"modal\" id=\"demo-modal\" aria-hidden=\"true\"><div class=\"modal-backdrop\" data-close-modal></div><section role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"modal-title\"><button class=\"modal-close\" type=\"button\" data-close-modal aria-label=\"Cerrar\">×</button><p class=\"eyebrow\">Próxima apertura</p><h2 id=\"modal-title\">Ciudad Juárez</h2><p data-i18n-es=\"Muy pronto, Sin Yolanda llegará a Ciudad Juárez. La fecha, ubicación y reservaciones se anunciarán por canales oficiales.\" data-i18n-en=\"Sin Yolanda is coming to Ciudad Juárez. The date, location, and reservations will be announced through official channels.\">Muy pronto, Sin Yolanda llegará a Ciudad Juárez. La fecha, ubicación y reservaciones se anunciarán por canales oficiales.</p><a class=\"button button-primary\" href=\"ciudad-juarez\" data-i18n-es=\"Conoce la próxima apertura\" data-i18n-en=\"Meet the next location\">Conoce la próxima apertura</a></section></div><div class=\"toast\" id=\"demo-toast\" role=\"status\" aria-live=\"polite\"></div></div><!-- seo-shell-end -->\n    <script src=\"assets/js/public-data.js?v=20261113-gdl-hours\"></script>\n    <script src=\"assets/js/site.js?v=20261106-ciudad-juarez-card-location\"></script>\n    <script src=\"assets/js/i18n.js?v=20261026-approved-update\"></script>\n",
+          "after": "      </footer>\n      <div class=\"modal\" id=\"demo-modal\" aria-hidden=\"true\"><div class=\"modal-backdrop\" data-close-modal></div><section role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"modal-title\"><button class=\"modal-close\" type=\"button\" data-close-modal aria-label=\"Cerrar\">×</button><p class=\"eyebrow\" data-i18n-es=\"Gran inauguración\" data-i18n-en=\"Grand opening\">Gran inauguración</p><h2 id=\"modal-title\">Ciudad Juárez</h2><p data-i18n-es=\"Sin Yolanda llega a Ciudad Juárez en Av. Paseo Triunfo de la República 5617. Reservaciones por mensaje directo en Instagram.\" data-i18n-en=\"Sin Yolanda opens in Ciudad Juárez at Av. Paseo Triunfo de la República 5617. Book through an Instagram direct message.\">Sin Yolanda llega a Ciudad Juárez en Av. Paseo Triunfo de la República 5617. Reservaciones por mensaje directo en Instagram.</p><a class=\"button button-primary\" href=\"ciudad-juarez\" data-i18n-es=\"Conoce la inauguración\" data-i18n-en=\"See the grand opening\">Conoce la inauguración</a></section></div><div class=\"toast\" id=\"demo-toast\" role=\"status\" aria-live=\"polite\"></div></div><!-- seo-shell-end -->\n    <script src=\"assets/js/public-data.js?v=20261126-ciudad-juarez-social\"></script>\n    <script src=\"assets/js/site.js?v=20261126-ciudad-juarez-social\"></script>\n    <script src=\"assets/js/i18n.js?v=20261026-approved-update\"></script>\n"
+        }
+      ]
+    },
+    "index.html": {
+      "marker": "20261126-ciudad-juarez-social",
+      "beforeSha256": "89f02d20df7dc5d31add840bc287d345c1390995a17325b9ca4794cb764f1e94",
+      "afterSha256": "800ad28b4c42ba4caa7170728a9f520ff57d4b45716f94bac7859d91120bb75d",
+      "patches": [
+        {
+          "before": "    </footer><div class=\"toast\" id=\"demo-toast\" role=\"status\" aria-live=\"polite\"></div></div><!-- seo-shell-end -->\n    <script src=\"assets/js/public-data.js?v=20261113-gdl-hours\"></script>\n    <script src=\"assets/js/site.js?v=20261106-ciudad-juarez-card-location\"></script>\n    <script src=\"assets/js/venue-selector.js?v=20261008-migration-measurement\"></script>\n",
+          "after": "    </footer><div class=\"toast\" id=\"demo-toast\" role=\"status\" aria-live=\"polite\"></div></div><!-- seo-shell-end -->\n    <script src=\"assets/js/public-data.js?v=20261126-ciudad-juarez-social\"></script>\n    <script src=\"assets/js/site.js?v=20261126-ciudad-juarez-social\"></script>\n    <script src=\"assets/js/venue-selector.js?v=20261008-migration-measurement\"></script>\n"
+        }
+      ]
+    },
+    "la-cantina.html": {
+      "marker": "20261126-ciudad-juarez-social",
+      "beforeSha256": "4ed1d83647a5e99a6c0d6281eaee7c166caa531d2e4226b903a2147ca85675a6",
+      "afterSha256": "a0397d8ef33865f90def04be9ba5ec3dadd9e9d3823cd1f7e874d483ab4b445a",
+      "patches": [
+        {
+          "before": "      </footer>\n      <div class=\"modal\" id=\"demo-modal\" aria-hidden=\"true\"><div class=\"modal-backdrop\" data-close-modal></div><section role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"modal-title\"><button class=\"modal-close\" type=\"button\" data-close-modal aria-label=\"Cerrar\">×</button><p class=\"eyebrow\">Próxima apertura</p><h2 id=\"modal-title\">Ciudad Juárez</h2><p data-i18n-es=\"Muy pronto, Sin Yolanda llegará a Ciudad Juárez. La fecha, ubicación y reservaciones se anunciarán por canales oficiales.\" data-i18n-en=\"Sin Yolanda is coming to Ciudad Juárez. The date, location, and reservations will be announced through official channels.\">Muy pronto, Sin Yolanda llegará a Ciudad Juárez. La fecha, ubicación y reservaciones se anunciarán por canales oficiales.</p><a class=\"button button-primary\" href=\"ciudad-juarez\" data-i18n-es=\"Conoce la próxima apertura\" data-i18n-en=\"Meet the next location\">Conoce la próxima apertura</a></section></div><div class=\"toast\" id=\"demo-toast\" role=\"status\" aria-live=\"polite\"></div></div><!-- seo-shell-end -->\n    <script src=\"assets/js/public-data.js?v=20261113-gdl-hours\"></script>\n    <script src=\"assets/js/site.js?v=20261106-ciudad-juarez-card-location\"></script>\n    <script src=\"assets/js/i18n.js?v=20261026-approved-update\"></script>\n",
+          "after": "      </footer>\n      <div class=\"modal\" id=\"demo-modal\" aria-hidden=\"true\"><div class=\"modal-backdrop\" data-close-modal></div><section role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"modal-title\"><button class=\"modal-close\" type=\"button\" data-close-modal aria-label=\"Cerrar\">×</button><p class=\"eyebrow\" data-i18n-es=\"Gran inauguración\" data-i18n-en=\"Grand opening\">Gran inauguración</p><h2 id=\"modal-title\">Ciudad Juárez</h2><p data-i18n-es=\"Sin Yolanda llega a Ciudad Juárez en Av. Paseo Triunfo de la República 5617. Reservaciones por mensaje directo en Instagram.\" data-i18n-en=\"Sin Yolanda opens in Ciudad Juárez at Av. Paseo Triunfo de la República 5617. Book through an Instagram direct message.\">Sin Yolanda llega a Ciudad Juárez en Av. Paseo Triunfo de la República 5617. Reservaciones por mensaje directo en Instagram.</p><a class=\"button button-primary\" href=\"ciudad-juarez\" data-i18n-es=\"Conoce la inauguración\" data-i18n-en=\"See the grand opening\">Conoce la inauguración</a></section></div><div class=\"toast\" id=\"demo-toast\" role=\"status\" aria-live=\"polite\"></div></div><!-- seo-shell-end -->\n    <script src=\"assets/js/public-data.js?v=20261126-ciudad-juarez-social\"></script>\n    <script src=\"assets/js/site.js?v=20261126-ciudad-juarez-social\"></script>\n    <script src=\"assets/js/i18n.js?v=20261026-approved-update\"></script>\n"
+        }
+      ]
+    },
+    "locations.html": {
+      "marker": "20261126-ciudad-juarez-social",
+      "beforeSha256": "8bbc0b981e1f8ec97b2af7d7f6404b9dcc73003447227f7071843d311fc9bd13",
+      "afterSha256": "4c6b4673e445769604072bb545bd968e7e284e438322fd2136f01947e80fc77c",
+      "patches": [
+        {
+          "before": "      </footer><div class=\"toast\" id=\"demo-toast\" role=\"status\" aria-live=\"polite\"></div></div><!-- seo-shell-end -->\n    <script src=\"assets/js/public-data.js?v=20261113-gdl-hours\"></script>\n    <script src=\"assets/js/site.js?v=20261106-ciudad-juarez-card-location\"></script>\n    <script src=\"assets/js/venue-selector.js?v=20261008-migration-measurement\"></script>\n",
+          "after": "      </footer><div class=\"toast\" id=\"demo-toast\" role=\"status\" aria-live=\"polite\"></div></div><!-- seo-shell-end -->\n    <script src=\"assets/js/public-data.js?v=20261126-ciudad-juarez-social\"></script>\n    <script src=\"assets/js/site.js?v=20261126-ciudad-juarez-social\"></script>\n    <script src=\"assets/js/venue-selector.js?v=20261008-migration-measurement\"></script>\n"
+        }
+      ]
+    },
+    "tienda.html": {
+      "marker": "20261126-ciudad-juarez-social",
+      "beforeSha256": "745e8659da50e67de3003d39a57411686699cea66aa177b9d0bdee436a9b5787",
+      "afterSha256": "83fed216ebed3faf5b37ef81dea1ebeee12ea0ae040a0c0a591be1e9a0ecda42",
+      "patches": [
+        {
+          "before": "      </footer>\n      <div class=\"modal\" id=\"demo-modal\" aria-hidden=\"true\"><div class=\"modal-backdrop\" data-close-modal></div><section role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"modal-title\"><button class=\"modal-close\" type=\"button\" data-close-modal aria-label=\"Cerrar\">×</button><p class=\"eyebrow\">Próxima apertura</p><h2 id=\"modal-title\">Ciudad Juárez</h2><p data-i18n-es=\"Muy pronto, Sin Yolanda llegará a Ciudad Juárez. La fecha, ubicación y reservaciones se anunciarán por canales oficiales.\" data-i18n-en=\"Sin Yolanda is coming to Ciudad Juárez. The date, location, and reservations will be announced through official channels.\">Muy pronto, Sin Yolanda llegará a Ciudad Juárez. La fecha, ubicación y reservaciones se anunciarán por canales oficiales.</p><a class=\"button button-primary\" href=\"ciudad-juarez\" data-i18n-es=\"Conoce la próxima apertura\" data-i18n-en=\"Meet the next location\">Conoce la próxima apertura</a></section></div><div class=\"toast\" id=\"demo-toast\" role=\"status\" aria-live=\"polite\"></div></div><!-- seo-shell-end -->\n    <script src=\"assets/js/public-data.js?v=20261113-gdl-hours\"></script>\n    <script src=\"assets/js/site.js?v=20261106-ciudad-juarez-card-location\"></script>\n    <script src=\"assets/js/i18n.js?v=20261026-approved-update\"></script>\n",
+          "after": "      </footer>\n      <div class=\"modal\" id=\"demo-modal\" aria-hidden=\"true\"><div class=\"modal-backdrop\" data-close-modal></div><section role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"modal-title\"><button class=\"modal-close\" type=\"button\" data-close-modal aria-label=\"Cerrar\">×</button><p class=\"eyebrow\" data-i18n-es=\"Gran inauguración\" data-i18n-en=\"Grand opening\">Gran inauguración</p><h2 id=\"modal-title\">Ciudad Juárez</h2><p data-i18n-es=\"Sin Yolanda llega a Ciudad Juárez en Av. Paseo Triunfo de la República 5617. Reservaciones por mensaje directo en Instagram.\" data-i18n-en=\"Sin Yolanda opens in Ciudad Juárez at Av. Paseo Triunfo de la República 5617. Book through an Instagram direct message.\">Sin Yolanda llega a Ciudad Juárez en Av. Paseo Triunfo de la República 5617. Reservaciones por mensaje directo en Instagram.</p><a class=\"button button-primary\" href=\"ciudad-juarez\" data-i18n-es=\"Conoce la inauguración\" data-i18n-en=\"See the grand opening\">Conoce la inauguración</a></section></div><div class=\"toast\" id=\"demo-toast\" role=\"status\" aria-live=\"polite\"></div></div><!-- seo-shell-end -->\n    <script src=\"assets/js/public-data.js?v=20261126-ciudad-juarez-social\"></script>\n    <script src=\"assets/js/site.js?v=20261126-ciudad-juarez-social\"></script>\n    <script src=\"assets/js/i18n.js?v=20261026-approved-update\"></script>\n"
+        }
+      ]
+    },
+    "llms.txt": {
+      "marker": "Gran inauguración: Ciudad Juárez",
+      "beforeSha256": "52eda144df61a5200d38b53735f58d64b81e5111699f93338bbc67ceac3be279",
+      "afterSha256": "4a7d52ffa7b3567e9b40b7b4b4ccfd70afb04ed3b7a77b9e86f782f645f452d6",
+      "patches": [
+        {
+          "before": "- [Sitemap](https://sin-yolanda.com/sitemap.xml): URLs canónicas indexables.\n- [Próxima apertura: Ciudad Juárez](https://sin-yolanda.com/ciudad-juarez): información oficial de próxima apertura; sin dirección, horarios, carta ni reservaciones confirmadas.\n- [Sin Yolanda El Paso](https://sin-yolanda.com/el-paso)\n",
+          "after": "- [Sitemap](https://sin-yolanda.com/sitemap.xml): URLs canónicas indexables.\n- [Gran inauguración: Ciudad Juárez](https://sin-yolanda.com/ciudad-juarez): Av. Paseo Triunfo de la República 5617, Ciudad Juárez, Chih.; reservaciones por mensaje directo en Instagram (https://www.instagram.com/sinyolanda.cdjuarez/); horarios y carta aún sin confirmar.\n- [Sin Yolanda El Paso](https://sin-yolanda.com/el-paso)\n"
+        }
+      ]
+    },
+    "scripts/public-manifest.json": {
+      "marker": "20261126-ciudad-juarez-social",
+      "beforeSha256": "554bbf19e7fe654a50da038deeab5004f4bf5fed0f68416332ba27c82b3e3bcb",
+      "afterSha256": "12759f9dece0bb2b84c2eae6e18fae691ce9c012647ce67fd9df6bfc0e59a189",
+      "patches": [
+        {
+          "before": "  \"assetVersions\": {\n    \"assets/js/site.js\": \"20261106-ciudad-juarez-card-location\",\n    \"assets/js/i18n.js\": \"20261026-approved-update\",\n    \"assets/css/visual-pilot.css\": \"20261015-blue-hat-mobile\",\n    \"assets/js/public-data.js\": \"20261113-gdl-hours\",\n    \"assets/js/site-analytics.js\": \"20261012-root-routing\",\n",
+          "after": "  \"assetVersions\": {\n    \"assets/js/site.js\": \"20261126-ciudad-juarez-social\",\n    \"assets/js/i18n.js\": \"20261026-approved-update\",\n    \"assets/css/visual-pilot.css\": \"20261015-blue-hat-mobile\",\n    \"assets/js/public-data.js\": \"20261126-ciudad-juarez-social\",\n    \"assets/js/site-analytics.js\": \"20261012-root-routing\",\n"
+        },
+        {
+          "before": "    \"assets/css/venue-selector.css\": \"20261106-ciudad-juarez-opening\",\n    \"assets/css/ciudad-juarez-opening.css\": \"20261126-ciudad-juarez-inauguration\",\n    \"assets/js/october-hours.js\": \"20261026-approved-update\",\n",
+          "after": "    \"assets/css/venue-selector.css\": \"20261106-ciudad-juarez-opening\",\n    \"assets/css/ciudad-juarez-opening.css\": \"20261126-ciudad-juarez-social\",\n    \"assets/js/october-hours.js\": \"20261026-approved-update\",\n"
+        }
+      ]
+    },
+    "scripts/editorial/approved-selector.json": {
+      "marker": "20261126-ciudad-juarez-social",
+      "beforeSha256": "f3dbc614a59129a9138075fd411bdb4585e47eba37f53f0d62cd34e581da2560",
+      "afterSha256": "da1d195f34433e87aef246609720dc658e1d5b311e1acce8c72f815c2789b38f",
+      "patches": [
+        {
+          "before": "  \"openingLabel\": {\n    \"scriptVersion\": \"20261107-opening-label\",\n    \"es\": \"Próxima apertura\",\n",
+          "after": "  \"openingLabel\": {\n    \"scriptVersion\": \"20261126-ciudad-juarez-social\",\n    \"es\": \"Próxima apertura\",\n"
+        }
+      ]
+    }
+  }
+}

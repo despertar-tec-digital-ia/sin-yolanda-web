@@ -1,5 +1,14 @@
 # Forma de trabajar y publicar
 
+### Ciudad Juárez · Instagram y datos de sucursal · 26-nov-2026
+
+Luis aporta @sinyolanda.cdjuarez como canal de reservas por DM (`ig.me/m/sinyolanda.cdjuarez`) y red
+de la sucursal. La ficha agrega el botón de DM en portada e inauguración y el Instagram en el pie.
+`public-data.js`, el aviso de apertura (`site.js` y copias estáticas) y `llms.txt` pasan a la dirección
+corta confirmada, sin fecha. La etiqueta aprobada de la tarjeta sigue en «Próxima apertura» hasta que
+Luis confirme los días; sólo avanza su versión de caché (`approved-selector.json`). Capa reversible
+`scripts/ciudad-juarez-social/`, la más reciente. San Diego (@sinyolandasandiego) queda sólo en el vault.
+
 ### Ciudad Juárez · gran inauguración · 26-nov-2026
 
 Luis autoriza publicar la ficha de inauguración sobre la ficha con foto existente: 11 y 12 de

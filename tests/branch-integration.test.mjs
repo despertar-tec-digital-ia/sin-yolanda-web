@@ -219,7 +219,7 @@ test('Ciudad Juárez is the next opening with a safe landing; later branches sta
   assert.ok(ciudadJuarez);
   assert.equal(ciudadJuarez.status, 'coming-soon');
   assert.equal(ciudadJuarez.page, 'ciudad-juarez.html');
-  assert.equal(ciudadJuarez.address, '');
+  assert.equal(ciudadJuarez.address, 'Av. Paseo Triunfo de la República 5617, Ciudad Juárez, Chih.'); // confirmed by the branch 26-nov
   assert.equal(ciudadJuarez.phone, '');
   assert.equal(ciudadJuarez.reserveUrl, '');
   assert.ok(publicManifest.pages.includes('ciudad-juarez.html'));

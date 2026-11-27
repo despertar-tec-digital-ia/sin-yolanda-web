@@ -33,6 +33,12 @@
 .cj-flyer a { display: block; }
 .cj-flyer a:focus-visible { outline: 3px solid var(--wine); outline-offset: 4px; }
 .cj-visit { scroll-margin-top: 40px; outline: none; }
+.cj-launch-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 28px; margin-top: 28px; }
+.cj-launch-actions .cj-text-link { margin-top: 0; }
+.cj-dm { display: inline-flex; align-items: center; gap: 16px; min-height: 52px; padding: 14px 22px; background: var(--wine); color: var(--paper); font-size: 15px; font-weight: 700; text-decoration: none; transition: background-color 160ms ease; }
+.cj-dm:hover { background: #9c3c10; }
+.cj-dm:focus-visible { outline: 3px solid var(--wine); outline-offset: 4px; }
+.cj-dm svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; }
 .cj-text-link { display: inline-flex; align-items: center; gap: 24px; min-height: 48px; margin-top: 22px; color: var(--wine); font-size: 14px; font-weight: 700; }
 .cj-footer .bf-main { padding-bottom: 60px; }
 .cj-footer .bf-place { max-width: 9ch; line-height: .97; }
@@ -60,6 +66,7 @@
   .cj-launch { grid-template-columns: 1fr; gap: 38px; padding: 62px 20px 64px; }
   .cj-launch h2 { font-size: clamp(70px, 20vw, 100px); }
   .cj-launch-lede { font-size: 16px; }
+  .cj-dm { width: 100%; justify-content: space-between; }
   .cj-launch-media { grid-template-columns: 1fr; gap: 30px; }
   .cj-video, .cj-flyer { width: min(100%, 420px); margin-inline: auto; }
   .cj-footer .bf-main { padding-bottom: 42px; }
@@ -67,5 +74,6 @@
   .cj-footer .bf-place { max-width: none; font-size: clamp(60px, 19vw, 100px); }
 }
 @media (prefers-reduced-motion: reduce) {
+  .cj-dm { transition: none; }
   .ciudad-juarez-opening :is(.hh-header a, .hh-welcome a, .cj-text-link, .bf-navigation a) { transition: none; }
 }

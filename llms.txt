@@ -7,7 +7,7 @@
 - [Sucursales](https://sin-yolanda.com/locations): fichas de cada sede.
 - [Datos públicos](https://sin-yolanda.com/discovery.json): información estructurada publicada.
 - [Sitemap](https://sin-yolanda.com/sitemap.xml): URLs canónicas indexables.
-- [Próxima apertura: Ciudad Juárez](https://sin-yolanda.com/ciudad-juarez): información oficial de próxima apertura; sin dirección, horarios, carta ni reservaciones confirmadas.
+- [Gran inauguración: Ciudad Juárez](https://sin-yolanda.com/ciudad-juarez): Av. Paseo Triunfo de la República 5617, Ciudad Juárez, Chih.; reservaciones por mensaje directo en Instagram (https://www.instagram.com/sinyolanda.cdjuarez/); horarios y carta aún sin confirmar.
 - [Sin Yolanda El Paso](https://sin-yolanda.com/el-paso)
 - [Carta de Sin Yolanda El Paso](https://sin-yolanda.com/el-paso/menu/)
 - [Sin Yolanda Guadalajara](https://sin-yolanda.com/guadalajara)

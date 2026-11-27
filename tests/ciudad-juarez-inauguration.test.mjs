@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {readFileSync, statSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {cjInaugurationSource, restoreCiudadJuarezInauguration} from '../scripts/ciudad-juarez-inauguration/source-contract.mjs';
+import {restoreCiudadJuarezSocial} from '../scripts/ciudad-juarez-social/source-contract.mjs';
 
 const read = file => readFileSync(new URL('../' + file, import.meta.url), 'utf8');
 const hash = value => createHash('sha256').update(value).digest('hex');
@@ -10,7 +11,8 @@ const media = 'assets/media/ciudad-juarez-opening/';
 
 test('the Ciudad Juárez inauguration layer restores exact earlier bytes and keeps unknown edits visible', () => {
   for (const [file, entry] of Object.entries(cjInaugurationSource.files)) {
-    const source = read(file);
+    // The later social layer is peeled first; it has its own exact guard.
+    const source = restoreCiudadJuarezSocial(file, read(file));
     assert.equal(hash(source), entry.afterSha256, file);
     const restored = restoreCiudadJuarezInauguration(file, source);
     assert.equal(hash(restored), entry.beforeSha256, file);
@@ -53,7 +55,7 @@ test('the invitation video uses the native player and autoplays only muted, inli
 });
 
 test('every inauguration asset is explicitly allowlisted and versioned', () => {
-  const manifest = JSON.parse(read('scripts/public-manifest.json'));
+  const manifest = JSON.parse(restoreCiudadJuarezSocial('scripts/public-manifest.json', read('scripts/public-manifest.json')));
   for (const asset of ['assets/js/ciudad-juarez-opening.js', media + 'gran-inauguracion-flyer.webp', media + 'jorge-guevara-invitacion-poster.webp', media + 'jorge-guevara-invitacion-720.mp4']) {
     assert.ok(manifest.assets.includes(asset), asset);
     assert.ok(statSync(new URL('../' + asset, import.meta.url)).size > 0, asset);

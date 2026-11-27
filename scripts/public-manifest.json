@@ -1,10 +1,10 @@
 {
   "version": 1,
   "assetVersions": {
-    "assets/js/site.js": "20261106-ciudad-juarez-card-location",
+    "assets/js/site.js": "20261126-ciudad-juarez-social",
     "assets/js/i18n.js": "20261026-approved-update",
     "assets/css/visual-pilot.css": "20261015-blue-hat-mobile",
-    "assets/js/public-data.js": "20261113-gdl-hours",
+    "assets/js/public-data.js": "20261126-ciudad-juarez-social",
     "assets/js/site-analytics.js": "20261012-root-routing",
     "assets/css/houston-header.css": "20261012-overlay",
     "assets/js/agenda-clock.js": "20261013-approved-agenda",
@@ -21,7 +21,7 @@
     "assets/css/gdl-menu.css": "20261019-gdl-v82",
     "assets/js/gdl-menu.js": "20261019-gdl-v82",
     "assets/css/venue-selector.css": "20261106-ciudad-juarez-opening",
-    "assets/css/ciudad-juarez-opening.css": "20261126-ciudad-juarez-inauguration",
+    "assets/css/ciudad-juarez-opening.css": "20261126-ciudad-juarez-social",
     "assets/js/october-hours.js": "20261026-approved-update",
     "assets/css/october-update.css": "20261026-event-posters-clean",
     "assets/css/branch-social-feed.css": "20261104-instagram-houston",

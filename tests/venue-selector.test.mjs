@@ -81,7 +81,11 @@ test('future photos are illustrative brand media, and Ciudad Juárez has no inve
   }
   const ciudadJuarez = data.branches.find(b => b.id === 'ciudad-juarez');
   assert.equal(ciudadJuarez.page, 'ciudad-juarez.html');
-  for (const key of ['address', 'hours', 'phone', 'phoneIntl', 'whatsapp', 'mapsUrl', 'reserveUrl', 'menuUrl']) {
+  // 26-nov: the branch confirmed only its address and Instagram; operating facts stay empty.
+  assert.equal(ciudadJuarez.address, 'Av. Paseo Triunfo de la República 5617, Ciudad Juárez, Chih.');
+  assert.match(ciudadJuarez.mapsUrl, /^https:\/\/www\.google\.com\/maps\/dir\/\?api=1&destination=Av\.\+Paseo\+Triunfo/);
+  assert.equal(ciudadJuarez.socialUrl, 'https://www.instagram.com/sinyolanda.cdjuarez/');
+  for (const key of ['hours', 'phone', 'phoneIntl', 'whatsapp', 'reserveUrl', 'menuUrl']) {
     assert.equal(ciudadJuarez[key], '', key);
   }
   for (const id of ['moreno-valley', 'san-diego']) assert.equal(data.branches.find(b => b.id === id).page, '#');

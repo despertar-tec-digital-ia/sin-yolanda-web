@@ -5,6 +5,7 @@ import { createHash } from 'node:crypto';
 import { restoreCiudadJuarezOpening } from '../scripts/ciudad-juarez-opening-source-contract.mjs';
 import { ciudadJuarezPriority, restoreCiudadJuarezPriority } from '../scripts/ciudad-juarez-priority-source-contract.mjs';
 import {restoreApprovedPreviewsSource} from '../scripts/approved-previews-source-contract.mjs';
+import {restoreCiudadJuarezInauguration} from '../scripts/ciudad-juarez-inauguration/source-contract.mjs';
 
 const read = file => readFileSync(new URL('../' + file, import.meta.url), 'utf8');
 const hash = value => createHash('sha256').update(value).digest('hex');
@@ -31,7 +32,8 @@ test('Ciudad Juárez opening changes restore the exact earlier source and reject
 });
 
 test('Ciudad Juárez landing is a pre-opening WebPage without operating claims', () => {
-  const html = read('ciudad-juarez.html');
+  // Historical guarantee of the 6-nov release; the 26-nov inauguration layer is peeled first.
+  const html = restoreCiudadJuarezInauguration('ciudad-juarez.html', read('ciudad-juarez.html'));
   assert.match(html, /<link rel="canonical" href="https:\/\/sin-yolanda\.com\/ciudad-juarez">/);
   assert.match(html, /Sin Yolanda llega muy pronto a Ciudad Juárez\./);
   assert.match(html, /Después de Ciudad Juárez[\s\S]*San Diego y Moreno Valley/);

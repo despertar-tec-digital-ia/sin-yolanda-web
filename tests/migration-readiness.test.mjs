@@ -69,7 +69,8 @@ test('the explicit SEO authorization retains the five existing pages and adds th
     assert.ok(imports[id].blockingReasons.length > 0);
   }
   const ciudadJuarez = read('ciudad-juarez.html');
-  assert.doesNotMatch(ciudadJuarez, /(?:data-import-source-ref|data-import-audience|@type":"Restaurant|tel:|wa\.me|opentable|google\.com\/maps|<iframe\b)/i);
+  // The 26-nov inauguration layer adds only the branch-supplied address and its map; no booking or contact claims.
+  assert.doesNotMatch(ciudadJuarez, /(?:data-import-source-ref|data-import-audience|@type":"Restaurant|tel:|wa\.me|opentable)/i);
   assert.match(ciudadJuarez, /@type":"WebPage"/);
 });
 

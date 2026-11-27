@@ -1,5 +1,18 @@
 # Forma de trabajar y publicar
 
+### Ciudad Juárez · gran inauguración · 26-nov-2026
+
+Luis autoriza publicar la ficha de inauguración sobre la ficha con foto existente: 11 y 12 de
+diciembre (fechas del cartel oficial; la reunión mencionó 10–12 y queda a confirmar), Jorge Guevara
+como invitado especial el sábado 12 con su video de invitación (720p, 5.4 MB, reproductor nativo,
+autoplay sólo silenciado y visible, sin carga inicial) y el cartel oficial. Dirección en forma corta
+pedida por la sede: «Av. Paseo Triunfo de la República 5617», Ciudad Juárez, Chih., con mapa de Google
+por dirección. Sin reservas, horario, menú, teléfono, redes ni concursos hasta confirmarlos; las
+tarjetas de `public-data.js` siguen en «Próxima apertura». Capa reversible
+`scripts/ciudad-juarez-inauguration/`, enganchada como la más reciente; las pruebas de pre-apertura
+validan la historia restaurada y la nueva prueba cubre los datos confirmados. Tras el 12-dic la ficha
+debe pasar a datos operativos o retirar la inauguración.
+
 ### Verificación del proveedor · candidata técnica del 24-nov
 
 El verificador GET conserva la comprobación completa del paquete y añade una segunda lectura

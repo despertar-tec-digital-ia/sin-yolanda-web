@@ -9,6 +9,7 @@ import {buildSiteQualityReview} from '../scripts/site-quality-review.mjs';
 import {auditSiteQuality} from '../scripts/audit-site-quality.mjs';
 import {planAgendaRefresh} from '../scripts/plan-agenda-refresh.mjs';
 import {qualitySource, restoreQualitySource} from '../scripts/site-quality/source-contract.mjs';
+import {restoreCiudadJuarezInauguration} from '../scripts/ciudad-juarez-inauguration/source-contract.mjs';
 
 const root = resolve(import.meta.dirname, '..');
 const hash = text => createHash('sha256').update(text).digest('hex');
@@ -20,7 +21,8 @@ test('a build without an explicit clock uses one instant for the base and final 
 });
 
 test('the manifest delta restores historical bytes exactly and never hides an unrelated or ambiguous change', () => {
-  const file = qualitySource.file, source = readFileSync(resolve(root, file), 'utf8');
+  // The later Ciudad Juárez inauguration layer is peeled first; it has its own exact guard.
+  const file = qualitySource.file, source = restoreCiudadJuarezInauguration(file, readFileSync(resolve(root, file), 'utf8'));
   assert.equal(hash(source), qualitySource.afterSha256);
   const restored = restoreQualitySource(file, source);
   assert.equal(hash(restored), qualitySource.beforeSha256);
@@ -41,7 +43,8 @@ test('normal package and protected review use the same final bytes with only pre
   assert.equal(normal.qualityBuildIntegrated, true);
   assert.equal(normal.publicationEnabled, false, 'A build is not a production authorization');
   assert.equal(normal.audience, 'production');
-  assert.equal(normal.fileCount, 405); assert.equal(review.fileCount, 405);
+  // 405 quality-release files + 4 reviewed Ciudad Juárez inauguration assets (26-nov).
+  assert.equal(normal.fileCount, 409); assert.equal(review.fileCount, 409);
   assert.deepEqual(Object.keys(normal.hashes), Object.keys(review.hashes));
   for (const [file, digest] of Object.entries(normal.hashes)) if (file !== '_headers') assert.equal(review.hashes[file], digest, file);
   assert.doesNotMatch(readFileSync(resolve(out, 'normal/public/_headers'), 'utf8'), /X-Robots-Tag: noindex, nofollow/);

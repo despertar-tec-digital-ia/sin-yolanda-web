@@ -1,4 +1,4 @@
-/* Pre-opening variation of the existing branch shell; no operating details implied. */
+/* Opening variation of the existing branch shell; only confirmed opening details are shown. */
 .ciudad-juarez-opening .hh-arrival { background: #34180f; }
 .ciudad-juarez-opening .hh-welcome { padding-top: 150px; }
 .ciudad-juarez-opening .hh-invitation { max-width: 6.5em; }
@@ -11,16 +11,29 @@
 .ciudad-juarez-opening .hh-welcome-actions { gap: 12px; }
 .ciudad-juarez-opening .hh-welcome-actions .hh-reserve { justify-content: space-between; gap: 22px; }
 .cj-hero-note { max-width: 29em; margin-top: 24px; font-size: 13px; line-height: 1.7; color: #fff4debf; }
-.cj-opening {
-  display: grid; grid-template-columns: 1fr 1fr; align-items: center;
-  gap: clamp(40px, 8vw, 130px); padding: clamp(70px, 8vw, 120px) var(--site-gutter);
+.cj-hero-note strong { color: var(--rose); font-weight: 700; }
+.cj-launch {
+  display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); align-items: center;
+  gap: clamp(40px, 6vw, 96px); padding: clamp(70px, 8vw, 120px) var(--site-gutter);
   background: var(--paper); color: var(--ink); scroll-margin-top: 40px; outline: none;
 }
-.cj-opening-heading h2 { color: var(--wine); font: 400 clamp(76px, 7vw, 112px)/.94 var(--landing-display); }
-.cj-opening-heading > p { margin-top: 24px; font-size: 13px; }
-.cj-opening-copy { max-width: 34em; font-size: clamp(16px, 1.4vw, 19px); line-height: 1.7; }
-.cj-opening-copy > p + p { margin-top: 20px; }
-.cj-text-link { display: inline-flex; align-items: center; gap: 24px; min-height: 48px; margin-top: 26px; color: var(--wine); font-size: 14px; font-weight: 700; }
+.cj-launch-kicker { font-size: 13px; letter-spacing: .04em; }
+.cj-launch h2 { margin-top: 18px; color: var(--wine); font: 400 clamp(76px, 7vw, 112px)/.94 var(--landing-display); }
+.cj-launch-date { margin-top: 22px; color: var(--ink); font: 400 clamp(34px, 3.2vw, 48px)/1 var(--landing-display); }
+.cj-launch-lede { max-width: 30em; margin-top: 20px; font-size: clamp(16px, 1.4vw, 19px); line-height: 1.7; }
+.cj-guest { margin-top: 32px; padding: 22px 24px; border-left: 4px solid var(--wine); background: #fff; }
+.cj-guest-label { font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--wine); }
+.cj-guest-name { margin-top: 6px; font: 400 clamp(40px, 4vw, 60px)/.95 var(--landing-display); }
+.cj-guest-date { margin-top: 8px; font-size: 15px; font-weight: 700; }
+.cj-launch-media { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(14px, 2vw, 26px); align-items: start; }
+.cj-launch-media figure { margin: 0; }
+.cj-launch-media figcaption { margin-top: 10px; font-size: 12px; line-height: 1.4; color: #30201cb3; }
+.cj-video { position: relative; }
+.cj-video video, .cj-flyer img { display: block; width: 100%; height: auto; aspect-ratio: 9 / 16; object-fit: cover; background: #34180f; box-shadow: 0 18px 40px #30201c33; }
+.cj-flyer a { display: block; }
+.cj-flyer a:focus-visible { outline: 3px solid var(--wine); outline-offset: 4px; }
+.cj-visit { scroll-margin-top: 40px; outline: none; }
+.cj-text-link { display: inline-flex; align-items: center; gap: 24px; min-height: 48px; margin-top: 22px; color: var(--wine); font-size: 14px; font-weight: 700; }
 .cj-footer .bf-main { padding-bottom: 60px; }
 .cj-footer .bf-place { max-width: 9ch; line-height: .97; }
 .cj-next { margin-top: 34px; font-size: 14px; line-height: 1.6; }
@@ -28,6 +41,8 @@
 .cj-next > p:last-child { margin-top: 8px; font-size: 12px; }
 .ciudad-juarez-opening :is(.hh-header a, .hh-welcome a, .cj-text-link, .bf-navigation a) { transition: background-color 160ms ease, color 160ms ease; }
 @media (min-width: 761px) and (max-width: 1100px) {
+  .cj-launch { grid-template-columns: 1fr; }
+  .cj-launch-media { max-width: 720px; }
   .ciudad-juarez-opening .hh-welcome { width: 50%; padding-right: 30px; }
   .ciudad-juarez-opening .hh-invitation { font-size: clamp(76px, 8vw, 100px); }
   .ciudad-juarez-opening .hh-welcome-actions .hh-reserve { width: 100%; min-height: 56px; }
@@ -42,9 +57,11 @@
   .ciudad-juarez-opening .hh-welcome-actions { margin-top: auto; padding-top: 50px; }
   .ciudad-juarez-opening .hh-welcome-actions .hh-reserve { width: 100%; min-height: 56px; }
   .cj-hero-note { margin-top: 17px; font-size: 12px; }
-  .cj-opening { grid-template-columns: 1fr; gap: 34px; padding: 62px 20px 64px; }
-  .cj-opening-heading h2 { font-size: clamp(70px, 20vw, 100px); }
-  .cj-opening-copy { font-size: 16px; }
+  .cj-launch { grid-template-columns: 1fr; gap: 38px; padding: 62px 20px 64px; }
+  .cj-launch h2 { font-size: clamp(70px, 20vw, 100px); }
+  .cj-launch-lede { font-size: 16px; }
+  .cj-launch-media { grid-template-columns: 1fr; gap: 30px; }
+  .cj-video, .cj-flyer { width: min(100%, 420px); margin-inline: auto; }
   .cj-footer .bf-main { padding-bottom: 42px; }
   .cj-footer .bf-identity { min-height: 0; padding-bottom: 34px; }
   .cj-footer .bf-place { max-width: none; font-size: clamp(60px, 19vw, 100px); }

@@ -228,7 +228,8 @@ test('Ciudad Juárez is the next opening with a safe landing; later branches sta
   const cityNodes = schemas(cityHtml).flatMap(schema => schema['@graph'] ?? [schema]);
   assert.equal(cityNodes.filter(schema => schema['@type'] === 'WebPage').length, 1);
   assert.ok(!cityNodes.some(schema => ['Restaurant', 'Menu', 'Service', 'LocalBusiness'].includes(schema['@type'])));
-  assert.doesNotMatch(cityHtml, /(?:tel:|wa\.me|opentable|google\.com\/maps|<iframe\b|hasMenu|acceptsReservations)/i);
+  // The 26-nov inauguration layer adds only the branch-supplied address and its map; no booking or contact claims.
+  assert.doesNotMatch(cityHtml, /(?:tel:|wa\.me|opentable|hasMenu|acceptsReservations)/i);
   assert.match(cityHtml, /Después de Ciudad Juárez[\s\S]*San Diego y Moreno Valley/);
   assert.ok(!registry.some(branch => branch.id === 'maricarmen'));
   assert.ok(!Object.hasOwn(importManifest, 'maricarmen'));
